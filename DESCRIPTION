@@ -1,0 +1,15 @@
+Package: censusapi
+Title: Retrieve data from the Census API
+Version: 0.0.0.9000
+Authors@R: person("Hannah", "Recht", email = "hrecht@urban.org", role = c("aut", "cre"))
+Description: Retrieve Census API metadata and responses as data frames.
+Depends:
+    R (>= 3.2.3), 
+    jsonlite,
+    XML
+License: Creative Commons
+LazyData: true
+RoxygenNote: 5.0.1.9000
+Imports:
+    jsonlite,
+    XML
