@@ -28,7 +28,10 @@ df1990 <- getCensus(sf3_1990_api, key=censuskey, vars=c("INTPTLAT", "P0070001", 
 # Error handling for missing key
 df1990 <- getCensus(sf3_1990_api, vars=c("P0070001"), region="county:*")
 
-# Time series APIs
+# Time series APIs - note: the arguments vary by API. Read the documentation, i.e. http://www.census.gov/data/developers/data-sets/population-estimates-and-projections.html
+pep_api <-'https://api.census.gov/data/2015/pep/components'
+pep <- getCensus(pep_api, key=censuskey, vars=c("BIRTHS", "DEATHS"), region="state:*", period=6)
+
 # SAHIE
 # Note: some categories (racial breakdown) appear not to be available at state level - will return only 'all races'
 sahie_api <- 'http://api.census.gov/data/timeseries/healthins/sahie'

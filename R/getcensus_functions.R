@@ -5,7 +5,7 @@
 #' @export
 #' @examples none
 #' getFunction()
-getFunction <- function(apiurl, key, get, region, time) {
+getFunction <- function(apiurl, key, get, region, time, date, period, monthly) {
 	# SAHIE time series API uses time arg
 	if (is.null(time)) {
 		timearg <- ''
@@ -18,11 +18,27 @@ getFunction <- function(apiurl, key, get, region, time) {
 		}
 		timearg <- paste('&time=', time, sep='')
 	}
+	
+	if (is.null(date)) {
+		datearg <- ''
+	} else {
+		datearg <- paste('&DATE=', time, sep='')
+	}
+	if (is.null(period)) {
+		periodarg <- ''
+	} else {
+		periodarg <- paste('&PERIOD=', time, sep='')
+	}
+	if (is.null(monthly)) {
+		monthlyarg <- ''
+	} else {
+		monthlyarg <- paste('&MONTHLY=', time, sep='')
+	}
 	api_call <- paste(apiurl, 
 										'?key=', key, 
 										'&get=', get,
 										'&for=', region,
-										timearg,
+										timearg, datearg, periodarg, monthlyarg,
 										sep='')
 	raw <- jsonlite::fromJSON(api_call)
 	# Make first row the header
@@ -43,7 +59,7 @@ getFunction <- function(apiurl, key, get, region, time) {
 #' @param key Your Census API key, gotten from http://api.census.gov/data/key_signup.html
 #' @param vars List of variables to get
 #' @param region Geograpy to get
-#' @param time Optional time argument for time series APIs, generally a year
+#' @param time, date, period, monthly Optional arguments, used for time series APIs
 #' @keywords api
 #' @export
 #' @examples 
@@ -51,32 +67,44 @@ getFunction <- function(apiurl, key, get, region, time) {
 #' myvars <- c("B01001_001E", "NAME", "B01002_001E", "B19013_001E", "B19001_001E", "B03002_012E")
 #' df <- getCensus(acs_2014_api, key="YOURKEYHERE", vars=myvars, region="tract:*&in=state:06")
 #' 
+#' # Retrieve over 50 variables
 #' myvars2 <- paste('B04004_', sprintf('%03i', seq(1, 105)), 'E', sep='')
 #' df <- getCensus(acs_2014_api, key="YOURKEYHERE", vars=myvars2, region="county*")
 #' 
-#' # Loop over all states - using fips list included in package
+#' # Get time series data
+#' saipe_api <- 'http://api.census.gov/data/timeseries/poverty/saipe'
+#' saipe <- getCensus(saipe_api, key=censuskey, vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"), region="state:*", time=2011)
+#' 
+#' # Loop over all states using fips list included in package
 #' tracts <- NULL
 #' for (f in fips) {
 #'	regionget <- paste("tract:*&in=state:", f, sep="")
 #'	temp <- getCensus(acs_2014_api, key=censuskey, vars=myvars, region=regionget)
 #'	tracts <- rbind(tracts, temp)
 #' }
-getCensus <- function(apiurl, key, vars, region, time=NULL) {
+getCensus <- function(apiurl, key, vars, region, time=NULL, date=NULL, period=NULL, monthly=NULL) {
 	if (missing(key)) {
 		stop("'key' argument is missing. A Census API key is required and can be requested at http://api.census.gov/data/key_signup.html")
 	}
+	
+	# Handle messy urls
+	lastchar <- substr(apiurl, nchar(apiurl), nchar(apiurl))
+	if (lastchar=="?" | lastchar=="/") {
+		apiurl <- substr(apiurl, 1, nchar(apiurl)-1)
+	}
+	
 	# Census API max vars per call = 50
 	if(length(vars)>50){
 		# Split vars into list
 		vars <- split(vars, ceiling(seq_along(vars)/50))
 		get <- lapply(vars, function(x) paste(x, sep='', collapse=","))
-		data <- lapply(get, function(x) getFunction(apiurl, key, x, region, time))
+		data <- lapply(get, function(x) getFunction(apiurl, key, x, region, time, date, period, monthly))
 		colnames <- unlist(lapply(data, names))
 		data <- do.call(cbind,data)
 		names(data) <- colnames
 	} else {
 		get <- paste(vars, sep='', collapse=',')
-		data <- getFunction(apiurl, key, get, region, time)
+		data <- getFunction(apiurl, key, get, region, time, date, period, monthly)
 	}
 	# If there are any duplicate columns (ie if you put a variable in vars twice) remove the duplicates
 	data <- data[, !duplicated(colnames(data))]

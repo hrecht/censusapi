@@ -4,7 +4,7 @@
 \alias{getFunction}
 \title{Internal function: Get the API response, return a data frame}
 \usage{
-getFunction(apiurl, key, get, region, time)
+getFunction(apiurl, key, get, region, time, date, period, monthly)
 }
 \arguments{
 \item{apiurl, }{key, get, region, time}
