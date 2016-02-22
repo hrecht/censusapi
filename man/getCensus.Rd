@@ -2,9 +2,9 @@
 % Please edit documentation in R/getcensus_functions.R
 \name{getCensus}
 \alias{getCensus}
-\title{Retrieve data frame from the Census API}
+\title{Retrieve Census data from a given API}
 \usage{
-getCensus(apiurl, key, vars, region)
+getCensus(apiurl, key, vars, region, time = NULL)
 }
 \arguments{
 \item{apiurl}{Root URL for a Census API - see list at http://api.census.gov/data.html}
@@ -14,6 +14,8 @@ getCensus(apiurl, key, vars, region)
 \item{vars}{List of variables to get}
 
 \item{region}{Geograpy to get}
+
+\item{time}{Optional time argument for time series APIs, generally a year}
 }
 \description{
 Heavily based on work by Nicholas Nagle, https://rpubs.com/nnnagle/19337

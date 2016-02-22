@@ -1,4 +1,5 @@
 #' Get dataset metadata on all available APIs as a data frame
+#' 
 #' Scrapes {http://api.census.gov/data.html}
 #'
 #' @keywords metadata
@@ -20,9 +21,9 @@ listCensusApis <- function() {
 #' @param type: Type of metadata to return, either 'v' for variables or 'g' for geographies
 #' @keywords metadata
 #' @export
-#' @examples vars2014 <- listCensusMetadata("http://api.census.gov/data/2014/acs5", "v")
-#' @examples geos2014 <- listCensusMetadata("http://api.census.gov/data/2014/acs5", "g")
-#' listCensusMetadata()
+#' @examples 
+#' vars2014 <- listCensusMetadata("http://api.census.gov/data/2014/acs5", "v")
+#' geos2014 <- listCensusMetadata("http://api.census.gov/data/2014/acs5", "g")
 listCensusMetadata <- function(apiurl, type) {
 	# Trim trailing ? or /
 	lastchar <- substr(apiurl, nchar(apiurl), nchar(apiurl))

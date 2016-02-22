@@ -22,6 +22,26 @@ for (u in urls) {
 	vars <- rbind(vars, temp)
 }
 
+sf3_1990_api <- 'http://api.census.gov/data/1990/sf3'
+df1990 <- getCensus(sf3_1990_api, key=censuskey, vars=c("INTPTLAT", "P0070001", "P0070002", "P114A001", "P0570001", "P0570002", "P0570003", "P0570004", "P0570005", "P0570006", "P0570007"), region="county:*")
+
+# Error handling for missing key
+df1990 <- getCensus(sf3_1990_api, vars=c("P0070001"), region="county:*")
+
+# Time series APIs
+# SAHIE
+# Note: some categories (racial breakdown) appear not to be available at state level - will return only 'all races'
+sahie_api <- 'http://api.census.gov/data/timeseries/healthins/sahie'
+sahie <- getCensus(sahie_api, key=censuskey, vars=c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT", "RACECAT", "RACE_DESC"), region="state:*", time=2011)
+
+
+saipe_api <- 'http://api.census.gov/data/timeseries/poverty/saipe'
+saipe <- getCensus(saipe_api, key=censuskey, vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"), region="state:*", time=2011)
+# Verify error handling for bad years
+sahie <- getCensus(sahie_api, key=censuskey, vars=c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT", "RACECAT", "RACE_DESC"), region="state:*", time=2015)
+saipe <- getCensus(saipe_api, key=censuskey, vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"), region="state:*", time=1920)
+
+# ACS, and test 50+ variable splitting
 acs_2014_api <- 'http://api.census.gov/data/2014/acs5'
 
 myvars <- c("B01001_001E", "NAME", "B01002_001E", "B19013_001E", "B19001_001E", "B03002_012E")
@@ -36,6 +56,3 @@ for (f in fips) {
 	temp <- getCensus(acs_2014_api, key=censuskey, vars=myvars, region=regionget)
 	tracts <- rbind(tracts, temp)
 }
-
-sf3_1990_api <- 'http://api.census.gov/data/1990/sf3'
-df1990 <- getCensus(sf3_1990_api, key=censuskey, vars=c("INTPTLAT", "P0070001", "P0070002", "P114A001", "P0570001", "P0570002", "P0570003", "P0570004", "P0570005", "P0570006", "P0570007"), region="county:*")

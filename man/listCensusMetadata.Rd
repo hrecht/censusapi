@@ -16,6 +16,7 @@ Get variable or geography metadata for a given API as a data frame
 }
 \examples{
 vars2014 <- listCensusMetadata("http://api.census.gov/data/2014/acs5", "v")
+geos2014 <- listCensusMetadata("http://api.census.gov/data/2014/acs5", "g")
 }
 \keyword{metadata}
 

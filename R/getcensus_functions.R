@@ -1,15 +1,28 @@
 #' Internal function: Get the API response, return a data frame
 #'
-#' @param apiurl, key, get, region
+#' @param apiurl, key, get, region, time
 #' @keywords internal
 #' @export
 #' @examples none
 #' getFunction()
-getFunction <- function(apiurl, key, get, region) {
+getFunction <- function(apiurl, key, get, region, time) {
+	# SAHIE time series API uses time arg
+	if (is.null(time)) {
+		timearg <- ''
+	} else {
+		if (apiurl=='http://api.census.gov/data/timeseries/healthins/sahie' & !(time %in% c(2006:2013))) {
+			stop('The SAHIE API has data for years 2006 - 2013')
+		}
+		if (apiurl=='http://api.census.gov/data/timeseries/poverty/saipe' & !(time %in% c(1989, 1993, 1995:2014))) {
+			stop('The SAIPE API has data for years 1989, 1993, 1995-2014')
+		}
+		timearg <- paste('&time=', time, sep='')
+	}
 	api_call <- paste(apiurl, 
 										'?key=', key, 
 										'&get=', get,
 										'&for=', region,
+										timearg,
 										sep='')
 	raw <- jsonlite::fromJSON(api_call)
 	# Make first row the header
@@ -23,13 +36,14 @@ getFunction <- function(apiurl, key, get, region) {
 	for(col in value_cols) df[,col] <- as.numeric(df[,col])
 	return(df)
 }
-#' Retrieve data frame from the Census API
+#' Retrieve Census data from a given API
 #'
 #' Heavily based on work by Nicholas Nagle, https://rpubs.com/nnnagle/19337
 #' @param apiurl Root URL for a Census API - see list at http://api.census.gov/data.html
 #' @param key Your Census API key, gotten from http://api.census.gov/data/key_signup.html
 #' @param vars List of variables to get
 #' @param region Geograpy to get
+#' @param time Optional time argument for time series APIs, generally a year
 #' @keywords api
 #' @export
 #' @examples 
@@ -47,19 +61,22 @@ getFunction <- function(apiurl, key, get, region) {
 #'	temp <- getCensus(acs_2014_api, key=censuskey, vars=myvars, region=regionget)
 #'	tracts <- rbind(tracts, temp)
 #' }
-getCensus <- function(apiurl, key, vars, region) {
+getCensus <- function(apiurl, key, vars, region, time=NULL) {
+	if (missing(key)) {
+		stop("'key' argument is missing. A Census API key is required and can be requested at http://api.census.gov/data/key_signup.html")
+	}
 	# Census API max vars per call = 50
 	if(length(vars)>50){
 		# Split vars into list
 		vars <- split(vars, ceiling(seq_along(vars)/50))
 		get <- lapply(vars, function(x) paste(x, sep='', collapse=","))
-		data <- lapply(get, function(x) getFunction(apiurl, key, x, region))
+		data <- lapply(get, function(x) getFunction(apiurl, key, x, region, time))
 		colnames <- unlist(lapply(data, names))
 		data <- do.call(cbind,data)
 		names(data) <- colnames
 	} else {
 		get <- paste(vars, sep='', collapse=',')
-		data <- getFunction(apiurl, key, get, region)
+		data <- getFunction(apiurl, key, get, region, time)
 	}
 	# If there are any duplicate columns (ie if you put a variable in vars twice) remove the duplicates
 	data <- data[, !duplicated(colnames(data))]
