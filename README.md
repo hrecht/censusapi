@@ -1,4 +1,4 @@
-# getcensus
+# censusapi
 
 Retrieve data from any [Census API](http://www.census.gov/data/developers/data-sets.html), as well as metadata about the [available datasets](http://api.census.gov/data.html) and each API's [variables](http://api.census.gov/data/2000/sf1/variables.html) and [geographies](http://api.census.gov/data/2000/sf1/geography.html).
 Function getCensus builds on work by [Nicholas Nagle](https://rpubs.com/nnnagle/19337).
