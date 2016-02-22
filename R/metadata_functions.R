@@ -1,4 +1,5 @@
-#' Return all available APIs as data frame
+#' Get dataset metadata on all available APIs as a data frame
+#' Scrapes {http://api.census.gov/data.html}
 #'
 #' @keywords metadata
 #' @export
@@ -13,7 +14,7 @@ listCensusApis <- function() {
 	return(apis)
 }
 
-#' Return list of variables or geographies available by api
+#' Get variable or geography metadata for a given API as a data frame
 #'
 #' @param apiurl Root URL for a Census API
 #' @param type: Type of metadata to return, either 'v' for variables or 'g' for geographies

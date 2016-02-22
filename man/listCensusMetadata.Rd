@@ -2,7 +2,7 @@
 % Please edit documentation in R/metadata_functions.R
 \name{listCensusMetadata}
 \alias{listCensusMetadata}
-\title{Return list of variables or geographies available by api}
+\title{Get variable or geography metadata for a given API as a data frame}
 \usage{
 listCensusMetadata(apiurl, type)
 }
@@ -12,7 +12,7 @@ listCensusMetadata(apiurl, type)
 \item{type:}{Type of metadata to return, either 'v' for variables or 'g' for geographies}
 }
 \description{
-Return list of variables or geographies available by api
+Get variable or geography metadata for a given API as a data frame
 }
 \examples{
 vars2014 <- listCensusMetadata("http://api.census.gov/data/2014/acs5", "v")

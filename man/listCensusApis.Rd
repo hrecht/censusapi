@@ -2,12 +2,14 @@
 % Please edit documentation in R/metadata_functions.R
 \name{listCensusApis}
 \alias{listCensusApis}
-\title{Return all available APIs as data frame}
+\title{Get dataset metadata on all available APIs as a data frame
+Scrapes {http://api.census.gov/data.html}}
 \usage{
 listCensusApis()
 }
 \description{
-Return all available APIs as data frame
+Get dataset metadata on all available APIs as a data frame
+Scrapes {http://api.census.gov/data.html}
 }
 \examples{
 listCensusApis()

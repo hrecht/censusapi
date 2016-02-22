@@ -13,4 +13,4 @@ devtools::install_github("hrecht/censusapi")
 ```
 
 ## Why?
-There are a few other packages dealing with the Census APIs, but so far they all only take calls for some of the available APIs (e.g. ACS, decennial). This package is dataset agnostic.
+There are a few other packages dealing with the Census APIs, but so far they all specialize in only some of the available APIs (e.g. ACS, decennial). This package is dataset agnostic. It also includes functions using the [dataset discovery service](http://www.census.gov/data/developers/updates/new-discovery-tool.html) to return dataset metadata, geographies, and variables as data frames.
