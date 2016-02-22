@@ -9,7 +9,7 @@ listCensusMetadata(apiurl, type)
 \arguments{
 \item{apiurl}{Root URL for a Census API}
 
-\item{type:}{'v' for variables or 'g' for geographies}
+\item{type:}{Type of metadata to return, either 'v' for variables or 'g' for geographies}
 }
 \description{
 Return list of variables or geographies available by api

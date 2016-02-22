@@ -16,7 +16,7 @@ listCensusApis <- function() {
 #' Return list of variables or geographies available by api
 #'
 #' @param apiurl Root URL for a Census API
-#' @param type: 'v' for variables or 'g' for geographies
+#' @param type: Type of metadata to return, either 'v' for variables or 'g' for geographies
 #' @keywords metadata
 #' @export
 #' @examples vars2014 <- listCensusMetadata("http://api.census.gov/data/2014/acs5", "v")
@@ -31,14 +31,26 @@ listCensusMetadata <- function(apiurl, type) {
 	
 	if (type=="v") {
 		u <- paste(apiurl, "variables.html", sep="/")
-		df <- as.data.frame(XML::readHTMLTable(u))
+		tables <- XML::readHTMLTable(u)
+		if (length(tables)==1) {
+			df <- as.data.frame(tables)
+		} else {
+			# this should not be needed
+			df <- tables[[1]]
+		}
 		colnames(df) <- c("name", "label", "concept", "required", "predicatetype")
 		df[] <- lapply(df, as.character)
 		return(df)
 	}
 	if (type=="g") {
 		u <- paste(apiurl, "geography.html", sep="/")
-		df <- as.data.frame(readHTMLTable(u))
+		tables <- XML::readHTMLTable(u)
+		if (length(tables)==1) {
+			df <- as.data.frame(tables)
+		} else {
+			# this is very rare - 2010 sf1 only
+			df <- tables[[1]]
+		}
 		colnames(df) <- c("reference_date", "geography_level", "geography_hierarchy")
 		df[] <- lapply(df, as.character)
 		return(df)
