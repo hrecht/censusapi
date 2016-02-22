@@ -1,6 +1,6 @@
 Package: censusapi
 Title: Retrieve data from the Census API
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: person("Hannah", "Recht", email = "hrecht@urban.org", role = c("aut", "cre"))
 Description: Retrieve Census API metadata and responses as data frames.
 Depends:

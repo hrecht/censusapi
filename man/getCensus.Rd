@@ -19,11 +19,20 @@ getCensus(apiurl, key, vars, region)
 Heavily based on work by Nicholas Nagle, https://rpubs.com/nnnagle/19337
 }
 \examples{
-myvars <- c("B01001_001E", "NAME", "B01002_001E", "B19013_001E", "B19001_001E", "B03002_012E")
 acs_2014_api <- 'http://api.census.gov/data/2014/acs5'
 myvars <- c("B01001_001E", "NAME", "B01002_001E", "B19013_001E", "B19001_001E", "B03002_012E")
 df <- getCensus(acs_2014_api, key="YOURKEYHERE", vars=myvars, region="tract:*&in=state:06")
-df <- getCensus(acs_2014_api, key="YOURKEYHERE", vars=myvars, region="county*")
+
+myvars2 <- paste('B04004_', sprintf('\%03i', seq(1, 105)), 'E', sep='')
+df <- getCensus(acs_2014_api, key="YOURKEYHERE", vars=myvars2, region="county*")
+
+# Loop over all states - using fips list included in package
+tracts <- NULL
+for (f in fips) {
+regionget <- paste("tract:*&in=state:", f, sep="")
+temp <- getCensus(acs_2014_api, key=censuskey, vars=myvars, region=regionget)
+tracts <- rbind(tracts, temp)
+}
 }
 \keyword{api}
 
