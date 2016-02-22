@@ -59,7 +59,10 @@ getFunction <- function(apiurl, key, get, region, time, date, period, monthly) {
 #' @param key Your Census API key, gotten from http://api.census.gov/data/key_signup.html
 #' @param vars List of variables to get
 #' @param region Geograpy to get
-#' @param time, date, period, monthly Optional arguments, used for time series APIs
+#' @param time Optional argument used for some time series APIs
+#' @param date Optional argument used for some time series APIs
+#' @param period Optional argument used for some time series APIs
+#' @param monthly Optional argument used for some time series APIs
 #' @keywords api
 #' @export
 #' @examples 

@@ -16,7 +16,13 @@ getCensus(apiurl, key, vars, region, time = NULL, date = NULL,
 
 \item{region}{Geograpy to get}
 
-\item{time, }{date, period, monthly Optional arguments, used for time series APIs}
+\item{time}{Optional argument used for some time series APIs}
+
+\item{date}{Optional argument used for some time series APIs}
+
+\item{period}{Optional argument used for some time series APIs}
+
+\item{monthly}{Optional argument used for some time series APIs}
 }
 \description{
 Heavily based on work by Nicholas Nagle, https://rpubs.com/nnnagle/19337
