@@ -11,6 +11,8 @@ getCensus(name, vintage = NULL, key, vars, region, regionin = NULL,
 \arguments{
 \item{name}{API name - e.g. acs5. See list at http://api.census.gov/data.html}
 
+\item{vintage}{Year of dataset, e.g. 2014 - not required for timeseries APIs}
+
 \item{key}{Your Census API key, gotten from http://api.census.gov/data/key_signup.html}
 
 \item{vars}{List of variables to get}
@@ -30,8 +32,6 @@ getCensus(name, vintage = NULL, key, vars, region, regionin = NULL,
 \item{category_code}{Argument used in Economic Indicators Time Series API}
 
 \item{data_type_code}{Argument used in Economic Indicators Time Series API}
-
-\item{Vintage}{of dataset, e.g. 2014 - not required for timeseries APIs}
 }
 \description{
 Retrieve Census data from a given API

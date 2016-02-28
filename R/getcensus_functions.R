@@ -46,7 +46,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' Retrieve Census data from a given API
 #'
 #' @param name API name - e.g. acs5. See list at http://api.census.gov/data.html
-#' @param Vintage of dataset, e.g. 2014 - not required for timeseries APIs
+#' @param vintage Year of dataset, e.g. 2014 - not required for timeseries APIs
 #' @param key Your Census API key, gotten from http://api.census.gov/data/key_signup.html
 #' @param vars List of variables to get
 #' @param region Geograpy to get
