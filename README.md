@@ -24,4 +24,4 @@ devtools::install_github("hrecht/censusapi")
 There are a few other packages dealing with the Census APIs, but so far they all specialize in only some of the available APIs (e.g. ACS, decennial). This package is dataset agnostic. It also includes functions using the [dataset discovery service](http://www.census.gov/data/developers/updates/new-discovery-tool.html) to return dataset metadata, geographies, and variables as data frames.
 
 ## Time series notes
-Time series 'time' metadata is not yet available. Time field information is found in each API's documentation, so time error handling is being manually added on an API-level basis. Feel free to submit an issue or pull request if your API isn't yet error handled.
+Time series API arguments vary by API and are still being added to the package and tested. Feel free to submit an issue or pull request if your API isn't yet handled.

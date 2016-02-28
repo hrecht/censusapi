@@ -6,6 +6,7 @@ Description: Retrieve Census API metadata and responses as data frames.
 URL: https://github.com/hrecht/censusapi
 Depends:
     R (>= 3.0.0), 
+    httr,
     jsonlite,
     XML
 License: MIT + file LICENSE

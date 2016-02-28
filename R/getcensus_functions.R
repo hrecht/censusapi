@@ -6,41 +6,13 @@
 #' @examples none
 #' getFunction()
 getFunction <- function(apiurl, key, get, region, time, date, period, monthly) {
-	# SAHIE time series API uses time arg
-	if (is.null(time)) {
-		timearg <- ''
-	} else {
-		if (apiurl=='http://api.census.gov/data/timeseries/healthins/sahie' & !(time %in% c(2006:2013))) {
-			stop('The SAHIE API has data for years 2006 - 2013')
-		}
-		if (apiurl=='http://api.census.gov/data/timeseries/poverty/saipe' & !(time %in% c(1989, 1993, 1995:2014))) {
-			stop('The SAIPE API has data for years 1989, 1993, 1995-2014')
-		}
-		timearg <- paste('&time=', time, sep='')
-	}
+	# Assemble call
+	req <- httr::GET(apiurl, query = list(key = key, get = get, "for"=region, time = time, DATE = date, PERIOD = period, MONTHLY = monthly))
+	text <- content(req, as = "text")
+	# Return API's built in error message if invalid call
+	if (req$status_code==400) stop(text, call. = FALSE)
+	raw <- jsonlite::fromJSON(text)
 	
-	if (is.null(date)) {
-		datearg <- ''
-	} else {
-		datearg <- paste('&DATE=', time, sep='')
-	}
-	if (is.null(period)) {
-		periodarg <- ''
-	} else {
-		periodarg <- paste('&PERIOD=', time, sep='')
-	}
-	if (is.null(monthly)) {
-		monthlyarg <- ''
-	} else {
-		monthlyarg <- paste('&MONTHLY=', time, sep='')
-	}
-	api_call <- paste(apiurl, 
-										'?key=', key, 
-										'&get=', get,
-										'&for=', region,
-										timearg, datearg, periodarg, monthlyarg,
-										sep='')
-	raw <- jsonlite::fromJSON(api_call)
 	# Make first row the header
 	colnames(raw) <- raw[1, ]
 	raw <- raw[-1, ]  
