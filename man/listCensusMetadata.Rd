@@ -4,19 +4,21 @@
 \alias{listCensusMetadata}
 \title{Get variable or geography metadata for a given API as a data frame}
 \usage{
-listCensusMetadata(apiurl, type)
+listCensusMetadata(name, vintage = NULL, type = "v")
 }
 \arguments{
-\item{apiurl}{Root URL for a Census API}
+\item{name}{API name - e.g. acs5. See list at http://api.census.gov/data.html}
 
-\item{type:}{Type of metadata to return, either 'v' for variables or 'g' for geographies}
+\item{vintage}{Vintage of dataset, e.g. 2014 - not required for timeseries APIs}
+
+\item{type:}{Type of metadata to return, either 'v' for variables or 'g' for geographies. Default = variables.}
 }
 \description{
 Get variable or geography metadata for a given API as a data frame
 }
 \examples{
-vars2014 <- listCensusMetadata("http://api.census.gov/data/2014/acs5", "v")
-geos2014 <- listCensusMetadata("http://api.census.gov/data/2014/acs5", "g")
+vars2014 <- listCensusMetadata(name="acs5", vintage=2014, "v")
+geos2014 <- listCensusMetadata(name="acs5", vintage=2014, "g")
 }
 \keyword{metadata}
 

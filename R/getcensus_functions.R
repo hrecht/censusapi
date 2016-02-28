@@ -46,7 +46,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' Retrieve Census data from a given API
 #'
 #' @param name API name - e.g. acs5. See list at http://api.census.gov/data.html
-#' @param vintage Optional vintage of dataset, e.g. 2014
+#' @param Vintage of dataset, e.g. 2014 - not required for timeseries APIs
 #' @param key Your Census API key, gotten from http://api.census.gov/data/key_signup.html
 #' @param vars List of variables to get
 #' @param region Geograpy to get
@@ -65,7 +65,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' 
 #' # Retrieve over 50 variables
 #' myvars2 <- paste('B04004_', sprintf('%03i', seq(1, 105)), 'E', sep='')
-#' df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=myvars2, region="county*")
+#' df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=myvars2, region="county:*")
 #' 
 #' # Get time series data
 #' saipe <- getCensus(name="timeseries/poverty/saipe", key=censuskey, vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"), region="state:*", time=2011)

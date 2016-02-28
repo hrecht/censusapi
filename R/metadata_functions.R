@@ -12,24 +12,38 @@ listCensusApis <- function() {
 	apis <- apis[,c(1:4,10)]
 	colnames(apis) <- c("title", "description", "vintage", "name", "url")
 	apis[] <- lapply(apis, as.character)
+	apis$name <- gsub("› ", "/", apis$name)
+	apis[apis=="N/A"] <- NA
+	apis$vintage <- as.numeric(apis$vintage)
 	return(apis)
 }
 
 #' Get variable or geography metadata for a given API as a data frame
 #'
-#' @param apiurl Root URL for a Census API
-#' @param type: Type of metadata to return, either 'v' for variables or 'g' for geographies
+#' @param name API name - e.g. acs5. See list at http://api.census.gov/data.html
+#' @param vintage Vintage of dataset, e.g. 2014 - not required for timeseries APIs
+#' @param type: Type of metadata to return, either 'v' for variables or 'g' for geographies. Default = variables.
 #' @keywords metadata
 #' @export
 #' @examples 
-#' vars2014 <- listCensusMetadata("http://api.census.gov/data/2014/acs5", "v")
-#' geos2014 <- listCensusMetadata("http://api.census.gov/data/2014/acs5", "g")
-listCensusMetadata <- function(apiurl, type) {
-	# Trim trailing ? or /
-	lastchar <- substr(apiurl, nchar(apiurl), nchar(apiurl))
-	if (lastchar=="?" | lastchar=="/") {
-		apiurl <- substr(apiurl, 1, nchar(apiurl)-1)
+#' vars2014 <- listCensusMetadata(name="acs5", vintage=2014, "v")
+#' geos2014 <- listCensusMetadata(name="acs5", vintage=2014, "g")
+listCensusMetadata <- function(name, vintage=NULL, type="v") {
+	constructURL <- function(name, vintage) {
+		if (is.null(vintage)) {	
+			apiurl <- paste("http://api.census.gov/data", name, sep="/")
+		} else {
+			apiurl <- paste("http://api.census.gov/data", vintage, name, sep="/")
+		}
+		
+		# Handle messy urls
+		lastchar <- substr(apiurl, nchar(apiurl), nchar(apiurl))
+		if (lastchar=="?" | lastchar=="/") {
+			apiurl <- substr(apiurl, 1, nchar(apiurl)-1)
+		}
+		apiurl
 	}
+	apiurl <- constructURL(name, vintage)
 	
 	if (type=="v") {
 		u <- paste(apiurl, "variables.html", sep="/")

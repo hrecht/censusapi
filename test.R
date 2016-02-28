@@ -5,22 +5,9 @@ censuskey <- read_file("/Users/Hannah/Documents/keys/censuskey.txt")
 # Verify metadata functions
 apis <- listCensusApis()
 urls <- apis$url
-geos <- NULL
-for (u in urls) {
-	print(u)
-	temp <- listCensusMetadata(u, "g")
-	temp$url <- u
-	geos <- rbind(geos, temp)
-}
 
-vars  <- NULL
-# Note: this will take a while
-for (u in urls) {
-	print(u)
-	temp <- listCensusMetadata(u, "v")
-	temp$url <- u
-	vars <- rbind(vars, temp)
-}
+geos1990 <- listCensusMetadata(name="sf3", vintage=1990, "g")
+vars1990 <- listCensusMetadata(name="sf3", vintage=1990, "v")
 
 df1990 <- getCensus(name="sf3", vintage=1990, key=censuskey, vars=c("INTPTLAT", "P0070001", "P0070002", "P114A001", "P0570001", "P0570002", "P0570003", "P0570004", "P0570005", "P0570006", "P0570007"), region="county:*")
 

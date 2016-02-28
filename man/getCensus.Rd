@@ -11,8 +11,6 @@ getCensus(name, vintage = NULL, key, vars, region, regionin = NULL,
 \arguments{
 \item{name}{API name - e.g. acs5. See list at http://api.census.gov/data.html}
 
-\item{vintage}{Optional vintage of dataset, e.g. 2014}
-
 \item{key}{Your Census API key, gotten from http://api.census.gov/data/key_signup.html}
 
 \item{vars}{List of variables to get}
@@ -32,6 +30,8 @@ getCensus(name, vintage = NULL, key, vars, region, regionin = NULL,
 \item{category_code}{Argument used in Economic Indicators Time Series API}
 
 \item{data_type_code}{Argument used in Economic Indicators Time Series API}
+
+\item{Vintage}{of dataset, e.g. 2014 - not required for timeseries APIs}
 }
 \description{
 Retrieve Census data from a given API
@@ -42,7 +42,7 @@ df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=myvars, regio
 
 # Retrieve over 50 variables
 myvars2 <- paste('B04004_', sprintf('\%03i', seq(1, 105)), 'E', sep='')
-df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=myvars2, region="county*")
+df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=myvars2, region="county:*")
 
 # Get time series data
 saipe <- getCensus(name="timeseries/poverty/saipe", key=censuskey, vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"), region="state:*", time=2011)
