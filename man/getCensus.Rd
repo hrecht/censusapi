@@ -37,12 +37,10 @@ getCensus(name, vintage = NULL, key, vars, region, regionin = NULL,
 Retrieve Census data from a given API
 }
 \examples{
-myvars <- c("B01001_001E", "NAME", "B01002_001E", "B19013_001E", "B19001_001E", "B03002_012E")
-df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=myvars, region="tract:*" regionin="state:06")
+df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=c("B01001_001E", "NAME", "B01002_001E", "B19013_001E", "B19001_001E", "B03002_012E"), region="tract:*" regionin="state:06")
 
 # Retrieve over 50 variables
-myvars2 <- paste('B04004_', sprintf('\%03i', seq(1, 105)), 'E', sep='')
-df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=myvars2, region="county:*")
+df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=paste('B04004_', sprintf('\%03i', seq(1, 105)), 'E', sep=''), region="county:*")
 
 # Get time series data
 saipe <- getCensus(name="timeseries/poverty/saipe", key=censuskey, vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"), region="state:*", time=2011)

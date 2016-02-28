@@ -33,7 +33,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 	
 	# Assemble call
 	req <- httr::GET(apiurl, query = list(key = key, get = get, "for" = region, "in" = regionin, category_code = category_code, data_type_code = data_type_code, time = time, DATE = date, PERIOD = period, MONTHLY = monthly))
-	
+
 	# Check the API call for a valid response
 	apiCheck(req)
 	
@@ -60,12 +60,10 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' @keywords api
 #' @export
 #' @examples 
-#' myvars <- c("B01001_001E", "NAME", "B01002_001E", "B19013_001E", "B19001_001E", "B03002_012E")
-#' df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=myvars, region="tract:*" regionin="state:06")
+#' df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=c("B01001_001E", "NAME", "B01002_001E", "B19013_001E", "B19001_001E", "B03002_012E"), region="tract:*" regionin="state:06")
 #' 
 #' # Retrieve over 50 variables
-#' myvars2 <- paste('B04004_', sprintf('%03i', seq(1, 105)), 'E', sep='')
-#' df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=myvars2, region="county:*")
+#' df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=paste('B04004_', sprintf('%03i', seq(1, 105)), 'E', sep=''), region="county:*")
 #' 
 #' # Get time series data
 #' saipe <- getCensus(name="timeseries/poverty/saipe", key=censuskey, vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"), region="state:*", time=2011)
