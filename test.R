@@ -48,14 +48,14 @@ saipe <- getCensus(saipe_api, key=censuskey, vars=c("NAME", "SAEPOVRT0_17_PT", "
 acs_2014_api <- 'http://api.census.gov/data/2014/acs5'
 
 myvars <- c("B01001_001E", "NAME", "B01002_001E", "B19013_001E", "B19001_001E", "B03002_012E")
-myvars2 <- paste('B04004_', sprintf('%03i', seq(1, 105)), 'E', sep='')
+df <- getCensus(acs_2014_api, key=censuskey, vars=myvars, region="county:*", regionin="state:36")
 
-df <- getCensus(acs_2014_api, key=censuskey, vars=myvars, region="tract:*&in=state:06")
-df2 <- getCensus(acs_2014_api, key=censuskey, vars=myvars2, region="state:*")
+myvars2 <- paste('B04004_', sprintf('%03i', seq(1, 105)), 'E', sep='')
+df2 <- getCensus(acs_2014_api, key=censuskey, vars=myvars2, region="state:5,6")
 
 tracts <- NULL
 for (f in fips) {
-	regionget <- paste("tract:*&in=state:", f, sep="")
-	temp <- getCensus(acs_2014_api, key=censuskey, vars=myvars, region=regionget)
+	stateget <- paste("state:", f, sep="")
+	temp <- getCensus(acs_2014_api, key=censuskey, vars=myvars, region="tract:*", regionin=regionget)
 	tracts <- rbind(tracts, temp)
 }

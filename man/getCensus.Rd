@@ -4,8 +4,8 @@
 \alias{getCensus}
 \title{Retrieve Census data from a given API}
 \usage{
-getCensus(apiurl, key, vars, region, time = NULL, date = NULL,
-  period = NULL, monthly = NULL)
+getCensus(apiurl, key, vars, region, regionin = NULL, time = NULL,
+  date = NULL, period = NULL, monthly = NULL)
 }
 \arguments{
 \item{apiurl}{Root URL for a Census API - see list at http://api.census.gov/data.html}
@@ -15,6 +15,8 @@ getCensus(apiurl, key, vars, region, time = NULL, date = NULL,
 \item{vars}{List of variables to get}
 
 \item{region}{Geograpy to get}
+
+\item{regionin}{Optional hierarchical geography to limit region}
 
 \item{time}{Optional argument used for some time series APIs}
 
@@ -30,7 +32,7 @@ Heavily based on work by Nicholas Nagle, https://rpubs.com/nnnagle/19337
 \examples{
 acs_2014_api <- 'http://api.census.gov/data/2014/acs5'
 myvars <- c("B01001_001E", "NAME", "B01002_001E", "B19013_001E", "B19001_001E", "B03002_012E")
-df <- getCensus(acs_2014_api, key="YOURKEYHERE", vars=myvars, region="tract:*&in=state:06")
+df <- getCensus(acs_2014_api, key="YOURKEYHERE", vars=myvars, region="tract:*" regionin="state:06")
 
 # Retrieve over 50 variables
 myvars2 <- paste('B04004_', sprintf('\%03i', seq(1, 105)), 'E', sep='')
@@ -43,8 +45,8 @@ saipe <- getCensus(saipe_api, key=censuskey, vars=c("NAME", "SAEPOVRT0_17_PT", "
 # Loop over all states using fips list included in package
 tracts <- NULL
 for (f in fips) {
-regionget <- paste("tract:*&in=state:", f, sep="")
-temp <- getCensus(acs_2014_api, key=censuskey, vars=myvars, region=regionget)
+stateget <- paste("state:", f, sep="")
+temp <- getCensus(acs_2014_api, key=censuskey, vars=myvars, region="tract:*", regionin = stateget)
 tracts <- rbind(tracts, temp)
 }
 }
