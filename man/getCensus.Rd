@@ -4,11 +4,14 @@
 \alias{getCensus}
 \title{Retrieve Census data from a given API}
 \usage{
-getCensus(apiurl, key, vars, region, regionin = NULL, time = NULL,
-  date = NULL, period = NULL, monthly = NULL)
+getCensus(name, vintage = NULL, key, vars, region, regionin = NULL,
+  time = NULL, date = NULL, period = NULL, monthly = NULL,
+  category_code = NULL, data_type_code = NULL)
 }
 \arguments{
-\item{apiurl}{Root URL for a Census API - see list at http://api.census.gov/data.html}
+\item{name}{API name - e.g. acs5. See list at http://api.census.gov/data.html}
+
+\item{vintage}{Optional vintage of dataset, e.g. 2014}
 
 \item{key}{Your Census API key, gotten from http://api.census.gov/data/key_signup.html}
 
@@ -25,28 +28,30 @@ getCensus(apiurl, key, vars, region, regionin = NULL, time = NULL,
 \item{period}{Optional argument used for some time series APIs}
 
 \item{monthly}{Optional argument used for some time series APIs}
+
+\item{category_code}{Argument used in Economic Indicators Time Series API}
+
+\item{data_type_code}{Argument used in Economic Indicators Time Series API}
 }
 \description{
-Heavily based on work by Nicholas Nagle, https://rpubs.com/nnnagle/19337
+Retrieve Census data from a given API
 }
 \examples{
-acs_2014_api <- 'http://api.census.gov/data/2014/acs5'
 myvars <- c("B01001_001E", "NAME", "B01002_001E", "B19013_001E", "B19001_001E", "B03002_012E")
-df <- getCensus(acs_2014_api, key="YOURKEYHERE", vars=myvars, region="tract:*" regionin="state:06")
+df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=myvars, region="tract:*" regionin="state:06")
 
 # Retrieve over 50 variables
 myvars2 <- paste('B04004_', sprintf('\%03i', seq(1, 105)), 'E', sep='')
-df <- getCensus(acs_2014_api, key="YOURKEYHERE", vars=myvars2, region="county*")
+df <- getCensus(name="acs5", vintage=2014, key="YOURKEYHERE", vars=myvars2, region="county*")
 
 # Get time series data
-saipe_api <- 'http://api.census.gov/data/timeseries/poverty/saipe'
-saipe <- getCensus(saipe_api, key=censuskey, vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"), region="state:*", time=2011)
+saipe <- getCensus(name="timeseries/poverty/saipe", key=censuskey, vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"), region="state:*", time=2011)
 
 # Loop over all states using fips list included in package
 tracts <- NULL
 for (f in fips) {
 stateget <- paste("state:", f, sep="")
-temp <- getCensus(acs_2014_api, key=censuskey, vars=myvars, region="tract:*", regionin = stateget)
+temp <- getCensus(name="sf3", vintage=1990, key=censuskey, vars=c("P0070001", "P0070002", "P114A001"), region="tract:*", regionin = stateget)
 tracts <- rbind(tracts, temp)
 }
 }
