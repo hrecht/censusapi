@@ -1,5 +1,5 @@
 #' Get dataset metadata on all available APIs as a data frame
-#' 
+#'
 #' Scrapes {http://api.census.gov/data.html}
 #'
 #' @keywords metadata
@@ -22,20 +22,20 @@ listCensusApis <- function() {
 #'
 #' @param name API name - e.g. acs5. See list at http://api.census.gov/data.html
 #' @param vintage Vintage of dataset, e.g. 2014 - not required for timeseries APIs
-#' @param type: Type of metadata to return, either 'v' for variables or 'g' for geographies. Default = variables.
+#' @param type Type of metadata to return, either 'v' for variables or 'g' for geographies. Default = variables.
 #' @keywords metadata
 #' @export
-#' @examples 
+#' @examples
 #' vars2014 <- listCensusMetadata(name="acs5", vintage=2014, "v")
 #' geos2014 <- listCensusMetadata(name="acs5", vintage=2014, "g")
 listCensusMetadata <- function(name, vintage=NULL, type="v") {
 	constructURL <- function(name, vintage) {
-		if (is.null(vintage)) {	
+		if (is.null(vintage)) {
 			apiurl <- paste("http://api.census.gov/data", name, sep="/")
 		} else {
 			apiurl <- paste("http://api.census.gov/data", vintage, name, sep="/")
 		}
-		
+
 		# Handle messy urls
 		lastchar <- substr(apiurl, nchar(apiurl), nchar(apiurl))
 		if (lastchar=="?" | lastchar=="/") {
@@ -44,7 +44,7 @@ listCensusMetadata <- function(name, vintage=NULL, type="v") {
 		apiurl
 	}
 	apiurl <- constructURL(name, vintage)
-	
+
 	if (type=="v") {
 		u <- paste(apiurl, "variables.html", sep="/")
 		tables <- XML::readHTMLTable(u)

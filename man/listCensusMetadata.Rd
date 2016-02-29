@@ -11,7 +11,7 @@ listCensusMetadata(name, vintage = NULL, type = "v")
 
 \item{vintage}{Vintage of dataset, e.g. 2014 - not required for timeseries APIs}
 
-\item{type:}{Type of metadata to return, either 'v' for variables or 'g' for geographies. Default = variables.}
+\item{type}{Type of metadata to return, either 'v' for variables or 'g' for geographies. Default = variables.}
 }
 \description{
 Get variable or geography metadata for a given API as a data frame
