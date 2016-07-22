@@ -5,13 +5,7 @@ Retrieve data from any [Census API](http://www.census.gov/data/developers/data-s
 For more info and examples, see presentation [slides](http://urbaninstitute.github.io/R-Trainings/accesing-census-apis/presentation/index.html#/) and [code](https://github.com/UrbanInstitute/R-Trainings/blob/gh-pages/accesing-census-apis/accessingCensusApis.R) from Urban Institute R Users Group presentation, March 2016
 
 ## API key setup
-To use the Census APIs, [sign up](http://api.census.gov/data/key_signup.html) for an API key, which will be sent to your provided email address.
-If you'll be sharing your code, make sure not to paste that code into your R script. One better way to access the key is to save it as a .txt or other text file on your system.
-```R
-# install.packages("readr")
-library(readr)
-censuskey <- read_file("path/to/censuskey.txt")
-```
+To use the Census APIs, [sign up](http://api.census.gov/data/key_signup.html) for an API key, which will be sent to your provided email address. You'll need that key to access the APIs and use this package.
 
 ## Installation
 
