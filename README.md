@@ -2,7 +2,7 @@
 
 Retrieve data from any [Census API](http://www.census.gov/data/developers/data-sets.html), as well as metadata about the [available datasets](http://api.census.gov/data.html) and each API's [variables](http://api.census.gov/data/2000/sf1/variables.html) and [geographies](http://api.census.gov/data/2000/sf1/geography.html).
 
-Note: package is in early development. 
+For more info on and examples, see presentation [slides](http://urbaninstitute.github.io/R-Trainings/accesing-census-apis/presentation/index.html#/) and [code](https://github.com/UrbanInstitute/R-Trainings/blob/gh-pages/accesing-census-apis/accessingCensusApis.R) from Urban Institute R Users Group presentation, March 2016
 
 ## API key setup
 To use the Census APIs, [sign up](http://api.census.gov/data/key_signup.html) for an API key, which will be sent to your provided email address.
@@ -24,8 +24,6 @@ devtools::install_github("hrecht/censusapi")
 There are a few other packages dealing with the Census APIs, but so far they all specialize in only some of the available APIs (e.g. ACS, decennial). This package is dataset agnostic. It also includes functions using the [dataset discovery service](http://www.census.gov/data/developers/updates/new-discovery-tool.html) to return dataset metadata, geographies, and variables as data frames.
 
 ## Usage examples
-For more info, see presentation [slides](http://urbaninstitute.github.io/R-Trainings/accesing-census-apis/presentation/index.html#/) and [code](https://github.com/UrbanInstitute/R-Trainings/blob/gh-pages/accesing-census-apis/accessingCensusApis.R) from Urban Institute R Users Group presentation, March 2016
-
 ```R
 library(censusapi)
 # Decennial Census sf3, 1990
