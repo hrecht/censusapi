@@ -15,8 +15,12 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 	}
 
 	apiParse <- function (req) {
-		raw <- jsonlite::fromJSON(httr::content(req, as = "text"))
-		raw
+		if (validate(httr::content(req, as="text"))[1] == FALSE) {
+			print(httr::content(req, as="text"))
+			stop("API response is not JSON")
+		} else {
+			raw <- jsonlite::fromJSON(httr::content(req, as = "text"))
+		}
 	}
 	responseFormat <- function(raw) {
 		# Make first row the header
