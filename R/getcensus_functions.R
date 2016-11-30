@@ -15,7 +15,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 	}
 
 	apiParse <- function (req) {
-		if (validate(httr::content(req, as="text"))[1] == FALSE) {
+		if (jsonlite::validate(httr::content(req, as="text"))[1] == FALSE) {
 			print(httr::content(req, as="text"))
 			stop("API response is not JSON")
 		} else {
