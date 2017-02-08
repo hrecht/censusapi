@@ -27,13 +27,13 @@ data1990 <- getCensus(name="sf3", vintage=1990, key=censuskey,
 	
 # Decennial Census sf1, 2010, block-level
 data2010 <- getCensus(name="sf1", vintage=2010, key=censuskey, 
-	vars=c('P0010001', 'P0030001'), 
-	region="block:*", regionin='state:36+county:27')
+	vars=c("P0010001", "P0030001"), 
+	region="block:*", regionin="state:36+county:27")
 
 # Decennial Census sf1, 2000, block-level - note, for this dataset the tract needs to be specified
 data2000 <- getCensus(name="sf1", vintage=2000, key=censuskey, 
-	vars=c('P001001', 'P003001'), 
-	region="block:*", regionin='state:36+county:27+tract:010000')
+	vars=c("P001001", "P003001"), 
+	region="block:*", regionin="state:36+county:27+tract:010000")
 
 # 5 year ACS, 2014 - using regionin argument to get data within a state
 data2014 <- getCensus(name="acs5", vintage=2014, key=censuskey, 
