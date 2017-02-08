@@ -1,7 +1,7 @@
 Package: censusapi
 Title: Retrieve data from the Census APIs
 Version: 0.0.1
-Authors@R: person("Hannah", "Recht", role = c("aut", "cre"))
+Authors@R: person("Hannah", "Recht", email = "hrecht2@gmail.com", role = c("aut", "cre"))
 Description: Provides a wrapper to retrieve data from any Census API and
 	return a data frame. getCensus's internal functions handle getting more
 	than fifty variables at a time, overcoming a limitation of the APIs.
