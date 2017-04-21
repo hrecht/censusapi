@@ -16,7 +16,7 @@
 #' myvars <- makeVarlist(name="sf1", vintage=2000,
 #' 	find="military", varsearch="label")
 #' militarydt <- getCensus(name="sf1", vintage=2000,
-#' 	key=censuskey, vars=myvars, region="state:*")
+#' 	key=Sys.getenv("CENSUS_KEY"), vars=myvars, region="state:*")
 #'
 #' # Return a data frame of all "h16" variables
 #' vartable <- makeVarlist(name="sf1", vintage=2000,

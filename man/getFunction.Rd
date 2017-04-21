@@ -13,7 +13,4 @@ getFunction(apiurl, key, get, region, regionin, time, date, period, monthly,
 \description{
 Internal function: Get the API response, return a data frame
 }
-\examples{
-getFunction()
-}
 \keyword{internal}

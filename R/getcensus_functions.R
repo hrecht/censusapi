@@ -3,8 +3,6 @@
 #' @param apiurl, key, get, region, time
 #' @keywords internal
 #' @export
-#' @examples
-#' getFunction()
 getFunction <- function(apiurl, key, get, region, regionin, time, date, period, monthly, category_code, data_type_code) {
 	# Return API's built in error message if invalid call
 	apiCheck <- function(req) {
