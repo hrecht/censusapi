@@ -7,7 +7,7 @@ For more info and examples, see presentation [slides](http://urbaninstitute.gith
 ## API key setup
 To use the Census APIs, [sign up](http://api.census.gov/data/key_signup.html) for an API key, which will be sent to your provided email address. You'll need that key to use this package. While Census currently does not require an API key for all APIs, that can change at any moment and so this package enforces key usage.
 
-A good way to manage your key, and avoid exposing it in your code, is to add it to you .Renviron file.
+A recommended to manage your key, and avoid exposing it in your code, is to add it to you .Renviron file.
 You can do that in a text editor, by opening the file, or within R:
 ```R
 # Add key to .Renviron
