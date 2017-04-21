@@ -1,21 +1,30 @@
 # censusapi
 
-Retrieve data from any [Census API](http://www.census.gov/data/developers/data-sets.html), as well as metadata about the [available datasets](http://api.census.gov/data.html) and each API's [variables](http://api.census.gov/data/2000/sf1/variables.html) and [geographies](http://api.census.gov/data/2000/sf1/geography.html).
+This package is an accessor for the United States Census Bureau's [APIs](https://www.census.gov/developers/). As of 2017 these include Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs - among many others. censusapi is designed to use the APIs' original parameter names so that users can easily transition between Census's documentation and examples and this package. It also includes functions using the [dataset discovery service](http://www.census.gov/data/developers/updates/new-discovery-tool.html) to return dataset metadata, geographies, and variables as data frames.
 
 For more info and examples, see presentation [slides](http://urbaninstitute.github.io/R-Trainings/accesing-census-apis/presentation/index.html#/) and [code](https://github.com/UrbanInstitute/R-Trainings/blob/gh-pages/accesing-census-apis/accessingCensusApis.R) from Urban Institute R Users Group presentation, March 2016
 
 ## API key setup
-To use the Census APIs, [sign up](http://api.census.gov/data/key_signup.html) for an API key, which will be sent to your provided email address. You'll need that key to access the APIs and use this package.
+To use the Census APIs, [sign up](http://api.census.gov/data/key_signup.html) for an API key, which will be sent to your provided email address. You'll need that key to use this package. While Census currently does not require an API key for all APIs, that can change at any moment and so this package enforces key usage.
+
+A good way to manage your key, and avoid exposing it in your code, is to add it to you .Renviron file.
+You can do that in a text editor, by opening the file, or within R:
+```R
+# Add key to .Renviron
+Sys.setenv(CENSUS_KEY=YOURKEYHERE)
+# Reload .Renviron
+readRenviron("~/.Renviron")
+# Check to see that the expected key is output in your R console
+Sys.getenv("CENSUS_KEY")
+```
 
 ## Installation
 
+Install the package using devtools:
 ```R
 # install.packages("devtools")
 devtools::install_github("hrecht/censusapi")
 ```
-
-## Why?
-There are a few other packages dealing with the Census APIs, but so far they all specialize in only some of the available APIs (e.g. ACS, decennial). This package is dataset agnostic. It also includes functions using the [dataset discovery service](http://www.census.gov/data/developers/updates/new-discovery-tool.html) to return dataset metadata, geographies, and variables as data frames.
 
 ## Usage examples
 ```R
@@ -36,6 +45,5 @@ sahie <- getCensus(name="timeseries/healthins/sahie", key=censuskey,
 	region="state:*", time=2011)
 ```
 
-## Time series
-Time series API arguments vary by API and are still being added to the package and tested. Feel free to submit an issue or pull request if your API isn't yet handled.
-Note: while the APIs generally return specific error messages for invalid variables or geographies, they currently return no content (status 204) without an error message when an invalid year is specified in some time series. If you're getting repeated 204 responses double check the Census documentation to make sure your time period is valid.
+## Time series note
+While the APIs generally return specific error messages for invalid variables or geographies, they currently return no content (status 204) without an error message when an invalid year is specified in some time series. If you're getting repeated 204 responses double check the Census documentation to make sure your time period is valid.
