@@ -32,17 +32,17 @@ devtools::install_github("hrecht/censusapi")
 ```R
 library(censusapi)
 # Decennial Census sf3, 1990
-data1990 <- getCensus(name="sf3", vintage=1990, key=censuskey, 
+data1990 <- getCensus(name="sf3", vintage=1990, key=Sys.getenv("CENSUS_KEY"), 
 	vars=c("P0070001", "P0070002", "P114A001"), 
 	region="county:*")
 
 # 5 year ACS, 2014 - using regionin argument to get data within a state
-data2014 <- getCensus(name="acs5", vintage=2014, key=censuskey, 
+data2014 <- getCensus(name="acs5", vintage=2014, key=Sys.getenv("CENSUS_KEY"), 
 	vars=c("NAME", "B01001_001E", "B19013_001E", "B17010_017E", "B17010_037E"), 
 	region="congressional district:*", regionin="state:36")
 
 # SAHIE time series API, 2011
-sahie <- getCensus(name="timeseries/healthins/sahie", key=censuskey, 
+sahie <- getCensus(name="timeseries/healthins/sahie", key=Sys.getenv("CENSUS_KEY"), 
 	vars=c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT", "RACECAT", "RACE_DESC"), 
 	region="state:*", time=2011)
 ```
