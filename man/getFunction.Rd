@@ -18,4 +18,3 @@ none
 getFunction()
 }
 \keyword{internal}
-

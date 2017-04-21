@@ -36,4 +36,3 @@ vartable <- makeVarlist(name="sf1", vintage=2000,
 	find="h16", varsearch="concept",
 	output="dataframe")
 }
-

@@ -13,4 +13,3 @@ Scrapes {http://api.census.gov/data.html}
 listCensusApis()
 }
 \keyword{metadata}
-

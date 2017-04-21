@@ -37,17 +37,17 @@ getCensus(name, vintage = NULL, key, vars, region, regionin = NULL,
 Retrieve Census data from a given API
 }
 \examples{
-df <- getCensus(name="acs5", vintage=2014, key=censuskey,
+df <- getCensus(name="acs5", vintage=2014, key=Sys.getenv("CENSUS_KEY"),
 	vars=c("B01001_001E", "NAME", "B01002_001E", "B19013_001E", "B19001_001E", "B03002_012E"),
 	region="tract:*", regionin="state:06")
 
 # Retrieve over 50 variables
-df <- getCensus(name="acs5", vintage=2014, key=censuskey,
+df <- getCensus(name="acs5", vintage=2014, key=Sys.getenv("CENSUS_KEY"),
 	vars=paste('B04004_', sprintf('\%03i', seq(1, 105)), 'E', sep=''),
 	region="county:*")
 
 # Get time series data
-saipe <- getCensus(name="timeseries/poverty/saipe", key=censuskey,
+saipe <- getCensus(name="timeseries/poverty/saipe", key=Sys.getenv("CENSUS_KEY"),
 	vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region="state:*", time=2011)
 
@@ -55,11 +55,10 @@ saipe <- getCensus(name="timeseries/poverty/saipe", key=censuskey,
 tracts <- NULL
 for (f in fips) {
 stateget <- paste("state:", f, sep="")
-temp <- getCensus(name="sf3", vintage=1990, key=censuskey,
+temp <- getCensus(name="sf3", vintage=1990, key=Sys.getenv("CENSUS_KEY"),
 	vars=c("P0070001", "P0070002", "P114A001"), region="tract:*",
 	regionin = stateget)
 tracts <- rbind(tracts, temp)
 }
 }
 \keyword{api}
-

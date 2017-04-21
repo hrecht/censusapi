@@ -15,4 +15,3 @@ fips
 Since some geographies are only available under a state hierarchy, this can be helpful if you want to retrieve data for many states.
 }
 \keyword{datasets}
-

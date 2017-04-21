@@ -21,4 +21,3 @@ vars2014 <- listCensusMetadata(name="acs5", vintage=2014, "v")
 geos2014 <- listCensusMetadata(name="acs5", vintage=2014, "g")
 }
 \keyword{metadata}
-
