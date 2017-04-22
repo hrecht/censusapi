@@ -32,7 +32,7 @@ Or, open your .Renviron file in a text editor and add the following line:
 
 Once you've added your census key to your system environment, censusapi will use it by default without any extra work on your part. 
 
-In some instances you might not want to put your key in your .Renviron - for example, if you're on a shared school computer. You can always choose to manually set `key="YOURKEY` as an argument in getCensus if you prefer.
+In some instances you might not want to put your key in your .Renviron - for example, if you're on a shared school computer. You can always choose to manually set `key="YOURKEY"` as an argument in getCensus if you prefer.
 
 ## Usage examples
 ```R
