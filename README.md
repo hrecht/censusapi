@@ -37,20 +37,41 @@ In some instances you might not want to put your key in your .Renviron - for exa
 library(censusapi)
 ```
 ### Retrieving data with getCensus
-Get uninsured rates by income group and state from the Small Area Health Insurance Estimates [(SAHIE) timeseries API](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html)
+Get uninsured rates in Alabama by income group from the Small Area Health Insurance Estimates [(SAHIE) timeseries API](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html)
 
 ```R 
-sahie <- getCensus(name="timeseries/healthins/sahie",
+# State-level data for Alabama
+getCensus(name="timeseries/healthins/sahie",
 	vars=c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
-	region="state:*", time=2015)
+	region="state:1", time=2015)
 head(sahie)
-#>         NAME IPRCAT    IPR_DESC PCTUI_PT time state
-#> 1    Alabama      0 All Incomes     11.9 2015    01
-#> 2     Alaska      0 All Incomes     16.3 2015    02
-#> 3    Arizona      0 All Incomes     12.8 2015    04
-#> 4   Arkansas      0 All Incomes     11.1 2015    05
-#> 5 California      0 All Incomes      9.7 2015    06
-#> 6   Colorado      0 All Incomes      9.2 2015    08
+#>      NAME IPRCAT                IPR_DESC PCTUI_PT time state
+#> 1 Alabama      0             All Incomes     11.9 2015    01
+#> 2 Alabama      1      <= 200% of Poverty     19.8 2015    01
+#> 3 Alabama      2      <= 250% of Poverty     18.6 2015    01
+#> 4 Alabama      3      <= 138% of Poverty     21.2 2015    01
+#> 5 Alabama      4      <= 400% of Poverty     15.5 2015    01
+#> 6 Alabama      5 138% to 400% of Poverty     11.8 2015    01
+
+# County-level data within Alabama, specified by adding the `regionin` parameter.
+sahie_counties <- getCensus(name="timeseries/healthins/sahie",
+	vars=c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
+	region="county:*", regionin="state:1", time=2015)
+head(sahie_counties, n=12L)
+#>                  NAME IPRCAT                IPR_DESC PCTUI_PT time state county
+#> 1  Autauga County, AL      0             All Incomes      9.4 2015    01    001
+#> 2  Autauga County, AL      1      <= 200% of Poverty     16.8 2015    01    001
+#> 3  Autauga County, AL      2      <= 250% of Poverty     15.5 2015    01    001
+#> 4  Autauga County, AL      3      <= 138% of Poverty     18.6 2015    01    001
+#> 5  Autauga County, AL      4      <= 400% of Poverty     12.4 2015    01    001
+#> 6  Autauga County, AL      5 138% to 400% of Poverty      9.6 2015    01    001
+#> 7  Baldwin County, AL      0             All Incomes     11.5 2015    01    003
+#> 8  Baldwin County, AL      1      <= 200% of Poverty     21.1 2015    01    003
+#> 9  Baldwin County, AL      2      <= 250% of Poverty     19.5 2015    01    003
+#> 10 Baldwin County, AL      3      <= 138% of Poverty     22.5 2015    01    003
+#> 11 Baldwin County, AL      4      <= 400% of Poverty     15.7 2015    01    003
+#> 12 Baldwin County, AL      5 138% to 400% of Poverty     12.2 2015    01    003
+
 ```
 
 Get 1990 long-form [Decennial Census](https://www.census.gov/data/developers/data-sets/decennial-census.1990.html) data for all counties
