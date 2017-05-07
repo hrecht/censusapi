@@ -10,6 +10,7 @@ listCensusApis()
 Scrapes {http://api.census.gov/data.html}
 }
 \examples{
-listCensusApis()
+apis <- listCensusApis()
+head(apis)
 }
 \keyword{metadata}

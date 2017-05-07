@@ -5,7 +5,8 @@
 #' @keywords metadata
 #' @export
 #' @examples
-#' listCensusApis()
+#' apis <- listCensusApis()
+#' head(apis)
 listCensusApis <- function() {
 	u <- 'http://api.census.gov/data.html'
 	apis <- as.data.frame(XML::readHTMLTable(u))
@@ -26,8 +27,11 @@ listCensusApis <- function() {
 #' @keywords metadata
 #' @export
 #' @examples
-#' vars2014 <- listCensusMetadata(name="acs5", vintage=2014, "v")
-#' geos2014 <- listCensusMetadata(name="acs5", vintage=2014, "g")
+#' varsbds<- listCensusMetadata(name="timeseries/bds/firms", type = "v")
+#' head(varsbds)
+#'
+#' geosbds <- listCensusMetadata(name="timeseries/bds/firms", type = "g")
+#' head(geosbds)
 listCensusMetadata <- function(name, vintage=NULL, type="v") {
 	constructURL <- function(name, vintage) {
 		if (is.null(vintage)) {

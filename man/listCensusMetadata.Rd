@@ -17,7 +17,10 @@ listCensusMetadata(name, vintage = NULL, type = "v")
 Get variable or geography metadata for a given API as a data frame
 }
 \examples{
-vars2014 <- listCensusMetadata(name="acs5", vintage=2014, "v")
-geos2014 <- listCensusMetadata(name="acs5", vintage=2014, "g")
+varsbds<- listCensusMetadata(name="timeseries/bds/firms", type = "v")
+head(varsbds)
+
+geosbds <- listCensusMetadata(name="timeseries/bds/firms", type = "g")
+head(geosbds)
 }
 \keyword{metadata}
