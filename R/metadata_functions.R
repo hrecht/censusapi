@@ -12,7 +12,7 @@ listCensusApis <- function() {
 	apis <- apis[,c(1:4,10)]
 	colnames(apis) <- c("title", "description", "vintage", "name", "url")
 	apis[] <- lapply(apis, as.character)
-	apis$name <- gsub("› ", "/", apis$name)
+	apis$name <- gsub("\U203A ", "/", apis$name)
 	apis[apis=="N/A"] <- NA
 	apis$vintage <- as.numeric(apis$vintage)
 	return(apis)
