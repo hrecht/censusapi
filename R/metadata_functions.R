@@ -39,6 +39,9 @@ listCensusApis <- function() {
 #'
 #' geosbds <- listCensusMetadata(name="timeseries/bds/firms", type = "g")
 #' head(geosbds)
+#'
+#' geosacs <- listCensusMetadata(name="acs5", vintage = 2015, type = "g")
+#' head(geosacs)
 listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 	constructURL <- function(name, vintage) {
 		if (is.null(vintage)) {
@@ -59,10 +62,13 @@ listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 	if (type %in% c("variables", "v")) {
 		u <- paste(apiurl, "variables.json", sep="/")
 		raw <- jsonlite::fromJSON(u)
-		print(u)
+
 	} else if (type %in% c("geography", "geographies", "g")) {
 		u <- paste(apiurl, "geography.json", sep="/")
+		raw <- jsonlite::fromJSON(u)
+		dt <- raw$fips
 	} else {
 		stop(paste('For "type", you entered: "', type, '". Did you mean "variables" or "geography"?', sep = ""))
 	}
+	return(dt)
 }
