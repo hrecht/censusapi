@@ -62,6 +62,8 @@ listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 	if (type %in% c("variables", "v")) {
 		u <- paste(apiurl, "variables.json", sep="/")
 		raw <- jsonlite::fromJSON(u)
+		dt <- do.call(dplyr::bind_rows, lapply(raw$variables, data.frame))
+		dt$name <- names(raw$variables)
 
 	} else if (type %in% c("geography", "geographies", "g")) {
 		u <- paste(apiurl, "geography.json", sep="/")

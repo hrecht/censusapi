@@ -23,5 +23,8 @@ head(varsbds)
 
 geosbds <- listCensusMetadata(name="timeseries/bds/firms", type = "g")
 head(geosbds)
+
+geosacs <- listCensusMetadata(name="acs5", vintage = 2015, type = "g")
+head(geosacs)
 }
 \keyword{metadata}
