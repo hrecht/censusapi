@@ -29,7 +29,8 @@ listCensusApis <- function() {
 #'
 #' @param name API name - e.g. acs5. See list at http://api.census.gov/data.html
 #' @param vintage Vintage of dataset, e.g. 2014 - not required for timeseries APIs
-#' @param type Type of metadata to return, either 'v' for variables or 'g' for geographies. Default = variables.
+#' @param type Type of metadata to return, either "variables" or "v" to return variables
+#' or "geographies" or "g" to return geographies. Default is variables.
 #' @keywords metadata
 #' @export
 #' @examples
@@ -38,7 +39,7 @@ listCensusApis <- function() {
 #'
 #' geosbds <- listCensusMetadata(name="timeseries/bds/firms", type = "g")
 #' head(geosbds)
-listCensusMetadata <- function(name, vintage=NULL, type="v") {
+listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 	constructURL <- function(name, vintage) {
 		if (is.null(vintage)) {
 			apiurl <- paste("http://api.census.gov/data", name, sep="/")
@@ -55,33 +56,13 @@ listCensusMetadata <- function(name, vintage=NULL, type="v") {
 	}
 	apiurl <- constructURL(name, vintage)
 
-	if (type=="v") {
-		u <- paste(apiurl, "variables.html", sep="/")
-		tables <- XML::readHTMLTable(u)
-		if (length(tables)==1) {
-			df <- as.data.frame(tables)
-		} else {
-			# this should not be needed
-			df <- tables[[1]]
-		}
-		colnames(df) <- c("name", "label", "concept", "required", "predicatetype")
-		df[] <- lapply(df, as.character)
-		return(df)
-	}
-	if (type=="g") {
-		u <- paste(apiurl, "geography.html", sep="/")
-		tables <- XML::readHTMLTable(u)
-		if (length(tables)==1) {
-			df <- as.data.frame(tables)
-		} else {
-			# this is very rare - 2010 sf1 only
-			df <- tables[[1]]
-		}
-		colnames(df) <- c("reference_date", "geography_level", "geography_hierarchy")
-		df[] <- lapply(df, as.character)
-		return(df)
-	}
-	if (type != "v" | type !="g") {
-		print("Type options are 'v' or 'g'")
+	if (type %in% c("variables", "v")) {
+		u <- paste(apiurl, "variables.json", sep="/")
+		raw <- jsonlite::fromJSON(u)
+		print(u)
+	} else if (type %in% c("geography", "geographies", "g")) {
+		u <- paste(apiurl, "geography.json", sep="/")
+	} else {
+		stop(paste('For "type", you entered: "', type, '". Did you mean "variables" or "geography"?', sep = ""))
 	}
 }
