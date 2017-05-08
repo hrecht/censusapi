@@ -1,6 +1,8 @@
 #' Get dataset metadata on all available APIs as a data frame
 #'
-#' Scrapes {http://api.census.gov/data.html}
+#' Scrapes {http://api.census.gov/data.json} and returns a dataframe
+#' that includes: title, name, vintage (where applicable), url, isTimeseries (binary),
+#' temporal (helpful for some time series), description, modified date
 #'
 #' @keywords metadata
 #' @export
@@ -8,15 +10,19 @@
 #' apis <- listCensusApis()
 #' head(apis)
 listCensusApis <- function() {
-	u <- 'http://api.census.gov/data.html'
-	apis <- as.data.frame(XML::readHTMLTable(u))
-	apis <- apis[,c(1:4,10)]
-	colnames(apis) <- c("title", "description", "vintage", "name", "url")
-	apis[] <- lapply(apis, as.character)
-	apis$name <- gsub("\U203A ", "/", apis$name)
-	apis[apis=="N/A"] <- NA
-	apis$vintage <- as.numeric(apis$vintage)
-	return(apis)
+	# Get data.json
+	u <- "http://api.census.gov/data.json"
+	raw <- jsonlite::fromJSON(u)
+	datasets <- jsonlite::flatten(raw$dataset)
+
+	# Format for user
+	colnames(datasets) <- gsub("c_", "", colnames(datasets))
+	datasets$name <- apply(datasets, 1, function(x) paste(x$dataset, collapse = "/"))
+	datasets$url <- apply(datasets, 1, function(x) x$distribution$accessURL)
+
+	dt <- datasets[, c("title", "name", "vintage", "url", "isTimeseries", "temporal", "description", "modified")]
+	dt <- dt[order(dt$name, dt$vintage),]
+	return(dt)
 }
 
 #' Get variable or geography metadata for a given API as a data frame

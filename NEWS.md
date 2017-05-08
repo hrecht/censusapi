@@ -1,3 +1,7 @@
+# censusapi 0.1.0.9001
+* Scrapes http://api.census.gov/data.json rather than .html in `listCensusApis`, in starts of removing XML dependency. The .json data also includes several fields not present in the .html file, the most useful of which are added to the returned data frame.
+* Changes dataset used in `listCensusMetadata` examples, mainly for build/checks speed.
+
 # censusapi 0.1.0.9000
 * Set `getCensus(key)` argument's default value to be CENSUS_KEY in .Renviron. Explicitly encourages Census key to be added to .Renviron. (Users can always override this with any given input.)
 * Parses HTML response code. This is particularly important for the response that the Census APIs provided for invalid keys.
