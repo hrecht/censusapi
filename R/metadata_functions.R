@@ -1,6 +1,6 @@
 #' Get dataset metadata on all available APIs as a data frame
 #'
-#' Scrapes {http://api.census.gov/data.json} and returns a dataframe
+#' Scrapes {https://api.census.gov/data.json} and returns a dataframe
 #' that includes: title, name, vintage (where applicable), url, isTimeseries (binary),
 #' temporal (helpful for some time series), description, modified date
 #'
@@ -11,7 +11,7 @@
 #' head(apis)
 listCensusApis <- function() {
 	# Get data.json
-	u <- "http://api.census.gov/data.json"
+	u <- "https://api.census.gov/data.json"
 	raw <- jsonlite::fromJSON(u)
 	datasets <- jsonlite::flatten(raw$dataset)
 
@@ -27,7 +27,7 @@ listCensusApis <- function() {
 
 #' Get variable or geography metadata for a given API as a data frame
 #'
-#' @param name API name - e.g. acs5. See list at http://api.census.gov/data.html
+#' @param name API name - e.g. acs5. See list at https://api.census.gov/data.html
 #' @param vintage Vintage of dataset, e.g. 2014 - not required for timeseries APIs
 #' @param type Type of metadata to return, either "variables" or "v" to return variables
 #' or "geographies" or "g" to return geographies. Default is variables.
@@ -45,9 +45,9 @@ listCensusApis <- function() {
 listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 	constructURL <- function(name, vintage) {
 		if (is.null(vintage)) {
-			apiurl <- paste("http://api.census.gov/data", name, sep="/")
+			apiurl <- paste("https://api.census.gov/data", name, sep="/")
 		} else {
-			apiurl <- paste("http://api.census.gov/data", vintage, name, sep="/")
+			apiurl <- paste("https://api.census.gov/data", vintage, name, sep="/")
 		}
 
 		# Handle messy urls

@@ -47,9 +47,9 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 }
 #' Retrieve Census data from a given API
 #'
-#' @param name API name - e.g. acs5. See list at http://api.census.gov/data.html
+#' @param name API name - e.g. acs5. See list at https://api.census.gov/data.html
 #' @param vintage Year of dataset, e.g. 2014 - not required for timeseries APIs
-#' @param key Your Census API key, gotten from http://api.census.gov/data/key_signup.html
+#' @param key Your Census API key, gotten from https://api.census.gov/data/key_signup.html
 #' @param vars List of variables to get
 #' @param region Geograpy to get
 #' @param regionin Optional hierarchical geography to limit region
@@ -88,9 +88,9 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 getCensus <- function(name, vintage=NULL, key=Sys.getenv("CENSUS_KEY"), vars, region, regionin=NULL, time=NULL, date=NULL, period=NULL, monthly=NULL,  category_code=NULL, data_type_code=NULL) {
 	constructURL <- function(name, vintage) {
 		if (is.null(vintage)) {
-			apiurl <- paste("http://api.census.gov/data", name, sep="/")
+			apiurl <- paste("https://api.census.gov/data", name, sep="/")
 		} else {
-			apiurl <- paste("http://api.census.gov/data", vintage, name, sep="/")
+			apiurl <- paste("https://api.census.gov/data", vintage, name, sep="/")
 		}
 
 		# Handle messy urls
@@ -104,7 +104,7 @@ getCensus <- function(name, vintage=NULL, key=Sys.getenv("CENSUS_KEY"), vars, re
 	# Check for key in environment
 	key_env <- Sys.getenv("CENSUS_KEY")
 	if ((key_env == "" & key == key_env)) {
-		stop("'key' argument is missing. A Census API key is required and can be requested at http://api.census.gov/data/key_signup.html.\nPlease add your Census key to your .Renviron - see instructions at https://github.com/hrecht/censusapi#api-key-setup")
+		stop("'key' argument is missing. A Census API key is required and can be requested at https://api.census.gov/data/key_signup.html.\nPlease add your Census key to your .Renviron - see instructions at https://github.com/hrecht/censusapi#api-key-setup")
 	}
 
 	apiurl <- constructURL(name, vintage)

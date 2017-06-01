@@ -7,7 +7,7 @@
 listCensusApis()
 }
 \description{
-Scrapes {http://api.census.gov/data.json} and returns a dataframe
+Scrapes {https://api.census.gov/data.json} and returns a dataframe
 that includes: title, name, vintage (where applicable), url, isTimeseries (binary),
 temporal (helpful for some time series), description, modified date
 }
