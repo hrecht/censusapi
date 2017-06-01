@@ -93,7 +93,7 @@ documenting variables used in a given project.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>name</th>
-      <td><p>API name - e.g. acs5. See list at http://api.census.gov/data.html</p></td>
+      <td><p>API name - e.g. acs5. See list at https://api.census.gov/data.html</p></td>
     </tr>
     <tr>
       <th>vintage</th>
@@ -118,14 +118,12 @@ Options are "all", "name", "label", or "concept".</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Return a list, and then use getCensus function to retrieve those variables</span>
 <span class='no'>myvars</span> <span class='kw'>&lt;-</span> <span class='fu'>makeVarlist</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"sf1"</span>, <span class='kw'>vintage</span><span class='kw'>=</span><span class='fl'>2000</span>,
-        <span class='kw'>find</span><span class='kw'>=</span><span class='st'>"military"</span>, <span class='kw'>varsearch</span><span class='kw'>=</span><span class='st'>"label"</span>)
-<span class='no'>militarydt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getCensus.html'>getCensus</a></span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"sf1"</span>, <span class='kw'>vintage</span><span class='kw'>=</span><span class='fl'>2000</span>,
-        <span class='kw'>vars</span><span class='kw'>=</span><span class='no'>myvars</span>, <span class='kw'>region</span><span class='kw'>=</span><span class='st'>"state:*"</span>)
-
+        <span class='kw'>find</span><span class='kw'>=</span><span class='st'>"military"</span>, <span class='kw'>varsearch</span><span class='kw'>=</span><span class='st'>"label"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: XML content does not seem to be XML: 'https://api.census.gov/data/2000/sf1/variables.html'</span></div><div class='input'><span class='no'>militarydt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getCensus.html'>getCensus</a></span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"sf1"</span>, <span class='kw'>vintage</span><span class='kw'>=</span><span class='fl'>2000</span>,
+        <span class='kw'>vars</span><span class='kw'>=</span><span class='no'>myvars</span>, <span class='kw'>region</span><span class='kw'>=</span><span class='st'>"state:*"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in getCensus(name = "sf1", vintage = 2000, vars = myvars, region = "state:*"): object 'myvars' not found</span></div><div class='input'>
 <span class='co'># Return a data frame of all "h16" variables</span>
 <span class='no'>vartable</span> <span class='kw'>&lt;-</span> <span class='fu'>makeVarlist</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"sf1"</span>, <span class='kw'>vintage</span><span class='kw'>=</span><span class='fl'>2000</span>,
         <span class='kw'>find</span><span class='kw'>=</span><span class='st'>"h16"</span>, <span class='kw'>varsearch</span><span class='kw'>=</span><span class='st'>"concept"</span>,
-        <span class='kw'>output</span><span class='kw'>=</span><span class='st'>"dataframe"</span>)</div></pre>
+        <span class='kw'>output</span><span class='kw'>=</span><span class='st'>"dataframe"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: XML content does not seem to be XML: 'https://api.census.gov/data/2000/sf1/variables.html'</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
