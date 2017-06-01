@@ -83,7 +83,7 @@
     <p>Get variable or geography metadata for a given API as a data frame</p>
     
 
-    <pre class="usage"><span class='fu'>listCensusMetadata</span>(<span class='no'>name</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"v"</span>)</pre>
+    <pre class="usage"><span class='fu'>listCensusMetadata</span>(<span class='no'>name</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"variables"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -98,14 +98,48 @@
     </tr>
     <tr>
       <th>type</th>
-      <td><p>Type of metadata to return, either 'v' for variables or 'g' for geographies. Default = variables.</p></td>
+      <td><p>Type of metadata to return, either "variables" or "v" to return variables
+or "geographies" or "g" to return geographies. Default is variables.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>varsbds</span><span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"v"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: XML content does not seem to be XML: 'https://api.census.gov/data/timeseries/bds/firms/variables.html'</span></div><div class='input'><span class='fu'>head</span>(<span class='no'>varsbds</span>)</div><div class='output co'>#&gt; <span class='error'>Error in head(varsbds): object 'varsbds' not found</span></div><div class='input'>
-<span class='no'>geosbds</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"g"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: XML content does not seem to be XML: 'https://api.census.gov/data/timeseries/bds/firms/geography.html'</span></div><div class='input'><span class='fu'>head</span>(<span class='no'>geosbds</span>)</div><div class='output co'>#&gt; <span class='error'>Error in head(geosbds): object 'geosbds' not found</span></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>varsbds</span><span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"v"</span>)
+<span class='fu'>head</span>(<span class='no'>varsbds</span>)</div><div class='output co'>#&gt;                       name                    label                concept
+#&gt; 1 job_creation_rate_births Job creation rate births    Economic Statistics
+#&gt; 2                     sic1          Industry Sector    Economic Statistics
+#&gt; 3        estabs_entry_rate Establishment entry rate    Economic Statistics
+#&gt; 4                   ifsize        Initial firm size    Economic Statistics
+#&gt; 5              estabs_exit    Establishments exited    Economic Statistics
+#&gt; 6                    state          State FIPS Code Selectable Geographies
+#&gt;   predicateType limit required
+#&gt; 1           int     0       NA
+#&gt; 2           int     0       NA
+#&gt; 3           int     0       NA
+#&gt; 4        string     0       NA
+#&gt; 5           int     0       NA
+#&gt; 6          &lt;NA&gt;     0       NA</div><div class='input'>
+<span class='no'>geosbds</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"g"</span>)
+<span class='fu'>head</span>(<span class='no'>geosbds</span>)</div><div class='output co'>#&gt;                            name geoLevelId
+#&gt; 1                            us        010
+#&gt; 2 metropolitan statistical area        310
+#&gt; 3                         state        040</div><div class='input'>
+<span class='no'>geosacs</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2015</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"g"</span>)
+<span class='fu'>head</span>(<span class='no'>geosacs</span>)</div><div class='output co'>#&gt;                                                          name geoLevelId
+#&gt; 1 metropolitan statistical area/micropolitan statistical area        310
+#&gt; 2                                                          us        010
+#&gt; 3                                                      region        020
+#&gt; 4                                                    division        030
+#&gt; 5                                                  urban area        400
+#&gt; 6  american indian area/alaska native area/hawaiian home land        250
+#&gt;   requires wildcard optionalWithWCFor
+#&gt; 1     NULL     NULL              &lt;NA&gt;
+#&gt; 2     NULL     NULL              &lt;NA&gt;
+#&gt; 3     NULL     NULL              &lt;NA&gt;
+#&gt; 4     NULL     NULL              &lt;NA&gt;
+#&gt; 5     NULL     NULL              &lt;NA&gt;
+#&gt; 6     NULL     NULL              &lt;NA&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

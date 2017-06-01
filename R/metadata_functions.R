@@ -61,12 +61,32 @@ listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 
 	if (type %in% c("variables", "v")) {
 		u <- paste(apiurl, "variables.json", sep="/")
+		# Too nested and irregular for automatic conversion
 		raw <- jsonlite::fromJSON(u)
-		dt <- do.call(dplyr::bind_rows, lapply(raw$variables, data.frame))
-		dt$name <- names(raw$variables)
+
+		# JSON of variables has irregular structure that gets standardized in the HTML view
+		# Particularly the datetime filed used in some APIs
+		# Generally, predicateOnly = parameter, exclude predicateOnly (parameters)
+
+		# Manual fill with NAs as needed to avoid adding a dplyr::bind_rows or similar dependency
+		cols <- unique(unlist(lapply(raw$variables, names)))
+		cols <- cols[!(cols %in% c("predicateOnly", "datetime"))]
+		makeDf <- function(d) {
+			df <- data.frame(d)
+			df[, setdiff(cols, names(df))] <- NA
+			return(df)
+		}
+		dts <- lapply(raw$variables, function(x) if(!("predicateOnly" %in% names(x))) {makeDf(x)} else {x <- NULL})
+		temp <- Filter(is.data.frame, dts)
+		dt <- do.call(rbind, temp)
+
+		# Clean up
+		dt <- cbind(name = row.names(dt), dt)
+		row.names(dt) <- NULL
 
 	} else if (type %in% c("geography", "geographies", "g")) {
 		u <- paste(apiurl, "geography.json", sep="/")
+		# Simple json to data.frame conversion
 		raw <- jsonlite::fromJSON(u)
 		dt <- raw$fips
 	} else {
