@@ -107,7 +107,12 @@ head(data2014)
 ```
 
 ### Discovering data and variables with metadata functions
-* NEW DOCUMENTATION FOR THESE FUNCTIONS COMING SOON
+
+Get a data frame of all available APIs and some useful metadata on each.
+```R
+apis <- listCensusApis()
+head(apis)
+```
 
 ## Time series note
 While the APIs generally return specific error messages for invalid variables or geographies, they currently return no content (status 204) without an error message when an invalid year is specified in some time series. If you're getting repeated 204 responses double check the Census documentation to make sure your time period is valid.

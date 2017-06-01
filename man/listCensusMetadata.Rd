@@ -4,14 +4,15 @@
 \alias{listCensusMetadata}
 \title{Get variable or geography metadata for a given API as a data frame}
 \usage{
-listCensusMetadata(name, vintage = NULL, type = "v")
+listCensusMetadata(name, vintage = NULL, type = "variables")
 }
 \arguments{
 \item{name}{API name - e.g. acs5. See list at https://api.census.gov/data.html}
 
 \item{vintage}{Vintage of dataset, e.g. 2014 - not required for timeseries APIs}
 
-\item{type}{Type of metadata to return, either 'v' for variables or 'g' for geographies. Default = variables.}
+\item{type}{Type of metadata to return, either "variables" or "v" to return variables
+or "geographies" or "g" to return geographies. Default is variables.}
 }
 \description{
 Get variable or geography metadata for a given API as a data frame
@@ -22,5 +23,8 @@ head(varsbds)
 
 geosbds <- listCensusMetadata(name="timeseries/bds/firms", type = "g")
 head(geosbds)
+
+geosacs <- listCensusMetadata(name="acs5", vintage = 2015, type = "g")
+head(geosacs)
 }
 \keyword{metadata}

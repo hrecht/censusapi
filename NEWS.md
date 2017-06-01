@@ -1,5 +1,7 @@
-# censusapi 0.1.0.9002
+# censusapi 0.1.1.0
 * Uses https rather than http for requests. The Census APIs will no longer work on http on August 28, 2017.
+* Removes XML dependency by parsing .json instead of .html metadata.
+* `listCensusMetadata` allows full word or single letter argument in `type` parameter
 
 # censusapi 0.1.0.9001
 * Scrapes http://api.census.gov/data.json rather than .html in `listCensusApis`, in starts of removing XML dependency. The .json data also includes several fields not present in the .html file, the most useful of which are added to the returned data frame.

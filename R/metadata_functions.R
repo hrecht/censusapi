@@ -29,7 +29,8 @@ listCensusApis <- function() {
 #'
 #' @param name API name - e.g. acs5. See list at https://api.census.gov/data.html
 #' @param vintage Vintage of dataset, e.g. 2014 - not required for timeseries APIs
-#' @param type Type of metadata to return, either 'v' for variables or 'g' for geographies. Default = variables.
+#' @param type Type of metadata to return, either "variables" or "v" to return variables
+#' or "geographies" or "g" to return geographies. Default is variables.
 #' @keywords metadata
 #' @export
 #' @examples
@@ -38,7 +39,10 @@ listCensusApis <- function() {
 #'
 #' geosbds <- listCensusMetadata(name="timeseries/bds/firms", type = "g")
 #' head(geosbds)
-listCensusMetadata <- function(name, vintage=NULL, type="v") {
+#'
+#' geosacs <- listCensusMetadata(name="acs5", vintage = 2015, type = "g")
+#' head(geosacs)
+listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 	constructURL <- function(name, vintage) {
 		if (is.null(vintage)) {
 			apiurl <- paste("https://api.census.gov/data", name, sep="/")
@@ -55,33 +59,38 @@ listCensusMetadata <- function(name, vintage=NULL, type="v") {
 	}
 	apiurl <- constructURL(name, vintage)
 
-	if (type=="v") {
-		u <- paste(apiurl, "variables.html", sep="/")
-		tables <- XML::readHTMLTable(u)
-		if (length(tables)==1) {
-			df <- as.data.frame(tables)
-		} else {
-			# this should not be needed
-			df <- tables[[1]]
+	if (type %in% c("variables", "v")) {
+		u <- paste(apiurl, "variables.json", sep="/")
+		# Too nested and irregular for automatic conversion
+		raw <- jsonlite::fromJSON(u)
+
+		# JSON of variables has irregular structure that gets standardized in the HTML view
+		# Particularly the datetime filed used in some APIs
+		# Generally, predicateOnly = parameter, exclude predicateOnly (parameters)
+
+		# Manual fill with NAs as needed to avoid adding a dplyr::bind_rows or similar dependency
+		cols <- unique(unlist(lapply(raw$variables, names)))
+		cols <- cols[!(cols %in% c("predicateOnly", "datetime"))]
+		makeDf <- function(d) {
+			df <- data.frame(d)
+			df[, setdiff(cols, names(df))] <- NA
+			return(df)
 		}
-		colnames(df) <- c("name", "label", "concept", "required", "predicatetype")
-		df[] <- lapply(df, as.character)
-		return(df)
+		dts <- lapply(raw$variables, function(x) if(!("predicateOnly" %in% names(x))) {makeDf(x)} else {x <- NULL})
+		temp <- Filter(is.data.frame, dts)
+		dt <- do.call(rbind, temp)
+
+		# Clean up
+		dt <- cbind(name = row.names(dt), dt)
+		row.names(dt) <- NULL
+
+	} else if (type %in% c("geography", "geographies", "g")) {
+		u <- paste(apiurl, "geography.json", sep="/")
+		# Simple json to data.frame conversion
+		raw <- jsonlite::fromJSON(u)
+		dt <- raw$fips
+	} else {
+		stop(paste('For "type", you entered: "', type, '". Did you mean "variables" or "geography"?', sep = ""))
 	}
-	if (type=="g") {
-		u <- paste(apiurl, "geography.html", sep="/")
-		tables <- XML::readHTMLTable(u)
-		if (length(tables)==1) {
-			df <- as.data.frame(tables)
-		} else {
-			# this is very rare - 2010 sf1 only
-			df <- tables[[1]]
-		}
-		colnames(df) <- c("reference_date", "geography_level", "geography_hierarchy")
-		df[] <- lapply(df, as.character)
-		return(df)
-	}
-	if (type != "v" | type !="g") {
-		print("Type options are 'v' or 'g'")
-	}
+	return(dt)
 }
