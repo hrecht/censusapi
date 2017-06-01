@@ -87,6 +87,7 @@
 <ul>
 <li>Uses https rather than http for requests. The Census Bureau <a href="https://content.govdelivery.com/attachments/USCENSUS/2017/05/31/file_attachments/824523/HttpsChangeDocument.pdf">announced</a> that their APIs will be https-only beginning on August 28, 2017.</li>
 <li>Removes XML dependency by parsing .json instead of .html metadata.</li>
+<li>Note: this change has generally increased the run time for retrieving variable metadata with <code>listCensusMetadata</code>. For most APIs, this function will run in under one second. A lag may be noticeable for the American Community Survey APIs, which each have more than 40,000 variables. Improvements are planned in future releases.</li>
 <li>
 <code>listCensusMetadata</code> allows full word or single letter argument in <code>type</code> parameter</li>
 </ul>

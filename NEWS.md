@@ -1,6 +1,7 @@
 # censusapi 0.1.1.0
 * Uses https rather than http for requests. The Census Bureau [announced](https://content.govdelivery.com/attachments/USCENSUS/2017/05/31/file_attachments/824523/HttpsChangeDocument.pdf) that their APIs will be https-only beginning on August 28, 2017.
 * Removes XML dependency by parsing .json instead of .html metadata.
+  * Note: this change has generally increased the run time for retrieving variable metadata with `listCensusMetadata`. For most APIs, this function will run in under one second. A lag may be noticeable for the American Community Survey APIs, which each have more than 40,000 variables. Improvements are planned in future releases.
 * `listCensusMetadata` allows full word or single letter argument in `type` parameter
 
 # censusapi 0.1.0.9001
