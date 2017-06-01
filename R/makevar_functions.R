@@ -4,7 +4,7 @@
 #' This can be used create a list of variables to later pass to getCensus, or a data frame
 #' documenting variables used in a given project.
 #'
-#' @param name API name - e.g. acs5. See list at http://api.census.gov/data.html
+#' @param name API name - e.g. acs5. See list at https://api.census.gov/data.html
 #' @param vintage Year of dataset, e.g. 2014 - not required for timeseries APIs
 #' @param find A string to find in the variable metadata
 #' @param varsearch Optional argument specifying which fields to search. Default is "all".

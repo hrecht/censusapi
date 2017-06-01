@@ -9,11 +9,11 @@ getCensus(name, vintage = NULL, key = Sys.getenv("CENSUS_KEY"), vars,
   monthly = NULL, category_code = NULL, data_type_code = NULL)
 }
 \arguments{
-\item{name}{API name - e.g. acs5. See list at http://api.census.gov/data.html}
+\item{name}{API name - e.g. acs5. See list at https://api.census.gov/data.html}
 
 \item{vintage}{Year of dataset, e.g. 2014 - not required for timeseries APIs}
 
-\item{key}{Your Census API key, gotten from http://api.census.gov/data/key_signup.html}
+\item{key}{Your Census API key, gotten from https://api.census.gov/data/key_signup.html}
 
 \item{vars}{List of variables to get}
 

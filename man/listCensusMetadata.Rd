@@ -7,7 +7,7 @@
 listCensusMetadata(name, vintage = NULL, type = "v")
 }
 \arguments{
-\item{name}{API name - e.g. acs5. See list at http://api.census.gov/data.html}
+\item{name}{API name - e.g. acs5. See list at https://api.census.gov/data.html}
 
 \item{vintage}{Vintage of dataset, e.g. 2014 - not required for timeseries APIs}
 
