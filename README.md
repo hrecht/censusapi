@@ -44,7 +44,6 @@ Get uninsured rates in Alabama by income group from the Small Area Health Insura
 getCensus(name="timeseries/healthins/sahie",
 	vars=c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region="state:1", time=2015)
-head(sahie)
 #>      NAME IPRCAT                IPR_DESC PCTUI_PT time state
 #> 1 Alabama      0             All Incomes     11.9 2015    01
 #> 2 Alabama      1      <= 200% of Poverty     19.8 2015    01
