@@ -1,5 +1,5 @@
 # censusapi 0.1.1.0
-* Uses https rather than http for requests. The Census APIs will no longer work on http on August 28, 2017.
+* Uses https rather than http for requests. The Census Bureau [announced](https://content.govdelivery.com/attachments/USCENSUS/2017/05/31/file_attachments/824523/HttpsChangeDocument.pdf) that their APIs will be https-only beginning on August 28, 2017.
 * Removes XML dependency by parsing .json instead of .html metadata.
 * `listCensusMetadata` allows full word or single letter argument in `type` parameter
 
