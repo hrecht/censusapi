@@ -79,7 +79,6 @@ Get 1990 long-form [Decennial Census](https://www.census.gov/data/developers/dat
 data1990 <- getCensus(name="sf3", vintage=1990, 
 	vars=c("P0070001", "P0070002", "P114A001"), 
 	region="county:*")
-	
 head(data1990)
 #>   state county P0070001 P0070002 P114A001
 #> 1    01    001    16724    17498    11182
@@ -88,7 +87,23 @@ head(data1990)
 #> 4    01    007     8053     8523     8973
 #> 5    01    009    19146    20102    10168
 #> 6    01    011     5298     5744     6922
+```	
+
+Decennial Census sf1, 2010, block-level
+```R
+data2010 <- getCensus(name="sf1", vintage=2010,
+	vars=c("P0010001", "P0030001"), 
+	region="block:*", regionin="state:36+county:27")
 ```
+
+Decennial Census sf1, 2000, block-level - note, for this dataset the tract needs to be specified
+```R
+data2000 <- getCensus(name="sf1", vintage=2000,
+	vars=c("P001001", "P003001"), 
+	region="block:*", regionin="state:36+county:27+tract:010000")
+
+```
+
 
 Get 2015 [5-year American Community Survey](https://www.census.gov/data/developers/data-sets/acs-5year.html) data for each Congressional District in New York state
 ```R
