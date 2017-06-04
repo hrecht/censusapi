@@ -46,6 +46,17 @@ df <- getCensus(name="acs5", vintage=2014,
 	vars=paste('B04004_', sprintf('\%03i', seq(1, 105)), 'E', sep=''),
 	region="county:*")
 
+# Retreive block-level data within a specific state and county using a nested regionin argument
+data2010 <- getCensus(name="sf1", vintage=2010,
+vars=c("P0010001", "P0030001"),
+region="block:*", regionin="state:36+county:27")
+
+# Retreive block-level data for Decennial Census sf1, 2000
+# Note, for this dataset a tract needs to be specified to retrieve blocks
+data2000 <- getCensus(name="sf1", vintage=2000,
+	vars=c("P001001", "P003001"),
+region="block:*", regionin="state:36+county:27+tract:010000")
+
 # Get time series data
 saipe <- getCensus(name="timeseries/poverty/saipe",
 	vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),

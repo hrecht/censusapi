@@ -151,6 +151,17 @@
         <span class='kw'>vars</span><span class='kw'>=</span><span class='fu'>paste</span>(<span class='st'>'B04004_'</span>, <span class='fu'>sprintf</span>(<span class='st'>'%03i'</span>, <span class='fu'>seq</span>(<span class='fl'>1</span>, <span class='fl'>105</span>)), <span class='st'>'E'</span>, <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>''</span>),
         <span class='kw'>region</span><span class='kw'>=</span><span class='st'>"county:*"</span>)
 
+<span class='co'># Retreive block-level data within a specific state and county using a nested regionin argument</span>
+<span class='no'>data2010</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"sf1"</span>, <span class='kw'>vintage</span><span class='kw'>=</span><span class='fl'>2010</span>,
+<span class='kw'>vars</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"P0010001"</span>, <span class='st'>"P0030001"</span>),
+<span class='kw'>region</span><span class='kw'>=</span><span class='st'>"block:*"</span>, <span class='kw'>regionin</span><span class='kw'>=</span><span class='st'>"state:36+county:27"</span>)
+
+<span class='co'># Retreive block-level data for Decennial Census sf1, 2000</span>
+<span class='co'># Note, for this dataset a tract needs to be specified to retrieve blocks</span>
+<span class='no'>data2000</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"sf1"</span>, <span class='kw'>vintage</span><span class='kw'>=</span><span class='fl'>2000</span>,
+        <span class='kw'>vars</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"P001001"</span>, <span class='st'>"P003001"</span>),
+<span class='kw'>region</span><span class='kw'>=</span><span class='st'>"block:*"</span>, <span class='kw'>regionin</span><span class='kw'>=</span><span class='st'>"state:36+county:27+tract:010000"</span>)
+
 <span class='co'># Get time series data</span>
 <span class='no'>saipe</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"timeseries/poverty/saipe"</span>,
         <span class='kw'>vars</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"NAME"</span>, <span class='st'>"SAEPOVRT0_17_PT"</span>, <span class='st'>"SAEPOVRTALL_PT"</span>),

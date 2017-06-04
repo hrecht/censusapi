@@ -89,22 +89,6 @@ head(data1990)
 #> 6    01    011     5298     5744     6922
 ```	
 
-Decennial Census sf1, 2010, block-level
-```R
-data2010 <- getCensus(name="sf1", vintage=2010,
-	vars=c("P0010001", "P0030001"), 
-	region="block:*", regionin="state:36+county:27")
-```
-
-Decennial Census sf1, 2000, block-level - note, for this dataset the tract needs to be specified
-```R
-data2000 <- getCensus(name="sf1", vintage=2000,
-	vars=c("P001001", "P003001"), 
-	region="block:*", regionin="state:36+county:27+tract:010000")
-
-```
-
-
 Get 2015 [5-year American Community Survey](https://www.census.gov/data/developers/data-sets/acs-5year.html) data for each Congressional District in New York state
 ```R
 data2014 <- getCensus(name="acs5", vintage=2014,
@@ -120,6 +104,24 @@ head(data2014)
 #> 6 Congressional District 6 (114th Congress), New York    36                     06      721015       58255        4048        9620
 ```
 
+### Nested geographies
+Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API.
+The `regionin` argument of `getCensus` can be used with a string of nested geographies, as shown below.
+
+The 2010 decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use `region` to request block level data, and `regionin` to specify the desired state and county.
+```R
+data2010 <- getCensus(name="sf1", vintage=2010,
+	vars=c("P0010001", "P0030001"), 
+	region="block:*", regionin="state:36+county:27")
+```
+
+For the 2000 decennial Census summary file 1, tract is also required to retrieve block-level data. This example requests data for all blocks within Census tract 010000 in county 27 of state 36.
+```R
+data2000 <- getCensus(name="sf1", vintage=2000,
+	vars=c("P001001", "P003001"), 
+	region="block:*", regionin="state:36+county:27+tract:010000")
+
+```
 ### Discovering data and variables with metadata functions
 
 Get a data frame of all available APIs and some useful metadata on each.
