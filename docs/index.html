@@ -89,9 +89,6 @@ devtools::<span class="kw">install_github</span>(<span class="st">"hrecht/census
 <h2 class="hasAnchor">
 <a href="#usage-examples" class="anchor"></a>Usage examples</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(censusapi)</code></pre></div>
-<div id="retrieving-data-with-getcensus" class="section level3">
-<h3 class="hasAnchor">
-<a href="#retrieving-data-with-getcensus" class="anchor"></a>Retrieving data with getCensus</h3>
 <p>Get uninsured rates in Alabama by income group from the Small Area Health Insurance Estimates <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html">(SAHIE) timeseries API</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># State-level data for Alabama</span>
 <span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"timeseries/healthins/sahie"</span>,
@@ -123,60 +120,7 @@ sahie_counties &lt;-<span class="st"> </span><span class="kw"><a href="reference
 <span class="co">#&gt; 10 Baldwin County, AL      3      &lt;= 138% of Poverty     22.5 2015    01    003</span>
 <span class="co">#&gt; 11 Baldwin County, AL      4      &lt;= 400% of Poverty     15.7 2015    01    003</span>
 <span class="co">#&gt; 12 Baldwin County, AL      5 138% to 400% of Poverty     12.2 2015    01    003</span></code></pre></div>
-<p>Get 1990 long-form <a href="https://www.census.gov/data/developers/data-sets/decennial-census.1990.html">Decennial Census</a> data for all counties</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data1990 &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"sf3"</span>, <span class="dt">vintage=</span><span class="dv">1990</span>, 
-    <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"P0070001"</span>, <span class="st">"P0070002"</span>, <span class="st">"P114A001"</span>), 
-    <span class="dt">region=</span><span class="st">"county:*"</span>)
-<span class="kw">head</span>(data1990)
-<span class="co">#&gt;   state county P0070001 P0070002 P114A001</span>
-<span class="co">#&gt; 1    01    001    16724    17498    11182</span>
-<span class="co">#&gt; 2    01    003    47955    50325    12275</span>
-<span class="co">#&gt; 3    01    005    12127    13290     9515</span>
-<span class="co">#&gt; 4    01    007     8053     8523     8973</span>
-<span class="co">#&gt; 5    01    009    19146    20102    10168</span>
-<span class="co">#&gt; 6    01    011     5298     5744     6922</span></code></pre></div>
-<p>Get 2015 <a href="https://www.census.gov/data/developers/data-sets/acs-5year.html">5-year American Community Survey</a> data for each Congressional District in New York state</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2014 &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"acs5"</span>, <span class="dt">vintage=</span><span class="dv">2014</span>,
-    <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"B01001_001E"</span>, <span class="st">"B19013_001E"</span>, <span class="st">"B17010_017E"</span>, <span class="st">"B17010_037E"</span>), 
-    <span class="dt">region=</span><span class="st">"congressional district:*"</span>, <span class="dt">regionin=</span><span class="st">"state:36"</span>)
-<span class="kw">head</span>(data2014)
-<span class="co">#&gt;                                                  NAME state congressional.district B01001_001E B19013_001E B17010_017E B17010_037E</span>
-<span class="co">#&gt; 1 Congressional District 1 (114th Congress), New York    36                     01      722670       87215        3889       10977</span>
-<span class="co">#&gt; 2 Congressional District 2 (114th Congress), New York    36                     02      723744       87938        3285       13857</span>
-<span class="co">#&gt; 3 Congressional District 3 (114th Congress), New York    36                     03      720393      101949        1889        8876</span>
-<span class="co">#&gt; 4 Congressional District 4 (114th Congress), New York    36                     04      720624       93476        4429       11576</span>
-<span class="co">#&gt; 5 Congressional District 5 (114th Congress), New York    36                     05      760308       60767        8530       22470</span>
-<span class="co">#&gt; 6 Congressional District 6 (114th Congress), New York    36                     06      721015       58255        4048        9620</span></code></pre></div>
-</div>
-<div id="nested-geographies" class="section level3">
-<h3 class="hasAnchor">
-<a href="#nested-geographies" class="anchor"></a>Nested geographies</h3>
-<p>Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API. The <code>regionin</code> argument of <code>getCensus</code> can be used with a string of nested geographies, as shown below.</p>
-<p>The 2010 decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use <code>region</code> to request block level data, and <code>regionin</code> to specify the desired state and county.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2010 &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"sf1"</span>, <span class="dt">vintage=</span><span class="dv">2010</span>,
-    <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"P0010001"</span>, <span class="st">"P0030001"</span>), 
-    <span class="dt">region=</span><span class="st">"block:*"</span>, <span class="dt">regionin=</span><span class="st">"state:36+county:27"</span>)
-<span class="kw">head</span>(data2010)
-<span class="co">#&gt;   state county  tract block P0010001 P0030001</span>
-<span class="co">#&gt; 1    36    027 010000  1020       73       73</span>
-<span class="co">#&gt; 2    36    027 010000  1023        0        0</span>
-<span class="co">#&gt; 3    36    027 010000  1030       68       68</span>
-<span class="co">#&gt; 4    36    027 010000  1031        0        0</span>
-<span class="co">#&gt; 5    36    027 010000  1032        0        0</span>
-<span class="co">#&gt; 6    36    027 010000  1033        0        0</span></code></pre></div>
-<p>For the 2000 decennial Census summary file 1, tract is also required to retrieve block-level data. This example requests data for all blocks within Census tract 010000 in county 27 of state 36.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2000 &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"sf1"</span>, <span class="dt">vintage=</span><span class="dv">2000</span>,
-    <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"P001001"</span>, <span class="st">"P003001"</span>), 
-    <span class="dt">region=</span><span class="st">"block:*"</span>, <span class="dt">regionin=</span><span class="st">"state:36+county:27+tract:010000"</span>)
-<span class="kw">head</span>(data2000)
-<span class="co">#&gt;   state county  tract block P001001 P003001</span>
-<span class="co">#&gt; 1    36    027 010000  1000      18      18</span>
-<span class="co">#&gt; 2    36    027 010000  1001      26      26</span>
-<span class="co">#&gt; 3    36    027 010000  1002      59      59</span>
-<span class="co">#&gt; 4    36    027 010000  1003      67      67</span>
-<span class="co">#&gt; 5    36    027 010000  1004      52      52</span>
-<span class="co">#&gt; 6    36    027 010000  1005     116     116</span></code></pre></div>
-</div>
+<p>See more examples in <a href="https://hrecht.github.io/censusapi/articles/getting-started.html">Getting started with censusapi</a></p>
 </div>
 <div id="time-series-note" class="section level2">
 <h2 class="hasAnchor">
