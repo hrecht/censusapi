@@ -201,18 +201,7 @@
 #&gt; 4   Arkansas           19.3 2011    05            27.8
 #&gt; 5 California           16.6 2011    06            22.8
 #&gt; 6   Colorado           13.4 2011    08            17.7</div><div class='input'>
-<span class='co'># Loop over all states using fips list included in package</span>
-<span class='fu'>not_run</span>({
-  <span class='no'>tracts</span> <span class='kw'>&lt;-</span> <span class='kw'>NULL</span>
-  <span class='kw'>for</span> (<span class='no'>f</span> <span class='kw'>in</span> <span class='no'>fips</span>) {
-  <span class='no'>stateget</span> <span class='kw'>&lt;-</span> <span class='fu'>paste</span>(<span class='st'>"state:"</span>, <span class='no'>f</span>, <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>""</span>)
-  <span class='no'>temp</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"sf3"</span>, <span class='kw'>vintage</span><span class='kw'>=</span><span class='fl'>1990</span>,
-        <span class='kw'>vars</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"P0070001"</span>, <span class='st'>"P0070002"</span>, <span class='st'>"P114A001"</span>), <span class='kw'>region</span><span class='kw'>=</span><span class='st'>"tract:*"</span>,
-        <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='no'>stateget</span>)
-  <span class='no'>tracts</span> <span class='kw'>&lt;-</span> <span class='fu'>rbind</span>(<span class='no'>tracts</span>, <span class='no'>temp</span>)
-  }
-  <span class='fu'>head</span>(<span class='no'>tracts</span>)
-})</div></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

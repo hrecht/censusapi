@@ -66,17 +66,5 @@ saipe <- getCensus(name="timeseries/poverty/saipe",
 	region="state:*", time=2011)
 head(saipe)
 
-# Loop over all states using fips list included in package
-\dontrun{
-tracts <- NULL
-for (f in fips) {
-stateget <- paste("state:", f, sep="")
-temp <- getCensus(name="sf3", vintage=1990,
-	vars=c("P0070001", "P0070002", "P114A001"), region="tract:*",
-	regionin = stateget)
-tracts <- rbind(tracts, temp)
-}
-head(tracts)
-}
 }
 \keyword{api}
