@@ -73,12 +73,12 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' 	region="county:*")
 #'
 #' # Retreive block-level data for Decennial Census sf1, 2010
-#' data2010 <- getCensus(name="sf1", vintage=2010, key=censuskey, 
+#' data2010 <- getCensus(name="sf1", vintage=2010,
 #'	vars=c("P0010001", 'P0030001"), 
 #'	region="block:*", regionin="state:36+county:27")
 #'
 #' # Retreive block-level data for Decennial Census sf1, 2000; note, for this dataset the tract needs to be specified
-#' data2000 <- getCensus(name="sf1", vintage=2000, key=censuskey, 
+#' data2000 <- getCensus(name="sf1", vintage=2000, 
 #' 	vars=c("P001001", "P003001"), 
 #'	region="block:*", regionin="state:36+county:27+tract:010000")
 #'
