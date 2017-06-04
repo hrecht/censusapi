@@ -1,0 +1,54 @@
+---
+title: "Getting started with censusapi"
+author: "Hannah Recht"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+`censusapi` is a wrapper for the United States Census Bureau's [APIs](https://www.census.gov/data/developers/data-sets.html). As of 2017 over 200 Census API endpoints are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—`getCensus`—and the same syntax for each dataset.
+
+`censusapi` generally uses the APIs' original parameter names so that users can easily transition between Census's documentation and examples and this package. It also includes functions using the dataset discovery service to return dataset metadata, geographies, and variables as data frames.
+
+## API key setup
+To use the Census APIs, [sign up](https://api.census.gov/data/key_signup.html) for an API key. Then, if you're on a non-shared computer, add your Census API key to your .Renviron profile and call it CENSUS_KEY. `censusapi` will use it by default without any extra work on your part. 
+Within R, run:
+```{r eval = FALSE}
+# Add key to .Renviron
+Sys.setenv(CENSUS_KEY=YOURKEYHERE)
+# Reload .Renviron
+readRenviron("~/.Renviron")
+# Check to see that the expected key is output in your R console
+Sys.getenv("CENSUS_KEY")
+```
+
+In some instances you might not want to put your key in your .Renviron - for example, if you're on a shared school computer. You can always choose to specify your key within `getCensus` instead.
+
+## Finding your API
+The Census APIs have over 200 endpoints, covering dozens of different datasets. To see a table of every available endpoint, run:
+```{r eval = FALSE}
+apis <- listCensusApis()
+View(apis)
+```
+![](img/apis.png)
+
+
+## Using `getCensus`
+The main function in `censusapi` is `getCensus`, which makes an API call to a given Census API and returns a data frame of results. Each API has slightly different parameters, but there are always a few required arguments:
+
+* `name`: the name of the API as defined by the Census, like "acs5" or "timeseries/bds/firms"
+* `vintage`: the dataset year, generally required for non-timeseries APIs
+* `vars`: the list of variable names to get
+* `region`: the geography level to return, like state or county
+
+
+Some APIs have additional required or optional arguments, like `time`, `monthly`, or `period`. Check the specific [documentation](https://www.census.gov/data/developers/data-sets.html) for your API to see what options are allowed.
+
+## Additional resources
+* [Census Data API User Guide](https://www.census.gov/data/developers/guidance/api-user-guide.Overview.html)
+
+## Disclaimer
+This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.

@@ -16,4 +16,7 @@ RoxygenNote: 6.0.1
 Imports:
     httr,
     jsonlite
-Suggests: testthat
+Suggests: testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
