@@ -65,7 +65,7 @@
     
 <div class="contents">
 <p><code>censusapi</code> is a wrapper for the United States Census Bureau’s <a href="https://www.census.gov/data/developers/data-sets.html">APIs</a>. As of 2017 over 200 Census API endpoints are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—<code>getCensus</code>—and the same syntax for each dataset.</p>
-<p><code>censusapi</code> generally uses the APIs’ original parameter names so that users can easily transition between Census’s documentation and examples and this package. It also includes functions using the dataset discovery service to return dataset metadata, geographies, and variables as data frames.</p>
+<p><code>censusapi</code> generally uses the APIs’ original parameter names so that users can easily transition between Census’s documentation and examples and this package. It also includes metadata functions to return data frames of available APIs, variables, and geographies.</p>
 <div id="api-key-setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#api-key-setup" class="anchor"></a>API key setup</h2>
@@ -84,7 +84,7 @@
 <p>To get started, load the <code>censusapi</code> library.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(censusapi)</code></pre></div>
 <p>The Census APIs have over 200 endpoints, covering dozens of different datasets.</p>
-<p>To see a current table of every available endpoint, run:</p>
+<p>To see a current table of every available endpoint, run <code>listCensusApis</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apis &lt;-<span class="st"> </span><span class="kw"><a href="../reference/listCensusApis.html">listCensusApis</a></span>()
 <span class="kw">View</span>(apis)</code></pre></div>
 <p><img src="img/apis.png"> This returns useful information about each endpoint, including <code>name</code>, which you’ll need to make your API call.</p>
@@ -208,8 +208,30 @@
 <h2 class="hasAnchor">
 <a href="#advanced-geographies" class="anchor"></a>Advanced geographies</h2>
 <p>Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API and run <code>listCensusMetadata</code> to see the available geographies.</p>
-<p>The <code>regionin</code> argument of <code>getCensus</code> can be used with a string of nested geographies, as shown below.</p>
-<p>The 2010 decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use <code>region</code> to request block level data, and <code>regionin</code> to specify the desired state and county.</p>
+<p>You may want to get get data for many geographies that require a parent geography. For example, tract-level data from the 1990 Decennial Census can only be requested from one state at a time.</p>
+<p>In this example, we use the built in <code>fips</code> list of state <a href="https://www.census.gov/geo/reference/ansi_statetables.html">FIPS codes</a> to request tract-level data from each state and join into a single data frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fips</code></pre></div>
+<pre><code>##  [1]  1  2  4  5  6  8  9 10 11 12 13 15 16 17 18 19 20 21 22 23 24 25 26
+## [24] 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 44 45 46 47 48 49 50
+## [47] 51 53 54 55 56</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tracts &lt;-<span class="st"> </span><span class="ot">NULL</span>
+for (f in fips) {
+    stateget &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">"state:"</span>, f, <span class="dt">sep=</span><span class="st">""</span>)
+    temp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"sf3"</span>, <span class="dt">vintage=</span><span class="dv">1990</span>,
+    <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"P0070001"</span>, <span class="st">"P0070002"</span>, <span class="st">"P114A001"</span>), <span class="dt">region=</span><span class="st">"tract:*"</span>,
+    <span class="dt">regionin =</span> stateget)
+    tracts &lt;-<span class="st"> </span><span class="kw">rbind</span>(tracts, temp)
+}
+<span class="kw">head</span>(tracts)</code></pre></div>
+<pre><code>##   state county  tract P0070001 P0070002 P114A001
+## 1    01    001 020100      944      917    11663
+## 2    01    001 020200      917     1060     8555
+## 3    01    001 020300     1451     1518    11782
+## 4    01    001 020400     2166     2223    15323
+## 5    01    001 020500     1604     1582    14522
+## 6    01    001 020600     1784     1661    10630</code></pre>
+<p>The <code>regionin</code> argument of <code>getCensus</code> can also be used with a string of nested geographies, as shown below.</p>
+<p>The 2010 Decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use <code>region</code> to request block level data, and <code>regionin</code> to specify the desired state and county.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2010 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"sf1"</span>, <span class="dt">vintage=</span><span class="dv">2010</span>,
     <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"P0010001"</span>, <span class="st">"P0030001"</span>), 
     <span class="dt">region=</span><span class="st">"block:*"</span>, <span class="dt">regionin=</span><span class="st">"state:36+county:027"</span>)
@@ -221,7 +243,7 @@
 ## 4    36    027 010000  1031        0        0
 ## 5    36    027 010000  1032        0        0
 ## 6    36    027 010000  1033        0        0</code></pre>
-<p>For the 2000 decennial Census summary file 1, tract is also required to retrieve block-level data. This example requests data for all blocks within Census tract 010000 in county 027 of state 36.</p>
+<p>For the 2000 Decennial Census summary file 1, tract is also required to retrieve block-level data. This example requests data for all blocks within Census tract 010000 in county 027 of state 36.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2000 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"sf1"</span>, <span class="dt">vintage=</span><span class="dv">2000</span>,
     <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"P001001"</span>, <span class="st">"P003001"</span>), 
     <span class="dt">region=</span><span class="st">"block:*"</span>, <span class="dt">regionin=</span><span class="st">"state:36+county:027+tract:010000"</span>)

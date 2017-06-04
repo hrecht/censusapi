@@ -64,8 +64,9 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' @export
 #' @examples
 #' df <- getCensus(name="acs5", vintage=2014,
-#' 	vars=c("B01001_001E", "NAME", "B01002_001E", "B19013_001E", "B19001_001E", "B03002_012E"),
+#' 	vars=c("B01001_001E", "NAME", "B01002_001E", "B19013_001E"),
 #' 	region="tract:*", regionin="state:06")
+#' head(df)
 #'
 #' # Retrieve over 50 variables
 #' df <- getCensus(name="acs5", vintage=2014,
@@ -76,27 +77,21 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' data2010 <- getCensus(name="sf1", vintage=2010,
 #'	vars=c("P0010001", "P0030001"),
 #'	region="block:*", regionin="state:36+county:27")
+#' head(data2010)
 #'
 #' # Retreive block-level data for Decennial Census sf1, 2000
 #' # Note, for this dataset a tract needs to be specified to retrieve blocks
 #' data2000 <- getCensus(name="sf1", vintage=2000,
 #' 	vars=c("P001001", "P003001"),
 #'	region="block:*", regionin="state:36+county:27+tract:010000")
+#' head(data2000)
 #'
 #' # Get time series data
 #' saipe <- getCensus(name="timeseries/poverty/saipe",
 #' 	vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 #' 	region="state:*", time=2011)
+#' head(saipe)
 #'
-#' # Loop over all states using fips list included in package
-#' tracts <- NULL
-#' for (f in fips) {
-#'	stateget <- paste("state:", f, sep="")
-#'	temp <- getCensus(name="sf3", vintage=1990,
-#'		vars=c("P0070001", "P0070002", "P114A001"), region="tract:*",
-#'		regionin = stateget)
-#'	tracts <- rbind(tracts, temp)
-#' }
 getCensus <- function(name, vintage=NULL, key=Sys.getenv("CENSUS_KEY"), vars, region, regionin=NULL, time=NULL, date=NULL, period=NULL, monthly=NULL,  category_code=NULL, data_type_code=NULL) {
 	constructURL <- function(name, vintage) {
 		if (is.null(vintage)) {

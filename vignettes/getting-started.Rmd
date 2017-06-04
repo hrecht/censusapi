@@ -9,7 +9,7 @@ vignette: >
 
 `censusapi` is a wrapper for the United States Census Bureau's [APIs](https://www.census.gov/data/developers/data-sets.html). As of 2017 over 200 Census API endpoints are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—`getCensus`—and the same syntax for each dataset.
 
-`censusapi` generally uses the APIs' original parameter names so that users can easily transition between Census's documentation and examples and this package. It also includes functions using the dataset discovery service to return dataset metadata, geographies, and variables as data frames.
+`censusapi` generally uses the APIs' original parameter names so that users can easily transition between Census's documentation and examples and this package. It also includes metadata functions to return data frames of available APIs, variables, and geographies.
 
 ## API key setup
 To use the Census APIs, [sign up](https://api.census.gov/data/key_signup.html) for an API key. Then, if you're on a non-shared computer, add your Census API key to your .Renviron profile and call it CENSUS_KEY. `censusapi` will use it by default without any extra work on your part. 
@@ -32,7 +32,7 @@ library(censusapi)
 ```
 The Census APIs have over 200 endpoints, covering dozens of different datasets.
 
-To see a current table of every available endpoint, run:
+To see a current table of every available endpoint, run `listCensusApis`:
 ```{r, eval = FALSE}
 apis <- listCensusApis()
 View(apis)
@@ -98,11 +98,28 @@ head(sahie_counties, n=12L)
 ```
 
 ## Advanced geographies
+
 Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API and run `listCensusMetadata` to see the available geographies.
 
-The `regionin` argument of `getCensus` can be used with a string of nested geographies, as shown below.
+You may want to get get data for many geographies that require a parent geography. For example, tract-level data from the 1990 Decennial Census can only be requested from one state at a time. 
 
-The 2010 decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use `region` to request block level data, and `regionin` to specify the desired state and county.
+In this example, we use the built in `fips` list of state [FIPS codes](https://www.census.gov/geo/reference/ansi_statetables.html) to request tract-level data from each state and join into a single data frame.
+```{r}
+fips
+tracts <- NULL
+for (f in fips) {
+	stateget <- paste("state:", f, sep="")
+	temp <- getCensus(name="sf3", vintage=1990,
+	vars=c("P0070001", "P0070002", "P114A001"), region="tract:*",
+	regionin = stateget)
+	tracts <- rbind(tracts, temp)
+}
+head(tracts)
+```
+
+The `regionin` argument of `getCensus` can also be used with a string of nested geographies, as shown below.
+
+The 2010 Decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use `region` to request block level data, and `regionin` to specify the desired state and county.
 ```{r}
 data2010 <- getCensus(name="sf1", vintage=2010,
 	vars=c("P0010001", "P0030001"), 
@@ -110,7 +127,7 @@ data2010 <- getCensus(name="sf1", vintage=2010,
 head(data2010)
 ```
 
-For the 2000 decennial Census summary file 1, tract is also required to retrieve block-level data. This example requests data for all blocks within Census tract 010000 in county 027 of state 36.
+For the 2000 Decennial Census summary file 1, tract is also required to retrieve block-level data. This example requests data for all blocks within Census tract 010000 in county 027 of state 36.
 ```{r}
 data2000 <- getCensus(name="sf1", vintage=2000,
 	vars=c("P001001", "P003001"), 
