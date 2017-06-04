@@ -113,6 +113,14 @@ The 2010 decennial Census summary file 1 requires you to specify a state and cou
 data2010 <- getCensus(name="sf1", vintage=2010,
 	vars=c("P0010001", "P0030001"), 
 	region="block:*", regionin="state:36+county:27")
+head(data2010)
+#>   state county  tract block P0010001 P0030001
+#> 1    36    027 010000  1020       73       73
+#> 2    36    027 010000  1023        0        0
+#> 3    36    027 010000  1030       68       68
+#> 4    36    027 010000  1031        0        0
+#> 5    36    027 010000  1032        0        0
+#> 6    36    027 010000  1033        0        0
 ```
 
 For the 2000 decennial Census summary file 1, tract is also required to retrieve block-level data. This example requests data for all blocks within Census tract 010000 in county 27 of state 36.
@@ -120,7 +128,14 @@ For the 2000 decennial Census summary file 1, tract is also required to retrieve
 data2000 <- getCensus(name="sf1", vintage=2000,
 	vars=c("P001001", "P003001"), 
 	region="block:*", regionin="state:36+county:27+tract:010000")
-
+head(data2000)
+#>   state county  tract block P001001 P003001
+#> 1    36    027 010000  1000      18      18
+#> 2    36    027 010000  1001      26      26
+#> 3    36    027 010000  1002      59      59
+#> 4    36    027 010000  1003      67      67
+#> 5    36    027 010000  1004      52      52
+#> 6    36    027 010000  1005     116     116
 ```
 ### Discovering data and variables with metadata functions
 

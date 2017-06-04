@@ -150,11 +150,27 @@ sahie_counties &lt;-<span class="st"> </span><span class="kw"><a href="reference
 <p>The 2010 decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use <code>region</code> to request block level data, and <code>regionin</code> to specify the desired state and county.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2010 &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"sf1"</span>, <span class="dt">vintage=</span><span class="dv">2010</span>,
     <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"P0010001"</span>, <span class="st">"P0030001"</span>), 
-    <span class="dt">region=</span><span class="st">"block:*"</span>, <span class="dt">regionin=</span><span class="st">"state:36+county:27"</span>)</code></pre></div>
+    <span class="dt">region=</span><span class="st">"block:*"</span>, <span class="dt">regionin=</span><span class="st">"state:36+county:27"</span>)
+<span class="kw">head</span>(data2010)
+<span class="co">#&gt;   state county  tract block P0010001 P0030001</span>
+<span class="co">#&gt; 1    36    027 010000  1020       73       73</span>
+<span class="co">#&gt; 2    36    027 010000  1023        0        0</span>
+<span class="co">#&gt; 3    36    027 010000  1030       68       68</span>
+<span class="co">#&gt; 4    36    027 010000  1031        0        0</span>
+<span class="co">#&gt; 5    36    027 010000  1032        0        0</span>
+<span class="co">#&gt; 6    36    027 010000  1033        0        0</span></code></pre></div>
 <p>For the 2000 decennial Census summary file 1, tract is also required to retrieve block-level data. This example requests data for all blocks within Census tract 010000 in county 27 of state 36.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2000 &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"sf1"</span>, <span class="dt">vintage=</span><span class="dv">2000</span>,
     <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"P001001"</span>, <span class="st">"P003001"</span>), 
-    <span class="dt">region=</span><span class="st">"block:*"</span>, <span class="dt">regionin=</span><span class="st">"state:36+county:27+tract:010000"</span>)</code></pre></div>
+    <span class="dt">region=</span><span class="st">"block:*"</span>, <span class="dt">regionin=</span><span class="st">"state:36+county:27+tract:010000"</span>)
+<span class="kw">head</span>(data2000)
+<span class="co">#&gt;   state county  tract block P001001 P003001</span>
+<span class="co">#&gt; 1    36    027 010000  1000      18      18</span>
+<span class="co">#&gt; 2    36    027 010000  1001      26      26</span>
+<span class="co">#&gt; 3    36    027 010000  1002      59      59</span>
+<span class="co">#&gt; 4    36    027 010000  1003      67      67</span>
+<span class="co">#&gt; 5    36    027 010000  1004      52      52</span>
+<span class="co">#&gt; 6    36    027 010000  1005     116     116</span></code></pre></div>
 </div>
 <div id="discovering-data-and-variables-with-metadata-functions" class="section level3">
 <h3 class="hasAnchor">
