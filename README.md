@@ -4,9 +4,11 @@
 
 This package is an accessor for the United States Census Bureau's [APIs](https://www.census.gov/developers/). As of 2017 [over 200 Census API endpoints](https://api.census.gov/data.html) are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. censusapi is designed to use the APIs' original parameter names so that users can easily transition between Census's documentation and examples and this package. It also includes functions using the [dataset discovery service](http://www.census.gov/data/developers/updates/new-discovery-tool.html) to return dataset metadata, geographies, and variables as data frames.
 
-## Installation
+For more details, see [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html) and the package's [website](https://hrecht.github.io/censusapi/index.html).
 
-Install the package using devtools:
+## Installation
+Currently, `censusapi` is available on Github. A future CRAN release is planned.
+Install the package from Github using devtools:
 ```R
 # install.packages("devtools")
 devtools::install_github("hrecht/censusapi")
@@ -136,13 +138,6 @@ head(data2000)
 #> 4    36    027 010000  1003      67      67
 #> 5    36    027 010000  1004      52      52
 #> 6    36    027 010000  1005     116     116
-```
-### Discovering data and variables with metadata functions
-
-Get a data frame of all available APIs and some useful metadata on each.
-```R
-apis <- listCensusApis()
-head(apis)
 ```
 
 ## Time series note

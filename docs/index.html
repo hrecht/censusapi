@@ -29,10 +29,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="articles/getting-started.html">Getting started with censusapi</a>
 </li>
 <li>
-  <a href="articles/index.html">Articles</a>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li>
   <a href="news/index.html">News</a>
@@ -61,10 +61,11 @@
 <a href="#censusapi" class="anchor"></a>censusapi</h1></div>
 
 <p>This package is an accessor for the United States Census Bureau’s <a href="https://www.census.gov/developers/">APIs</a>. As of 2017 <a href="https://api.census.gov/data.html">over 200 Census API endpoints</a> are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. censusapi is designed to use the APIs’ original parameter names so that users can easily transition between Census’s documentation and examples and this package. It also includes functions using the <a href="http://www.census.gov/data/developers/updates/new-discovery-tool.html">dataset discovery service</a> to return dataset metadata, geographies, and variables as data frames.</p>
+<p>For more details, see <a href="https://hrecht.github.io/censusapi/articles/getting-started.html">Getting started with censusapi</a> and the package’s <a href="https://hrecht.github.io/censusapi/index.html">website</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>Install the package using devtools:</p>
+<p>Currently, <code>censusapi</code> is available on Github. A future CRAN release is planned. Install the package from Github using devtools:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools::<span class="kw">install_github</span>(<span class="st">"hrecht/censusapi"</span>)</code></pre></div>
 </div>
@@ -174,13 +175,6 @@ sahie_counties &lt;-<span class="st"> </span><span class="kw"><a href="reference
 <span class="co">#&gt; 4    36    027 010000  1003      67      67</span>
 <span class="co">#&gt; 5    36    027 010000  1004      52      52</span>
 <span class="co">#&gt; 6    36    027 010000  1005     116     116</span></code></pre></div>
-</div>
-<div id="discovering-data-and-variables-with-metadata-functions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#discovering-data-and-variables-with-metadata-functions" class="anchor"></a>Discovering data and variables with metadata functions</h3>
-<p>Get a data frame of all available APIs and some useful metadata on each.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apis &lt;-<span class="st"> </span><span class="kw"><a href="reference/listCensusApis.html">listCensusApis</a></span>()
-<span class="kw">head</span>(apis)</code></pre></div>
 </div>
 </div>
 <div id="time-series-note" class="section level2">

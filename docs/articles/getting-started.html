@@ -29,10 +29,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/getting-started.html">Getting started with censusapi</a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -58,9 +58,7 @@
   <div class="col-md-9">
     <div class="page-header toc-ignore">
       <h1>Getting started with censusapi</h1>
-                        <h4 class="author">Hannah Recht</h4>
             
-            <h4 class="date">2017-06-04</h4>
           </div>
 
     
@@ -85,11 +83,6 @@
 <a href="#finding-your-api" class="anchor"></a>Finding your API</h2>
 <p>To get started, load the <code>censusapi</code> library.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(censusapi)</code></pre></div>
-<pre><code>## 
-## Attaching package: 'censusapi'</code></pre>
-<pre><code>## The following object is masked from 'package:methods':
-## 
-##     getFunction</code></pre>
 <p>The Census APIs have over 200 endpoints, covering dozens of different datasets.</p>
 <p>To see a current table of every available endpoint, run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">apis &lt;-<span class="st"> </span><span class="kw"><a href="../reference/listCensusApis.html">listCensusApis</a></span>()
@@ -155,7 +148,7 @@
 ## 2 county        050    state    state             state
 ## 3  state        040     NULL     NULL              &lt;NA&gt;</code></pre>
 <p>This API has three geographic levels: <code>us</code>, <code>county</code> within states, and <code>state</code>.</p>
-<p>First, using <code>getCensus</code>, let’s get those variables at the national level for 2015.</p>
+<p>First, using <code>getCensus</code>, let’s get uninsured rate by income group at the national level for 2015.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
     <span class="dt">region=</span><span class="st">"us:*"</span>, <span class="dt">time=</span><span class="dv">2015</span>)</code></pre></div>

@@ -1,7 +1,5 @@
 ---
 title: "Getting started with censusapi"
-author: "Hannah Recht"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
@@ -29,7 +27,7 @@ In some instances you might not want to put your key in your .Renviron - for exa
 
 ## Finding your API
 To get started, load the `censusapi` library.
-```{r, results="hide"}
+```{r, message = FALSE}
 library(censusapi)
 ```
 The Census APIs have over 200 endpoints, covering dozens of different datasets.
@@ -76,7 +74,7 @@ listCensusMetadata(name="timeseries/healthins/sahie", type = "geography")
 ```
 This API has three geographic levels: `us`, `county` within states, and `state`.
 
-First, using `getCensus`, let's get those variables at the national level for 2015.
+First, using `getCensus`, let's get uninsured rate by income group at the national level for 2015.
 ```{r}
 getCensus(name="timeseries/healthins/sahie",
 	vars=c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
