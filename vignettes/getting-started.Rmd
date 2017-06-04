@@ -86,6 +86,7 @@ We can also get this data at the state level for every state by changing `region
 sahie_states <- getCensus(name="timeseries/healthins/sahie",
 	vars=c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region="state:*", time=2015)
+head(sahie_states)
 ```
 
 Finally, we can get county-level data. The geography metadata showed that we can choose to get county-level data within states. We'll use `region` to specify county-level results and `regionin` to request data for Alabama and Alaska.
@@ -98,6 +99,7 @@ head(sahie_counties, n=12L)
 
 ## Advanced geographies
 Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API and run `listCensusMetadata` to see the available geographies.
+
 The `regionin` argument of `getCensus` can be used with a string of nested geographies, as shown below.
 
 The 2010 decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use `region` to request block level data, and `regionin` to specify the desired state and county.

@@ -162,7 +162,15 @@
 <p>We can also get this data at the state level for every state by changing <code>region</code> to <code>"state:*"</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_states &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
-    <span class="dt">region=</span><span class="st">"state:*"</span>, <span class="dt">time=</span><span class="dv">2015</span>)</code></pre></div>
+    <span class="dt">region=</span><span class="st">"state:*"</span>, <span class="dt">time=</span><span class="dv">2015</span>)
+<span class="kw">head</span>(sahie_states)</code></pre></div>
+<pre><code>##         NAME IPRCAT    IPR_DESC PCTUI_PT time state
+## 1    Alabama      0 All Incomes     11.9 2015    01
+## 2     Alaska      0 All Incomes     16.3 2015    02
+## 3    Arizona      0 All Incomes     12.8 2015    04
+## 4   Arkansas      0 All Incomes     11.1 2015    05
+## 5 California      0 All Incomes      9.7 2015    06
+## 6   Colorado      0 All Incomes      9.2 2015    08</code></pre>
 <p>Finally, we can get county-level data. The geography metadata showed that we can choose to get county-level data within states. We’ll use <code>region</code> to specify county-level results and <code>regionin</code> to request data for Alabama and Alaska.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_counties &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
@@ -199,7 +207,8 @@
 <div id="advanced-geographies" class="section level2">
 <h2 class="hasAnchor">
 <a href="#advanced-geographies" class="anchor"></a>Advanced geographies</h2>
-<p>Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API and run <code>listCensusMetadata</code> to see the available geographies. The <code>regionin</code> argument of <code>getCensus</code> can be used with a string of nested geographies, as shown below.</p>
+<p>Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API and run <code>listCensusMetadata</code> to see the available geographies.</p>
+<p>The <code>regionin</code> argument of <code>getCensus</code> can be used with a string of nested geographies, as shown below.</p>
 <p>The 2010 decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use <code>region</code> to request block level data, and <code>regionin</code> to specify the desired state and county.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2010 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"sf1"</span>, <span class="dt">vintage=</span><span class="dv">2010</span>,
     <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"P0010001"</span>, <span class="st">"P0030001"</span>), 
