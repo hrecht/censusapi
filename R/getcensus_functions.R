@@ -23,14 +23,15 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 	responseFormat <- function(raw) {
 		# Make first row the header
 		colnames(raw) <- raw[1, ]
-		raw <- raw[-1, ]
 		df <- data.frame(raw)
+		df <- df[-1,]
 		# Make all columns character
 		df[] <- lapply(df, as.character)
 		# Make columns numeric if they have numbers in the column name - note some APIs use string var names
 		value_cols <- grep("[0-9]", names(df), value=TRUE)
 		for(col in value_cols) df[,col] <- as.numeric(df[,col])
-		df
+		row.names(df) <- NULL
+		return(df)
 	}
 
 	# Assemble call
