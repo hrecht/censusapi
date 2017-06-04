@@ -3,21 +3,19 @@
 #' @param apiurl, key, get, region, time
 #' @keywords internal
 #' @export
-#' @examples none
-#' getFunction()
 getFunction <- function(apiurl, key, get, region, regionin, time, date, period, monthly, category_code, data_type_code) {
 	# Return API's built in error message if invalid call
 	apiCheck <- function(req) {
 		if (req$status_code==400) stop(httr::content(req, as = "text"), call. = FALSE)
 		# Some time series don't give error messages, just don't resolve (e.g. SAIPE)
-		if (req$status_code==204) stop("Error 204: No content. If using a time series API, check time period inputs - given time period may be unavailable.", call. = FALSE)
+		if (req$status_code==204) stop("204, no content. If using a time series API, check time period inputs - given time period may be unavailable.", call. = FALSE)
 		if (identical(httr::content(req, as = "text"), "")) stop("No output to parse", call. = FALSE)
 	}
 
 	apiParse <- function (req) {
 		if (jsonlite::validate(httr::content(req, as="text"))[1] == FALSE) {
-			print(httr::content(req, as="text"))
-			stop("API response is not JSON")
+			error_message <- (gsub("<[^>]*>", "", httr::content(req, as="text")))
+			stop(paste("API response is not JSON\n Error message:", error_message))
 		} else {
 			raw <- jsonlite::fromJSON(httr::content(req, as = "text"))
 		}
@@ -25,14 +23,15 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 	responseFormat <- function(raw) {
 		# Make first row the header
 		colnames(raw) <- raw[1, ]
-		raw <- raw[-1, ]
 		df <- data.frame(raw)
+		df <- df[-1,]
 		# Make all columns character
 		df[] <- lapply(df, as.character)
 		# Make columns numeric if they have numbers in the column name - note some APIs use string var names
 		value_cols <- grep("[0-9]", names(df), value=TRUE)
 		for(col in value_cols) df[,col] <- as.numeric(df[,col])
-		df
+		row.names(df) <- NULL
+		return(df)
 	}
 
 	# Assemble call
@@ -49,9 +48,9 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 }
 #' Retrieve Census data from a given API
 #'
-#' @param name API name - e.g. acs5. See list at http://api.census.gov/data.html
+#' @param name API name - e.g. acs5. See list at https://api.census.gov/data.html
 #' @param vintage Year of dataset, e.g. 2014 - not required for timeseries APIs
-#' @param key Your Census API key, gotten from http://api.census.gov/data/key_signup.html
+#' @param key Your Census API key, gotten from https://api.census.gov/data/key_signup.html
 #' @param vars List of variables to get
 #' @param region Geograpy to get
 #' @param regionin Optional hierarchical geography to limit region
@@ -64,12 +63,12 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' @keywords api
 #' @export
 #' @examples
-#' df <- getCensus(name="acs5", vintage=2014, key=censuskey,
+#' df <- getCensus(name="acs5", vintage=2014,
 #' 	vars=c("B01001_001E", "NAME", "B01002_001E", "B19013_001E", "B19001_001E", "B03002_012E"),
 #' 	region="tract:*", regionin="state:06")
 #'
 #' # Retrieve over 50 variables
-#' df <- getCensus(name="acs5", vintage=2014, key=censuskey,
+#' df <- getCensus(name="acs5", vintage=2014,
 #' 	vars=paste('B04004_', sprintf('%03i', seq(1, 105)), 'E', sep=''),
 #' 	region="county:*")
 #'
@@ -84,7 +83,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #'	region="block:*", regionin="state:36+county:27+tract:010000")
 #'
 #' # Get time series data
-#' saipe <- getCensus(name="timeseries/poverty/saipe", key=censuskey,
+#' saipe <- getCensus(name="timeseries/poverty/saipe",
 #' 	vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 #' 	region="state:*", time=2011)
 #'
@@ -92,17 +91,17 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' tracts <- NULL
 #' for (f in fips) {
 #'	stateget <- paste("state:", f, sep="")
-#'	temp <- getCensus(name="sf3", vintage=1990, key=censuskey,
+#'	temp <- getCensus(name="sf3", vintage=1990,
 #'		vars=c("P0070001", "P0070002", "P114A001"), region="tract:*",
 #'		regionin = stateget)
 #'	tracts <- rbind(tracts, temp)
 #' }
-getCensus <- function(name, vintage=NULL, key, vars, region, regionin=NULL, time=NULL, date=NULL, period=NULL, monthly=NULL,  category_code=NULL, data_type_code=NULL) {
+getCensus <- function(name, vintage=NULL, key=Sys.getenv("CENSUS_KEY"), vars, region, regionin=NULL, time=NULL, date=NULL, period=NULL, monthly=NULL,  category_code=NULL, data_type_code=NULL) {
 	constructURL <- function(name, vintage) {
 		if (is.null(vintage)) {
-			apiurl <- paste("http://api.census.gov/data", name, sep="/")
+			apiurl <- paste("https://api.census.gov/data", name, sep="/")
 		} else {
-			apiurl <- paste("http://api.census.gov/data", vintage, name, sep="/")
+			apiurl <- paste("https://api.census.gov/data", vintage, name, sep="/")
 		}
 
 		# Handle messy urls
@@ -113,8 +112,10 @@ getCensus <- function(name, vintage=NULL, key, vars, region, regionin=NULL, time
 		apiurl
 	}
 
-	if (missing(key)) {
-		stop("'key' argument is missing. A Census API key is required and can be requested at http://api.census.gov/data/key_signup.html")
+	# Check for key in environment
+	key_env <- Sys.getenv("CENSUS_KEY")
+	if ((key_env == "" & key == key_env)) {
+		stop("'key' argument is missing. A Census API key is required and can be requested at https://api.census.gov/data/key_signup.html.\nPlease add your Census key to your .Renviron - see instructions at https://github.com/hrecht/censusapi#api-key-setup")
 	}
 
 	apiurl <- constructURL(name, vintage)

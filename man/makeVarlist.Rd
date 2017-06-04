@@ -8,7 +8,7 @@ makeVarlist(name, vintage = NULL, find, varsearch = "all",
   output = "list")
 }
 \arguments{
-\item{name}{API name - e.g. acs5. See list at http://api.census.gov/data.html}
+\item{name}{API name - e.g. acs5. See list at https://api.census.gov/data.html}
 
 \item{vintage}{Year of dataset, e.g. 2014 - not required for timeseries APIs}
 
@@ -29,11 +29,10 @@ documenting variables used in a given project.
 myvars <- makeVarlist(name="sf1", vintage=2000,
 	find="military", varsearch="label")
 militarydt <- getCensus(name="sf1", vintage=2000,
-	key=censuskey, vars=myvars, region="state:*")
+	vars=myvars, region="state:*")
 
 # Return a data frame of all "h16" variables
 vartable <- makeVarlist(name="sf1", vintage=2000,
 	find="h16", varsearch="concept",
 	output="dataframe")
 }
-

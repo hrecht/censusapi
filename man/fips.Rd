@@ -3,7 +3,7 @@
 \docType{data}
 \name{fips}
 \alias{fips}
-\title{List of state fips codes - 50 states plus DC and Puerto Rico}
+\title{List of state fips codes - 50 states plus DC}
 \format{A list of state fips codes}
 \source{
 \url{https://www.census.gov/geo/reference/ansi_statetables.html}
@@ -12,7 +12,10 @@
 fips
 }
 \description{
-Since some geographies are only available under a state hierarchy, this can be helpful if you want to retrieve data for many states.
+Some small geographies in some Census APIs can only be used under a state hierarchy.
+This is a list of fips codes that may be looped over to retrieve data for all states.
+}
+\examples{
+fips
 }
 \keyword{datasets}
-
