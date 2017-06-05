@@ -63,7 +63,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' @keywords api
 #' @export
 #' @examples
-#' df <- getCensus(name="acs5", vintage=2014,
+#' \donttest{df <- getCensus(name="acs5", vintage=2014,
 #' 	vars=c("B01001_001E", "NAME", "B01002_001E", "B19013_001E"),
 #' 	region="tract:*", regionin="state:06")
 #' head(df)
@@ -90,7 +90,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' saipe <- getCensus(name="timeseries/poverty/saipe",
 #' 	vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 #' 	region="state:*", time=2011)
-#' head(saipe)
+#' head(saipe)}
 #'
 getCensus <- function(name, vintage=NULL, key=Sys.getenv("CENSUS_KEY"), vars, region, regionin=NULL, time=NULL, date=NULL, period=NULL, monthly=NULL,  category_code=NULL, data_type_code=NULL) {
 	constructURL <- function(name, vintage) {

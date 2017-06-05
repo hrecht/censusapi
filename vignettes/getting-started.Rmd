@@ -7,6 +7,11 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, echo = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(purl = NOT_CRAN)
+```
+
 `censusapi` is a wrapper for the United States Census Bureau's [APIs](https://www.census.gov/data/developers/data-sets.html). As of 2017 over 200 Census API endpoints are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—`getCensus`—and the same syntax for each dataset.
 
 `censusapi` generally uses the APIs' original parameter names so that users can easily transition between Census's documentation and examples and this package. It also includes metadata functions to return data frames of available APIs, variables, and geographies.
@@ -75,14 +80,14 @@ listCensusMetadata(name="timeseries/healthins/sahie", type = "geography")
 This API has three geographic levels: `us`, `county` within states, and `state`.
 
 First, using `getCensus`, let's get uninsured rate by income group at the national level for 2015.
-```{r}
+```{r, eval = NOT_CRAN}
 getCensus(name="timeseries/healthins/sahie",
 	vars=c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region="us:*", time=2015)
 ```
 
 We can also get this data at the state level for every state by changing `region` to `"state:*"`:
-```{r}
+```{r, eval = NOT_CRAN}
 sahie_states <- getCensus(name="timeseries/healthins/sahie",
 	vars=c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region="state:*", time=2015)
@@ -90,7 +95,7 @@ head(sahie_states)
 ```
 
 Finally, we can get county-level data. The geography metadata showed that we can choose to get county-level data within states. We'll use `region` to specify county-level results and `regionin` to request data for Alabama and Alaska.
-```{r}
+```{r, eval = NOT_CRAN}
 sahie_counties <- getCensus(name="timeseries/healthins/sahie",
 	vars=c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region="county:*", regionin="state:1,2", time=2015)
@@ -104,7 +109,7 @@ Some geographies, particularly Census tracts and blocks, need to be specified wi
 You may want to get get data for many geographies that require a parent geography. For example, tract-level data from the 1990 Decennial Census can only be requested from one state at a time. 
 
 In this example, we use the built in `fips` list of state [FIPS codes](https://www.census.gov/geo/reference/ansi_statetables.html) to request tract-level data from each state and join into a single data frame.
-```{r}
+```{r, eval = NOT_CRAN}
 fips
 tracts <- NULL
 for (f in fips) {
@@ -120,7 +125,7 @@ head(tracts)
 The `regionin` argument of `getCensus` can also be used with a string of nested geographies, as shown below.
 
 The 2010 Decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use `region` to request block level data, and `regionin` to specify the desired state and county.
-```{r}
+```{r, eval = NOT_CRAN}
 data2010 <- getCensus(name="sf1", vintage=2010,
 	vars=c("P0010001", "P0030001"), 
 	region="block:*", regionin="state:36+county:027")
@@ -128,7 +133,7 @@ head(data2010)
 ```
 
 For the 2000 Decennial Census summary file 1, tract is also required to retrieve block-level data. This example requests data for all blocks within Census tract 010000 in county 027 of state 36.
-```{r}
+```{r, eval = NOT_CRAN}
 data2000 <- getCensus(name="sf1", vintage=2000,
 	vars=c("P001001", "P003001"), 
 	region="block:*", regionin="state:36+county:027+tract:010000")

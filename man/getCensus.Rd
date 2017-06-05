@@ -37,7 +37,7 @@ getCensus(name, vintage = NULL, key = Sys.getenv("CENSUS_KEY"), vars,
 Retrieve Census data from a given API
 }
 \examples{
-df <- getCensus(name="acs5", vintage=2014,
+\donttest{df <- getCensus(name="acs5", vintage=2014,
 	vars=c("B01001_001E", "NAME", "B01002_001E", "B19013_001E"),
 	region="tract:*", regionin="state:06")
 head(df)
@@ -64,7 +64,7 @@ head(data2000)
 saipe <- getCensus(name="timeseries/poverty/saipe",
 	vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region="state:*", time=2011)
-head(saipe)
+head(saipe)}
 
 }
 \keyword{api}

@@ -13,7 +13,7 @@
 #' @export
 #' @examples
 #' # Return a list, and then use getCensus function to retrieve those variables
-#' myvars <- makeVarlist(name="sf1", vintage=2000,
+#' \donttest{myvars <- makeVarlist(name="sf1", vintage=2000,
 #' 	find="military", varsearch="label")
 #' militarydt <- getCensus(name="sf1", vintage=2000,
 #' 	vars=myvars, region="state:*")
@@ -21,7 +21,7 @@
 #' # Return a data frame of all "h16" variables
 #' vartable <- makeVarlist(name="sf1", vintage=2000,
 #' 	find="h16", varsearch="concept",
-#' 	output="dataframe")
+#' 	output="dataframe")}
 
 makeVarlist <- function(name, vintage=NULL, find, varsearch="all", output="list") {
 	df <- listCensusMetadata(name, vintage, type="v")
