@@ -1,6 +1,7 @@
 # censusapi
 
 [![Build Status](https://travis-ci.org/hrecht/censusapi.svg?branch=master)](https://travis-ci.org/hrecht/censusapi)
+[![Cran Version](https://www.r-pkg.org/badges/version/censusapi)
 
 `censusapi` is an accessor for the United States Census Bureau's [APIs](https://www.census.gov/developers/). As of 2017 [over 200 Census API endpoints](https://api.census.gov/data.html) are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—`getCensus`—and the same syntax for each dataset.
 
@@ -9,8 +10,9 @@
 For more details, see [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html) and the package's [website](https://hrecht.github.io/censusapi/index.html).
 
 ## Installation
-Currently, `censusapi` is available on Github. A future CRAN release is planned.
-Install the package from Github using devtools:
+Get the latest stable release from CRAN: `install.packages("censusapi")`
+
+Install the latest development version of `censusapi` from Github using `devtools`:
 ```R
 # install.packages("devtools")
 devtools::install_github("hrecht/censusapi")
