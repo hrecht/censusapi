@@ -1,3 +1,6 @@
+# censusapi 0.2.0 (2017-06-04)
+* Updated examples, documentation, vignette.
+
 # censusapi 0.1.2
 * Fixes bug that caused single-row responses to throw an error
 

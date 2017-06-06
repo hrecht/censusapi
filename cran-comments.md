@@ -1,4 +1,4 @@
-This is the first CRAN submission of censusapi.
+This is a resubmission with the following changes: updated DESCRIPTION and version number.
 
 ## Test environments
 * local OS X install, R 3.3.3
@@ -12,4 +12,4 @@ This is the first CRAN submission of censusapi.
 There were no ERRORs, WARNINGs, or NOTEs. 
 
 ## Downstream dependencies
-I have also run R CMD check on downstream dependencies of censusapi and all packages passed.
+At this time there are no downstream dependencies of censusapi.
