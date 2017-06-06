@@ -9,3 +9,4 @@ latex: false
 r:
   - oldrel
   - release
+  - devel
