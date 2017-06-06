@@ -1,4 +1,4 @@
-This is a resubmission with the following changes: updated DESCRIPTION to enclose URL in <>
+This is a resubmission with the following changes: updated Title field in DESCRIPTION
 
 ## Test environments
 * local OS X install, R 3.3.3
