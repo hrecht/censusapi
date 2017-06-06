@@ -3,3 +3,4 @@
 ^\.travis\.yml$
 ^docs$
 _pkgdown.yaml
+cran-comments.md
