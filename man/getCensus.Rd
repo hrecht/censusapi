@@ -17,7 +17,7 @@ getCensus(name, vintage = NULL, key = Sys.getenv("CENSUS_KEY"), vars,
 
 \item{vars}{List of variables to get}
 
-\item{region}{Geograpy to get}
+\item{region}{Geography to get}
 
 \item{regionin}{Optional hierarchical geography to limit region}
 

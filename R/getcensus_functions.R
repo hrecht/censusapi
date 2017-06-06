@@ -52,7 +52,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' @param vintage Year of dataset, e.g. 2014 - not required for timeseries APIs
 #' @param key Your Census API key, gotten from https://api.census.gov/data/key_signup.html
 #' @param vars List of variables to get
-#' @param region Geograpy to get
+#' @param region Geography to get
 #' @param regionin Optional hierarchical geography to limit region
 #' @param time Optional argument used for some time series APIs
 #' @param date Optional argument used for some time series APIs
