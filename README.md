@@ -1,6 +1,6 @@
 # censusapi
 
-[![Build Status](https://travis-ci.org/hrecht/censusapi.svg?branch=master)](https://travis-ci.org/hrecht/censusapi) [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/censusapi)
+[![Build Status](https://travis-ci.org/hrecht/censusapi.svg?branch=master)](https://travis-ci.org/hrecht/censusapi)] [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/censusapi)]
 
 `censusapi` is an accessor for the United States Census Bureau's [APIs](https://www.census.gov/developers/). As of 2017 [over 200 Census API endpoints](https://api.census.gov/data.html) are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—`getCensus`—and the same syntax for each dataset.
 
