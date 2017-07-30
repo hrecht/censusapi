@@ -6,7 +6,7 @@ Description: A wrapper for the U.S. Census Bureau APIs that returns data frames 
 	Census data and metadata. Available datasets include the 
 	Decennial Census, American Community Survey, Small Area Health Insurance Estimates,
 	Small Area Income and Poverty Estimates, and Population Estimates and Projections.
-	See https://www.census.gov/data/developers/data-sets.html for more information.
+	See <https://www.census.gov/data/developers/data-sets.html> for more information.
 URL: https://github.com/hrecht/censusapi
 BugReports: https://github.com/hrecht/censusapi/issues
 Depends: R (>= 3.0.0)
