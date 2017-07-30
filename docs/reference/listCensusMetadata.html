@@ -116,13 +116,13 @@ or "geographies" or "g" to return geographies. Default is variables.</p></td>
 #&gt; 4                   ifsize        Initial firm size    Economic Statistics
 #&gt; 5              estabs_exit    Establishments exited    Economic Statistics
 #&gt; 6                    state          State FIPS Code Selectable Geographies
-#&gt;   predicateType limit required
-#&gt; 1           int     0       NA
-#&gt; 2           int     0       NA
-#&gt; 3           int     0       NA
-#&gt; 4        string     0       NA
-#&gt; 5           int     0       NA
-#&gt; 6          &lt;NA&gt;     0       NA</div><div class='input'>
+#&gt;   predicateType group limit          required
+#&gt; 1           int   N/A     0              &lt;NA&gt;
+#&gt; 2           int   N/A     0 default displayed
+#&gt; 3           int   N/A     0              &lt;NA&gt;
+#&gt; 4        string   N/A     0 default displayed
+#&gt; 5           int   N/A     0              &lt;NA&gt;
+#&gt; 6          &lt;NA&gt;   N/A     0              &lt;NA&gt;</div><div class='input'>
 <span class='no'>geosbds</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"g"</span>)
 <span class='fu'>head</span>(<span class='no'>geosbds</span>)</div><div class='output co'>#&gt;                            name geoLevelId
 #&gt; 1                            us        010

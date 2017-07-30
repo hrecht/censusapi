@@ -1,3 +1,6 @@
+# censusapi 0.2.1
+* Fixes bug in `listCensusMetadata` variables call caused by underlying Census API changes.
+
 # censusapi 0.2.0 (2017-06-04)
 * Updated examples, documentation, vignette.
 

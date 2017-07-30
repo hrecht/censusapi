@@ -63,15 +63,17 @@ listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 		u <- paste(apiurl, "variables.json", sep="/")
 		# Too nested and irregular for automatic conversion
 		raw <- jsonlite::fromJSON(u)
-
 		# JSON of variables has irregular structure that gets standardized in the HTML view
 		# Particularly the datetime filed used in some APIs
 		# Generally, predicateOnly = parameter, exclude predicateOnly (parameters)
 
 		# Manual fill with NAs as needed to avoid adding a dplyr::bind_rows or similar dependency
 		cols <- unique(unlist(lapply(raw$variables, names)))
-		cols <- cols[!(cols %in% c("predicateOnly", "datetime"))]
+		cols <- cols[!(cols %in% c("predicateOnly", "datetime", "validValues"))]
 		makeDf <- function(d) {
+			if("validValues" %in% names(d)) {
+				d$validValues <- NULL
+			}
 			df <- data.frame(d)
 			df[, setdiff(cols, names(df))] <- NA
 			return(df)
