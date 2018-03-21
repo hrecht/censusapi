@@ -1,7 +1,10 @@
+# censusapi 0.2.1.9000
+* Changes all punctuation in returned column names into underscores, removing repeated underscores and trailing punctuation.
+
 # censusapi 0.2.1
 * Fixes bug in `listCensusMetadata` variables call caused by underlying Census API changes.
 
-# censusapi 0.2.0 (2017-06-04)
+# censusapi 0.2.0
 * Updated examples, documentation, vignette.
 
 # censusapi 0.1.2

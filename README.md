@@ -9,9 +9,12 @@
 For more details, see [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html) and the package's [website](https://hrecht.github.io/censusapi/index.html).
 
 ## Installation
-Get the latest stable release from CRAN: `install.packages("censusapi")`
+Get the latest stable release from CRAN: 
+```R
+install.packages("censusapi")`
+```
 
-Install the latest development version of `censusapi` from Github using `devtools`:
+You can also install the latest development version of `censusapi` from Github using `devtools`. Most people will not want to do this - BEWARE!:
 ```R
 # install.packages("devtools")
 devtools::install_github("hrecht/censusapi")

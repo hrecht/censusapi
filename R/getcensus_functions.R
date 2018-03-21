@@ -20,11 +20,24 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 			raw <- jsonlite::fromJSON(httr::content(req, as = "text"))
 		}
 	}
+	
+	# Function to clean up column names - particularly ones with periods in them
+	cleanColnames <- function(dt) { 
+		# No trailing punct
+		colnames(dt) <- gsub("\\.[[:punct:]]*$", "", colnames(dt))
+		# All punctuation becomes underscore
+		colnames(dt) <- gsub("[[:punct:]]", "_", colnames(dt))
+		# Get rid of repeat underscores
+		colnames(dt) <- gsub("(_)\\1+", "\\1", colnames(dt))
+		return(dt)
+	}
+	
 	responseFormat <- function(raw) {
 		# Make first row the header
 		colnames(raw) <- raw[1, ]
 		df <- data.frame(raw)
 		df <- df[-1,]
+		df <- cleanColnames(df)
 		# Make all columns character
 		df[] <- lapply(df, as.character)
 		# Make columns numeric if they have numbers in the column name - note some APIs use string var names
