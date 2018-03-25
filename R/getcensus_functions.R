@@ -20,9 +20,9 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 			raw <- jsonlite::fromJSON(httr::content(req, as = "text"))
 		}
 	}
-	
+
 	# Function to clean up column names - particularly ones with periods in them
-	cleanColnames <- function(dt) { 
+	cleanColnames <- function(dt) {
 		# No trailing punct
 		colnames(dt) <- gsub("\\.[[:punct:]]*$", "", colnames(dt))
 		# All punctuation becomes underscore
@@ -31,7 +31,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 		colnames(dt) <- gsub("(_)\\1+", "\\1", colnames(dt))
 		return(dt)
 	}
-	
+
 	responseFormat <- function(raw) {
 		# Make first row the header
 		colnames(raw) <- raw[1, ]
@@ -41,8 +41,15 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 		# Make all columns character
 		df[] <- lapply(df, as.character)
 		# Make columns numeric if they have numbers in the column name - note some APIs use string var names
-		value_cols <- grep("[0-9]", names(df), value=TRUE)
-		for(col in value_cols) df[,col] <- as.numeric(df[,col])
+		# For ACS data, do not make columns numeric if they are ACS annotation variables - ending in MA or EA or SS
+		if(!grepl("acs", apiurl)) {
+			value_cols <- grep("[0-9]", names(df), value=TRUE)
+			for(col in value_cols) df[,col] <- as.numeric(df[,col])
+		} else {
+			value_cols <- grep("[0-9]", names(df), value=TRUE)
+			error_cols <- grep("MA|EA|SS", value_cols, value=TRUE, ignore.case = T)
+			for(col in setdiff(value_cols, error_cols)) df[,col] <- as.numeric(df[,col])
+		}
 		row.names(df) <- NULL
 		return(df)
 	}
@@ -76,33 +83,35 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' @keywords api
 #' @export
 #' @examples
-#' \donttest{df <- getCensus(name="acs5", vintage=2014,
-#' 	vars=c("B01001_001E", "NAME", "B01002_001E", "B19013_001E"),
-#' 	region="tract:*", regionin="state:06")
+#' \donttest{df <- getCensus(name = "acs/acs5", vintage = 2016,
+#' 	vars = c("B01001_001E", "NAME", "B01002_001E", "B19013_001E"),
+#' 	region = "tract:*", regionin = "state:06")
 #' head(df)
 #'
-#' # Retrieve over 50 variables
-#' df <- getCensus(name="acs5", vintage=2014,
-#' 	vars=paste('B04004_', sprintf('%03i', seq(1, 105)), 'E', sep=''),
-#' 	region="county:*")
+#' # Use American Community Survey variable groups to get all data from a given table.
+#' # This returns estimates as well as margins of error and annotation flags.
+#' acs_group <- getCensus(name = "acs/acs5", vintage = 2016,
+#' 	vars = c("NAME", "group(B19013)"),
+#' 	region = "county:*")
+#' 	head(acs_group)
 #'
 #' # Retreive block-level data within a specific state and county using a nested regionin argument
-#' data2010 <- getCensus(name="sf1", vintage=2010,
-#'	vars=c("P0010001", "P0030001"),
-#'	region="block:*", regionin="state:36+county:27")
+#' data2010 <- getCensus(name = "sf1", vintage = 2010,
+#'	vars = c("P0010001", "P0030001"),
+#'	region = "block:*", regionin = "state:36+county:27")
 #' head(data2010)
 #'
 #' # Retreive block-level data for Decennial Census sf1, 2000
 #' # Note, for this dataset a tract needs to be specified to retrieve blocks
-#' data2000 <- getCensus(name="sf1", vintage=2000,
-#' 	vars=c("P001001", "P003001"),
-#'	region="block:*", regionin="state:36+county:27+tract:010000")
+#' data2000 <- getCensus(name = "sf1", vintage = 2000,
+#' 	vars = c("P001001", "P003001"),
+#'	region = "block:*", regionin = "state:36+county:27+tract:010000")
 #' head(data2000)
 #'
 #' # Get time series data
-#' saipe <- getCensus(name="timeseries/poverty/saipe",
-#' 	vars=c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
-#' 	region="state:*", time=2011)
+#' saipe <- getCensus(name = "timeseries/poverty/saipe",
+#' 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
+#' 	region = "state:*", time = 2011)
 #' head(saipe)}
 #'
 getCensus <- function(name, vintage=NULL, key=Sys.getenv("CENSUS_KEY"), vars, region, regionin=NULL, time=NULL, date=NULL, period=NULL, monthly=NULL,  category_code=NULL, data_type_code=NULL) {
@@ -146,6 +155,8 @@ getCensus <- function(name, vintage=NULL, key=Sys.getenv("CENSUS_KEY"), vars, re
 	# If there are any duplicate columns (ie if you put a variable in vars twice) remove the duplicates
 	data <- data[, !duplicated(colnames(data))]
 	# Reorder columns so that numeric fields follow non-numeric fields
-	data <- data[,c(which(sapply(data, class)!='numeric'), which(sapply(data, class)=='numeric'))]
+	# data <- data[,c(which(sapply(data, class)!='numeric'), which(sapply(data, class)=='numeric'))]
+	# Reorder columns so that lowercase column names (geographies) are first
+	data <- data[,c(which(grepl("[a-z]", colnames(data))), which(!grepl("[a-z]", colnames(data))))]
 	return(data)
 }

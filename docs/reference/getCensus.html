@@ -18,17 +18,12 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
-<!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Retrieve Census data from a given API — getCensus" />
 
-<meta property="og:description" content="Retrieve Census data from a given API" />
-<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -85,7 +80,6 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Retrieve Census data from a given API</h1>
-    <small>Source: <a href='https://github.com/hrecht/censusapi/blob/master/R/getcensus_functions.R'><code>R/getcensus_functions.R</code></a></small>
     </div>
 
     
@@ -151,32 +145,46 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"acs5"</span>, <span class='kw'>vintage</span><span class='kw'>=</span><span class='fl'>2014</span>,
-        <span class='kw'>vars</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"B01001_001E"</span>, <span class='st'>"NAME"</span>, <span class='st'>"B01002_001E"</span>, <span class='st'>"B19013_001E"</span>),
-        <span class='kw'>region</span><span class='kw'>=</span><span class='st'>"tract:*"</span>, <span class='kw'>regionin</span><span class='kw'>=</span><span class='st'>"state:06"</span>)
-<span class='fu'>head</span>(<span class='no'>df</span>)</div><div class='output co'>#&gt;                                            NAME state county  tract B01001_001E
-#&gt; 1 Census Tract 4001, Alameda County, California    06    001 400100        3385
-#&gt; 2 Census Tract 4002, Alameda County, California    06    001 400200        1939
-#&gt; 3 Census Tract 4003, Alameda County, California    06    001 400300        5428
-#&gt; 4 Census Tract 4004, Alameda County, California    06    001 400400        4279
-#&gt; 5 Census Tract 4005, Alameda County, California    06    001 400500        3516
-#&gt; 6 Census Tract 4006, Alameda County, California    06    001 400600        1750
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2016</span>,
+        <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"B01001_001E"</span>, <span class='st'>"NAME"</span>, <span class='st'>"B01002_001E"</span>, <span class='st'>"B19013_001E"</span>),
+        <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"tract:*"</span>, <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='st'>"state:06"</span>)
+<span class='fu'>head</span>(<span class='no'>df</span>)</div><div class='output co'>#&gt;   state county  tract B01001_001E                                          NAME
+#&gt; 1    06    001 400100        3018 Census Tract 4001, Alameda County, California
+#&gt; 2    06    001 400200        1960 Census Tract 4002, Alameda County, California
+#&gt; 3    06    001 400300        5236 Census Tract 4003, Alameda County, California
+#&gt; 4    06    001 400400        4171 Census Tract 4004, Alameda County, California
+#&gt; 5    06    001 400500        3748 Census Tract 4005, Alameda County, California
+#&gt; 6    06    001 400600        1661 Census Tract 4006, Alameda County, California
 #&gt;   B01002_001E B19013_001E
-#&gt; 1        47.0      165625
-#&gt; 2        43.6      134531
-#&gt; 3        39.8       71618
-#&gt; 4        36.5       98824
-#&gt; 5        35.5       73837
-#&gt; 6        34.4       57639</div><div class='input'>
-<span class='co'># Retrieve over 50 variables</span>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"acs5"</span>, <span class='kw'>vintage</span><span class='kw'>=</span><span class='fl'>2014</span>,
-        <span class='kw'>vars</span><span class='kw'>=</span><span class='fu'>paste</span>(<span class='st'>'B04004_'</span>, <span class='fu'>sprintf</span>(<span class='st'>'%03i'</span>, <span class='fu'>seq</span>(<span class='fl'>1</span>, <span class='fl'>105</span>)), <span class='st'>'E'</span>, <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>''</span>),
-        <span class='kw'>region</span><span class='kw'>=</span><span class='st'>"county:*"</span>)
-
+#&gt; 1        54.2      177417
+#&gt; 2        43.6      153125
+#&gt; 3        41.3       85313
+#&gt; 4        36.6       99539
+#&gt; 5        34.1       83650
+#&gt; 6        34.8       61597</div><div class='input'>
+<span class='co'># Use American Community Survey variable groups to get all data from a given table.</span>
+<span class='co'># This returns estimates as well as margins of error and annotation flags.</span>
+<span class='no'>acs_group</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2016</span>,
+        <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"NAME"</span>, <span class='st'>"group(B19013)"</span>),
+        <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"county:*"</span>)
+        <span class='fu'>head</span>(<span class='no'>acs_group</span>)</div><div class='output co'>#&gt;   state county                    NAME B19013_001E B19013_001M B19013_001M_1
+#&gt; 1    01    001 Autauga County, Alabama       53099        2631          2631
+#&gt; 2    01    003 Baldwin County, Alabama       51365         991           991
+#&gt; 3    01    005 Barbour County, Alabama       33956        2655          2655
+#&gt; 4    01    007    Bibb County, Alabama       39776        3306          3306
+#&gt; 5    01    009  Blount County, Alabama       46212        2443          2443
+#&gt; 6    01    011 Bullock County, Alabama       29335        5435          5435
+#&gt;   B19013_001EA B19013_001MA
+#&gt; 1         &lt;NA&gt;         &lt;NA&gt;
+#&gt; 2         &lt;NA&gt;         &lt;NA&gt;
+#&gt; 3         &lt;NA&gt;         &lt;NA&gt;
+#&gt; 4         &lt;NA&gt;         &lt;NA&gt;
+#&gt; 5         &lt;NA&gt;         &lt;NA&gt;
+#&gt; 6         &lt;NA&gt;         &lt;NA&gt;</div><div class='input'>
 <span class='co'># Retreive block-level data within a specific state and county using a nested regionin argument</span>
-<span class='no'>data2010</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"sf1"</span>, <span class='kw'>vintage</span><span class='kw'>=</span><span class='fl'>2010</span>,
-<span class='kw'>vars</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"P0010001"</span>, <span class='st'>"P0030001"</span>),
-<span class='kw'>region</span><span class='kw'>=</span><span class='st'>"block:*"</span>, <span class='kw'>regionin</span><span class='kw'>=</span><span class='st'>"state:36+county:27"</span>)
+<span class='no'>data2010</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sf1"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2010</span>,
+<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"P0010001"</span>, <span class='st'>"P0030001"</span>),
+<span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"block:*"</span>, <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='st'>"state:36+county:27"</span>)
 <span class='fu'>head</span>(<span class='no'>data2010</span>)</div><div class='output co'>#&gt;   state county  tract block P0010001 P0030001
 #&gt; 1    36    027 010000  1020       73       73
 #&gt; 2    36    027 010000  1023        0        0
@@ -186,9 +194,9 @@
 #&gt; 6    36    027 010000  1033        0        0</div><div class='input'>
 <span class='co'># Retreive block-level data for Decennial Census sf1, 2000</span>
 <span class='co'># Note, for this dataset a tract needs to be specified to retrieve blocks</span>
-<span class='no'>data2000</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"sf1"</span>, <span class='kw'>vintage</span><span class='kw'>=</span><span class='fl'>2000</span>,
-        <span class='kw'>vars</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"P001001"</span>, <span class='st'>"P003001"</span>),
-<span class='kw'>region</span><span class='kw'>=</span><span class='st'>"block:*"</span>, <span class='kw'>regionin</span><span class='kw'>=</span><span class='st'>"state:36+county:27+tract:010000"</span>)
+<span class='no'>data2000</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sf1"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
+        <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"P001001"</span>, <span class='st'>"P003001"</span>),
+<span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"block:*"</span>, <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='st'>"state:36+county:27+tract:010000"</span>)
 <span class='fu'>head</span>(<span class='no'>data2000</span>)</div><div class='output co'>#&gt;   state county  tract block P001001 P003001
 #&gt; 1    36    027 010000  1000      18      18
 #&gt; 2    36    027 010000  1001      26      26
@@ -197,16 +205,16 @@
 #&gt; 5    36    027 010000  1004      52      52
 #&gt; 6    36    027 010000  1005     116     116</div><div class='input'>
 <span class='co'># Get time series data</span>
-<span class='no'>saipe</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"timeseries/poverty/saipe"</span>,
-        <span class='kw'>vars</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"NAME"</span>, <span class='st'>"SAEPOVRT0_17_PT"</span>, <span class='st'>"SAEPOVRTALL_PT"</span>),
-        <span class='kw'>region</span><span class='kw'>=</span><span class='st'>"state:*"</span>, <span class='kw'>time</span><span class='kw'>=</span><span class='fl'>2011</span>)
-<span class='fu'>head</span>(<span class='no'>saipe</span>)</div><div class='output co'>#&gt;         NAME SAEPOVRTALL_PT time state SAEPOVRT0_17_PT
-#&gt; 1    Alabama           19.1 2011    01            27.6
-#&gt; 2     Alaska           10.8 2011    02            14.7
-#&gt; 3    Arizona             19 2011    04            27.2
-#&gt; 4   Arkansas           19.3 2011    05            27.8
-#&gt; 5 California           16.6 2011    06            22.8
-#&gt; 6   Colorado           13.4 2011    08            17.7</div><div class='input'>
+<span class='no'>saipe</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/poverty/saipe"</span>,
+        <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"NAME"</span>, <span class='st'>"SAEPOVRT0_17_PT"</span>, <span class='st'>"SAEPOVRTALL_PT"</span>),
+        <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"state:*"</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>2011</span>)
+<span class='fu'>head</span>(<span class='no'>saipe</span>)</div><div class='output co'>#&gt;   time state       NAME SAEPOVRT0_17_PT SAEPOVRTALL_PT
+#&gt; 1 2011    01    Alabama            27.6           19.1
+#&gt; 2 2011    02     Alaska            14.7           10.8
+#&gt; 3 2011    04    Arizona            27.2             19
+#&gt; 4 2011    05   Arkansas            27.8           19.3
+#&gt; 5 2011    06 California            22.8           16.6
+#&gt; 6 2011    08   Colorado            17.7           13.4</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -226,7 +234,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -234,4 +242,3 @@
 
   </body>
 </html>
-

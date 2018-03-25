@@ -18,13 +18,13 @@ or "geographies" or "g" to return geographies. Default is variables.}
 Get variable or geography metadata for a given API as a data frame
 }
 \examples{
-varsbds<- listCensusMetadata(name="timeseries/bds/firms", type = "v")
+varsbds<- listCensusMetadata(name = "timeseries/bds/firms", type = "v")
 head(varsbds)
 
-geosbds <- listCensusMetadata(name="timeseries/bds/firms", type = "g")
+geosbds <- listCensusMetadata(name = "timeseries/bds/firms", type = "g")
 head(geosbds)
 
-geosacs <- listCensusMetadata(name="acs5", vintage = 2015, type = "g")
+geosacs <- listCensusMetadata(name = "acs5", vintage = 2015, type = "g")
 head(geosacs)
 }
 \keyword{metadata}

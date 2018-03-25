@@ -34,13 +34,13 @@ listCensusApis <- function() {
 #' @keywords metadata
 #' @export
 #' @examples
-#' varsbds<- listCensusMetadata(name="timeseries/bds/firms", type = "v")
+#' varsbds<- listCensusMetadata(name = "timeseries/bds/firms", type = "v")
 #' head(varsbds)
 #'
-#' geosbds <- listCensusMetadata(name="timeseries/bds/firms", type = "g")
+#' geosbds <- listCensusMetadata(name = "timeseries/bds/firms", type = "g")
 #' head(geosbds)
 #'
-#' geosacs <- listCensusMetadata(name="acs5", vintage = 2015, type = "g")
+#' geosacs <- listCensusMetadata(name = "acs5", vintage = 2015, type = "g")
 #' head(geosacs)
 listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 	constructURL <- function(name, vintage) {
