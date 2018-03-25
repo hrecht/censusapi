@@ -49,9 +49,9 @@ Get uninsured rates in Alabama by income group from the Small Area Health Insura
 
 ```R 
 # State-level data for Alabama
-getCensus(name="timeseries/healthins/sahie",
-	vars=c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
-	region="state:1", time=2015)
+getCensus(name = "timeseries/healthins/sahie",
+	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
+	region = "state:1", time = 2015)
 #>      NAME IPRCAT                IPR_DESC PCTUI_PT time state
 #> 1 Alabama      0             All Incomes     11.9 2015    01
 #> 2 Alabama      1      <= 200% of Poverty     19.8 2015    01
@@ -61,9 +61,9 @@ getCensus(name="timeseries/healthins/sahie",
 #> 6 Alabama      5 138% to 400% of Poverty     11.8 2015    01
 
 # County-level data within Alabama, specified by adding the `regionin` parameter.
-sahie_counties <- getCensus(name="timeseries/healthins/sahie",
-	vars=c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
-	region="county:*", regionin="state:1", time=2015)
+sahie_counties <- getCensus(name = "timeseries/healthins/sahie",
+	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
+	region = "county:*", regionin = "state:1", time = 2015)
 head(sahie_counties, n=12L)
 #>                  NAME IPRCAT                IPR_DESC PCTUI_PT time state county
 #> 1  Autauga County, AL      0             All Incomes      9.4 2015    01    001
