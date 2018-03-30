@@ -10,6 +10,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Retrieve Data from the Census APIs">
+<meta property="og:description" content="A wrapper for the U.S. Census Bureau APIs that returns data frames of 
+	Census data and metadata. Available datasets include the 
+	Decennial Census, American Community Survey, Small Area Health Insurance Estimates,
+	Small Area Income and Poverty Estimates, and Population Estimates and Projections.
+	See &lt;https://www.census.gov/data/developers/data-sets.html&gt; for more information.">
+<meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -27,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">censusapi</a>
-        <span class="label label-" data-toggle="tooltip" data-placement="bottom" title="">0.2.1.9001</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1.9001</span>
       </span>
     </div>
 
@@ -75,7 +81,7 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"censusapi"</span>)<span class="st">`</span></code></pre></div>
 <p>You can also install the latest development version of <code>censusapi</code> from Github using <code>devtools</code>. Most people will not want to do this - BEWARE!:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"hrecht/censusapi"</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"hrecht/censusapi"</span>)</code></pre></div>
 </div>
 <div id="api-key-setup" class="section level2">
 <h2 class="hasAnchor">
@@ -98,9 +104,9 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(censusapi)</code></pre></div>
 <p>Get uninsured rates in Alabama by income group from the Small Area Health Insurance Estimates <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html">(SAHIE) timeseries API</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># State-level data for Alabama</span>
-<span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"timeseries/healthins/sahie"</span>,
-    <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
-    <span class="dt">region=</span><span class="st">"state:1"</span>, <span class="dt">time=</span><span class="dv">2015</span>)
+<span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
+    <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
+    <span class="dt">region =</span> <span class="st">"state:1"</span>, <span class="dt">time =</span> <span class="dv">2015</span>)
 <span class="co">#&gt;      NAME IPRCAT                IPR_DESC PCTUI_PT time state</span>
 <span class="co">#&gt; 1 Alabama      0             All Incomes     11.9 2015    01</span>
 <span class="co">#&gt; 2 Alabama      1      &lt;= 200% of Poverty     19.8 2015    01</span>
@@ -110,9 +116,9 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <span class="co">#&gt; 6 Alabama      5 138% to 400% of Poverty     11.8 2015    01</span>
 
 <span class="co"># County-level data within Alabama, specified by adding the `regionin` parameter.</span>
-sahie_counties &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name=</span><span class="st">"timeseries/healthins/sahie"</span>,
-    <span class="dt">vars=</span><span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
-    <span class="dt">region=</span><span class="st">"county:*"</span>, <span class="dt">regionin=</span><span class="st">"state:1"</span>, <span class="dt">time=</span><span class="dv">2015</span>)
+sahie_counties &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
+    <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
+    <span class="dt">region =</span> <span class="st">"county:*"</span>, <span class="dt">regionin =</span> <span class="st">"state:1"</span>, <span class="dt">time =</span> <span class="dv">2015</span>)
 <span class="kw">head</span>(sahie_counties, <span class="dt">n=</span>12L)
 <span class="co">#&gt;                  NAME IPRCAT                IPR_DESC PCTUI_PT time state county</span>
 <span class="co">#&gt; 1  Autauga County, AL      0             All Incomes      9.4 2015    01    001</span>
@@ -143,26 +149,39 @@ sahie_counties &lt;-<span class="st"> </span><span class="kw"><a href="reference
   </div>
 
   <div class="col-md-3" id="sidebar">
-    <h2>Links</h2>
+    <div class="links">
+<h2>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cran.r-project.org/package=censusapi">https://​cran.r-project.org/​package=censusapi</a>
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=censusapi">https://​cloud.r-project.org/​package=censusapi</a>
 </li>
 <li>Browse source code at <br><a href="https://github.com/hrecht/censusapi">https://​github.com/​hrecht/​censusapi</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/hrecht/censusapi/issues">https://​github.com/​hrecht/​censusapi/​issues</a>
 </li>
 </ul>
+</div>
+<div class="license">
 <h2>License</h2>
-<p><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a> + file <a href="LICENSE">LICENSE</a></p>
+<ul class="list-unstyled">
+<li>
+<a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a> + file <a href="LICENSE-text.html">LICENSE</a>
+</li>
+</ul>
+</div>
+<div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Hannah Recht <br><small class="roles"> Author, maintainer </small> </li>
+<li>Hannah Recht <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
+</div>
+
+  <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/hrecht/censusapi"><img src="https://travis-ci.org/hrecht/censusapi.svg?branch=master" alt="Build Status"></a></li>
 <li><a href="https://cran.r-project.org/package=censusapi"><img src="https://www.r-pkg.org/badges/version/censusapi" alt="CRAN Badge"></a></li>
 </ul>
+</div>
 </div>
 </div>
 

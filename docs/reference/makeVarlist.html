@@ -27,6 +27,11 @@
 <script src="../pkgdown.js"></script>
 <meta property="og:title" content="Use variable metadata to find variables containing a given string. — makeVarlist" />
 
+<meta property="og:description" content="Return a list of variable names or data frame of variable metadata containing a given string.
+This can be used create a list of variables to later pass to getCensus, or a data frame
+documenting variables used in a given project." />
+<meta name="twitter:card" content="summary" />
+
 
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -52,7 +57,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="label label-" data-toggle="tooltip" data-placement="bottom" title="">0.2.1.9001</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1.9001</span>
       </span>
     </div>
 
@@ -88,7 +93,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Use variable metadata to find variables containing a given string.</h1>
-    
+    <small>Source: <a href='https://github.com/hrecht/censusapi/blob/master/R/makevar_functions.R'><code>R/makevar_functions.R</code></a></small>
     </div>
 
     
@@ -128,8 +133,8 @@ Options are "all", "name", "label", or "concept".</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Return a list, and then use getCensus function to retrieve those variables</span>
-<span class='no'>myvars</span> <span class='kw'>&lt;-</span> <span class='fu'>makeVarlist</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sf1"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
+    <pre class="examples"><div class='input'># Return a list, and then use getCensus function to retrieve those variables
+</div><div class='input'><span class='no'>myvars</span> <span class='kw'>&lt;-</span> <span class='fu'>makeVarlist</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sf1"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
         <span class='kw'>find</span> <span class='kw'>=</span> <span class='st'>"military"</span>, <span class='kw'>varsearch</span> <span class='kw'>=</span> <span class='st'>"label"</span>)
 <span class='no'>militarydt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getCensus.html'>getCensus</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sf1"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
         <span class='kw'>vars</span> <span class='kw'>=</span> <span class='no'>myvars</span>, <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"state:*"</span>)
@@ -164,3 +169,4 @@ Options are "all", "name", "label", or "concept".</p></td>
 
   </body>
 </html>
+
