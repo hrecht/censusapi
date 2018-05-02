@@ -1,11 +1,9 @@
-# censusapi 0.2.1.9001
+# censusapi 0.3.0
 * Does not convert ACS annotation flag variables into numeric columns.
 * Puts lowercase variable name columns first (geographies), rather than all non-numeric columns.
+* Changes all punctuation in returned column names into underscores, removing repeated underscores and trailing punctuation.
 * Uses consistent spacing in examples.
 * Updates examples using ACS data to latest year using new acs/acs5 endpoint and adds variable group examples.
-
-# censusapi 0.2.1.9000
-* Changes all punctuation in returned column names into underscores, removing repeated underscores and trailing punctuation.
 
 # censusapi 0.2.1
 * Fixes bug in `listCensusMetadata` variables call caused by underlying Census API changes.
