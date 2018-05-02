@@ -1,3 +1,5 @@
+This is a resubmission with updated package license specification.
+
 ## Test environments
 * local OS X install, R 3.3.3
 * local OS X install, R 3.4.4
