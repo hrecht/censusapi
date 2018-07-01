@@ -21,14 +21,20 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Get variable or geography metadata for a given API as a data frame — listCensusMetadata" />
 
 <meta property="og:description" content="Get variable or geography metadata for a given API as a data frame" />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -80,6 +86,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -87,16 +94,19 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get variable or geography metadata for a given API as a data frame</h1>
-    <small>Source: <a href='https://github.com/hrecht/censusapi/blob/master/R/metadata_functions.R'><code>R/metadata_functions.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/hrecht/censusapi/blob/master/R/metadata_functions.R'><code>R/metadata_functions.R</code></a></small>
+    <div class="hidden name"><code>listCensusMetadata.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Get variable or geography metadata for a given API as a data frame</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>listCensusMetadata</span>(<span class='no'>name</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"variables"</span>)</pre>
     
@@ -178,6 +188,8 @@ or "geographies" or "g" to return geographies. Default is variables.</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

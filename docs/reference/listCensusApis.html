@@ -21,16 +21,22 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Get dataset metadata on all available APIs as a data frame — listCensusApis" />
 
 <meta property="og:description" content="Scrapes https://api.census.gov/data.json and returns a dataframe
 that includes: title, name, vintage (where applicable), url, isTimeseries (binary),
 temporal (helpful for some time series), description, modified date" />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -82,6 +88,7 @@ temporal (helpful for some time series), description, modified date" />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -89,18 +96,21 @@ temporal (helpful for some time series), description, modified date" />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get dataset metadata on all available APIs as a data frame</h1>
-    <small>Source: <a href='https://github.com/hrecht/censusapi/blob/master/R/metadata_functions.R'><code>R/metadata_functions.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/hrecht/censusapi/blob/master/R/metadata_functions.R'><code>R/metadata_functions.R</code></a></small>
+    <div class="hidden name"><code>listCensusApis.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Scrapes https://api.census.gov/data.json and returns a dataframe
 that includes: title, name, vintage (where applicable), url, isTimeseries (binary),
 temporal (helpful for some time series), description, modified date</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>listCensusApis</span>()</pre>
         
@@ -108,40 +118,40 @@ temporal (helpful for some time series), description, modified date</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>apis</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusApis</span>()
 <span class='fu'>head</span>(<span class='no'>apis</span>)</div><div class='output co'>#&gt;                             title              name vintage
-#&gt; 104    ACS 1-Year Detailed Tables          acs/acs1    2015
-#&gt; 119    ACS 1-Year Detailed Tables          acs/acs1    2016
-#&gt; 169 ACS 1-Year Comparison Profile acs/acs1/cprofile    2015
-#&gt; 129 ACS 1-Year Comparison Profile acs/acs1/cprofile    2016
-#&gt; 78       ACS 1-Year Data Profiles  acs/acs1/profile    2015
-#&gt; 36       ACS 1-Year Data Profiles  acs/acs1/profile    2016
+#&gt; 106    ACS 1-Year Detailed Tables          acs/acs1    2015
+#&gt; 122    ACS 1-Year Detailed Tables          acs/acs1    2016
+#&gt; 172 ACS 1-Year Comparison Profile acs/acs1/cprofile    2015
+#&gt; 132 ACS 1-Year Comparison Profile acs/acs1/cprofile    2016
+#&gt; 80       ACS 1-Year Data Profiles  acs/acs1/profile    2015
+#&gt; 37       ACS 1-Year Data Profiles  acs/acs1/profile    2016
 #&gt;                                                    url isTimeseries
-#&gt; 104          https://api.census.gov/data/2015/acs/acs1           NA
-#&gt; 119          https://api.census.gov/data/2016/acs/acs1           NA
-#&gt; 169 https://api.census.gov/data/2015/acs/acs1/cprofile           NA
-#&gt; 129 https://api.census.gov/data/2016/acs/acs1/cprofile           NA
-#&gt; 78   https://api.census.gov/data/2015/acs/acs1/profile           NA
-#&gt; 36   https://api.census.gov/data/2016/acs/acs1/profile           NA
+#&gt; 106          https://api.census.gov/data/2015/acs/acs1           NA
+#&gt; 122          https://api.census.gov/data/2016/acs/acs1           NA
+#&gt; 172 https://api.census.gov/data/2015/acs/acs1/cprofile           NA
+#&gt; 132 https://api.census.gov/data/2016/acs/acs1/cprofile           NA
+#&gt; 80   https://api.census.gov/data/2015/acs/acs1/profile           NA
+#&gt; 37   https://api.census.gov/data/2016/acs/acs1/profile           NA
 #&gt;         temporal
-#&gt; 104 unidentified
-#&gt; 119 unidentified
-#&gt; 169 unidentified
-#&gt; 129 unidentified
-#&gt; 78  unidentified
-#&gt; 36  unidentified
+#&gt; 106 unidentified
+#&gt; 122 unidentified
+#&gt; 172 unidentified
+#&gt; 132 unidentified
+#&gt; 80  unidentified
+#&gt; 37  unidentified
 #&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        description
-#&gt; 104                 The American Community Survey (ACS) is a uswide survey designed to provide communities a fresh look at how they are changing. The ACS replaced the decennial census long form in 2010 and thereafter by collecting long form type information throughout the decade rather than only once every 10 years. Questionnaires are mailed to a sample of addresses to obtain information about households -- that is, about each person and the housing unit itself. The American Community Survey produces demographic, social, housing and economic estimates in the form of 1 and 5-year estimates based on population thresholds. The strength of the ACS is in estimating population and housing characteristics. The 2012 data provide key estimates for each of the topic areas covered by the ACS for the us, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more. Although the ACS produces population, demographic and housing unit estimates,it is the Census Bureau's Population Estimates Program that produces and disseminates the official estimates of the population for the us, states, counties, cities and towns, and estimates of housing units for states and counties. For 2010 and other decennial census years, the Decennial Census provides the official counts of population and housing units.
-#&gt; 119                 The American Community Survey (ACS) is a uswide survey designed to provide communities a fresh look at how they are changing. The ACS replaced the decennial census long form in 2010 and thereafter by collecting long form type information throughout the decade rather than only once every 10 years. Questionnaires are mailed to a sample of addresses to obtain information about households -- that is, about each person and the housing unit itself. The American Community Survey produces demographic, social, housing and economic estimates in the form of 1 and 5-year estimates based on population thresholds. The strength of the ACS is in estimating population and housing characteristics. The 2012 data provide key estimates for each of the topic areas covered by the ACS for the us, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more. Although the ACS produces population, demographic and housing unit estimates,it is the Census Bureau's Population Estimates Program that produces and disseminates the official estimates of the population for the us, states, counties, cities and towns, and estimates of housing units for states and counties. For 2010 and other decennial census years, the Decennial Census provides the official counts of population and housing units.
-#&gt; 169                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  The American Community Survey (ACS) is an ongoing survey that provides data every year -- giving communities the current information they need to plan investments and services. The ACS covers a broad range of topics about social, economic, demographic, and housing characteristics of the U.S. population.  Summary file, Subject tables, Data profiles, and Comparison profiles are available for the us, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more.  Comparison profiles are similar to data profiles but also include comparisons with past-year data.  The current year data are compared with each of the last four years of data and include statistical significance testing.  There are over 9,000 variables in this dataset.
-#&gt; 129                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  The American Community Survey (ACS) is an ongoing survey that provides data every year -- giving communities the current information they need to plan investments and services. The ACS covers a broad range of topics about social, economic, demographic, and housing characteristics of the U.S. population.  Summary file, Subject tables, Data profiles, and Comparison profiles are available for the us, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more.  Comparison profiles are similar to data profiles but also include comparisons with past-year data.  The current year data are compared with each of the last four years of data and include statistical significance testing.  There are over 9,000 variables in this dataset.
-#&gt; 78  The American Community Survey (ACS) is a nationwide survey designed to provide communities a fresh look at how they are changing. The ACS replaced the decennial census long form in 2010 and thereafter by collecting long form type information throughout the decade rather than only once every 10 years. Questionnaires are mailed to a sample of addresses to obtain information about households -- that is, about each person and the housing unit itself. The American Community Survey produces demographic, social, housing and economic estimates in the form of 1 and 5-year estimates based on population thresholds. The strength of the ACS is in estimating population and housing characteristics. The data profiles provide key estimates for each of the topic areas covered by the ACS for the nation, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more. Although the ACS produces population, demographic and housing unit estimates,it is the Census Bureau's Population Estimates Program that produces and disseminates the official estimates of the population for the nation, states, counties, cities and towns, and estimates of housing units for states and counties. For 2010 and other decennial census years, the Decennial Census provides the official counts of population and housing units.
-#&gt; 36              The American Community Survey (ACS) is a uswide survey designed to provide communities a fresh look at how they are changing. The ACS replaced the decennial census long form in 2010 and thereafter by collecting long form type information throughout the decade rather than only once every 10 years. Questionnaires are mailed to a sample of addresses to obtain information about households -- that is, about each person and the housing unit itself. The American Community Survey produces demographic, social, housing and economic estimates in the form of 1 and 5-year estimates based on population thresholds. The strength of the ACS is in estimating population and housing characteristics. The data profiles provide key estimates for each of the topic areas covered by the ACS for the us, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more. Although the ACS produces population, demographic and housing unit estimates,it is the Census Bureau's Population Estimates Program that produces and disseminates the official estimates of the population for the us, states, counties, cities and towns, and estimates of housing units for states and counties. For 2010 and other decennial census years, the Decennial Census provides the official counts of population and housing units.
+#&gt; 106                 The American Community Survey (ACS) is a uswide survey designed to provide communities a fresh look at how they are changing. The ACS replaced the decennial census long form in 2010 and thereafter by collecting long form type information throughout the decade rather than only once every 10 years. Questionnaires are mailed to a sample of addresses to obtain information about households -- that is, about each person and the housing unit itself. The American Community Survey produces demographic, social, housing and economic estimates in the form of 1 and 5-year estimates based on population thresholds. The strength of the ACS is in estimating population and housing characteristics. The 2012 data provide key estimates for each of the topic areas covered by the ACS for the us, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more. Although the ACS produces population, demographic and housing unit estimates,it is the Census Bureau's Population Estimates Program that produces and disseminates the official estimates of the population for the us, states, counties, cities and towns, and estimates of housing units for states and counties. For 2010 and other decennial census years, the Decennial Census provides the official counts of population and housing units.
+#&gt; 122                 The American Community Survey (ACS) is a uswide survey designed to provide communities a fresh look at how they are changing. The ACS replaced the decennial census long form in 2010 and thereafter by collecting long form type information throughout the decade rather than only once every 10 years. Questionnaires are mailed to a sample of addresses to obtain information about households -- that is, about each person and the housing unit itself. The American Community Survey produces demographic, social, housing and economic estimates in the form of 1 and 5-year estimates based on population thresholds. The strength of the ACS is in estimating population and housing characteristics. The 2012 data provide key estimates for each of the topic areas covered by the ACS for the us, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more. Although the ACS produces population, demographic and housing unit estimates,it is the Census Bureau's Population Estimates Program that produces and disseminates the official estimates of the population for the us, states, counties, cities and towns, and estimates of housing units for states and counties. For 2010 and other decennial census years, the Decennial Census provides the official counts of population and housing units.
+#&gt; 172                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  The American Community Survey (ACS) is an ongoing survey that provides data every year -- giving communities the current information they need to plan investments and services. The ACS covers a broad range of topics about social, economic, demographic, and housing characteristics of the U.S. population.  Summary file, Subject tables, Data profiles, and Comparison profiles are available for the us, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more.  Comparison profiles are similar to data profiles but also include comparisons with past-year data.  The current year data are compared with each of the last four years of data and include statistical significance testing.  There are over 9,000 variables in this dataset.
+#&gt; 132                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  The American Community Survey (ACS) is an ongoing survey that provides data every year -- giving communities the current information they need to plan investments and services. The ACS covers a broad range of topics about social, economic, demographic, and housing characteristics of the U.S. population.  Summary file, Subject tables, Data profiles, and Comparison profiles are available for the us, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more.  Comparison profiles are similar to data profiles but also include comparisons with past-year data.  The current year data are compared with each of the last four years of data and include statistical significance testing.  There are over 9,000 variables in this dataset.
+#&gt; 80  The American Community Survey (ACS) is a nationwide survey designed to provide communities a fresh look at how they are changing. The ACS replaced the decennial census long form in 2010 and thereafter by collecting long form type information throughout the decade rather than only once every 10 years. Questionnaires are mailed to a sample of addresses to obtain information about households -- that is, about each person and the housing unit itself. The American Community Survey produces demographic, social, housing and economic estimates in the form of 1 and 5-year estimates based on population thresholds. The strength of the ACS is in estimating population and housing characteristics. The data profiles provide key estimates for each of the topic areas covered by the ACS for the nation, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more. Although the ACS produces population, demographic and housing unit estimates,it is the Census Bureau's Population Estimates Program that produces and disseminates the official estimates of the population for the nation, states, counties, cities and towns, and estimates of housing units for states and counties. For 2010 and other decennial census years, the Decennial Census provides the official counts of population and housing units.
+#&gt; 37              The American Community Survey (ACS) is a uswide survey designed to provide communities a fresh look at how they are changing. The ACS replaced the decennial census long form in 2010 and thereafter by collecting long form type information throughout the decade rather than only once every 10 years. Questionnaires are mailed to a sample of addresses to obtain information about households -- that is, about each person and the housing unit itself. The American Community Survey produces demographic, social, housing and economic estimates in the form of 1 and 5-year estimates based on population thresholds. The strength of the ACS is in estimating population and housing characteristics. The data profiles provide key estimates for each of the topic areas covered by the ACS for the us, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more. Although the ACS produces population, demographic and housing unit estimates,it is the Census Bureau's Population Estimates Program that produces and disseminates the official estimates of the population for the us, states, counties, cities and towns, and estimates of housing units for states and counties. For 2010 and other decennial census years, the Decennial Census provides the official counts of population and housing units.
 #&gt;       modified
-#&gt; 104 2017-12-14
-#&gt; 119 2017-12-14
-#&gt; 169 2017-12-14
-#&gt; 129 2017-12-14
-#&gt; 78  2017-12-14
-#&gt; 36  2017-12-14</div></pre>
+#&gt; 106 2017-12-14
+#&gt; 122 2017-12-14
+#&gt; 172 2017-12-14
+#&gt; 132 2017-12-14
+#&gt; 80  2017-12-14
+#&gt; 37  2017-12-14</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -164,6 +174,8 @@ temporal (helpful for some time series), description, modified date</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

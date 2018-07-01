@@ -21,16 +21,22 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Use variable metadata to find variables containing a given string. — makeVarlist" />
 
 <meta property="og:description" content="Return a list of variable names or data frame of variable metadata containing a given string.
 This can be used create a list of variables to later pass to getCensus, or a data frame
 documenting variables used in a given project." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -82,6 +88,7 @@ documenting variables used in a given project." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -89,18 +96,21 @@ documenting variables used in a given project." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Use variable metadata to find variables containing a given string.</h1>
-    <small>Source: <a href='https://github.com/hrecht/censusapi/blob/master/R/makevar_functions.R'><code>R/makevar_functions.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/hrecht/censusapi/blob/master/R/makevar_functions.R'><code>R/makevar_functions.R</code></a></small>
+    <div class="hidden name"><code>makeVarlist.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Return a list of variable names or data frame of variable metadata containing a given string.
 This can be used create a list of variables to later pass to getCensus, or a data frame
 documenting variables used in a given project.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>makeVarlist</span>(<span class='no'>name</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>find</span>, <span class='kw'>varsearch</span> <span class='kw'>=</span> <span class='st'>"all"</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"list"</span>)</pre>
@@ -166,6 +176,8 @@ Options are "all", "name", "label", or "concept".</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>
