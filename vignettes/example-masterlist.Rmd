@@ -1,0 +1,160 @@
+---
+title: "Example masterlist"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(purl = NOT_CRAN,
+											comment = "#>")
+```
+
+
+The Census APIs have over 200 endpoints, covering dozens of different datasets.
+```{r, message = FALSE}
+library(censusapi)
+```
+
+To see a current table of every available endpoint, run `listCensusApis`:
+```{r, eval = FALSE}
+apis <- listCensusApis()
+View(apis)
+```
+![](img/apis.png)
+
+
+## Examples for every API
+### American Community Survey
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+acs_income <- getCensus(name = "acs/acs5",
+	vintage = 2016, 
+	vars = c("NAME", "B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA"), 
+	region = "tract:*",
+	regionin = "state:02")
+head(acs_income)
+```
+
+### American Community Survey Migration Flows
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+flows <- getCensus(name = "acs/flows",
+	vintage = "2015",
+	vars = c("GEOID1", "GEOID2", "STATE1", "STATE2", "COUNTY1", "COUNTY2", "FULL1_NAME", "FULL2_NAME", 
+					 "STATE1_NAME", "STATE2_NAME", "COUNTY1_NAME", "COUNTY2_NAME",
+					 "MOVEDIN", "MOVEDIN_M", "MOVEDOUT", "MOVEDOUT_M", "MOVEDNET", "MOVEDNET_M"),
+	region = "county:*",
+	regionin = "state:10")
+head(flows)
+```
+
+### Annual Survey of Entrepreneurs 
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+ase_csa <- getCensus(name = "ase/csa",
+	vintage = "2014",
+	vars = c("GEO_TTL", "NAICS2012", "NAICS2012_TTL", "EMPSZFI", "EMPSZFI_TTL", "FIRMPDEMP"),
+	region = "us:*")
+head(ase_csa)
+
+ase_cscb <- getCensus(name = "ase/cscb",
+	vintage = "2014",
+	vars = c("GEO_TTL", "NAICS2012_TTL", "ASECB", "ASECB_TTL", "SPOUSES", "SPOUSES_TTL", "YEAR", 
+					 "FIRMPDEMP", "FIRMPDEMP_PCT", "RCPPDEMP", "RCPPDEMP_F", "RCPPDEMP_PCT", 
+					 "EMP", "EMP_PCT", "PAYANN", "PAYANN_PCT", "FIRMPDEMP_S", "FIRMPDEMP_PCT_S", 
+					 "RCPPDEMP_S", "RCPPDEMP_PCT_S", "EMP_S", "EMP_PCT_S", "PAYANN_S", "PAYANN_PCT_S"),
+	region = "us:*")
+head(ase_cscb)
+
+ase_cscbo <- getCensus(name = "ase/cscbo",
+	vintage = "2014",
+	vars = c("GEO_TTL", "NAICS2012_TTL", "ASECBO", "ASECBO_TTL", "ACQBUS", "ACQBUS_TTL", 
+					 "YEAR", "OWNPDEMP", "OWNPDEMP_PCT", "OWNPDEMP_S", "OWNPDEMP_PCT_S"),
+	region = "us:*")
+head(ase_csco)
+
+```
+
+### Annual Survey of Manufactures
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+asm_state <- getCensus(name = "timeseries/asm/state",
+	vars = c("NAICS_TTL", "EMP", "GEO_TTL"),
+	region = "state:*",
+	time = "2016",
+	naics = "31-33")
+head(asm_state)
+
+asm_product <- getCensus(name = "timeseries/asm/product",
+	vars = c("PSCODE_TTL", "GEO_TTL", "PRODVAL"),
+	region = "us:*",
+	time = "2016",
+	pscode = "311111")
+head(asm_product)
+```
+### Business Dynamics Statistics
+
+### County Business Patterns and Nonemployer Statistics
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+cbp_2016 <- getCensus(name = "cbp",
+ vintage = "2016",
+ vars = c("EMP", "ESTAB", "NAICS2012_TTL", "GEO_TTL"),
+ region = "state:*",
+ naics2012 = "23")
+ head(cbp_2016)
+```
+
+### Decennial Census
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+data2010 <- getCensus(name = "sf1", vintage = 2010,
+	vars = "P0010001", 
+	region = "block:*", regionin = "state:36+county:027")
+head(data2010)
+```
+
+### Decennial Census Surname Files
+
+### Economic Census
+
+### Economic Indicators
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+eits <- getCensus(name = "timeseries/eits/resconst",
+	vars = c("cell_value", "data_type_code", "time_slot_id", "error_data", "category_code", "seasonally_adj"),
+	region = "us:*",
+	time = "from 2004-05 to 2012-12")
+head(eits)
+```
+
+### Health Insurance Statistics
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+sahie <- getCensus(name = "timeseries/healthins/sahie",
+	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"),
+	region = "state:1",
+	time = 2015)
+head(sahie)
+```
+### International Data Base 
+
+### International Trade
+
+### Language Statistics ACS
+
+### Population Estimates and Projections
+
+### Poverty Statistics
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+saipe <- getCensus(name = "timeseries/poverty/saipe",
+	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
+	region = "state:*",
+	time = 2011)
+head(saipe)
+```
+
+### Quarterly Workforce Indicators
+
+### Survey of Business Owners
+
+### The Planning Database
+
+## Disclaimer
+This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.
