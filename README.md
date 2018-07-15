@@ -50,7 +50,8 @@ Get uninsured rates in Alabama by income group from the Small Area Health Insura
 # State-level data for Alabama
 getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
-	region = "state:1", time = 2015)
+	region = "state:1",
+	time = 2016)
 #>      NAME IPRCAT                IPR_DESC PCTUI_PT time state
 #> 1 Alabama      0             All Incomes     11.9 2015    01
 #> 2 Alabama      1      <= 200% of Poverty     19.8 2015    01
@@ -62,7 +63,9 @@ getCensus(name = "timeseries/healthins/sahie",
 # County-level data within Alabama, specified by adding the `regionin` parameter.
 sahie_counties <- getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
-	region = "county:*", regionin = "state:1", time = 2015)
+	region = "county:*",
+	regionin = "state:1",
+	time = 2016)
 head(sahie_counties, n=12L)
 #>                  NAME IPRCAT                IPR_DESC PCTUI_PT time state county
 #> 1  Autauga County, AL      0             All Incomes      9.4 2015    01    001
@@ -78,6 +81,24 @@ head(sahie_counties, n=12L)
 #> 11 Baldwin County, AL      4      <= 400% of Poverty     15.7 2015    01    003
 #> 12 Baldwin County, AL      5 138% to 400% of Poverty     12.2 2015    01    003
 
+# Annual data using the `time` argument.
+sahie_annual <- getCensus(name = "timeseries/healthins/sahie",
+    vars = c("NAME", "PCTUI_PT"),
+    region = "state:1",
+    time = "from 2006 to 2016")
+sahie_annual
+   time state    NAME PCTUI_PT
+#> 1  2006    01 Alabama     15.7
+#> 2  2007    01 Alabama     14.6
+#> 3  2008    01 Alabama     15.3
+#> 4  2009    01 Alabama     15.8
+#> 5  2010    01 Alabama     16.9
+#> 6  2011    01 Alabama     16.6
+#> 7  2012    01 Alabama     15.8
+#> 8  2013    01 Alabama     15.9
+#> 9  2014    01 Alabama     14.2
+#> 10 2015    01 Alabama     11.9
+#> 11 2016    01 Alabama     10.8
 ```
 
 Read more on how to build a `censusapi` call in [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html) and see examples from every API in the [example master list](https://hrecht.github.io/censusapi/articles/example-masterlist.html).

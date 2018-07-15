@@ -187,7 +187,7 @@ sahie_annual <- getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT"),
 	region = "state:1",
 	time = "from 2006 to 2016")
-head(sahie_annual)
+sahie_annual
 ```
 
 ## International Data Base

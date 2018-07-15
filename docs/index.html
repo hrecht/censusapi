@@ -108,7 +108,8 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># State-level data for Alabama</span>
 <span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
-    <span class="dt">region =</span> <span class="st">"state:1"</span>, <span class="dt">time =</span> <span class="dv">2015</span>)
+    <span class="dt">region =</span> <span class="st">"state:1"</span>,
+    <span class="dt">time =</span> <span class="dv">2016</span>)
 <span class="co">#&gt;      NAME IPRCAT                IPR_DESC PCTUI_PT time state</span>
 <span class="co">#&gt; 1 Alabama      0             All Incomes     11.9 2015    01</span>
 <span class="co">#&gt; 2 Alabama      1      &lt;= 200% of Poverty     19.8 2015    01</span>
@@ -120,7 +121,9 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <span class="co"># County-level data within Alabama, specified by adding the `regionin` parameter.</span>
 sahie_counties &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
-    <span class="dt">region =</span> <span class="st">"county:*"</span>, <span class="dt">regionin =</span> <span class="st">"state:1"</span>, <span class="dt">time =</span> <span class="dv">2015</span>)
+    <span class="dt">region =</span> <span class="st">"county:*"</span>,
+    <span class="dt">regionin =</span> <span class="st">"state:1"</span>,
+    <span class="dt">time =</span> <span class="dv">2016</span>)
 <span class="kw">head</span>(sahie_counties, <span class="dt">n=</span>12L)
 <span class="co">#&gt;                  NAME IPRCAT                IPR_DESC PCTUI_PT time state county</span>
 <span class="co">#&gt; 1  Autauga County, AL      0             All Incomes      9.4 2015    01    001</span>
@@ -134,7 +137,26 @@ sahie_counties &lt;-<span class="st"> </span><span class="kw"><a href="reference
 <span class="co">#&gt; 9  Baldwin County, AL      2      &lt;= 250% of Poverty     19.5 2015    01    003</span>
 <span class="co">#&gt; 10 Baldwin County, AL      3      &lt;= 138% of Poverty     22.5 2015    01    003</span>
 <span class="co">#&gt; 11 Baldwin County, AL      4      &lt;= 400% of Poverty     15.7 2015    01    003</span>
-<span class="co">#&gt; 12 Baldwin County, AL      5 138% to 400% of Poverty     12.2 2015    01    003</span></code></pre></div>
+<span class="co">#&gt; 12 Baldwin County, AL      5 138% to 400% of Poverty     12.2 2015    01    003</span>
+
+<span class="co"># Annual data using the `time` argument.</span>
+sahie_annual &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
+    <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>),
+    <span class="dt">region =</span> <span class="st">"state:1"</span>,
+    <span class="dt">time =</span> <span class="st">"from 2006 to 2016"</span>)
+sahie_annual
+   time state    NAME PCTUI_PT
+<span class="co">#&gt; 1  2006    01 Alabama     15.7</span>
+<span class="co">#&gt; 2  2007    01 Alabama     14.6</span>
+<span class="co">#&gt; 3  2008    01 Alabama     15.3</span>
+<span class="co">#&gt; 4  2009    01 Alabama     15.8</span>
+<span class="co">#&gt; 5  2010    01 Alabama     16.9</span>
+<span class="co">#&gt; 6  2011    01 Alabama     16.6</span>
+<span class="co">#&gt; 7  2012    01 Alabama     15.8</span>
+<span class="co">#&gt; 8  2013    01 Alabama     15.9</span>
+<span class="co">#&gt; 9  2014    01 Alabama     14.2</span>
+<span class="co">#&gt; 10 2015    01 Alabama     11.9</span>
+<span class="co">#&gt; 11 2016    01 Alabama     10.8</span></code></pre></div>
 <p>Read more on how to build a <code>censusapi</code> call in <a href="https://hrecht.github.io/censusapi/articles/getting-started.html">Getting started with censusapi</a> and see examples from every API in the <a href="https://hrecht.github.io/censusapi/articles/example-masterlist.html">example master list</a>.</p>
 </div>
 <div id="time-series-note" class="section level2">
