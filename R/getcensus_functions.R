@@ -3,7 +3,7 @@
 #' @param apiurl, key, get, region, time
 #' @keywords internal
 #' @export
-getFunction <- function(apiurl, key, get, region, regionin, time, date, period, monthly, category_code, data_type_code) {
+getFunction <- function(apiurl, key, get, region, regionin, time, date, period, monthly, category_code, data_type_code, naics2012, naics2007, naics2002) {
 	# Return API's built in error message if invalid call
 	apiCheck <- function(req) {
 		if (req$status_code==400) stop(httr::content(req, as = "text"), call. = FALSE)
@@ -55,7 +55,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 	}
 
 	# Assemble call
-	req <- httr::GET(apiurl, query = list(key = key, get = get, "for" = region, "in" = regionin, category_code = category_code, data_type_code = data_type_code, time = time, DATE = date, PERIOD = period, MONTHLY = monthly))
+	req <- httr::GET(apiurl, query = list(key = key, get = get, "for" = region, "in" = regionin, category_code = category_code, data_type_code = data_type_code, time = time, DATE = date, PERIOD = period, MONTHLY = monthly, NAICS2012 = naics2012, NAICS2007 = naics2007, NAICS2002 = naics2002))
 
 	# Check the API call for a valid response
 	apiCheck(req)
@@ -74,12 +74,9 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' @param vars List of variables to get
 #' @param region Geography to get
 #' @param regionin Optional hierarchical geography to limit region
-#' @param time Optional argument used for some time series APIs
-#' @param date Optional argument used for some time series APIs
-#' @param period Optional argument used for some time series APIs
-#' @param monthly Optional argument used for some time series APIs
-#' @param category_code Argument used in Economic Indicators Time Series API
-#' @param data_type_code Argument used in Economic Indicators Time Series API
+#' @param time,date,period,monthly Optional arguments used for some time series APIs
+#' @param category_code,data_type_code Arguments used in Economic Indicators Time Series API
+#' @param naics2012,naics2007,naics2002 Argument used in Economy Wide Key Statistics API
 #' @keywords api
 #' @export
 #' @examples
@@ -114,7 +111,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' 	region = "state:*", time = 2011)
 #' head(saipe)}
 #'
-getCensus <- function(name, vintage=NULL, key=Sys.getenv("CENSUS_KEY"), vars, region, regionin=NULL, time=NULL, date=NULL, period=NULL, monthly=NULL,  category_code=NULL, data_type_code=NULL) {
+getCensus <- function(name, vintage=NULL, key=Sys.getenv("CENSUS_KEY"), vars, region, regionin=NULL, time=NULL, date=NULL, period=NULL, monthly=NULL, category_code=NULL, data_type_code=NULL, naics2012=NULL, naics2007=NULL, naics2002=NULL) {
 	constructURL <- function(name, vintage) {
 		if (is.null(vintage)) {
 			apiurl <- paste("https://api.census.gov/data", name, sep="/")
@@ -144,13 +141,13 @@ getCensus <- function(name, vintage=NULL, key=Sys.getenv("CENSUS_KEY"), vars, re
 		# Split vars into list
 		vars <- split(vars, ceiling(seq_along(vars)/50))
 		get <- lapply(vars, function(x) paste(x, sep='', collapse=","))
-		data <- lapply(get, function(x) getFunction(apiurl, key, x, region, regionin, time, date, period, monthly, category_code, data_type_code))
+		data <- lapply(get, function(x) getFunction(apiurl, key, x, region, regionin, time, date, period, monthly, category_code, data_type_code, naics2012, naics2007, naics2002))
 		colnames <- unlist(lapply(data, names))
 		data <- do.call(cbind,data)
 		names(data) <- colnames
 	} else {
 		get <- paste(vars, sep='', collapse=',')
-		data <- getFunction(apiurl, key, get, region, regionin, time, date, period, monthly, category_code, data_type_code)
+		data <- getFunction(apiurl, key, get, region, regionin, time, date, period, monthly, category_code, data_type_code, naics2012, naics2007, naics2002)
 	}
 	# If there are any duplicate columns (ie if you put a variable in vars twice) remove the duplicates
 	data <- data[, !duplicated(colnames(data))]

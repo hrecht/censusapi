@@ -6,7 +6,8 @@
 \usage{
 getCensus(name, vintage = NULL, key = Sys.getenv("CENSUS_KEY"), vars,
   region, regionin = NULL, time = NULL, date = NULL, period = NULL,
-  monthly = NULL, category_code = NULL, data_type_code = NULL)
+  monthly = NULL, category_code = NULL, data_type_code = NULL,
+  naics2012 = NULL, naics2007 = NULL, naics2002 = NULL)
 }
 \arguments{
 \item{name}{API name - e.g. acs5. See list at https://api.census.gov/data.html}
@@ -21,17 +22,11 @@ getCensus(name, vintage = NULL, key = Sys.getenv("CENSUS_KEY"), vars,
 
 \item{regionin}{Optional hierarchical geography to limit region}
 
-\item{time}{Optional argument used for some time series APIs}
+\item{time, date, period, monthly}{Optional arguments used for some time series APIs}
 
-\item{date}{Optional argument used for some time series APIs}
+\item{category_code, data_type_code}{Arguments used in Economic Indicators Time Series API}
 
-\item{period}{Optional argument used for some time series APIs}
-
-\item{monthly}{Optional argument used for some time series APIs}
-
-\item{category_code}{Argument used in Economic Indicators Time Series API}
-
-\item{data_type_code}{Argument used in Economic Indicators Time Series API}
+\item{naics2012, naics2007, naics2002}{Argument used in Economy Wide Key Statistics API}
 }
 \description{
 Retrieve Census data from a given API
