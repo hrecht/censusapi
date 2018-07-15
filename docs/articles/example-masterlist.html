@@ -88,7 +88,7 @@
 <div id="example-master-list" class="section level1">
 <h1 class="hasAnchor">
 <a href="#example-master-list" class="anchor"></a>Example master list</h1>
-<p>Here is a work in progress list of examples for each API. More to come.</p>
+<p>Here is a work in progress list of examples for each API. More to come. Read more about discovering an API’s variable and geography options in <a href="https://hrecht.github.io/censusapi/articles/getting-started.html">Getting started with censusapi</a></p>
 <div id="american-community-survey" class="section level2">
 <h2 class="hasAnchor">
 <a href="#american-community-survey" class="anchor"></a>American Community Survey</h2>
@@ -176,8 +176,8 @@
 </div>
 <div id="american-community-survey-migration-flows" class="section level3">
 <h3 class="hasAnchor">
-<a href="#american-community-survey-migration-flows" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/acs-migration-flows.html">American Community Survey Migration Flows</a>
-</h3>
+<a href="#american-community-survey-migration-flows" class="anchor"></a>American Community Survey Migration Flows</h3>
+<p><a href="https://www.census.gov/data/developers/data-sets/acs-migration-flows.html">American Community Survey Migration Flows documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flows &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"acs/flows"</span>,
     <span class="dt">vintage =</span> <span class="st">"2015"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"MOVEDIN"</span>, <span class="st">"FULL2_NAME"</span>, <span class="st">"FULL1_NAME"</span>),
@@ -242,8 +242,8 @@
 </div>
 <div id="american-community-survey-language-statistics" class="section level3">
 <h3 class="hasAnchor">
-<a href="#american-community-survey-language-statistics" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/language-stats.html">American Community Survey Language Statistics</a>
-</h3>
+<a href="#american-community-survey-language-statistics" class="anchor"></a>American Community Survey Language Statistics</h3>
+<p><a href="https://www.census.gov/data/developers/data-sets/language-stats.html">American Community Survey Language Statistics documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">languages &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"language"</span>,
     <span class="dt">vintage =</span> <span class="st">"2013"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"EST"</span>, <span class="st">"LAN"</span>, <span class="st">"LANLABEL"</span>),
@@ -301,8 +301,8 @@
 </div>
 <div id="annual-survey-of-entrepreneurs" class="section level2">
 <h2 class="hasAnchor">
-<a href="#annual-survey-of-entrepreneurs" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/ase.html">Annual Survey of Entrepreneurs</a>
-</h2>
+<a href="#annual-survey-of-entrepreneurs" class="anchor"></a>Annual Survey of Entrepreneurs</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/ase.html">Annual Survey of Entrepreneurs documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ase_csa &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"ase/csa"</span>,
     <span class="dt">vintage =</span> <span class="st">"2014"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"GEO_TTL"</span>, <span class="st">"NAICS2012"</span>, <span class="st">"NAICS2012_TTL"</span>, <span class="st">"EMPSZFI"</span>, <span class="st">"EMPSZFI_TTL"</span>, <span class="st">"FIRMPDEMP"</span>),
@@ -693,8 +693,8 @@
 </div>
 <div id="annual-survey-of-manufactures" class="section level2">
 <h2 class="hasAnchor">
-<a href="#annual-survey-of-manufactures" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html">Annual Survey of Manufactures</a>
-</h2>
+<a href="#annual-survey-of-manufactures" class="anchor"></a>Annual Survey of Manufactures</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html">Annual Survey of Manufactures documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">asm_state &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/asm/state"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAICS_TTL"</span>, <span class="st">"EMP"</span>, <span class="st">"GEO_TTL"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>,
@@ -792,8 +792,8 @@
 </div>
 <div id="business-dynamics-statistics" class="section level2">
 <h2 class="hasAnchor">
-<a href="#business-dynamics-statistics" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/business-dynamics.html">Business Dynamics Statistics</a>
-</h2>
+<a href="#business-dynamics-statistics" class="anchor"></a>Business Dynamics Statistics</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/business-dynamics.html">Business Dynamics Statistics documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">firms_states &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/bds/firms"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"firms"</span>, <span class="st">"emp"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>,
@@ -903,8 +903,8 @@
 </div>
 <div id="county-business-patterns-and-nonemployer-statistics" class="section level2">
 <h2 class="hasAnchor">
-<a href="#county-business-patterns-and-nonemployer-statistics" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html">County Business Patterns and Nonemployer Statistics</a>
-</h2>
+<a href="#county-business-patterns-and-nonemployer-statistics" class="anchor"></a>County Business Patterns and Nonemployer Statistics</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html">County Business Patterns and Nonemployer Statistics documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cbp_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"cbp"</span>,
  <span class="dt">vintage =</span> <span class="st">"2016"</span>,
  <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"NAICS2012_TTL"</span>, <span class="st">"GEO_TTL"</span>),
@@ -976,8 +976,8 @@
 </div>
 <div id="decennial-census" class="section level2">
 <h2 class="hasAnchor">
-<a href="#decennial-census" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/decennial-census.html">Decennial Census</a>
-</h2>
+<a href="#decennial-census" class="anchor"></a>Decennial Census</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/decennial-census.html">Decennial Census documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2010 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"sf1"</span>, <span class="dt">vintage =</span> <span class="dv">2010</span>,
     <span class="dt">vars =</span> <span class="st">"P0010001"</span>, 
     <span class="dt">region =</span> <span class="st">"block:*"</span>, <span class="dt">regionin =</span> <span class="st">"state:36+county:027"</span>)
@@ -1044,8 +1044,8 @@
 </div>
 <div id="economic-census" class="section level2">
 <h2 class="hasAnchor">
-<a href="#economic-census" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/economic-census.html">Economic Census</a>
-</h2>
+<a href="#economic-census" class="anchor"></a>Economic Census</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/economic-census.html">Economic Census documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ewks_<span class="dv">2012</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"ewks"</span>,
     <span class="dt">vintage =</span> <span class="st">"2012"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"EMP"</span>, <span class="st">"OPTAX"</span>, <span class="st">"GEOTYPE"</span>),
@@ -1171,8 +1171,8 @@
 </div>
 <div id="economic-indicators" class="section level2">
 <h2 class="hasAnchor">
-<a href="#economic-indicators" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/economic-indicators.html">Economic Indicators</a>
-</h2>
+<a href="#economic-indicators" class="anchor"></a>Economic Indicators</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/economic-indicators.html">Economic Indicators documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">eits &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/eits/resconst"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"cell_value"</span>, <span class="st">"data_type_code"</span>, <span class="st">"time_slot_id"</span>, <span class="st">"error_data"</span>, <span class="st">"category_code"</span>, <span class="st">"seasonally_adj"</span>),
     <span class="dt">region =</span> <span class="st">"us:*"</span>,
@@ -1257,8 +1257,8 @@
 </div>
 <div id="health-insurance-statistics" class="section level2">
 <h2 class="hasAnchor">
-<a href="#health-insurance-statistics" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html">Health Insurance Statistics</a>
-</h2>
+<a href="#health-insurance-statistics" class="anchor"></a>Health Insurance Statistics</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html">Health Insurance Statistics documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>),
     <span class="dt">region =</span> <span class="st">"state:1"</span>,
@@ -1329,22 +1329,22 @@
 </div>
 <div id="international-data-base" class="section level2">
 <h2 class="hasAnchor">
-<a href="#international-data-base" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/international-database.html">International Data Base</a>
-</h2>
+<a href="#international-data-base" class="anchor"></a>International Data Base</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/international-database.html">International Data Base documentation</a></p>
 </div>
 <div id="international-trade" class="section level2">
 <h2 class="hasAnchor">
-<a href="#international-trade" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/international-trade.html">International Trade</a>
-</h2>
+<a href="#international-trade" class="anchor"></a>International Trade</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/international-trade.html">International Trade documentation</a></p>
 </div>
 <div id="population-estimates-and-projections" class="section level2">
 <h2 class="hasAnchor">
-<a href="#population-estimates-and-projections" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/popest-popproj.html">Population Estimates and Projections</a>
-</h2>
+<a href="#population-estimates-and-projections" class="anchor"></a>Population Estimates and Projections</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/popest-popproj.html">Population Estimates and Projections documentation</a></p>
 <div id="population-estimates" class="section level3">
 <h3 class="hasAnchor">
-<a href="#population-estimates" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html">Population Estimates</a>
-</h3>
+<a href="#population-estimates" class="anchor"></a>Population Estimates</h3>
+<p><a href="https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html">Population Estimates documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popest &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"pep/population"</span>,
     <span class="dt">vintage =</span> <span class="st">"2016"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"POP"</span>, <span class="st">"GEONAME"</span>, <span class="st">"DATE_DESC"</span>),
@@ -1477,8 +1477,8 @@
 </div>
 <div id="population-projections" class="section level3">
 <h3 class="hasAnchor">
-<a href="#population-projections" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/popest-popproj/popproj.html">Population Projections</a>
-</h3>
+<a href="#population-projections" class="anchor"></a>Population Projections</h3>
+<p><a href="https://www.census.gov/data/developers/data-sets/popest-popproj/popproj.html">Population Projections documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popproj &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"pep/projagegroups"</span>,
     <span class="dt">vintage =</span> <span class="st">"2014"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"YEAR"</span>, <span class="st">"POP"</span>),
@@ -1529,8 +1529,8 @@
 </div>
 <div id="poverty-statistics" class="section level2">
 <h2 class="hasAnchor">
-<a href="#poverty-statistics" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/Poverty-Statistics.html">Poverty Statistics</a>
-</h2>
+<a href="#poverty-statistics" class="anchor"></a>Poverty Statistics</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/Poverty-Statistics.html">Poverty Statistics documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saipe &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/poverty/saipe"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"SAEPOVRT0_17_PT"</span>, <span class="st">"SAEPOVRTALL_PT"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>,
@@ -1594,8 +1594,8 @@
 </div>
 <div id="quarterly-workforce-indicators" class="section level2">
 <h2 class="hasAnchor">
-<a href="#quarterly-workforce-indicators" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/qwi.html">Quarterly Workforce Indicators</a>
-</h2>
+<a href="#quarterly-workforce-indicators" class="anchor"></a>Quarterly Workforce Indicators</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/qwi.html">Quarterly Workforce Indicators documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qwi_counties &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/qwi/sa"</span>,
                                  <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"Emp"</span>, <span class="st">"EarnBeg"</span>),
                                  <span class="dt">region =</span> <span class="st">"county:*"</span>,
@@ -1713,8 +1713,8 @@
 </div>
 <div id="survey-of-business-owners" class="section level2">
 <h2 class="hasAnchor">
-<a href="#survey-of-business-owners" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/business-owners.html">Survey of Business Owners</a>
-</h2>
+<a href="#survey-of-business-owners" class="anchor"></a>Survey of Business Owners</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/business-owners.html">Survey of Business Owners documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sbo &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"sbo"</span>,
     <span class="dt">vintage =</span> <span class="st">"2012"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"GEO_TTL"</span>, <span class="st">"RCPSZFI"</span>, <span class="st">"RCPSZFI_TTL"</span>, <span class="st">"FIRMPDEMP"</span>),
@@ -1846,8 +1846,8 @@
 </div>
 <div id="the-planning-database" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-planning-database" class="anchor"></a><a href="https://www.census.gov/data/developers/data-sets/planning-database.html">The Planning Database</a>
-</h2>
+<a href="#the-planning-database" class="anchor"></a>The Planning Database</h2>
+<p><a href="https://www.census.gov/data/developers/data-sets/planning-database.html">The Planning Database documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pdb &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"pdb/blockgroup"</span>,
     <span class="dt">vintage =</span> <span class="st">"2016"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"County_name"</span>, <span class="st">"State_name"</span>, <span class="st">"GIDBG"</span>, <span class="st">"Tot_Population_CEN_2010"</span>, <span class="st">"Mail_Return_Rate_CEN_2010"</span>),
@@ -1954,51 +1954,21 @@
 <li>
 <a href="#example-master-list">Example master list</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#american-community-survey">American Community Survey</a></li>
-      <li>
-<a href="#annual-survey-of-entrepreneurs"></a><a href="https://www-census-gov/data/developers/data-sets/ase-html">Annual Survey of Entrepreneurs</a>
-</li>
-      <li>
-<a href="#annual-survey-of-manufactures"></a><a href="https://www-census-gov/data/developers/data-sets/Annual-Survey-of-Manufactures-html">Annual Survey of Manufactures</a>
-</li>
-      <li>
-<a href="#business-dynamics-statistics"></a><a href="https://www-census-gov/data/developers/data-sets/business-dynamics-html">Business Dynamics Statistics</a>
-</li>
-      <li>
-<a href="#county-business-patterns-and-nonemployer-statistics"></a><a href="https://www-census-gov/data/developers/data-sets/cbp-nonemp-zbp-html">County Business Patterns and Nonemployer Statistics</a>
-</li>
-      <li>
-<a href="#decennial-census"></a><a href="https://www-census-gov/data/developers/data-sets/decennial-census-html">Decennial Census</a>
-</li>
-      <li>
-<a href="#economic-census"></a><a href="https://www-census-gov/data/developers/data-sets/economic-census-html">Economic Census</a>
-</li>
-      <li>
-<a href="#economic-indicators"></a><a href="https://www-census-gov/data/developers/data-sets/economic-indicators-html">Economic Indicators</a>
-</li>
-      <li>
-<a href="#health-insurance-statistics"></a><a href="https://www-census-gov/data/developers/data-sets/Health-Insurance-Statistics-html">Health Insurance Statistics</a>
-</li>
-      <li>
-<a href="#international-data-base"></a><a href="https://www-census-gov/data/developers/data-sets/international-database-html">International Data Base</a>
-</li>
-      <li>
-<a href="#international-trade"></a><a href="https://www-census-gov/data/developers/data-sets/international-trade-html">International Trade</a>
-</li>
-      <li>
-<a href="#population-estimates-and-projections"></a><a href="https://www-census-gov/data/developers/data-sets/popest-popproj-html">Population Estimates and Projections</a>
-</li>
-      <li>
-<a href="#poverty-statistics"></a><a href="https://www-census-gov/data/developers/data-sets/Poverty-Statistics-html">Poverty Statistics</a>
-</li>
-      <li>
-<a href="#quarterly-workforce-indicators"></a><a href="https://www-census-gov/data/developers/data-sets/qwi-html">Quarterly Workforce Indicators</a>
-</li>
-      <li>
-<a href="#survey-of-business-owners"></a><a href="https://www-census-gov/data/developers/data-sets/business-owners-html">Survey of Business Owners</a>
-</li>
-      <li>
-<a href="#the-planning-database"></a><a href="https://www-census-gov/data/developers/data-sets/planning-database-html">The Planning Database</a>
-</li>
+      <li><a href="#annual-survey-of-entrepreneurs">Annual Survey of Entrepreneurs</a></li>
+      <li><a href="#annual-survey-of-manufactures">Annual Survey of Manufactures</a></li>
+      <li><a href="#business-dynamics-statistics">Business Dynamics Statistics</a></li>
+      <li><a href="#county-business-patterns-and-nonemployer-statistics">County Business Patterns and Nonemployer Statistics</a></li>
+      <li><a href="#decennial-census">Decennial Census</a></li>
+      <li><a href="#economic-census">Economic Census</a></li>
+      <li><a href="#economic-indicators">Economic Indicators</a></li>
+      <li><a href="#health-insurance-statistics">Health Insurance Statistics</a></li>
+      <li><a href="#international-data-base">International Data Base</a></li>
+      <li><a href="#international-trade">International Trade</a></li>
+      <li><a href="#population-estimates-and-projections">Population Estimates and Projections</a></li>
+      <li><a href="#poverty-statistics">Poverty Statistics</a></li>
+      <li><a href="#quarterly-workforce-indicators">Quarterly Workforce Indicators</a></li>
+      <li><a href="#survey-of-business-owners">Survey of Business Owners</a></li>
+      <li><a href="#the-planning-database">The Planning Database</a></li>
       <li><a href="#disclaimer">Disclaimer</a></li>
       </ul>
 </li>

@@ -30,7 +30,7 @@ View(apis)
 ![](img/apis.png)
 
 # Example master list
-Here is a work in progress list of examples for each API. More to come.
+Here is a work in progress list of examples for each API. More to come. Read more about discovering an API's variable and geography options in [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html)
 
 ## American Community Survey
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
@@ -41,7 +41,9 @@ acs_income <- getCensus(name = "acs/acs5",
 	regionin = "state:02")
 head(acs_income)
 ```
-### [American Community Survey Migration Flows](https://www.census.gov/data/developers/data-sets/acs-migration-flows.html)
+
+### American Community Survey Migration Flows
+[American Community Survey Migration Flows documentation](https://www.census.gov/data/developers/data-sets/acs-migration-flows.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 flows <- getCensus(name = "acs/flows",
 	vintage = "2015",
@@ -50,7 +52,9 @@ flows <- getCensus(name = "acs/flows",
 	regionin = "state:6")
 head(flows)
 ```
-### [American Community Survey Language Statistics](https://www.census.gov/data/developers/data-sets/language-stats.html)
+
+### American Community Survey Language Statistics
+[American Community Survey Language Statistics documentation](https://www.census.gov/data/developers/data-sets/language-stats.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 languages <- getCensus(name = "language",
 	vintage = "2013",
@@ -59,7 +63,8 @@ languages <- getCensus(name = "language",
 head(languages)
 ```
 
-## [Annual Survey of Entrepreneurs](https://www.census.gov/data/developers/data-sets/ase.html)
+## Annual Survey of Entrepreneurs
+[Annual Survey of Entrepreneurs documentation](https://www.census.gov/data/developers/data-sets/ase.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 ase_csa <- getCensus(name = "ase/csa",
 	vintage = "2014",
@@ -84,7 +89,9 @@ ase_cscbo <- getCensus(name = "ase/cscbo",
 head(ase_cscbo)
 
 ```
-## [Annual Survey of Manufactures](https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html)
+
+## Annual Survey of Manufactures
+[Annual Survey of Manufactures documentation](https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 asm_state <- getCensus(name = "timeseries/asm/state",
 	vars = c("NAICS_TTL", "EMP", "GEO_TTL"),
@@ -100,7 +107,9 @@ asm_product <- getCensus(name = "timeseries/asm/product",
 	pscode = "311111")
 head(asm_product)
 ```
-## [Business Dynamics Statistics](https://www.census.gov/data/developers/data-sets/business-dynamics.html)
+
+## Business Dynamics Statistics
+[Business Dynamics Statistics documentation](https://www.census.gov/data/developers/data-sets/business-dynamics.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 firms_states <- getCensus(name = "timeseries/bds/firms",
 	vars = c("firms", "emp"),
@@ -115,7 +124,8 @@ firms_years <- getCensus(name = "timeseries/bds/firms",
 head(firms_years)
 ```
 
-## [County Business Patterns and Nonemployer Statistics](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html)
+## County Business Patterns and Nonemployer Statistics
+[County Business Patterns and Nonemployer Statistics documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 cbp_2016 <- getCensus(name = "cbp",
  vintage = "2016",
@@ -124,15 +134,20 @@ cbp_2016 <- getCensus(name = "cbp",
  naics2012 = "23")
  head(cbp_2016)
 ```
-## [Decennial Census](https://www.census.gov/data/developers/data-sets/decennial-census.html)
+
+## Decennial Census
+[Decennial Census documentation](https://www.census.gov/data/developers/data-sets/decennial-census.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 data2010 <- getCensus(name = "sf1", vintage = 2010,
 	vars = "P0010001", 
 	region = "block:*", regionin = "state:36+county:027")
 head(data2010)
 ```
+
 ### Decennial Census Surname Files
-## [Economic Census](https://www.census.gov/data/developers/data-sets/economic-census.html)
+
+## Economic Census
+[Economic Census documentation](https://www.census.gov/data/developers/data-sets/economic-census.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 ewks_2012 <- getCensus(name = "ewks",
 	vintage = "2012",
@@ -147,7 +162,9 @@ ewks_2007 <- getCensus(name = "ewks",
 	naics2007 = "54")
 head(ewks_2007)
 ```
-## [Economic Indicators](https://www.census.gov/data/developers/data-sets/economic-indicators.html)
+
+## Economic Indicators
+[Economic Indicators documentation](https://www.census.gov/data/developers/data-sets/economic-indicators.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 eits <- getCensus(name = "timeseries/eits/resconst",
 	vars = c("cell_value", "data_type_code", "time_slot_id", "error_data", "category_code", "seasonally_adj"),
@@ -155,7 +172,9 @@ eits <- getCensus(name = "timeseries/eits/resconst",
 	time = "from 2004-05 to 2012-12")
 head(eits)
 ```
-## [Health Insurance Statistics](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html)
+
+## Health Insurance Statistics
+[Health Insurance Statistics documentation](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 sahie <- getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"),
@@ -163,11 +182,18 @@ sahie <- getCensus(name = "timeseries/healthins/sahie",
 	time = 2015)
 head(sahie)
 ```
-## [International Data Base](https://www.census.gov/data/developers/data-sets/international-database.html)
-## [International Trade](https://www.census.gov/data/developers/data-sets/international-trade.html)
 
-## [Population Estimates and Projections](https://www.census.gov/data/developers/data-sets/popest-popproj.html)
-### [Population Estimates](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html)
+## International Data Base
+[International Data Base documentation](https://www.census.gov/data/developers/data-sets/international-database.html)
+
+## International Trade
+[International Trade documentation](https://www.census.gov/data/developers/data-sets/international-trade.html)
+
+## Population Estimates and Projections
+[Population Estimates and Projections documentation](https://www.census.gov/data/developers/data-sets/popest-popproj.html)
+
+### Population Estimates
+[Population Estimates documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 popest <- getCensus(name = "pep/population",
 	vintage = "2016",
@@ -183,7 +209,9 @@ popest_housing <- getCensus(name = "pep/housing",
 	regionin = "state:2")
 head(popest_housing)
 ```
-### [Population Projections](https://www.census.gov/data/developers/data-sets/popest-popproj/popproj.html)
+
+### Population Projections
+[Population Projections documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popproj.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 popproj <- getCensus(name = "pep/projagegroups",
 	vintage = "2014",
@@ -192,7 +220,8 @@ popproj <- getCensus(name = "pep/projagegroups",
 head(popproj)
 ```
 
-## [Poverty Statistics](https://www.census.gov/data/developers/data-sets/Poverty-Statistics.html)
+## Poverty Statistics
+[Poverty Statistics documentation](https://www.census.gov/data/developers/data-sets/Poverty-Statistics.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 saipe <- getCensus(name = "timeseries/poverty/saipe",
 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
@@ -200,7 +229,9 @@ saipe <- getCensus(name = "timeseries/poverty/saipe",
 	time = 2011)
 head(saipe)
 ```
-## [Quarterly Workforce Indicators](https://www.census.gov/data/developers/data-sets/qwi.html)
+
+## Quarterly Workforce Indicators
+[Quarterly Workforce Indicators documentation](https://www.census.gov/data/developers/data-sets/qwi.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 qwi_counties <- getCensus(name = "timeseries/qwi/sa",
 								 vars = c("Emp", "EarnBeg"),
@@ -215,7 +246,9 @@ qwi_time <- getCensus(name = "timeseries/qwi/sa",
 								 time = "from 2007 to 2017")
 head(qwi_time)
 ```
-## [Survey of Business Owners](https://www.census.gov/data/developers/data-sets/business-owners.html)
+
+## Survey of Business Owners
+[Survey of Business Owners documentation](https://www.census.gov/data/developers/data-sets/business-owners.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 sbo <- getCensus(name = "sbo",
 	vintage = "2012",
@@ -230,7 +263,9 @@ sbo_groups <- getCensus(name = "sbo",
 	regionin = "state:09")
 head(sbo_groups)
 ```
-## [The Planning Database](https://www.census.gov/data/developers/data-sets/planning-database.html)
+
+## The Planning Database
+[The Planning Database documentation](https://www.census.gov/data/developers/data-sets/planning-database.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 pdb <- getCensus(name = "pdb/blockgroup",
 	vintage = "2016",
@@ -239,5 +274,6 @@ pdb <- getCensus(name = "pdb/blockgroup",
 	regionin = "state:01+county:001")
 head(pdb)
 ```
+
 ## Disclaimer
 This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.
