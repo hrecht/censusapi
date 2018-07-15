@@ -110,7 +110,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' saipe <- getCensus(name = "timeseries/poverty/saipe",
 #' 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 #' 	region = "state:*", time = 2011)
-#' head(saipe)}
+#' head(saipe)
 #'
 #' # Get county business patterns data for a specific NAICS sector
 #'cbp_2016 <- getCensus(name = "cbp",
@@ -118,6 +118,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #'  vars = c("EMP", "ESTAB", "NAICS2012_TTL", "GEO_TTL"),
 #'  region = "state:*",
 #'  naics2012 = "23")
+#'  head(cbp_2016)}
 getCensus <- function(name, vintage=NULL, key=Sys.getenv("CENSUS_KEY"), vars, region, regionin=NULL, time=NULL, date=NULL, period=NULL, monthly=NULL, category_code=NULL, data_type_code=NULL, naics2012=NULL, naics2007=NULL, naics2002=NULL, naics1997=NULL, sic=NULL) {
 	constructURL <- function(name, vintage) {
 		if (is.null(vintage)) {

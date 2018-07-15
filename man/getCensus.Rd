@@ -62,7 +62,7 @@ head(data2000)
 saipe <- getCensus(name = "timeseries/poverty/saipe",
 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region = "state:*", time = 2011)
-head(saipe)}
+head(saipe)
 
 # Get county business patterns data for a specific NAICS sector
 cbp_2016 <- getCensus(name = "cbp",
@@ -70,5 +70,6 @@ cbp_2016 <- getCensus(name = "cbp",
  vars = c("EMP", "ESTAB", "NAICS2012_TTL", "GEO_TTL"),
  region = "state:*",
  naics2012 = "23")
+ head(cbp_2016)}
 }
 \keyword{api}
