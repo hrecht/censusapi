@@ -1,10 +1,10 @@
 ---
 title: "Getting started with censusapi"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output:
+  html_document:
+    df_print: kable
+pkgdown:
+  as_is: true
 ---
 
 ```{r, echo = FALSE}

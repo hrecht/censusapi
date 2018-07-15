@@ -1,14 +1,12 @@
 ---
 title: "Example masterlist"
 output:
-  rmarkdown::html_vignette:
+  html_document:
     toc: true
     toc_depth: 2
     df_print: kable
-vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+pkgdown:
+  as_is: true
   
 ---
 
