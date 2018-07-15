@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.0</span>
       </span>
     </div>
 
@@ -110,7 +110,9 @@
 
     <pre class="usage"><span class='fu'>getCensus</span>(<span class='no'>name</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'>Sys.getenv</span>(<span class='st'>"CENSUS_KEY"</span>), <span class='no'>vars</span>,
   <span class='no'>region</span>, <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>period</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>monthly</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>category_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data_type_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>monthly</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>category_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data_type_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>naics2012</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>naics2007</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>naics2002</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>naics1997</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -140,28 +142,16 @@
       <td><p>Optional hierarchical geography to limit region</p></td>
     </tr>
     <tr>
-      <th>time</th>
-      <td><p>Optional argument used for some time series APIs</p></td>
+      <th>time, date, period, monthly</th>
+      <td><p>Optional arguments used for some time series APIs</p></td>
     </tr>
     <tr>
-      <th>date</th>
-      <td><p>Optional argument used for some time series APIs</p></td>
+      <th>category_code, data_type_code</th>
+      <td><p>Arguments used in Economic Indicators Time Series API</p></td>
     </tr>
     <tr>
-      <th>period</th>
-      <td><p>Optional argument used for some time series APIs</p></td>
-    </tr>
-    <tr>
-      <th>monthly</th>
-      <td><p>Optional argument used for some time series APIs</p></td>
-    </tr>
-    <tr>
-      <th>category_code</th>
-      <td><p>Argument used in Economic Indicators Time Series API</p></td>
-    </tr>
-    <tr>
-      <th>data_type_code</th>
-      <td><p>Argument used in Economic Indicators Time Series API</p></td>
+      <th>naics2012, naics2007, naics2002, naics1997, sic</th>
+      <td><p>Arguments used in Economy Wide Key Statistics APIs and Business Patterns APIs</p></td>
     </tr>
     </table>
     
