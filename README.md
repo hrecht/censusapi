@@ -87,7 +87,7 @@ sahie_annual <- getCensus(name = "timeseries/healthins/sahie",
     region = "state:1",
     time = "from 2006 to 2016")
 sahie_annual
-   time state    NAME PCTUI_PT
+#> 		time state    NAME PCTUI_PT
 #> 1  2006    01 Alabama     15.7
 #> 2  2007    01 Alabama     14.6
 #> 3  2008    01 Alabama     15.3
