@@ -6,7 +6,6 @@
 
 `censusapi` generally uses the APIs' original parameter names so that users can easily transition between Census's documentation and examples and this package. It also includes metadata functions to return data frames of available APIs, variables, and geographies.
 
-For more details, see [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html) and the package's [website](https://hrecht.github.io/censusapi/index.html).
 
 ## Installation
 Get the latest stable release from CRAN: 
@@ -81,7 +80,7 @@ head(sahie_counties, n=12L)
 
 ```
 
-See more examples in [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html)
+Read more on how to build a `censusapi` call in [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html) and see examples from every API in the [example master list](https://hrecht.github.io/censusapi/articles/example-masterlist.html).
 
 ## Time series note
 While the APIs generally return specific error messages for invalid variables or geographies, they currently return no content (status 204) without an error message when an invalid year is specified in some time series. If you're getting repeated 204 responses double check the Census documentation to make sure your time period is valid.
