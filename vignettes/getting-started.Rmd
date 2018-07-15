@@ -63,7 +63,8 @@ Let's walk through an example getting uninsured rates by income group using the 
 Let's see what variables are available in the SAHIE API:
 
 ```{r}
-sahie_vars <- listCensusMetadata(name = "timeseries/healthins/sahie", type = "variables")
+sahie_vars <- listCensusMetadata(name = "timeseries/healthins/sahie", 
+	type = "variables")
 head(sahie_vars)
 ```
 We'll use a few of these variables to get uninsured rates by income group:
@@ -76,7 +77,8 @@ We'll use a few of these variables to get uninsured rates by income group:
 ### Choosing regions
 We can also use `listCensusMetadata` to see which geographic levels we can get data for using the SAHIE API.
 ```{r}
-listCensusMetadata(name = "timeseries/healthins/sahie", type = "geography")
+listCensusMetadata(name = "timeseries/healthins/sahie", 
+	type = "geography")
 ```
 This API has three geographic levels: `us`, `county` within states, and `state`.
 
@@ -84,14 +86,16 @@ First, using `getCensus`, let's get uninsured rate by income group at the nation
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
-	region = "us:*", time = 2015)
+	region = "us:*", 
+	time = 2016)
 ```
 
 We can also get this data at the state level for every state by changing `region` to `"state:*"`:
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 sahie_states <- getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
-	region = "state:*", time = 2015)
+	region = "state:*", 
+	time = 2016)
 head(sahie_states)
 ```
 
@@ -99,8 +103,19 @@ Finally, we can get county-level data. The geography metadata showed that we can
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 sahie_counties <- getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
-	region = "county:*", regionin = "state:1,2", time = 2015)
+	region = "county:*", 
+	regionin = "state:1,2", 
+	time = 2016)
 head(sahie_counties, n=12L)
+```
+
+Because the SAHIE API is a timeseries (as indicated in its name), we can get multiple years of data at once using the `time` argument.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+sahie_years <- getCensus(name = "timeseries/healthins/sahie",
+	vars = c("NAME", "PCTUI_PT"), 
+	region = "state:1", 
+	time = "from 2006 to 2016")
+head(sahie_years)
 ```
 
 ## American Community Survey annotations variable groups
@@ -108,25 +123,31 @@ The American Community Survey (ACS) APIs include estimates (variable names endin
 
 You can retrieve these annotation variables manually, by specifying a list of variables. We'll get the estimate, margin of error and annotations for median household income in the past 12 months for Census tracts in Alaska.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-acs_income <- getCensus(name = "acs/acs5", vintage = 2016, 
+acs_income <- getCensus(name = "acs/acs5",
+	vintage = 2016, 
 	vars = c("NAME", "B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA"), 
-	region = "tract:*", regionin = "state:02")
+	region = "tract:*", 
+	regionin = "state:02")
 head(acs_income)
 ```
 
 You can also retrieve also estimates and annotations for a group of variables in one command. Here's the `group` call for that same table, [B19013](https://api.census.gov/data/2016/acs/acs5/groups/B19013.html).
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-acs_income_group <- getCensus(name = "acs/acs5", vintage = 2016, 
+acs_income_group <- getCensus(name = "acs/acs5", 
+	vintage = 2016, 
 	vars = c("NAME", "group(B19013)"), 
-	region = "tract:*", regionin = "state:02")
+	region = "tract:*", 
+	regionin = "state:02")
 head(acs_income_group)
 ```
 
 Some variable groups contain many related variables and their associated annotations. As an example, we'll get table [B17020](https://api.census.gov/data/2016/acs/acs5/groups/B17020.html), poverty status by age.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-acs_poverty_group <- getCensus(name = "acs/acs5", vintage = 2016, 
+acs_poverty_group <- getCensus(name = "acs/acs5",
+	vintage = 2016, 
 	vars = c("NAME", "group(B17020)"), 
-	region = "tract:*", regionin = "state:02")
+	region = "tract:*",
+	regionin = "state:02")
 # List column names
 colnames(acs_poverty_group)
 ```
@@ -143,9 +164,11 @@ fips
 tracts <- NULL
 for (f in fips) {
 	stateget <- paste("state:", f, sep="")
-	temp <- getCensus(name = "sf3", vintage = 1990,
-	vars = c("P0070001", "P0070002", "P114A001"), region = "tract:*",
-	regionin = stateget)
+	temp <- getCensus(name = "sf3",
+		vintage = 1990,
+		vars = c("P0070001", "P0070002", "P114A001"),
+		region = "tract:*",
+		regionin = stateget)
 	tracts <- rbind(tracts, temp)
 }
 head(tracts)
@@ -155,17 +178,21 @@ The `regionin` argument of `getCensus` can also be used with a string of nested 
 
 The 2010 Decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use `region` to request block level data, and `regionin` to specify the desired state and county.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-data2010 <- getCensus(name = "sf1", vintage = 2010,
+data2010 <- getCensus(name = "sf1",
+	vintage = 2010,
 	vars = "P0010001", 
-	region = "block:*", regionin = "state:36+county:027")
+	region = "block:*",
+	regionin = "state:36+county:027")
 head(data2010)
 ```
 
 For the 2000 Decennial Census summary file 1, tract is also required to retrieve block-level data. This example requests data for all blocks within Census tract 010000 in county 027 of state 36.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-data2000 <- getCensus(name = "sf1", vintage = 2000,
+data2000 <- getCensus(name = "sf1",
+	vintage = 2000,
 	vars = "P001001", 
-	region = "block:*", regionin = "state:36+county:027+tract:010000")
+	region = "block:*",
+	regionin = "state:36+county:027+tract:010000")
 head(data2000)
 ```
 

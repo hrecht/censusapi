@@ -29,7 +29,6 @@ View(apis)
 ```
 ![](img/apis.png)
 
-# Example master list
 Here is a work in progress list of examples for each API. More to come. Read more about discovering an API's variable and geography options in [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html)
 
 ## American Community Survey
@@ -46,7 +45,7 @@ head(acs_income)
 [American Community Survey Migration Flows documentation](https://www.census.gov/data/developers/data-sets/acs-migration-flows.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 flows <- getCensus(name = "acs/flows",
-	vintage = "2015",
+	vintage = 2015,
 	vars = c("MOVEDIN", "FULL2_NAME", "FULL1_NAME"),
 	region = "county:*",
 	regionin = "state:6")
@@ -57,7 +56,7 @@ head(flows)
 [American Community Survey Language Statistics documentation](https://www.census.gov/data/developers/data-sets/language-stats.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 languages <- getCensus(name = "language",
-	vintage = "2013",
+	vintage = 2013,
 	vars = c("EST", "LAN", "LANLABEL"),
 	region = "state:36")
 head(languages)
@@ -67,13 +66,13 @@ head(languages)
 [Annual Survey of Entrepreneurs documentation](https://www.census.gov/data/developers/data-sets/ase.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 ase_csa <- getCensus(name = "ase/csa",
-	vintage = "2014",
+	vintage = 2014,
 	vars = c("GEO_TTL", "NAICS2012", "NAICS2012_TTL", "EMPSZFI", "EMPSZFI_TTL", "FIRMPDEMP"),
 	region = "us:*")
 head(ase_csa)
 
 ase_cscb <- getCensus(name = "ase/cscb",
-	vintage = "2014",
+	vintage = 2014,
 	vars = c("GEO_TTL", "NAICS2012_TTL", "ASECB", "ASECB_TTL", "SPOUSES", "SPOUSES_TTL", "YEAR", 
 					 "FIRMPDEMP", "FIRMPDEMP_PCT", "RCPPDEMP", "RCPPDEMP_F", "RCPPDEMP_PCT", 
 					 "EMP", "EMP_PCT", "PAYANN", "PAYANN_PCT", "FIRMPDEMP_S", "FIRMPDEMP_PCT_S", 
@@ -82,7 +81,7 @@ ase_cscb <- getCensus(name = "ase/cscb",
 head(ase_cscb)
 
 ase_cscbo <- getCensus(name = "ase/cscbo",
-	vintage = "2014",
+	vintage = 2014,
 	vars = c("GEO_TTL", "NAICS2012_TTL", "ASECBO", "ASECBO_TTL", "ACQBUS", "ACQBUS_TTL", 
 					 "YEAR", "OWNPDEMP", "OWNPDEMP_PCT", "OWNPDEMP_S", "OWNPDEMP_PCT_S"),
 	region = "us:*")
@@ -96,14 +95,14 @@ head(ase_cscbo)
 asm_state <- getCensus(name = "timeseries/asm/state",
 	vars = c("NAICS_TTL", "EMP", "GEO_TTL"),
 	region = "state:*",
-	time = "2016",
+	time = 2016,
 	naics = "31-33")
 head(asm_state)
 
 asm_product <- getCensus(name = "timeseries/asm/product",
 	vars = c("PSCODE_TTL", "GEO_TTL", "PRODVAL"),
 	region = "us:*",
-	time = "2016",
+	time = 2016,
 	pscode = "311111")
 head(asm_product)
 ```
@@ -114,7 +113,7 @@ head(asm_product)
 firms_states <- getCensus(name = "timeseries/bds/firms",
 	vars = c("firms", "emp"),
 	region = "state:*",
-	time = "2014")
+	time = 2014)
 head(firms_states)
 
 firms_years <- getCensus(name = "timeseries/bds/firms",
@@ -128,7 +127,7 @@ head(firms_years)
 [County Business Patterns and Nonemployer Statistics documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 cbp_2016 <- getCensus(name = "cbp",
- vintage = "2016",
+ vintage = 2016,
  vars = c("EMP", "ESTAB", "NAICS2012_TTL", "GEO_TTL"),
  region = "state:*",
  naics2012 = "23")
@@ -138,9 +137,11 @@ cbp_2016 <- getCensus(name = "cbp",
 ## Decennial Census
 [Decennial Census documentation](https://www.census.gov/data/developers/data-sets/decennial-census.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-data2010 <- getCensus(name = "sf1", vintage = 2010,
+data2010 <- getCensus(name = "sf1",
+	vintage = 2010,
 	vars = "P0010001", 
-	region = "block:*", regionin = "state:36+county:027")
+	region = "block:*",
+	regionin = "state:36+county:027")
 head(data2010)
 ```
 
@@ -150,13 +151,13 @@ head(data2010)
 [Economic Census documentation](https://www.census.gov/data/developers/data-sets/economic-census.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 ewks_2012 <- getCensus(name = "ewks",
-	vintage = "2012",
+	vintage = 2012,
 	vars = c("EMP", "OPTAX", "GEOTYPE"),
 	region = "state:*",
 	naics2012 = "54")
 head(ewks_2012)
 ewks_2007 <- getCensus(name = "ewks",
-	vintage = "2007",
+	vintage = 2007,
 	vars = c("EMP", "OPTAX", "GEOTYPE"),
 	region = "state:*",
 	naics2007 = "54")
@@ -181,6 +182,12 @@ sahie <- getCensus(name = "timeseries/healthins/sahie",
 	region = "state:1",
 	time = 2015)
 head(sahie)
+
+sahie_annual <- getCensus(name = "timeseries/healthins/sahie",
+	vars = c("NAME", "PCTUI_PT"),
+	region = "state:1",
+	time = "from 2006 to 2016")
+head(sahie_annual)
 ```
 
 ## International Data Base
@@ -196,14 +203,14 @@ head(sahie)
 [Population Estimates documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 popest <- getCensus(name = "pep/population",
-	vintage = "2016",
+	vintage = 2016,
 	vars = c("POP", "GEONAME", "DATE_DESC"),
 	region = "state:*",
 	date = "9")
 head(popest)
 
 popest_housing <- getCensus(name = "pep/housing",
-	vintage = "2016",
+	vintage = 2016,
 	vars = c("DATE", "DATE_DESC", "GEONAME", "HUEST"),
 	region = "county:195",
 	regionin = "state:2")
@@ -214,7 +221,7 @@ head(popest_housing)
 [Population Projections documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popproj.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 popproj <- getCensus(name = "pep/projagegroups",
-	vintage = "2014",
+	vintage = 2014,
 	vars = c("YEAR", "POP"),
 	region = "us:1")
 head(popproj)
@@ -226,24 +233,31 @@ head(popproj)
 saipe <- getCensus(name = "timeseries/poverty/saipe",
 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region = "state:*",
-	time = 2011)
+	time = 2016)
 head(saipe)
+
+saipe_years <- getCensus(name = "timeseries/poverty/saipe",
+	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
+	region = "county:001",
+	regionin = "state:12",
+	time = "from 2000 to 2016")
+head(saipe_years)
 ```
 
 ## Quarterly Workforce Indicators
 [Quarterly Workforce Indicators documentation](https://www.census.gov/data/developers/data-sets/qwi.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 qwi_counties <- getCensus(name = "timeseries/qwi/sa",
-								 vars = c("Emp", "EarnBeg"),
-								 region = "county:*",
-								 regionin = "state:01",
-								 time = "2016-Q1")
+	vars = c("Emp", "EarnBeg"),
+	region = "county:*",
+	regionin = "state:01",
+	time = "2016-Q1")
 head(qwi_counties)
 
 qwi_time <- getCensus(name = "timeseries/qwi/sa",
-								 vars = c("Emp", "EarnBeg"),
-								 region = "state:01",
-								 time = "from 2007 to 2017")
+	vars = c("Emp", "EarnBeg"),
+	region = "state:01",
+	time = "from 2007 to 2017")
 head(qwi_time)
 ```
 
@@ -251,13 +265,13 @@ head(qwi_time)
 [Survey of Business Owners documentation](https://www.census.gov/data/developers/data-sets/business-owners.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 sbo <- getCensus(name = "sbo",
-	vintage = "2012",
+	vintage = 2012,
 	vars = c("GEO_TTL", "RCPSZFI", "RCPSZFI_TTL", "FIRMPDEMP"),
 	region = "state:*")
 head(sbo)
 
 sbo_groups <- getCensus(name = "sbo",
-	vintage = "2012",
+	vintage = 2012,
 	vars = c("GEO_TTL", "RACE_GROUP", "RACE_GROUP_TTL", "FIRMPDEMP"),
 	region = "county:*",
 	regionin = "state:09")
@@ -268,7 +282,7 @@ head(sbo_groups)
 [The Planning Database documentation](https://www.census.gov/data/developers/data-sets/planning-database.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 pdb <- getCensus(name = "pdb/blockgroup",
-	vintage = "2016",
+	vintage = 2016,
 	vars = c("County_name", "State_name", "GIDBG", "Tot_Population_CEN_2010", "Mail_Return_Rate_CEN_2010"),
 	region = "block group:*",
 	regionin = "state:01+county:001")

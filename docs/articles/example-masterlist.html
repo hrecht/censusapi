@@ -85,9 +85,6 @@
 <div class="figure">
 <img src="img/apis.png">
 </div>
-<div id="example-master-list" class="section level1">
-<h1 class="hasAnchor">
-<a href="#example-master-list" class="anchor"></a>Example master list</h1>
 <p>Here is a work in progress list of examples for each API. More to come. Read more about discovering an API’s variable and geography options in <a href="https://hrecht.github.io/censusapi/articles/getting-started.html">Getting started with censusapi</a></p>
 <div id="american-community-survey" class="section level2">
 <h2 class="hasAnchor">
@@ -179,7 +176,7 @@
 <a href="#american-community-survey-migration-flows" class="anchor"></a>American Community Survey Migration Flows</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/acs-migration-flows.html">American Community Survey Migration Flows documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flows &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"acs/flows"</span>,
-    <span class="dt">vintage =</span> <span class="st">"2015"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2015</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"MOVEDIN"</span>, <span class="st">"FULL2_NAME"</span>, <span class="st">"FULL1_NAME"</span>),
     <span class="dt">region =</span> <span class="st">"county:*"</span>,
     <span class="dt">regionin =</span> <span class="st">"state:6"</span>)
@@ -245,7 +242,7 @@
 <a href="#american-community-survey-language-statistics" class="anchor"></a>American Community Survey Language Statistics</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/language-stats.html">American Community Survey Language Statistics documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">languages &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"language"</span>,
-    <span class="dt">vintage =</span> <span class="st">"2013"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2013</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"EST"</span>, <span class="st">"LAN"</span>, <span class="st">"LANLABEL"</span>),
     <span class="dt">region =</span> <span class="st">"state:36"</span>)
 <span class="kw">head</span>(languages)</code></pre></div>
@@ -304,7 +301,7 @@
 <a href="#annual-survey-of-entrepreneurs" class="anchor"></a>Annual Survey of Entrepreneurs</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/ase.html">Annual Survey of Entrepreneurs documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ase_csa &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"ase/csa"</span>,
-    <span class="dt">vintage =</span> <span class="st">"2014"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2014</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"GEO_TTL"</span>, <span class="st">"NAICS2012"</span>, <span class="st">"NAICS2012_TTL"</span>, <span class="st">"EMPSZFI"</span>, <span class="st">"EMPSZFI_TTL"</span>, <span class="st">"FIRMPDEMP"</span>),
     <span class="dt">region =</span> <span class="st">"us:*"</span>)
 <span class="kw">head</span>(ase_csa)</code></pre></div>
@@ -378,7 +375,7 @@
 </table>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ase_cscb &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"ase/cscb"</span>,
-    <span class="dt">vintage =</span> <span class="st">"2014"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2014</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"GEO_TTL"</span>, <span class="st">"NAICS2012_TTL"</span>, <span class="st">"ASECB"</span>, <span class="st">"ASECB_TTL"</span>, <span class="st">"SPOUSES"</span>, <span class="st">"SPOUSES_TTL"</span>, <span class="st">"YEAR"</span>, 
                      <span class="st">"FIRMPDEMP"</span>, <span class="st">"FIRMPDEMP_PCT"</span>, <span class="st">"RCPPDEMP"</span>, <span class="st">"RCPPDEMP_F"</span>, <span class="st">"RCPPDEMP_PCT"</span>, 
                      <span class="st">"EMP"</span>, <span class="st">"EMP_PCT"</span>, <span class="st">"PAYANN"</span>, <span class="st">"PAYANN_PCT"</span>, <span class="st">"FIRMPDEMP_S"</span>, <span class="st">"FIRMPDEMP_PCT_S"</span>, 
@@ -581,7 +578,7 @@
 </table>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ase_cscbo &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"ase/cscbo"</span>,
-    <span class="dt">vintage =</span> <span class="st">"2014"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2014</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"GEO_TTL"</span>, <span class="st">"NAICS2012_TTL"</span>, <span class="st">"ASECBO"</span>, <span class="st">"ASECBO_TTL"</span>, <span class="st">"ACQBUS"</span>, <span class="st">"ACQBUS_TTL"</span>, 
                      <span class="st">"YEAR"</span>, <span class="st">"OWNPDEMP"</span>, <span class="st">"OWNPDEMP_PCT"</span>, <span class="st">"OWNPDEMP_S"</span>, <span class="st">"OWNPDEMP_PCT_S"</span>),
     <span class="dt">region =</span> <span class="st">"us:*"</span>)
@@ -698,7 +695,7 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">asm_state &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/asm/state"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAICS_TTL"</span>, <span class="st">"EMP"</span>, <span class="st">"GEO_TTL"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>,
-    <span class="dt">time =</span> <span class="st">"2016"</span>,
+    <span class="dt">time =</span> <span class="dv">2016</span>,
     <span class="dt">naics =</span> <span class="st">"31-33"</span>)
 <span class="kw">head</span>(asm_state)</code></pre></div>
 <div class="kable-table">
@@ -766,7 +763,7 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">asm_product &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/asm/product"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"PSCODE_TTL"</span>, <span class="st">"GEO_TTL"</span>, <span class="st">"PRODVAL"</span>),
     <span class="dt">region =</span> <span class="st">"us:*"</span>,
-    <span class="dt">time =</span> <span class="st">"2016"</span>,
+    <span class="dt">time =</span> <span class="dv">2016</span>,
     <span class="dt">pscode =</span> <span class="st">"311111"</span>)
 <span class="kw">head</span>(asm_product)</code></pre></div>
 <div class="kable-table">
@@ -797,7 +794,7 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">firms_states &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/bds/firms"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"firms"</span>, <span class="st">"emp"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>,
-    <span class="dt">time =</span> <span class="st">"2014"</span>)
+    <span class="dt">time =</span> <span class="dv">2014</span>)
 <span class="kw">head</span>(firms_states)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -906,7 +903,7 @@
 <a href="#county-business-patterns-and-nonemployer-statistics" class="anchor"></a>County Business Patterns and Nonemployer Statistics</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html">County Business Patterns and Nonemployer Statistics documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cbp_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"cbp"</span>,
- <span class="dt">vintage =</span> <span class="st">"2016"</span>,
+ <span class="dt">vintage =</span> <span class="dv">2016</span>,
  <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"NAICS2012_TTL"</span>, <span class="st">"GEO_TTL"</span>),
  <span class="dt">region =</span> <span class="st">"state:*"</span>,
  <span class="dt">naics2012 =</span> <span class="st">"23"</span>)
@@ -978,9 +975,11 @@
 <h2 class="hasAnchor">
 <a href="#decennial-census" class="anchor"></a>Decennial Census</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/decennial-census.html">Decennial Census documentation</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2010 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"sf1"</span>, <span class="dt">vintage =</span> <span class="dv">2010</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2010 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"sf1"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2010</span>,
     <span class="dt">vars =</span> <span class="st">"P0010001"</span>, 
-    <span class="dt">region =</span> <span class="st">"block:*"</span>, <span class="dt">regionin =</span> <span class="st">"state:36+county:027"</span>)
+    <span class="dt">region =</span> <span class="st">"block:*"</span>,
+    <span class="dt">regionin =</span> <span class="st">"state:36+county:027"</span>)
 <span class="kw">head</span>(data2010)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -1047,7 +1046,7 @@
 <a href="#economic-census" class="anchor"></a>Economic Census</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/economic-census.html">Economic Census documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ewks_<span class="dv">2012</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"ewks"</span>,
-    <span class="dt">vintage =</span> <span class="st">"2012"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2012</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"EMP"</span>, <span class="st">"OPTAX"</span>, <span class="st">"GEOTYPE"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>,
     <span class="dt">naics2012 =</span> <span class="st">"54"</span>)
@@ -1108,7 +1107,7 @@
 </table>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ewks_<span class="dv">2007</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"ewks"</span>,
-    <span class="dt">vintage =</span> <span class="st">"2007"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2007</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"EMP"</span>, <span class="st">"OPTAX"</span>, <span class="st">"GEOTYPE"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>,
     <span class="dt">naics2007 =</span> <span class="st">"54"</span>)
@@ -1326,6 +1325,59 @@
 </tbody>
 </table>
 </div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_annual &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
+    <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>),
+    <span class="dt">region =</span> <span class="st">"state:1"</span>,
+    <span class="dt">time =</span> <span class="st">"from 2006 to 2016"</span>)
+<span class="kw">head</span>(sahie_annual)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="left">state</th>
+<th align="left">NAME</th>
+<th align="left">PCTUI_PT</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2006</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">15.7</td>
+</tr>
+<tr class="even">
+<td align="left">2007</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">14.6</td>
+</tr>
+<tr class="odd">
+<td align="left">2008</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">15.3</td>
+</tr>
+<tr class="even">
+<td align="left">2009</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">15.8</td>
+</tr>
+<tr class="odd">
+<td align="left">2010</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">16.9</td>
+</tr>
+<tr class="even">
+<td align="left">2011</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">16.6</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="international-data-base" class="section level2">
 <h2 class="hasAnchor">
@@ -1346,7 +1398,7 @@
 <a href="#population-estimates" class="anchor"></a>Population Estimates</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html">Population Estimates documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popest &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"pep/population"</span>,
-    <span class="dt">vintage =</span> <span class="st">"2016"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2016</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"POP"</span>, <span class="st">"GEONAME"</span>, <span class="st">"DATE_DESC"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>,
     <span class="dt">date =</span> <span class="st">"9"</span>)
@@ -1407,7 +1459,7 @@
 </table>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popest_housing &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"pep/housing"</span>,
-    <span class="dt">vintage =</span> <span class="st">"2016"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2016</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"DATE"</span>, <span class="st">"DATE_DESC"</span>, <span class="st">"GEONAME"</span>, <span class="st">"HUEST"</span>),
     <span class="dt">region =</span> <span class="st">"county:195"</span>,
     <span class="dt">regionin =</span> <span class="st">"state:2"</span>)
@@ -1480,7 +1532,7 @@
 <a href="#population-projections" class="anchor"></a>Population Projections</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/popest-popproj/popproj.html">Population Projections documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popproj &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"pep/projagegroups"</span>,
-    <span class="dt">vintage =</span> <span class="st">"2014"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2014</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"YEAR"</span>, <span class="st">"POP"</span>),
     <span class="dt">region =</span> <span class="st">"us:1"</span>)
 <span class="kw">head</span>(popproj)</code></pre></div>
@@ -1534,7 +1586,7 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saipe &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/poverty/saipe"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"SAEPOVRT0_17_PT"</span>, <span class="st">"SAEPOVRTALL_PT"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>,
-    <span class="dt">time =</span> <span class="dv">2011</span>)
+    <span class="dt">time =</span> <span class="dv">2016</span>)
 <span class="kw">head</span>(saipe)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -1547,46 +1599,114 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2011</td>
+<td align="left">2016</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="right">27.6</td>
-<td align="left">19.1</td>
+<td align="right">24.7</td>
+<td align="left">17.2</td>
 </tr>
 <tr class="even">
-<td align="left">2011</td>
+<td align="left">2016</td>
 <td align="left">02</td>
 <td align="left">Alaska</td>
-<td align="right">14.7</td>
-<td align="left">10.8</td>
+<td align="right">13.6</td>
+<td align="left">9.9</td>
 </tr>
 <tr class="odd">
-<td align="left">2011</td>
+<td align="left">2016</td>
 <td align="left">04</td>
 <td align="left">Arizona</td>
-<td align="right">27.2</td>
-<td align="left">19</td>
+<td align="right">23.6</td>
+<td align="left">16.4</td>
 </tr>
 <tr class="even">
-<td align="left">2011</td>
+<td align="left">2016</td>
 <td align="left">05</td>
 <td align="left">Arkansas</td>
-<td align="right">27.8</td>
-<td align="left">19.3</td>
+<td align="right">24.0</td>
+<td align="left">17.2</td>
 </tr>
 <tr class="odd">
-<td align="left">2011</td>
+<td align="left">2016</td>
 <td align="left">06</td>
 <td align="left">California</td>
-<td align="right">22.8</td>
-<td align="left">16.6</td>
+<td align="right">19.9</td>
+<td align="left">14.4</td>
 </tr>
 <tr class="even">
-<td align="left">2011</td>
+<td align="left">2016</td>
 <td align="left">08</td>
 <td align="left">Colorado</td>
-<td align="right">17.7</td>
-<td align="left">13.4</td>
+<td align="right">13.4</td>
+<td align="left">11</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saipe_years &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/poverty/saipe"</span>,
+    <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"SAEPOVRT0_17_PT"</span>, <span class="st">"SAEPOVRTALL_PT"</span>),
+    <span class="dt">region =</span> <span class="st">"county:001"</span>,
+    <span class="dt">regionin =</span> <span class="st">"state:12"</span>,
+    <span class="dt">time =</span> <span class="st">"from 2000 to 2016"</span>)
+<span class="kw">head</span>(saipe_years)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="left">state</th>
+<th align="left">county</th>
+<th align="left">NAME</th>
+<th align="right">SAEPOVRT0_17_PT</th>
+<th align="left">SAEPOVRTALL_PT</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2000</td>
+<td align="left">12</td>
+<td align="left">001</td>
+<td align="left">Alachua County</td>
+<td align="right">17.4</td>
+<td align="left">14.7</td>
+</tr>
+<tr class="even">
+<td align="left">2001</td>
+<td align="left">12</td>
+<td align="left">001</td>
+<td align="left">Alachua County</td>
+<td align="right">18.3</td>
+<td align="left">15.1</td>
+</tr>
+<tr class="odd">
+<td align="left">2002</td>
+<td align="left">12</td>
+<td align="left">001</td>
+<td align="left">Alachua County</td>
+<td align="right">17.6</td>
+<td align="left">15.1</td>
+</tr>
+<tr class="even">
+<td align="left">2003</td>
+<td align="left">12</td>
+<td align="left">001</td>
+<td align="left">Alachua County</td>
+<td align="right">19.8</td>
+<td align="left">16.2</td>
+</tr>
+<tr class="odd">
+<td align="left">2004</td>
+<td align="left">12</td>
+<td align="left">001</td>
+<td align="left">Alachua County</td>
+<td align="right">16.9</td>
+<td align="left">14.5</td>
+</tr>
+<tr class="even">
+<td align="left">2005</td>
+<td align="left">12</td>
+<td align="left">001</td>
+<td align="left">Alachua County</td>
+<td align="right">22.8</td>
+<td align="left">21.8</td>
 </tr>
 </tbody>
 </table>
@@ -1597,10 +1717,10 @@
 <a href="#quarterly-workforce-indicators" class="anchor"></a>Quarterly Workforce Indicators</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/qwi.html">Quarterly Workforce Indicators documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qwi_counties &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/qwi/sa"</span>,
-                                 <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"Emp"</span>, <span class="st">"EarnBeg"</span>),
-                                 <span class="dt">region =</span> <span class="st">"county:*"</span>,
-                                 <span class="dt">regionin =</span> <span class="st">"state:01"</span>,
-                                 <span class="dt">time =</span> <span class="st">"2016-Q1"</span>)
+    <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"Emp"</span>, <span class="st">"EarnBeg"</span>),
+    <span class="dt">region =</span> <span class="st">"county:*"</span>,
+    <span class="dt">regionin =</span> <span class="st">"state:01"</span>,
+    <span class="dt">time =</span> <span class="st">"2016-Q1"</span>)
 <span class="kw">head</span>(qwi_counties)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -1658,9 +1778,9 @@
 </table>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qwi_time &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/qwi/sa"</span>,
-                                 <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"Emp"</span>, <span class="st">"EarnBeg"</span>),
-                                 <span class="dt">region =</span> <span class="st">"state:01"</span>,
-                                 <span class="dt">time =</span> <span class="st">"from 2007 to 2017"</span>)
+    <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"Emp"</span>, <span class="st">"EarnBeg"</span>),
+    <span class="dt">region =</span> <span class="st">"state:01"</span>,
+    <span class="dt">time =</span> <span class="st">"from 2007 to 2017"</span>)
 <span class="kw">head</span>(qwi_time)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -1716,7 +1836,7 @@
 <a href="#survey-of-business-owners" class="anchor"></a>Survey of Business Owners</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/business-owners.html">Survey of Business Owners documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sbo &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"sbo"</span>,
-    <span class="dt">vintage =</span> <span class="st">"2012"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2012</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"GEO_TTL"</span>, <span class="st">"RCPSZFI"</span>, <span class="st">"RCPSZFI_TTL"</span>, <span class="st">"FIRMPDEMP"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>)
 <span class="kw">head</span>(sbo)</code></pre></div>
@@ -1776,7 +1896,7 @@
 </table>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sbo_groups &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"sbo"</span>,
-    <span class="dt">vintage =</span> <span class="st">"2012"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2012</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"GEO_TTL"</span>, <span class="st">"RACE_GROUP"</span>, <span class="st">"RACE_GROUP_TTL"</span>, <span class="st">"FIRMPDEMP"</span>),
     <span class="dt">region =</span> <span class="st">"county:*"</span>,
     <span class="dt">regionin =</span> <span class="st">"state:09"</span>)
@@ -1849,7 +1969,7 @@
 <a href="#the-planning-database" class="anchor"></a>The Planning Database</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/planning-database.html">The Planning Database documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pdb &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"pdb/blockgroup"</span>,
-    <span class="dt">vintage =</span> <span class="st">"2016"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2016</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"County_name"</span>, <span class="st">"State_name"</span>, <span class="st">"GIDBG"</span>, <span class="st">"Tot_Population_CEN_2010"</span>, <span class="st">"Mail_Return_Rate_CEN_2010"</span>),
     <span class="dt">region =</span> <span class="st">"block group:*"</span>,
     <span class="dt">regionin =</span> <span class="st">"state:01+county:001"</span>)
@@ -1943,7 +2063,6 @@
 <a href="#disclaimer" class="anchor"></a>Disclaimer</h2>
 <p>This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.</p>
 </div>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -1951,8 +2070,6 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li>
-<a href="#example-master-list">Example master list</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#american-community-survey">American Community Survey</a></li>
       <li><a href="#annual-survey-of-entrepreneurs">Annual Survey of Entrepreneurs</a></li>
       <li><a href="#annual-survey-of-manufactures">Annual Survey of Manufactures</a></li>
@@ -1970,8 +2087,6 @@
       <li><a href="#survey-of-business-owners">Survey of Business Owners</a></li>
       <li><a href="#the-planning-database">The Planning Database</a></li>
       <li><a href="#disclaimer">Disclaimer</a></li>
-      </ul>
-</li>
       </ul>
 </div>
       </div>
