@@ -43,10 +43,15 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 		# Make columns numeric if they have numbers in the column name - note some APIs use string var names
 		# For ACS data, do not make columns numeric if they are ACS annotation variables - ending in MA or EA or SS
 		# Do not make label variables (ending in _TTL) for economic APIs numeric
-		if(!grepl("acs|ewks|cbp", apiurl)) {
+		if(!grepl("acs|ewks|cbp|ase", apiurl)) {
 			value_cols <- grep("[0-9]", names(df), value=TRUE)
 			for(col in value_cols) df[,col] <- as.numeric(df[,col])
-		} else {
+		} else if(grepl("ase/", apiurl)) {
+			value_cols <- grep("[0-9]", names(df), value=TRUE)
+			error_cols <- grep("MA|EA|SS|_TTL|_NAME|NAICS2012", value_cols, value=TRUE, ignore.case = T)
+			for(col in setdiff(value_cols, error_cols)) df[,col] <- as.numeric(df[,col])
+		}
+		else {
 			value_cols <- grep("[0-9]", names(df), value=TRUE)
 			error_cols <- grep("MA|EA|SS|_TTL|_NAME", value_cols, value=TRUE, ignore.case = T)
 			for(col in setdiff(value_cols, error_cols)) df[,col] <- as.numeric(df[,col])
