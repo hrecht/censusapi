@@ -48,7 +48,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 			for(col in value_cols) df[,col] <- as.numeric(df[,col])
 		} else {
 			value_cols <- grep("[0-9]", names(df), value=TRUE)
-			error_cols <- grep("MA|EA|SS|_TTL", value_cols, value=TRUE, ignore.case = T)
+			error_cols <- grep("MA|EA|SS|_TTL|_NAME", value_cols, value=TRUE, ignore.case = T)
 			for(col in setdiff(value_cols, error_cols)) df[,col] <- as.numeric(df[,col])
 		}
 		row.names(df) <- NULL
