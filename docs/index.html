@@ -104,9 +104,9 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h2 class="hasAnchor">
 <a href="#usage-examples" class="anchor"></a>Usage examples</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(censusapi)</code></pre></div>
-<p>Get uninsured rates in Alabama by income group from the Small Area Health Insurance Estimates <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html">(SAHIE) timeseries API</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># State-level data for Alabama</span>
-<span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<p>Get uninsured rates from the Small Area Health Insurance Estimates <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html">(SAHIE) timeseries API</a> using <code><a href="reference/getCensus.html">getCensus()</a></code>.</p>
+<p>State-level data by income group within Alabama.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
     <span class="dt">region =</span> <span class="st">"state:1"</span>,
     <span class="dt">time =</span> <span class="dv">2016</span>)
@@ -116,10 +116,9 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <span class="co">#&gt; 3 Alabama      2      &lt;= 250% of Poverty     18.6 2015    01</span>
 <span class="co">#&gt; 4 Alabama      3      &lt;= 138% of Poverty     21.2 2015    01</span>
 <span class="co">#&gt; 5 Alabama      4      &lt;= 400% of Poverty     15.5 2015    01</span>
-<span class="co">#&gt; 6 Alabama      5 138% to 400% of Poverty     11.8 2015    01</span>
-
-<span class="co"># County-level data within Alabama, specified by adding the `regionin` parameter.</span>
-sahie_counties &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<span class="co">#&gt; 6 Alabama      5 138% to 400% of Poverty     11.8 2015    01</span></code></pre></div>
+<p>County-level data within Alabama, specified by adding the <code>regionin</code> parameter.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_counties &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
     <span class="dt">region =</span> <span class="st">"county:*"</span>,
     <span class="dt">regionin =</span> <span class="st">"state:1"</span>,
@@ -137,10 +136,9 @@ sahie_counties &lt;-<span class="st"> </span><span class="kw"><a href="reference
 <span class="co">#&gt; 9  Baldwin County, AL      2      &lt;= 250% of Poverty     19.5 2015    01    003</span>
 <span class="co">#&gt; 10 Baldwin County, AL      3      &lt;= 138% of Poverty     22.5 2015    01    003</span>
 <span class="co">#&gt; 11 Baldwin County, AL      4      &lt;= 400% of Poverty     15.7 2015    01    003</span>
-<span class="co">#&gt; 12 Baldwin County, AL      5 138% to 400% of Poverty     12.2 2015    01    003</span>
-
-<span class="co"># Annual data using the `time` argument.</span>
-sahie_annual &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<span class="co">#&gt; 12 Baldwin County, AL      5 138% to 400% of Poverty     12.2 2015    01    003</span></code></pre></div>
+<p>Retrieve annual data using the <code>time</code> argument by specifying a start year and stop year.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_annual &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>),
     <span class="dt">region =</span> <span class="st">"state:1"</span>,
     <span class="dt">time =</span> <span class="st">"from 2006 to 2016"</span>)

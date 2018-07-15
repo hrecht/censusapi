@@ -44,10 +44,10 @@ In some instances you might not want to put your key in your .Renviron - for exa
 library(censusapi)
 ```
 
-Get uninsured rates in Alabama by income group from the Small Area Health Insurance Estimates [(SAHIE) timeseries API](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html)
+Get uninsured rates from the Small Area Health Insurance Estimates [(SAHIE) timeseries API](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html) using `getCensus()`.
 
+State-level data by income group within Alabama.
 ```R 
-# State-level data for Alabama
 getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region = "state:1",
@@ -59,8 +59,9 @@ getCensus(name = "timeseries/healthins/sahie",
 #> 4 Alabama      3      <= 138% of Poverty     21.2 2015    01
 #> 5 Alabama      4      <= 400% of Poverty     15.5 2015    01
 #> 6 Alabama      5 138% to 400% of Poverty     11.8 2015    01
-
-# County-level data within Alabama, specified by adding the `regionin` parameter.
+```
+County-level data within Alabama, specified by adding the `regionin` parameter.
+```R
 sahie_counties <- getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region = "county:*",
@@ -80,8 +81,9 @@ head(sahie_counties, n=12L)
 #> 10 Baldwin County, AL      3      <= 138% of Poverty     22.5 2015    01    003
 #> 11 Baldwin County, AL      4      <= 400% of Poverty     15.7 2015    01    003
 #> 12 Baldwin County, AL      5 138% to 400% of Poverty     12.2 2015    01    003
-
-# Annual data using the `time` argument.
+```
+Retrieve annual data using the `time` argument by specifying a start year and stop year.
+```R
 sahie_annual <- getCensus(name = "timeseries/healthins/sahie",
     vars = c("NAME", "PCTUI_PT"),
     region = "state:1",
