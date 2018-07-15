@@ -42,12 +42,13 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 		df[] <- lapply(df, as.character)
 		# Make columns numeric if they have numbers in the column name - note some APIs use string var names
 		# For ACS data, do not make columns numeric if they are ACS annotation variables - ending in MA or EA or SS
-		if(!grepl("acs", apiurl)) {
+		# Do not make label variables (ending in _TTL) for economic APIs numeric
+		if(!grepl("acs|ewks|cbp", apiurl)) {
 			value_cols <- grep("[0-9]", names(df), value=TRUE)
 			for(col in value_cols) df[,col] <- as.numeric(df[,col])
 		} else {
 			value_cols <- grep("[0-9]", names(df), value=TRUE)
-			error_cols <- grep("MA|EA|SS", value_cols, value=TRUE, ignore.case = T)
+			error_cols <- grep("MA|EA|SS|_TTL", value_cols, value=TRUE, ignore.case = T)
 			for(col in setdiff(value_cols, error_cols)) df[,col] <- as.numeric(df[,col])
 		}
 		row.names(df) <- NULL
@@ -111,6 +112,12 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' 	region = "state:*", time = 2011)
 #' head(saipe)}
 #'
+#' # Get county business patterns data for a specific NAICS sector
+#'cbp_2016 <- getCensus(name = "cbp",
+#'  vintage = "2016",
+#'  vars = c("EMP", "ESTAB", "NAICS2012_TTL", "GEO_TTL"),
+#'  region = "state:*",
+#'  naics2012 = "23")
 getCensus <- function(name, vintage=NULL, key=Sys.getenv("CENSUS_KEY"), vars, region, regionin=NULL, time=NULL, date=NULL, period=NULL, monthly=NULL, category_code=NULL, data_type_code=NULL, naics2012=NULL, naics2007=NULL, naics2002=NULL, naics1997=NULL, sic=NULL) {
 	constructURL <- function(name, vintage) {
 		if (is.null(vintage)) {

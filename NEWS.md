@@ -1,3 +1,6 @@
+# censusapi 0.4.0
+* Adds support for NAICS code arguments used in [Business Patterns](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html) APIs and [Economic Census](https://www.census.gov/data/developers/data-sets/economic-census.html) APIs.
+
 # censusapi 0.3.0
 * Does not convert ACS annotation flag variables into numeric columns.
 * Puts lowercase variable name columns first (geographies), rather than all non-numeric columns.
