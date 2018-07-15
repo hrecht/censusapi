@@ -1,10 +1,15 @@
 ---
 title: "Example masterlist"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+    df_print: kable
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  
 ---
 
 ```{r, echo = FALSE}
@@ -38,7 +43,7 @@ acs_income <- getCensus(name = "acs/acs5",
 	regionin = "state:02")
 head(acs_income)
 ```
-## [American Community Survey Migration Flows](https://www.census.gov/data/developers/data-sets/acs-migration-flows.html)
+### [American Community Survey Migration Flows](https://www.census.gov/data/developers/data-sets/acs-migration-flows.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 flows <- getCensus(name = "acs/flows",
 	vintage = "2015",
@@ -47,6 +52,15 @@ flows <- getCensus(name = "acs/flows",
 	regionin = "state:6")
 head(flows)
 ```
+### [American Community Survey Language Statistics](https://www.census.gov/data/developers/data-sets/language-stats.html)
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+languages <- getCensus(name = "language",
+	vintage = "2013",
+	vars = c("EST", "LAN", "LANLABEL"),
+	region = "state:36")
+head(languages)
+```
+
 ## [Annual Survey of Entrepreneurs](https://www.census.gov/data/developers/data-sets/ase.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 ase_csa <- getCensus(name = "ase/csa",
@@ -88,7 +102,21 @@ asm_product <- getCensus(name = "timeseries/asm/product",
 	pscode = "311111")
 head(asm_product)
 ```
-## Business Dynamics Statistics
+## [Business Dynamics Statistics](https://www.census.gov/data/developers/data-sets/business-dynamics.html)
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+firms_states <- getCensus(name = "timeseries/bds/firms",
+	vars = c("firms", "emp"),
+	region = "state:*",
+	time = "2014")
+head(firms_states)
+
+firms_years <- getCensus(name = "timeseries/bds/firms",
+	vars = c("firms", "emp"),
+	region = "state:01",
+	time = "from 1977 to 2014")
+head(firms_years)
+```
+
 ## [County Business Patterns and Nonemployer Statistics](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 cbp_2016 <- getCensus(name = "cbp",
@@ -105,8 +133,22 @@ data2010 <- getCensus(name = "sf1", vintage = 2010,
 	region = "block:*", regionin = "state:36+county:027")
 head(data2010)
 ```
-## Decennial Census Surname Files
-## Economic Census
+### Decennial Census Surname Files
+## [Economic Census](https://www.census.gov/data/developers/data-sets/economic-census.html)
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+ewks_2012 <- getCensus(name = "ewks",
+	vintage = "2012",
+	vars = c("EMP", "OPTAX", "GEOTYPE"),
+	region = "state:*",
+	naics2012 = "54")
+head(ewks_2012)
+ewks_2007 <- getCensus(name = "ewks",
+	vintage = "2007",
+	vars = c("EMP", "OPTAX", "GEOTYPE"),
+	region = "state:*",
+	naics2007 = "54")
+head(ewks_2007)
+```
 ## [Economic Indicators](https://www.census.gov/data/developers/data-sets/economic-indicators.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 eits <- getCensus(name = "timeseries/eits/resconst",
@@ -123,10 +165,11 @@ sahie <- getCensus(name = "timeseries/healthins/sahie",
 	time = 2015)
 head(sahie)
 ```
-## International Data Base 
-## International Trade
-## Language Statistics ACS
+## [International Data Base](https://www.census.gov/data/developers/data-sets/international-database.html)
+## [International Trade](https://www.census.gov/data/developers/data-sets/international-trade.html)
+
 ## [Population Estimates and Projections](https://www.census.gov/data/developers/data-sets/popest-popproj.html)
+### [Population Estimates](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 popest <- getCensus(name = "pep/population",
 	vintage = "2016",
@@ -142,6 +185,15 @@ popest_housing <- getCensus(name = "pep/housing",
 	regionin = "state:2")
 head(popest_housing)
 ```
+### [Population Projections](https://www.census.gov/data/developers/data-sets/popest-popproj/popproj.html)
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+popproj <- getCensus(name = "pep/projagegroups",
+	vintage = "2014",
+	vars = c("YEAR", "POP"),
+	region = "us:1")
+head(popproj)
+```
+
 ## [Poverty Statistics](https://www.census.gov/data/developers/data-sets/Poverty-Statistics.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 saipe <- getCensus(name = "timeseries/poverty/saipe",
@@ -150,8 +202,44 @@ saipe <- getCensus(name = "timeseries/poverty/saipe",
 	time = 2011)
 head(saipe)
 ```
-## Quarterly Workforce Indicators
-## Survey of Business Owners
-## The Planning Database
+## [Quarterly Workforce Indicators](https://www.census.gov/data/developers/data-sets/qwi.html)
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+qwi_counties <- getCensus(name = "timeseries/qwi/sa",
+								 vars = c("Emp", "EarnBeg"),
+								 region = "county:*",
+								 regionin = "state:01",
+								 time = "2016-Q1")
+head(qwi_counties)
+
+qwi_time <- getCensus(name = "timeseries/qwi/sa",
+								 vars = c("Emp", "EarnBeg"),
+								 region = "state:01",
+								 time = "from 2007 to 2017")
+head(qwi_time)
+```
+## [Survey of Business Owners](https://www.census.gov/data/developers/data-sets/business-owners.html)
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+sbo <- getCensus(name = "sbo",
+	vintage = "2012",
+	vars = c("GEO_TTL", "RCPSZFI", "RCPSZFI_TTL", "FIRMPDEMP"),
+	region = "state:*")
+head(sbo)
+
+sbo_groups <- getCensus(name = "sbo",
+	vintage = "2012",
+	vars = c("GEO_TTL", "RACE_GROUP", "RACE_GROUP_TTL", "FIRMPDEMP"),
+	region = "county:*",
+	regionin = "state:09")
+head(sbo_groups)
+```
+## [The Planning Database](https://www.census.gov/data/developers/data-sets/planning-database.html)
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+pdb <- getCensus(name = "pdb/blockgroup",
+	vintage = "2016",
+	vars = c("County_name", "State_name", "GIDBG", "Tot_Population_CEN_2010", "Mail_Return_Rate_CEN_2010"),
+	region = "block group:*",
+	regionin = "state:01+county:001")
+head(pdb)
+```
 ## Disclaimer
 This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.
