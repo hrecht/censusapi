@@ -2,10 +2,12 @@ navbar:
   title: ~
   type: default
   left:
-  - text: Getting started with censusapi
-    href: articles/getting-started.html
   - text: Reference
     href: reference/index.html
+  - text: Getting started with censusapi
+    href: articles/getting-started.html
+  - text: Example master list
+    href: articles/example-masterlist.html
   - text: News
     href: news/index.html
   right:
