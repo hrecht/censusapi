@@ -7,7 +7,8 @@
 getCensus(name, vintage = NULL, key = Sys.getenv("CENSUS_KEY"), vars,
   region, regionin = NULL, time = NULL, date = NULL, period = NULL,
   monthly = NULL, category_code = NULL, data_type_code = NULL,
-  naics2012 = NULL, naics2007 = NULL, naics2002 = NULL)
+  naics2012 = NULL, naics2007 = NULL, naics2002 = NULL,
+  naics1997 = NULL, sic = NULL)
 }
 \arguments{
 \item{name}{API name - e.g. acs5. See list at https://api.census.gov/data.html}
@@ -26,7 +27,7 @@ getCensus(name, vintage = NULL, key = Sys.getenv("CENSUS_KEY"), vars,
 
 \item{category_code, data_type_code}{Arguments used in Economic Indicators Time Series API}
 
-\item{naics2012, naics2007, naics2002}{Argument used in Economy Wide Key Statistics API}
+\item{naics2012, naics2007, naics2002, naics1997, sic}{Arguments used in Economy Wide Key Statistics APIs and Business Patterns APIs}
 }
 \description{
 Retrieve Census data from a given API
