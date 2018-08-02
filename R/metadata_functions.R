@@ -69,10 +69,10 @@ listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 
 		# Manual fill with NAs as needed to avoid adding a dplyr::bind_rows or similar dependency
 		cols <- unique(unlist(lapply(raw$variables, names)))
-		cols <- cols[!(cols %in% c("predicateOnly", "datetime", "validValues"))]
+		cols <- cols[!(cols %in% c("predicateOnly", "datetime", "values"))]
 		makeDf <- function(d) {
-			if("validValues" %in% names(d)) {
-				d$validValues <- NULL
+			if("values" %in% names(d)) {
+				d$values <- NULL
 			}
 			df <- data.frame(d)
 			df[, setdiff(cols, names(df))] <- NA
