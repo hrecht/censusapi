@@ -6,16 +6,19 @@
 getFunction <- function(apiurl, key, get, region, regionin, time, date, period, monthly, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic) {
 	# Return API's built in error message if invalid call
 	apiCheck <- function(req) {
-		if (req$status_code==400) stop(httr::content(req, as = "text"), call. = FALSE)
+		if (req$status_code==400) {
+			error_message <- (gsub("<[^>]*>", "", httr::content(req, as="text")))
+			stop(paste("The Census Bureau returned the following error message:\n", error_message))
+		}
 		# Some time series don't give error messages, just don't resolve (e.g. SAIPE)
-		if (req$status_code==204) stop("204, no content. If using a time series API, check time period inputs - given time period may be unavailable.", call. = FALSE)
+		if (req$status_code==204) stop("204, no content was returned.\nSee ?listCensusMetadata to learn more about valid API options.", call. = FALSE)
 		if (identical(httr::content(req, as = "text"), "")) stop("No output to parse", call. = FALSE)
 	}
 
 	apiParse <- function (req) {
 		if (jsonlite::validate(httr::content(req, as="text"))[1] == FALSE) {
 			error_message <- (gsub("<[^>]*>", "", httr::content(req, as="text")))
-			stop(paste("API response is not JSON\n Error message:", error_message))
+			stop(paste("The Census Bureau returned the following error message:\n", error_message))
 		} else {
 			raw <- jsonlite::fromJSON(httr::content(req, as = "text"))
 		}
@@ -42,20 +45,11 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 		df[] <- lapply(df, as.character)
 		# Make columns numeric if they have numbers in the column name - note some APIs use string var names
 		# For ACS data, do not make columns numeric if they are ACS annotation variables - ending in MA or EA or SS
-		# Do not make label variables (ending in _TTL) for economic APIs numeric
-		if(!grepl("acs|ewks|cbp|ase", apiurl)) {
-			value_cols <- grep("[0-9]", names(df), value=TRUE)
-			for(col in value_cols) df[,col] <- as.numeric(df[,col])
-		} else if(grepl("ase/", apiurl)) {
-			value_cols <- grep("[0-9]", names(df), value=TRUE)
-			error_cols <- grep("MA|EA|SS|_TTL|_NAME|NAICS2012", value_cols, value=TRUE, ignore.case = T)
-			for(col in setdiff(value_cols, error_cols)) df[,col] <- as.numeric(df[,col])
-		}
-		else {
-			value_cols <- grep("[0-9]", names(df), value=TRUE)
-			error_cols <- grep("MA|EA|SS|_TTL|_NAME", value_cols, value=TRUE, ignore.case = T)
-			for(col in setdiff(value_cols, error_cols)) df[,col] <- as.numeric(df[,col])
-		}
+		# Do not make label variables (ending in _TTL) numeric
+		value_cols <- grep("[0-9]", names(df), value=TRUE)
+		error_cols <- grep("MA|EA|SS|_TTL|_NAME|NAICS2012|NAICS2012_TTL|fage4|FAGE4", value_cols, value=TRUE, ignore.case = T)
+		for(col in setdiff(value_cols, error_cols)) df[,col] <- as.numeric(df[,col])
+
 		row.names(df) <- NULL
 		return(df)
 	}

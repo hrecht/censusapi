@@ -111,7 +111,7 @@ head(asm_product)
 [Business Dynamics Statistics documentation](https://www.census.gov/data/developers/data-sets/business-dynamics.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 firms_states <- getCensus(name = "timeseries/bds/firms",
-	vars = c("firms", "emp"),
+	vars = c("firms", "emp", "fage4"),
 	region = "state:*",
 	time = 2014)
 head(firms_states)
@@ -125,6 +125,8 @@ head(firms_years)
 
 ## County Business Patterns and Nonemployer Statistics
 [County Business Patterns and Nonemployer Statistics documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html)
+
+[County Business Patterns](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/cbp-api.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 cbp_2016 <- getCensus(name = "cbp",
  vintage = 2016,
@@ -132,6 +134,25 @@ cbp_2016 <- getCensus(name = "cbp",
  region = "state:*",
  naics2012 = "23")
  head(cbp_2016)
+```
+
+[Zip Codes Business Patterns](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html)
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+zbp_2016 <- getCensus(name = "zbp",
+ vintage = 2016,
+ vars = c("GEO_TTL", "EMP"),
+ region = "zipcode:*")
+head(zbp_2016)
+```
+
+[Nonemployer statistics](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/nonemp-api.html)
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+nonemp <- getCensus(name = "nonemp",
+ vintage = 2016,
+ vars = c("GEO_TTL", "NRCPTOT", "NAICS2012_TTL"),
+ region = "state:*",
+ naics2012 = "54")
+head(nonemp)
 ```
 
 ## Decennial Census

@@ -63,7 +63,7 @@ documenting variables used in a given project." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.1</span>
       </span>
     </div>
 
@@ -150,8 +150,8 @@ Options are "all", "name", "label", or "concept".</p></td>
 </div><div class='input'><span class='no'>myvars</span> <span class='kw'>&lt;-</span> <span class='fu'>makeVarlist</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sf1"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
         <span class='kw'>find</span> <span class='kw'>=</span> <span class='st'>"military"</span>, <span class='kw'>varsearch</span> <span class='kw'>=</span> <span class='st'>"label"</span>)
 <span class='no'>militarydt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getCensus.html'>getCensus</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sf1"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
-        <span class='kw'>vars</span> <span class='kw'>=</span> <span class='no'>myvars</span>, <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"state:*"</span>)
-
+        <span class='kw'>vars</span> <span class='kw'>=</span> <span class='no'>myvars</span>, <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"state:*"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in apiParse(req): The Census Bureau returned the following error message:</span>
+#&gt; <span class='error'> There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience.</span></div><div class='input'>
 <span class='co'># Return a data frame of all "h16" variables</span>
 <span class='no'>vartable</span> <span class='kw'>&lt;-</span> <span class='fu'>makeVarlist</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sf1"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
         <span class='kw'>find</span> <span class='kw'>=</span> <span class='st'>"h16"</span>, <span class='kw'>varsearch</span> <span class='kw'>=</span> <span class='st'>"concept"</span>,

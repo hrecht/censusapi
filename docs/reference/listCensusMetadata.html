@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.1</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@ or "geographies" or "g" to return geographies. Default is variables.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>varsbds</span><span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"v"</span>)
+    <pre class="examples"><div class='input'><span class='no'>varsbds</span><span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"variables"</span>)
 <span class='fu'>head</span>(<span class='no'>varsbds</span>)</div><div class='output co'>#&gt;                       name                    label                concept
 #&gt; 1 job_creation_rate_births Job creation rate births    Economic Statistics
 #&gt; 2                     sic1          Industry Sector    Economic Statistics
@@ -148,26 +148,26 @@ or "geographies" or "g" to return geographies. Default is variables.</p></td>
 #&gt; 4        string   N/A     0 default displayed
 #&gt; 5           int   N/A     0              &lt;NA&gt;
 #&gt; 6          &lt;NA&gt;   N/A     0              &lt;NA&gt;</div><div class='input'>
-<span class='no'>geosbds</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"g"</span>)
-<span class='fu'>head</span>(<span class='no'>geosbds</span>)</div><div class='output co'>#&gt;                            name geoLevelId
-#&gt; 1                            us        010
-#&gt; 2 metropolitan statistical area        310
-#&gt; 3                         state        040</div><div class='input'>
-<span class='no'>geosacs</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2015</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"g"</span>)
-<span class='fu'>head</span>(<span class='no'>geosacs</span>)</div><div class='output co'>#&gt;                                                          name geoLevelId
-#&gt; 1 metropolitan statistical area/micropolitan statistical area        310
-#&gt; 2                                                          us        010
-#&gt; 3                                                      region        020
-#&gt; 4                                                    division        030
-#&gt; 5                                                  urban area        400
-#&gt; 6  american indian area/alaska native area/hawaiian home land        250
-#&gt;   requires wildcard optionalWithWCFor
-#&gt; 1     NULL     NULL              &lt;NA&gt;
-#&gt; 2     NULL     NULL              &lt;NA&gt;
-#&gt; 3     NULL     NULL              &lt;NA&gt;
-#&gt; 4     NULL     NULL              &lt;NA&gt;
-#&gt; 5     NULL     NULL              &lt;NA&gt;
-#&gt; 6     NULL     NULL              &lt;NA&gt;</div></pre>
+<span class='no'>geosbds</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"geography"</span>)
+<span class='fu'>head</span>(<span class='no'>geosbds</span>)</div><div class='output co'>#&gt;                            name geoLevelId referenceDate
+#&gt; 1                            us        010    2012-01-01
+#&gt; 2 metropolitan statistical area        310          &lt;NA&gt;
+#&gt; 3                         state        040    2012-01-01</div><div class='input'>
+<span class='no'>geosacs</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2016</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"geography"</span>)
+<span class='fu'>head</span>(<span class='no'>geosacs</span>)</div><div class='output co'>#&gt;                 name geoLevelDisplay referenceDate      requires wildcard
+#&gt; 1                 us             010    2015-01-01          NULL     NULL
+#&gt; 2             region             020    2015-01-01          NULL     NULL
+#&gt; 3           division             030    2015-01-01          NULL     NULL
+#&gt; 4              state             040    2015-01-01          NULL     NULL
+#&gt; 5             county             050    2015-01-01         state    state
+#&gt; 6 county subdivision             060    2015-01-01 state, county   county
+#&gt;   optionalWithWCFor
+#&gt; 1              &lt;NA&gt;
+#&gt; 2              &lt;NA&gt;
+#&gt; 3              &lt;NA&gt;
+#&gt; 4              &lt;NA&gt;
+#&gt; 5             state
+#&gt; 6            county</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

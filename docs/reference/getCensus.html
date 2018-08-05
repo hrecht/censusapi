@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.1</span>
       </span>
     </div>
 
@@ -239,14 +239,8 @@
  <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='st'>"2016"</span>,
  <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"EMP"</span>, <span class='st'>"ESTAB"</span>, <span class='st'>"NAICS2012_TTL"</span>, <span class='st'>"GEO_TTL"</span>),
  <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"state:*"</span>,
- <span class='kw'>naics2012</span> <span class='kw'>=</span> <span class='st'>"23"</span>)
- <span class='fu'>head</span>(<span class='no'>cbp_2016</span>)</div><div class='output co'>#&gt;   state    EMP ESTAB NAICS2012_TTL    GEO_TTL NAICS2012
-#&gt; 1    01  82327  7424  Construction    Alabama        23
-#&gt; 2    02  17022  2521  Construction     Alaska        23
-#&gt; 3    04 141740 11921  Construction    Arizona        23
-#&gt; 4    05  45609  5293  Construction   Arkansas        23
-#&gt; 5    06 723574 71981  Construction California        23
-#&gt; 6    08 152325 17730  Construction   Colorado        23</div></pre>
+ <span class='kw'>naics2012</span> <span class='kw'>=</span> <span class='st'>"23"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in apiParse(req): The Census Bureau returned the following error message:</span>
+#&gt; <span class='error'> There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience.</span></div><div class='input'> <span class='fu'>head</span>(<span class='no'>cbp_2016</span>)</div><div class='output co'>#&gt; <span class='error'>Error in head(cbp_2016): object 'cbp_2016' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -105,8 +105,5 @@ sahie_annual
 
 Read more on how to build a `censusapi` call in [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html) and see examples from every API in the [example master list](https://hrecht.github.io/censusapi/articles/example-masterlist.html).
 
-## Time series note
-While the APIs generally return specific error messages for invalid variables or geographies, they currently return no content (status 204) without an error message when an invalid year is specified in some time series. If you're getting repeated 204 responses double check the Census documentation to make sure your time period is valid.
-
 ## Disclaimer
 This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.

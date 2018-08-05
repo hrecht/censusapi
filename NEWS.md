@@ -1,3 +1,9 @@
+# censusapi 0.4.1
+* Fixes bug in `listCensusMetadata` variables call caused by an underlying Census API change, which renamed `validValues` to `values` for some endpoints.
+* Converts variable metadata columns from factors to characters.
+* Applies numeric conversion exclusions to all API endpoints.
+* Improves language surrounding error messages that the Census Bureau returns.
+
 # censusapi 0.4.0
 * Adds support for NAICS code arguments used in [Business Patterns](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html) APIs, [Economic Census](https://www.census.gov/data/developers/data-sets/economic-census.html) APIs, and [Annual Survey of Manufactures](https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html) APIs.
 

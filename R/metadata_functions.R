@@ -34,13 +34,13 @@ listCensusApis <- function() {
 #' @keywords metadata
 #' @export
 #' @examples
-#' varsbds<- listCensusMetadata(name = "timeseries/bds/firms", type = "v")
+#' varsbds<- listCensusMetadata(name = "timeseries/bds/firms", type = "variables")
 #' head(varsbds)
 #'
-#' geosbds <- listCensusMetadata(name = "timeseries/bds/firms", type = "g")
+#' geosbds <- listCensusMetadata(name = "timeseries/bds/firms", type = "geography")
 #' head(geosbds)
 #'
-#' geosacs <- listCensusMetadata(name = "acs5", vintage = 2015, type = "g")
+#' geosacs <- listCensusMetadata(name = "acs/acs5", vintage = 2016, type = "geography")
 #' head(geosacs)
 listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 	constructURL <- function(name, vintage) {
@@ -69,10 +69,13 @@ listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 
 		# Manual fill with NAs as needed to avoid adding a dplyr::bind_rows or similar dependency
 		cols <- unique(unlist(lapply(raw$variables, names)))
-		cols <- cols[!(cols %in% c("predicateOnly", "datetime", "validValues"))]
+		cols <- cols[!(cols %in% c("predicateOnly", "datetime", "validValues", "values"))]
 		makeDf <- function(d) {
 			if("validValues" %in% names(d)) {
 				d$validValues <- NULL
+			}
+			if("values" %in% names(d)) {
+				d$values <- NULL
 			}
 			df <- data.frame(d)
 			df[, setdiff(cols, names(df))] <- NA
@@ -85,6 +88,7 @@ listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 		# Clean up
 		dt <- cbind(name = row.names(dt), dt)
 		row.names(dt) <- NULL
+		dt[] <- lapply(dt, as.character)
 
 	} else if (type %in% c("geography", "geographies", "g")) {
 		u <- paste(apiurl, "geography.json", sep="/")

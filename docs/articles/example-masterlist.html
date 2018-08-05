@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.1</span>
       </span>
     </div>
 
@@ -792,7 +792,7 @@
 <a href="#business-dynamics-statistics" class="anchor"></a>Business Dynamics Statistics</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/business-dynamics.html">Business Dynamics Statistics documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">firms_states &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/bds/firms"</span>,
-    <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"firms"</span>, <span class="st">"emp"</span>),
+    <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"firms"</span>, <span class="st">"emp"</span>, <span class="st">"fage4"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>,
     <span class="dt">time =</span> <span class="dv">2014</span>)
 <span class="kw">head</span>(firms_states)</code></pre></div>
@@ -801,43 +801,50 @@
 <thead><tr class="header">
 <th align="left">firms</th>
 <th align="left">emp</th>
+<th align="left">fage4</th>
 <th align="left">time</th>
 <th align="left">state</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">66639</td>
-<td align="left">1594940</td>
+<td align="left">4224</td>
+<td align="left">31215</td>
+<td align="left">a</td>
 <td align="left">2014</td>
 <td align="left">01</td>
 </tr>
 <tr class="even">
-<td align="left">13668</td>
-<td align="left">265837</td>
+<td align="left">956</td>
+<td align="left">3709</td>
+<td align="left">a</td>
 <td align="left">2014</td>
 <td align="left">02</td>
 </tr>
 <tr class="odd">
-<td align="left">87630</td>
-<td align="left">2197999</td>
+<td align="left">7519</td>
+<td align="left">52198</td>
+<td align="left">a</td>
 <td align="left">2014</td>
 <td align="left">04</td>
 </tr>
 <tr class="even">
-<td align="left">44785</td>
-<td align="left">986738</td>
+<td align="left">2984</td>
+<td align="left">19464</td>
+<td align="left">a</td>
 <td align="left">2014</td>
 <td align="left">05</td>
 </tr>
 <tr class="odd">
-<td align="left">618806</td>
-<td align="left">13507087</td>
+<td align="left">55434</td>
+<td align="left">324873</td>
+<td align="left">a</td>
 <td align="left">2014</td>
 <td align="left">06</td>
 </tr>
 <tr class="even">
-<td align="left">109377</td>
-<td align="left">2144675</td>
+<td align="left">9648</td>
+<td align="left">49369</td>
+<td align="left">a</td>
 <td align="left">2014</td>
 <td align="left">08</td>
 </tr>
@@ -902,6 +909,7 @@
 <h2 class="hasAnchor">
 <a href="#county-business-patterns-and-nonemployer-statistics" class="anchor"></a>County Business Patterns and Nonemployer Statistics</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html">County Business Patterns and Nonemployer Statistics documentation</a></p>
+<p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/cbp-api.html">County Business Patterns</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cbp_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"cbp"</span>,
  <span class="dt">vintage =</span> <span class="dv">2016</span>,
  <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"NAICS2012_TTL"</span>, <span class="st">"GEO_TTL"</span>),
@@ -916,7 +924,7 @@
 <th align="left">ESTAB</th>
 <th align="left">NAICS2012_TTL</th>
 <th align="left">GEO_TTL</th>
-<th align="right">NAICS2012</th>
+<th align="left">NAICS2012</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -925,7 +933,7 @@
 <td align="left">7424</td>
 <td align="left">Construction</td>
 <td align="left">Alabama</td>
-<td align="right">23</td>
+<td align="left">23</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
@@ -933,7 +941,7 @@
 <td align="left">2521</td>
 <td align="left">Construction</td>
 <td align="left">Alaska</td>
-<td align="right">23</td>
+<td align="left">23</td>
 </tr>
 <tr class="odd">
 <td align="left">04</td>
@@ -941,7 +949,7 @@
 <td align="left">11921</td>
 <td align="left">Construction</td>
 <td align="left">Arizona</td>
-<td align="right">23</td>
+<td align="left">23</td>
 </tr>
 <tr class="even">
 <td align="left">05</td>
@@ -949,7 +957,7 @@
 <td align="left">5293</td>
 <td align="left">Construction</td>
 <td align="left">Arkansas</td>
-<td align="right">23</td>
+<td align="left">23</td>
 </tr>
 <tr class="odd">
 <td align="left">06</td>
@@ -957,7 +965,7 @@
 <td align="left">71981</td>
 <td align="left">Construction</td>
 <td align="left">California</td>
-<td align="right">23</td>
+<td align="left">23</td>
 </tr>
 <tr class="even">
 <td align="left">08</td>
@@ -965,7 +973,116 @@
 <td align="left">17730</td>
 <td align="left">Construction</td>
 <td align="left">Colorado</td>
-<td align="right">23</td>
+<td align="left">23</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html">Zip Codes Business Patterns</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">zbp_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"zbp"</span>,
+ <span class="dt">vintage =</span> <span class="dv">2016</span>,
+ <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"GEO_TTL"</span>, <span class="st">"EMP"</span>),
+ <span class="dt">region =</span> <span class="st">"zipcode:*"</span>)
+<span class="kw">head</span>(zbp_<span class="dv">2016</span>)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">zipcode</th>
+<th align="left">GEO_TTL</th>
+<th align="left">EMP</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">00501</td>
+<td align="left">00501(HOLTSVILLE,NY)</td>
+<td align="left">0</td>
+</tr>
+<tr class="even">
+<td align="left">01001</td>
+<td align="left">01001(AGAWAM,MA)</td>
+<td align="left">9127</td>
+</tr>
+<tr class="odd">
+<td align="left">01002</td>
+<td align="left">01002(AMHERST,MA)</td>
+<td align="left">18894</td>
+</tr>
+<tr class="even">
+<td align="left">01003</td>
+<td align="left">01003(AMHERST,MA)</td>
+<td align="left">288</td>
+</tr>
+<tr class="odd">
+<td align="left">01004</td>
+<td align="left">01004(AMHERST,MA)</td>
+<td align="left">193</td>
+</tr>
+<tr class="even">
+<td align="left">01005</td>
+<td align="left">01005(BARRE,MA)</td>
+<td align="left">1089</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/nonemp-api.html">Nonemployer statistics</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nonemp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"nonemp"</span>,
+ <span class="dt">vintage =</span> <span class="dv">2016</span>,
+ <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"GEO_TTL"</span>, <span class="st">"NRCPTOT"</span>, <span class="st">"NAICS2012_TTL"</span>),
+ <span class="dt">region =</span> <span class="st">"state:*"</span>,
+ <span class="dt">naics2012 =</span> <span class="st">"54"</span>)
+<span class="kw">head</span>(nonemp)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">GEO_TTL</th>
+<th align="left">NRCPTOT</th>
+<th align="left">NAICS2012_TTL</th>
+<th align="left">NAICS2012</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">1284130</td>
+<td align="left">Professional, scientific, and technical services</td>
+<td align="left">54</td>
+</tr>
+<tr class="even">
+<td align="left">02</td>
+<td align="left">Alaska</td>
+<td align="left">265996</td>
+<td align="left">Professional, scientific, and technical services</td>
+<td align="left">54</td>
+</tr>
+<tr class="odd">
+<td align="left">04</td>
+<td align="left">Arizona</td>
+<td align="left">2991782</td>
+<td align="left">Professional, scientific, and technical services</td>
+<td align="left">54</td>
+</tr>
+<tr class="even">
+<td align="left">05</td>
+<td align="left">Arkansas</td>
+<td align="left">616936</td>
+<td align="left">Professional, scientific, and technical services</td>
+<td align="left">54</td>
+</tr>
+<tr class="odd">
+<td align="left">06</td>
+<td align="left">California</td>
+<td align="left">28746664</td>
+<td align="left">Professional, scientific, and technical services</td>
+<td align="left">54</td>
+</tr>
+<tr class="even">
+<td align="left">08</td>
+<td align="left">Colorado</td>
+<td align="left">3709131</td>
+<td align="left">Professional, scientific, and technical services</td>
+<td align="left">54</td>
 </tr>
 </tbody>
 </table>
@@ -1058,7 +1175,7 @@
 <th align="left">EMP</th>
 <th align="left">OPTAX</th>
 <th align="left">GEOTYPE</th>
-<th align="right">NAICS2012</th>
+<th align="left">NAICS2012</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -1066,42 +1183,42 @@
 <td align="left">89988</td>
 <td align="left">A</td>
 <td align="left">02</td>
-<td align="right">54</td>
+<td align="left">54</td>
 </tr>
 <tr class="even">
 <td align="left">01</td>
 <td align="left">88566</td>
 <td align="left">T</td>
 <td align="left">02</td>
-<td align="right">54</td>
+<td align="left">54</td>
 </tr>
 <tr class="odd">
 <td align="left">01</td>
 <td align="left">1422</td>
 <td align="left">Y</td>
 <td align="left">02</td>
-<td align="right">54</td>
+<td align="left">54</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
 <td align="left">17648</td>
 <td align="left">A</td>
 <td align="left">02</td>
-<td align="right">54</td>
+<td align="left">54</td>
 </tr>
 <tr class="odd">
 <td align="left">02</td>
 <td align="left">17328</td>
 <td align="left">T</td>
 <td align="left">02</td>
-<td align="right">54</td>
+<td align="left">54</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
 <td align="left">320</td>
 <td align="left">Y</td>
 <td align="left">02</td>
-<td align="right">54</td>
+<td align="left">54</td>
 </tr>
 </tbody>
 </table>
@@ -1329,7 +1446,7 @@
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>),
     <span class="dt">region =</span> <span class="st">"state:1"</span>,
     <span class="dt">time =</span> <span class="st">"from 2006 to 2016"</span>)
-<span class="kw">head</span>(sahie_annual)</code></pre></div>
+sahie_annual</code></pre></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
@@ -1374,6 +1491,36 @@
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">16.6</td>
+</tr>
+<tr class="odd">
+<td align="left">2012</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">15.8</td>
+</tr>
+<tr class="even">
+<td align="left">2013</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">15.9</td>
+</tr>
+<tr class="odd">
+<td align="left">2014</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">14.2</td>
+</tr>
+<tr class="even">
+<td align="left">2015</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">11.9</td>
+</tr>
+<tr class="odd">
+<td align="left">2016</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">10.8</td>
 </tr>
 </tbody>
 </table>
@@ -1980,7 +2127,7 @@
 <th align="left">County_name</th>
 <th align="left">State_name</th>
 <th align="right">Tot_Population_CEN_2010</th>
-<th align="right">Mail_Return_Rate_CEN_2010</th>
+<th align="left">Mail_Return_Rate_CEN_2010</th>
 <th align="left">state</th>
 <th align="left">county</th>
 <th align="left">tract</th>
@@ -1992,7 +2139,7 @@
 <td align="left">Autauga County</td>
 <td align="left">Alabama</td>
 <td align="right">698</td>
-<td align="right">81.3</td>
+<td align="left">81.3</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">020100</td>
@@ -2003,7 +2150,7 @@
 <td align="left">Autauga County</td>
 <td align="left">Alabama</td>
 <td align="right">1214</td>
-<td align="right">84.8</td>
+<td align="left">84.8</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">020100</td>
@@ -2014,7 +2161,7 @@
 <td align="left">Autauga County</td>
 <td align="left">Alabama</td>
 <td align="right">1003</td>
-<td align="right">80.2</td>
+<td align="left">80.2</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">020200</td>
@@ -2025,7 +2172,7 @@
 <td align="left">Autauga County</td>
 <td align="left">Alabama</td>
 <td align="right">1167</td>
-<td align="right">82.3</td>
+<td align="left">82.3</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">020200</td>
@@ -2036,7 +2183,7 @@
 <td align="left">Autauga County</td>
 <td align="left">Alabama</td>
 <td align="right">2549</td>
-<td align="right">80.7</td>
+<td align="left">80.7</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">020300</td>
@@ -2047,7 +2194,7 @@
 <td align="left">Autauga County</td>
 <td align="left">Alabama</td>
 <td align="right">824</td>
-<td align="right">76.2</td>
+<td align="left">76.2</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">020300</td>
