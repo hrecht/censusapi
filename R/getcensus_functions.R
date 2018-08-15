@@ -95,7 +95,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #'
 #' # Retreive block-level data within a specific state and county using a nested regionin argument
 #' data2010 <- getCensus(name = "sf1", vintage = 2010,
-#'	vars = c("P0010001", "P0030001"),
+#'	vars = c("P001001", "H010001"),
 #'	region = "block:*", regionin = "state:36+county:27")
 #' head(data2010)
 #'

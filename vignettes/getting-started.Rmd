@@ -178,9 +178,9 @@ The `regionin` argument of `getCensus` can also be used with a string of nested 
 
 The 2010 Decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use `region` to request block level data, and `regionin` to specify the desired state and county.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-data2010 <- getCensus(name = "sf1",
+data2010 <- getCensus(name = "dec/sf1",
 	vintage = 2010,
-	vars = "P0010001", 
+	vars = "P001001", 
 	region = "block:*",
 	regionin = "state:36+county:027")
 head(data2010)

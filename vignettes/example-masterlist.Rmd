@@ -126,7 +126,8 @@ head(firms_years)
 ## County Business Patterns and Nonemployer Statistics
 [County Business Patterns and Nonemployer Statistics documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html)
 
-[County Business Patterns](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/cbp-api.html)
+### County Business Patterns
+[County Business Patterns documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/cbp-api.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 cbp_2016 <- getCensus(name = "cbp",
  vintage = 2016,
@@ -136,16 +137,18 @@ cbp_2016 <- getCensus(name = "cbp",
  head(cbp_2016)
 ```
 
-[Zip Codes Business Patterns](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html)
+### Zip Codes Business Patterns
+[Zip Codes Business Patterns documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 zbp_2016 <- getCensus(name = "zbp",
  vintage = 2016,
  vars = c("GEO_TTL", "EMP"),
- region = "zipcode:*")
+ region = "zipcode:90210")
 head(zbp_2016)
 ```
 
-[Nonemployer statistics](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/nonemp-api.html)
+### Nonemployer statistics
+[Nonemployer statistics documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/nonemp-api.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 nonemp <- getCensus(name = "nonemp",
  vintage = 2016,
@@ -158,12 +161,18 @@ head(nonemp)
 ## Decennial Census
 [Decennial Census documentation](https://www.census.gov/data/developers/data-sets/decennial-census.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-data2010 <- getCensus(name = "sf1",
+data2010 <- getCensus(name = "dec/sf1",
 	vintage = 2010,
-	vars = "P0010001", 
-	region = "block:*",
-	regionin = "state:36+county:027")
+	vars = c("NAME", "P001001", "H010001"), 
+	region = "metropolitan statistical area/micropolitan statistical area:*")
 head(data2010)
+
+data2000 <- getCensus(name = "sf1",
+	vintage = 2000,
+	vars = "P001001", 
+	region = "block:*",
+	regionin = "state:36+county:027+tract:010000")
+head(data2000)
 ```
 
 ### Decennial Census Surname Files
