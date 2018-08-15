@@ -3,6 +3,7 @@
 * Converts variable metadata columns from factors to characters.
 * Applies numeric conversion exclusions to all API endpoints.
 * Improves language surrounding error messages that the Census Bureau returns.
+* Updates 2010 Decennial Census examples to use new 2010 `dec/sf1` endpoint, which will replace 2010 `sf1` endpoint on August 30, 2018.
 
 # censusapi 0.4.0
 * Adds support for NAICS code arguments used in [Business Patterns](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html) APIs, [Economic Census](https://www.census.gov/data/developers/data-sets/economic-census.html) APIs, and [Annual Survey of Manufactures](https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html) APIs.

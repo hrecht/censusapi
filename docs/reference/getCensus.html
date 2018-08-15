@@ -202,15 +202,9 @@
 #&gt; 6         &lt;NA&gt;         &lt;NA&gt;</div><div class='input'>
 <span class='co'># Retreive block-level data within a specific state and county using a nested regionin argument</span>
 <span class='no'>data2010</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sf1"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2010</span>,
-<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"P0010001"</span>, <span class='st'>"P0030001"</span>),
-<span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"block:*"</span>, <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='st'>"state:36+county:27"</span>)
-<span class='fu'>head</span>(<span class='no'>data2010</span>)</div><div class='output co'>#&gt;   state county  tract block P0010001 P0030001
-#&gt; 1    36    027 010000  1020       73       73
-#&gt; 2    36    027 010000  1023        0        0
-#&gt; 3    36    027 010000  1030       68       68
-#&gt; 4    36    027 010000  1031        0        0
-#&gt; 5    36    027 010000  1032        0        0
-#&gt; 6    36    027 010000  1033        0        0</div><div class='input'>
+<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"P001001"</span>, <span class='st'>"H010001"</span>),
+<span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"block:*"</span>, <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='st'>"state:36+county:27"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in apiCheck(req): The Census Bureau returned the following error message:</span>
+#&gt; <span class='error'> error: error: unknown variable 'P001001'</span></div><div class='input'><span class='fu'>head</span>(<span class='no'>data2010</span>)</div><div class='output co'>#&gt; <span class='error'>Error in head(data2010): object 'data2010' not found</span></div><div class='input'>
 <span class='co'># Retreive block-level data for Decennial Census sf1, 2000</span>
 <span class='co'># Note, for this dataset a tract needs to be specified to retrieve blocks</span>
 <span class='no'>data2000</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sf1"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2000</span>,

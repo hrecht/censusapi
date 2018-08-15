@@ -909,7 +909,10 @@
 <h2 class="hasAnchor">
 <a href="#county-business-patterns-and-nonemployer-statistics" class="anchor"></a>County Business Patterns and Nonemployer Statistics</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html">County Business Patterns and Nonemployer Statistics documentation</a></p>
-<p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/cbp-api.html">County Business Patterns</a></p>
+<div id="county-business-patterns" class="section level3">
+<h3 class="hasAnchor">
+<a href="#county-business-patterns" class="anchor"></a>County Business Patterns</h3>
+<p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/cbp-api.html">County Business Patterns documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cbp_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"cbp"</span>,
  <span class="dt">vintage =</span> <span class="dv">2016</span>,
  <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"NAICS2012_TTL"</span>, <span class="st">"GEO_TTL"</span>),
@@ -978,11 +981,15 @@
 </tbody>
 </table>
 </div>
-<p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html">Zip Codes Business Patterns</a></p>
+</div>
+<div id="zip-codes-business-patterns" class="section level3">
+<h3 class="hasAnchor">
+<a href="#zip-codes-business-patterns" class="anchor"></a>Zip Codes Business Patterns</h3>
+<p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html">Zip Codes Business Patterns documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">zbp_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"zbp"</span>,
  <span class="dt">vintage =</span> <span class="dv">2016</span>,
  <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"GEO_TTL"</span>, <span class="st">"EMP"</span>),
- <span class="dt">region =</span> <span class="st">"zipcode:*"</span>)
+ <span class="dt">region =</span> <span class="st">"zipcode:90210"</span>)
 <span class="kw">head</span>(zbp_<span class="dv">2016</span>)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -991,41 +998,18 @@
 <th align="left">GEO_TTL</th>
 <th align="left">EMP</th>
 </tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">00501</td>
-<td align="left">00501(HOLTSVILLE,NY)</td>
-<td align="left">0</td>
-</tr>
-<tr class="even">
-<td align="left">01001</td>
-<td align="left">01001(AGAWAM,MA)</td>
-<td align="left">9127</td>
-</tr>
-<tr class="odd">
-<td align="left">01002</td>
-<td align="left">01002(AMHERST,MA)</td>
-<td align="left">18894</td>
-</tr>
-<tr class="even">
-<td align="left">01003</td>
-<td align="left">01003(AMHERST,MA)</td>
-<td align="left">288</td>
-</tr>
-<tr class="odd">
-<td align="left">01004</td>
-<td align="left">01004(AMHERST,MA)</td>
-<td align="left">193</td>
-</tr>
-<tr class="even">
-<td align="left">01005</td>
-<td align="left">01005(BARRE,MA)</td>
-<td align="left">1089</td>
-</tr>
-</tbody>
+<tbody><tr class="odd">
+<td align="left">90210</td>
+<td align="left">90210(BEVERLY HILLS,CA)</td>
+<td align="left">37602</td>
+</tr></tbody>
 </table>
 </div>
-<p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/nonemp-api.html">Nonemployer statistics</a></p>
+</div>
+<div id="nonemployer-statistics" class="section level3">
+<h3 class="hasAnchor">
+<a href="#nonemployer-statistics" class="anchor"></a>Nonemployer statistics</h3>
+<p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/nonemp-api.html">Nonemployer statistics documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nonemp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"nonemp"</span>,
  <span class="dt">vintage =</span> <span class="dv">2016</span>,
  <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"GEO_TTL"</span>, <span class="st">"NRCPTOT"</span>, <span class="st">"NAICS2012_TTL"</span>),
@@ -1057,30 +1041,30 @@
 <td align="left">54</td>
 </tr>
 <tr class="odd">
-<td align="left">04</td>
-<td align="left">Arizona</td>
-<td align="left">2991782</td>
+<td align="left">08</td>
+<td align="left">Colorado</td>
+<td align="left">3709131</td>
 <td align="left">Professional, scientific, and technical services</td>
 <td align="left">54</td>
 </tr>
 <tr class="even">
-<td align="left">05</td>
-<td align="left">Arkansas</td>
-<td align="left">616936</td>
+<td align="left">10</td>
+<td align="left">Delaware</td>
+<td align="left">600556</td>
 <td align="left">Professional, scientific, and technical services</td>
 <td align="left">54</td>
 </tr>
 <tr class="odd">
-<td align="left">06</td>
-<td align="left">California</td>
-<td align="left">28746664</td>
+<td align="left">12</td>
+<td align="left">Florida</td>
+<td align="left">11147761</td>
 <td align="left">Professional, scientific, and technical services</td>
 <td align="left">54</td>
 </tr>
 <tr class="even">
-<td align="left">08</td>
-<td align="left">Colorado</td>
-<td align="left">3709131</td>
+<td align="left">04</td>
+<td align="left">Arizona</td>
+<td align="left">2991782</td>
 <td align="left">Professional, scientific, and technical services</td>
 <td align="left">54</td>
 </tr>
@@ -1088,16 +1072,70 @@
 </table>
 </div>
 </div>
+</div>
 <div id="decennial-census" class="section level2">
 <h2 class="hasAnchor">
 <a href="#decennial-census" class="anchor"></a>Decennial Census</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/decennial-census.html">Decennial Census documentation</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2010 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"sf1"</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2010 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"dec/sf1"</span>,
     <span class="dt">vintage =</span> <span class="dv">2010</span>,
-    <span class="dt">vars =</span> <span class="st">"P0010001"</span>, 
-    <span class="dt">region =</span> <span class="st">"block:*"</span>,
-    <span class="dt">regionin =</span> <span class="st">"state:36+county:027"</span>)
+    <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"P001001"</span>, <span class="st">"H010001"</span>), 
+    <span class="dt">region =</span> <span class="st">"metropolitan statistical area/micropolitan statistical area:*"</span>)
 <span class="kw">head</span>(data2010)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">metropolitan_statistical_area_micropolitan_statistical_area</th>
+<th align="left">NAME</th>
+<th align="right">P001001</th>
+<th align="right">H010001</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">38660</td>
+<td align="left">Ponce, PR Metro Area</td>
+<td align="right">243147</td>
+<td align="right">237965</td>
+</tr>
+<tr class="even">
+<td align="left">41900</td>
+<td align="left">San Germ?n-Cabo Rojo, PR Metro Area</td>
+<td align="right">137462</td>
+<td align="right">136517</td>
+</tr>
+<tr class="odd">
+<td align="left">41980</td>
+<td align="left">San Juan-Caguas-Guaynabo, PR Metro Area</td>
+<td align="right">2478905</td>
+<td align="right">2455092</td>
+</tr>
+<tr class="even">
+<td align="left">42180</td>
+<td align="left">Santa Isabel, PR Micro Area</td>
+<td align="right">23274</td>
+<td align="right">23250</td>
+</tr>
+<tr class="odd">
+<td align="left">25020</td>
+<td align="left">Guayama, PR Metro Area</td>
+<td align="right">84214</td>
+<td align="right">81901</td>
+</tr>
+<tr class="even">
+<td align="left">32420</td>
+<td align="left">Mayag?ez, PR Metro Area</td>
+<td align="right">106330</td>
+<td align="right">104567</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2000 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"sf1"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2000</span>,
+    <span class="dt">vars =</span> <span class="st">"P001001"</span>, 
+    <span class="dt">region =</span> <span class="st">"block:*"</span>,
+    <span class="dt">regionin =</span> <span class="st">"state:36+county:027+tract:010000"</span>)
+<span class="kw">head</span>(data2000)</code></pre></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
@@ -1105,50 +1143,50 @@
 <th align="left">county</th>
 <th align="left">tract</th>
 <th align="left">block</th>
-<th align="right">P0010001</th>
+<th align="right">P001001</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">36</td>
 <td align="left">027</td>
 <td align="left">010000</td>
-<td align="left">1020</td>
-<td align="right">73</td>
+<td align="left">1000</td>
+<td align="right">18</td>
 </tr>
 <tr class="even">
 <td align="left">36</td>
 <td align="left">027</td>
 <td align="left">010000</td>
-<td align="left">1023</td>
-<td align="right">0</td>
+<td align="left">1001</td>
+<td align="right">26</td>
 </tr>
 <tr class="odd">
 <td align="left">36</td>
 <td align="left">027</td>
 <td align="left">010000</td>
-<td align="left">1030</td>
-<td align="right">68</td>
+<td align="left">1002</td>
+<td align="right">59</td>
 </tr>
 <tr class="even">
 <td align="left">36</td>
 <td align="left">027</td>
 <td align="left">010000</td>
-<td align="left">1031</td>
-<td align="right">0</td>
+<td align="left">1003</td>
+<td align="right">67</td>
 </tr>
 <tr class="odd">
 <td align="left">36</td>
 <td align="left">027</td>
 <td align="left">010000</td>
-<td align="left">1032</td>
-<td align="right">0</td>
+<td align="left">1004</td>
+<td align="right">52</td>
 </tr>
 <tr class="even">
 <td align="left">36</td>
 <td align="left">027</td>
 <td align="left">010000</td>
-<td align="left">1033</td>
-<td align="right">0</td>
+<td align="left">1005</td>
+<td align="right">116</td>
 </tr>
 </tbody>
 </table>
