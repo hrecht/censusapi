@@ -48,9 +48,9 @@ acs_group <- getCensus(name = "acs/acs5", vintage = 2016,
 	head(acs_group)
 
 # Retreive block-level data within a specific state and county using a nested regionin argument
-data2010 <- getCensus(name = "sf1", vintage = 2010,
+data2010 <- getCensus(name = "dec/sf1", vintage = 2010,
 vars = c("P001001", "H010001"),
-region = "block:*", regionin = "state:36+county:27")
+region = "block:*", regionin = "state:36+county:027")
 head(data2010)
 
 # Retreive block-level data for Decennial Census sf1, 2000
