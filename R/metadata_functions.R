@@ -29,19 +29,22 @@ listCensusApis <- function() {
 #'
 #' @param name API name - e.g. acs5. See list at https://api.census.gov/data.html
 #' @param vintage Vintage of dataset, e.g. 2014 - not required for timeseries APIs
-#' @param type Type of metadata to return, either "variables" or "v" to return variables
-#' or "geographies" or "g" to return geographies. Default is variables.
+#' @param type Type of metadata to return, either "variables", "geographies" or "geography", or
+#' "groups". Default is variables.
 #' @keywords metadata
 #' @export
 #' @examples
-#' varsbds<- listCensusMetadata(name = "timeseries/bds/firms", type = "variables")
-#' head(varsbds)
+#' bds_vars <- listCensusMetadata(name = "timeseries/bds/firms", type = "variables")
+#' head(bds_vars)
 #'
-#' geosbds <- listCensusMetadata(name = "timeseries/bds/firms", type = "geography")
-#' head(geosbds)
+#' bds_geos <- listCensusMetadata(name = "timeseries/bds/firms", type = "geography")
+#' head(bds_geos)
 #'
-#' geosacs <- listCensusMetadata(name = "acs/acs5", vintage = 2016, type = "geography")
-#' head(geosacs)
+#' acs_geos <- listCensusMetadata(name = "acs/acs5", vintage = 2016, type = "geography")
+#' head(acs_geos)
+#'
+#' acs_groups <- listCensusMetadata(name = "acs/acs5", vintage = 2016, type = "groups")
+#' head(acs_groups)
 listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 	constructURL <- function(name, vintage) {
 		if (is.null(vintage)) {
@@ -95,8 +98,16 @@ listCensusMetadata <- function(name, vintage=NULL, type="variables") {
 		# Simple json to data.frame conversion
 		raw <- jsonlite::fromJSON(u)
 		dt <- raw$fips
-	} else {
-		stop(paste('For "type", you entered: "', type, '". Did you mean "variables" or "geography"?', sep = ""))
+	} else if (type %in% c("groups", "group")) {
+		u <- paste(apiurl, "groups.json", sep="/")
+		# Simple json to data.frame conversion
+		raw <- jsonlite::fromJSON(u)
+		dt <- raw[[1]]
+		if (is.null(dim(dt))) {
+		stop("Groups are not available for the selected API endpoint.")
+		}
+	}	else {
+		stop(paste('For "type", you entered: "', type, '". Did you mean "variables" or "geography" or "groups"?', sep = ""))
 	}
 	return(dt)
 }

@@ -1,4 +1,5 @@
 # censusapi 0.4.1
+* Adds `groups` type option to `listCensusMetadata`.
 * Fixes bug in `listCensusMetadata` variables call caused by an underlying Census API change, which renamed `validValues` to `values` for some endpoints.
 * Converts variable metadata columns from factors to characters.
 * Applies numeric conversion exclusions to all API endpoints.

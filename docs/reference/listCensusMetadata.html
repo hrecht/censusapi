@@ -126,15 +126,15 @@
     </tr>
     <tr>
       <th>type</th>
-      <td><p>Type of metadata to return, either "variables" or "v" to return variables
-or "geographies" or "g" to return geographies. Default is variables.</p></td>
+      <td><p>Type of metadata to return, either "variables", "geographies" or "geography", or
+"groups". Default is variables.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>varsbds</span><span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"variables"</span>)
-<span class='fu'>head</span>(<span class='no'>varsbds</span>)</div><div class='output co'>#&gt;                       name                    label                concept
+    <pre class="examples"><div class='input'><span class='no'>bds_vars</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"variables"</span>)
+<span class='fu'>head</span>(<span class='no'>bds_vars</span>)</div><div class='output co'>#&gt;                       name                    label                concept
 #&gt; 1 job_creation_rate_births Job creation rate births    Economic Statistics
 #&gt; 2                     sic1          Industry Sector    Economic Statistics
 #&gt; 3        estabs_entry_rate Establishment entry rate    Economic Statistics
@@ -148,13 +148,13 @@ or "geographies" or "g" to return geographies. Default is variables.</p></td>
 #&gt; 4        string   N/A     0 default displayed
 #&gt; 5           int   N/A     0              &lt;NA&gt;
 #&gt; 6          &lt;NA&gt;   N/A     0              &lt;NA&gt;</div><div class='input'>
-<span class='no'>geosbds</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"geography"</span>)
-<span class='fu'>head</span>(<span class='no'>geosbds</span>)</div><div class='output co'>#&gt;                            name geoLevelId referenceDate
+<span class='no'>bds_geos</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"geography"</span>)
+<span class='fu'>head</span>(<span class='no'>bds_geos</span>)</div><div class='output co'>#&gt;                            name geoLevelId referenceDate
 #&gt; 1                            us        010    2012-01-01
 #&gt; 2 metropolitan statistical area        310          &lt;NA&gt;
 #&gt; 3                         state        040    2012-01-01</div><div class='input'>
-<span class='no'>geosacs</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2016</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"geography"</span>)
-<span class='fu'>head</span>(<span class='no'>geosacs</span>)</div><div class='output co'>#&gt;                 name geoLevelDisplay referenceDate      requires wildcard
+<span class='no'>acs_geos</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2016</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"geography"</span>)
+<span class='fu'>head</span>(<span class='no'>acs_geos</span>)</div><div class='output co'>#&gt;                 name geoLevelDisplay referenceDate      requires wildcard
 #&gt; 1                 us             010    2015-01-01          NULL     NULL
 #&gt; 2             region             020    2015-01-01          NULL     NULL
 #&gt; 3           division             030    2015-01-01          NULL     NULL
@@ -167,7 +167,29 @@ or "geographies" or "g" to return geographies. Default is variables.</p></td>
 #&gt; 3              &lt;NA&gt;
 #&gt; 4              &lt;NA&gt;
 #&gt; 5             state
-#&gt; 6            county</div></pre>
+#&gt; 6            county</div><div class='input'>
+<span class='no'>acs_groups</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2016</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"groups"</span>)
+<span class='fu'>head</span>(<span class='no'>acs_groups</span>)</div><div class='output co'>#&gt;      name
+#&gt; 1  B07012
+#&gt; 2  B07013
+#&gt; 3 B13002A
+#&gt; 4 B13002C
+#&gt; 5 B13002B
+#&gt; 6 B13002E
+#&gt;                                                                                                                       description
+#&gt; 1       GEOGRAPHICAL MOBILITY IN THE PAST YEAR BY POVERTY STATUS IN THE PAST 12 MONTHS FOR CURRENT RESIDENCE IN THE UNITED STATES
+#&gt; 2                                     GEOGRAPHICAL MOBILITY IN THE PAST YEAR BY TENURE FOR CURRENT RESIDENCE IN THE UNITED STATES
+#&gt; 3                                      WOMEN 15 TO 50 YEARS WHO HAD A BIRTH IN THE PAST 12 MONTHS BY MARITAL STATUS (WHITE ALONE)
+#&gt; 4          WOMEN 15 TO 50 YEARS WHO HAD A BIRTH IN THE PAST 12 MONTHS BY MARITAL STATUS (AMERICAN INDIAN AND ALASKA NATIVE ALONE)
+#&gt; 5                  WOMEN 15 TO 50 YEARS WHO HAD A BIRTH IN THE PAST 12 MONTHS BY MARITAL STATUS (BLACK OR AFRICAN AMERICAN ALONE)
+#&gt; 6 WOMEN 15 TO 50 YEARS WHO HAD A BIRTH IN THE PAST 12 MONTHS BY MARITAL STATUS (NATIVE HAWAIIAN AND OTHER PACIFIC ISLANDER ALONE)
+#&gt;                                                       variables
+#&gt; 1  https://api.census.gov/data/2016/acs/acs5/groups/B07012.json
+#&gt; 2  https://api.census.gov/data/2016/acs/acs5/groups/B07013.json
+#&gt; 3 https://api.census.gov/data/2016/acs/acs5/groups/B13002A.json
+#&gt; 4 https://api.census.gov/data/2016/acs/acs5/groups/B13002C.json
+#&gt; 5 https://api.census.gov/data/2016/acs/acs5/groups/B13002B.json
+#&gt; 6 https://api.census.gov/data/2016/acs/acs5/groups/B13002E.json</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

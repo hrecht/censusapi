@@ -11,20 +11,23 @@ listCensusMetadata(name, vintage = NULL, type = "variables")
 
 \item{vintage}{Vintage of dataset, e.g. 2014 - not required for timeseries APIs}
 
-\item{type}{Type of metadata to return, either "variables" or "v" to return variables
-or "geographies" or "g" to return geographies. Default is variables.}
+\item{type}{Type of metadata to return, either "variables", "geographies" or "geography", or
+"groups". Default is variables.}
 }
 \description{
 Get variable or geography metadata for a given API as a data frame
 }
 \examples{
-varsbds<- listCensusMetadata(name = "timeseries/bds/firms", type = "variables")
-head(varsbds)
+bds_vars <- listCensusMetadata(name = "timeseries/bds/firms", type = "variables")
+head(bds_vars)
 
-geosbds <- listCensusMetadata(name = "timeseries/bds/firms", type = "geography")
-head(geosbds)
+bds_geos <- listCensusMetadata(name = "timeseries/bds/firms", type = "geography")
+head(bds_geos)
 
-geosacs <- listCensusMetadata(name = "acs/acs5", vintage = 2016, type = "geography")
-head(geosacs)
+acs_geos <- listCensusMetadata(name = "acs/acs5", vintage = 2016, type = "geography")
+head(acs_geos)
+
+acs_groups <- listCensusMetadata(name = "acs/acs5", vintage = 2016, type = "groups")
+head(acs_groups)
 }
 \keyword{metadata}
