@@ -5,6 +5,10 @@ output:
     df_print: kable
 pkgdown:
   as_is: true
+vignette: >
+  %\VignetteIndexEntry{Getting started with censusapi}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
 ---
 
 ```{r, echo = FALSE}
