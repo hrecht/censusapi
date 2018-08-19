@@ -3,7 +3,7 @@
 * local OS X install, R 3.5.0
 * Ubuntu 14.04.5 LTS (on travis-ci), R version 3.4.4 (2017-01-27)
 * Ubuntu 14.04.5 LTS (on travis-ci), R version 3.5.0 (2017-01-27)
-* Ubuntu 14.04.5 LTS (on travis-ci), R version 2018-08-05 r75062
+* Ubuntu 14.04.5 LTS (on travis-ci), R version 2018-08-19 r75169
 * win-builder (devel, release and oldrelease)
 
 ## R CMD check results
