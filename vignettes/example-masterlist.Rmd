@@ -35,6 +35,10 @@ View(apis)
 Here is a work in progress list of examples for each API. More to come. Read more about discovering an API's variable and geography options in [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html)
 
 ## American Community Survey
+
+### ACS Detailed Tables
+
+Get median household income, with associated annotations and margin of error, for census tracts in Alaska.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 acs_income <- getCensus(name = "acs/acs5",
 	vintage = 2016, 
@@ -44,7 +48,47 @@ acs_income <- getCensus(name = "acs/acs5",
 head(acs_income)
 ```
 
-### American Community Survey Migration Flows
+### ACS Subject Tables
+
+Get the percent of people without an internet subscription by income for the five counties of New York City, with associated margins of error: 
+
+* overall: `S2801_C02_019E`
+* income less $20,000: `S2801_C02_023E`
+* income $20,000 to $74,999: `S2801_C02_027E`
+* income $75,000 or greater: `S2801_C02_031E`
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+acs_subject <- getCensus(name = "acs/acs1/subject",
+	vintage = 2017, 
+	vars = c("NAME", "S2801_C02_019E", "S2801_C02_019M",
+					 "S2801_C02_023E", "S2801_C02_023M", 
+					 "S2801_C02_027E", "S2801_C02_027M",
+					 "S2801_C02_031E", "S2801_C02_031M"), 
+	region = "county:005,047,061,081,085",
+	regionin = "state:36")
+head(acs_subject)
+```
+
+
+### ACS Data Profile
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+acs_profile <- getCensus(name = "acs/acs1/profile",
+	vintage = 2017, 
+	vars = "group(DP05)", 
+	region = "region:*")
+```
+
+### ACS Comparison Profiles
+
+Get the mean travel time to work (in minutes) for the past five years.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+acs_comparison <- getCensus(name = "acs/acs1/cprofile",
+	vintage = 2017, 
+	vars = c("NAME", "CP03_2013_025E", "CP03_2014_025E", "CP03_2015_025E", "CP03_2016_025E", "CP03_2017_025E"), 
+	region = "metropolitan statistical area/micropolitan statistical area:*")
+head(acs_comparison)
+```
+
+### ACS Migration Flows
 [American Community Survey Migration Flows documentation](https://www.census.gov/data/developers/data-sets/acs-migration-flows.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 flows <- getCensus(name = "acs/flows",
@@ -57,6 +101,8 @@ head(flows)
 
 ### American Community Survey Language Statistics
 [American Community Survey Language Statistics documentation](https://www.census.gov/data/developers/data-sets/language-stats.html)
+
+Get the number of people in New York state who speak each language.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 languages <- getCensus(name = "language",
 	vintage = 2013,
@@ -209,13 +255,18 @@ head(eits)
 
 ## Health Insurance Statistics
 [Health Insurance Statistics documentation](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html)
+
+Get the uninsured rate by income group in Alabama for a single year.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 sahie <- getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"),
 	region = "state:1",
-	time = 2015)
+	time = 2016)
 head(sahie)
+```
 
+Get the uninsured rate in Alabama for multiple years.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 sahie_annual <- getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT"),
 	region = "state:1",
@@ -241,7 +292,9 @@ popest <- getCensus(name = "pep/population",
 	region = "state:*",
 	date = "9")
 head(popest)
+```
 
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 popest_housing <- getCensus(name = "pep/housing",
 	vintage = 2016,
 	vars = c("DATE", "DATE_DESC", "GEONAME", "HUEST"),
@@ -253,22 +306,38 @@ head(popest_housing)
 ### Population Projections
 [Population Projections documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popproj.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-popproj <- getCensus(name = "pep/projagegroups",
+popproj <- getCensus(name = "pep/projpop",
 	vintage = 2014,
-	vars = c("YEAR", "POP"),
+	vars = c("YEAR", "POP", "AGE"),
 	region = "us:1")
 head(popproj)
 ```
 
 ## Poverty Statistics
 [Poverty Statistics documentation](https://www.census.gov/data/developers/data-sets/Poverty-Statistics.html)
+
+### Current Population Survey Poverty Statistics
+Get national poverty rates by race for the past 50 years.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+poverty <- getCensus(name = "timeseries/poverty/histpov2",
+	vars = c("RACE", "PCTPOV"),
+	region = "us:*",
+	time = "from 1967 to 2017")
+head(poverty)
+```
+
+### Small Area Income and Poverty Estimates
+Get poverty rate for children and overall for a single year.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 saipe <- getCensus(name = "timeseries/poverty/saipe",
 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region = "state:*",
 	time = 2016)
 head(saipe)
+```
 
+Get the poverty rate for children and overall in a single county over time.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 saipe_years <- getCensus(name = "timeseries/poverty/saipe",
 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region = "county:001",

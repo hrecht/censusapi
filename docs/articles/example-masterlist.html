@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.1.9000</span>
       </span>
     </div>
 
@@ -89,6 +89,10 @@
 <div id="american-community-survey" class="section level2">
 <h2 class="hasAnchor">
 <a href="#american-community-survey" class="anchor"></a>American Community Survey</h2>
+<div id="acs-detailed-tables" class="section level3">
+<h3 class="hasAnchor">
+<a href="#acs-detailed-tables" class="anchor"></a>ACS Detailed Tables</h3>
+<p>Get median household income, with associated annotations and margin of error, for census tracts in Alaska.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acs_income &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"acs/acs5"</span>,
     <span class="dt">vintage =</span> <span class="dv">2016</span>, 
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"B19013_001E"</span>, <span class="st">"B19013_001EA"</span>, <span class="st">"B19013_001M"</span>, <span class="st">"B19013_001MA"</span>), 
@@ -171,9 +175,205 @@
 </tbody>
 </table>
 </div>
-<div id="american-community-survey-migration-flows" class="section level3">
+</div>
+<div id="acs-subject-tables" class="section level3">
 <h3 class="hasAnchor">
-<a href="#american-community-survey-migration-flows" class="anchor"></a>American Community Survey Migration Flows</h3>
+<a href="#acs-subject-tables" class="anchor"></a>ACS Subject Tables</h3>
+<p>Get the percent of people without an internet subscription by income for the five counties of New York City, with associated margins of error:</p>
+<ul>
+<li>overall: <code>S2801_C02_019E</code>
+</li>
+<li>income less $20,000: <code>S2801_C02_023E</code>
+</li>
+<li>income $20,000 to $74,999: <code>S2801_C02_027E</code>
+</li>
+<li>income $75,000 or greater: <code>S2801_C02_031E</code>
+</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acs_subject &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"acs/acs1/subject"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2017</span>, 
+    <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"S2801_C02_019E"</span>, <span class="st">"S2801_C02_019M"</span>,
+                     <span class="st">"S2801_C02_023E"</span>, <span class="st">"S2801_C02_023M"</span>, 
+                     <span class="st">"S2801_C02_027E"</span>, <span class="st">"S2801_C02_027M"</span>,
+                     <span class="st">"S2801_C02_031E"</span>, <span class="st">"S2801_C02_031M"</span>), 
+    <span class="dt">region =</span> <span class="st">"county:005,047,061,081,085"</span>,
+    <span class="dt">regionin =</span> <span class="st">"state:36"</span>)
+<span class="kw">head</span>(acs_subject)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">county</th>
+<th align="left">NAME</th>
+<th align="right">S2801_C02_019E</th>
+<th align="right">S2801_C02_019M</th>
+<th align="right">S2801_C02_023E</th>
+<th align="right">S2801_C02_023M</th>
+<th align="right">S2801_C02_027E</th>
+<th align="right">S2801_C02_027M</th>
+<th align="right">S2801_C02_031E</th>
+<th align="right">S2801_C02_031M</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">36</td>
+<td align="left">005</td>
+<td align="left">Bronx County, New York</td>
+<td align="right">22.4</td>
+<td align="right">1.0</td>
+<td align="right">39.9</td>
+<td align="right">2.4</td>
+<td align="right">19.0</td>
+<td align="right">1.5</td>
+<td align="right">6.2</td>
+<td align="right">1.0</td>
+</tr>
+<tr class="even">
+<td align="left">36</td>
+<td align="left">047</td>
+<td align="left">Kings County, New York</td>
+<td align="right">18.8</td>
+<td align="right">0.6</td>
+<td align="right">42.6</td>
+<td align="right">1.8</td>
+<td align="right">18.9</td>
+<td align="right">1.1</td>
+<td align="right">6.0</td>
+<td align="right">0.6</td>
+</tr>
+<tr class="odd">
+<td align="left">36</td>
+<td align="left">061</td>
+<td align="left">New York County, New York</td>
+<td align="right">14.1</td>
+<td align="right">0.8</td>
+<td align="right">40.4</td>
+<td align="right">2.9</td>
+<td align="right">16.1</td>
+<td align="right">1.7</td>
+<td align="right">4.2</td>
+<td align="right">0.7</td>
+</tr>
+<tr class="even">
+<td align="left">36</td>
+<td align="left">081</td>
+<td align="left">Queens County, New York</td>
+<td align="right">15.6</td>
+<td align="right">0.7</td>
+<td align="right">37.0</td>
+<td align="right">3.0</td>
+<td align="right">18.4</td>
+<td align="right">1.3</td>
+<td align="right">6.0</td>
+<td align="right">0.6</td>
+</tr>
+<tr class="odd">
+<td align="left">36</td>
+<td align="left">085</td>
+<td align="left">Richmond County, New York</td>
+<td align="right">19.1</td>
+<td align="right">1.5</td>
+<td align="right">47.6</td>
+<td align="right">5.1</td>
+<td align="right">21.6</td>
+<td align="right">3.5</td>
+<td align="right">8.8</td>
+<td align="right">1.8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="acs-data-profile" class="section level3">
+<h3 class="hasAnchor">
+<a href="#acs-data-profile" class="anchor"></a>ACS Data Profile</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acs_profile &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"acs/acs1/profile"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2017</span>, 
+    <span class="dt">vars =</span> <span class="st">"group(DP05)"</span>, 
+    <span class="dt">region =</span> <span class="st">"region:*"</span>)</code></pre></div>
+</div>
+<div id="acs-comparison-profiles" class="section level3">
+<h3 class="hasAnchor">
+<a href="#acs-comparison-profiles" class="anchor"></a>ACS Comparison Profiles</h3>
+<p>Get the mean travel time to work (in minutes) for the past five years.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acs_comparison &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"acs/acs1/cprofile"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2017</span>, 
+    <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"CP03_2013_025E"</span>, <span class="st">"CP03_2014_025E"</span>, <span class="st">"CP03_2015_025E"</span>, <span class="st">"CP03_2016_025E"</span>, <span class="st">"CP03_2017_025E"</span>), 
+    <span class="dt">region =</span> <span class="st">"metropolitan statistical area/micropolitan statistical area:*"</span>)
+<span class="kw">head</span>(acs_comparison)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">metropolitan_statistical_area_micropolitan_statistical_area</th>
+<th align="left">NAME</th>
+<th align="right">CP03_2013_025E</th>
+<th align="right">CP03_2014_025E</th>
+<th align="right">CP03_2015_025E</th>
+<th align="right">CP03_2016_025E</th>
+<th align="right">CP03_2017_025E</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">10140</td>
+<td align="left">Aberdeen, WA Micro Area</td>
+<td align="right">24.0</td>
+<td align="right">25.0</td>
+<td align="right">23.3</td>
+<td align="right">26.5</td>
+<td align="right">29.6</td>
+</tr>
+<tr class="even">
+<td align="left">10180</td>
+<td align="left">Abilene, TX Metro Area</td>
+<td align="right">16.9</td>
+<td align="right">17.0</td>
+<td align="right">15.6</td>
+<td align="right">19.1</td>
+<td align="right">18.3</td>
+</tr>
+<tr class="odd">
+<td align="left">10300</td>
+<td align="left">Adrian, MI Micro Area</td>
+<td align="right">25.4</td>
+<td align="right">26.8</td>
+<td align="right">29.6</td>
+<td align="right">25.3</td>
+<td align="right">27.7</td>
+</tr>
+<tr class="even">
+<td align="left">10380</td>
+<td align="left">Aguadilla-Isabela, PR Metro Area</td>
+<td align="right">26.0</td>
+<td align="right">24.8</td>
+<td align="right">25.3</td>
+<td align="right">23.9</td>
+<td align="right">25.2</td>
+</tr>
+<tr class="odd">
+<td align="left">10420</td>
+<td align="left">Akron, OH Metro Area</td>
+<td align="right">23.1</td>
+<td align="right">22.9</td>
+<td align="right">24.3</td>
+<td align="right">22.9</td>
+<td align="right">23.2</td>
+</tr>
+<tr class="even">
+<td align="left">10460</td>
+<td align="left">Alamogordo, NM Micro Area</td>
+<td align="right">18.3</td>
+<td align="right">18.4</td>
+<td align="right">17.7</td>
+<td align="right">20.4</td>
+<td align="right">17.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="acs-migration-flows" class="section level3">
+<h3 class="hasAnchor">
+<a href="#acs-migration-flows" class="anchor"></a>ACS Migration Flows</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/acs-migration-flows.html">American Community Survey Migration Flows documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flows &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"acs/flows"</span>,
     <span class="dt">vintage =</span> <span class="dv">2015</span>,
@@ -241,6 +441,7 @@
 <h3 class="hasAnchor">
 <a href="#american-community-survey-language-statistics" class="anchor"></a>American Community Survey Language Statistics</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/language-stats.html">American Community Survey Language Statistics documentation</a></p>
+<p>Get the number of people in New York state who speak each language.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">languages &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"language"</span>,
     <span class="dt">vintage =</span> <span class="dv">2013</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"EST"</span>, <span class="st">"LAN"</span>, <span class="st">"LANLABEL"</span>),
@@ -1413,10 +1614,11 @@
 <h2 class="hasAnchor">
 <a href="#health-insurance-statistics" class="anchor"></a>Health Insurance Statistics</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html">Health Insurance Statistics documentation</a></p>
+<p>Get the uninsured rate by income group in Alabama for a single year.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>),
     <span class="dt">region =</span> <span class="st">"state:1"</span>,
-    <span class="dt">time =</span> <span class="dv">2015</span>)
+    <span class="dt">time =</span> <span class="dv">2016</span>)
 <span class="kw">head</span>(sahie)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -1430,56 +1632,57 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2015</td>
+<td align="left">2016</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">0</td>
 <td align="left">All Incomes</td>
-<td align="left">11.9</td>
+<td align="left">10.8</td>
 </tr>
 <tr class="even">
-<td align="left">2015</td>
+<td align="left">2016</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">1</td>
 <td align="left">&lt;= 200% of Poverty</td>
-<td align="left">19.8</td>
+<td align="left">18.1</td>
 </tr>
 <tr class="odd">
-<td align="left">2015</td>
+<td align="left">2016</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">2</td>
 <td align="left">&lt;= 250% of Poverty</td>
-<td align="left">18.6</td>
+<td align="left">17.0</td>
 </tr>
 <tr class="even">
-<td align="left">2015</td>
+<td align="left">2016</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">3</td>
 <td align="left">&lt;= 138% of Poverty</td>
-<td align="left">21.2</td>
+<td align="left">19.2</td>
 </tr>
 <tr class="odd">
-<td align="left">2015</td>
+<td align="left">2016</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">4</td>
 <td align="left">&lt;= 400% of Poverty</td>
-<td align="left">15.5</td>
+<td align="left">14.2</td>
 </tr>
 <tr class="even">
-<td align="left">2015</td>
+<td align="left">2016</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">5</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">11.8</td>
+<td align="left">11.0</td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>Get the uninsured rate in Alabama for multiple years.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_annual &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>),
     <span class="dt">region =</span> <span class="st">"state:1"</span>,
@@ -1768,6 +1971,68 @@ sahie_annual</code></pre></div>
 <h2 class="hasAnchor">
 <a href="#poverty-statistics" class="anchor"></a>Poverty Statistics</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/Poverty-Statistics.html">Poverty Statistics documentation</a></p>
+<div id="current-population-survey-poverty-statistics" class="section level3">
+<h3 class="hasAnchor">
+<a href="#current-population-survey-poverty-statistics" class="anchor"></a>Current Population Survey Poverty Statistics</h3>
+<p>Get national poverty rates by race for the past 50 years.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">poverty &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/poverty/histpov2"</span>,
+    <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"RACE"</span>, <span class="st">"PCTPOV"</span>),
+    <span class="dt">region =</span> <span class="st">"us:*"</span>,
+    <span class="dt">time =</span> <span class="st">"from 1967 to 2017"</span>)
+<span class="kw">head</span>(poverty)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="left">us</th>
+<th align="left">RACE</th>
+<th align="left">PCTPOV</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2017</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">12.3</td>
+</tr>
+<tr class="even">
+<td align="left">2016</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">12.7</td>
+</tr>
+<tr class="odd">
+<td align="left">2015</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">13.5</td>
+</tr>
+<tr class="even">
+<td align="left">2014</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">14.8</td>
+</tr>
+<tr class="odd">
+<td align="left">2013</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">14.8</td>
+</tr>
+<tr class="even">
+<td align="left">2013</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">14.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="small-area-income-and-poverty-estimates" class="section level3">
+<h3 class="hasAnchor">
+<a href="#small-area-income-and-poverty-estimates" class="anchor"></a>Small Area Income and Poverty Estimates</h3>
+<p>Get poverty rate for children and overall for a single year.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saipe &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/poverty/saipe"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"SAEPOVRT0_17_PT"</span>, <span class="st">"SAEPOVRTALL_PT"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>,
@@ -1828,6 +2093,7 @@ sahie_annual</code></pre></div>
 </tbody>
 </table>
 </div>
+<p>Get the poverty rate for children and overall in a single county over time.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saipe_years &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/poverty/saipe"</span>,
     <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"NAME"</span>, <span class="st">"SAEPOVRT0_17_PT"</span>, <span class="st">"SAEPOVRTALL_PT"</span>),
     <span class="dt">region =</span> <span class="st">"county:001"</span>,
@@ -1895,6 +2161,7 @@ sahie_annual</code></pre></div>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 <div id="quarterly-workforce-indicators" class="section level2">
