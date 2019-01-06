@@ -1,5 +1,5 @@
 Package: censusapi
-Version: 0.4.1.9000
+Version: 0.5.0.9000
 Title: Retrieve Data from the Census APIs
 Authors@R: person("Hannah", "Recht", email = "hrecht2@gmail.com", role = c("aut", "cre"))
 Description: A wrapper for the U.S. Census Bureau APIs that returns data frames of 
