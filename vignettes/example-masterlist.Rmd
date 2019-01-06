@@ -41,7 +41,7 @@ Here is a work in progress list of examples for each API. More to come. Read mor
 Get median household income, with associated annotations and margin of error, for census tracts in Alaska.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 acs_income <- getCensus(name = "acs/acs5",
-	vintage = 2016, 
+	vintage = 2017, 
 	vars = c("NAME", "B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA"), 
 	region = "tract:*",
 	regionin = "state:02")
@@ -92,10 +92,10 @@ head(acs_comparison)
 [American Community Survey Migration Flows documentation](https://www.census.gov/data/developers/data-sets/acs-migration-flows.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 flows <- getCensus(name = "acs/flows",
-	vintage = 2015,
-	vars = c("MOVEDIN", "FULL2_NAME", "FULL1_NAME"),
-	region = "county:*",
-	regionin = "state:6")
+	vintage = 2016,
+	vars = c("MOVEDIN", "MOVEDOUT", "FULL1_NAME", "FULL2_NAME", "GEOID2"),
+	region = "county:001",
+	regionin = "state:01")
 head(flows)
 ```
 
@@ -225,6 +225,14 @@ head(data2000)
 ```
 
 ### Decennial Census Surname Files
+[Decennial Census Surname documentation](https://www.census.gov/data/developers/data-sets/surnames.2010.html)
+Get counts of the most popular surnames
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+surnames <- getCensus(name = "surname",
+	vintage = 2010,
+	vars = c("NAME", "COUNT", "RANK", "PROP100K"))
+head(surnames)
+```
 
 ## Economic Census
 [Economic Census documentation](https://www.census.gov/data/developers/data-sets/economic-census.html)
@@ -277,8 +285,26 @@ sahie_annual
 ## International Data Base
 [International Data Base documentation](https://www.census.gov/data/developers/data-sets/international-database.html)
 
+Get Census Bureau projections of 2020 populations and life expectancy at birth by country.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+intl_pop <- getCensus(name = "timeseries/idb/5year",
+	vars = c("NAME", "FIPS", "POP", "E0"),
+	time = "2020")
+head(intl_pop)
+```
+
 ## International Trade
 [International Trade documentation](https://www.census.gov/data/developers/data-sets/international-trade.html)
+
+Note: The international trade datasets are buggy and frequently give the general error message of "There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience." This error message comes from the U.S. Census Bureau. If you run in to repeated issues or inconsistencies, contact the Census Bureau for help or consider using a bulk data download instead.
+
+Get the general imports value and imports for consumption value for all end-use codes and all countries for January 2018.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+imports <- getCensus(name = "timeseries/intltrade/imports/enduse",
+	vars = c("CTY_CODE", "CTY_NAME", "I_ENDUSE", "I_ENDUSE_LDESC", "GEN_VAL_MO", "CON_VAL_MO"),
+	time = "2018-01")
+head(imports)
+```
 
 ## Population Estimates and Projections
 [Population Estimates and Projections documentation](https://www.census.gov/data/developers/data-sets/popest-popproj.html)
@@ -287,7 +313,7 @@ sahie_annual
 [Population Estimates documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 popest <- getCensus(name = "pep/population",
-	vintage = 2016,
+	vintage = 2017,
 	vars = c("POP", "GEONAME", "DATE_DESC"),
 	region = "state:*",
 	date = "9")
@@ -332,7 +358,7 @@ Get poverty rate for children and overall for a single year.
 saipe <- getCensus(name = "timeseries/poverty/saipe",
 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region = "state:*",
-	time = 2016)
+	time = 2017)
 head(saipe)
 ```
 
@@ -342,7 +368,7 @@ saipe_years <- getCensus(name = "timeseries/poverty/saipe",
 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region = "county:001",
 	regionin = "state:12",
-	time = "from 2000 to 2016")
+	time = "from 2000 to 2017")
 head(saipe_years)
 ```
 

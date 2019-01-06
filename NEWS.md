@@ -1,3 +1,7 @@
+# censusapi 0.5.0.9000
+* Makes `region` an optional argument in `getCensus`, rather than required.
+* Pads fips codes stored in `fips` dataset with zeroes.
+
 # censusapi 0.4.1
 * Adds `groups` type option to `listCensusMetadata`.
 * Fixes bug in `listCensusMetadata` variables call caused by an underlying Census API change, which renamed `validValues` to `values` for some endpoints.

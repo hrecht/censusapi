@@ -8,6 +8,9 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 	apiCheck <- function(req) {
 		if (req$status_code==400) {
 			error_message <- (gsub("<[^>]*>", "", httr::content(req, as="text")))
+			if (error_message == "error: missing 'for' argument") {
+				stop("This dataset requires you to specify a geography with the 'region' argument.")
+			}
 			stop(paste("The Census Bureau returned the following error message:\n", error_message))
 		}
 		# Some time series don't give error messages, just don't resolve (e.g. SAIPE)
@@ -81,14 +84,14 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' @keywords api
 #' @export
 #' @examples
-#' \donttest{df <- getCensus(name = "acs/acs5", vintage = 2016,
+#' \donttest{df <- getCensus(name = "acs/acs5", vintage = 2017,
 #' 	vars = c("B01001_001E", "NAME", "B01002_001E", "B19013_001E"),
 #' 	region = "tract:*", regionin = "state:06")
 #' head(df)
 #'
 #' # Use American Community Survey variable groups to get all data from a given table.
 #' # This returns estimates as well as margins of error and annotation flags.
-#' acs_group <- getCensus(name = "acs/acs5", vintage = 2016,
+#' acs_group <- getCensus(name = "acs/acs5", vintage = 2017,
 #' 	vars = c("NAME", "group(B19013)"),
 #' 	region = "county:*")
 #' 	head(acs_group)
@@ -119,7 +122,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #'  region = "state:*",
 #'  naics2012 = "23")
 #'  head(cbp_2016)}
-getCensus <- function(name, vintage=NULL, key=Sys.getenv("CENSUS_KEY"), vars, region, regionin=NULL, time=NULL, date=NULL, period=NULL, monthly=NULL, category_code=NULL, data_type_code=NULL, naics=NULL, pscode=NULL, naics2012=NULL, naics2007=NULL, naics2002=NULL, naics1997=NULL, sic=NULL) {
+getCensus <- function(name, vintage=NULL, key=Sys.getenv("CENSUS_KEY"), vars, region=NULL, regionin=NULL, time=NULL, date=NULL, period=NULL, monthly=NULL, category_code=NULL, data_type_code=NULL, naics=NULL, pscode=NULL, naics2012=NULL, naics2007=NULL, naics2002=NULL, naics1997=NULL, sic=NULL) {
 	constructURL <- function(name, vintage) {
 		if (is.null(vintage)) {
 			apiurl <- paste("https://api.census.gov/data", name, sep="/")

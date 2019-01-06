@@ -5,10 +5,11 @@
 \title{Retrieve Census data from a given API}
 \usage{
 getCensus(name, vintage = NULL, key = Sys.getenv("CENSUS_KEY"), vars,
-  region, regionin = NULL, time = NULL, date = NULL, period = NULL,
-  monthly = NULL, category_code = NULL, data_type_code = NULL,
-  naics = NULL, pscode = NULL, naics2012 = NULL, naics2007 = NULL,
-  naics2002 = NULL, naics1997 = NULL, sic = NULL)
+  region = NULL, regionin = NULL, time = NULL, date = NULL,
+  period = NULL, monthly = NULL, category_code = NULL,
+  data_type_code = NULL, naics = NULL, pscode = NULL,
+  naics2012 = NULL, naics2007 = NULL, naics2002 = NULL,
+  naics1997 = NULL, sic = NULL)
 }
 \arguments{
 \item{name}{API name - e.g. acs5. See list at https://api.census.gov/data.html}
@@ -35,14 +36,14 @@ getCensus(name, vintage = NULL, key = Sys.getenv("CENSUS_KEY"), vars,
 Retrieve Census data from a given API
 }
 \examples{
-\donttest{df <- getCensus(name = "acs/acs5", vintage = 2016,
+\donttest{df <- getCensus(name = "acs/acs5", vintage = 2017,
 	vars = c("B01001_001E", "NAME", "B01002_001E", "B19013_001E"),
 	region = "tract:*", regionin = "state:06")
 head(df)
 
 # Use American Community Survey variable groups to get all data from a given table.
 # This returns estimates as well as margins of error and annotation flags.
-acs_group <- getCensus(name = "acs/acs5", vintage = 2016,
+acs_group <- getCensus(name = "acs/acs5", vintage = 2017,
 	vars = c("NAME", "group(B19013)"),
 	region = "county:*")
 	head(acs_group)
