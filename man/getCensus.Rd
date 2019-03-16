@@ -9,7 +9,7 @@ getCensus(name, vintage = NULL, key = Sys.getenv("CENSUS_KEY"), vars,
   period = NULL, monthly = NULL, category_code = NULL,
   data_type_code = NULL, naics = NULL, pscode = NULL,
   naics2012 = NULL, naics2007 = NULL, naics2002 = NULL,
-  naics1997 = NULL, sic = NULL)
+  naics1997 = NULL, sic = NULL, ...)
 }
 \arguments{
 \item{name}{API name - e.g. acs5. See list at https://api.census.gov/data.html}

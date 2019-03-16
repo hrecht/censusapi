@@ -32,7 +32,7 @@ View(apis)
 ```
 ![](img/apis.png)
 
-Here is a work in progress list of examples for each API. More to come. Read more about discovering an API's variable and geography options in [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html)
+Here is a list of examples for dozens of the Census's API endpoints. Read more about discovering an API's variable and geography options in [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html)
 
 ## American Community Survey
 
@@ -152,7 +152,7 @@ asm_product <- getCensus(name = "timeseries/asm/product",
 	vars = c("PSCODE_TTL", "GEO_TTL", "PRODVAL"),
 	region = "us:*",
 	time = 2016,
-	pscode = "311111")
+	pscode = 311111)
 head(asm_product)
 ```
 
@@ -177,15 +177,26 @@ head(firms_years)
 
 ### County Business Patterns
 [County Business Patterns documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/cbp-api.html)
+
+Get employment data for the construction industry.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 cbp_2016 <- getCensus(name = "cbp",
  vintage = 2016,
  vars = c("EMP", "ESTAB", "NAICS2012_TTL", "GEO_TTL"),
  region = "state:*",
- naics2012 = "23")
+ naics2012 = 23)
  head(cbp_2016)
 ```
 
+Get employment data by state for companies with more than 1,000 employees.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+cbp_2008 <- getCensus(name = "cbp",
+											vintage = 2008,
+											vars = c("YEAR", "EMPSZES_TTL", "EMP", "ESTAB", "PAYANN", "GEO_TTL"),
+											region = "state:*",
+											EMPSZES = 260)
+head(cbp_2008)
+```
 ### Zip Codes Business Patterns
 [Zip Codes Business Patterns documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
@@ -203,7 +214,7 @@ nonemp <- getCensus(name = "nonemp",
  vintage = 2016,
  vars = c("GEO_TTL", "NRCPTOT", "NAICS2012_TTL"),
  region = "state:*",
- naics2012 = "54")
+ naics2012 = 54)
 head(nonemp)
 ```
 
@@ -241,13 +252,13 @@ ewks_2012 <- getCensus(name = "ewks",
 	vintage = 2012,
 	vars = c("EMP", "OPTAX", "GEOTYPE"),
 	region = "state:*",
-	naics2012 = "54")
+	naics2012 = 54)
 head(ewks_2012)
 ewks_2007 <- getCensus(name = "ewks",
 	vintage = 2007,
 	vars = c("EMP", "OPTAX", "GEOTYPE"),
 	region = "state:*",
-	naics2007 = "54")
+	naics2007 = 54)
 head(ewks_2007)
 ```
 
@@ -291,6 +302,17 @@ intl_pop <- getCensus(name = "timeseries/idb/5year",
 	vars = c("NAME", "FIPS", "POP", "E0"),
 	time = 2020)
 head(intl_pop)
+```
+
+Get predictions of population by age in 2050 for Norway for ages 10-18.
+https://api.census.gov/data/timeseries/idb/1year?get=AREA_KM2,NAME,AGE,POP&FIPS=NO&time=2050
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+norway_pop <- getCensus(name = "timeseries/idb/1year",
+	vars = c("NAME", "POP"),
+	time = 2050,
+	FIPS = "NO",
+	AGE = "10:18")
+head(norway_pop)
 ```
 
 ## International Trade
@@ -342,6 +364,7 @@ head(popproj)
 [Poverty Statistics documentation](https://www.census.gov/data/developers/data-sets/Poverty-Statistics.html)
 
 ### Current Population Survey Poverty Statistics
+
 Get national poverty rates by race for the past 50 years.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 poverty <- getCensus(name = "timeseries/poverty/histpov2",
@@ -352,6 +375,7 @@ head(poverty)
 ```
 
 ### Small Area Income and Poverty Estimates
+
 Get poverty rate for children and overall for a single year.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 saipe <- getCensus(name = "timeseries/poverty/saipe",
@@ -373,6 +397,9 @@ head(saipe_years)
 
 ## Quarterly Workforce Indicators
 [Quarterly Workforce Indicators documentation](https://www.census.gov/data/developers/data-sets/qwi.html)
+
+The allow both simple calls and very specfic ones. Make sure to read the documentation closely.
+Here's a simple call that gets employment data by county.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 qwi_counties <- getCensus(name = "timeseries/qwi/sa",
 	vars = c("Emp", "EarnBeg"),
@@ -380,12 +407,30 @@ qwi_counties <- getCensus(name = "timeseries/qwi/sa",
 	regionin = "state:01",
 	time = "2016-Q1")
 head(qwi_counties)
+```
 
+Employment data over time for a single state.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 qwi_time <- getCensus(name = "timeseries/qwi/sa",
 	vars = c("Emp", "EarnBeg"),
 	region = "state:01",
 	time = "from 2007 to 2017")
 head(qwi_time)
+```
+
+Here's a much more specific call. Read the Census Bureau's documentation closely to see all of the options allowed by the QWI APIs.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+qwi <- getCensus(name = "timeseries/qwi/sa",
+								 region = "state:02",
+								 vars = c("Emp", "sex"),
+								 year = 2012,
+								 quarter = 1,
+								 agegrp = "A07",
+								 ownercode = "A05",
+								 firmsize = 1,
+								 seasonadj = "U",
+								 industry = 21)
+qwi
 ```
 
 ## Survey of Business Owners
