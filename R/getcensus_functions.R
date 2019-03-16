@@ -82,6 +82,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' @param category_code,data_type_code Arguments used in Economic Indicators Time Series API
 #' @param naics,pscode Arguments used in Annual Survey of Manufactures API
 #' @param naics2012,naics2007,naics2002,naics1997,sic Arguments used in Economy Wide Key Statistics APIs and Business Patterns APIs
+#' @param ... Other valid parameters to pass to the Census API. Note: the APIs are case sensitive.
 #' @keywords api
 #' @export
 #' @examples

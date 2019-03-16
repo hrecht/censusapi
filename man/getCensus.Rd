@@ -31,6 +31,8 @@ getCensus(name, vintage = NULL, key = Sys.getenv("CENSUS_KEY"), vars,
 \item{naics, pscode}{Arguments used in Annual Survey of Manufactures API}
 
 \item{naics2012, naics2007, naics2002, naics1997, sic}{Arguments used in Economy Wide Key Statistics APIs and Business Patterns APIs}
+
+\item{...}{Other valid parameters to pass to the Census API. Note: the APIs are case sensitive.}
 }
 \description{
 Retrieve Census data from a given API
