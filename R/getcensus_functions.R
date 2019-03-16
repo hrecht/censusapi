@@ -11,17 +11,18 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 			if (error_message == "error: missing 'for' argument") {
 				stop("This dataset requires you to specify a geography with the 'region' argument.")
 			}
-			stop(paste("The Census Bureau returned the following error message:\n", error_message))
+			stop(paste("The Census Bureau returned the following error message:\n", error_message,
+								 "\n Your API call was: ", print(req$url)))
 		}
 		# Some time series don't give error messages, just don't resolve (e.g. SAIPE)
 		if (req$status_code==204) stop("204, no content was returned.\nSee ?listCensusMetadata to learn more about valid API options.", call. = FALSE)
-		if (identical(httr::content(req, as = "text"), "")) stop("No output to parse", call. = FALSE)
+		if (identical(httr::content(req, as = "text"), "")) stop(paste("No output to parse. \n Your API call was: ", print(req$url)), call. = FALSE)
 	}
 
 	apiParse <- function (req) {
 		if (jsonlite::validate(httr::content(req, as="text"))[1] == FALSE) {
 			error_message <- (gsub("<[^>]*>", "", httr::content(req, as="text")))
-			stop(paste("The Census Bureau returned the following error message:\n", error_message))
+			stop(paste("The Census Bureau returned the following error message:\n", error_message, "\nYour api call was: ", req$url))
 		} else {
 			raw <- jsonlite::fromJSON(httr::content(req, as = "text"))
 		}
@@ -96,10 +97,10 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' 	region = "county:*")
 #' 	head(acs_group)
 #'
-#' # Retreive block-level data within a specific state and county using a nested regionin argument
+#' # Retreive block-level data within a specific tract using a nested regionin argument
 #' data2010 <- getCensus(name = "dec/sf1", vintage = 2010,
-#'	vars = c("P001001", "H010001"),
-#'	region = "block:*", regionin = "state:36+county:027")
+#'	vars = c("NAME","P001001"),
+#'	region = "block:*", regionin = "state:36+county:027+tract:010000")
 #' head(data2010)
 #'
 #' # Retreive block-level data for Decennial Census sf1, 2000

@@ -128,7 +128,7 @@ The American Community Survey (ACS) APIs include estimates (variable names endin
 You can retrieve these annotation variables manually, by specifying a list of variables. We'll get the estimate, margin of error and annotations for median household income in the past 12 months for Census tracts in Alaska.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 acs_income <- getCensus(name = "acs/acs5",
-	vintage = 2016, 
+	vintage = 2017, 
 	vars = c("NAME", "B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA"), 
 	region = "tract:*", 
 	regionin = "state:02")
@@ -138,7 +138,7 @@ head(acs_income)
 You can also retrieve also estimates and annotations for a group of variables in one command. Here's the `group` call for that same table, [B19013](https://api.census.gov/data/2016/acs/acs5/groups/B19013.html).
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 acs_income_group <- getCensus(name = "acs/acs5", 
-	vintage = 2016, 
+	vintage = 2017, 
 	vars = c("NAME", "group(B19013)"), 
 	region = "tract:*", 
 	regionin = "state:02")
@@ -148,7 +148,7 @@ head(acs_income_group)
 Some variable groups contain many related variables and their associated annotations. As an example, we'll get table [B17020](https://api.census.gov/data/2016/acs/acs5/groups/B17020.html), poverty status by age.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 acs_poverty_group <- getCensus(name = "acs/acs5",
-	vintage = 2016, 
+	vintage = 2017, 
 	vars = c("NAME", "group(B17020)"), 
 	region = "tract:*",
 	regionin = "state:02")
@@ -186,19 +186,10 @@ data2010 <- getCensus(name = "dec/sf1",
 	vintage = 2010,
 	vars = "P001001", 
 	region = "block:*",
-	regionin = "state:36+county:027")
+	regionin = "state:36+county:027+tract:010000")
 head(data2010)
 ```
 
-For the 2000 Decennial Census summary file 1, tract is also required to retrieve block-level data. This example requests data for all blocks within Census tract 010000 in county 027 of state 36.
-```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-data2000 <- getCensus(name = "sf1",
-	vintage = 2000,
-	vars = "P001001", 
-	region = "block:*",
-	regionin = "state:36+county:027+tract:010000")
-head(data2000)
-```
 
 ## Additional resources
 * [Census Data API User Guide](https://www.census.gov/data/developers/guidance/api-user-guide.Overview.html)

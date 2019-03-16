@@ -1,4 +1,8 @@
-# censusapi 0.5.0.9000
+# censusapi 0.6.0
+* Returns underlying API call in error messages, particularly useful for users needing from the Census Bureau.
+* Specifies tract in block group example due to underlying API changes.
+
+# censusapi 0.5.0
 * Makes `region` an optional argument in `getCensus`, rather than required.
 * Pads fips codes stored in `fips` dataset with zeroes.
 

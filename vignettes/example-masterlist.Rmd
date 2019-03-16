@@ -289,7 +289,7 @@ Get Census Bureau projections of 2020 populations and life expectancy at birth b
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 intl_pop <- getCensus(name = "timeseries/idb/5year",
 	vars = c("NAME", "FIPS", "POP", "E0"),
-	time = "2020")
+	time = 2020)
 head(intl_pop)
 ```
 
@@ -313,16 +313,15 @@ head(imports)
 [Population Estimates documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 popest <- getCensus(name = "pep/population",
-	vintage = 2017,
-	vars = c("POP", "GEONAME", "DATE_DESC"),
-	region = "state:*",
-	date = "9")
+	vintage = 2018,
+	vars = c("GEONAME", "POP", "DATE_DESC"),
+	region = "state:*")
 head(popest)
 ```
 
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 popest_housing <- getCensus(name = "pep/housing",
-	vintage = 2016,
+	vintage = 2017,
 	vars = c("DATE", "DATE_DESC", "GEONAME", "HUEST"),
 	region = "county:195",
 	regionin = "state:2")
@@ -410,7 +409,7 @@ head(sbo_groups)
 [The Planning Database documentation](https://www.census.gov/data/developers/data-sets/planning-database.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 pdb <- getCensus(name = "pdb/blockgroup",
-	vintage = 2016,
+	vintage = 2018,
 	vars = c("County_name", "State_name", "GIDBG", "Tot_Population_CEN_2010", "Mail_Return_Rate_CEN_2010"),
 	region = "block group:*",
 	regionin = "state:01+county:001")
