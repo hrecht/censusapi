@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -86,7 +86,7 @@
 <div class="figure">
 <img src="img/apis.png">
 </div>
-<p>Here is a work in progress list of examples for each API. More to come. Read more about discovering an API’s variable and geography options in <a href="https://hrecht.github.io/censusapi/articles/getting-started.html">Getting started with censusapi</a></p>
+<p>Here is a list of examples for dozens of the Census’s API endpoints. Read more about discovering an API’s variable and geography options in <a href="https://hrecht.github.io/censusapi/articles/getting-started.html">Getting started with censusapi</a></p>
 <div id="american-community-survey" class="section level2">
 <h2 class="hasAnchor">
 <a href="#american-community-survey" class="anchor"></a>American Community Survey</h2>
@@ -980,7 +980,7 @@
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"PSCODE_TTL"</span>, <span class="st">"GEO_TTL"</span>, <span class="st">"PRODVAL"</span>),
     <span class="dt">region =</span> <span class="st">"us:*"</span>,
     <span class="dt">time =</span> <span class="dv">2016</span>,
-    <span class="dt">pscode =</span> <span class="st">"311111"</span>)
+    <span class="dt">pscode =</span> <span class="dv">311111</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(asm_product)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -1129,11 +1129,12 @@
 <h3 class="hasAnchor">
 <a href="#county-business-patterns" class="anchor"></a>County Business Patterns</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/cbp-api.html">County Business Patterns documentation</a></p>
+<p>Get employment data for the construction industry.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cbp_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"cbp"</span>,
  <span class="dt">vintage =</span> <span class="dv">2016</span>,
  <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"NAICS2012_TTL"</span>, <span class="st">"GEO_TTL"</span>),
  <span class="dt">region =</span> <span class="st">"state:*"</span>,
- <span class="dt">naics2012 =</span> <span class="st">"23"</span>)
+ <span class="dt">naics2012 =</span> <span class="dv">23</span>)
  <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(cbp_<span class="dv">2016</span>)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -1197,6 +1198,89 @@
 </tbody>
 </table>
 </div>
+<p>Get employment data by state for companies with more than 1,000 employees.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cbp_<span class="dv">2008</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"cbp"</span>,
+                                            <span class="dt">vintage =</span> <span class="dv">2008</span>,
+                                            <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"YEAR"</span>, <span class="st">"EMPSZES_TTL"</span>, <span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"PAYANN"</span>, <span class="st">"GEO_TTL"</span>),
+                                            <span class="dt">region =</span> <span class="st">"state:*"</span>,
+                                            <span class="dt">EMPSZES =</span> <span class="dv">260</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(cbp_<span class="dv">2008</span>)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">YEAR</th>
+<th align="left">EMPSZES_TTL</th>
+<th align="left">EMP</th>
+<th align="left">ESTAB</th>
+<th align="left">PAYANN</th>
+<th align="left">GEO_TTL</th>
+<th align="left">EMPSZES</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">2008</td>
+<td align="left">Establishments with 1,000 employees or more</td>
+<td align="left">175438</td>
+<td align="left">96</td>
+<td align="left">8034522</td>
+<td align="left">Alabama</td>
+<td align="left">260</td>
+</tr>
+<tr class="even">
+<td align="left">02</td>
+<td align="left">2008</td>
+<td align="left">Establishments with 1,000 employees or more</td>
+<td align="left">22598</td>
+<td align="left">16</td>
+<td align="left">1469718</td>
+<td align="left">Alaska</td>
+<td align="left">260</td>
+</tr>
+<tr class="odd">
+<td align="left">04</td>
+<td align="left">2008</td>
+<td align="left">Establishments with 1,000 employees or more</td>
+<td align="left">301091</td>
+<td align="left">124</td>
+<td align="left">17089056</td>
+<td align="left">Arizona</td>
+<td align="left">260</td>
+</tr>
+<tr class="even">
+<td align="left">05</td>
+<td align="left">2008</td>
+<td align="left">Establishments with 1,000 employees or more</td>
+<td align="left">124452</td>
+<td align="left">68</td>
+<td align="left">4796665</td>
+<td align="left">Arkansas</td>
+<td align="left">260</td>
+</tr>
+<tr class="odd">
+<td align="left">09</td>
+<td align="left">2008</td>
+<td align="left">Establishments with 1,000 employees or more</td>
+<td align="left">234134</td>
+<td align="left">87</td>
+<td align="left">15104056</td>
+<td align="left">Connecticut</td>
+<td align="left">260</td>
+</tr>
+<tr class="even">
+<td align="left">11</td>
+<td align="left">2008</td>
+<td align="left">Establishments with 1,000 employees or more</td>
+<td align="left">78180</td>
+<td align="left">30</td>
+<td align="left">4606196</td>
+<td align="left">District of Columbia</td>
+<td align="left">260</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="zip-codes-business-patterns" class="section level3">
 <h3 class="hasAnchor">
@@ -1230,7 +1314,7 @@
  <span class="dt">vintage =</span> <span class="dv">2016</span>,
  <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"GEO_TTL"</span>, <span class="st">"NRCPTOT"</span>, <span class="st">"NAICS2012_TTL"</span>),
  <span class="dt">region =</span> <span class="st">"state:*"</span>,
- <span class="dt">naics2012 =</span> <span class="st">"54"</span>)
+ <span class="dt">naics2012 =</span> <span class="dv">54</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(nonemp)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -1473,7 +1557,7 @@
     <span class="dt">vintage =</span> <span class="dv">2012</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"EMP"</span>, <span class="st">"OPTAX"</span>, <span class="st">"GEOTYPE"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>,
-    <span class="dt">naics2012 =</span> <span class="st">"54"</span>)
+    <span class="dt">naics2012 =</span> <span class="dv">54</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(ewks_<span class="dv">2012</span>)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -1534,7 +1618,7 @@
     <span class="dt">vintage =</span> <span class="dv">2007</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"EMP"</span>, <span class="st">"OPTAX"</span>, <span class="st">"GEOTYPE"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>,
-    <span class="dt">naics2007 =</span> <span class="st">"54"</span>)
+    <span class="dt">naics2007 =</span> <span class="dv">54</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(ewks_<span class="dv">2007</span>)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -1842,7 +1926,7 @@ sahie_annual</code></pre></div>
 <p>Get Census Bureau projections of 2020 populations and life expectancy at birth by country.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">intl_pop &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/idb/5year"</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"FIPS"</span>, <span class="st">"POP"</span>, <span class="st">"E0"</span>),
-    <span class="dt">time =</span> <span class="st">"2020"</span>)
+    <span class="dt">time =</span> <span class="dv">2020</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(intl_pop)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -1899,6 +1983,68 @@ sahie_annual</code></pre></div>
 </tbody>
 </table>
 </div>
+<p>Get predictions of population by age in 2050 for Norway for ages 10-18. <a href="https://api.census.gov/data/timeseries/idb/1year?get=AREA_KM2,NAME,AGE,POP&amp;FIPS=NO&amp;time=2050" class="uri">https://api.census.gov/data/timeseries/idb/1year?get=AREA_KM2,NAME,AGE,POP&amp;FIPS=NO&amp;time=2050</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">norway_pop &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/idb/1year"</span>,
+    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"POP"</span>),
+    <span class="dt">time =</span> <span class="dv">2050</span>,
+    <span class="dt">FIPS =</span> <span class="st">"NO"</span>,
+    <span class="dt">AGE =</span> <span class="st">"10:18"</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(norway_pop)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="left">NAME</th>
+<th align="left">POP</th>
+<th align="left">FIPS</th>
+<th align="left">AGE</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">Norway</td>
+<td align="left">66971</td>
+<td align="left">NO</td>
+<td align="left">10</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">Norway</td>
+<td align="left">67018</td>
+<td align="left">NO</td>
+<td align="left">11</td>
+</tr>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">Norway</td>
+<td align="left">67097</td>
+<td align="left">NO</td>
+<td align="left">12</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">Norway</td>
+<td align="left">67199</td>
+<td align="left">NO</td>
+<td align="left">13</td>
+</tr>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">Norway</td>
+<td align="left">67352</td>
+<td align="left">NO</td>
+<td align="left">14</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">Norway</td>
+<td align="left">67605</td>
+<td align="left">NO</td>
+<td align="left">15</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="international-trade" class="section level2">
 <h2 class="hasAnchor">
@@ -1924,57 +2070,57 @@ sahie_annual</code></pre></div>
 <tbody>
 <tr class="odd">
 <td align="left">2018-01</td>
-<td align="left">4XXX</td>
-<td align="left">EUROPE</td>
+<td align="left">-</td>
+<td align="left">TOTAL FOR ALL COUNTRIES</td>
 <td align="left">-</td>
 <td align="left">TOTAL IMPORTS FOR ALL END-USE CODES</td>
-<td align="left">43484597062</td>
-<td align="left">43200745485</td>
+<td align="left">203478379854</td>
+<td align="left">201775991054</td>
 </tr>
 <tr class="even">
 <td align="left">2018-01</td>
-<td align="left">5020</td>
-<td align="left">SYRIA</td>
+<td align="left">4623</td>
+<td align="left">UKRAINE</td>
 <td align="left">-</td>
 <td align="left">TOTAL IMPORTS FOR ALL END-USE CODES</td>
-<td align="left">656988</td>
-<td align="left">656988</td>
+<td align="left">94114125</td>
+<td align="left">94240024</td>
 </tr>
 <tr class="odd">
 <td align="left">2018-01</td>
-<td align="left">5040</td>
-<td align="left">LEBANON</td>
+<td align="left">4631</td>
+<td align="left">ARMENIA</td>
 <td align="left">-</td>
 <td align="left">TOTAL IMPORTS FOR ALL END-USE CODES</td>
-<td align="left">6666452</td>
-<td align="left">7918765</td>
+<td align="left">8133328</td>
+<td align="left">8183048</td>
 </tr>
 <tr class="even">
 <td align="left">2018-01</td>
-<td align="left">5050</td>
-<td align="left">IRAQ</td>
+<td align="left">4632</td>
+<td align="left">AZERBAIJAN</td>
 <td align="left">-</td>
 <td align="left">TOTAL IMPORTS FOR ALL END-USE CODES</td>
-<td align="left">1246680816</td>
-<td align="left">1055404565</td>
+<td align="left">117941682</td>
+<td align="left">2491682</td>
 </tr>
 <tr class="odd">
 <td align="left">2018-01</td>
-<td align="left">5070</td>
-<td align="left">IRAN</td>
+<td align="left">4633</td>
+<td align="left">GEORGIA</td>
 <td align="left">-</td>
 <td align="left">TOTAL IMPORTS FOR ALL END-USE CODES</td>
-<td align="left">4739145</td>
-<td align="left">4739145</td>
+<td align="left">25082886</td>
+<td align="left">25085443</td>
 </tr>
 <tr class="even">
 <td align="left">2018-01</td>
-<td align="left">5081</td>
-<td align="left">ISRAEL</td>
+<td align="left">4634</td>
+<td align="left">KAZAKHSTAN</td>
 <td align="left">-</td>
 <td align="left">TOTAL IMPORTS FOR ALL END-USE CODES</td>
-<td align="left">1788413600</td>
-<td align="left">1924397557</td>
+<td align="left">91374490</td>
+<td align="left">85589698</td>
 </tr>
 </tbody>
 </table>
@@ -1989,68 +2135,60 @@ sahie_annual</code></pre></div>
 <a href="#population-estimates" class="anchor"></a>Population Estimates</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html">Population Estimates documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popest &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"pep/population"</span>,
-    <span class="dt">vintage =</span> <span class="dv">2017</span>,
-    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"POP"</span>, <span class="st">"GEONAME"</span>, <span class="st">"DATE_DESC"</span>),
-    <span class="dt">region =</span> <span class="st">"state:*"</span>,
-    <span class="dt">date =</span> <span class="st">"9"</span>)
+    <span class="dt">vintage =</span> <span class="dv">2018</span>,
+    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"GEONAME"</span>, <span class="st">"POP"</span>, <span class="st">"DATE_DESC"</span>),
+    <span class="dt">region =</span> <span class="st">"state:*"</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(popest)</code></pre></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
 <th align="left">state</th>
-<th align="left">POP</th>
 <th align="left">GEONAME</th>
+<th align="left">POP</th>
 <th align="left">DATE_DESC</th>
-<th align="left">DATE</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">01</td>
-<td align="left">4860545</td>
 <td align="left">Alabama</td>
-<td align="left">7/1/2016 population estimate</td>
-<td align="left">9</td>
+<td align="left">4887871</td>
+<td align="left">7/1/2018 population estimate</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
-<td align="left">741522</td>
 <td align="left">Alaska</td>
-<td align="left">7/1/2016 population estimate</td>
-<td align="left">9</td>
+<td align="left">737438</td>
+<td align="left">7/1/2018 population estimate</td>
 </tr>
 <tr class="odd">
 <td align="left">04</td>
-<td align="left">6908642</td>
 <td align="left">Arizona</td>
-<td align="left">7/1/2016 population estimate</td>
-<td align="left">9</td>
+<td align="left">7171646</td>
+<td align="left">7/1/2018 population estimate</td>
 </tr>
 <tr class="even">
 <td align="left">05</td>
-<td align="left">2988231</td>
 <td align="left">Arkansas</td>
-<td align="left">7/1/2016 population estimate</td>
-<td align="left">9</td>
+<td align="left">3013825</td>
+<td align="left">7/1/2018 population estimate</td>
 </tr>
 <tr class="odd">
 <td align="left">06</td>
-<td align="left">39296476</td>
 <td align="left">California</td>
-<td align="left">7/1/2016 population estimate</td>
-<td align="left">9</td>
+<td align="left">39557045</td>
+<td align="left">7/1/2018 population estimate</td>
 </tr>
 <tr class="even">
 <td align="left">08</td>
-<td align="left">5530105</td>
 <td align="left">Colorado</td>
-<td align="left">7/1/2016 population estimate</td>
-<td align="left">9</td>
+<td align="left">5695564</td>
+<td align="left">7/1/2018 population estimate</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popest_housing &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"pep/housing"</span>,
-    <span class="dt">vintage =</span> <span class="dv">2016</span>,
+    <span class="dt">vintage =</span> <span class="dv">2017</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"DATE"</span>, <span class="st">"DATE_DESC"</span>, <span class="st">"GEONAME"</span>, <span class="st">"HUEST"</span>),
     <span class="dt">region =</span> <span class="st">"county:195"</span>,
     <span class="dt">regionin =</span> <span class="st">"state:2"</span>)
@@ -2070,7 +2208,7 @@ sahie_annual</code></pre></div>
 <td align="left">02</td>
 <td align="left">195</td>
 <td align="left">1</td>
-<td align="left">4/1/2010 Census population</td>
+<td align="left">4/1/2010 Census housing unit count</td>
 <td align="left">Petersburg Borough, Alaska</td>
 <td align="left">1994</td>
 </tr>
@@ -2078,7 +2216,7 @@ sahie_annual</code></pre></div>
 <td align="left">02</td>
 <td align="left">195</td>
 <td align="left">2</td>
-<td align="left">4/1/2010 population estimates base</td>
+<td align="left">4/1/2010 housing unit estimates base</td>
 <td align="left">Petersburg Borough, Alaska</td>
 <td align="left">1644</td>
 </tr>
@@ -2086,33 +2224,33 @@ sahie_annual</code></pre></div>
 <td align="left">02</td>
 <td align="left">195</td>
 <td align="left">3</td>
-<td align="left">7/1/2010 population estimate</td>
+<td align="left">7/1/2010 housing unit estimate</td>
 <td align="left">Petersburg Borough, Alaska</td>
-<td align="left">1644</td>
+<td align="left">1646</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
 <td align="left">195</td>
 <td align="left">4</td>
-<td align="left">7/1/2011 population estimate</td>
+<td align="left">7/1/2011 housing unit estimate</td>
 <td align="left">Petersburg Borough, Alaska</td>
-<td align="left">1641</td>
+<td align="left">1647</td>
 </tr>
 <tr class="odd">
 <td align="left">02</td>
 <td align="left">195</td>
 <td align="left">5</td>
-<td align="left">7/1/2012 population estimate</td>
+<td align="left">7/1/2012 housing unit estimate</td>
 <td align="left">Petersburg Borough, Alaska</td>
-<td align="left">1648</td>
+<td align="left">1659</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
 <td align="left">195</td>
 <td align="left">6</td>
-<td align="left">7/1/2013 population estimate</td>
+<td align="left">7/1/2013 housing unit estimate</td>
 <td align="left">Petersburg Borough, Alaska</td>
-<td align="left">1646</td>
+<td align="left">1662</td>
 </tr>
 </tbody>
 </table>
@@ -2378,6 +2516,7 @@ sahie_annual</code></pre></div>
 <h2 class="hasAnchor">
 <a href="#quarterly-workforce-indicators" class="anchor"></a>Quarterly Workforce Indicators</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/qwi.html">Quarterly Workforce Indicators documentation</a></p>
+<p>The allow both simple calls and very specfic ones. Make sure to read the documentation closely. Here’s a simple call that gets employment data by county.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qwi_counties &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/qwi/sa"</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Emp"</span>, <span class="st">"EarnBeg"</span>),
     <span class="dt">region =</span> <span class="st">"county:*"</span>,
@@ -2439,6 +2578,7 @@ sahie_annual</code></pre></div>
 </tbody>
 </table>
 </div>
+<p>Employment data over time for a single state.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qwi_time &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/qwi/sa"</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Emp"</span>, <span class="st">"EarnBeg"</span>),
     <span class="dt">region =</span> <span class="st">"state:01"</span>,
@@ -2488,6 +2628,72 @@ sahie_annual</code></pre></div>
 <td align="left">2879</td>
 <td align="left">2008-Q2</td>
 <td align="left">01</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Here’s a much more specific call. Read the Census Bureau’s documentation closely to see all of the options allowed by the QWI APIs.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qwi &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/qwi/sa"</span>,
+    <span class="dt">region =</span> <span class="st">"state:02"</span>,
+    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Emp"</span>, <span class="st">"sex"</span>),
+    <span class="dt">year =</span> <span class="dv">2012</span>,
+    <span class="dt">quarter =</span> <span class="dv">1</span>,
+    <span class="dt">agegrp =</span> <span class="st">"A07"</span>,
+    <span class="dt">ownercode =</span> <span class="st">"A05"</span>,
+    <span class="dt">firmsize =</span> <span class="dv">1</span>,
+    <span class="dt">seasonadj =</span> <span class="st">"U"</span>,
+    <span class="dt">industry =</span> <span class="dv">21</span>)
+qwi</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">Emp</th>
+<th align="left">sex</th>
+<th align="left">year</th>
+<th align="left">quarter</th>
+<th align="left">agegrp</th>
+<th align="left">ownercode</th>
+<th align="left">firmsize</th>
+<th align="left">seasonadj</th>
+<th align="left">industry</th>
+<th align="left">state</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">61</td>
+<td align="left">0</td>
+<td align="left">2012</td>
+<td align="left">1</td>
+<td align="left">A07</td>
+<td align="left">A05</td>
+<td align="left">1</td>
+<td align="left">U</td>
+<td align="left">21</td>
+<td align="left">02</td>
+</tr>
+<tr class="even">
+<td align="left">54</td>
+<td align="left">1</td>
+<td align="left">2012</td>
+<td align="left">1</td>
+<td align="left">A07</td>
+<td align="left">A05</td>
+<td align="left">1</td>
+<td align="left">U</td>
+<td align="left">21</td>
+<td align="left">02</td>
+</tr>
+<tr class="odd">
+<td align="left">6</td>
+<td align="left">2</td>
+<td align="left">2012</td>
+<td align="left">1</td>
+<td align="left">A07</td>
+<td align="left">A05</td>
+<td align="left">1</td>
+<td align="left">U</td>
+<td align="left">21</td>
+<td align="left">02</td>
 </tr>
 </tbody>
 </table>
@@ -2631,7 +2837,7 @@ sahie_annual</code></pre></div>
 <a href="#the-planning-database" class="anchor"></a>The Planning Database</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/planning-database.html">The Planning Database documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pdb &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"pdb/blockgroup"</span>,
-    <span class="dt">vintage =</span> <span class="dv">2016</span>,
+    <span class="dt">vintage =</span> <span class="dv">2018</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"County_name"</span>, <span class="st">"State_name"</span>, <span class="st">"GIDBG"</span>, <span class="st">"Tot_Population_CEN_2010"</span>, <span class="st">"Mail_Return_Rate_CEN_2010"</span>),
     <span class="dt">region =</span> <span class="st">"block group:*"</span>,
     <span class="dt">regionin =</span> <span class="st">"state:01+county:001"</span>)

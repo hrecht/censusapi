@@ -2,7 +2,8 @@
 title: "Getting started with censusapi"
 output:
   html_document:
-  	toc: true
+    toc: true
+    toc_depth: 2
     df_print: kable
 pkgdown:
   as_is: true

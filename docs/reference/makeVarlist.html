@@ -65,7 +65,7 @@ documenting variables used in a given project." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -157,8 +157,21 @@ Options are "all", "name", "label", or "concept".</p></td>
 #&gt; [9] "SAEPOV0_4_LB90"  </div><div class='input'><span class='no'>saipe_dt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getCensus.html'>getCensus</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/poverty/saipe"</span>,
   <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>2016</span>,
   <span class='kw'>vars</span> <span class='kw'>=</span> <span class='no'>myvars</span>,
-  <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"state:*"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in apiParse(req): The Census Bureau returned the following error message:</span>
-#&gt; <span class='error'> There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>saipe_dt</span>)</div><div class='output co'>#&gt; <span class='error'>Error in head(saipe_dt): object 'saipe_dt' not found</span></div></pre>
+  <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"state:*"</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>saipe_dt</span>)</div><div class='output co'>#&gt;   time state SAEPOVRT0_4_UB90 SAEPOVRT0_4_MOE SAEPOVU_0_4 SAEPOVRT0_4_PT
+#&gt; 1 2016    01             28.9             1.5      287177           27.4
+#&gt; 2 2016    02             17.0             1.9       52408           15.1
+#&gt; 3 2016    04             26.1             1.2      428317           24.9
+#&gt; 4 2016    05             29.1             1.8      184115           27.3
+#&gt; 5 2016    06             21.2             0.5     2430975           20.7
+#&gt; 6 2016    08             15.1             1.2      330815           13.9
+#&gt;   SAEPOVRT0_4_LB90 SAEPOV0_4_UB90 SAEPOV0_4_MOE SAEPOV0_4_PT SAEPOV0_4_LB90
+#&gt; 1             25.9          83093          4418        78675          74257
+#&gt; 2             13.2           8940          1021         7919           6898
+#&gt; 3             23.7         111948          5131       106817         101686
+#&gt; 4             25.5          53587          3246        50341          47095
+#&gt; 5             20.2         515449         13017       502432         489415
+#&gt; 6             12.7          50005          3894        46111          42217</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

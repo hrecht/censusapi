@@ -421,15 +421,15 @@ head(qwi_time)
 Here's a much more specific call. Read the Census Bureau's documentation closely to see all of the options allowed by the QWI APIs.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 qwi <- getCensus(name = "timeseries/qwi/sa",
-								 region = "state:02",
-								 vars = c("Emp", "sex"),
-								 year = 2012,
-								 quarter = 1,
-								 agegrp = "A07",
-								 ownercode = "A05",
-								 firmsize = 1,
-								 seasonadj = "U",
-								 industry = 21)
+	region = "state:02",
+	vars = c("Emp", "sex"),
+	year = 2012,
+	quarter = 1,
+	agegrp = "A07",
+	ownercode = "A05",
+	firmsize = 1,
+	seasonadj = "U",
+	industry = 21)
 qwi
 ```
 

@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -118,7 +118,7 @@
   <span class='kw'>period</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>monthly</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>category_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>data_type_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>naics</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pscode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>naics2012</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>naics2007</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>naics2002</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>naics1997</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>naics1997</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,20 +170,20 @@
     <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2017</span>,
         <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"B01001_001E"</span>, <span class='st'>"NAME"</span>, <span class='st'>"B01002_001E"</span>, <span class='st'>"B19013_001E"</span>),
         <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"tract:*"</span>, <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='st'>"state:06"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>df</span>)</div><div class='output co'>#&gt;   state county  tract B01001_001E                                          NAME
-#&gt; 1    06    001 400100        2991 Census Tract 4001, Alameda County, California
-#&gt; 2    06    001 400200        1997 Census Tract 4002, Alameda County, California
-#&gt; 3    06    001 400300        5123 Census Tract 4003, Alameda County, California
-#&gt; 4    06    001 400400        3991 Census Tract 4004, Alameda County, California
-#&gt; 5    06    001 400500        3944 Census Tract 4005, Alameda County, California
-#&gt; 6    06    001 400600        1635 Census Tract 4006, Alameda County, California
-#&gt;   B01002_001E B19013_001E
-#&gt; 1        53.7      208393
-#&gt; 2        43.1      147500
-#&gt; 3        42.4       88173
-#&gt; 4        35.9      102821
-#&gt; 5        32.7       92375
-#&gt; 6        36.2       86458</div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>df</span>)</div><div class='output co'>#&gt;   state county  tract B01001_001E
+#&gt; 1    06    083 002806        2430
+#&gt; 2    06    083 002913        3869
+#&gt; 3    06    083 002914        3386
+#&gt; 4    06    083 000400        5411
+#&gt; 5    06    083 001203        3029
+#&gt; 6    06    083 001800         941
+#&gt;                                                   NAME B01002_001E B19013_001E
+#&gt; 1 Census Tract 28.06, Santa Barbara County, California        36.5       63259
+#&gt; 2 Census Tract 29.13, Santa Barbara County, California        46.3       91106
+#&gt; 3 Census Tract 29.14, Santa Barbara County, California        44.8       93125
+#&gt; 4     Census Tract 4, Santa Barbara County, California        37.0       74795
+#&gt; 5 Census Tract 12.03, Santa Barbara County, California        48.9       59135
+#&gt; 6    Census Tract 18, Santa Barbara County, California        42.0       50208</div><div class='input'>
 <span class='co'># Use American Community Survey variable groups to get all data from a given table.</span>
 <span class='co'># This returns estimates as well as margins of error and annotation flags.</span>
 <span class='no'>acs_group</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2017</span>,
@@ -202,17 +202,31 @@
 #&gt; 4         594     NA         &lt;NA&gt;         &lt;NA&gt;
 #&gt; 5        1197     NA         &lt;NA&gt;         &lt;NA&gt;
 #&gt; 6        1584     NA         &lt;NA&gt;         &lt;NA&gt;</div><div class='input'>
-<span class='co'># Retreive block-level data within a specific state and county using a nested regionin argument</span>
+<span class='co'># Retreive block-level data within a specific tract using a nested regionin argument</span>
 <span class='no'>data2010</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"dec/sf1"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2010</span>,
-<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"P001001"</span>, <span class='st'>"H010001"</span>),
-<span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"block:*"</span>, <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='st'>"state:36+county:027"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>data2010</span>)</div><div class='output co'>#&gt;   state county  tract block P001001 H010001
-#&gt; 1    36    027 010000  1000      31      31
-#&gt; 2    36    027 010000  1011      17      17
-#&gt; 3    36    027 010000  1028      41      41
-#&gt; 4    36    027 010000  1001       0       0
-#&gt; 5    36    027 010000  1031       0       0
-#&gt; 6    36    027 010000  1002       4       4</div><div class='input'>
+<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"NAME"</span>,<span class='st'>"P001001"</span>),
+<span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"block:*"</span>, <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='st'>"state:36+county:027+tract:010000"</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>data2010</span>)</div><div class='output co'>#&gt;   state county  tract block
+#&gt; 1    36    027 010000  1000
+#&gt; 2    36    027 010000  1011
+#&gt; 3    36    027 010000  1028
+#&gt; 4    36    027 010000  1001
+#&gt; 5    36    027 010000  1031
+#&gt; 6    36    027 010000  1002
+#&gt;                                                                     NAME
+#&gt; 1 Block 1000, Block Group 1, Census Tract 100, Dutchess County, New York
+#&gt; 2 Block 1011, Block Group 1, Census Tract 100, Dutchess County, New York
+#&gt; 3 Block 1028, Block Group 1, Census Tract 100, Dutchess County, New York
+#&gt; 4 Block 1001, Block Group 1, Census Tract 100, Dutchess County, New York
+#&gt; 5 Block 1031, Block Group 1, Census Tract 100, Dutchess County, New York
+#&gt; 6 Block 1002, Block Group 1, Census Tract 100, Dutchess County, New York
+#&gt;   P001001
+#&gt; 1      31
+#&gt; 2      17
+#&gt; 3      41
+#&gt; 4       0
+#&gt; 5       0
+#&gt; 6       4</div><div class='input'>
 <span class='co'># Retreive block-level data for Decennial Census sf1, 2000</span>
 <span class='co'># Note, for this dataset a tract needs to be specified to retrieve blocks</span>
 <span class='no'>data2000</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sf1"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
