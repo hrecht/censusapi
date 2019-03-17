@@ -1239,43 +1239,43 @@
 <td align="left">260</td>
 </tr>
 <tr class="odd">
-<td align="left">04</td>
+<td align="left">17</td>
 <td align="left">2008</td>
 <td align="left">Establishments with 1,000 employees or more</td>
-<td align="left">301091</td>
-<td align="left">124</td>
-<td align="left">17089056</td>
-<td align="left">Arizona</td>
+<td align="left">829756</td>
+<td align="left">359</td>
+<td align="left">46136395</td>
+<td align="left">Illinois</td>
 <td align="left">260</td>
 </tr>
 <tr class="even">
-<td align="left">05</td>
+<td align="left">20</td>
 <td align="left">2008</td>
 <td align="left">Establishments with 1,000 employees or more</td>
-<td align="left">124452</td>
-<td align="left">68</td>
-<td align="left">4796665</td>
-<td align="left">Arkansas</td>
+<td align="left">117402</td>
+<td align="left">48</td>
+<td align="left">6001430</td>
+<td align="left">Kansas</td>
 <td align="left">260</td>
 </tr>
 <tr class="odd">
-<td align="left">09</td>
+<td align="left">19</td>
 <td align="left">2008</td>
 <td align="left">Establishments with 1,000 employees or more</td>
-<td align="left">234134</td>
-<td align="left">87</td>
-<td align="left">15104056</td>
-<td align="left">Connecticut</td>
+<td align="left">170453</td>
+<td align="left">84</td>
+<td align="left">7726391</td>
+<td align="left">Iowa</td>
 <td align="left">260</td>
 </tr>
 <tr class="even">
-<td align="left">11</td>
+<td align="left">21</td>
 <td align="left">2008</td>
 <td align="left">Establishments with 1,000 employees or more</td>
-<td align="left">78180</td>
-<td align="left">30</td>
-<td align="left">4606196</td>
-<td align="left">District of Columbia</td>
+<td align="left">171115</td>
+<td align="left">83</td>
+<td align="left">8002289</td>
+<td align="left">Kentucky</td>
 <td align="left">260</td>
 </tr>
 </tbody>
@@ -1914,6 +1914,104 @@ sahie_annual</code></pre></div>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">10.8</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Get the uninsured rate for non-elderly adults with incomes of 138 to 400% of the poverty line, by race and state.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_nonelderly &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
+    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span>), 
+    <span class="dt">region =</span> <span class="st">"state:*"</span>, 
+    <span class="dt">time =</span> <span class="dv">2016</span>,
+    <span class="dt">IPRCAT =</span> <span class="dv">5</span>,
+    <span class="dt">AGECAT =</span> <span class="dv">1</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(sahie_nonelderly)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="left">state</th>
+<th align="left">NAME</th>
+<th align="left">IPR_DESC</th>
+<th align="left">PCTUI_PT</th>
+<th align="left">AGE_DESC</th>
+<th align="left">RACECAT</th>
+<th align="left">RACE_DESC</th>
+<th align="left">IPRCAT</th>
+<th align="left">AGECAT</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2016</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">14.1</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">2016</td>
+<td align="left">02</td>
+<td align="left">Alaska</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">25.2</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">2016</td>
+<td align="left">04</td>
+<td align="left">Arizona</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">16.0</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">2016</td>
+<td align="left">05</td>
+<td align="left">Arkansas</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">12.4</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">2016</td>
+<td align="left">06</td>
+<td align="left">California</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">13.7</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">2016</td>
+<td align="left">08</td>
+<td align="left">Colorado</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">14.2</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">5</td>
+<td align="left">1</td>
 </tr>
 </tbody>
 </table>

@@ -107,3 +107,5 @@ Read more on how to build a `censusapi` call in [Getting started with censusapi]
 
 ## Disclaimer
 This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.
+
+Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.

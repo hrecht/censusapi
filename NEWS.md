@@ -3,6 +3,7 @@
 * Add documentation and examples using miscellaneous paramaters.
 * Returns underlying API call in error messages, particularly useful for users needing from the Census Bureau.
 * Specifies tract in block group example due to underlying API changes.
+* Adds [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
 
 # censusapi 0.5.0
 * Makes `region` an optional argument in `getCensus`, rather than required.

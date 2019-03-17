@@ -88,7 +88,7 @@ listCensusMetadata(name = "timeseries/healthins/sahie",
 ```
 This API has three geographic levels: `us`, `county` within states, and `state`.
 
-First, using `getCensus`, let's get uninsured rate by income group at the national level for 2015.
+First, using `getCensus`, let's get uninsured rate by income group at the national level.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 

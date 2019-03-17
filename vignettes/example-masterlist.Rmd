@@ -293,6 +293,16 @@ sahie_annual <- getCensus(name = "timeseries/healthins/sahie",
 sahie_annual
 ```
 
+Get the uninsured rate for non-elderly adults with incomes of 138 to 400% of the poverty line, by race and state.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+sahie_nonelderly <- getCensus(name = "timeseries/healthins/sahie",
+	vars = c("NAME", "IPR_DESC", "PCTUI_PT", "AGE_DESC", "RACECAT", "RACE_DESC"), 
+	region = "state:*", 
+	time = 2016,
+	IPRCAT = 5,
+	AGECAT = 1)
+head(sahie_nonelderly)
+```
 ## International Data Base
 [International Data Base documentation](https://www.census.gov/data/developers/data-sets/international-database.html)
 

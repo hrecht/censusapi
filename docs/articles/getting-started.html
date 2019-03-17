@@ -253,7 +253,7 @@
 </table>
 </div>
 <p>This API has three geographic levels: <code>us</code>, <code>county</code> within states, and <code>state</code>.</p>
-<p>First, using <code>getCensus</code>, let’s get uninsured rate by income group at the national level for 2015.</p>
+<p>First, using <code>getCensus</code>, let’s get uninsured rate by income group at the national level.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
     <span class="dt">region =</span> <span class="st">"us:*"</span>, 
