@@ -191,7 +191,7 @@
 <td align="left">Demographic ID</td>
 <td align="left">int</td>
 <td align="left">N/A</td>
-<td align="left">0</td>
+<td align="left">4</td>
 <td align="left">default displayed</td>
 </tr>
 </tbody>
@@ -220,6 +220,7 @@
 <thead><tr class="header">
 <th align="left">name</th>
 <th align="left">geoLevelId</th>
+<th align="left">limit</th>
 <th align="left">referenceDate</th>
 <th align="left">requires</th>
 <th align="left">wildcard</th>
@@ -229,6 +230,7 @@
 <tr class="odd">
 <td align="left">us</td>
 <td align="left">010</td>
+<td align="left">1</td>
 <td align="left">2015-01-01</td>
 <td align="left">NULL</td>
 <td align="left">NULL</td>
@@ -237,6 +239,7 @@
 <tr class="even">
 <td align="left">county</td>
 <td align="left">050</td>
+<td align="left">3142</td>
 <td align="left">2015-01-01</td>
 <td align="left">state</td>
 <td align="left">state</td>
@@ -245,6 +248,7 @@
 <tr class="odd">
 <td align="left">state</td>
 <td align="left">040</td>
+<td align="left">52</td>
 <td align="left">2015-01-01</td>
 <td align="left">NULL</td>
 <td align="left">NULL</td>
@@ -254,11 +258,11 @@
 </table>
 </div>
 <p>This API has three geographic levels: <code>us</code>, <code>county</code> within states, and <code>state</code>.</p>
-<p>First, using <code>getCensus</code>, let’s get uninsured rate by income group at the national level.</p>
+<p>First, using <code>getCensus</code>, let’s get uninsured rate by income group at the national level for 2017.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
     <span class="dt">region =</span> <span class="st">"us:*"</span>, 
-    <span class="dt">time =</span> <span class="dv">2016</span>)</code></pre></div>
+    <span class="dt">time =</span> <span class="dv">2017</span>)</code></pre></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
@@ -271,31 +275,31 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">1</td>
 <td align="left">United States</td>
 <td align="left">0</td>
 <td align="left">All Incomes</td>
-<td align="left">10.0</td>
+<td align="left">10.2</td>
 </tr>
 <tr class="even">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">1</td>
 <td align="left">United States</td>
 <td align="left">1</td>
 <td align="left">&lt;= 200% of Poverty</td>
-<td align="left">17.0</td>
+<td align="left">17.2</td>
 </tr>
 <tr class="odd">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">1</td>
 <td align="left">United States</td>
 <td align="left">2</td>
 <td align="left">&lt;= 250% of Poverty</td>
-<td align="left">16.3</td>
+<td align="left">16.5</td>
 </tr>
 <tr class="even">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">1</td>
 <td align="left">United States</td>
 <td align="left">3</td>
@@ -303,20 +307,20 @@
 <td align="left">17.4</td>
 </tr>
 <tr class="odd">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">1</td>
 <td align="left">United States</td>
 <td align="left">4</td>
 <td align="left">&lt;= 400% of Poverty</td>
-<td align="left">14.0</td>
+<td align="left">14.2</td>
 </tr>
 <tr class="even">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">1</td>
 <td align="left">United States</td>
 <td align="left">5</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">12.1</td>
+<td align="left">12.6</td>
 </tr>
 </tbody>
 </table>
@@ -325,7 +329,7 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_states &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
     <span class="dt">region =</span> <span class="st">"state:*"</span>, 
-    <span class="dt">time =</span> <span class="dv">2016</span>)
+    <span class="dt">time =</span> <span class="dv">2017</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(sahie_states)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -339,52 +343,52 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">0</td>
 <td align="left">All Incomes</td>
-<td align="left">10.8</td>
-</tr>
-<tr class="even">
-<td align="left">2016</td>
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="left">1</td>
-<td align="left">&lt;= 200% of Poverty</td>
-<td align="left">18.1</td>
-</tr>
-<tr class="odd">
-<td align="left">2016</td>
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="left">2</td>
-<td align="left">&lt;= 250% of Poverty</td>
-<td align="left">17.0</td>
-</tr>
-<tr class="even">
-<td align="left">2016</td>
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="left">3</td>
-<td align="left">&lt;= 138% of Poverty</td>
-<td align="left">19.2</td>
-</tr>
-<tr class="odd">
-<td align="left">2016</td>
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="left">4</td>
-<td align="left">&lt;= 400% of Poverty</td>
-<td align="left">14.2</td>
-</tr>
-<tr class="even">
-<td align="left">2016</td>
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="left">5</td>
-<td align="left">138% to 400% of Poverty</td>
 <td align="left">11.0</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">02</td>
+<td align="left">Alaska</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">14.8</td>
+</tr>
+<tr class="odd">
+<td align="left">2017</td>
+<td align="left">04</td>
+<td align="left">Arizona</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">12.1</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">05</td>
+<td align="left">Arkansas</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">9.3</td>
+</tr>
+<tr class="odd">
+<td align="left">2017</td>
+<td align="left">06</td>
+<td align="left">California</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">8.2</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">08</td>
+<td align="left">Colorado</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">8.7</td>
 </tr>
 </tbody>
 </table>
@@ -393,8 +397,8 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_counties &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
     <span class="dt">region =</span> <span class="st">"county:*"</span>, 
-    <span class="dt">regionin =</span> <span class="st">"state:1,2"</span>, 
-    <span class="dt">time =</span> <span class="dv">2016</span>)
+    <span class="dt">regionin =</span> <span class="st">"state:01,02"</span>, 
+    <span class="dt">time =</span> <span class="dv">2017</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(sahie_counties, <span class="dt">n=</span>12L)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -409,112 +413,112 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2016</td>
-<td align="left">01</td>
-<td align="left">001</td>
-<td align="left">Autauga County, AL</td>
-<td align="left">0</td>
-<td align="left">All Incomes</td>
-<td align="left">8.5</td>
-</tr>
-<tr class="even">
-<td align="left">2016</td>
-<td align="left">01</td>
-<td align="left">001</td>
-<td align="left">Autauga County, AL</td>
-<td align="left">1</td>
-<td align="left">&lt;= 200% of Poverty</td>
-<td align="left">15.9</td>
-</tr>
-<tr class="odd">
-<td align="left">2016</td>
-<td align="left">01</td>
-<td align="left">001</td>
-<td align="left">Autauga County, AL</td>
-<td align="left">2</td>
-<td align="left">&lt;= 250% of Poverty</td>
-<td align="left">14.7</td>
-</tr>
-<tr class="even">
-<td align="left">2016</td>
-<td align="left">01</td>
-<td align="left">001</td>
-<td align="left">Autauga County, AL</td>
-<td align="left">3</td>
-<td align="left">&lt;= 138% of Poverty</td>
-<td align="left">17.2</td>
-</tr>
-<tr class="odd">
-<td align="left">2016</td>
-<td align="left">01</td>
-<td align="left">001</td>
-<td align="left">Autauga County, AL</td>
-<td align="left">4</td>
-<td align="left">&lt;= 400% of Poverty</td>
-<td align="left">11.5</td>
-</tr>
-<tr class="even">
-<td align="left">2016</td>
-<td align="left">01</td>
-<td align="left">001</td>
-<td align="left">Autauga County, AL</td>
-<td align="left">5</td>
-<td align="left">138% to 400% of Poverty</td>
-<td align="left">9.0</td>
-</tr>
-<tr class="odd">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">01</td>
 <td align="left">003</td>
 <td align="left">Baldwin County, AL</td>
 <td align="left">0</td>
 <td align="left">All Incomes</td>
-<td align="left">10.7</td>
+<td align="left">11.3</td>
 </tr>
 <tr class="even">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">01</td>
-<td align="left">003</td>
-<td align="left">Baldwin County, AL</td>
-<td align="left">1</td>
-<td align="left">&lt;= 200% of Poverty</td>
-<td align="left">20.0</td>
+<td align="left">001</td>
+<td align="left">Autauga County, AL</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">8.7</td>
 </tr>
 <tr class="odd">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">01</td>
-<td align="left">003</td>
-<td align="left">Baldwin County, AL</td>
-<td align="left">2</td>
-<td align="left">&lt;= 250% of Poverty</td>
-<td align="left">18.4</td>
+<td align="left">015</td>
+<td align="left">Calhoun County, AL</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">11.9</td>
 </tr>
 <tr class="even">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">01</td>
-<td align="left">003</td>
-<td align="left">Baldwin County, AL</td>
-<td align="left">3</td>
-<td align="left">&lt;= 138% of Poverty</td>
-<td align="left">21.2</td>
+<td align="left">005</td>
+<td align="left">Barbour County, AL</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">12.2</td>
 </tr>
 <tr class="odd">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">01</td>
-<td align="left">003</td>
-<td align="left">Baldwin County, AL</td>
-<td align="left">4</td>
-<td align="left">&lt;= 400% of Poverty</td>
-<td align="left">14.9</td>
+<td align="left">007</td>
+<td align="left">Bibb County, AL</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">10.2</td>
 </tr>
 <tr class="even">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">01</td>
-<td align="left">003</td>
-<td align="left">Baldwin County, AL</td>
-<td align="left">5</td>
-<td align="left">138% to 400% of Poverty</td>
-<td align="left">11.8</td>
+<td align="left">009</td>
+<td align="left">Blount County, AL</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">13.4</td>
+</tr>
+<tr class="odd">
+<td align="left">2017</td>
+<td align="left">01</td>
+<td align="left">011</td>
+<td align="left">Bullock County, AL</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">11.4</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">01</td>
+<td align="left">013</td>
+<td align="left">Butler County, AL</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">11.2</td>
+</tr>
+<tr class="odd">
+<td align="left">2017</td>
+<td align="left">01</td>
+<td align="left">027</td>
+<td align="left">Clay County, AL</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">13.9</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">01</td>
+<td align="left">017</td>
+<td align="left">Chambers County, AL</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">11.9</td>
+</tr>
+<tr class="odd">
+<td align="left">2017</td>
+<td align="left">01</td>
+<td align="left">019</td>
+<td align="left">Cherokee County, AL</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">11.2</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">01</td>
+<td align="left">021</td>
+<td align="left">Chilton County, AL</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">13.8</td>
 </tr>
 </tbody>
 </table>
@@ -522,8 +526,8 @@
 <p>Because the SAHIE API is a timeseries (as indicated in its name), we can get multiple years of data at once using the <code>time</code> argument.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_years &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>), 
-    <span class="dt">region =</span> <span class="st">"state:1"</span>, 
-    <span class="dt">time =</span> <span class="st">"from 2006 to 2016"</span>)
+    <span class="dt">region =</span> <span class="st">"state:01"</span>, 
+    <span class="dt">time =</span> <span class="st">"from 2006 to 2017"</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(sahie_years)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -582,8 +586,225 @@
 <div id="miscellaneous-parameters" class="section level3">
 <h3 class="hasAnchor">
 <a href="#miscellaneous-parameters" class="anchor"></a>Miscellaneous parameters</h3>
-<p>Some of the APIs allow complex calls, including specifying a country FIPS code or age. The most commonly used parameters, including <code>time</code>, <code>date</code>, and <code>sic</code> are included as built-in options in <code>getCensus</code>, but you can also specify other paramaters yourself.</p>
-<p>For example, the <a href="https://www.census.gov/data/developers/data-sets/international-database.html">International Data Base</a> APIs allow you to get data by age and country.</p>
+<p>Some of the APIs allow complex calls, including specifying a country FIPS code or age. The most commonly used parameters, including <code>time</code>, <code>date</code>, and <code>sic</code> are included as built-in options in <code>getCensus</code>, but you can also specify other parameters yourself. (Note: this generally does not apply to the popular American Community Survey and Decennial Census APIs.)</p>
+<p>In the SAHIE API, we can filter data by the categorical variables <code>AGECAT</code> (age group), <code>IPRCAT</code> (income group), <code>RACECAT</code> (race) and <code>SEXCAT</code> (sex), in addition to geography and time. More information on those variables is available in the <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html">online documentation</a>.</p>
+<p>Here’s how to get the uninsured rate (<code>PCTUI_PT</code>) for non-elderly adults (<code>AGECAT = 1</code>) with incomes of 138 to 400% of the poverty line (<code>IPRCAT = 5</code>), by race (<code>RACECAT</code>) and state.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_nonelderly &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
+    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span>), 
+    <span class="dt">region =</span> <span class="st">"state:*"</span>, 
+    <span class="dt">time =</span> <span class="dv">2017</span>,
+    <span class="dt">IPRCAT =</span> <span class="dv">5</span>,
+    <span class="dt">AGECAT =</span> <span class="dv">1</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(sahie_nonelderly)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="left">state</th>
+<th align="left">NAME</th>
+<th align="left">PCTUI_PT</th>
+<th align="left">IPR_DESC</th>
+<th align="left">AGE_DESC</th>
+<th align="left">RACECAT</th>
+<th align="left">RACE_DESC</th>
+<th align="left">IPRCAT</th>
+<th align="left">AGECAT</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2017</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">14.6</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">02</td>
+<td align="left">Alaska</td>
+<td align="left">24.3</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">2017</td>
+<td align="left">04</td>
+<td align="left">Arizona</td>
+<td align="left">16.6</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">05</td>
+<td align="left">Arkansas</td>
+<td align="left">12.4</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">2017</td>
+<td align="left">06</td>
+<td align="left">California</td>
+<td align="left">13.6</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">08</td>
+<td align="left">Colorado</td>
+<td align="left">14.6</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note: data by race is only returned where the population is large enough, so some states will not have rows for some race groups. Here’s another example, getting national data from percent uninsured (<code>PCTUI_PT</code>) and number uninsured (<code>NUI_PT</code>), along with the associated margins of error, by race group and income group for all years.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_nonelderly_annual &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
+    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"PCTUI_MOE"</span>, <span class="st">"NUI_PT"</span>, <span class="st">"NUI_MOE"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span>), 
+    <span class="dt">region =</span> <span class="st">"us:*"</span>, 
+    <span class="dt">time =</span> <span class="st">"from 2006 to 2017"</span>,
+    <span class="dt">AGECAT =</span> <span class="dv">1</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(sahie_nonelderly_annual)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="left">us</th>
+<th align="left">NAME</th>
+<th align="left">PCTUI_PT</th>
+<th align="left">PCTUI_MOE</th>
+<th align="left">NUI_PT</th>
+<th align="left">NUI_MOE</th>
+<th align="left">IPRCAT</th>
+<th align="left">IPR_DESC</th>
+<th align="left">AGE_DESC</th>
+<th align="left">RACECAT</th>
+<th align="left">RACE_DESC</th>
+<th align="left">AGECAT</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2006</td>
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="left">19.5</td>
+<td align="left">0.3</td>
+<td align="left">36363986</td>
+<td align="left">549708</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">2006</td>
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="left">39.5</td>
+<td align="left">0.7</td>
+<td align="left">19368368</td>
+<td align="left">440544</td>
+<td align="left">1</td>
+<td align="left">&lt;= 200% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">2006</td>
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="left">36.5</td>
+<td align="left">0.6</td>
+<td align="left">23595529</td>
+<td align="left">455801</td>
+<td align="left">2</td>
+<td align="left">&lt;= 250% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">2006</td>
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="left">13.7</td>
+<td align="left">0.3</td>
+<td align="left">17094552</td>
+<td align="left">364661</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">18 to 64 years</td>
+<td align="left">1</td>
+<td align="left">White alone, not Hispanic</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">2006</td>
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="left">32.0</td>
+<td align="left">0.8</td>
+<td align="left">7846458</td>
+<td align="left">277188</td>
+<td align="left">1</td>
+<td align="left">&lt;= 200% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">1</td>
+<td align="left">White alone, not Hispanic</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">2006</td>
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="left">28.5</td>
+<td align="left">0.7</td>
+<td align="left">9614431</td>
+<td align="left">291480</td>
+<td align="left">2</td>
+<td align="left">&lt;= 250% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">1</td>
+<td align="left">White alone, not Hispanic</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Other APIs can be filtered too. For example, the <a href="https://www.census.gov/data/developers/data-sets/international-database.html">International Data Base</a> population projections APIs allow you to get data by age and country.</p>
 <p>See what variables the IDB 1 year API allows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/idb/1year"</span>, 
     <span class="dt">type =</span> <span class="st">"variables"</span>)</code></pre></div>
@@ -745,49 +966,49 @@ pop_portugal</code></pre></div>
 <tr class="odd">
 <td align="left">2050</td>
 <td align="left">Portugal</td>
-<td align="left">92252</td>
+<td align="left">82014</td>
 <td align="left">PO</td>
 <td align="left">13</td>
 </tr>
 <tr class="even">
 <td align="left">2050</td>
 <td align="left">Portugal</td>
-<td align="left">92942</td>
+<td align="left">82573</td>
 <td align="left">PO</td>
 <td align="left">14</td>
 </tr>
 <tr class="odd">
 <td align="left">2050</td>
 <td align="left">Portugal</td>
-<td align="left">93551</td>
+<td align="left">83083</td>
 <td align="left">PO</td>
 <td align="left">15</td>
 </tr>
 <tr class="even">
 <td align="left">2050</td>
 <td align="left">Portugal</td>
-<td align="left">94075</td>
+<td align="left">83540</td>
 <td align="left">PO</td>
 <td align="left">16</td>
 </tr>
 <tr class="odd">
 <td align="left">2050</td>
 <td align="left">Portugal</td>
-<td align="left">94527</td>
+<td align="left">83812</td>
 <td align="left">PO</td>
 <td align="left">17</td>
 </tr>
 <tr class="even">
 <td align="left">2050</td>
 <td align="left">Portugal</td>
-<td align="left">94913</td>
+<td align="left">83919</td>
 <td align="left">PO</td>
 <td align="left">18</td>
 </tr>
 <tr class="odd">
 <td align="left">2050</td>
 <td align="left">Portugal</td>
-<td align="left">95242</td>
+<td align="left">83880</td>
 <td align="left">PO</td>
 <td align="left">19</td>
 </tr>
@@ -834,7 +1055,7 @@ qwi</code></pre></div>
 <td align="left">02</td>
 </tr>
 <tr class="even">
-<td align="left">54</td>
+<td align="left">55</td>
 <td align="left">1</td>
 <td align="left">2012</td>
 <td align="left">1</td>
@@ -864,6 +1085,7 @@ qwi</code></pre></div>
 <div id="variable-groups" class="section level3">
 <h3 class="hasAnchor">
 <a href="#variable-groups" class="anchor"></a>Variable groups</h3>
+<p>For some surveys, particularly the American Community Survey and Decennial Census, you can get many related variables at once using a <code>group</code>, defined by the Census Bureau. In some other data tools, like American FactFinder, this idea is referred to as a <code>table</code>.</p>
 <p>The American Community Survey (ACS) APIs include estimates (variable names ending in “E”), annotations, margins of error, and statistical significance, depending on the data set. Read more on <a href="https://www.census.gov/data/developers/data-sets/acs-5year/data-notes.html">ACS variable types</a> and annotation symbol meanings on the Census website.</p>
 <p>You can retrieve these annotation variables manually, by specifying a list of variables. We’ll get the estimate, margin of error and annotations for median household income in the past 12 months for Census tracts in Alaska.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acs_income &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"acs/acs5"</span>,
@@ -949,6 +1171,63 @@ qwi</code></pre></div>
 </table>
 </div>
 <p>You can also retrieve also estimates and annotations for a group of variables in one command. Here’s the <code>group</code> call for that same table, <a href="https://api.census.gov/data/2016/acs/acs5/groups/B19013.html">B19013</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># See descriptions of the variables in group B19013</span>
+group_B19013 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(<span class="dt">name =</span> <span class="st">"acs/acs5"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2017</span>,
+    <span class="dt">type =</span> <span class="st">"variables"</span>,
+    <span class="dt">group =</span> <span class="st">"B19013"</span>)
+group_B19013</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="left">label</th>
+<th align="left">concept</th>
+<th align="left">predicateType</th>
+<th align="left">group</th>
+<th align="left">limit</th>
+<th align="left">predicateOnly</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">B19013_001E</td>
+<td align="left">Estimate!!Median household income in the past 12 months (in 2017 inflation-adjusted dollars)</td>
+<td align="left">MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2017 INFLATION-ADJUSTED DOLLARS)</td>
+<td align="left">int</td>
+<td align="left">B19013</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">B19013_001M</td>
+<td align="left">Margin of Error!!Median household income in the past 12 months (in 2017 inflation-adjusted dollars)</td>
+<td align="left">MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2017 INFLATION-ADJUSTED DOLLARS)</td>
+<td align="left">int</td>
+<td align="left">B19013</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">B19013_001EA</td>
+<td align="left">Annotation of Estimate!!Median household income in the past 12 months (in 2017 inflation-adjusted dollars)</td>
+<td align="left">NA</td>
+<td align="left">string</td>
+<td align="left">B19013</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">B19013_001MA</td>
+<td align="left">Annotation of Margin of Error!!Median household income in the past 12 months (in 2017 inflation-adjusted dollars)</td>
+<td align="left">NA</td>
+<td align="left">string</td>
+<td align="left">B19013</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acs_income_group &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"acs/acs5"</span>, 
     <span class="dt">vintage =</span> <span class="dv">2017</span>, 
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"group(B19013)"</span>), 
@@ -1046,34 +1325,81 @@ qwi</code></pre></div>
 </tbody>
 </table>
 </div>
-<p>Some variable groups contain many related variables and their associated annotations. As an example, we’ll get table <a href="https://api.census.gov/data/2016/acs/acs5/groups/B17020.html">B17020</a>, poverty status by age.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acs_poverty_group &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"acs/acs5"</span>,
-    <span class="dt">vintage =</span> <span class="dv">2017</span>, 
-    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"group(B17020)"</span>), 
-    <span class="dt">region =</span> <span class="st">"tract:*"</span>,
-    <span class="dt">regionin =</span> <span class="st">"state:02"</span>)</code></pre></div>
-<pre><code>#&gt; Warning in responseFormat(raw): NAs introduced by coercion</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># List column names</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">colnames</a></span>(acs_poverty_group)</code></pre></div>
-<pre><code>#&gt;  [1] "state"        "county"       "tract"        "NAME"        
-#&gt;  [5] "GEO_ID"       "B17020_001E"  "B17020_001M"  "B17020_002E" 
-#&gt;  [9] "B17020_002M"  "B17020_003E"  "B17020_003M"  "B17020_004E" 
-#&gt; [13] "B17020_004M"  "B17020_005E"  "B17020_005M"  "B17020_006E" 
-#&gt; [17] "B17020_006M"  "B17020_007E"  "B17020_007M"  "B17020_008E" 
-#&gt; [21] "B17020_008M"  "B17020_009E"  "B17020_009M"  "B17020_010E" 
-#&gt; [25] "B17020_010M"  "B17020_011E"  "B17020_011M"  "B17020_012E" 
-#&gt; [29] "B17020_012M"  "B17020_013E"  "B17020_013M"  "B17020_014E" 
-#&gt; [33] "B17020_014M"  "B17020_015E"  "B17020_015M"  "B17020_016E" 
-#&gt; [37] "B17020_016M"  "B17020_017E"  "B17020_017M"  "NAME_1"      
-#&gt; [41] "B17020_001MA" "B17020_001EA" "B17020_002MA" "B17020_002EA"
-#&gt; [45] "B17020_003MA" "B17020_003EA" "B17020_004MA" "B17020_004EA"
-#&gt; [49] "B17020_005EA" "B17020_005MA" "B17020_006EA" "B17020_006MA"
-#&gt; [53] "B17020_007MA" "B17020_007EA" "B17020_008MA" "B17020_008EA"
-#&gt; [57] "B17020_009MA" "B17020_009EA" "B17020_010MA" "B17020_010EA"
-#&gt; [61] "B17020_011MA" "B17020_011EA" "B17020_012MA" "B17020_012EA"
-#&gt; [65] "B17020_013MA" "B17020_013EA" "B17020_014MA" "B17020_014EA"
-#&gt; [69] "B17020_015EA" "B17020_015MA" "B17020_016EA" "B17020_016MA"
-#&gt; [73] "B17020_017MA" "B17020_017EA"</code></pre>
+<p>Some variable groups contain many related variables and their associated annotations. As an example, we’ll get the list of variables included in group <a href="https://api.census.gov/data/2016/acs/acs5/groups/B17020.html">B17020</a>, poverty status by age.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group_B17020 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(<span class="dt">name =</span> <span class="st">"acs/acs5"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2017</span>,
+    <span class="dt">type =</span> <span class="st">"variables"</span>,
+    <span class="dt">group =</span> <span class="st">"B17020"</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(group_B17020)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="left">label</th>
+<th align="left">concept</th>
+<th align="left">predicateType</th>
+<th align="left">group</th>
+<th align="left">limit</th>
+<th align="left">predicateOnly</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">B17020_002M</td>
+<td align="left">Margin of Error!!Total!!Income in the past 12 months below poverty level</td>
+<td align="left">POVERTY STATUS IN THE PAST 12 MONTHS BY AGE</td>
+<td align="left">int</td>
+<td align="left">B17020</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">B17020_002E</td>
+<td align="left">Estimate!!Total!!Income in the past 12 months below poverty level</td>
+<td align="left">POVERTY STATUS IN THE PAST 12 MONTHS BY AGE</td>
+<td align="left">int</td>
+<td align="left">B17020</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">B17020_001M</td>
+<td align="left">Margin of Error!!Total</td>
+<td align="left">POVERTY STATUS IN THE PAST 12 MONTHS BY AGE</td>
+<td align="left">int</td>
+<td align="left">B17020</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">B17020_001E</td>
+<td align="left">Estimate!!Total</td>
+<td align="left">POVERTY STATUS IN THE PAST 12 MONTHS BY AGE</td>
+<td align="left">int</td>
+<td align="left">B17020</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">B17020_004M</td>
+<td align="left">Margin of Error!!Total!!Income in the past 12 months below poverty level!!6 to 11 years</td>
+<td align="left">POVERTY STATUS IN THE PAST 12 MONTHS BY AGE</td>
+<td align="left">int</td>
+<td align="left">B17020</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">B17020_004E</td>
+<td align="left">Estimate!!Total!!Income in the past 12 months below poverty level!!6 to 11 years</td>
+<td align="left">POVERTY STATUS IN THE PAST 12 MONTHS BY AGE</td>
+<td align="left">int</td>
+<td align="left">B17020</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="advanced-geographies" class="section level3">
 <h3 class="hasAnchor">
@@ -1224,6 +1550,35 @@ qwi</code></pre></div>
 </div>
 </div>
 </div>
+<div id="troubleshooting" class="section level2">
+<h2 class="hasAnchor">
+<a href="#troubleshooting" class="anchor"></a>Troubleshooting</h2>
+<p>The APIs contain hundreds of API endpoints and dozens of datasets, each of which work a little differently. The Census Bureau also makes frequent updates, which unfortunately are not always announced in advance. If you’re getting an error message or unexpected results, here are some things to check.</p>
+<div id="variables" class="section level3">
+<h3 class="hasAnchor">
+<a href="#variables" class="anchor"></a>Variables</h3>
+<p>Use <code><a href="../reference/listCensusMetadata.html">listCensusMetadata(type = "variables")</a></code> on your API to see the table of available variables. * Occasionally the variable names will change with data updates or API updates. The names may be different from year to year. * The Census APIs are case-sensitive, which means that if the variable name you want is uppercase you’ll need to write it uppercase in your request. Most of the APIs use uppercase variable names, but some use lowercase and some even use sentence case.</p>
+</div>
+<div id="geographies" class="section level3">
+<h3 class="hasAnchor">
+<a href="#geographies" class="anchor"></a>Geographies</h3>
+<p>Use <code><a href="../reference/listCensusMetadata.html">listCensusMetadata(type = "geographies")</a></code> on your dataset to check which geographies you can use. * Each API has its own list of valid geographies and they occasionally change as the Census Bureau makes updates. If a previously available geography isn’t available anymore, email <a href="mailto:cnmp.developers.list@census.gov">cnmp.developers.list@census.gov</a> detailing the issue. * If you’re specifying a region by FIPS code, for example <code>state:01</code>, make sure to use the full code, padded with 0s if necessary. The APIs did not always enforce this (previously, <code>state:1</code> usually worked), but now they do. See the Census <a href="https://www.census.gov/geographies/reference-files/2017/demo/popest/2017-fips.html">reference files</a> for valid FIPS codes.</p>
+</div>
+<div id="unexpected-errors" class="section level3">
+<h3 class="hasAnchor">
+<a href="#unexpected-errors" class="anchor"></a>Unexpected errors</h3>
+<p>Occasionally you might get the general error message <code>"There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience."</code> This comes from the Census Bureau and could be caused by any number of problems, including server issues. Try rerunning your API call. If that doesn’t work and you are requesting a large amount of data, try reducing the amount that you’re requesting, for example getting only one state at a time. If you’re still having trouble, email <a href="mailto:cnmp.developers.list@census.gov">cnmp.developers.list@census.gov</a>. Include in your email the raw API call that’s provided in your <code>getCensus</code> error message (not your R code) so that they can try to help.</p>
+</div>
+<div id="other-ways-to-get-help" class="section level3">
+<h3 class="hasAnchor">
+<a href="#other-ways-to-get-help" class="anchor"></a>Other ways to get help</h3>
+<ul>
+<li>Open a <a href="https://github.com/hrecht/censusapi/issues">Github issue</a> for bugs or issues with this R package.</li>
+<li>Join the public Census Bureau <a href="http://links.govdelivery.com/track?type=click&amp;enid=ZWFzPTEmbWFpbGluZ2lkPTIwMTgwOTE3Ljk0OTc1NjkxJm1lc3NhZ2VpZD1NREItUFJELUJVTC0yMDE4MDkxNy45NDk3NTY5MSZkYXRhYmFzZWlkPTEwMDEmc2VyaWFsPTE3MjA3MjUwJmVtYWlsaWQ9aHJlY2h0MkBnbWFpbC5jb20mdXNlcmlkPWhyZWNodDJAZ21haWwuY29tJmZsPSZleHRyYT1NdWx0aXZhcmlhdGVJZD0mJiY=&amp;&amp;&amp;105&amp;&amp;&amp;https://join.slack.com/t/uscensusbureau/shared_invite/enQtMjQ3NzUyNTM3NDU3LTZmNGI1MmQzY2Y2ZTU1ODJhNDQwMmY2YmZiNmFkNzg4YmJkYmQzZjQyNDhkNDYxN2JhYjkxZDEwMGI2OGU5NzQ?eml=gd&amp;utm_medium=email&amp;utm_source=govdelivery">Slack channel</a> and ask your question in the R or API rooms.</li>
+<li>Email the Census Bureau API team at <a href="mailto:cnmp.developers.list@census.gov">cnmp.developers.list@census.gov</a> for questions relating to the underlying data and APIs.</li>
+</ul>
+</div>
+</div>
 <div id="additional-resources" class="section level2">
 <h2 class="hasAnchor">
 <a href="#additional-resources" class="anchor"></a>Additional resources</h2>
@@ -1248,6 +1603,7 @@ qwi</code></pre></div>
       <li><a href="#finding-your-api">Finding your API</a></li>
       <li><a href="#using-getcensus">Using <code>getCensus</code></a></li>
       <li><a href="#advanced-topics">Advanced topics</a></li>
+      <li><a href="#troubleshooting">Troubleshooting</a></li>
       <li><a href="#additional-resources">Additional resources</a></li>
       <li><a href="#disclaimer">Disclaimer</a></li>
       </ul>

@@ -4,7 +4,8 @@
 \alias{listCensusMetadata}
 \title{Get variable or geography metadata for a given API as a data frame}
 \usage{
-listCensusMetadata(name, vintage = NULL, type = "variables")
+listCensusMetadata(name, vintage = NULL, type = "variables",
+  group = NULL)
 }
 \arguments{
 \item{name}{API name - e.g. acs5. See list at https://api.census.gov/data.html}
@@ -13,6 +14,9 @@ listCensusMetadata(name, vintage = NULL, type = "variables")
 
 \item{type}{Type of metadata to return, either "variables", "geographies" or "geography", or
 "groups". Default is variables.}
+
+\item{group}{An optional variable group code, used to return metadata for a specific group
+of variables only.}
 }
 \description{
 Get variable or geography metadata for a given API as a data frame
@@ -21,13 +25,19 @@ Get variable or geography metadata for a given API as a data frame
 bds_vars <- listCensusMetadata(name = "timeseries/bds/firms", type = "variables")
 head(bds_vars)
 
-bds_geos <- listCensusMetadata(name = "timeseries/bds/firms", type = "geography")
+bds_geos <- listCensusMetadata(name = "timeseries/bds/firms", type = "geographies")
 head(bds_geos)
 
-acs_geos <- listCensusMetadata(name = "acs/acs5", vintage = 2016, type = "geography")
+acs_geos <- listCensusMetadata(name = "acs/acs5", vintage = 2017, type = "geographies")
 head(acs_geos)
 
-acs_groups <- listCensusMetadata(name = "acs/acs5", vintage = 2016, type = "groups")
+acs_groups <- listCensusMetadata(name = "acs/acs5", vintage = 2017, type = "groups")
 head(acs_groups)
+
+group_B17020 <- listCensusMetadata(name = "acs/acs5",
+vintage = 2017,
+type = "variables",
+group = "B17020")
+head(group_B17020)
 }
 \keyword{metadata}

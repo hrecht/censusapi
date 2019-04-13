@@ -115,7 +115,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>listCensusMetadata</span>(<span class='no'>name</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"variables"</span>)</pre>
+    <pre class="usage"><span class='fu'>listCensusMetadata</span>(<span class='no'>name</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"variables"</span>,
+  <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -132,6 +133,11 @@
       <th>type</th>
       <td><p>Type of metadata to return, either "variables", "geographies" or "geography", or
 "groups". Default is variables.</p></td>
+    </tr>
+    <tr>
+      <th>group</th>
+      <td><p>An optional variable group code, used to return metadata for a specific group
+of variables only.</p></td>
     </tr>
     </table>
     
@@ -152,19 +158,19 @@
 #&gt; 4        string   N/A     0 default displayed
 #&gt; 5           int   N/A     0              &lt;NA&gt;
 #&gt; 6          &lt;NA&gt;   N/A     0              &lt;NA&gt;</div><div class='input'>
-<span class='no'>bds_geos</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"geography"</span>)
+<span class='no'>bds_geos</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"geographies"</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>bds_geos</span>)</div><div class='output co'>#&gt;                            name geoLevelId referenceDate
 #&gt; 1                            us        010    2012-01-01
 #&gt; 2 metropolitan statistical area        310          &lt;NA&gt;
 #&gt; 3                         state        040    2012-01-01</div><div class='input'>
-<span class='no'>acs_geos</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2016</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"geography"</span>)
+<span class='no'>acs_geos</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2017</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"geographies"</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>acs_geos</span>)</div><div class='output co'>#&gt;                 name geoLevelDisplay referenceDate      requires wildcard
-#&gt; 1                 us             010    2015-01-01          NULL     NULL
-#&gt; 2             region             020    2015-01-01          NULL     NULL
-#&gt; 3           division             030    2015-01-01          NULL     NULL
-#&gt; 4              state             040    2015-01-01          NULL     NULL
-#&gt; 5             county             050    2015-01-01         state    state
-#&gt; 6 county subdivision             060    2015-01-01 state, county   county
+#&gt; 1                 us             010    2017-01-01          NULL     NULL
+#&gt; 2             region             020    2017-01-01          NULL     NULL
+#&gt; 3           division             030    2017-01-01          NULL     NULL
+#&gt; 4              state             040    2017-01-01          NULL     NULL
+#&gt; 5             county             050    2017-01-01         state    state
+#&gt; 6 county subdivision             060    2017-01-01 state, county   county
 #&gt;   optionalWithWCFor
 #&gt; 1              &lt;NA&gt;
 #&gt; 2              &lt;NA&gt;
@@ -172,7 +178,7 @@
 #&gt; 4              &lt;NA&gt;
 #&gt; 5             state
 #&gt; 6            county</div><div class='input'>
-<span class='no'>acs_groups</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2016</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"groups"</span>)
+<span class='no'>acs_groups</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2017</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"groups"</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>acs_groups</span>)</div><div class='output co'>#&gt;      name
 #&gt; 1  B07012
 #&gt; 2  B07013
@@ -188,12 +194,44 @@
 #&gt; 5                  WOMEN 15 TO 50 YEARS WHO HAD A BIRTH IN THE PAST 12 MONTHS BY MARITAL STATUS (BLACK OR AFRICAN AMERICAN ALONE)
 #&gt; 6 WOMEN 15 TO 50 YEARS WHO HAD A BIRTH IN THE PAST 12 MONTHS BY MARITAL STATUS (NATIVE HAWAIIAN AND OTHER PACIFIC ISLANDER ALONE)
 #&gt;                                                       variables
-#&gt; 1  https://api.census.gov/data/2016/acs/acs5/groups/B07012.json
-#&gt; 2  https://api.census.gov/data/2016/acs/acs5/groups/B07013.json
-#&gt; 3 https://api.census.gov/data/2016/acs/acs5/groups/B13002A.json
-#&gt; 4 https://api.census.gov/data/2016/acs/acs5/groups/B13002C.json
-#&gt; 5 https://api.census.gov/data/2016/acs/acs5/groups/B13002B.json
-#&gt; 6 https://api.census.gov/data/2016/acs/acs5/groups/B13002E.json</div></pre>
+#&gt; 1  https://api.census.gov/data/2017/acs/acs5/groups/B07012.json
+#&gt; 2  https://api.census.gov/data/2017/acs/acs5/groups/B07013.json
+#&gt; 3 https://api.census.gov/data/2017/acs/acs5/groups/B13002A.json
+#&gt; 4 https://api.census.gov/data/2017/acs/acs5/groups/B13002C.json
+#&gt; 5 https://api.census.gov/data/2017/acs/acs5/groups/B13002B.json
+#&gt; 6 https://api.census.gov/data/2017/acs/acs5/groups/B13002E.json</div><div class='input'>
+<span class='no'>group_B17020</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>,
+<span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2017</span>,
+<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"variables"</span>,
+<span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"B17020"</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>group_B17020</span>)</div><div class='output co'>#&gt;          name
+#&gt; 1 B17020_002M
+#&gt; 2 B17020_002E
+#&gt; 3 B17020_001M
+#&gt; 4 B17020_001E
+#&gt; 5 B17020_004M
+#&gt; 6 B17020_004E
+#&gt;                                                                                     label
+#&gt; 1                Margin of Error!!Total!!Income in the past 12 months below poverty level
+#&gt; 2                       Estimate!!Total!!Income in the past 12 months below poverty level
+#&gt; 3                                                                  Margin of Error!!Total
+#&gt; 4                                                                         Estimate!!Total
+#&gt; 5 Margin of Error!!Total!!Income in the past 12 months below poverty level!!6 to 11 years
+#&gt; 6        Estimate!!Total!!Income in the past 12 months below poverty level!!6 to 11 years
+#&gt;                                       concept predicateType  group limit
+#&gt; 1 POVERTY STATUS IN THE PAST 12 MONTHS BY AGE           int B17020     0
+#&gt; 2 POVERTY STATUS IN THE PAST 12 MONTHS BY AGE           int B17020     0
+#&gt; 3 POVERTY STATUS IN THE PAST 12 MONTHS BY AGE           int B17020     0
+#&gt; 4 POVERTY STATUS IN THE PAST 12 MONTHS BY AGE           int B17020     0
+#&gt; 5 POVERTY STATUS IN THE PAST 12 MONTHS BY AGE           int B17020     0
+#&gt; 6 POVERTY STATUS IN THE PAST 12 MONTHS BY AGE           int B17020     0
+#&gt;   predicateOnly
+#&gt; 1          TRUE
+#&gt; 2          TRUE
+#&gt; 3          TRUE
+#&gt; 4          TRUE
+#&gt; 5          TRUE
+#&gt; 6          TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

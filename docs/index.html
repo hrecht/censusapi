@@ -14,8 +14,7 @@
 <meta property="og:description" content="A wrapper for the U.S. Census Bureau APIs that returns data frames of 
 	Census data and metadata. Available datasets include the 
 	Decennial Census, American Community Survey, Small Area Health Insurance Estimates,
-	Small Area Income and Poverty Estimates, and Population Estimates and Projections.
-	See &lt;https://www.census.gov/data/developers/data-sets.html&gt; for more information.">
+	Small Area Income and Poverty Estimates, Population Estimates and Projections, and more.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -76,7 +75,7 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#censusapi" class="anchor"></a>censusapi</h1></div>
 
-<p><code>censusapi</code> is an accessor for the United States Census Bureau’s <a href="https://www.census.gov/developers/">APIs</a>. As of 2017 <a href="https://api.census.gov/data.html">over 200 Census API endpoints</a> are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—<code>getCensus</code>—and the same syntax for each dataset.</p>
+<p><code>censusapi</code> is an accessor for the United States Census Bureau’s <a href="https://www.census.gov/developers/">APIs</a>. More than <a href="https://api.census.gov/data.html">300 Census API endpoints</a> are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—<code>getCensus</code>—and the same syntax for each dataset.</p>
 <p><code>censusapi</code> generally uses the APIs’ original parameter names so that users can easily transition between Census’s documentation and examples and this package. It also includes metadata functions to return data frames of available APIs, variables, and geographies.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -110,40 +109,40 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <p>State-level data by income group within Alabama.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
-    <span class="dt">region =</span> <span class="st">"state:1"</span>,
-    <span class="dt">time =</span> <span class="dv">2016</span>)
-<span class="co">#&gt;      NAME IPRCAT                IPR_DESC PCTUI_PT time state</span>
-<span class="co">#&gt; 1 Alabama      0             All Incomes     11.9 2015    01</span>
-<span class="co">#&gt; 2 Alabama      1      &lt;= 200% of Poverty     19.8 2015    01</span>
-<span class="co">#&gt; 3 Alabama      2      &lt;= 250% of Poverty     18.6 2015    01</span>
-<span class="co">#&gt; 4 Alabama      3      &lt;= 138% of Poverty     21.2 2015    01</span>
-<span class="co">#&gt; 5 Alabama      4      &lt;= 400% of Poverty     15.5 2015    01</span>
-<span class="co">#&gt; 6 Alabama      5 138% to 400% of Poverty     11.8 2015    01</span></code></pre></div>
+    <span class="dt">region =</span> <span class="st">"state:01"</span>,
+    <span class="dt">time =</span> <span class="dv">2017</span>)
+<span class="co">#&gt;   time state    NAME IPRCAT                IPR_DESC PCTUI_PT</span>
+<span class="co">#&gt; 1 2017    01 Alabama      0             All Incomes     11.0</span>
+<span class="co">#&gt; 2 2017    01 Alabama      1      &lt;= 200% of Poverty     18.3</span>
+<span class="co">#&gt; 3 2017    01 Alabama      2      &lt;= 250% of Poverty     17.3</span>
+<span class="co">#&gt; 4 2017    01 Alabama      3      &lt;= 138% of Poverty     19.4</span>
+<span class="co">#&gt; 5 2017    01 Alabama      4      &lt;= 400% of Poverty     14.5</span>
+<span class="co">#&gt; 6 2017    01 Alabama      5 138% to 400% of Poverty     11.5</span></code></pre></div>
 <p>County-level data within Alabama, specified by adding the <code>regionin</code> parameter.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_counties &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>), 
     <span class="dt">region =</span> <span class="st">"county:*"</span>,
-    <span class="dt">regionin =</span> <span class="st">"state:1"</span>,
-    <span class="dt">time =</span> <span class="dv">2016</span>)
+    <span class="dt">regionin =</span> <span class="st">"state:01"</span>,
+    <span class="dt">time =</span> <span class="dv">2017</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(sahie_counties, <span class="dt">n=</span>12L)
-<span class="co">#&gt;                  NAME IPRCAT                IPR_DESC PCTUI_PT time state county</span>
-<span class="co">#&gt; 1  Autauga County, AL      0             All Incomes      9.4 2015    01    001</span>
-<span class="co">#&gt; 2  Autauga County, AL      1      &lt;= 200% of Poverty     16.8 2015    01    001</span>
-<span class="co">#&gt; 3  Autauga County, AL      2      &lt;= 250% of Poverty     15.5 2015    01    001</span>
-<span class="co">#&gt; 4  Autauga County, AL      3      &lt;= 138% of Poverty     18.6 2015    01    001</span>
-<span class="co">#&gt; 5  Autauga County, AL      4      &lt;= 400% of Poverty     12.4 2015    01    001</span>
-<span class="co">#&gt; 6  Autauga County, AL      5 138% to 400% of Poverty      9.6 2015    01    001</span>
-<span class="co">#&gt; 7  Baldwin County, AL      0             All Incomes     11.5 2015    01    003</span>
-<span class="co">#&gt; 8  Baldwin County, AL      1      &lt;= 200% of Poverty     21.1 2015    01    003</span>
-<span class="co">#&gt; 9  Baldwin County, AL      2      &lt;= 250% of Poverty     19.5 2015    01    003</span>
-<span class="co">#&gt; 10 Baldwin County, AL      3      &lt;= 138% of Poverty     22.5 2015    01    003</span>
-<span class="co">#&gt; 11 Baldwin County, AL      4      &lt;= 400% of Poverty     15.7 2015    01    003</span>
-<span class="co">#&gt; 12 Baldwin County, AL      5 138% to 400% of Poverty     12.2 2015    01    003</span></code></pre></div>
+<span class="co">#&gt;    time state county                NAME IPRCAT    IPR_DESC PCTUI_PT</span>
+<span class="co">#&gt; 1  2017    01    003  Baldwin County, AL      0 All Incomes     11.3</span>
+<span class="co">#&gt; 2  2017    01    001  Autauga County, AL      0 All Incomes      8.7</span>
+<span class="co">#&gt; 3  2017    01    015  Calhoun County, AL      0 All Incomes     11.9</span>
+<span class="co">#&gt; 4  2017    01    005  Barbour County, AL      0 All Incomes     12.2</span>
+<span class="co">#&gt; 5  2017    01    007     Bibb County, AL      0 All Incomes     10.2</span>
+<span class="co">#&gt; 6  2017    01    009   Blount County, AL      0 All Incomes     13.4</span>
+<span class="co">#&gt; 7  2017    01    011  Bullock County, AL      0 All Incomes     11.4</span>
+<span class="co">#&gt; 8  2017    01    013   Butler County, AL      0 All Incomes     11.2</span>
+<span class="co">#&gt; 9  2017    01    027     Clay County, AL      0 All Incomes     13.9</span>
+<span class="co">#&gt; 10 2017    01    017 Chambers County, AL      0 All Incomes     11.9</span>
+<span class="co">#&gt; 11 2017    01    019 Cherokee County, AL      0 All Incomes     11.2</span>
+<span class="co">#&gt; 12 2017    01    021  Chilton County, AL      0 All Incomes     13.8</span></code></pre></div>
 <p>Retrieve annual data using the <code>time</code> argument by specifying a start year and stop year.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_annual &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>),
-    <span class="dt">region =</span> <span class="st">"state:1"</span>,
-    <span class="dt">time =</span> <span class="st">"from 2006 to 2016"</span>)
+    <span class="dt">region =</span> <span class="st">"state:01"</span>,
+    <span class="dt">time =</span> <span class="st">"from 2006 to 2017"</span>)
 sahie_annual
 <span class="co">#&gt;      time state    NAME PCTUI_PT</span>
 <span class="co">#&gt; 1  2006    01 Alabama     15.7</span>
@@ -156,7 +155,23 @@ sahie_annual
 <span class="co">#&gt; 8  2013    01 Alabama     15.9</span>
 <span class="co">#&gt; 9  2014    01 Alabama     14.2</span>
 <span class="co">#&gt; 10 2015    01 Alabama     11.9</span>
-<span class="co">#&gt; 11 2016    01 Alabama     10.8</span></code></pre></div>
+<span class="co">#&gt; 11 2016    01 Alabama     10.8</span>
+<span class="co">#&gt; 12 2017    01 Alabama     11.0</span></code></pre></div>
+<p>Get the uninsured rate for non-elderly adults (<code>AGECAT = 1</code>) with incomes of 138 to 400% of the poverty line (<code>IPRCAT = 5</code>), by race (<code>RACECAT</code>) and state.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_nonelderly &lt;-<span class="st"> </span><span class="kw"><a href="reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
+    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span>), 
+    <span class="dt">region =</span> <span class="st">"state:*"</span>, 
+    <span class="dt">time =</span> <span class="dv">2017</span>,
+    <span class="dt">IPRCAT =</span> <span class="dv">5</span>,
+    <span class="dt">AGECAT =</span> <span class="dv">1</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(sahie_nonelderly)
+<span class="co">#&gt;   time state       NAME PCTUI_PT                IPR_DESC       AGE_DESC RACECAT RACE_DESC IPRCAT AGECAT</span>
+<span class="co">#&gt; 1 2017    01    Alabama     14.6 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1</span>
+<span class="co">#&gt; 2 2017    02     Alaska     24.3 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1</span>
+<span class="co">#&gt; 3 2017    04    Arizona     16.6 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1</span>
+<span class="co">#&gt; 4 2017    05   Arkansas     12.4 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1</span>
+<span class="co">#&gt; 5 2017    06 California     13.6 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1</span>
+<span class="co">#&gt; 6 2017    08   Colorado     14.6 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1</span></code></pre></div>
 <p>Read more on how to build a <code>censusapi</code> call in <a href="https://hrecht.github.io/censusapi/articles/getting-started.html">Getting started with censusapi</a> and see examples from every API in the <a href="https://hrecht.github.io/censusapi/articles/example-masterlist.html">example master list</a>.</p>
 </div>
 <div id="disclaimer" class="section level2">

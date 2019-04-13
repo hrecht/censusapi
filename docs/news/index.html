@@ -110,7 +110,9 @@
 <a href="#censusapi-0-6-0" class="anchor"></a>censusapi 0.6.0<small> Unreleased </small>
 </h1>
 <ul>
-<li>Allows the use of miscellaneous paramaters in <code>getCensus</code>. This allows users to specify any valid API argument name and pass it a value, giving full access to all of the underlying Census Bureau APIs.</li>
+<li>Allows the use of miscellaneous paramaters in <code>getCensus(</code>. This allows users to specify any valid API argument name and pass it a value, giving full access to all of the underlying Census Bureau APIs.</li>
+<li>Adds a <code>group</code> parameter in <code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code>. This allows users to get variable metadata for a specified variable group.</li>
+<li>Improves internal logic in <code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code>.</li>
 <li>Add documentation and examples using miscellaneous paramaters.</li>
 <li>Returns underlying API call in error messages, particularly useful for users needing from the Census Bureau.</li>
 <li>Specifies tract in block group example due to underlying API changes.</li>

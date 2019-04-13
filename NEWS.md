@@ -1,5 +1,7 @@
 # censusapi 0.6.0
-* Allows the use of miscellaneous paramaters in `getCensus`. This allows users to specify any valid API argument name and pass it a value, giving full access to all of the underlying Census Bureau APIs.
+* Allows the use of miscellaneous paramaters in `getCensus(`. This allows users to specify any valid API argument name and pass it a value, giving full access to all of the underlying Census Bureau APIs.
+* Adds a `group` parameter in `listCensusMetadata()`. This allows users to get variable metadata for a specified variable group.
+* Improves internal logic in `listCensusMetadata()`.
 * Add documentation and examples using miscellaneous paramaters.
 * Returns underlying API call in error messages, particularly useful for users needing from the Census Bureau.
 * Specifies tract in block group example due to underlying API changes.

@@ -910,7 +910,7 @@
 <a href="#annual-survey-of-manufactures" class="anchor"></a>Annual Survey of Manufactures</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html">Annual Survey of Manufactures documentation</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">asm_state &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/asm/state"</span>,
-    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAICS_TTL"</span>, <span class="st">"EMP"</span>, <span class="st">"GEO_TTL"</span>),
+    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"GEO_TTL"</span>, <span class="st">"NAICS_TTL"</span>, <span class="st">"EMP"</span>),
     <span class="dt">region =</span> <span class="st">"state:*"</span>,
     <span class="dt">time =</span> <span class="dv">2016</span>,
     <span class="dt">naics =</span> <span class="st">"31-33"</span>)
@@ -920,58 +920,58 @@
 <thead><tr class="header">
 <th align="left">time</th>
 <th align="left">state</th>
+<th align="left">GEO_TTL</th>
 <th align="left">NAICS_TTL</th>
 <th align="left">EMP</th>
-<th align="left">GEO_TTL</th>
 <th align="left">NAICS</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">2016</td>
 <td align="left">01</td>
+<td align="left">Alabama</td>
 <td align="left">Manufacturing</td>
 <td align="left">234803</td>
-<td align="left">Alabama</td>
 <td align="left">31-33</td>
 </tr>
 <tr class="even">
 <td align="left">2016</td>
 <td align="left">02</td>
+<td align="left">Alaska</td>
 <td align="left">Manufacturing</td>
 <td align="left">12178</td>
-<td align="left">Alaska</td>
 <td align="left">31-33</td>
 </tr>
 <tr class="odd">
 <td align="left">2016</td>
 <td align="left">04</td>
+<td align="left">Arizona</td>
 <td align="left">Manufacturing</td>
 <td align="left">136946</td>
-<td align="left">Arizona</td>
 <td align="left">31-33</td>
 </tr>
 <tr class="even">
 <td align="left">2016</td>
 <td align="left">05</td>
+<td align="left">Arkansas</td>
 <td align="left">Manufacturing</td>
 <td align="left">145733</td>
-<td align="left">Arkansas</td>
 <td align="left">31-33</td>
 </tr>
 <tr class="odd">
 <td align="left">2016</td>
 <td align="left">06</td>
+<td align="left">California</td>
 <td align="left">Manufacturing</td>
 <td align="left">1119896</td>
-<td align="left">California</td>
 <td align="left">31-33</td>
 </tr>
 <tr class="even">
 <td align="left">2016</td>
 <td align="left">08</td>
+<td align="left">Colorado</td>
 <td align="left">Manufacturing</td>
 <td align="left">121069</td>
-<td align="left">Colorado</td>
 <td align="left">31-33</td>
 </tr>
 </tbody>
@@ -1133,7 +1133,7 @@
 <p>Get employment data for the construction industry.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cbp_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"cbp"</span>,
  <span class="dt">vintage =</span> <span class="dv">2016</span>,
- <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"NAICS2012_TTL"</span>, <span class="st">"GEO_TTL"</span>),
+ <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"GEO_TTL"</span>, <span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"NAICS2012_TTL"</span>),
  <span class="dt">region =</span> <span class="st">"state:*"</span>,
  <span class="dt">naics2012 =</span> <span class="dv">23</span>)
  <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(cbp_<span class="dv">2016</span>)</code></pre></div>
@@ -1141,59 +1141,59 @@
 <table class="table">
 <thead><tr class="header">
 <th align="left">state</th>
+<th align="left">GEO_TTL</th>
 <th align="left">EMP</th>
 <th align="left">ESTAB</th>
 <th align="left">NAICS2012_TTL</th>
-<th align="left">GEO_TTL</th>
 <th align="left">NAICS2012</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">01</td>
+<td align="left">Alabama</td>
 <td align="left">82327</td>
 <td align="left">7424</td>
 <td align="left">Construction</td>
-<td align="left">Alabama</td>
 <td align="left">23</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
+<td align="left">Alaska</td>
 <td align="left">17022</td>
 <td align="left">2521</td>
 <td align="left">Construction</td>
-<td align="left">Alaska</td>
 <td align="left">23</td>
 </tr>
 <tr class="odd">
 <td align="left">04</td>
+<td align="left">Arizona</td>
 <td align="left">141740</td>
 <td align="left">11921</td>
 <td align="left">Construction</td>
-<td align="left">Arizona</td>
 <td align="left">23</td>
 </tr>
 <tr class="even">
 <td align="left">05</td>
+<td align="left">Arkansas</td>
 <td align="left">45609</td>
 <td align="left">5293</td>
 <td align="left">Construction</td>
-<td align="left">Arkansas</td>
 <td align="left">23</td>
 </tr>
 <tr class="odd">
 <td align="left">06</td>
+<td align="left">California</td>
 <td align="left">723574</td>
 <td align="left">71981</td>
 <td align="left">Construction</td>
-<td align="left">California</td>
 <td align="left">23</td>
 </tr>
 <tr class="even">
 <td align="left">08</td>
+<td align="left">Colorado</td>
 <td align="left">152325</td>
 <td align="left">17730</td>
 <td align="left">Construction</td>
-<td align="left">Colorado</td>
 <td align="left">23</td>
 </tr>
 </tbody>
@@ -1202,7 +1202,7 @@
 <p>Get employment data by state for companies with more than 1,000 employees.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cbp_<span class="dv">2008</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"cbp"</span>,
                                             <span class="dt">vintage =</span> <span class="dv">2008</span>,
-                                            <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"YEAR"</span>, <span class="st">"EMPSZES_TTL"</span>, <span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"PAYANN"</span>, <span class="st">"GEO_TTL"</span>),
+                                            <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"YEAR"</span>, <span class="st">"GEO_TTL"</span>, <span class="st">"EMPSZES_TTL"</span>, <span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"PAYANN"</span>),
                                             <span class="dt">region =</span> <span class="st">"state:*"</span>,
                                             <span class="dt">EMPSZES =</span> <span class="dv">260</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(cbp_<span class="dv">2008</span>)</code></pre></div>
@@ -1211,72 +1211,72 @@
 <thead><tr class="header">
 <th align="left">state</th>
 <th align="left">YEAR</th>
+<th align="left">GEO_TTL</th>
 <th align="left">EMPSZES_TTL</th>
 <th align="left">EMP</th>
 <th align="left">ESTAB</th>
 <th align="left">PAYANN</th>
-<th align="left">GEO_TTL</th>
 <th align="left">EMPSZES</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">01</td>
 <td align="left">2008</td>
+<td align="left">Alabama</td>
 <td align="left">Establishments with 1,000 employees or more</td>
 <td align="left">175438</td>
 <td align="left">96</td>
 <td align="left">8034522</td>
-<td align="left">Alabama</td>
 <td align="left">260</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
 <td align="left">2008</td>
+<td align="left">Alaska</td>
 <td align="left">Establishments with 1,000 employees or more</td>
 <td align="left">22598</td>
 <td align="left">16</td>
 <td align="left">1469718</td>
-<td align="left">Alaska</td>
 <td align="left">260</td>
 </tr>
 <tr class="odd">
 <td align="left">04</td>
 <td align="left">2008</td>
+<td align="left">Arizona</td>
 <td align="left">Establishments with 1,000 employees or more</td>
 <td align="left">301091</td>
 <td align="left">124</td>
 <td align="left">17089056</td>
-<td align="left">Arizona</td>
 <td align="left">260</td>
 </tr>
 <tr class="even">
 <td align="left">05</td>
 <td align="left">2008</td>
+<td align="left">Arkansas</td>
 <td align="left">Establishments with 1,000 employees or more</td>
 <td align="left">124452</td>
 <td align="left">68</td>
 <td align="left">4796665</td>
-<td align="left">Arkansas</td>
 <td align="left">260</td>
 </tr>
 <tr class="odd">
 <td align="left">06</td>
 <td align="left">2008</td>
+<td align="left">California</td>
 <td align="left">Establishments with 1,000 employees or more</td>
 <td align="left">1872632</td>
 <td align="left">797</td>
 <td align="left">124024587</td>
-<td align="left">California</td>
 <td align="left">260</td>
 </tr>
 <tr class="even">
 <td align="left">08</td>
 <td align="left">2008</td>
+<td align="left">Colorado</td>
 <td align="left">Establishments with 1,000 employees or more</td>
 <td align="left">285608</td>
 <td align="left">120</td>
 <td align="left">14946331</td>
-<td align="left">Colorado</td>
 <td align="left">260</td>
 </tr>
 </tbody>
@@ -1342,30 +1342,30 @@
 <td align="left">54</td>
 </tr>
 <tr class="odd">
-<td align="left">04</td>
-<td align="left">Arizona</td>
-<td align="left">2991782</td>
-<td align="left">Professional, scientific, and technical services</td>
-<td align="left">54</td>
-</tr>
-<tr class="even">
 <td align="left">05</td>
 <td align="left">Arkansas</td>
 <td align="left">616936</td>
 <td align="left">Professional, scientific, and technical services</td>
 <td align="left">54</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">06</td>
 <td align="left">California</td>
 <td align="left">28746664</td>
 <td align="left">Professional, scientific, and technical services</td>
 <td align="left">54</td>
 </tr>
+<tr class="odd">
+<td align="left">10</td>
+<td align="left">Delaware</td>
+<td align="left">600556</td>
+<td align="left">Professional, scientific, and technical services</td>
+<td align="left">54</td>
+</tr>
 <tr class="even">
-<td align="left">08</td>
-<td align="left">Colorado</td>
-<td align="left">3709131</td>
+<td align="left">11</td>
+<td align="left">District of Columbia</td>
+<td align="left">1050075</td>
 <td align="left">Professional, scientific, and technical services</td>
 <td align="left">54</td>
 </tr>
@@ -1377,7 +1377,7 @@
 <div id="decennial-census" class="section level2">
 <h2 class="hasAnchor">
 <a href="#decennial-census" class="anchor"></a>Decennial Census</h2>
-<p><a href="https://www.census.gov/data/developers/data-sets/decennial-census.html">Decennial Census documentation</a></p>
+<p><a href="https://www.census.gov/data/developers/data-sets/decennial-census.html">Decennial Census documentation</a> Total population and housing units for metropolitan/micropolitan statistical areas in 2010.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2010 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"dec/sf1"</span>,
     <span class="dt">vintage =</span> <span class="dv">2010</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"P001001"</span>, <span class="st">"H010001"</span>), 
@@ -1393,44 +1393,148 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">38660</td>
-<td align="left">Ponce, PR Metro Area</td>
-<td align="right">243147</td>
-<td align="right">237965</td>
+<td align="left">31540</td>
+<td align="left">Madison, WI Metro Area</td>
+<td align="right">568593</td>
+<td align="right">554078</td>
 </tr>
 <tr class="even">
-<td align="left">41900</td>
-<td align="left">San Germ?n-Cabo Rojo, PR Metro Area</td>
-<td align="right">137462</td>
-<td align="right">136517</td>
+<td align="left">31580</td>
+<td align="left">Madisonville, KY Micro Area</td>
+<td align="right">46920</td>
+<td align="right">45834</td>
 </tr>
 <tr class="odd">
-<td align="left">41980</td>
-<td align="left">San Juan-Caguas-Guaynabo, PR Metro Area</td>
-<td align="right">2478905</td>
-<td align="right">2455092</td>
+<td align="left">36820</td>
+<td align="left">Oskaloosa, IA Micro Area</td>
+<td align="right">22381</td>
+<td align="right">21722</td>
 </tr>
 <tr class="even">
-<td align="left">42180</td>
-<td align="left">Santa Isabel, PR Micro Area</td>
-<td align="right">23274</td>
-<td align="right">23250</td>
+<td align="left">36860</td>
+<td align="left">Ottawa-Streator, IL Micro Area</td>
+<td align="right">154908</td>
+<td align="right">151500</td>
 </tr>
 <tr class="odd">
-<td align="left">25020</td>
-<td align="left">Guayama, PR Metro Area</td>
-<td align="right">84214</td>
-<td align="right">81901</td>
+<td align="left">36900</td>
+<td align="left">Ottumwa, IA Micro Area</td>
+<td align="right">35625</td>
+<td align="right">34758</td>
 </tr>
 <tr class="even">
-<td align="left">32420</td>
-<td align="left">Mayag?ez, PR Metro Area</td>
-<td align="right">106330</td>
-<td align="right">104567</td>
+<td align="left">36940</td>
+<td align="left">Owatonna, MN Micro Area</td>
+<td align="right">36576</td>
+<td align="right">35982</td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>Get the urban/rural status group of variables (<code>P2</code>) by metropolitan/micropolitan statistical areas in 2010.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Show variable metadata for the P2 group</span>
+group_p2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(<span class="dt">name =</span> <span class="st">"dec/sf1"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2010</span>,
+    <span class="dt">type =</span> <span class="st">"variables"</span>,
+    <span class="dt">group =</span> <span class="st">"P2"</span>)
+
+<span class="co"># Get the P2 variable group (URBAN AND RURAL)</span>
+data2010 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"dec/sf1"</span>,
+    <span class="dt">vintage =</span> <span class="dv">2010</span>,
+    <span class="dt">vars =</span> <span class="st">"group(P2)"</span>, 
+    <span class="dt">region =</span> <span class="st">"metropolitan statistical area/micropolitan statistical area:*"</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(data2010)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">metropolitan_statistical_area_micropolitan_statistical_area</th>
+<th align="left">GEO_ID</th>
+<th align="right">P002001</th>
+<th align="right">P002002</th>
+<th align="right">P002003</th>
+<th align="right">P002004</th>
+<th align="right">P002005</th>
+<th align="right">P002006</th>
+<th align="left">NAME</th>
+<th align="right">P002001ERR</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">31540</td>
+<td align="left">310M100US31540</td>
+<td align="right">568593</td>
+<td align="right">455002</td>
+<td align="right">401661</td>
+<td align="right">53341</td>
+<td align="right">113591</td>
+<td align="right">0</td>
+<td align="left">Madison, WI Metro Area</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">31580</td>
+<td align="left">310M100US31580</td>
+<td align="right">46920</td>
+<td align="right">24809</td>
+<td align="right">0</td>
+<td align="right">24809</td>
+<td align="right">22111</td>
+<td align="right">0</td>
+<td align="left">Madisonville, KY Micro Area</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">36820</td>
+<td align="left">310M100US36820</td>
+<td align="right">22381</td>
+<td align="right">12545</td>
+<td align="right">0</td>
+<td align="right">12545</td>
+<td align="right">9836</td>
+<td align="right">0</td>
+<td align="left">Oskaloosa, IA Micro Area</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">36860</td>
+<td align="left">310M100US36860</td>
+<td align="right">154908</td>
+<td align="right">94406</td>
+<td align="right">0</td>
+<td align="right">94406</td>
+<td align="right">60502</td>
+<td align="right">0</td>
+<td align="left">Ottawa-Streator, IL Micro Area</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">36900</td>
+<td align="left">310M100US36900</td>
+<td align="right">35625</td>
+<td align="right">24771</td>
+<td align="right">0</td>
+<td align="right">24771</td>
+<td align="right">10854</td>
+<td align="right">0</td>
+<td align="left">Ottumwa, IA Micro Area</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">36940</td>
+<td align="left">310M100US36940</td>
+<td align="right">36576</td>
+<td align="right">25394</td>
+<td align="right">0</td>
+<td align="right">25394</td>
+<td align="right">11182</td>
+<td align="right">0</td>
+<td align="left">Owatonna, MN Micro Area</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Get 2010 population by block group within a specific tract.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2000 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"sf1"</span>,
     <span class="dt">vintage =</span> <span class="dv">2000</span>,
     <span class="dt">vars =</span> <span class="st">"P001001"</span>, 
@@ -1495,55 +1599,99 @@
 <div id="decennial-census-surname-files" class="section level3">
 <h3 class="hasAnchor">
 <a href="#decennial-census-surname-files" class="anchor"></a>Decennial Census Surname Files</h3>
-<p><a href="https://www.census.gov/data/developers/data-sets/surnames.2010.html">Decennial Census Surname documentation</a> Get counts of the most popular surnames</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surnames &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"surname"</span>,
+<p><a href="https://www.census.gov/data/developers/data-sets/surnames.2010.html">Decennial Census Surname documentation</a></p>
+<p>Get counts of the top 25 most popular surnames and share of each by race.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top_surnames &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"surname"</span>,
     <span class="dt">vintage =</span> <span class="dv">2010</span>,
-    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"COUNT"</span>, <span class="st">"RANK"</span>, <span class="st">"PROP100K"</span>))
-<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(surnames)</code></pre></div>
+    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"COUNT"</span>, <span class="st">"PROP100K"</span>, <span class="st">"PCTWHITE"</span>, <span class="st">"PCTBLACK"</span>, <span class="st">"PCTAIAN"</span>, <span class="st">"PCTAPI"</span>, <span class="st">"PCTHISPANIC"</span>, <span class="st">"PCT2PRACE"</span>),
+    <span class="dt">RANK =</span> <span class="st">"1:25"</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(top_surnames)</code></pre></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
 <th align="left">NAME</th>
 <th align="left">COUNT</th>
-<th align="left">RANK</th>
 <th align="right">PROP100K</th>
+<th align="left">PCTWHITE</th>
+<th align="left">PCTBLACK</th>
+<th align="left">PCTAIAN</th>
+<th align="left">PCTAPI</th>
+<th align="left">PCTHISPANIC</th>
+<th align="right">PCT2PRACE</th>
+<th align="left">RANK</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">SMITH</td>
 <td align="left">2442977</td>
-<td align="left">1</td>
 <td align="right">828.19</td>
+<td align="left">70.9</td>
+<td align="left">23.11</td>
+<td align="left">0.89</td>
+<td align="left">0.5</td>
+<td align="left">2.4</td>
+<td align="right">2.19</td>
+<td align="left">1</td>
 </tr>
 <tr class="even">
 <td align="left">JOHNSON</td>
 <td align="left">1932812</td>
-<td align="left">2</td>
 <td align="right">655.24</td>
+<td align="left">58.97</td>
+<td align="left">34.63</td>
+<td align="left">0.94</td>
+<td align="left">0.54</td>
+<td align="left">2.36</td>
+<td align="right">2.56</td>
+<td align="left">2</td>
 </tr>
 <tr class="odd">
 <td align="left">WILLIAMS</td>
 <td align="left">1625252</td>
-<td align="left">3</td>
 <td align="right">550.97</td>
+<td align="left">45.75</td>
+<td align="left">47.68</td>
+<td align="left">0.82</td>
+<td align="left">0.46</td>
+<td align="left">2.49</td>
+<td align="right">2.81</td>
+<td align="left">3</td>
 </tr>
 <tr class="even">
 <td align="left">BROWN</td>
 <td align="left">1437026</td>
-<td align="left">4</td>
 <td align="right">487.16</td>
+<td align="left">57.95</td>
+<td align="left">35.6</td>
+<td align="left">0.87</td>
+<td align="left">0.51</td>
+<td align="left">2.52</td>
+<td align="right">2.55</td>
+<td align="left">4</td>
 </tr>
 <tr class="odd">
 <td align="left">JONES</td>
 <td align="left">1425470</td>
-<td align="left">5</td>
 <td align="right">483.24</td>
+<td align="left">55.19</td>
+<td align="left">38.48</td>
+<td align="left">1</td>
+<td align="left">0.44</td>
+<td align="left">2.29</td>
+<td align="right">2.61</td>
+<td align="left">5</td>
 </tr>
 <tr class="even">
 <td align="left">GARCIA</td>
 <td align="left">1166120</td>
-<td align="left">6</td>
 <td align="right">395.32</td>
+<td align="left">5.38</td>
+<td align="left">0.45</td>
+<td align="left">0.47</td>
+<td align="left">1.41</td>
+<td align="left">92.03</td>
+<td align="right">0.26</td>
+<td align="left">6</td>
 </tr>
 </tbody>
 </table>
@@ -1770,8 +1918,8 @@
 <p>Get the uninsured rate by income group in Alabama for a single year.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>),
-    <span class="dt">region =</span> <span class="st">"state:1"</span>,
-    <span class="dt">time =</span> <span class="dv">2016</span>)
+    <span class="dt">region =</span> <span class="st">"state:01"</span>,
+    <span class="dt">time =</span> <span class="dv">2017</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(sahie)</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -1785,52 +1933,52 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">0</td>
 <td align="left">All Incomes</td>
-<td align="left">10.8</td>
+<td align="left">11.0</td>
 </tr>
 <tr class="even">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">1</td>
 <td align="left">&lt;= 200% of Poverty</td>
-<td align="left">18.1</td>
+<td align="left">18.3</td>
 </tr>
 <tr class="odd">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">2</td>
 <td align="left">&lt;= 250% of Poverty</td>
-<td align="left">17.0</td>
+<td align="left">17.3</td>
 </tr>
 <tr class="even">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">3</td>
 <td align="left">&lt;= 138% of Poverty</td>
-<td align="left">19.2</td>
+<td align="left">19.4</td>
 </tr>
 <tr class="odd">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">4</td>
 <td align="left">&lt;= 400% of Poverty</td>
-<td align="left">14.2</td>
+<td align="left">14.5</td>
 </tr>
 <tr class="even">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">5</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">11.0</td>
+<td align="left">11.5</td>
 </tr>
 </tbody>
 </table>
@@ -1838,8 +1986,8 @@
 <p>Get the uninsured rate in Alabama for multiple years.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_annual &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>),
-    <span class="dt">region =</span> <span class="st">"state:1"</span>,
-    <span class="dt">time =</span> <span class="st">"from 2006 to 2016"</span>)
+    <span class="dt">region =</span> <span class="st">"state:01"</span>,
+    <span class="dt">time =</span> <span class="st">"from 2006 to 2017"</span>)
 sahie_annual</code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -1916,6 +2064,12 @@ sahie_annual</code></pre></div>
 <td align="left">Alabama</td>
 <td align="left">10.8</td>
 </tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">11.0</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1923,7 +2077,7 @@ sahie_annual</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sahie_nonelderly &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span>), 
     <span class="dt">region =</span> <span class="st">"state:*"</span>, 
-    <span class="dt">time =</span> <span class="dv">2016</span>,
+    <span class="dt">time =</span> <span class="dv">2017</span>,
     <span class="dt">IPRCAT =</span> <span class="dv">5</span>,
     <span class="dt">AGECAT =</span> <span class="dv">1</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(sahie_nonelderly)</code></pre></div>
@@ -1943,11 +2097,11 @@ sahie_annual</code></pre></div>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">14.1</td>
+<td align="left">14.6</td>
 <td align="left">18 to 64 years</td>
 <td align="left">0</td>
 <td align="left">All Races</td>
@@ -1955,11 +2109,11 @@ sahie_annual</code></pre></div>
 <td align="left">1</td>
 </tr>
 <tr class="even">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">02</td>
 <td align="left">Alaska</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">25.2</td>
+<td align="left">24.3</td>
 <td align="left">18 to 64 years</td>
 <td align="left">0</td>
 <td align="left">All Races</td>
@@ -1967,11 +2121,11 @@ sahie_annual</code></pre></div>
 <td align="left">1</td>
 </tr>
 <tr class="odd">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">04</td>
 <td align="left">Arizona</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">16.0</td>
+<td align="left">16.6</td>
 <td align="left">18 to 64 years</td>
 <td align="left">0</td>
 <td align="left">All Races</td>
@@ -1979,7 +2133,7 @@ sahie_annual</code></pre></div>
 <td align="left">1</td>
 </tr>
 <tr class="even">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">05</td>
 <td align="left">Arkansas</td>
 <td align="left">138% to 400% of Poverty</td>
@@ -1991,11 +2145,11 @@ sahie_annual</code></pre></div>
 <td align="left">1</td>
 </tr>
 <tr class="odd">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">06</td>
 <td align="left">California</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">13.7</td>
+<td align="left">13.6</td>
 <td align="left">18 to 64 years</td>
 <td align="left">0</td>
 <td align="left">All Races</td>
@@ -2003,11 +2157,11 @@ sahie_annual</code></pre></div>
 <td align="left">1</td>
 </tr>
 <tr class="even">
-<td align="left">2016</td>
+<td align="left">2017</td>
 <td align="left">08</td>
 <td align="left">Colorado</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">14.2</td>
+<td align="left">14.6</td>
 <td align="left">18 to 64 years</td>
 <td align="left">0</td>
 <td align="left">All Races</td>
@@ -2610,6 +2764,79 @@ sahie_annual</code></pre></div>
 </table>
 </div>
 </div>
+<div id="saipe-school-districts" class="section level3">
+<h3 class="hasAnchor">
+<a href="#saipe-school-districts" class="anchor"></a>SAIPE School Districts</h3>
+<p>Get the number (<code>SAEPOV5_17V_PT</code>) and rate (<code>SAEPOVRAT5_17RV_PT</code>) of children ages 5-17 living in poverty for unified school districts in Massachusetts.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">saipe_schools &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"timeseries/poverty/saipe/schdist"</span>,
+    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"SD_NAME"</span>, <span class="st">"SAEPOV5_17V_PT"</span>, <span class="st">"SAEPOVRAT5_17RV_PT"</span>),
+    <span class="dt">region =</span> <span class="st">"school district (unified):*"</span>,
+    <span class="dt">regionin =</span> <span class="st">"state:25"</span>,
+    <span class="dt">time =</span> <span class="dv">2017</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(saipe_schools)</code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="left">state</th>
+<th align="left">school_district_unified</th>
+<th align="left">SD_NAME</th>
+<th align="right">SAEPOV5_17V_PT</th>
+<th align="right">SAEPOVRAT5_17RV_PT</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2017</td>
+<td align="left">25</td>
+<td align="left">00001</td>
+<td align="left">Quabbin School District</td>
+<td align="right">2891</td>
+<td align="right">4.5</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">25</td>
+<td align="left">00002</td>
+<td align="left">Spencer-East Brookfield School District</td>
+<td align="right">2100</td>
+<td align="right">9.3</td>
+</tr>
+<tr class="odd">
+<td align="left">2017</td>
+<td align="left">25</td>
+<td align="left">00013</td>
+<td align="left">Southwick-Tolland-Granville Regional School District</td>
+<td align="right">1892</td>
+<td align="right">10.4</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">25</td>
+<td align="left">00067</td>
+<td align="left">Manchester Essex Regional School District</td>
+<td align="right">1579</td>
+<td align="right">4.6</td>
+</tr>
+<tr class="odd">
+<td align="left">2017</td>
+<td align="left">25</td>
+<td align="left">00542</td>
+<td align="left">Ayer-Shirley School District</td>
+<td align="right">2190</td>
+<td align="right">18.2</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">25</td>
+<td align="left">00544</td>
+<td align="left">Monomoy Regional School District</td>
+<td align="right">1803</td>
+<td align="right">8.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="quarterly-workforce-indicators" class="section level2">
 <h2 class="hasAnchor">
@@ -2633,43 +2860,43 @@ sahie_annual</code></pre></div>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">11461</td>
-<td align="left">2843</td>
+<td align="left">11366</td>
+<td align="left">2865</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">001</td>
 </tr>
 <tr class="even">
-<td align="left">64472</td>
-<td align="left">2636</td>
+<td align="left">64849</td>
+<td align="left">2627</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">003</td>
 </tr>
 <tr class="odd">
-<td align="left">7640</td>
-<td align="left">2676</td>
+<td align="left">7634</td>
+<td align="left">2700</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">005</td>
 </tr>
 <tr class="even">
-<td align="left">3956</td>
-<td align="left">2826</td>
+<td align="left">3961</td>
+<td align="left">2821</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">007</td>
 </tr>
 <tr class="odd">
-<td align="left">7932</td>
-<td align="left">2665</td>
+<td align="left">8002</td>
+<td align="left">2705</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">009</td>
 </tr>
 <tr class="even">
-<td align="left">2725</td>
-<td align="left">2540</td>
+<td align="left">2727</td>
+<td align="left">2587</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">011</td>
@@ -2693,38 +2920,38 @@ sahie_annual</code></pre></div>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">1874924</td>
-<td align="left">2838</td>
+<td align="left">1873208</td>
+<td align="left">2834</td>
 <td align="left">2007-Q1</td>
 <td align="left">01</td>
 </tr>
 <tr class="even">
-<td align="left">1899033</td>
-<td align="left">2791</td>
+<td align="left">1897768</td>
+<td align="left">2786</td>
 <td align="left">2007-Q2</td>
 <td align="left">01</td>
 </tr>
 <tr class="odd">
-<td align="left">1888065</td>
-<td align="left">2779</td>
+<td align="left">1889844</td>
+<td align="left">2774</td>
 <td align="left">2007-Q3</td>
 <td align="left">01</td>
 </tr>
 <tr class="even">
-<td align="left">1906641</td>
-<td align="left">2985</td>
+<td align="left">1907629</td>
+<td align="left">2978</td>
 <td align="left">2007-Q4</td>
 <td align="left">01</td>
 </tr>
 <tr class="odd">
-<td align="left">1879304</td>
-<td align="left">2896</td>
+<td align="left">1878590</td>
+<td align="left">2894</td>
 <td align="left">2008-Q1</td>
 <td align="left">01</td>
 </tr>
 <tr class="even">
-<td align="left">1904620</td>
-<td align="left">2879</td>
+<td align="left">1901453</td>
+<td align="left">2881</td>
 <td align="left">2008-Q2</td>
 <td align="left">01</td>
 </tr>
@@ -2771,7 +2998,7 @@ qwi</code></pre></div>
 <td align="left">02</td>
 </tr>
 <tr class="even">
-<td align="left">54</td>
+<td align="left">55</td>
 <td align="left">1</td>
 <td align="left">2012</td>
 <td align="left">1</td>
@@ -2934,10 +3161,10 @@ qwi</code></pre></div>
 <div id="the-planning-database" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-planning-database" class="anchor"></a>The Planning Database</h2>
-<p><a href="https://www.census.gov/data/developers/data-sets/planning-database.html">The Planning Database documentation</a></p>
+<p><a href="https://www.census.gov/data/developers/data-sets/planning-database.html">The Planning Database documentation</a> Get population and 2010 Census mail return rates for block groups in Autauga County, AL.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pdb &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="dt">name =</span> <span class="st">"pdb/blockgroup"</span>,
     <span class="dt">vintage =</span> <span class="dv">2018</span>,
-    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"County_name"</span>, <span class="st">"State_name"</span>, <span class="st">"GIDBG"</span>, <span class="st">"Tot_Population_CEN_2010"</span>, <span class="st">"Mail_Return_Rate_CEN_2010"</span>),
+    <span class="dt">vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"GIDBG"</span>, <span class="st">"County_name"</span>, <span class="st">"State_name"</span>, <span class="st">"Tot_Population_CEN_2010"</span>, <span class="st">"Mail_Return_Rate_CEN_2010"</span>),
     <span class="dt">region =</span> <span class="st">"block group:*"</span>,
     <span class="dt">regionin =</span> <span class="st">"state:01+county:001"</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(pdb)</code></pre></div>

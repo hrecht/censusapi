@@ -142,7 +142,7 @@ head(ase_cscbo)
 [Annual Survey of Manufactures documentation](https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html)
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 asm_state <- getCensus(name = "timeseries/asm/state",
-	vars = c("NAICS_TTL", "EMP", "GEO_TTL"),
+	vars = c("GEO_TTL", "NAICS_TTL", "EMP"),
 	region = "state:*",
 	time = 2016,
 	naics = "31-33")
@@ -182,7 +182,7 @@ Get employment data for the construction industry.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 cbp_2016 <- getCensus(name = "cbp",
  vintage = 2016,
- vars = c("EMP", "ESTAB", "NAICS2012_TTL", "GEO_TTL"),
+ vars = c("GEO_TTL", "EMP", "ESTAB", "NAICS2012_TTL"),
  region = "state:*",
  naics2012 = 23)
  head(cbp_2016)
@@ -192,7 +192,7 @@ Get employment data by state for companies with more than 1,000 employees.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 cbp_2008 <- getCensus(name = "cbp",
 											vintage = 2008,
-											vars = c("YEAR", "EMPSZES_TTL", "EMP", "ESTAB", "PAYANN", "GEO_TTL"),
+											vars = c("YEAR", "GEO_TTL", "EMPSZES_TTL", "EMP", "ESTAB", "PAYANN"),
 											region = "state:*",
 											EMPSZES = 260)
 head(cbp_2008)
@@ -220,13 +220,33 @@ head(nonemp)
 
 ## Decennial Census
 [Decennial Census documentation](https://www.census.gov/data/developers/data-sets/decennial-census.html)
+Total population and housing units for metropolitan/micropolitan statistical areas in 2010.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 data2010 <- getCensus(name = "dec/sf1",
 	vintage = 2010,
 	vars = c("NAME", "P001001", "H010001"), 
 	region = "metropolitan statistical area/micropolitan statistical area:*")
 head(data2010)
+```
 
+Get the urban/rural status group of variables (`P2`) by metropolitan/micropolitan statistical areas in 2010.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+# Show variable metadata for the P2 group
+group_p2 <- listCensusMetadata(name = "dec/sf1",
+	vintage = 2010,
+	type = "variables",
+	group = "P2")
+
+# Get the P2 variable group (URBAN AND RURAL)
+data2010 <- getCensus(name = "dec/sf1",
+	vintage = 2010,
+	vars = "group(P2)", 
+	region = "metropolitan statistical area/micropolitan statistical area:*")
+head(data2010)
+```
+
+Get 2010 population by block group within a specific tract.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 data2000 <- getCensus(name = "sf1",
 	vintage = 2000,
 	vars = "P001001", 
@@ -237,12 +257,14 @@ head(data2000)
 
 ### Decennial Census Surname Files
 [Decennial Census Surname documentation](https://www.census.gov/data/developers/data-sets/surnames.2010.html)
-Get counts of the most popular surnames
+
+Get counts of the top 25 most popular surnames and share of each by race.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-surnames <- getCensus(name = "surname",
+top_surnames <- getCensus(name = "surname",
 	vintage = 2010,
-	vars = c("NAME", "COUNT", "RANK", "PROP100K"))
-head(surnames)
+	vars = c("NAME", "COUNT", "PROP100K", "PCTWHITE", "PCTBLACK", "PCTAIAN", "PCTAPI", "PCTHISPANIC", "PCT2PRACE"),
+	RANK = "1:25")
+head(top_surnames)
 ```
 
 ## Economic Census
@@ -279,8 +301,8 @@ Get the uninsured rate by income group in Alabama for a single year.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 sahie <- getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"),
-	region = "state:1",
-	time = 2016)
+	region = "state:01",
+	time = 2017)
 head(sahie)
 ```
 
@@ -288,8 +310,8 @@ Get the uninsured rate in Alabama for multiple years.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 sahie_annual <- getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT"),
-	region = "state:1",
-	time = "from 2006 to 2016")
+	region = "state:01",
+	time = "from 2006 to 2017")
 sahie_annual
 ```
 
@@ -298,7 +320,7 @@ Get the uninsured rate for non-elderly adults with incomes of 138 to 400% of the
 sahie_nonelderly <- getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPR_DESC", "PCTUI_PT", "AGE_DESC", "RACECAT", "RACE_DESC"), 
 	region = "state:*", 
-	time = 2016,
+	time = 2017,
 	IPRCAT = 5,
 	AGECAT = 1)
 head(sahie_nonelderly)
@@ -404,6 +426,16 @@ saipe_years <- getCensus(name = "timeseries/poverty/saipe",
 	time = "from 2000 to 2017")
 head(saipe_years)
 ```
+### SAIPE School Districts
+Get the number (`SAEPOV5_17V_PT`) and rate (`SAEPOVRAT5_17RV_PT`) of children ages 5-17 living in poverty for unified school districts in Massachusetts.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+saipe_schools <- getCensus(name = "timeseries/poverty/saipe/schdist",
+	vars = c("SD_NAME", "SAEPOV5_17V_PT", "SAEPOVRAT5_17RV_PT"),
+	region = "school district (unified):*",
+	regionin = "state:25",
+	time = 2017)
+head(saipe_schools)
+```
 
 ## Quarterly Workforce Indicators
 [Quarterly Workforce Indicators documentation](https://www.census.gov/data/developers/data-sets/qwi.html)
@@ -462,10 +494,11 @@ head(sbo_groups)
 
 ## The Planning Database
 [The Planning Database documentation](https://www.census.gov/data/developers/data-sets/planning-database.html)
+Get population and 2010 Census mail return rates for block groups in Autauga County, AL.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 pdb <- getCensus(name = "pdb/blockgroup",
 	vintage = 2018,
-	vars = c("County_name", "State_name", "GIDBG", "Tot_Population_CEN_2010", "Mail_Return_Rate_CEN_2010"),
+	vars = c("GIDBG", "County_name", "State_name", "Tot_Population_CEN_2010", "Mail_Return_Rate_CEN_2010"),
 	region = "block group:*",
 	regionin = "state:01+county:001")
 head(pdb)
