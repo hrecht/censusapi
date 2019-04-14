@@ -7,3 +7,5 @@ cran-comments.md
 CODE_OF_CONDUCT.md
 pkgdown/
 ^pkgdown$
+.github/
+^github$
