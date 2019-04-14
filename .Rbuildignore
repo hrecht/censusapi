@@ -8,4 +8,4 @@ CODE_OF_CONDUCT.md
 pkgdown/
 ^pkgdown$
 .github/
-^github$
+^.github$
