@@ -1557,12 +1557,20 @@ group_B19013</code></pre></div>
 <div id="variables" class="section level3">
 <h3 class="hasAnchor">
 <a href="#variables" class="anchor"></a>Variables</h3>
-<p>Use <code><a href="../reference/listCensusMetadata.html">listCensusMetadata(type = "variables")</a></code> on your API to see the table of available variables. * Occasionally the variable names will change with data updates or API updates. The names may be different from year to year. * The Census APIs are case-sensitive, which means that if the variable name you want is uppercase you’ll need to write it uppercase in your request. Most of the APIs use uppercase variable names, but some use lowercase and some even use sentence case.</p>
+<p>Use <code><a href="../reference/listCensusMetadata.html">listCensusMetadata(type = "variables")</a></code> on your API to see the table of available variables.</p>
+<ul>
+<li>Occasionally the variable names will change with data updates or API updates. The names may be different from year to year.</li>
+<li>The Census APIs are case-sensitive, which means that if the variable name you want is uppercase you’ll need to write it uppercase in your request. Most of the APIs use uppercase variable names, but some use lowercase and some even use sentence case.</li>
+</ul>
 </div>
 <div id="geographies" class="section level3">
 <h3 class="hasAnchor">
 <a href="#geographies" class="anchor"></a>Geographies</h3>
-<p>Use <code><a href="../reference/listCensusMetadata.html">listCensusMetadata(type = "geographies")</a></code> on your dataset to check which geographies you can use. * Each API has its own list of valid geographies and they occasionally change as the Census Bureau makes updates. If a previously available geography isn’t available anymore, email <a href="mailto:cnmp.developers.list@census.gov">cnmp.developers.list@census.gov</a> detailing the issue. * If you’re specifying a region by FIPS code, for example <code>state:01</code>, make sure to use the full code, padded with 0s if necessary. The APIs did not always enforce this (previously, <code>state:1</code> usually worked), but now they do. See the Census <a href="https://www.census.gov/geographies/reference-files/2017/demo/popest/2017-fips.html">reference files</a> for valid FIPS codes.</p>
+<p>Use <code><a href="../reference/listCensusMetadata.html">listCensusMetadata(type = "geographies")</a></code> on your dataset to check which geographies you can use.</p>
+<ul>
+<li>Each API has its own list of valid geographies and they occasionally change as the Census Bureau makes updates. If a previously available geography isn’t available anymore, email <a href="mailto:cnmp.developers.list@census.gov">cnmp.developers.list@census.gov</a> detailing the issue.</li>
+<li>If you’re specifying a region by FIPS code, for example <code>state:01</code>, make sure to use the full code, padded with 0s if necessary. The APIs did not always enforce this (previously, <code>state:1</code> usually worked), but now they do. See the Census <a href="https://www.census.gov/geographies/reference-files/2017/demo/popest/2017-fips.html">reference files</a> for valid FIPS codes.</li>
+</ul>
 </div>
 <div id="unexpected-errors" class="section level3">
 <h3 class="hasAnchor">
@@ -1584,7 +1592,6 @@ group_B19013</code></pre></div>
 <a href="#additional-resources" class="anchor"></a>Additional resources</h2>
 <ul>
 <li><a href="https://www.census.gov/data/developers/guidance/api-user-guide.Overview.html">Census Data API User Guide</a></li>
-<li><a href="https://www.census.gov/geo/reference/ansi_statetables.html">FIPS codes</a></li>
 </ul>
 </div>
 <div id="disclaimer" class="section level2">

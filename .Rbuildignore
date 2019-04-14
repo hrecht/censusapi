@@ -6,3 +6,4 @@ _pkgdown.yaml
 cran-comments.md
 CODE_OF_CONDUCT.md
 pkgdown/
+^pkgdown$

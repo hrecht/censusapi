@@ -278,11 +278,13 @@ The APIs contain hundreds of API endpoints and dozens of datasets, each of which
 
 ### Variables
 Use `listCensusMetadata(type = "variables")` on your API to see the table of available variables.
+
 * Occasionally the variable names will change with data updates or API updates. The names may be different from year to year.
 * The Census APIs are case-sensitive, which means that if the variable name you want is uppercase you'll need to write it uppercase in your request. Most of the APIs use uppercase variable names, but some use lowercase and some even use sentence case. 
 
 ### Geographies
 Use `listCensusMetadata(type = "geographies")` on your dataset to check which geographies you can use.
+
 * Each API has its own list of valid geographies and they occasionally change as the Census Bureau makes updates. If a previously available geography isn't available anymore, email cnmp.developers.list@census.gov detailing the issue.
 * If you're specifying a region by FIPS code, for example `state:01`, make sure to use the full code, padded with 0s if necessary. The APIs did not always enforce this (previously, `state:1` usually worked), but now they do. See the Census [reference files](https://www.census.gov/geographies/reference-files/2017/demo/popest/2017-fips.html) for valid FIPS codes.
 
@@ -296,7 +298,6 @@ Occasionally you might get the general error message `"There was an error while 
 
 ## Additional resources
 * [Census Data API User Guide](https://www.census.gov/data/developers/guidance/api-user-guide.Overview.html)
-* [FIPS codes](https://www.census.gov/geo/reference/ansi_statetables.html)
 
 ## Disclaimer
 This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.

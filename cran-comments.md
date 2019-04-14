@@ -1,10 +1,7 @@
 ## Test environments
-* local OS X install, R 3.3.3
-* local OS X install, R 3.5.0
-* Ubuntu 14.04.5 LTS (on travis-ci), R version 3.4.4 (2017-01-27)
-* Ubuntu 14.04.5 LTS (on travis-ci), R version 3.5.0 (2017-01-27)
-* Ubuntu 14.04.5 LTS (on travis-ci), R version 2018-08-19 r75169
-* win-builder (devel, release and oldrelease)
+* local OS X install, R 3.5.3
+* Ubuntu 14.04.5 LTS (on travis-ci), R 3.4.4 (oldrel), R 3.5.3 (release), R 2019-04-13 r76388 (devel)
+* win-builder (oldrel, release and devel)
 
 ## R CMD check results
 There were no ERRORs, WARNINGs, or NOTEs. 
