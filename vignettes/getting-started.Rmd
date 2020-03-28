@@ -245,7 +245,7 @@ Some geographies, particularly Census tracts and blocks, need to be specified wi
 
 You may want to get get data for many geographies that require a parent geography. For example, tract-level data from the 1990 Decennial Census can only be requested from one state at a time. 
 
-In this example, we use the built in `fips` list of state [FIPS codes](https://www.census.gov/geo/reference/ansi_statetables.html) to request tract-level data from each state and join into a single data frame.
+In this example, we use the built in `fips` list of state [FIPS codes](https://www.census.gov/library/reference/code-lists/ansi.html) to request tract-level data from each state and join into a single data frame.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 fips
 tracts <- NULL

@@ -41,7 +41,7 @@ Here is a list of examples for dozens of the Census's API endpoints. Read more a
 Get median household income, with associated annotations and margin of error, for census tracts in Alaska.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 acs_income <- getCensus(name = "acs/acs5",
-	vintage = 2017, 
+	vintage = 2018, 
 	vars = c("NAME", "B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA"), 
 	region = "tract:*",
 	regionin = "state:02")
@@ -58,7 +58,7 @@ Get the percent of people without an internet subscription by income for the fiv
 * income $75,000 or greater: `S2801_C02_031E`
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 acs_subject <- getCensus(name = "acs/acs1/subject",
-	vintage = 2017, 
+	vintage = 2018, 
 	vars = c("NAME", "S2801_C02_019E", "S2801_C02_019M",
 					 "S2801_C02_023E", "S2801_C02_023M", 
 					 "S2801_C02_027E", "S2801_C02_027M",
@@ -72,7 +72,7 @@ head(acs_subject)
 ### ACS Data Profile
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 acs_profile <- getCensus(name = "acs/acs1/profile",
-	vintage = 2017, 
+	vintage = 2018, 
 	vars = "group(DP05)", 
 	region = "region:*")
 ```
@@ -255,6 +255,41 @@ data2000 <- getCensus(name = "sf1",
 head(data2000)
 ```
 
+### Decennial Census Self-Response Rates
+[Decennial Census Self-Response Rates documentation](https://www.census.gov/data/developers/data-sets/decennial-response-rates.html)
+Get self-response rates for the 2020 and 2010 Decennial Census by state, county, tract, place and more.
+
+Get overall and internet reponse rates for all counties.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+county_responses <- getCensus(
+	name = "dec/responserate",
+	vintage = 2020,
+	vars = c("NAME", "RESP_DATE", "CRRALL", "CRRINT"),
+	region = "county:*")
+head(county_responses)
+```
+
+Get response rates for places (cities, towns, etc) within New York state.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+ny_place_responses <- getCensus(
+	name = "dec/responserate",
+	vintage = 2020,
+	vars = c("NAME", "RESP_DATE", "CRRALL", "CRRINT"),
+	region = "place:*",
+	regionin = "state:36")
+head(ny_place_responses)
+```
+
+Get final 2010 Decennial Census self-response rates.
+```{r, purl = NOT_CRAN, eval = NOT_CRAN}
+county_responses_2010 <- getCensus(
+	name = "dec/responserate",
+	vintage = 2010,
+	vars = c("NAME", "FSRR2010"),
+	region = "county:*")
+head(county_responses_2010)
+```
+
 ### Decennial Census Surname Files
 [Decennial Census Surname documentation](https://www.census.gov/data/developers/data-sets/surnames.2010.html)
 
@@ -365,20 +400,22 @@ head(imports)
 
 ### Population Estimates
 [Population Estimates documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html)
+Note that variable names in the PEP APIs are not always consistent from year to year.
+
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 popest <- getCensus(name = "pep/population",
-	vintage = 2018,
-	vars = c("GEONAME", "POP", "DATE_DESC"),
+	vintage = 2019,
+	vars = c("POP", "DATE_DESC"),
 	region = "state:*")
 head(popest)
 ```
 
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 popest_housing <- getCensus(name = "pep/housing",
-	vintage = 2017,
-	vars = c("DATE", "DATE_DESC", "GEONAME", "HUEST"),
+	vintage = 2018,
+	vars = c("DATE_CODE", "DATE_DESC", "HUEST"),
 	region = "county:195",
-	regionin = "state:2")
+	regionin = "state:02")
 head(popest_housing)
 ```
 
@@ -402,7 +439,7 @@ Get national poverty rates by race for the past 50 years.
 poverty <- getCensus(name = "timeseries/poverty/histpov2",
 	vars = c("RACE", "PCTPOV"),
 	region = "us:*",
-	time = "from 1967 to 2017")
+	time = "from 1968 to 2018")
 head(poverty)
 ```
 
@@ -413,7 +450,7 @@ Get poverty rate for children and overall for a single year.
 saipe <- getCensus(name = "timeseries/poverty/saipe",
 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region = "state:*",
-	time = 2017)
+	time = 2018)
 head(saipe)
 ```
 
@@ -423,7 +460,7 @@ saipe_years <- getCensus(name = "timeseries/poverty/saipe",
 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region = "county:001",
 	regionin = "state:12",
-	time = "from 2000 to 2017")
+	time = "from 2000 to 2018")
 head(saipe_years)
 ```
 ### SAIPE School Districts
@@ -433,7 +470,7 @@ saipe_schools <- getCensus(name = "timeseries/poverty/saipe/schdist",
 	vars = c("SD_NAME", "SAEPOV5_17V_PT", "SAEPOVRAT5_17RV_PT"),
 	region = "school district (unified):*",
 	regionin = "state:25",
-	time = 2017)
+	time = 2018)
 head(saipe_schools)
 ```
 
