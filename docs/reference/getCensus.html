@@ -8,21 +8,29 @@
 
 <title>Retrieve Census data from a given API — getCensus • censusapi</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -32,10 +40,10 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Retrieve Census data from a given API — getCensus" />
 
+<meta property="og:title" content="Retrieve Census data from a given API — getCensus" />
 <meta property="og:description" content="Retrieve Census data from a given API" />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -49,9 +57,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -65,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.1</span>
       </span>
     </div>
 
@@ -84,7 +93,6 @@
   <a href="../news/index.html">News</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/hrecht/censusapi">
@@ -99,6 +107,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -110,18 +119,16 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Retrieve Census data from a given API</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>getCensus</span>(<span class='no'>name</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span>(<span class='st'>"CENSUS_KEY"</span>), <span class='no'>vars</span>,
+    <pre class="usage"><span class='fu'>getCensus</span>(<span class='no'>name</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"CENSUS_KEY"</span>), <span class='no'>vars</span>,
   <span class='kw'>region</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>period</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>monthly</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>category_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>data_type_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>naics</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pscode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>naics2012</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>naics2007</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>naics2002</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>naics1997</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -170,52 +177,52 @@
       <td><p>Other valid parameters to pass to the Census API. Note: the APIs are case sensitive.</p></td>
     </tr>
     </table>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2017</span>,
-<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"B01001_001E"</span>, <span class='st'>"NAME"</span>, <span class='st'>"B01002_001E"</span>, <span class='st'>"B19013_001E"</span>),
+<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"B01001_001E"</span>, <span class='st'>"NAME"</span>, <span class='st'>"B01002_001E"</span>, <span class='st'>"B19013_001E"</span>),
 <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"tract:*"</span>, <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='st'>"state:06"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>df</span>)</div><div class='output co'>#&gt;   state county  tract B01001_001E                                          NAME
-#&gt; 1    06    001 400100        2991 Census Tract 4001, Alameda County, California
-#&gt; 2    06    001 400200        1997 Census Tract 4002, Alameda County, California
-#&gt; 3    06    001 400300        5123 Census Tract 4003, Alameda County, California
-#&gt; 4    06    001 400400        3991 Census Tract 4004, Alameda County, California
-#&gt; 5    06    001 400500        3944 Census Tract 4005, Alameda County, California
-#&gt; 6    06    001 400600        1635 Census Tract 4006, Alameda County, California
-#&gt;   B01002_001E B19013_001E
-#&gt; 1        53.7      208393
-#&gt; 2        43.1      147500
-#&gt; 3        42.4       88173
-#&gt; 4        35.9      102821
-#&gt; 5        32.7       92375
-#&gt; 6        36.2       86458</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>df</span>)</div><div class='output co'>#&gt;   state county  tract B01001_001E
+#&gt; 1    06    083 002806        2430
+#&gt; 2    06    083 002913        3869
+#&gt; 3    06    083 002914        3386
+#&gt; 4    06    083 000400        5411
+#&gt; 5    06    083 001203        3029
+#&gt; 6    06    083 001800         941
+#&gt;                                                   NAME B01002_001E B19013_001E
+#&gt; 1 Census Tract 28.06, Santa Barbara County, California        36.5       63259
+#&gt; 2 Census Tract 29.13, Santa Barbara County, California        46.3       91106
+#&gt; 3 Census Tract 29.14, Santa Barbara County, California        44.8       93125
+#&gt; 4     Census Tract 4, Santa Barbara County, California        37.0       74795
+#&gt; 5 Census Tract 12.03, Santa Barbara County, California        48.9       59135
+#&gt; 6    Census Tract 18, Santa Barbara County, California        42.0       50208</div><div class='input'>
 <span class='co'># Use American Community Survey variable groups to get all data from a given table.</span>
 <span class='co'># This returns estimates as well as margins of error and annotation flags.</span>
 <span class='no'>acs_group</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>,
 <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2017</span>,
-<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"NAME"</span>, <span class='st'>"group(B19013)"</span>),
-<span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"county:*"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by coercion</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>acs_group</span>)</div><div class='output co'>#&gt;   state county                                 NAME         GEO_ID B19013_001E
-#&gt; 1    72    047       Corozal Municipio, Puerto Rico 0500000US72047       14752
-#&gt; 2    72    095       Maunabo Municipio, Puerto Rico 0500000US72095       17636
-#&gt; 3    72    111      Peñuelas Municipio, Puerto Rico 0500000US72111       16868
-#&gt; 4    72    113         Ponce Municipio, Puerto Rico 0500000US72113       16561
-#&gt; 5    72    131 San Sebastián Municipio, Puerto Rico 0500000US72131       14275
-#&gt; 6    72    135      Toa Alta Municipio, Puerto Rico 0500000US72135       29672
+<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"NAME"</span>, <span class='st'>"group(B19013)"</span>),
+<span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"county:*"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by coercion</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>acs_group</span>)</div><div class='output co'>#&gt;   state county                          NAME         GEO_ID B19013_001E
+#&gt; 1    72    073 Jayuya Municipio, Puerto Rico 0500000US72073       15615
+#&gt; 2    30    019       Daniels County, Montana 0500000US30019       53591
+#&gt; 3    24    023      Garrett County, Maryland 0500000US24023       48174
+#&gt; 4    30    079       Prairie County, Montana 0500000US30079       50850
+#&gt; 5    39    173             Wood County, Ohio 0500000US39173       58033
+#&gt; 6    08    011         Bent County, Colorado 0500000US08011       32500
 #&gt;   B19013_001M NAME_1 B19013_001EA B19013_001MA
-#&gt; 1        1416     NA         &lt;NA&gt;         &lt;NA&gt;
-#&gt; 2        3292     NA         &lt;NA&gt;         &lt;NA&gt;
-#&gt; 3        1444     NA         &lt;NA&gt;         &lt;NA&gt;
-#&gt; 4         594     NA         &lt;NA&gt;         &lt;NA&gt;
-#&gt; 5        1197     NA         &lt;NA&gt;         &lt;NA&gt;
-#&gt; 6        1584     NA         &lt;NA&gt;         &lt;NA&gt;</div><div class='input'>
+#&gt; 1        3424     NA         &lt;NA&gt;         &lt;NA&gt;
+#&gt; 2        3318     NA         &lt;NA&gt;         &lt;NA&gt;
+#&gt; 3        2234     NA         &lt;NA&gt;         &lt;NA&gt;
+#&gt; 4        6481     NA         &lt;NA&gt;         &lt;NA&gt;
+#&gt; 5        1604     NA         &lt;NA&gt;         &lt;NA&gt;
+#&gt; 6        3442     NA         &lt;NA&gt;         &lt;NA&gt;</div><div class='input'>
 <span class='co'># Retreive block-level data within a specific tract using a nested regionin argument</span>
 <span class='no'>data2010</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"dec/sf1"</span>,
 <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2010</span>,
-<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"NAME"</span>,<span class='st'>"P001001"</span>),
+<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"NAME"</span>,<span class='st'>"P001001"</span>),
 <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"block:*"</span>,
 <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='st'>"state:36+county:027+tract:010000"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>data2010</span>)</div><div class='output co'>#&gt;   state county  tract block
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>data2010</span>)</div><div class='output co'>#&gt;   state county  tract block
 #&gt; 1    36    027 010000  1000
 #&gt; 2    36    027 010000  1011
 #&gt; 3    36    027 010000  1028
@@ -240,10 +247,10 @@
 <span class='co'># Note, for this dataset a tract needs to be specified to retrieve blocks</span>
 <span class='no'>data2000</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sf1"</span>,
 <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
-<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"P001001"</span>, <span class='st'>"P003001"</span>),
+<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"P001001"</span>, <span class='st'>"P003001"</span>),
 <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"block:*"</span>,
 <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='st'>"state:36+county:27+tract:010000"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>data2000</span>)</div><div class='output co'>#&gt;   state county  tract block P001001 P003001
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>data2000</span>)</div><div class='output co'>#&gt;   state county  tract block P001001 P003001
 #&gt; 1    36    027 010000  1000      18      18
 #&gt; 2    36    027 010000  1001      26      26
 #&gt; 3    36    027 010000  1002      59      59
@@ -252,10 +259,10 @@
 #&gt; 6    36    027 010000  1005     116     116</div><div class='input'>
 <span class='co'># Get poverty rates for children and all ages over time</span>
 <span class='no'>saipe</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/poverty/saipe"</span>,
-<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"NAME"</span>, <span class='st'>"SAEPOVRT0_17_PT"</span>, <span class='st'>"SAEPOVRTALL_PT"</span>),
+<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"NAME"</span>, <span class='st'>"SAEPOVRT0_17_PT"</span>, <span class='st'>"SAEPOVRTALL_PT"</span>),
 <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"state:01"</span>,
 <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"from 2000 to 2017"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>saipe</span>)</div><div class='output co'>#&gt;   time state    NAME SAEPOVRT0_17_PT SAEPOVRTALL_PT
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>saipe</span>)</div><div class='output co'>#&gt;   time state    NAME SAEPOVRT0_17_PT SAEPOVRTALL_PT
 #&gt; 1 2000    01 Alabama            20.5           14.6
 #&gt; 2 2001    01 Alabama            22.1           15.7
 #&gt; 3 2002    01 Alabama            21.6           15.4
@@ -265,10 +272,10 @@
 <span class='co'># Get county business patterns data for a specific NAICS sector</span>
 <span class='no'>cbp_2016</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"cbp"</span>,
 <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='st'>"2016"</span>,
-<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"EMP"</span>, <span class='st'>"ESTAB"</span>, <span class='st'>"NAICS2012_TTL"</span>, <span class='st'>"GEO_TTL"</span>),
+<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"EMP"</span>, <span class='st'>"ESTAB"</span>, <span class='st'>"NAICS2012_TTL"</span>, <span class='st'>"GEO_TTL"</span>),
 <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"state:*"</span>,
 <span class='kw'>naics2012</span> <span class='kw'>=</span> <span class='st'>"23"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>cbp_2016</span>)</div><div class='output co'>#&gt;   state    EMP ESTAB NAICS2012_TTL    GEO_TTL NAICS2012
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>cbp_2016</span>)</div><div class='output co'>#&gt;   state    EMP ESTAB NAICS2012_TTL    GEO_TTL NAICS2012
 #&gt; 1    01  82327  7424  Construction    Alabama        23
 #&gt; 2    02  17022  2521  Construction     Alaska        23
 #&gt; 3    04 141740 11921  Construction    Arizona        23
@@ -276,16 +283,13 @@
 #&gt; 5    06 723574 71981  Construction California        23
 #&gt; 6    08 152325 17730  Construction   Colorado        23</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -293,13 +297,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

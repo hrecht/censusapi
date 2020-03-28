@@ -8,21 +8,29 @@
 
 <title>Use variable metadata to find variables containing a given string. — makeVarlist • censusapi</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -32,12 +40,12 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Use variable metadata to find variables containing a given string. — makeVarlist" />
 
+<meta property="og:title" content="Use variable metadata to find variables containing a given string. — makeVarlist" />
 <meta property="og:description" content="Return a list of variable names or data frame of variable metadata containing a given string.
 This can be used create a list of variables to later pass to getCensus, or a data frame
 documenting variables used in a given project." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -51,9 +59,10 @@ documenting variables used in a given project." />
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -67,7 +76,7 @@ documenting variables used in a given project." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.1</span>
       </span>
     </div>
 
@@ -86,7 +95,6 @@ documenting variables used in a given project." />
   <a href="../news/index.html">News</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/hrecht/censusapi">
@@ -101,6 +109,7 @@ documenting variables used in a given project." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -112,16 +121,14 @@ documenting variables used in a given project." />
     </div>
 
     <div class="ref-description">
-    
     <p>Return a list of variable names or data frame of variable metadata containing a given string.
 This can be used create a list of variables to later pass to getCensus, or a data frame
 documenting variables used in a given project.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>makeVarlist</span>(<span class='no'>name</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>find</span>, <span class='kw'>varsearch</span> <span class='kw'>=</span> <span class='st'>"all"</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"list"</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -147,44 +154,41 @@ Options are "all", "name", "label", or "concept".</p></td>
       <td><p>Optional argument, specifying output to "list" or "dataframe". Default is "list".</p></td>
     </tr>
     </table>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># Return a list, and then use getCensus function to retrieve those variables
-</div><div class='input'><span class='no'>myvars</span> <span class='kw'>&lt;-</span> <span class='fu'>makeVarlist</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/poverty/saipe"</span>,
+    <pre class="examples"><div class='input'><span class='co'># Return a list, and then use getCensus function to retrieve those variables</span>
+<span class='no'>myvars</span> <span class='kw'>&lt;-</span> <span class='fu'>makeVarlist</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/poverty/saipe"</span>,
   <span class='kw'>find</span> <span class='kw'>=</span> <span class='st'>"Ages 0-4"</span>,
   <span class='kw'>varsearch</span> <span class='kw'>=</span> <span class='st'>"label"</span>)
-<span class='no'>myvars</span></div><div class='output co'>#&gt; [1] "SAEPOVRT0_4_UB90" "SAEPOVRT0_4_MOE"  "SAEPOVU_0_4"      "SAEPOVRT0_4_PT"  
-#&gt; [5] "SAEPOVRT0_4_LB90" "SAEPOV0_4_UB90"   "SAEPOV0_4_MOE"    "SAEPOV0_4_PT"    
+<span class='no'>myvars</span></div><div class='output co'>#&gt; [1] "SAEPOVRT0_4_MOE"  "SAEPOVRT0_4_UB90" "SAEPOVRT0_4_LB90" "SAEPOVRT0_4_PT"  
+#&gt; [5] "SAEPOV0_4_PT"     "SAEPOVU_0_4"      "SAEPOV0_4_MOE"    "SAEPOV0_4_UB90"  
 #&gt; [9] "SAEPOV0_4_LB90"  </div><div class='input'><span class='no'>saipe_dt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getCensus.html'>getCensus</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/poverty/saipe"</span>,
   <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>2016</span>,
   <span class='kw'>vars</span> <span class='kw'>=</span> <span class='no'>myvars</span>,
   <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"state:*"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>saipe_dt</span>)</div><div class='output co'>#&gt;   time state SAEPOVRT0_4_UB90 SAEPOVRT0_4_MOE SAEPOVU_0_4 SAEPOVRT0_4_PT
-#&gt; 1 2016    01             28.9             1.5      287177           27.4
-#&gt; 2 2016    02             17.0             1.9       52408           15.1
-#&gt; 3 2016    04             26.1             1.2      428317           24.9
-#&gt; 4 2016    05             29.1             1.8      184115           27.3
-#&gt; 5 2016    06             21.2             0.5     2430975           20.7
-#&gt; 6 2016    08             15.1             1.2      330815           13.9
-#&gt;   SAEPOVRT0_4_LB90 SAEPOV0_4_UB90 SAEPOV0_4_MOE SAEPOV0_4_PT SAEPOV0_4_LB90
-#&gt; 1             25.9          83093          4418        78675          74257
-#&gt; 2             13.2           8940          1021         7919           6898
-#&gt; 3             23.7         111948          5131       106817         101686
-#&gt; 4             25.5          53587          3246        50341          47095
-#&gt; 5             20.2         515449         13017       502432         489415
-#&gt; 6             12.7          50005          3894        46111          42217</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>saipe_dt</span>)</div><div class='output co'>#&gt;   time state SAEPOVRT0_4_MOE SAEPOVRT0_4_UB90 SAEPOVRT0_4_LB90 SAEPOVRT0_4_PT
+#&gt; 1 2016    01             1.5             28.9             25.9           27.4
+#&gt; 2 2016    02             1.9             17.0             13.2           15.1
+#&gt; 3 2016    04             1.2             26.1             23.7           24.9
+#&gt; 4 2016    05             1.8             29.1             25.5           27.3
+#&gt; 5 2016    06             0.5             21.2             20.2           20.7
+#&gt; 6 2016    08             1.2             15.1             12.7           13.9
+#&gt;   SAEPOV0_4_PT SAEPOVU_0_4 SAEPOV0_4_MOE SAEPOV0_4_UB90 SAEPOV0_4_LB90
+#&gt; 1        78675      287177          4418          83093          74257
+#&gt; 2         7919       52408          1021           8940           6898
+#&gt; 3       106817      428317          5131         111948         101686
+#&gt; 4        50341      184115          3246          53587          47095
+#&gt; 5       502432     2430975         13017         515449         489415
+#&gt; 6        46111      330815          3894          50005          42217</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -192,13 +196,16 @@ Options are "all", "name", "label", or "concept".</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

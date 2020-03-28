@@ -291,6 +291,9 @@ Use `listCensusMetadata(type = "geographies")` on your dataset to check which ge
 ### Unexpected errors
 Occasionally you might get the general error message `"There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience."` This comes from the Census Bureau and could be caused by any number of problems, including server issues. Try rerunning your API call. If that doesn't work and you are requesting a large amount of data, try reducing the amount that you're requesting, for example getting only one state at a time. If you're still having trouble, email cnmp.developers.list@census.gov. Include in your email the raw API call that's provided in your `getCensus` error message (not your R code) so that they can try to help.
 
+### Margins of error and annotations
+Read the [documentation](https://www.census.gov/data/developers/data-sets/acs-1year/notes-on-acs-estimate-and-annotation-values.html) to understand why you might see values like `-555555555` in your margin of error columns. These values are set by the Census Bureau, not this `censusapi` package.
+
 ### Other ways to get help
 * Open a [Github issue](https://github.com/hrecht/censusapi/issues) for bugs or issues with this R package.
 * Join the public Census Bureau [Slack channel](http://links.govdelivery.com/track?type=click&enid=ZWFzPTEmbWFpbGluZ2lkPTIwMTgwOTE3Ljk0OTc1NjkxJm1lc3NhZ2VpZD1NREItUFJELUJVTC0yMDE4MDkxNy45NDk3NTY5MSZkYXRhYmFzZWlkPTEwMDEmc2VyaWFsPTE3MjA3MjUwJmVtYWlsaWQ9aHJlY2h0MkBnbWFpbC5jb20mdXNlcmlkPWhyZWNodDJAZ21haWwuY29tJmZsPSZleHRyYT1NdWx0aXZhcmlhdGVJZD0mJiY=&&&105&&&https://join.slack.com/t/uscensusbureau/shared_invite/enQtMjQ3NzUyNTM3NDU3LTZmNGI1MmQzY2Y2ZTU1ODJhNDQwMmY2YmZiNmFkNzg4YmJkYmQzZjQyNDhkNDYxN2JhYjkxZDEwMGI2OGU5NzQ?eml=gd&utm_medium=email&utm_source=govdelivery) and ask your question in the R or API rooms.
