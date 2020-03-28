@@ -4,8 +4,7 @@
 \alias{listCensusMetadata}
 \title{Get variable or geography metadata for a given API as a data frame}
 \usage{
-listCensusMetadata(name, vintage = NULL, type = "variables",
-  group = NULL)
+listCensusMetadata(name, vintage = NULL, type = "variables", group = NULL)
 }
 \arguments{
 \item{name}{API name - e.g. acs5. See list at https://api.census.gov/data.html}

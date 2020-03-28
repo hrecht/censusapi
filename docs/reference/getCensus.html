@@ -122,12 +122,28 @@
     <p>Retrieve Census data from a given API</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getCensus</span>(<span class='no'>name</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"CENSUS_KEY"</span>), <span class='no'>vars</span>,
-  <span class='kw'>region</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>period</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>monthly</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>category_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data_type_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>naics</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pscode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>naics2012</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>naics2007</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>naics2002</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>naics1997</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>getCensus</span>(
+  <span class='no'>name</span>,
+  <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"CENSUS_KEY"</span>),
+  <span class='no'>vars</span>,
+  <span class='kw'>region</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>period</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>monthly</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>category_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>data_type_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>naics</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>pscode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>naics2012</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>naics2007</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>naics2002</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>naics1997</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

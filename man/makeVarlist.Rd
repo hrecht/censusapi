@@ -4,8 +4,7 @@
 \alias{makeVarlist}
 \title{Use variable metadata to find variables containing a given string.}
 \usage{
-makeVarlist(name, vintage = NULL, find, varsearch = "all",
-  output = "list")
+makeVarlist(name, vintage = NULL, find, varsearch = "all", output = "list")
 }
 \arguments{
 \item{name}{API name - e.g. acs5. See list at https://api.census.gov/data.html}

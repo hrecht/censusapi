@@ -4,12 +4,28 @@
 \alias{getCensus}
 \title{Retrieve Census data from a given API}
 \usage{
-getCensus(name, vintage = NULL, key = Sys.getenv("CENSUS_KEY"), vars,
-  region = NULL, regionin = NULL, time = NULL, date = NULL,
-  period = NULL, monthly = NULL, category_code = NULL,
-  data_type_code = NULL, naics = NULL, pscode = NULL,
-  naics2012 = NULL, naics2007 = NULL, naics2002 = NULL,
-  naics1997 = NULL, sic = NULL, ...)
+getCensus(
+  name,
+  vintage = NULL,
+  key = Sys.getenv("CENSUS_KEY"),
+  vars,
+  region = NULL,
+  regionin = NULL,
+  time = NULL,
+  date = NULL,
+  period = NULL,
+  monthly = NULL,
+  category_code = NULL,
+  data_type_code = NULL,
+  naics = NULL,
+  pscode = NULL,
+  naics2012 = NULL,
+  naics2007 = NULL,
+  naics2002 = NULL,
+  naics1997 = NULL,
+  sic = NULL,
+  ...
+)
 }
 \arguments{
 \item{name}{API name - e.g. acs5. See list at https://api.census.gov/data.html}

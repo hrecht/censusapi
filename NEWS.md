@@ -1,6 +1,7 @@
 # censusapi 0.6.1
 * Updates web link to FIPS codes reference after Census website reorganization.
 * Adds examples for Decennial Census response rates, updates several examples to retrieve newer data.
+* Removes example masterlist from package itself due to size, online only.
 
 # censusapi 0.6.0
 * Allows the use of miscellaneous paramaters in `getCensus(`. This allows users to specify any valid API argument name and pass it a value, giving full access to all of the underlying Census Bureau APIs.

@@ -9,3 +9,4 @@ pkgdown/
 ^pkgdown$
 .github/
 ^.github$
+vignettes/example-masterlist.Rmd

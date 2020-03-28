@@ -4,7 +4,9 @@
 \name{fips}
 \alias{fips}
 \title{List of state fips codes - 50 states plus DC}
-\format{A list of fips codes for 50 states and the District of Columbia}
+\format{
+A list of fips codes for 50 states and the District of Columbia
+}
 \usage{
 fips
 }
