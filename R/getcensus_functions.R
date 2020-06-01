@@ -51,7 +51,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 		# For ACS data, do not make columns numeric if they are ACS annotation variables - ending in MA or EA or SS
 		# Do not make label variables (ending in _TTL) numeric
 		value_cols <- grep("[0-9]", names(df), value=TRUE)
-		error_cols <- grep("MA|EA|SS|_TTL|_NAME|NAICS2012|NAICS2012_TTL|fage4|FAGE4", value_cols, value=TRUE, ignore.case = T)
+		error_cols <- grep("MA|EA|SS|_TTL|_NAME|NAICS2012|NAICS2012_TTL|NAICS2017|NAICS2017_TTL|fage4|FAGE4", value_cols, value=TRUE, ignore.case = T)
 		for(col in setdiff(value_cols, error_cols)) df[,col] <- as.numeric(df[,col])
 
 		row.names(df) <- NULL
