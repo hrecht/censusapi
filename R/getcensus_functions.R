@@ -49,10 +49,14 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 		df[] <- lapply(df, as.character)
 		# Make columns numeric if they have numbers in the column name - note some APIs use string var names
 		# For ACS data, do not make columns numeric if they are ACS annotation variables - ending in MA or EA or SS
-		# Do not make label variables (ending in _TTL) numeric
-		value_cols <- grep("[0-9]", names(df), value=TRUE)
-		error_cols <- grep("MA|EA|SS|_TTL|_NAME|NAICS2012|NAICS2012_TTL|fage4|FAGE4", value_cols, value=TRUE, ignore.case = T)
-		for(col in setdiff(value_cols, error_cols)) df[,col] <- as.numeric(df[,col])
+		# Do not make known string/label variables numeric
+		numeric_cols <- grep("[0-9]", names(df), value=TRUE)
+		string_cols <- grep("MA|EA|SS|_TTL|_NAME|NAICS2012|NAICS2017|NAICS2012_TTL|fage4|FAGE4|LABEL", numeric_cols, value=TRUE, ignore.case = T)
+
+		# Convert string "NULL" or "N/A" values to true NA
+		df[(df == "NULL" | df == "N/A" | df == "NA")] <- NA
+
+		for(col in setdiff(numeric_cols, string_cols)) df[,col] <- as.numeric(df[,col])
 
 		row.names(df) <- NULL
 		return(df)

@@ -1,3 +1,7 @@
+# censusapi 0.7.0
+* Converts improperly formatted string "N/A" and "NULL" values from underlying Census data to true NA values.
+* Keeps 2017 NAICS variables as characters, instead of erroneously converting to numeric.
+
 # censusapi 0.6.1
 * Updates web link to FIPS codes reference after Census website reorganization.
 * Adds examples for Decennial Census response rates, updates several examples to retrieve newer data.

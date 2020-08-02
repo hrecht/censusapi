@@ -10,7 +10,7 @@
 ## Installation
 Get the latest stable release from CRAN: 
 ```R
-install.packages("censusapi")`
+install.packages("censusapi")
 ```
 
 You can also install the latest development version of `censusapi` from Github using `devtools`. Most people will not want to do this - BEWARE!:

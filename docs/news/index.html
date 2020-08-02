@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -116,9 +116,18 @@
       <small>Source: <a href='https://github.com/hrecht/censusapi/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="censusapi-0-6-1" class="section level1">
+    <div id="censusapi-070" class="section level1">
+<h1 class="page-header" data-toc-text="0.7.0">
+<a href="#censusapi-070" class="anchor"></a>censusapi 0.7.0<small> Unreleased </small>
+</h1>
+<ul>
+<li>Converts improperly formatted string “N/A” and “NULL” values from underlying Census data to true NA values.</li>
+<li>Keeps 2017 NAICS variables as characters, instead of erroneously converting to numeric.</li>
+</ul>
+</div>
+    <div id="censusapi-061" class="section level1">
 <h1 class="page-header" data-toc-text="0.6.1">
-<a href="#censusapi-0-6-1" class="anchor"></a>censusapi 0.6.1<small> Unreleased </small>
+<a href="#censusapi-061" class="anchor"></a>censusapi 0.6.1<small> Unreleased </small>
 </h1>
 <ul>
 <li>Updates web link to FIPS codes reference after Census website reorganization.</li>
@@ -126,9 +135,9 @@
 <li>Removes example masterlist from package itself due to size, online only.</li>
 </ul>
 </div>
-    <div id="censusapi-0-6-0" class="section level1">
+    <div id="censusapi-060" class="section level1">
 <h1 class="page-header" data-toc-text="0.6.0">
-<a href="#censusapi-0-6-0" class="anchor"></a>censusapi 0.6.0<small> 2019-04-13 </small>
+<a href="#censusapi-060" class="anchor"></a>censusapi 0.6.0<small> 2019-04-13 </small>
 </h1>
 <ul>
 <li>Allows the use of miscellaneous paramaters in <code>getCensus(</code>. This allows users to specify any valid API argument name and pass it a value, giving full access to all of the underlying Census Bureau APIs.</li>
@@ -140,18 +149,18 @@
 <li>Adds <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>.</li>
 </ul>
 </div>
-    <div id="censusapi-0-5-0" class="section level1">
+    <div id="censusapi-050" class="section level1">
 <h1 class="page-header" data-toc-text="0.5.0">
-<a href="#censusapi-0-5-0" class="anchor"></a>censusapi 0.5.0<small> Unreleased </small>
+<a href="#censusapi-050" class="anchor"></a>censusapi 0.5.0<small> Unreleased </small>
 </h1>
 <ul>
 <li>Makes <code>region</code> an optional argument in <code>getCensus</code>, rather than required.</li>
 <li>Pads fips codes stored in <code>fips</code> dataset with zeroes.</li>
 </ul>
 </div>
-    <div id="censusapi-0-4-1" class="section level1">
+    <div id="censusapi-041" class="section level1">
 <h1 class="page-header" data-toc-text="0.4.1">
-<a href="#censusapi-0-4-1" class="anchor"></a>censusapi 0.4.1<small> 2018-08-19 </small>
+<a href="#censusapi-041" class="anchor"></a>censusapi 0.4.1<small> 2018-08-19 </small>
 </h1>
 <ul>
 <li>Adds <code>groups</code> type option to <code>listCensusMetadata</code>.</li>
@@ -162,17 +171,17 @@
 <li>Updates 2010 Decennial Census examples to use new 2010 <code>dec/sf1</code> endpoint, which will replace 2010 <code>sf1</code> endpoint on August 30, 2018.</li>
 </ul>
 </div>
-    <div id="censusapi-0-4-0" class="section level1">
+    <div id="censusapi-040" class="section level1">
 <h1 class="page-header" data-toc-text="0.4.0">
-<a href="#censusapi-0-4-0" class="anchor"></a>censusapi 0.4.0<small> Unreleased </small>
+<a href="#censusapi-040" class="anchor"></a>censusapi 0.4.0<small> Unreleased </small>
 </h1>
 <ul>
 <li>Adds support for NAICS code arguments used in <a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html">Business Patterns</a> APIs, <a href="https://www.census.gov/data/developers/data-sets/economic-census.html">Economic Census</a> APIs, and <a href="https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html">Annual Survey of Manufactures</a> APIs.</li>
 </ul>
 </div>
-    <div id="censusapi-0-3-0" class="section level1">
+    <div id="censusapi-030" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.0">
-<a href="#censusapi-0-3-0" class="anchor"></a>censusapi 0.3.0<small> 2018-05-02 </small>
+<a href="#censusapi-030" class="anchor"></a>censusapi 0.3.0<small> 2018-05-02 </small>
 </h1>
 <ul>
 <li>Does not convert ACS annotation flag variables into numeric columns.</li>
@@ -182,33 +191,33 @@
 <li>Updates examples using ACS data to latest year using new acs/acs5 endpoint and adds variable group examples.</li>
 </ul>
 </div>
-    <div id="censusapi-0-2-1" class="section level1">
+    <div id="censusapi-021" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.1">
-<a href="#censusapi-0-2-1" class="anchor"></a>censusapi 0.2.1<small> 2017-08-01 </small>
+<a href="#censusapi-021" class="anchor"></a>censusapi 0.2.1<small> 2017-08-01 </small>
 </h1>
 <ul>
 <li>Fixes bug in <code>listCensusMetadata</code> variables call caused by underlying Census API changes.</li>
 </ul>
 </div>
-    <div id="censusapi-0-2-0" class="section level1">
+    <div id="censusapi-020" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.0">
-<a href="#censusapi-0-2-0" class="anchor"></a>censusapi 0.2.0<small> 2017-06-06 </small>
+<a href="#censusapi-020" class="anchor"></a>censusapi 0.2.0<small> 2017-06-06 </small>
 </h1>
 <ul>
 <li>Updated examples, documentation, vignette.</li>
 </ul>
 </div>
-    <div id="censusapi-0-1-2" class="section level1">
+    <div id="censusapi-012" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.2">
-<a href="#censusapi-0-1-2" class="anchor"></a>censusapi 0.1.2<small> Unreleased </small>
+<a href="#censusapi-012" class="anchor"></a>censusapi 0.1.2<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fixes bug that caused single-row responses to throw an error</li>
 </ul>
 </div>
-    <div id="censusapi-0-1-1" class="section level1">
+    <div id="censusapi-011" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.1">
-<a href="#censusapi-0-1-1" class="anchor"></a>censusapi 0.1.1<small> Unreleased </small>
+<a href="#censusapi-011" class="anchor"></a>censusapi 0.1.1<small> Unreleased </small>
 </h1>
 <ul>
 <li>Uses https rather than http for requests. The Census Bureau <a href="https://content.govdelivery.com/attachments/USCENSUS/2017/05/31/file_attachments/824523/HttpsChangeDocument.pdf">announced</a> that their APIs will be https-only beginning on August 28, 2017.</li>
@@ -221,27 +230,27 @@
 <code>listCensusMetadata</code> allows full word or single letter argument in <code>type</code> parameter</li>
 </ul>
 </div>
-    <div id="censusapi-0-1-0-9001" class="section level1">
+    <div id="censusapi-0109001" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.0.9001">
-<a href="#censusapi-0-1-0-9001" class="anchor"></a>censusapi 0.1.0.9001<small> Unreleased </small>
+<a href="#censusapi-0109001" class="anchor"></a>censusapi 0.1.0.9001<small> Unreleased </small>
 </h1>
 <ul>
 <li>Scrapes <a href="http://api.census.gov/data.json" class="uri">http://api.census.gov/data.json</a> rather than .html in <code>listCensusApis</code>, in starts of removing XML dependency. The .json data also includes several fields not present in the .html file, the most useful of which are added to the returned data frame.</li>
 <li>Changes dataset used in <code>listCensusMetadata</code> examples, mainly for build/checks speed.</li>
 </ul>
 </div>
-    <div id="censusapi-0-1-0-9000" class="section level1">
+    <div id="censusapi-0109000" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.0.9000">
-<a href="#censusapi-0-1-0-9000" class="anchor"></a>censusapi 0.1.0.9000<small> Unreleased </small>
+<a href="#censusapi-0109000" class="anchor"></a>censusapi 0.1.0.9000<small> Unreleased </small>
 </h1>
 <ul>
 <li>Set <code><a href="../reference/getCensus.html">getCensus(key)</a></code> argument’s default value to be CENSUS_KEY in .Renviron. Explicitly encourages Census key to be added to .Renviron. (Users can always override this with any given input.)</li>
 <li>Parses HTML response code. This is particularly important for the response that the Census APIs provided for invalid keys.</li>
 </ul>
 </div>
-    <div id="censusapi-0-1-0" class="section level1">
+    <div id="censusapi-010" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.0">
-<a href="#censusapi-0-1-0" class="anchor"></a>censusapi 0.1.0<small> Unreleased </small>
+<a href="#censusapi-010" class="anchor"></a>censusapi 0.1.0<small> Unreleased </small>
 </h1>
 <ul>
 <li>Removes fips code 72 (Puerto Rico) from included fips dataset because Puerto Rico is not included in most Census API datasets.</li>
@@ -265,7 +274,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
