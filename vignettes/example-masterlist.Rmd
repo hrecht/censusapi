@@ -333,7 +333,7 @@ Get the uninsured rate by income group in Alabama for a single year.
 sahie <- getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"),
 	region = "state:01",
-	time = 2017)
+	time = 2018)
 head(sahie)
 ```
 
@@ -342,7 +342,7 @@ Get the uninsured rate in Alabama for multiple years.
 sahie_annual <- getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT"),
 	region = "state:01",
-	time = "from 2006 to 2017")
+	time = "from 2006 to 2018")
 sahie_annual
 ```
 
@@ -351,7 +351,7 @@ Get the uninsured rate for non-elderly adults with incomes of 138 to 400% of the
 sahie_nonelderly <- getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPR_DESC", "PCTUI_PT", "AGE_DESC", "RACECAT", "RACE_DESC"), 
 	region = "state:*", 
-	time = 2017,
+	time = 2018,
 	IPRCAT = 5,
 	AGECAT = 1)
 head(sahie_nonelderly)

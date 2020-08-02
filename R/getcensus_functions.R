@@ -3,7 +3,8 @@
 #' @param apiurl, key, get, region, time
 #' @keywords internal
 #' @export
-getFunction <- function(apiurl, key, get, region, regionin, time, date, period, monthly, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...) {
+getFunction <- function(apiurl, name, key, get, region, regionin, time, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...) {
+
 	# Return API's built in error message if invalid call
 	apiCheck <- function(req) {
 		if (req$status_code==400) {
@@ -24,6 +25,11 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 			error_message <- (gsub("<[^>]*>", "", httr::content(req, as="text")))
 			stop(paste("The Census Bureau returned the following error message:\n", error_message, "\nYour api call was: ", req$url))
 		} else {
+			# Show call if option is true
+			if (show_call == TRUE) {
+				print(paste("Your successful api call was: ", req$url))
+				print("For more information, visit the documentation at https://hrecht.github.io/censusapi/index.html")
+			}
 			raw <- jsonlite::fromJSON(httr::content(req, as = "text"))
 		}
 	}
@@ -47,11 +53,31 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 		df <- cleanColnames(df)
 		# Make all columns character
 		df[] <- lapply(df, as.character)
-		# Make columns numeric if they have numbers in the column name - note some APIs use string var names
+
+		# Make columns numeric based on column names - unfortunately best strategy without additional API calls given structure of data across endpoints
+		string_col_parts <- "_TTL|_NAME|NAICS2012|NAICS2017|NAICS2012_TTL|NAICS2017_TTL|fage4|FAGE4|LABEL|_DESC|CAT"
+
 		# For ACS data, do not make columns numeric if they are ACS annotation variables - ending in MA or EA or SS
-		# Do not make known string/label variables numeric
-		numeric_cols <- grep("[0-9]", names(df), value=TRUE)
-		string_cols <- grep("MA|EA|SS|_TTL|_NAME|NAICS2012|NAICS2017|NAICS2012_TTL|fage4|FAGE4|LABEL", numeric_cols, value=TRUE, ignore.case = T)
+		if (grepl("acs/acs", name, ignore.case = T)) {
+			# Do not make known string/label variables numeric
+			numeric_cols <- grep("[0-9]", names(df), value=TRUE)
+			string_cols <- grep(paste0("MA|EA|SS|", string_col_parts), numeric_cols, value = TRUE, ignore.case = T)
+
+			# Small Area Health Insurance Estimates
+		} else if (grepl("healthins/sahie", name, ignore.case = T)) {
+			numeric_cols <- grep("[0-9]|_PT|NIPR|PCTIC|PCTUI|NIC|NUI", names(df), value=TRUE, ignore.case = T)
+			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+
+		# Small Area Income and Poverty Estimates
+			} else if (grepl("poverty/saipe", name, ignore.case = T)) {
+			numeric_cols <- grep("[0-9]|SAEMHI|SAEPOV", names(df), value=TRUE, ignore.case = T)
+			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+
+		} else {
+			# Do not make known string/label variables numeric
+			numeric_cols <- grep("[0-9]", names(df), value=TRUE)
+			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+		}
 
 		# Convert string "NULL" or "N/A" values to true NA
 		df[(df == "NULL" | df == "N/A" | df == "NA")] <- NA
@@ -59,6 +85,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 		for(col in setdiff(numeric_cols, string_cols)) df[,col] <- as.numeric(df[,col])
 
 		row.names(df) <- NULL
+
 		return(df)
 	}
 
@@ -83,6 +110,7 @@ getFunction <- function(apiurl, key, get, region, regionin, time, date, period, 
 #' @param region Geography to get
 #' @param regionin Optional hierarchical geography to limit region
 #' @param time,date,period,monthly Optional arguments used for some time series APIs
+#' @param show_call List the underlying API call sent to the Census Bureau and other info
 #' @param category_code,data_type_code Arguments used in Economic Indicators Time Series API
 #' @param naics,pscode Arguments used in Annual Survey of Manufactures API
 #' @param naics2012,naics2007,naics2002,naics1997,sic Arguments used in Economy Wide Key Statistics APIs and Business Patterns APIs
@@ -145,6 +173,7 @@ getCensus <-
 					 date = NULL,
 					 period = NULL,
 					 monthly = NULL,
+					 show_call = FALSE,
 					 category_code = NULL,
 					 data_type_code = NULL,
 					 naics = NULL,
@@ -185,13 +214,13 @@ getCensus <-
 		# Split vars into list
 		vars <- split(vars, ceiling(seq_along(vars)/50))
 		get <- lapply(vars, function(x) paste(x, sep='', collapse=","))
-		data <- lapply(get, function(x) getFunction(apiurl, key, x, region, regionin, time, date, period, monthly, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...))
+		data <- lapply(get, function(x) getFunction(apiurl, name, key, x, region, regionin, time, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...))
 		colnames <- unlist(lapply(data, names))
 		data <- do.call(cbind,data)
 		names(data) <- colnames
 	} else {
 		get <- paste(vars, sep='', collapse=',')
-		data <- getFunction(apiurl, key, get, region, regionin, time, date, period, monthly, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...)
+		data <- getFunction(apiurl, name, key, get, region, regionin, time, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...)
 	}
 	# If there are any duplicate columns (ie if you put a variable in vars twice) remove the duplicates
 	data <- data[, !duplicated(colnames(data))]

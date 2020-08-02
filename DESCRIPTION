@@ -1,7 +1,7 @@
 Package: censusapi
 Version: 0.7.0
 Title: Retrieve Data from the Census APIs
-Authors@R: person("Hannah", "Recht", email = "hrecht2@gmail.com", role = c("aut", "cre"))
+Authors@R: person("Hannah", "Recht", email = "censusapi.rstats@gmail.com", role = c("aut", "cre"))
 Description: A wrapper for the U.S. Census Bureau APIs that returns data frames of 
 	Census data and metadata. Available datasets include the 
 	Decennial Census, American Community Survey, Small Area Health Insurance Estimates,

@@ -1570,6 +1570,18 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="left">36980</td>
+<td align="left">310M100US36980</td>
+<td align="right">114752</td>
+<td align="right">71459</td>
+<td align="right">70543</td>
+<td align="right">916</td>
+<td align="right">43293</td>
+<td align="right">0</td>
+<td align="left">Owensboro, KY Metro Area</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
 <td align="left">31540</td>
 <td align="left">310M100US31540</td>
 <td align="right">568593</td>
@@ -1581,7 +1593,7 @@
 <td align="left">Madison, WI Metro Area</td>
 <td align="right">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">31580</td>
 <td align="left">310M100US31580</td>
 <td align="right">46920</td>
@@ -1593,7 +1605,7 @@
 <td align="left">Madisonville, KY Micro Area</td>
 <td align="right">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">36820</td>
 <td align="left">310M100US36820</td>
 <td align="right">22381</td>
@@ -1605,7 +1617,7 @@
 <td align="left">Oskaloosa, IA Micro Area</td>
 <td align="right">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">36860</td>
 <td align="left">310M100US36860</td>
 <td align="right">154908</td>
@@ -1617,7 +1629,7 @@
 <td align="left">Ottawa-Streator, IL Micro Area</td>
 <td align="right">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">36900</td>
 <td align="left">310M100US36900</td>
 <td align="right">35625</td>
@@ -1627,18 +1639,6 @@
 <td align="right">10854</td>
 <td align="right">0</td>
 <td align="left">Ottumwa, IA Micro Area</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">36940</td>
-<td align="left">310M100US36940</td>
-<td align="right">36576</td>
-<td align="right">25394</td>
-<td align="right">0</td>
-<td align="right">25394</td>
-<td align="right">11182</td>
-<td align="right">0</td>
-<td align="left">Owatonna, MN Micro Area</td>
 <td align="right">NA</td>
 </tr>
 </tbody>
@@ -2238,7 +2238,7 @@
 <div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="no">sahie</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:01"</span>,
-    <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2017</span>)
+    <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2018</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">sahie</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
@@ -2248,56 +2248,56 @@
 <th align="left">NAME</th>
 <th align="left">IPRCAT</th>
 <th align="left">IPR_DESC</th>
-<th align="left">PCTUI_PT</th>
+<th align="right">PCTUI_PT</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2017</td>
+<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">0</td>
 <td align="left">All Incomes</td>
-<td align="left">11.0</td>
+<td align="right">11.9</td>
 </tr>
 <tr class="even">
-<td align="left">2017</td>
+<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">1</td>
 <td align="left">&lt;= 200% of Poverty</td>
-<td align="left">18.3</td>
+<td align="right">19.6</td>
 </tr>
 <tr class="odd">
-<td align="left">2017</td>
+<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">2</td>
 <td align="left">&lt;= 250% of Poverty</td>
-<td align="left">17.3</td>
+<td align="right">18.5</td>
 </tr>
 <tr class="even">
-<td align="left">2017</td>
+<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">3</td>
 <td align="left">&lt;= 138% of Poverty</td>
-<td align="left">19.4</td>
+<td align="right">20.6</td>
 </tr>
 <tr class="odd">
-<td align="left">2017</td>
+<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">4</td>
 <td align="left">&lt;= 400% of Poverty</td>
-<td align="left">14.5</td>
+<td align="right">15.5</td>
 </tr>
 <tr class="even">
-<td align="left">2017</td>
+<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">5</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">11.5</td>
+<td align="right">12.5</td>
 </tr>
 </tbody>
 </table>
@@ -2306,7 +2306,7 @@
 <div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="no">sahie_annual</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:01"</span>,
-    <span class="kw">time</span> <span class="kw">=</span> <span class="st">"from 2006 to 2017"</span>)
+    <span class="kw">time</span> <span class="kw">=</span> <span class="st">"from 2006 to 2018"</span>)
 <span class="no">sahie_annual</span></pre></body></html></div>
 <div class="kable-table">
 <table class="table">
@@ -2314,80 +2314,86 @@
 <th align="left">time</th>
 <th align="left">state</th>
 <th align="left">NAME</th>
-<th align="left">PCTUI_PT</th>
+<th align="right">PCTUI_PT</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">2006</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">15.7</td>
+<td align="right">15.7</td>
 </tr>
 <tr class="even">
 <td align="left">2007</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">14.6</td>
+<td align="right">14.6</td>
 </tr>
 <tr class="odd">
 <td align="left">2008</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">15.3</td>
+<td align="right">15.3</td>
 </tr>
 <tr class="even">
 <td align="left">2009</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">15.8</td>
+<td align="right">15.8</td>
 </tr>
 <tr class="odd">
 <td align="left">2010</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">16.9</td>
+<td align="right">16.9</td>
 </tr>
 <tr class="even">
 <td align="left">2011</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">16.6</td>
+<td align="right">16.6</td>
 </tr>
 <tr class="odd">
 <td align="left">2012</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">15.8</td>
+<td align="right">15.8</td>
 </tr>
 <tr class="even">
 <td align="left">2013</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">15.9</td>
+<td align="right">15.9</td>
 </tr>
 <tr class="odd">
 <td align="left">2014</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">14.2</td>
+<td align="right">14.2</td>
 </tr>
 <tr class="even">
 <td align="left">2015</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">11.9</td>
+<td align="right">11.9</td>
 </tr>
 <tr class="odd">
 <td align="left">2016</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">10.8</td>
+<td align="right">10.8</td>
 </tr>
 <tr class="even">
 <td align="left">2017</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">11.0</td>
+<td align="right">11.0</td>
+</tr>
+<tr class="odd">
+<td align="left">2018</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="right">11.9</td>
 </tr>
 </tbody>
 </table>
@@ -2396,7 +2402,7 @@
 <div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="no">sahie_nonelderly</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
-    <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2017</span>,
+    <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2018</span>,
     <span class="kw">IPRCAT</span> <span class="kw">=</span> <span class="fl">5</span>,
     <span class="kw">AGECAT</span> <span class="kw">=</span> <span class="fl">1</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">sahie_nonelderly</span>)</pre></body></html></div>
@@ -2419,7 +2425,7 @@
 <th align="left">state</th>
 <th align="left">NAME</th>
 <th align="left">IPR_DESC</th>
-<th align="left">PCTUI_PT</th>
+<th align="right">PCTUI_PT</th>
 <th align="left">AGE_DESC</th>
 <th align="left">RACECAT</th>
 <th align="left">RACE_DESC</th>
@@ -2428,11 +2434,11 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2017</td>
+<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">14.6</td>
+<td align="right">16.0</td>
 <td align="left">18 to 64 years</td>
 <td align="left">0</td>
 <td align="left">All Races</td>
@@ -2440,11 +2446,11 @@
 <td align="left">1</td>
 </tr>
 <tr class="even">
-<td align="left">2017</td>
+<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">13.0</td>
+<td align="right">14.4</td>
 <td align="left">18 to 64 years</td>
 <td align="left">1</td>
 <td align="left">White alone, not Hispanic</td>
@@ -2452,11 +2458,11 @@
 <td align="left">1</td>
 </tr>
 <tr class="odd">
-<td align="left">2017</td>
+<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">14.3</td>
+<td align="right">15.9</td>
 <td align="left">18 to 64 years</td>
 <td align="left">2</td>
 <td align="left">Black alone, not Hispanic</td>
@@ -2464,11 +2470,11 @@
 <td align="left">1</td>
 </tr>
 <tr class="even">
-<td align="left">2017</td>
+<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">37.0</td>
+<td align="right">37.5</td>
 <td align="left">18 to 64 years</td>
 <td align="left">3</td>
 <td align="left">Hispanic (any race)</td>
@@ -2476,11 +2482,11 @@
 <td align="left">1</td>
 </tr>
 <tr class="odd">
-<td align="left">2017</td>
+<td align="left">2018</td>
 <td align="left">02</td>
 <td align="left">Alaska</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">24.3</td>
+<td align="right">22.5</td>
 <td align="left">18 to 64 years</td>
 <td align="left">0</td>
 <td align="left">All Races</td>
@@ -2488,11 +2494,11 @@
 <td align="left">1</td>
 </tr>
 <tr class="even">
-<td align="left">2017</td>
+<td align="left">2018</td>
 <td align="left">02</td>
 <td align="left">Alaska</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="left">19.3</td>
+<td align="right">18.5</td>
 <td align="left">18 to 64 years</td>
 <td align="left">1</td>
 <td align="left">White alone, not Hispanic</td>
@@ -2972,7 +2978,7 @@
 <th align="left">state</th>
 <th align="left">NAME</th>
 <th align="right">SAEPOVRT0_17_PT</th>
-<th align="left">SAEPOVRTALL_PT</th>
+<th align="right">SAEPOVRTALL_PT</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -2980,42 +2986,42 @@
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="right">23.9</td>
-<td align="left">16.8</td>
+<td align="right">16.8</td>
 </tr>
 <tr class="even">
 <td align="left">2018</td>
 <td align="left">02</td>
 <td align="left">Alaska</td>
 <td align="right">14.5</td>
-<td align="left">11.1</td>
+<td align="right">11.1</td>
 </tr>
 <tr class="odd">
 <td align="left">2018</td>
 <td align="left">04</td>
 <td align="left">Arizona</td>
 <td align="right">20.4</td>
-<td align="left">14.1</td>
+<td align="right">14.1</td>
 </tr>
 <tr class="even">
 <td align="left">2018</td>
 <td align="left">05</td>
 <td align="left">Arkansas</td>
 <td align="right">23.8</td>
-<td align="left">16.8</td>
+<td align="right">16.8</td>
 </tr>
 <tr class="odd">
 <td align="left">2018</td>
 <td align="left">06</td>
 <td align="left">California</td>
 <td align="right">17.4</td>
-<td align="left">12.8</td>
+<td align="right">12.8</td>
 </tr>
 <tr class="even">
 <td align="left">2018</td>
 <td align="left">08</td>
 <td align="left">Colorado</td>
 <td align="right">12.1</td>
-<td align="left">9.7</td>
+<td align="right">9.7</td>
 </tr>
 </tbody>
 </table>
@@ -3035,7 +3041,7 @@
 <th align="left">county</th>
 <th align="left">NAME</th>
 <th align="right">SAEPOVRT0_17_PT</th>
-<th align="left">SAEPOVRTALL_PT</th>
+<th align="right">SAEPOVRTALL_PT</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -3044,7 +3050,7 @@
 <td align="left">001</td>
 <td align="left">Alachua County</td>
 <td align="right">17.4</td>
-<td align="left">14.7</td>
+<td align="right">14.7</td>
 </tr>
 <tr class="even">
 <td align="left">2001</td>
@@ -3052,7 +3058,7 @@
 <td align="left">001</td>
 <td align="left">Alachua County</td>
 <td align="right">18.3</td>
-<td align="left">15.1</td>
+<td align="right">15.1</td>
 </tr>
 <tr class="odd">
 <td align="left">2002</td>
@@ -3060,7 +3066,7 @@
 <td align="left">001</td>
 <td align="left">Alachua County</td>
 <td align="right">17.6</td>
-<td align="left">15.1</td>
+<td align="right">15.1</td>
 </tr>
 <tr class="even">
 <td align="left">2003</td>
@@ -3068,7 +3074,7 @@
 <td align="left">001</td>
 <td align="left">Alachua County</td>
 <td align="right">19.8</td>
-<td align="left">16.2</td>
+<td align="right">16.2</td>
 </tr>
 <tr class="odd">
 <td align="left">2004</td>
@@ -3076,7 +3082,7 @@
 <td align="left">001</td>
 <td align="left">Alachua County</td>
 <td align="right">16.9</td>
-<td align="left">14.5</td>
+<td align="right">14.5</td>
 </tr>
 <tr class="even">
 <td align="left">2005</td>
@@ -3084,7 +3090,7 @@
 <td align="left">001</td>
 <td align="left">Alachua County</td>
 <td align="right">22.8</td>
-<td align="left">21.8</td>
+<td align="right">21.8</td>
 </tr>
 </tbody>
 </table>
@@ -3511,7 +3517,7 @@
 <th align="left">County_name</th>
 <th align="left">State_name</th>
 <th align="right">Tot_Population_CEN_2010</th>
-<th align="left">Mail_Return_Rate_CEN_2010</th>
+<th align="right">Mail_Return_Rate_CEN_2010</th>
 <th align="left">state</th>
 <th align="left">county</th>
 <th align="left">tract</th>
@@ -3523,7 +3529,7 @@
 <td align="left">Autauga County</td>
 <td align="left">Alabama</td>
 <td align="right">570</td>
-<td align="left">79.7</td>
+<td align="right">79.7</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">020400</td>
@@ -3534,7 +3540,7 @@
 <td align="left">Autauga County</td>
 <td align="left">Alabama</td>
 <td align="right">1737</td>
-<td align="left">84.6</td>
+<td align="right">84.6</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">020500</td>
@@ -3545,7 +3551,7 @@
 <td align="left">Autauga County</td>
 <td align="left">Alabama</td>
 <td align="right">7023</td>
-<td align="left">72.8</td>
+<td align="right">72.8</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">020500</td>
@@ -3556,7 +3562,7 @@
 <td align="left">Autauga County</td>
 <td align="left">Alabama</td>
 <td align="right">2006</td>
-<td align="left">86.0</td>
+<td align="right">86.0</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">020500</td>
@@ -3567,7 +3573,7 @@
 <td align="left">Autauga County</td>
 <td align="left">Alabama</td>
 <td align="right">2423</td>
-<td align="left">87.8</td>
+<td align="right">87.8</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">020600</td>
@@ -3578,7 +3584,7 @@
 <td align="left">Autauga County</td>
 <td align="left">Alabama</td>
 <td align="right">1245</td>
-<td align="left">73.4</td>
+<td align="right">73.4</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">020600</td>

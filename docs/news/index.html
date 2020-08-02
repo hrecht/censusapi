@@ -122,7 +122,12 @@
 </h1>
 <ul>
 <li>Converts improperly formatted string “N/A” and “NULL” values from underlying Census data to true NA values.</li>
+<li>Improves parsing of columns as numeric or character, specifically:
+<ul>
 <li>Keeps 2017 NAICS variables as characters, instead of erroneously converting to numeric.</li>
+<li>Parses SAHIE and SAIPE endpoint numeric variables with all-character variable names as numeric.</li>
+</ul>
+</li>
 </ul>
 </div>
     <div id="censusapi-061" class="section level1">

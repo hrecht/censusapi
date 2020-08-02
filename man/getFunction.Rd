@@ -6,6 +6,7 @@
 \usage{
 getFunction(
   apiurl,
+  name,
   key,
   get,
   region,
