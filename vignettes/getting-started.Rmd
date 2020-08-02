@@ -69,7 +69,8 @@ Let's walk through an example getting uninsured rates by income group using the 
 Let's see what variables are available in the SAHIE API:
 
 ```{r}
-sahie_vars <- listCensusMetadata(name = "timeseries/healthins/sahie", 
+sahie_vars <- listCensusMetadata(
+	name = "timeseries/healthins/sahie", 
 	type = "variables")
 head(sahie_vars)
 ```
@@ -83,44 +84,50 @@ We'll use a few of these variables to get uninsured rates by income group:
 ### Choosing regions
 We can also use `listCensusMetadata` to see which geographic levels we can get data for using the SAHIE API.
 ```{r}
-listCensusMetadata(name = "timeseries/healthins/sahie", 
+listCensusMetadata(
+	name = "timeseries/healthins/sahie", 
 	type = "geography")
 ```
 This API has three geographic levels: `us`, `county` within states, and `state`.
 
 First, using `getCensus`, let's get uninsured rate by income group at the national level for 2017.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-getCensus(name = "timeseries/healthins/sahie",
+sahie_national <- getCensus(
+	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region = "us:*", 
-	time = 2017)
+	time = 2018)
+sahie_national
 ```
 
 We can also get this data at the state level for every state by changing `region` to `"state:*"`:
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-sahie_states <- getCensus(name = "timeseries/healthins/sahie",
+sahie_states <- getCensus(
+	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region = "state:*", 
-	time = 2017)
+	time = 2018)
 head(sahie_states)
 ```
 
 Finally, we can get county-level data. The geography metadata showed that we can choose to get county-level data within states. We'll use `region` to specify county-level results and `regionin` to request data for Alabama and Alaska.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-sahie_counties <- getCensus(name = "timeseries/healthins/sahie",
+sahie_counties <- getCensus(
+	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region = "county:*", 
 	regionin = "state:01,02", 
-	time = 2017)
+	time = 2018)
 head(sahie_counties, n=12L)
 ```
 
 Because the SAHIE API is a timeseries (as indicated in its name), we can get multiple years of data at once using the `time` argument.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-sahie_years <- getCensus(name = "timeseries/healthins/sahie",
+sahie_years <- getCensus(
+	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT"), 
 	region = "state:01", 
-	time = "from 2006 to 2017")
+	time = "from 2006 to 2018")
 head(sahie_years)
 ```
 
@@ -135,10 +142,11 @@ In the SAHIE API, we can filter data by the categorical variables `AGECAT` (age 
 
 Here's how to get the uninsured rate (`PCTUI_PT`) for non-elderly adults (`AGECAT = 1`) with incomes of 138 to 400% of the poverty line (`IPRCAT = 5`), by race (`RACECAT`) and state.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-sahie_nonelderly <- getCensus(name = "timeseries/healthins/sahie",
+sahie_nonelderly <- getCensus(
+	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT", "IPR_DESC", "AGE_DESC", "RACECAT", "RACE_DESC"), 
 	region = "state:*", 
-	time = 2017,
+	time = 2018,
 	IPRCAT = 5,
 	AGECAT = 1)
 head(sahie_nonelderly)
@@ -147,10 +155,11 @@ head(sahie_nonelderly)
 Note: data by race is only returned where the population is large enough, so some states will not have rows for some race groups. Here's another example, getting national data from percent uninsured (`PCTUI_PT`) and number uninsured (`NUI_PT`), along with the associated margins of error, by race group and income group for all years.
 
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-sahie_nonelderly_annual <- getCensus(name = "timeseries/healthins/sahie",
+sahie_nonelderly_annual <- getCensus(
+	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT", "PCTUI_MOE", "NUI_PT", "NUI_MOE", "IPRCAT", "IPR_DESC", "AGE_DESC", "RACECAT", "RACE_DESC"), 
 	region = "us:*", 
-	time = "from 2006 to 2017",
+	time = "from 2006 to 2018",
 	AGECAT = 1)
 head(sahie_nonelderly_annual)
 ```
@@ -160,7 +169,8 @@ Other APIs can be filtered too. For example, the [International Data Base](https
 
 See what variables the IDB 1 year API allows:
 ```{r}
-listCensusMetadata(name = "timeseries/idb/1year", 
+listCensusMetadata(
+	name = "timeseries/idb/1year", 
 	type = "variables")
 ```
 
@@ -174,7 +184,8 @@ head(pop_2050)
 
 But we can make a much more specific call by specifying `FIPS` and `AGE` to get just the population projections for teenagers in Portugal.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-pop_portugal <- getCensus(name = "timeseries/idb/1year",
+pop_portugal <- getCensus(
+	name = "timeseries/idb/1year",
 	vars = c("NAME", "POP"),
 	time = 2050,
 	FIPS = "PO",
@@ -185,16 +196,17 @@ pop_portugal
 The [Quarterly Workforce Indicators APIs](https://www.census.gov/data/developers/data-sets/qwi.html) allow even more specific calls.
 Here's one example:
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-qwi <- getCensus(name = "timeseries/qwi/sa",
-								 region = "state:02",
-								 vars = c("Emp", "sex"),
-								 year = 2012,
-								 quarter = 1,
-								 agegrp = "A07",
-								 ownercode = "A05",
-								 firmsize = 1,
-								 seasonadj = "U",
-								 industry = 21)
+qwi <- getCensus(
+	name = "timeseries/qwi/sa",
+	region = "state:02",
+	vars = c("Emp", "sex"),
+	year = 2012,
+	quarter = 1,
+	agegrp = "A07",
+	ownercode = "A05",
+	firmsize = 1,
+	seasonadj = "U",
+	industry = 21)
 qwi
 ```
 
@@ -205,7 +217,8 @@ The American Community Survey (ACS) APIs include estimates (variable names endin
 
 You can retrieve these annotation variables manually, by specifying a list of variables. We'll get the estimate, margin of error and annotations for median household income in the past 12 months for Census tracts in Alaska.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-acs_income <- getCensus(name = "acs/acs5",
+acs_income <- getCensus(
+	name = "acs/acs5",
 	vintage = 2017, 
 	vars = c("NAME", "B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA"), 
 	region = "tract:*", 
@@ -216,13 +229,15 @@ head(acs_income)
 You can also retrieve also estimates and annotations for a group of variables in one command. Here's the `group` call for that same table, [B19013](https://api.census.gov/data/2016/acs/acs5/groups/B19013.html).
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 # See descriptions of the variables in group B19013
-group_B19013 <- listCensusMetadata(name = "acs/acs5",
+group_B19013 <- listCensusMetadata(
+	name = "acs/acs5",
 	vintage = 2017,
 	type = "variables",
 	group = "B19013")
 group_B19013
 
-acs_income_group <- getCensus(name = "acs/acs5", 
+acs_income_group <- getCensus(
+	name = "acs/acs5", 
 	vintage = 2017, 
 	vars = c("NAME", "group(B19013)"), 
 	region = "tract:*", 
@@ -232,7 +247,8 @@ head(acs_income_group)
 
 Some variable groups contain many related variables and their associated annotations. As an example, we'll get the list of variables included in group [B17020](https://api.census.gov/data/2016/acs/acs5/groups/B17020.html), poverty status by age.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-group_B17020 <- listCensusMetadata(name = "acs/acs5",
+group_B17020 <- listCensusMetadata(
+	name = "acs/acs5",
 	vintage = 2017,
 	type = "variables",
 	group = "B17020")
@@ -265,7 +281,8 @@ The `regionin` argument of `getCensus` can also be used with a string of nested 
 
 The 2010 Decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use `region` to request block level data, and `regionin` to specify the desired state and county.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-data2010 <- getCensus(name = "dec/sf1",
+data2010 <- getCensus(
+	name = "dec/sf1",
 	vintage = 2010,
 	vars = "P001001", 
 	region = "block:*",
@@ -279,7 +296,7 @@ The APIs contain hundreds of API endpoints and dozens of datasets, each of which
 ### Variables
 Use `listCensusMetadata(type = "variables")` on your API to see the table of available variables.
 
-* Occasionally the variable names will change with data updates or API updates. The names may be different from year to year.
+* Occasionally the variable names will change with data updates or API updates. The names may be different from year to year. Capitalization may also be inconsistent between datasets or years.
 * The Census APIs are case-sensitive, which means that if the variable name you want is uppercase you'll need to write it uppercase in your request. Most of the APIs use uppercase variable names, but some use lowercase and some even use sentence case. 
 
 ### Geographies

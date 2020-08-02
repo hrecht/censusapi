@@ -36,7 +36,8 @@ Here is a list of examples for dozens of the Census's API endpoints. Read more a
 
 Get median household income, with associated annotations and margin of error, for census tracts in Alaska.
 ```{r}
-acs_income <- getCensus(name = "acs/acs5",
+acs_income <- getCensus(
+	name = "acs/acs5",
 	vintage = 2018, 
 	vars = c("NAME", "B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA"), 
 	region = "tract:*",
@@ -53,7 +54,8 @@ Get the percent of people without an internet subscription by income for the fiv
 * income $20,000 to $74,999: `S2801_C02_027E`
 * income $75,000 or greater: `S2801_C02_031E`
 ```{r}
-acs_subject <- getCensus(name = "acs/acs1/subject",
+acs_subject <- getCensus(
+	name = "acs/acs1/subject",
 	vintage = 2018, 
 	vars = c("NAME", "S2801_C02_019E", "S2801_C02_019M",
 					 "S2801_C02_023E", "S2801_C02_023M", 
@@ -67,7 +69,8 @@ head(acs_subject)
 
 ### ACS Data Profile
 ```{r}
-acs_profile <- getCensus(name = "acs/acs1/profile",
+acs_profile <- getCensus(
+	name = "acs/acs1/profile",
 	vintage = 2018, 
 	vars = "group(DP05)", 
 	region = "region:*")
@@ -77,7 +80,8 @@ acs_profile <- getCensus(name = "acs/acs1/profile",
 
 Get the mean travel time to work (in minutes) for the past five years.
 ```{r}
-acs_comparison <- getCensus(name = "acs/acs1/cprofile",
+acs_comparison <- getCensus(
+	name = "acs/acs1/cprofile",
 	vintage = 2017, 
 	vars = c("NAME", "CP03_2013_025E", "CP03_2014_025E", "CP03_2015_025E", "CP03_2016_025E", "CP03_2017_025E"), 
 	region = "metropolitan statistical area/micropolitan statistical area:*")
@@ -87,7 +91,8 @@ head(acs_comparison)
 ### ACS Migration Flows
 [American Community Survey Migration Flows documentation](https://www.census.gov/data/developers/data-sets/acs-migration-flows.html)
 ```{r}
-flows <- getCensus(name = "acs/flows",
+flows <- getCensus(
+	name = "acs/flows",
 	vintage = 2016,
 	vars = c("MOVEDIN", "MOVEDOUT", "FULL1_NAME", "FULL2_NAME", "GEOID2"),
 	region = "county:001",
@@ -100,7 +105,8 @@ head(flows)
 
 Get the number of people in New York state who speak each language.
 ```{r}
-languages <- getCensus(name = "language",
+languages <- getCensus(
+	name = "language",
 	vintage = 2013,
 	vars = c("EST", "LAN", "LANLABEL"),
 	region = "state:36")
@@ -110,13 +116,15 @@ head(languages)
 ## Annual Survey of Entrepreneurs
 [Annual Survey of Entrepreneurs documentation](https://www.census.gov/data/developers/data-sets/ase.html)
 ```{r}
-ase_csa <- getCensus(name = "ase/csa",
+ase_csa <- getCensus(
+	name = "ase/csa",
 	vintage = 2014,
 	vars = c("GEO_TTL", "NAICS2012", "NAICS2012_TTL", "EMPSZFI", "EMPSZFI_TTL", "FIRMPDEMP"),
 	region = "us:*")
 head(ase_csa)
 
-ase_cscb <- getCensus(name = "ase/cscb",
+ase_cscb <- getCensus(
+	name = "ase/cscb",
 	vintage = 2014,
 	vars = c("GEO_TTL", "NAICS2012_TTL", "ASECB", "ASECB_TTL", "SPOUSES", "SPOUSES_TTL", "YEAR", 
 					 "FIRMPDEMP", "FIRMPDEMP_PCT", "RCPPDEMP", "RCPPDEMP_F", "RCPPDEMP_PCT", 
@@ -125,7 +133,8 @@ ase_cscb <- getCensus(name = "ase/cscb",
 	region = "us:*")
 head(ase_cscb)
 
-ase_cscbo <- getCensus(name = "ase/cscbo",
+ase_cscbo <- getCensus(
+	name = "ase/cscbo",
 	vintage = 2014,
 	vars = c("GEO_TTL", "NAICS2012_TTL", "ASECBO", "ASECBO_TTL", "ACQBUS", "ACQBUS_TTL", 
 					 "YEAR", "OWNPDEMP", "OWNPDEMP_PCT", "OWNPDEMP_S", "OWNPDEMP_PCT_S"),
@@ -137,14 +146,16 @@ head(ase_cscbo)
 ## Annual Survey of Manufactures
 [Annual Survey of Manufactures documentation](https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html)
 ```{r}
-asm_state <- getCensus(name = "timeseries/asm/state",
+asm_state <- getCensus(
+	name = "timeseries/asm/state",
 	vars = c("GEO_TTL", "NAICS_TTL", "EMP"),
 	region = "state:*",
 	time = 2016,
 	naics = "31-33")
 head(asm_state)
 
-asm_product <- getCensus(name = "timeseries/asm/product",
+asm_product <- getCensus(
+	name = "timeseries/asm/product",
 	vars = c("PSCODE_TTL", "GEO_TTL", "PRODVAL"),
 	region = "us:*",
 	time = 2016,
@@ -155,13 +166,15 @@ head(asm_product)
 ## Business Dynamics Statistics
 [Business Dynamics Statistics documentation](https://www.census.gov/data/developers/data-sets/business-dynamics.html)
 ```{r}
-firms_states <- getCensus(name = "timeseries/bds/firms",
+firms_states <- getCensus(
+	name = "timeseries/bds/firms",
 	vars = c("firms", "emp", "fage4"),
 	region = "state:*",
 	time = 2014)
 head(firms_states)
 
-firms_years <- getCensus(name = "timeseries/bds/firms",
+firms_years <- getCensus(
+	name = "timeseries/bds/firms",
 	vars = c("firms", "emp"),
 	region = "state:01",
 	time = "from 1977 to 2014")
@@ -176,41 +189,46 @@ head(firms_years)
 
 Get employment data for the construction industry.
 ```{r}
-cbp_2016 <- getCensus(name = "cbp",
- vintage = 2016,
- vars = c("GEO_TTL", "EMP", "ESTAB", "NAICS2012_TTL"),
- region = "state:*",
- naics2012 = 23)
- head(cbp_2016)
+cbp_2018 <- getCensus(
+	name = "cbp",
+	vintage = 2018,
+	vars = c("EMP", "ESTAB"),
+	region = "state:*",
+	NAICS2017 = 23)
+head(cbp_2018)
 ```
 
 Get employment data by state for companies with more than 1,000 employees.
 ```{r}
-cbp_2008 <- getCensus(name = "cbp",
-											vintage = 2008,
-											vars = c("YEAR", "GEO_TTL", "EMPSZES_TTL", "EMP", "ESTAB", "PAYANN"),
-											region = "state:*",
-											EMPSZES = 260)
+cbp_2008 <- getCensus(
+	name = "cbp",
+	vintage = 2008,
+	vars = c("YEAR", "GEO_TTL", "EMPSZES_TTL", "EMP", "ESTAB", "PAYANN"),
+	region = "state:*",
+	EMPSZES = 260)
 head(cbp_2008)
 ```
+
 ### Zip Codes Business Patterns
 [Zip Codes Business Patterns documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html)
 ```{r}
-zbp_2016 <- getCensus(name = "zbp",
- vintage = 2016,
- vars = c("GEO_TTL", "EMP"),
- region = "zipcode:90210")
-head(zbp_2016)
+zbp_2018 <- getCensus(
+	name = "zbp",
+	vintage = 2018,
+	vars = c("EMP", "ESTAB", "EMPSZES"),
+	region = "zipcode:90210")
+head(zbp_2018)
 ```
 
 ### Nonemployer statistics
 [Nonemployer statistics documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/nonemp-api.html)
 ```{r}
-nonemp <- getCensus(name = "nonemp",
- vintage = 2016,
- vars = c("GEO_TTL", "NRCPTOT", "NAICS2012_TTL"),
- region = "state:*",
- naics2012 = 54)
+nonemp <- getCensus(
+	name = "nonemp",
+	vintage = 2016,
+	vars = c("GEO_TTL", "NRCPTOT", "NAICS2012_TTL"),
+	region = "state:*",
+	naics2012 = 54)
 head(nonemp)
 ```
 
@@ -218,7 +236,8 @@ head(nonemp)
 [Decennial Census documentation](https://www.census.gov/data/developers/data-sets/decennial-census.html)
 Total population and housing units for metropolitan/micropolitan statistical areas in 2010.
 ```{r}
-data2010 <- getCensus(name = "dec/sf1",
+data2010 <- getCensus(
+	name = "dec/sf1",
 	vintage = 2010,
 	vars = c("NAME", "P001001", "H010001"), 
 	region = "metropolitan statistical area/micropolitan statistical area:*")
@@ -228,13 +247,15 @@ head(data2010)
 Get the urban/rural status group of variables (`P2`) by metropolitan/micropolitan statistical areas in 2010.
 ```{r}
 # Show variable metadata for the P2 group
-group_p2 <- listCensusMetadata(name = "dec/sf1",
+group_p2 <- listCensusMetadata(
+	name = "dec/sf1",
 	vintage = 2010,
 	type = "variables",
 	group = "P2")
 
 # Get the P2 variable group (URBAN AND RURAL)
-data2010 <- getCensus(name = "dec/sf1",
+data2010 <- getCensus(
+	name = "dec/sf1",
 	vintage = 2010,
 	vars = "group(P2)", 
 	region = "metropolitan statistical area/micropolitan statistical area:*")
@@ -243,7 +264,8 @@ head(data2010)
 
 Get 2010 population by block group within a specific tract.
 ```{r}
-data2000 <- getCensus(name = "sf1",
+data2000 <- getCensus(
+	name = "sf1",
 	vintage = 2000,
 	vars = "P001001", 
 	region = "block:*",
@@ -291,7 +313,8 @@ head(county_responses_2010)
 
 Get counts of the top 25 most popular surnames and share of each by race.
 ```{r}
-top_surnames <- getCensus(name = "surname",
+top_surnames <- getCensus(
+	name = "surname",
 	vintage = 2010,
 	vars = c("NAME", "COUNT", "PROP100K", "PCTWHITE", "PCTBLACK", "PCTAIAN", "PCTAPI", "PCTHISPANIC", "PCT2PRACE"),
 	RANK = "1:25")
@@ -301,13 +324,15 @@ head(top_surnames)
 ## Economic Census
 [Economic Census documentation](https://www.census.gov/data/developers/data-sets/economic-census.html)
 ```{r}
-ewks_2012 <- getCensus(name = "ewks",
+ewks_2012 <- getCensus(
+	name = "ewks",
 	vintage = 2012,
 	vars = c("EMP", "OPTAX", "GEOTYPE"),
 	region = "state:*",
 	naics2012 = 54)
 head(ewks_2012)
-ewks_2007 <- getCensus(name = "ewks",
+ewks_2007 <- getCensus(
+	name = "ewks",
 	vintage = 2007,
 	vars = c("EMP", "OPTAX", "GEOTYPE"),
 	region = "state:*",
@@ -318,7 +343,8 @@ head(ewks_2007)
 ## Economic Indicators
 [Economic Indicators documentation](https://www.census.gov/data/developers/data-sets/economic-indicators.html)
 ```{r}
-eits <- getCensus(name = "timeseries/eits/resconst",
+eits <- getCensus(
+	name = "timeseries/eits/resconst",
 	vars = c("cell_value", "data_type_code", "time_slot_id", "error_data", "category_code", "seasonally_adj"),
 	region = "us:*",
 	time = "from 2004-05 to 2012-12")
@@ -330,7 +356,8 @@ head(eits)
 
 Get the uninsured rate by income group in Alabama for a single year.
 ```{r}
-sahie <- getCensus(name = "timeseries/healthins/sahie",
+sahie <- getCensus(
+	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"),
 	region = "state:01",
 	time = 2018)
@@ -339,7 +366,8 @@ head(sahie)
 
 Get the uninsured rate in Alabama for multiple years.
 ```{r}
-sahie_annual <- getCensus(name = "timeseries/healthins/sahie",
+sahie_annual <- getCensus(
+	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT"),
 	region = "state:01",
 	time = "from 2006 to 2018")
@@ -348,7 +376,8 @@ sahie_annual
 
 Get the uninsured rate for non-elderly adults with incomes of 138 to 400% of the poverty line, by race and state.
 ```{r}
-sahie_nonelderly <- getCensus(name = "timeseries/healthins/sahie",
+sahie_nonelderly <- getCensus(
+	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPR_DESC", "PCTUI_PT", "AGE_DESC", "RACECAT", "RACE_DESC"), 
 	region = "state:*", 
 	time = 2018,
@@ -361,7 +390,8 @@ head(sahie_nonelderly)
 
 Get Census Bureau projections of 2020 populations and life expectancy at birth by country.
 ```{r}
-intl_pop <- getCensus(name = "timeseries/idb/5year",
+intl_pop <- getCensus(
+	name = "timeseries/idb/5year",
 	vars = c("NAME", "FIPS", "POP", "E0"),
 	time = 2020)
 head(intl_pop)
@@ -370,7 +400,8 @@ head(intl_pop)
 Get predictions of population by age in 2050 for Norway for ages 10-18.
 https://api.census.gov/data/timeseries/idb/1year?get=AREA_KM2,NAME,AGE,POP&FIPS=NO&time=2050
 ```{r}
-norway_pop <- getCensus(name = "timeseries/idb/1year",
+norway_pop <- getCensus(
+	name = "timeseries/idb/1year",
 	vars = c("NAME", "POP"),
 	time = 2050,
 	FIPS = "NO",
@@ -385,7 +416,8 @@ Note: The international trade datasets are buggy and frequently give the general
 
 Get the general imports value and imports for consumption value for all end-use codes and all countries for January 2018.
 ```{r}
-imports <- getCensus(name = "timeseries/intltrade/imports/enduse",
+imports <- getCensus(
+	name = "timeseries/intltrade/imports/enduse",
 	vars = c("CTY_CODE", "CTY_NAME", "I_ENDUSE", "I_ENDUSE_LDESC", "GEN_VAL_MO", "CON_VAL_MO"),
 	time = "2018-01")
 head(imports)
@@ -399,7 +431,8 @@ head(imports)
 Note that variable names in the PEP APIs are not always consistent from year to year.
 
 ```{r}
-popest <- getCensus(name = "pep/population",
+popest <- getCensus(
+	name = "pep/population",
 	vintage = 2019,
 	vars = c("POP", "DATE_DESC"),
 	region = "state:*")
@@ -407,7 +440,8 @@ head(popest)
 ```
 
 ```{r}
-popest_housing <- getCensus(name = "pep/housing",
+popest_housing <- getCensus(
+	name = "pep/housing",
 	vintage = 2018,
 	vars = c("DATE_CODE", "DATE_DESC", "HUEST"),
 	region = "county:195",
@@ -418,7 +452,8 @@ head(popest_housing)
 ### Population Projections
 [Population Projections documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popproj.html)
 ```{r}
-popproj <- getCensus(name = "pep/projpop",
+popproj <- getCensus(
+	name = "pep/projpop",
 	vintage = 2014,
 	vars = c("YEAR", "POP", "AGE"),
 	region = "us:1")
@@ -432,7 +467,8 @@ head(popproj)
 
 Get national poverty rates by race for the past 50 years.
 ```{r}
-poverty <- getCensus(name = "timeseries/poverty/histpov2",
+poverty <- getCensus(
+	name = "timeseries/poverty/histpov2",
 	vars = c("RACE", "PCTPOV"),
 	region = "us:*",
 	time = "from 1968 to 2018")
@@ -443,7 +479,8 @@ head(poverty)
 
 Get poverty rate for children and overall for a single year.
 ```{r}
-saipe <- getCensus(name = "timeseries/poverty/saipe",
+saipe <- getCensus(
+	name = "timeseries/poverty/saipe",
 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region = "state:*",
 	time = 2018)
@@ -452,7 +489,8 @@ head(saipe)
 
 Get the poverty rate for children and overall in a single county over time.
 ```{r}
-saipe_years <- getCensus(name = "timeseries/poverty/saipe",
+saipe_years <- getCensus(
+	name = "timeseries/poverty/saipe",
 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region = "county:001",
 	regionin = "state:12",
@@ -462,7 +500,8 @@ head(saipe_years)
 ### SAIPE School Districts
 Get the number (`SAEPOV5_17V_PT`) and rate (`SAEPOVRAT5_17RV_PT`) of children ages 5-17 living in poverty for unified school districts in Massachusetts.
 ```{r}
-saipe_schools <- getCensus(name = "timeseries/poverty/saipe/schdist",
+saipe_schools <- getCensus(
+	name = "timeseries/poverty/saipe/schdist",
 	vars = c("SD_NAME", "SAEPOV5_17V_PT", "SAEPOVRAT5_17RV_PT"),
 	region = "school district (unified):*",
 	regionin = "state:25",
@@ -476,7 +515,8 @@ head(saipe_schools)
 The allow both simple calls and very specfic ones. Make sure to read the documentation closely.
 Here's a simple call that gets employment data by county.
 ```{r}
-qwi_counties <- getCensus(name = "timeseries/qwi/sa",
+qwi_counties <- getCensus(
+	name = "timeseries/qwi/sa",
 	vars = c("Emp", "EarnBeg"),
 	region = "county:*",
 	regionin = "state:01",
@@ -486,7 +526,8 @@ head(qwi_counties)
 
 Employment data over time for a single state.
 ```{r}
-qwi_time <- getCensus(name = "timeseries/qwi/sa",
+qwi_time <- getCensus(
+	name = "timeseries/qwi/sa",
 	vars = c("Emp", "EarnBeg"),
 	region = "state:01",
 	time = "from 2007 to 2017")
@@ -495,7 +536,8 @@ head(qwi_time)
 
 Here's a much more specific call. Read the Census Bureau's documentation closely to see all of the options allowed by the QWI APIs.
 ```{r}
-qwi <- getCensus(name = "timeseries/qwi/sa",
+qwi <- getCensus(
+	name = "timeseries/qwi/sa",
 	region = "state:02",
 	vars = c("Emp", "sex"),
 	year = 2012,
@@ -511,13 +553,15 @@ qwi
 ## Survey of Business Owners
 [Survey of Business Owners documentation](https://www.census.gov/data/developers/data-sets/business-owners.html)
 ```{r}
-sbo <- getCensus(name = "sbo",
+sbo <- getCensus(
+	name = "sbo",
 	vintage = 2012,
 	vars = c("GEO_TTL", "RCPSZFI", "RCPSZFI_TTL", "FIRMPDEMP"),
 	region = "state:*")
 head(sbo)
 
-sbo_groups <- getCensus(name = "sbo",
+sbo_groups <- getCensus(
+	name = "sbo",
 	vintage = 2012,
 	vars = c("GEO_TTL", "RACE_GROUP", "RACE_GROUP_TTL", "FIRMPDEMP"),
 	region = "county:*",
@@ -529,7 +573,8 @@ head(sbo_groups)
 [The Planning Database documentation](https://www.census.gov/data/developers/data-sets/planning-database.html)
 Get population and 2010 Census mail return rates for block groups in Autauga County, AL.
 ```{r}
-pdb <- getCensus(name = "pdb/blockgroup",
+pdb <- getCensus(
+	name = "pdb/blockgroup",
 	vintage = 2018,
 	vars = c("GIDBG", "County_name", "State_name", "Tot_Population_CEN_2010", "Mail_Return_Rate_CEN_2010"),
 	region = "block group:*",

@@ -15,6 +15,7 @@ getCensus(
   date = NULL,
   period = NULL,
   monthly = NULL,
+  show_call = FALSE,
   category_code = NULL,
   data_type_code = NULL,
   naics = NULL,
@@ -41,6 +42,8 @@ getCensus(
 \item{regionin}{Optional hierarchical geography to limit region}
 
 \item{time, date, period, monthly}{Optional arguments used for some time series APIs}
+
+\item{show_call}{List the underlying API call sent to the Census Bureau and other info}
 
 \item{category_code, data_type_code}{Arguments used in Economic Indicators Time Series API}
 

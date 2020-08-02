@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0.9000</span>
       </span>
     </div>
 
@@ -121,11 +121,12 @@
 <a href="#censusapi-070" class="anchor"></a>censusapi 0.7.0<small> Unreleased </small>
 </h1>
 <ul>
+<li>Adds <code>show_call</code> option to <code><a href="../reference/getCensus.html">getCensus()</a></code>, which shows the underlying API call (otherwise only shown on errors) and link to package documentation when used.</li>
 <li>Converts improperly formatted string “N/A” and “NULL” values from underlying Census data to true NA values.</li>
 <li>Improves parsing of columns as numeric or character, specifically:
 <ul>
 <li>Keeps 2017 NAICS variables as characters, instead of erroneously converting to numeric.</li>
-<li>Parses SAHIE and SAIPE endpoint numeric variables with all-character variable names as numeric.</li>
+<li>Parses SAHIE, SAIPE, ZBP, CBP and PEP endpoint numeric variables with all-character variable names as numeric.</li>
 </ul>
 </li>
 </ul>
@@ -145,7 +146,7 @@
 <a href="#censusapi-060" class="anchor"></a>censusapi 0.6.0<small> 2019-04-13 </small>
 </h1>
 <ul>
-<li>Allows the use of miscellaneous paramaters in <code>getCensus(</code>. This allows users to specify any valid API argument name and pass it a value, giving full access to all of the underlying Census Bureau APIs.</li>
+<li>Allows the use of miscellaneous paramaters in <code><a href="../reference/getCensus.html">getCensus()</a></code>. This allows users to specify any valid API argument name and pass it a value, giving full access to all of the underlying Census Bureau APIs.</li>
 <li>Adds a <code>group</code> parameter in <code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code>. This allows users to get variable metadata for a specified variable group.</li>
 <li>Improves internal logic in <code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code>.</li>
 <li>Add documentation and examples using miscellaneous paramaters.</li>

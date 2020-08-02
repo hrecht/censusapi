@@ -68,9 +68,20 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, date, pe
 			numeric_cols <- grep("[0-9]|_PT|NIPR|PCTIC|PCTUI|NIC|NUI", names(df), value=TRUE, ignore.case = T)
 			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
 
-		# Small Area Income and Poverty Estimates
-			} else if (grepl("poverty/saipe", name, ignore.case = T)) {
+			# Small Area Income and Poverty Estimates
+		} else if (grepl("poverty/saipe", name, ignore.case = T)) {
 			numeric_cols <- grep("[0-9]|SAEMHI|SAEPOV", names(df), value=TRUE, ignore.case = T)
+			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+
+			# Population and Housing Estimates
+		} else if (grepl("pep/", name, ignore.case = T)) {
+			numeric_cols <- grep("[0-9]|POP|DENSITY|HUEST", names(df), value=TRUE, ignore.case = T)
+			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+
+			# County Business Patterns
+		} else if (name == "cbp" | name == "zbp") {
+			# Exact matches for CBP variables
+			numeric_cols <- grep("[0-9]|\\<EMP\\>|\\<ESTAB\\>|PAYANN", names(df), value=TRUE, ignore.case = T)
 			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
 
 		} else {

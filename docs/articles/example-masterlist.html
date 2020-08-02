@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0.9000</span>
       </span>
     </div>
 
@@ -95,7 +95,8 @@
 <h3 class="hasAnchor">
 <a href="#acs-detailed-tables" class="anchor"></a>ACS Detailed Tables</h3>
 <p>Get median household income, with associated annotations and margin of error, for census tracts in Alaska.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">acs_income</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs5"</span>,
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">acs_income</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs5"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2018</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"B19013_001E"</span>, <span class="st">"B19013_001EA"</span>, <span class="st">"B19013_001M"</span>, <span class="st">"B19013_001MA"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"tract:*"</span>,
@@ -202,7 +203,8 @@
 <li>income $75,000 or greater: <code>S2801_C02_031E</code>
 </li>
 </ul>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">acs_subject</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs1/subject"</span>,
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">acs_subject</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs1/subject"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2018</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"S2801_C02_019E"</span>, <span class="st">"S2801_C02_019M"</span>,
                      <span class="st">"S2801_C02_023E"</span>, <span class="st">"S2801_C02_023M"</span>,
@@ -312,7 +314,8 @@
 <div id="acs-data-profile" class="section level3">
 <h3 class="hasAnchor">
 <a href="#acs-data-profile" class="anchor"></a>ACS Data Profile</h3>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">acs_profile</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs1/profile"</span>,
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">acs_profile</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs1/profile"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2018</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="st">"group(DP05)"</span>,
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"region:*"</span>)</pre></body></html></div>
@@ -321,7 +324,8 @@
 <h3 class="hasAnchor">
 <a href="#acs-comparison-profiles" class="anchor"></a>ACS Comparison Profiles</h3>
 <p>Get the mean travel time to work (in minutes) for the past five years.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">acs_comparison</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs1/cprofile"</span>,
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">acs_comparison</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs1/cprofile"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2017</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"CP03_2013_025E"</span>, <span class="st">"CP03_2014_025E"</span>, <span class="st">"CP03_2015_025E"</span>, <span class="st">"CP03_2016_025E"</span>, <span class="st">"CP03_2017_025E"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"metropolitan statistical area/micropolitan statistical area:*"</span>)
@@ -409,7 +413,8 @@
 <h3 class="hasAnchor">
 <a href="#acs-migration-flows" class="anchor"></a>ACS Migration Flows</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/acs-migration-flows.html">American Community Survey Migration Flows documentation</a></p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">flows</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/flows"</span>,
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">flows</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/flows"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2016</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"MOVEDIN"</span>, <span class="st">"MOVEDOUT"</span>, <span class="st">"FULL1_NAME"</span>, <span class="st">"FULL2_NAME"</span>, <span class="st">"GEOID2"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"county:001"</span>,
@@ -490,7 +495,8 @@
 <a href="#american-community-survey-language-statistics" class="anchor"></a>American Community Survey Language Statistics</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/language-stats.html">American Community Survey Language Statistics documentation</a></p>
 <p>Get the number of people in New York state who speak each language.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">languages</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"language"</span>,
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">languages</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"language"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2013</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"EST"</span>, <span class="st">"LAN"</span>, <span class="st">"LANLABEL"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:36"</span>)
@@ -549,7 +555,8 @@
 <h2 class="hasAnchor">
 <a href="#annual-survey-of-entrepreneurs" class="anchor"></a>Annual Survey of Entrepreneurs</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/ase.html">Annual Survey of Entrepreneurs documentation</a></p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">ase_csa</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"ase/csa"</span>,
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">ase_csa</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"ase/csa"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2014</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"GEO_TTL"</span>, <span class="st">"NAICS2012"</span>, <span class="st">"NAICS2012_TTL"</span>, <span class="st">"EMPSZFI"</span>, <span class="st">"EMPSZFI_TTL"</span>, <span class="st">"FIRMPDEMP"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"us:*"</span>)
@@ -632,7 +639,8 @@
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">ase_cscb</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"ase/cscb"</span>,
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">ase_cscb</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"ase/cscb"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2014</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"GEO_TTL"</span>, <span class="st">"NAICS2012_TTL"</span>, <span class="st">"ASECB"</span>, <span class="st">"ASECB_TTL"</span>, <span class="st">"SPOUSES"</span>, <span class="st">"SPOUSES_TTL"</span>, <span class="st">"YEAR"</span>,
                      <span class="st">"FIRMPDEMP"</span>, <span class="st">"FIRMPDEMP_PCT"</span>, <span class="st">"RCPPDEMP"</span>, <span class="st">"RCPPDEMP_F"</span>, <span class="st">"RCPPDEMP_PCT"</span>,
@@ -862,7 +870,8 @@
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">ase_cscbo</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"ase/cscbo"</span>,
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">ase_cscbo</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"ase/cscbo"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2014</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"GEO_TTL"</span>, <span class="st">"NAICS2012_TTL"</span>, <span class="st">"ASECBO"</span>, <span class="st">"ASECBO_TTL"</span>, <span class="st">"ACQBUS"</span>, <span class="st">"ACQBUS_TTL"</span>,
                      <span class="st">"YEAR"</span>, <span class="st">"OWNPDEMP"</span>, <span class="st">"OWNPDEMP_PCT"</span>, <span class="st">"OWNPDEMP_S"</span>, <span class="st">"OWNPDEMP_PCT_S"</span>),
@@ -991,7 +1000,8 @@
 <h2 class="hasAnchor">
 <a href="#annual-survey-of-manufactures" class="anchor"></a>Annual Survey of Manufactures</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html">Annual Survey of Manufactures documentation</a></p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">asm_state</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/asm/state"</span>,
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">asm_state</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/asm/state"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"GEO_TTL"</span>, <span class="st">"NAICS_TTL"</span>, <span class="st">"EMP"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
     <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2016</span>,
@@ -1059,7 +1069,8 @@
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">asm_product</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/asm/product"</span>,
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">asm_product</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/asm/product"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"PSCODE_TTL"</span>, <span class="st">"GEO_TTL"</span>, <span class="st">"PRODVAL"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"us:*"</span>,
     <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2016</span>,
@@ -1090,7 +1101,8 @@
 <h2 class="hasAnchor">
 <a href="#business-dynamics-statistics" class="anchor"></a>Business Dynamics Statistics</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/business-dynamics.html">Business Dynamics Statistics documentation</a></p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">firms_states</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/bds/firms"</span>,
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">firms_states</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/bds/firms"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"firms"</span>, <span class="st">"emp"</span>, <span class="st">"fage4"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
     <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2014</span>)
@@ -1150,7 +1162,8 @@
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">firms_years</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/bds/firms"</span>,
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">firms_years</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/bds/firms"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"firms"</span>, <span class="st">"emp"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:01"</span>,
     <span class="kw">time</span> <span class="kw">=</span> <span class="st">"from 1977 to 2014"</span>)
@@ -1213,101 +1226,89 @@
 <a href="#county-business-patterns" class="anchor"></a>County Business Patterns</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/cbp-api.html">County Business Patterns documentation</a></p>
 <p>Get employment data for the construction industry.</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">cbp_2016</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"cbp"</span>,
- <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2016</span>,
- <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"GEO_TTL"</span>, <span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"NAICS2012_TTL"</span>),
- <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
- <span class="kw">naics2012</span> <span class="kw">=</span> <span class="fl">23</span>)
- <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">cbp_2016</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">cbp_2018</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"cbp"</span>,
+    <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2018</span>,
+    <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>),
+    <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
+    <span class="kw">NAICS2017</span> <span class="kw">=</span> <span class="fl">23</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">cbp_2018</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
 <th align="left">state</th>
-<th align="left">GEO_TTL</th>
-<th align="left">EMP</th>
-<th align="left">ESTAB</th>
-<th align="left">NAICS2012_TTL</th>
-<th align="left">NAICS2012</th>
+<th align="right">EMP</th>
+<th align="right">ESTAB</th>
+<th align="left">NAICS2017</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="left">82327</td>
-<td align="left">7424</td>
-<td align="left">Construction</td>
+<td align="left">31</td>
+<td align="right">49552</td>
+<td align="right">6527</td>
 <td align="left">23</td>
 </tr>
 <tr class="even">
-<td align="left">02</td>
-<td align="left">Alaska</td>
-<td align="left">17022</td>
-<td align="left">2521</td>
-<td align="left">Construction</td>
+<td align="left">28</td>
+<td align="right">43156</td>
+<td align="right">3890</td>
 <td align="left">23</td>
 </tr>
 <tr class="odd">
-<td align="left">04</td>
-<td align="left">Arizona</td>
-<td align="left">141740</td>
-<td align="left">11921</td>
-<td align="left">Construction</td>
+<td align="left">29</td>
+<td align="right">129188</td>
+<td align="right">13540</td>
 <td align="left">23</td>
 </tr>
 <tr class="even">
-<td align="left">05</td>
-<td align="left">Arkansas</td>
-<td align="left">45609</td>
-<td align="left">5293</td>
-<td align="left">Construction</td>
+<td align="left">30</td>
+<td align="right">26859</td>
+<td align="right">5656</td>
 <td align="left">23</td>
 </tr>
 <tr class="odd">
-<td align="left">06</td>
-<td align="left">California</td>
-<td align="left">723574</td>
-<td align="left">71981</td>
-<td align="left">Construction</td>
+<td align="left">32</td>
+<td align="right">80043</td>
+<td align="right">5146</td>
 <td align="left">23</td>
 </tr>
 <tr class="even">
-<td align="left">08</td>
-<td align="left">Colorado</td>
-<td align="left">152325</td>
-<td align="left">17730</td>
-<td align="left">Construction</td>
+<td align="left">33</td>
+<td align="right">29049</td>
+<td align="right">4245</td>
 <td align="left">23</td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>Get employment data by state for companies with more than 1,000 employees.</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">cbp_2008</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"cbp"</span>,
-                                            <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2008</span>,
-                                            <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"YEAR"</span>, <span class="st">"GEO_TTL"</span>, <span class="st">"EMPSZES_TTL"</span>, <span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"PAYANN"</span>),
-                                            <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
-                                            <span class="kw">EMPSZES</span> <span class="kw">=</span> <span class="fl">260</span>)
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">cbp_2008</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"cbp"</span>,
+    <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2008</span>,
+    <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"YEAR"</span>, <span class="st">"GEO_TTL"</span>, <span class="st">"EMPSZES_TTL"</span>, <span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"PAYANN"</span>),
+    <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
+    <span class="kw">EMPSZES</span> <span class="kw">=</span> <span class="fl">260</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">cbp_2008</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
 <colgroup>
-<col width="4%">
-<col width="4%">
-<col width="29%">
-<col width="35%">
 <col width="6%">
-<col width="4%">
+<col width="5%">
+<col width="11%">
+<col width="44%">
 <col width="8%">
 <col width="6%">
+<col width="10%">
+<col width="8%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">state</th>
 <th align="left">YEAR</th>
 <th align="left">GEO_TTL</th>
 <th align="left">EMPSZES_TTL</th>
-<th align="left">EMP</th>
-<th align="left">ESTAB</th>
-<th align="left">PAYANN</th>
+<th align="right">EMP</th>
+<th align="right">ESTAB</th>
+<th align="right">PAYANN</th>
 <th align="left">EMPSZES</th>
 </tr></thead>
 <tbody>
@@ -1316,9 +1317,9 @@
 <td align="left">2008</td>
 <td align="left">Alabama</td>
 <td align="left">Establishments with 1,000 employees or more</td>
-<td align="left">175438</td>
-<td align="left">96</td>
-<td align="left">8034522</td>
+<td align="right">175438</td>
+<td align="right">96</td>
+<td align="right">8034522</td>
 <td align="left">260</td>
 </tr>
 <tr class="even">
@@ -1326,49 +1327,49 @@
 <td align="left">2008</td>
 <td align="left">Alaska</td>
 <td align="left">Establishments with 1,000 employees or more</td>
-<td align="left">22598</td>
-<td align="left">16</td>
-<td align="left">1469718</td>
+<td align="right">22598</td>
+<td align="right">16</td>
+<td align="right">1469718</td>
 <td align="left">260</td>
 </tr>
 <tr class="odd">
-<td align="left">78</td>
-<td align="left">2008</td>
-<td align="left">Virgin Islands of the United States</td>
-<td align="left">Establishments with 1,000 employees or more</td>
-<td align="left">0</td>
-<td align="left">1</td>
-<td align="left">0</td>
-<td align="left">260</td>
-</tr>
-<tr class="even">
 <td align="left">04</td>
 <td align="left">2008</td>
 <td align="left">Arizona</td>
 <td align="left">Establishments with 1,000 employees or more</td>
-<td align="left">301091</td>
-<td align="left">124</td>
-<td align="left">17089056</td>
+<td align="right">301091</td>
+<td align="right">124</td>
+<td align="right">17089056</td>
 <td align="left">260</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">05</td>
 <td align="left">2008</td>
 <td align="left">Arkansas</td>
 <td align="left">Establishments with 1,000 employees or more</td>
-<td align="left">124452</td>
-<td align="left">68</td>
-<td align="left">4796665</td>
+<td align="right">124452</td>
+<td align="right">68</td>
+<td align="right">4796665</td>
 <td align="left">260</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">06</td>
 <td align="left">2008</td>
 <td align="left">California</td>
 <td align="left">Establishments with 1,000 employees or more</td>
-<td align="left">1872632</td>
-<td align="left">797</td>
-<td align="left">124024587</td>
+<td align="right">1872632</td>
+<td align="right">797</td>
+<td align="right">124024587</td>
+<td align="left">260</td>
+</tr>
+<tr class="even">
+<td align="left">08</td>
+<td align="left">2008</td>
+<td align="left">Colorado</td>
+<td align="left">Establishments with 1,000 employees or more</td>
+<td align="right">285608</td>
+<td align="right">120</td>
+<td align="right">14946331</td>
 <td align="left">260</td>
 </tr>
 </tbody>
@@ -1379,23 +1380,58 @@
 <h3 class="hasAnchor">
 <a href="#zip-codes-business-patterns" class="anchor"></a>Zip Codes Business Patterns</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html">Zip Codes Business Patterns documentation</a></p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">zbp_2016</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"zbp"</span>,
- <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2016</span>,
- <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"GEO_TTL"</span>, <span class="st">"EMP"</span>),
- <span class="kw">region</span> <span class="kw">=</span> <span class="st">"zipcode:90210"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">zbp_2016</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">zbp_2018</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"zbp"</span>,
+    <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2018</span>,
+    <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"EMPSZES"</span>),
+    <span class="kw">region</span> <span class="kw">=</span> <span class="st">"zipcode:90210"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">zbp_2018</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
 <th align="left">zip_code</th>
-<th align="left">GEO_TTL</th>
-<th align="left">EMP</th>
+<th align="right">EMP</th>
+<th align="right">ESTAB</th>
+<th align="left">EMPSZES</th>
 </tr></thead>
-<tbody><tr class="odd">
+<tbody>
+<tr class="odd">
 <td align="left">90210</td>
-<td align="left">ZIP 90210 (Beverly Hills, CA)</td>
-<td align="left">37602</td>
-</tr></tbody>
+<td align="right">35324</td>
+<td align="right">2496</td>
+<td align="left">001</td>
+</tr>
+<tr class="even">
+<td align="left">90210</td>
+<td align="right">0</td>
+<td align="right">1758</td>
+<td align="left">210</td>
+</tr>
+<tr class="odd">
+<td align="left">90210</td>
+<td align="right">0</td>
+<td align="right">322</td>
+<td align="left">220</td>
+</tr>
+<tr class="even">
+<td align="left">90210</td>
+<td align="right">0</td>
+<td align="right">199</td>
+<td align="left">230</td>
+</tr>
+<tr class="odd">
+<td align="left">90210</td>
+<td align="right">0</td>
+<td align="right">137</td>
+<td align="left">241</td>
+</tr>
+<tr class="even">
+<td align="left">90210</td>
+<td align="right">0</td>
+<td align="right">50</td>
+<td align="left">242</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
@@ -1403,11 +1439,12 @@
 <h3 class="hasAnchor">
 <a href="#nonemployer-statistics" class="anchor"></a>Nonemployer statistics</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/nonemp-api.html">Nonemployer statistics documentation</a></p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="no">nonemp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"nonemp"</span>,
- <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2016</span>,
- <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"GEO_TTL"</span>, <span class="st">"NRCPTOT"</span>, <span class="st">"NAICS2012_TTL"</span>),
- <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
- <span class="kw">naics2012</span> <span class="kw">=</span> <span class="fl">54</span>)
+<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="no">nonemp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"nonemp"</span>,
+    <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2016</span>,
+    <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"GEO_TTL"</span>, <span class="st">"NRCPTOT"</span>, <span class="st">"NAICS2012_TTL"</span>),
+    <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
+    <span class="kw">naics2012</span> <span class="kw">=</span> <span class="fl">54</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">nonemp</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
@@ -1470,7 +1507,8 @@
 <h2 class="hasAnchor">
 <a href="#decennial-census" class="anchor"></a>Decennial Census</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/decennial-census.html">Decennial Census documentation</a> Total population and housing units for metropolitan/micropolitan statistical areas in 2010.</p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">data2010</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"dec/sf1"</span>,
+<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">data2010</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"dec/sf1"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2010</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"P001001"</span>, <span class="st">"H010001"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"metropolitan statistical area/micropolitan statistical area:*"</span>)
@@ -1531,13 +1569,15 @@
 </div>
 <p>Get the urban/rural status group of variables (<code>P2</code>) by metropolitan/micropolitan statistical areas in 2010.</p>
 <div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="co"># Show variable metadata for the P2 group</span>
-<span class="no">group_p2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"dec/sf1"</span>,
+<span class="no">group_p2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"dec/sf1"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2010</span>,
     <span class="kw">type</span> <span class="kw">=</span> <span class="st">"variables"</span>,
     <span class="kw">group</span> <span class="kw">=</span> <span class="st">"P2"</span>)
 
 <span class="co"># Get the P2 variable group (URBAN AND RURAL)</span>
-<span class="no">data2010</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"dec/sf1"</span>,
+<span class="no">data2010</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"dec/sf1"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2010</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="st">"group(P2)"</span>,
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"metropolitan statistical area/micropolitan statistical area:*"</span>)
@@ -1570,18 +1610,6 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">36980</td>
-<td align="left">310M100US36980</td>
-<td align="right">114752</td>
-<td align="right">71459</td>
-<td align="right">70543</td>
-<td align="right">916</td>
-<td align="right">43293</td>
-<td align="right">0</td>
-<td align="left">Owensboro, KY Metro Area</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
 <td align="left">31540</td>
 <td align="left">310M100US31540</td>
 <td align="right">568593</td>
@@ -1593,7 +1621,7 @@
 <td align="left">Madison, WI Metro Area</td>
 <td align="right">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">31580</td>
 <td align="left">310M100US31580</td>
 <td align="right">46920</td>
@@ -1605,7 +1633,7 @@
 <td align="left">Madisonville, KY Micro Area</td>
 <td align="right">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">36820</td>
 <td align="left">310M100US36820</td>
 <td align="right">22381</td>
@@ -1617,7 +1645,7 @@
 <td align="left">Oskaloosa, IA Micro Area</td>
 <td align="right">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">36860</td>
 <td align="left">310M100US36860</td>
 <td align="right">154908</td>
@@ -1629,7 +1657,7 @@
 <td align="left">Ottawa-Streator, IL Micro Area</td>
 <td align="right">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">36900</td>
 <td align="left">310M100US36900</td>
 <td align="right">35625</td>
@@ -1641,11 +1669,24 @@
 <td align="left">Ottumwa, IA Micro Area</td>
 <td align="right">NA</td>
 </tr>
+<tr class="even">
+<td align="left">36940</td>
+<td align="left">310M100US36940</td>
+<td align="right">36576</td>
+<td align="right">25394</td>
+<td align="right">0</td>
+<td align="right">25394</td>
+<td align="right">11182</td>
+<td align="right">0</td>
+<td align="left">Owatonna, MN Micro Area</td>
+<td align="right">NA</td>
+</tr>
 </tbody>
 </table>
 </div>
 <p>Get 2010 population by block group within a specific tract.</p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">data2000</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"sf1"</span>,
+<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">data2000</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"sf1"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2000</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="st">"P001001"</span>,
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"block:*"</span>,
@@ -1910,7 +1951,8 @@
 <a href="#decennial-census-surname-files" class="anchor"></a>Decennial Census Surname Files</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/surnames.2010.html">Decennial Census Surname documentation</a></p>
 <p>Get counts of the top 25 most popular surnames and share of each by race.</p>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="no">top_surnames</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"surname"</span>,
+<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="no">top_surnames</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"surname"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2010</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"COUNT"</span>, <span class="st">"PROP100K"</span>, <span class="st">"PCTWHITE"</span>, <span class="st">"PCTBLACK"</span>, <span class="st">"PCTAIAN"</span>, <span class="st">"PCTAPI"</span>, <span class="st">"PCTHISPANIC"</span>, <span class="st">"PCT2PRACE"</span>),
     <span class="kw">RANK</span> <span class="kw">=</span> <span class="st">"1:25"</span>)
@@ -2011,7 +2053,8 @@
 <h2 class="hasAnchor">
 <a href="#economic-census" class="anchor"></a>Economic Census</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/economic-census.html">Economic Census documentation</a></p>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="no">ewks_2012</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"ewks"</span>,
+<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="no">ewks_2012</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"ewks"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2012</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"EMP"</span>, <span class="st">"OPTAX"</span>, <span class="st">"GEOTYPE"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
@@ -2056,23 +2099,24 @@
 <td align="left">54</td>
 </tr>
 <tr class="odd">
-<td align="left">08</td>
-<td align="left">4616</td>
-<td align="left">Y</td>
-<td align="left">02</td>
-<td align="left">54</td>
-</tr>
-<tr class="even">
 <td align="left">02</td>
 <td align="left">17328</td>
 <td align="left">T</td>
 <td align="left">02</td>
 <td align="left">54</td>
 </tr>
+<tr class="even">
+<td align="left">02</td>
+<td align="left">320</td>
+<td align="left">Y</td>
+<td align="left">02</td>
+<td align="left">54</td>
+</tr>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="no">ewks_2007</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"ewks"</span>,
+<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="no">ewks_2007</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"ewks"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2007</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"EMP"</span>, <span class="st">"OPTAX"</span>, <span class="st">"GEOTYPE"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
@@ -2138,7 +2182,8 @@
 <h2 class="hasAnchor">
 <a href="#economic-indicators" class="anchor"></a>Economic Indicators</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/economic-indicators.html">Economic Indicators documentation</a></p>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="no">eits</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/eits/resconst"</span>,
+<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="no">eits</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/eits/resconst"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"cell_value"</span>, <span class="st">"data_type_code"</span>, <span class="st">"time_slot_id"</span>, <span class="st">"error_data"</span>, <span class="st">"category_code"</span>, <span class="st">"seasonally_adj"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"us:*"</span>,
     <span class="kw">time</span> <span class="kw">=</span> <span class="st">"from 2004-05 to 2012-12"</span>)
@@ -2235,7 +2280,8 @@
 <a href="#health-insurance-statistics" class="anchor"></a>Health Insurance Statistics</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html">Health Insurance Statistics documentation</a></p>
 <p>Get the uninsured rate by income group in Alabama for a single year.</p>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="no">sahie</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="no">sahie</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:01"</span>,
     <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2018</span>)
@@ -2303,7 +2349,8 @@
 </table>
 </div>
 <p>Get the uninsured rate in Alabama for multiple years.</p>
-<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="no">sahie_annual</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="no">sahie_annual</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:01"</span>,
     <span class="kw">time</span> <span class="kw">=</span> <span class="st">"from 2006 to 2018"</span>)
@@ -2399,7 +2446,8 @@
 </table>
 </div>
 <p>Get the uninsured rate for non-elderly adults with incomes of 138 to 400% of the poverty line, by race and state.</p>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="no">sahie_nonelderly</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="no">sahie_nonelderly</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
     <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2018</span>,
@@ -2514,7 +2562,8 @@
 <a href="#international-data-base" class="anchor"></a>International Data Base</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/international-database.html">International Data Base documentation</a></p>
 <p>Get Census Bureau projections of 2020 populations and life expectancy at birth by country.</p>
-<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="no">intl_pop</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/idb/5year"</span>,
+<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="no">intl_pop</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/idb/5year"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"FIPS"</span>, <span class="st">"POP"</span>, <span class="st">"E0"</span>),
     <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2020</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">intl_pop</span>)</pre></body></html></div>
@@ -2574,7 +2623,8 @@
 </table>
 </div>
 <p>Get predictions of population by age in 2050 for Norway for ages 10-18. <a href="https://api.census.gov/data/timeseries/idb/1year?get=AREA_KM2,NAME,AGE,POP&amp;FIPS=NO&amp;time=2050" class="uri">https://api.census.gov/data/timeseries/idb/1year?get=AREA_KM2,NAME,AGE,POP&amp;FIPS=NO&amp;time=2050</a></p>
-<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="no">norway_pop</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/idb/1year"</span>,
+<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="no">norway_pop</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/idb/1year"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"POP"</span>),
     <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2050</span>,
     <span class="kw">FIPS</span> <span class="kw">=</span> <span class="st">"NO"</span>,
@@ -2642,7 +2692,8 @@
 <p><a href="https://www.census.gov/data/developers/data-sets/international-trade.html">International Trade documentation</a></p>
 <p>Note: The international trade datasets are buggy and frequently give the general error message of “There was an error while running your query. We’ve logged the error and we’ll correct it ASAP. Sorry for the inconvenience.” This error message comes from the U.S. Census Bureau. If you run in to repeated issues or inconsistencies, contact the Census Bureau for help or consider using a bulk data download instead.</p>
 <p>Get the general imports value and imports for consumption value for all end-use codes and all countries for January 2018.</p>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">imports</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/intltrade/imports/enduse"</span>,
+<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">imports</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/intltrade/imports/enduse"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"CTY_CODE"</span>, <span class="st">"CTY_NAME"</span>, <span class="st">"I_ENDUSE"</span>, <span class="st">"I_ENDUSE_LDESC"</span>, <span class="st">"GEN_VAL_MO"</span>, <span class="st">"CON_VAL_MO"</span>),
     <span class="kw">time</span> <span class="kw">=</span> <span class="st">"2018-01"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">imports</span>)</pre></body></html></div>
@@ -2733,7 +2784,8 @@
 <h3 class="hasAnchor">
 <a href="#population-estimates" class="anchor"></a>Population Estimates</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html">Population Estimates documentation</a> Note that variable names in the PEP APIs are not always consistent from year to year.</p>
-<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="no">popest</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"pep/population"</span>,
+<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="no">popest</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"pep/population"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2019</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"POP"</span>, <span class="st">"DATE_DESC"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>)
@@ -2742,44 +2794,45 @@
 <table class="table">
 <thead><tr class="header">
 <th align="left">state</th>
-<th align="left">POP</th>
+<th align="right">POP</th>
 <th align="left">DATE_DESC</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">28</td>
-<td align="left">2976149</td>
+<td align="right">2976149</td>
 <td align="left">7/1/2019 population estimate</td>
 </tr>
 <tr class="even">
 <td align="left">29</td>
-<td align="left">6137428</td>
+<td align="right">6137428</td>
 <td align="left">7/1/2019 population estimate</td>
 </tr>
 <tr class="odd">
 <td align="left">30</td>
-<td align="left">1068778</td>
+<td align="right">1068778</td>
 <td align="left">7/1/2019 population estimate</td>
 </tr>
 <tr class="even">
 <td align="left">31</td>
-<td align="left">1934408</td>
+<td align="right">1934408</td>
 <td align="left">7/1/2019 population estimate</td>
 </tr>
 <tr class="odd">
 <td align="left">32</td>
-<td align="left">3080156</td>
+<td align="right">3080156</td>
 <td align="left">7/1/2019 population estimate</td>
 </tr>
 <tr class="even">
 <td align="left">33</td>
-<td align="left">1359711</td>
+<td align="right">1359711</td>
 <td align="left">7/1/2019 population estimate</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="no">popest_housing</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"pep/housing"</span>,
+<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="no">popest_housing</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"pep/housing"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2018</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"DATE_CODE"</span>, <span class="st">"DATE_DESC"</span>, <span class="st">"HUEST"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"county:195"</span>,
@@ -2792,7 +2845,7 @@
 <th align="left">county</th>
 <th align="left">DATE_CODE</th>
 <th align="left">DATE_DESC</th>
-<th align="left">HUEST</th>
+<th align="right">HUEST</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -2800,42 +2853,42 @@
 <td align="left">195</td>
 <td align="left">1</td>
 <td align="left">4/1/2010 Census housing unit count</td>
-<td align="left">1994</td>
+<td align="right">1994</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
 <td align="left">195</td>
 <td align="left">2</td>
 <td align="left">4/1/2010 housing unit estimates base</td>
-<td align="left">1644</td>
+<td align="right">1644</td>
 </tr>
 <tr class="odd">
 <td align="left">02</td>
 <td align="left">195</td>
 <td align="left">3</td>
 <td align="left">7/1/2010 housing unit estimate</td>
-<td align="left">1646</td>
+<td align="right">1646</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
 <td align="left">195</td>
 <td align="left">4</td>
 <td align="left">7/1/2011 housing unit estimate</td>
-<td align="left">1647</td>
+<td align="right">1647</td>
 </tr>
 <tr class="odd">
 <td align="left">02</td>
 <td align="left">195</td>
 <td align="left">5</td>
 <td align="left">7/1/2012 housing unit estimate</td>
-<td align="left">1659</td>
+<td align="right">1659</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
 <td align="left">195</td>
 <td align="left">6</td>
 <td align="left">7/1/2013 housing unit estimate</td>
-<td align="left">1662</td>
+<td align="right">1662</td>
 </tr>
 </tbody>
 </table>
@@ -2845,7 +2898,8 @@
 <h3 class="hasAnchor">
 <a href="#population-projections" class="anchor"></a>Population Projections</h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/popest-popproj/popproj.html">Population Projections documentation</a></p>
-<div class="sourceCode" id="cb38"><html><body><pre class="r"><span class="no">popproj</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"pep/projpop"</span>,
+<div class="sourceCode" id="cb38"><html><body><pre class="r"><span class="no">popproj</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"pep/projpop"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2014</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"YEAR"</span>, <span class="st">"POP"</span>, <span class="st">"AGE"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"us:1"</span>)
@@ -2855,44 +2909,44 @@
 <thead><tr class="header">
 <th align="left">us</th>
 <th align="left">YEAR</th>
-<th align="left">POP</th>
+<th align="right">POP</th>
 <th align="left">AGE</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">1</td>
 <td align="left">2014</td>
-<td align="left">3971847</td>
+<td align="right">3971847</td>
 <td align="left">0</td>
 </tr>
 <tr class="even">
 <td align="left">1</td>
 <td align="left">2014</td>
-<td align="left">3957864</td>
+<td align="right">3957864</td>
 <td align="left">1</td>
 </tr>
 <tr class="odd">
 <td align="left">1</td>
 <td align="left">2014</td>
-<td align="left">3972081</td>
+<td align="right">3972081</td>
 <td align="left">2</td>
 </tr>
 <tr class="even">
 <td align="left">1</td>
 <td align="left">2014</td>
-<td align="left">4003272</td>
+<td align="right">4003272</td>
 <td align="left">3</td>
 </tr>
 <tr class="odd">
 <td align="left">1</td>
 <td align="left">2014</td>
-<td align="left">4001929</td>
+<td align="right">4001929</td>
 <td align="left">4</td>
 </tr>
 <tr class="even">
 <td align="left">1</td>
 <td align="left">2014</td>
-<td align="left">4002977</td>
+<td align="right">4002977</td>
 <td align="left">5</td>
 </tr>
 </tbody>
@@ -2908,7 +2962,8 @@
 <h3 class="hasAnchor">
 <a href="#current-population-survey-poverty-statistics" class="anchor"></a>Current Population Survey Poverty Statistics</h3>
 <p>Get national poverty rates by race for the past 50 years.</p>
-<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="no">poverty</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/poverty/histpov2"</span>,
+<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="no">poverty</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/poverty/histpov2"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"RACE"</span>, <span class="st">"PCTPOV"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"us:*"</span>,
     <span class="kw">time</span> <span class="kw">=</span> <span class="st">"from 1968 to 2018"</span>)
@@ -2966,7 +3021,8 @@
 <h3 class="hasAnchor">
 <a href="#small-area-income-and-poverty-estimates" class="anchor"></a>Small Area Income and Poverty Estimates</h3>
 <p>Get poverty rate for children and overall for a single year.</p>
-<div class="sourceCode" id="cb40"><html><body><pre class="r"><span class="no">saipe</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/poverty/saipe"</span>,
+<div class="sourceCode" id="cb40"><html><body><pre class="r"><span class="no">saipe</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/poverty/saipe"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"SAEPOVRT0_17_PT"</span>, <span class="st">"SAEPOVRTALL_PT"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
     <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2018</span>)
@@ -3027,7 +3083,8 @@
 </table>
 </div>
 <p>Get the poverty rate for children and overall in a single county over time.</p>
-<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="no">saipe_years</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/poverty/saipe"</span>,
+<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="no">saipe_years</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/poverty/saipe"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"SAEPOVRT0_17_PT"</span>, <span class="st">"SAEPOVRTALL_PT"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"county:001"</span>,
     <span class="kw">regionin</span> <span class="kw">=</span> <span class="st">"state:12"</span>,
@@ -3100,7 +3157,8 @@
 <h3 class="hasAnchor">
 <a href="#saipe-school-districts" class="anchor"></a>SAIPE School Districts</h3>
 <p>Get the number (<code>SAEPOV5_17V_PT</code>) and rate (<code>SAEPOVRAT5_17RV_PT</code>) of children ages 5-17 living in poverty for unified school districts in Massachusetts.</p>
-<div class="sourceCode" id="cb42"><html><body><pre class="r"><span class="no">saipe_schools</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/poverty/saipe/schdist"</span>,
+<div class="sourceCode" id="cb42"><html><body><pre class="r"><span class="no">saipe_schools</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/poverty/saipe/schdist"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"SD_NAME"</span>, <span class="st">"SAEPOV5_17V_PT"</span>, <span class="st">"SAEPOVRAT5_17RV_PT"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"school district (unified):*"</span>,
     <span class="kw">regionin</span> <span class="kw">=</span> <span class="st">"state:25"</span>,
@@ -3175,7 +3233,8 @@
 <a href="#quarterly-workforce-indicators" class="anchor"></a>Quarterly Workforce Indicators</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/qwi.html">Quarterly Workforce Indicators documentation</a></p>
 <p>The allow both simple calls and very specfic ones. Make sure to read the documentation closely. Here’s a simple call that gets employment data by county.</p>
-<div class="sourceCode" id="cb43"><html><body><pre class="r"><span class="no">qwi_counties</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/qwi/sa"</span>,
+<div class="sourceCode" id="cb43"><html><body><pre class="r"><span class="no">qwi_counties</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/qwi/sa"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Emp"</span>, <span class="st">"EarnBeg"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"county:*"</span>,
     <span class="kw">regionin</span> <span class="kw">=</span> <span class="st">"state:01"</span>,
@@ -3237,7 +3296,8 @@
 </table>
 </div>
 <p>Employment data over time for a single state.</p>
-<div class="sourceCode" id="cb44"><html><body><pre class="r"><span class="no">qwi_time</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/qwi/sa"</span>,
+<div class="sourceCode" id="cb44"><html><body><pre class="r"><span class="no">qwi_time</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/qwi/sa"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Emp"</span>, <span class="st">"EarnBeg"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:01"</span>,
     <span class="kw">time</span> <span class="kw">=</span> <span class="st">"from 2007 to 2017"</span>)
@@ -3291,7 +3351,8 @@
 </table>
 </div>
 <p>Here’s a much more specific call. Read the Census Bureau’s documentation closely to see all of the options allowed by the QWI APIs.</p>
-<div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="no">qwi</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/qwi/sa"</span>,
+<div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="no">qwi</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/qwi/sa"</span>,
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:02"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Emp"</span>, <span class="st">"sex"</span>),
     <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2012</span>,
@@ -3361,7 +3422,8 @@
 <h2 class="hasAnchor">
 <a href="#survey-of-business-owners" class="anchor"></a>Survey of Business Owners</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/business-owners.html">Survey of Business Owners documentation</a></p>
-<div class="sourceCode" id="cb46"><html><body><pre class="r"><span class="no">sbo</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"sbo"</span>,
+<div class="sourceCode" id="cb46"><html><body><pre class="r"><span class="no">sbo</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"sbo"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2012</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"GEO_TTL"</span>, <span class="st">"RCPSZFI"</span>, <span class="st">"RCPSZFI_TTL"</span>, <span class="st">"FIRMPDEMP"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>)
@@ -3421,7 +3483,8 @@
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb47"><html><body><pre class="r"><span class="no">sbo_groups</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"sbo"</span>,
+<div class="sourceCode" id="cb47"><html><body><pre class="r"><span class="no">sbo_groups</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"sbo"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2012</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"GEO_TTL"</span>, <span class="st">"RACE_GROUP"</span>, <span class="st">"RACE_GROUP_TTL"</span>, <span class="st">"FIRMPDEMP"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"county:*"</span>,
@@ -3494,7 +3557,8 @@
 <h2 class="hasAnchor">
 <a href="#the-planning-database" class="anchor"></a>The Planning Database</h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/planning-database.html">The Planning Database documentation</a> Get population and 2010 Census mail return rates for block groups in Autauga County, AL.</p>
-<div class="sourceCode" id="cb48"><html><body><pre class="r"><span class="no">pdb</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"pdb/blockgroup"</span>,
+<div class="sourceCode" id="cb48"><html><body><pre class="r"><span class="no">pdb</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"pdb/blockgroup"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2018</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"GIDBG"</span>, <span class="st">"County_name"</span>, <span class="st">"State_name"</span>, <span class="st">"Tot_Population_CEN_2010"</span>, <span class="st">"Mail_Return_Rate_CEN_2010"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"block group:*"</span>,

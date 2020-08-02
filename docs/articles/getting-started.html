@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0.9000</span>
       </span>
     </div>
 
@@ -127,7 +127,8 @@
 <h3 class="hasAnchor">
 <a href="#choosing-variables" class="anchor"></a>Choosing variables</h3>
 <p><code>censusapi</code> includes a metadata function called <code>listCensusMetadata</code> to get information about an API’s variable options and geography options. Let’s see what variables are available in the SAHIE API:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">sahie_vars</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">sahie_vars</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="kw">type</span> <span class="kw">=</span> <span class="st">"variables"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">sahie_vars</span>)</pre></body></html></div>
 <div class="kable-table">
@@ -224,7 +225,8 @@
 <h3 class="hasAnchor">
 <a href="#choosing-regions" class="anchor"></a>Choosing regions</h3>
 <p>We can also use <code>listCensusMetadata</code> to see which geographic levels we can get data for using the SAHIE API.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="kw">type</span> <span class="kw">=</span> <span class="st">"geography"</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
@@ -270,28 +272,33 @@
 </div>
 <p>This API has three geographic levels: <code>us</code>, <code>county</code> within states, and <code>state</code>.</p>
 <p>First, using <code>getCensus</code>, let’s get uninsured rate by income group at the national level for 2017.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">sahie_national</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"us:*"</span>,
-    <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2017</span>)</pre></body></html></div>
+    <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2018</span>)
+<span class="no">sahie_national</span></pre></body></html></div>
 <p>We can also get this data at the state level for every state by changing <code>region</code> to <code>"state:*"</code>:</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">sahie_states</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">sahie_states</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
-    <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2017</span>)
+    <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2018</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">sahie_states</span>)</pre></body></html></div>
 <p>Finally, we can get county-level data. The geography metadata showed that we can choose to get county-level data within states. We’ll use <code>region</code> to specify county-level results and <code>regionin</code> to request data for Alabama and Alaska.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">sahie_counties</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">sahie_counties</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"county:*"</span>,
     <span class="kw">regionin</span> <span class="kw">=</span> <span class="st">"state:01,02"</span>,
-    <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2017</span>)
+    <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2018</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">sahie_counties</span>, <span class="kw">n</span><span class="kw">=</span><span class="fl">12L</span>)</pre></body></html></div>
 <p>Because the SAHIE API is a timeseries (as indicated in its name), we can get multiple years of data at once using the <code>time</code> argument.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">sahie_years</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">sahie_years</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:01"</span>,
-    <span class="kw">time</span> <span class="kw">=</span> <span class="st">"from 2006 to 2017"</span>)
+    <span class="kw">time</span> <span class="kw">=</span> <span class="st">"from 2006 to 2018"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">sahie_years</span>)</pre></body></html></div>
 </div>
 </div>
@@ -305,23 +312,26 @@
 <p>Some of the APIs allow complex calls, including specifying a country FIPS code or age. The most commonly used parameters, including <code>time</code>, <code>date</code>, and <code>sic</code> are included as built-in options in <code>getCensus</code>, but you can also specify other parameters yourself. (Note: this generally does not apply to the popular American Community Survey and Decennial Census APIs.)</p>
 <p>In the SAHIE API, we can filter data by the categorical variables <code>AGECAT</code> (age group), <code>IPRCAT</code> (income group), <code>RACECAT</code> (race) and <code>SEXCAT</code> (sex), in addition to geography and time. More information on those variables is available in the <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html">online documentation</a>.</p>
 <p>Here’s how to get the uninsured rate (<code>PCTUI_PT</code>) for non-elderly adults (<code>AGECAT = 1</code>) with incomes of 138 to 400% of the poverty line (<code>IPRCAT = 5</code>), by race (<code>RACECAT</code>) and state.</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">sahie_nonelderly</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">sahie_nonelderly</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:*"</span>,
-    <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2017</span>,
+    <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2018</span>,
     <span class="kw">IPRCAT</span> <span class="kw">=</span> <span class="fl">5</span>,
     <span class="kw">AGECAT</span> <span class="kw">=</span> <span class="fl">1</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">sahie_nonelderly</span>)</pre></body></html></div>
 <p>Note: data by race is only returned where the population is large enough, so some states will not have rows for some race groups. Here’s another example, getting national data from percent uninsured (<code>PCTUI_PT</code>) and number uninsured (<code>NUI_PT</code>), along with the associated margins of error, by race group and income group for all years.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">sahie_nonelderly_annual</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">sahie_nonelderly_annual</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"PCTUI_MOE"</span>, <span class="st">"NUI_PT"</span>, <span class="st">"NUI_MOE"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"us:*"</span>,
-    <span class="kw">time</span> <span class="kw">=</span> <span class="st">"from 2006 to 2017"</span>,
+    <span class="kw">time</span> <span class="kw">=</span> <span class="st">"from 2006 to 2018"</span>,
     <span class="kw">AGECAT</span> <span class="kw">=</span> <span class="fl">1</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">sahie_nonelderly_annual</span>)</pre></body></html></div>
 <p>Other APIs can be filtered too. For example, the <a href="https://www.census.gov/data/developers/data-sets/international-database.html">International Data Base</a> population projections APIs allow you to get data by age and country.</p>
 <p>See what variables the IDB 1 year API allows:</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/idb/1year"</span>,
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/idb/1year"</span>,
     <span class="kw">type</span> <span class="kw">=</span> <span class="st">"variables"</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
@@ -407,23 +417,25 @@
     <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2050</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">pop_2050</span>)</pre></body></html></div>
 <p>But we can make a much more specific call by specifying <code>FIPS</code> and <code>AGE</code> to get just the population projections for teenagers in Portugal.</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">pop_portugal</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/idb/1year"</span>,
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">pop_portugal</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/idb/1year"</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"POP"</span>),
     <span class="kw">time</span> <span class="kw">=</span> <span class="fl">2050</span>,
     <span class="kw">FIPS</span> <span class="kw">=</span> <span class="st">"PO"</span>,
     <span class="kw">AGE</span> <span class="kw">=</span> <span class="st">"13:19"</span>)
 <span class="no">pop_portugal</span></pre></body></html></div>
 <p>The <a href="https://www.census.gov/data/developers/data-sets/qwi.html">Quarterly Workforce Indicators APIs</a> allow even more specific calls. Here’s one example:</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">qwi</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/qwi/sa"</span>,
-                                 <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:02"</span>,
-                                 <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Emp"</span>, <span class="st">"sex"</span>),
-                                 <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2012</span>,
-                                 <span class="kw">quarter</span> <span class="kw">=</span> <span class="fl">1</span>,
-                                 <span class="kw">agegrp</span> <span class="kw">=</span> <span class="st">"A07"</span>,
-                                 <span class="kw">ownercode</span> <span class="kw">=</span> <span class="st">"A05"</span>,
-                                 <span class="kw">firmsize</span> <span class="kw">=</span> <span class="fl">1</span>,
-                                 <span class="kw">seasonadj</span> <span class="kw">=</span> <span class="st">"U"</span>,
-                                 <span class="kw">industry</span> <span class="kw">=</span> <span class="fl">21</span>)
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">qwi</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"timeseries/qwi/sa"</span>,
+    <span class="kw">region</span> <span class="kw">=</span> <span class="st">"state:02"</span>,
+    <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Emp"</span>, <span class="st">"sex"</span>),
+    <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2012</span>,
+    <span class="kw">quarter</span> <span class="kw">=</span> <span class="fl">1</span>,
+    <span class="kw">agegrp</span> <span class="kw">=</span> <span class="st">"A07"</span>,
+    <span class="kw">ownercode</span> <span class="kw">=</span> <span class="st">"A05"</span>,
+    <span class="kw">firmsize</span> <span class="kw">=</span> <span class="fl">1</span>,
+    <span class="kw">seasonadj</span> <span class="kw">=</span> <span class="st">"U"</span>,
+    <span class="kw">industry</span> <span class="kw">=</span> <span class="fl">21</span>)
 <span class="no">qwi</span></pre></body></html></div>
 </div>
 <div id="variable-groups" class="section level3">
@@ -432,7 +444,8 @@
 <p>For some surveys, particularly the American Community Survey and Decennial Census, you can get many related variables at once using a <code>group</code>, defined by the Census Bureau. In some other data tools, like American FactFinder, this idea is referred to as a <code>table</code>.</p>
 <p>The American Community Survey (ACS) APIs include estimates (variable names ending in “E”), annotations, margins of error, and statistical significance, depending on the data set. Read more on <a href="https://www.census.gov/data/developers/data-sets/acs-5year/data-notes.html">ACS variable types</a> and annotation symbol meanings on the Census website.</p>
 <p>You can retrieve these annotation variables manually, by specifying a list of variables. We’ll get the estimate, margin of error and annotations for median household income in the past 12 months for Census tracts in Alaska.</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">acs_income</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs5"</span>,
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">acs_income</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs5"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2017</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"B19013_001E"</span>, <span class="st">"B19013_001EA"</span>, <span class="st">"B19013_001M"</span>, <span class="st">"B19013_001MA"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"tract:*"</span>,
@@ -440,20 +453,23 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">acs_income</span>)</pre></body></html></div>
 <p>You can also retrieve also estimates and annotations for a group of variables in one command. Here’s the <code>group</code> call for that same table, <a href="https://api.census.gov/data/2016/acs/acs5/groups/B19013.html">B19013</a>.</p>
 <div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="co"># See descriptions of the variables in group B19013</span>
-<span class="no">group_B19013</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs5"</span>,
+<span class="no">group_B19013</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs5"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2017</span>,
     <span class="kw">type</span> <span class="kw">=</span> <span class="st">"variables"</span>,
     <span class="kw">group</span> <span class="kw">=</span> <span class="st">"B19013"</span>)
 <span class="no">group_B19013</span>
 
-<span class="no">acs_income_group</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs5"</span>,
+<span class="no">acs_income_group</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs5"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2017</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"NAME"</span>, <span class="st">"group(B19013)"</span>),
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"tract:*"</span>,
     <span class="kw">regionin</span> <span class="kw">=</span> <span class="st">"state:02"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">acs_income_group</span>)</pre></body></html></div>
 <p>Some variable groups contain many related variables and their associated annotations. As an example, we’ll get the list of variables included in group <a href="https://api.census.gov/data/2016/acs/acs5/groups/B17020.html">B17020</a>, poverty status by age.</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">group_B17020</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs5"</span>,
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">group_B17020</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"acs/acs5"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2017</span>,
     <span class="kw">type</span> <span class="kw">=</span> <span class="st">"variables"</span>,
     <span class="kw">group</span> <span class="kw">=</span> <span class="st">"B17020"</span>)
@@ -479,7 +495,8 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">tracts</span>)</pre></body></html></div>
 <p>The <code>regionin</code> argument of <code>getCensus</code> can also be used with a string of nested geographies, as shown below.</p>
 <p>The 2010 Decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use <code>region</code> to request block level data, and <code>regionin</code> to specify the desired state and county.</p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">data2010</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"dec/sf1"</span>,
+<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">data2010</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"dec/sf1"</span>,
     <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2010</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="st">"P001001"</span>,
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"block:*"</span>,
@@ -496,7 +513,7 @@
 <a href="#variables" class="anchor"></a>Variables</h3>
 <p>Use <code><a href="../reference/listCensusMetadata.html">listCensusMetadata(type = "variables")</a></code> on your API to see the table of available variables.</p>
 <ul>
-<li>Occasionally the variable names will change with data updates or API updates. The names may be different from year to year.</li>
+<li>Occasionally the variable names will change with data updates or API updates. The names may be different from year to year. Capitalization may also be inconsistent between datasets or years.</li>
 <li>The Census APIs are case-sensitive, which means that if the variable name you want is uppercase you’ll need to write it uppercase in your request. Most of the APIs use uppercase variable names, but some use lowercase and some even use sentence case.</li>
 </ul>
 </div>
