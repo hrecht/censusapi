@@ -84,6 +84,12 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, date, pe
 			numeric_cols <- grep("[0-9]|\\<EMP\\>|\\<ESTAB\\>|PAYANN", names(df), value=TRUE, ignore.case = T)
 			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
 
+			# Decennial Response Rates
+		} else if (name == "dec/responserate") {
+			numeric_cols <- grep("[0-9]|CINT|MIN|MED|AVG|MAX|DRR|CRR", names(df), value=TRUE, ignore.case = T)
+			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+
+
 		} else {
 			# Do not make known string/label variables numeric
 			numeric_cols <- grep("[0-9]", names(df), value=TRUE)

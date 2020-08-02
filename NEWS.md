@@ -3,7 +3,7 @@
 * Converts improperly formatted string "N/A" and "NULL" values from underlying Census data to true NA values.
 * Improves parsing of columns as numeric or character, specifically:
   * Keeps 2017 NAICS variables as characters, instead of erroneously converting to numeric.
-  * Parses SAHIE, SAIPE, ZBP, CBP and PEP endpoint numeric variables with all-character variable names as numeric.
+  * Parses endpoint numeric variables with all-character variable names as numeric for several populat endpoints: SAHIE, SAIPE, ZBP, CBP, PEP and Decennial Response Rates.
 
 # censusapi 0.6.1
 * Updates web link to FIPS codes reference after Census website reorganization.
