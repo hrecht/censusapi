@@ -4,6 +4,7 @@
 * Improves parsing of columns as numeric or character, specifically:
   * Keeps 2017 NAICS variables as characters, instead of erroneously converting to numeric.
   * Parses endpoint numeric variables with all-character variable names as numeric for several populat endpoints: SAHIE, SAIPE, ZBP, CBP, PEP and Decennial Response Rates.
+* Removes examples from deprecated 1990 and 2000 Decennial endpoints.
 
 # censusapi 0.6.1
 * Updates web link to FIPS codes reference after Census website reorganization.
@@ -17,7 +18,7 @@
 * Add documentation and examples using miscellaneous paramaters.
 * Returns underlying API call in error messages, particularly useful for users needing from the Census Bureau.
 * Specifies tract in block group example due to underlying API changes.
-* Adds [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+* Adds Contributor Code of Conduct.
 
 # censusapi 0.5.0
 * Makes `region` an optional argument in `getCensus`, rather than required.

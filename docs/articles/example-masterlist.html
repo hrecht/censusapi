@@ -1261,21 +1261,21 @@
 <td align="left">23</td>
 </tr>
 <tr class="even">
-<td align="left">01</td>
-<td align="right">85912</td>
-<td align="right">7674</td>
+<td align="left">30</td>
+<td align="right">26859</td>
+<td align="right">5656</td>
 <td align="left">23</td>
 </tr>
 <tr class="odd">
-<td align="left">55</td>
-<td align="right">116757</td>
-<td align="right">13960</td>
+<td align="left">32</td>
+<td align="right">80043</td>
+<td align="right">5146</td>
 <td align="left">23</td>
 </tr>
 <tr class="even">
-<td align="left">78</td>
-<td align="right">1929</td>
-<td align="right">170</td>
+<td align="left">33</td>
+<td align="right">29049</td>
+<td align="right">4245</td>
 <td align="left">23</td>
 </tr>
 </tbody>
@@ -1685,13 +1685,13 @@
 </table>
 </div>
 <p>Get 2010 population by block group within a specific tract.</p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">data2000</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
-    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"sf1"</span>,
-    <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2000</span>,
+<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">tract_pop</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="st">"dec/sf1"</span>,
+    <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2010</span>,
     <span class="kw">vars</span> <span class="kw">=</span> <span class="st">"P001001"</span>,
     <span class="kw">region</span> <span class="kw">=</span> <span class="st">"block:*"</span>,
     <span class="kw">regionin</span> <span class="kw">=</span> <span class="st">"state:36+county:027+tract:010000"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">data2000</span>)</pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">tract_pop</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
@@ -1707,42 +1707,42 @@
 <td align="left">027</td>
 <td align="left">010000</td>
 <td align="left">1000</td>
-<td align="right">18</td>
+<td align="right">31</td>
+</tr>
+<tr class="even">
+<td align="left">36</td>
+<td align="left">027</td>
+<td align="left">010000</td>
+<td align="left">1011</td>
+<td align="right">17</td>
+</tr>
+<tr class="odd">
+<td align="left">36</td>
+<td align="left">027</td>
+<td align="left">010000</td>
+<td align="left">1028</td>
+<td align="right">41</td>
 </tr>
 <tr class="even">
 <td align="left">36</td>
 <td align="left">027</td>
 <td align="left">010000</td>
 <td align="left">1001</td>
-<td align="right">26</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
+<td align="left">36</td>
+<td align="left">027</td>
+<td align="left">010000</td>
+<td align="left">1031</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
 <td align="left">36</td>
 <td align="left">027</td>
 <td align="left">010000</td>
 <td align="left">1002</td>
-<td align="right">59</td>
-</tr>
-<tr class="even">
-<td align="left">36</td>
-<td align="left">027</td>
-<td align="left">010000</td>
-<td align="left">1003</td>
-<td align="right">67</td>
-</tr>
-<tr class="odd">
-<td align="left">36</td>
-<td align="left">027</td>
-<td align="left">010000</td>
-<td align="left">1004</td>
-<td align="right">52</td>
-</tr>
-<tr class="even">
-<td align="left">36</td>
-<td align="left">027</td>
-<td align="left">010000</td>
-<td align="left">1005</td>
-<td align="right">116</td>
+<td align="right">4</td>
 </tr>
 </tbody>
 </table>
@@ -1773,49 +1773,49 @@
 <td align="left">21</td>
 <td align="left">137</td>
 <td align="left">Lincoln County, Kentucky</td>
-<td align="left">2020-08-28</td>
-<td align="right">68.0</td>
-<td align="right">25.9</td>
+<td align="left">2020-09-03</td>
+<td align="right">68.2</td>
+<td align="right">26.0</td>
 </tr>
 <tr class="even">
 <td align="left">21</td>
 <td align="left">139</td>
 <td align="left">Livingston County, Kentucky</td>
-<td align="left">2020-08-28</td>
-<td align="right">61.4</td>
-<td align="right">31.9</td>
+<td align="left">2020-09-03</td>
+<td align="right">61.6</td>
+<td align="right">32.1</td>
 </tr>
 <tr class="odd">
 <td align="left">21</td>
 <td align="left">143</td>
 <td align="left">Lyon County, Kentucky</td>
-<td align="left">2020-08-28</td>
-<td align="right">54.5</td>
+<td align="left">2020-09-03</td>
+<td align="right">54.7</td>
 <td align="right">23.3</td>
 </tr>
 <tr class="even">
 <td align="left">21</td>
 <td align="left">145</td>
 <td align="left">McCracken County, Kentucky</td>
-<td align="left">2020-08-28</td>
-<td align="right">70.5</td>
-<td align="right">55.6</td>
+<td align="left">2020-09-03</td>
+<td align="right">70.8</td>
+<td align="right">55.8</td>
 </tr>
 <tr class="odd">
 <td align="left">21</td>
 <td align="left">149</td>
 <td align="left">McLean County, Kentucky</td>
-<td align="left">2020-08-28</td>
-<td align="right">62.1</td>
-<td align="right">25.0</td>
+<td align="left">2020-09-03</td>
+<td align="right">62.2</td>
+<td align="right">25.1</td>
 </tr>
 <tr class="even">
 <td align="left">21</td>
 <td align="left">151</td>
 <td align="left">Madison County, Kentucky</td>
-<td align="left">2020-08-28</td>
-<td align="right">71.2</td>
-<td align="right">59.6</td>
+<td align="left">2020-09-03</td>
+<td align="right">71.6</td>
+<td align="right">59.9</td>
 </tr>
 </tbody>
 </table>
@@ -1843,23 +1843,23 @@
 <td align="left">36</td>
 <td align="left">23745</td>
 <td align="left">Elba village, New York</td>
-<td align="left">2020-08-28</td>
-<td align="right">61.8</td>
-<td align="right">50.0</td>
+<td align="left">2020-09-03</td>
+<td align="right">63.1</td>
+<td align="right">51.0</td>
 </tr>
 <tr class="even">
 <td align="left">36</td>
 <td align="left">23965</td>
 <td align="left">Ellenville village, New York</td>
-<td align="left">2020-08-28</td>
-<td align="right">55.0</td>
-<td align="right">43.4</td>
+<td align="left">2020-09-03</td>
+<td align="right">55.8</td>
+<td align="right">43.9</td>
 </tr>
 <tr class="odd">
 <td align="left">36</td>
 <td align="left">24075</td>
 <td align="left">Ellisburg village, New York</td>
-<td align="left">2020-08-28</td>
+<td align="left">2020-09-03</td>
 <td align="right">49.1</td>
 <td align="right">14.7</td>
 </tr>
@@ -1867,25 +1867,25 @@
 <td align="left">36</td>
 <td align="left">24229</td>
 <td align="left">Elmira city, New York</td>
-<td align="left">2020-08-28</td>
-<td align="right">57.3</td>
-<td align="right">38.9</td>
+<td align="left">2020-09-03</td>
+<td align="right">58.2</td>
+<td align="right">39.5</td>
 </tr>
 <tr class="odd">
 <td align="left">36</td>
 <td align="left">24295</td>
 <td align="left">Elmsford village, New York</td>
-<td align="left">2020-08-28</td>
-<td align="right">58.4</td>
-<td align="right">52.0</td>
+<td align="left">2020-09-03</td>
+<td align="right">59.3</td>
+<td align="right">52.8</td>
 </tr>
 <tr class="even">
 <td align="left">36</td>
 <td align="left">24515</td>
 <td align="left">Endicott village, New York</td>
-<td align="left">2020-08-28</td>
-<td align="right">55.2</td>
-<td align="right">43.3</td>
+<td align="left">2020-09-03</td>
+<td align="right">56.6</td>
+<td align="right">44.0</td>
 </tr>
 </tbody>
 </table>

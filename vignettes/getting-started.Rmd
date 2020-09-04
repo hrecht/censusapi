@@ -259,17 +259,17 @@ head(group_B17020)
 
 Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API and run `listCensusMetadata` to see the available geographies.
 
-You may want to get get data for many geographies that require a parent geography. For example, tract-level data from the 1990 Decennial Census can only be requested from one state at a time. 
+You may want to get get data for many geographies that require a parent geography. For example, tract-level data from the 2010 Decennial Census can only be requested from one state at a time. 
 
 In this example, we use the built in `fips` list of state [FIPS codes](https://www.census.gov/library/reference/code-lists/ansi.html) to request tract-level data from each state and join into a single data frame.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
-fips
 tracts <- NULL
 for (f in fips) {
 	stateget <- paste("state:", f, sep="")
-	temp <- getCensus(name = "sf3",
-		vintage = 1990,
-		vars = c("P0070001", "P0070002", "P114A001"),
+	temp <- getCensus(
+		name = "dec/sf1",
+		vintage = 2010,
+		vars = "P001001",
 		region = "tract:*",
 		regionin = stateget)
 	tracts <- rbind(tracts, temp)

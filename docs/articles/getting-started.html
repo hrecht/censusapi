@@ -479,15 +479,15 @@
 <h3 class="hasAnchor">
 <a href="#advanced-geographies" class="anchor"></a>Advanced geographies</h3>
 <p>Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API and run <code>listCensusMetadata</code> to see the available geographies.</p>
-<p>You may want to get get data for many geographies that require a parent geography. For example, tract-level data from the 1990 Decennial Census can only be requested from one state at a time.</p>
+<p>You may want to get get data for many geographies that require a parent geography. For example, tract-level data from the 2010 Decennial Census can only be requested from one state at a time.</p>
 <p>In this example, we use the built in <code>fips</code> list of state <a href="https://www.census.gov/library/reference/code-lists/ansi.html">FIPS codes</a> to request tract-level data from each state and join into a single data frame.</p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="no">fips</span>
-<span class="no">tracts</span> <span class="kw">&lt;-</span> <span class="kw">NULL</span>
+<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="no">tracts</span> <span class="kw">&lt;-</span> <span class="kw">NULL</span>
 <span class="kw">for</span> (<span class="no">f</span> <span class="kw">in</span> <span class="no">fips</span>) {
     <span class="no">stateget</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"state:"</span>, <span class="no">f</span>, <span class="kw">sep</span><span class="kw">=</span><span class="st">""</span>)
-    <span class="no">temp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"sf3"</span>,
-        <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">1990</span>,
-        <span class="kw">vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"P0070001"</span>, <span class="st">"P0070002"</span>, <span class="st">"P114A001"</span>),
+    <span class="no">temp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span>(
+        <span class="kw">name</span> <span class="kw">=</span> <span class="st">"dec/sf1"</span>,
+        <span class="kw">vintage</span> <span class="kw">=</span> <span class="fl">2010</span>,
+        <span class="kw">vars</span> <span class="kw">=</span> <span class="st">"P001001"</span>,
         <span class="kw">region</span> <span class="kw">=</span> <span class="st">"tract:*"</span>,
         <span class="kw">regionin</span> <span class="kw">=</span> <span class="no">stateget</span>)
     <span class="no">tracts</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="no">tracts</span>, <span class="no">temp</span>)

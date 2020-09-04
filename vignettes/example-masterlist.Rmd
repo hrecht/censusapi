@@ -264,13 +264,13 @@ head(data2010)
 
 Get 2010 population by block group within a specific tract.
 ```{r}
-data2000 <- getCensus(
-	name = "sf1",
-	vintage = 2000,
+tract_pop <- getCensus(
+	name = "dec/sf1",
+	vintage = 2010,
 	vars = "P001001", 
 	region = "block:*",
 	regionin = "state:36+county:027+tract:010000")
-head(data2000)
+head(tract_pop)
 ```
 
 ### Decennial Census Self-Response Rates
