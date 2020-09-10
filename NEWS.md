@@ -3,7 +3,7 @@
 * Converts improperly formatted string "N/A" and "NULL" values from underlying Census data to true NA values.
 * Improves parsing of columns as numeric or character, specifically:
   * Keeps 2017 NAICS variables as characters, instead of erroneously converting to numeric.
-  * Parses endpoint numeric variables with all-character variable names as numeric for several populat endpoints: SAHIE, SAIPE, ZBP, CBP, PEP and Decennial Response Rates.
+  * Parses endpoint numeric variables with all-character variable names as numeric for several popular endpoints: SAHIE, SAIPE, ZBP, CBP, PEP and Decennial Response Rates.
 * Removes examples from deprecated 1990 and 2000 Decennial endpoints.
 
 # censusapi 0.6.1
