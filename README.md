@@ -6,7 +6,6 @@
 
 `censusapi` generally uses the APIs' original parameter names so that users can easily transition between Census's documentation and examples and this package. It also includes metadata functions to return data frames of available APIs, variables, and geographies.
 
-
 ## Installation
 Get the latest stable release from CRAN: 
 ```R
