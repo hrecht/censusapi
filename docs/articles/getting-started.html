@@ -459,7 +459,7 @@
 <h3 class="hasAnchor">
 <a href="#variable-groups" class="anchor"></a>Variable groups</h3>
 <p>For some surveys, particularly the American Community Survey and Decennial Census, you can get many related variables at once using a <code>group</code>, defined by the Census Bureau. In some other data tools, like American FactFinder, this idea is referred to as a <code>table</code>.</p>
-<p>The American Community Survey (ACS) APIs include estimates (variable names ending in “E”), annotations, margins of error, and statistical significance, depending on the data set. Read more on <a href="https://www.census.gov/data/developers/data-sets/acs-5year/data-notes.html">ACS variable types</a> and annotation symbol meanings on the Census website.</p>
+<p>The American Community Survey (ACS) APIs include estimates (variable names ending in “E”), annotations, margins of error, and statistical significance, depending on the data set. Read more on <a href="https://www.census.gov/data/developers/data-sets/acs-5year.html">ACS variable types</a> and annotation symbol meanings on the Census website.</p>
 <p>You can retrieve these annotation variables manually, by specifying a list of variables. We’ll get the estimate, margin of error and annotations for median household income in the past 12 months for Census tracts in Alaska.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit">
 <span class="va">acs_income</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>

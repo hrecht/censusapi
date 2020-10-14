@@ -213,7 +213,7 @@ qwi
 ### Variable groups
 For some surveys, particularly the American Community Survey and Decennial Census, you can get many related variables at once using a `group`, defined by the Census Bureau. In some other data tools, like American FactFinder, this idea is referred to as a `table`.
 
-The American Community Survey (ACS) APIs include estimates (variable names ending in "E"), annotations, margins of error, and statistical significance, depending on the data set. Read more on [ACS variable types](https://www.census.gov/data/developers/data-sets/acs-5year/data-notes.html) and annotation symbol meanings on the Census website. 
+The American Community Survey (ACS) APIs include estimates (variable names ending in "E"), annotations, margins of error, and statistical significance, depending on the data set. Read more on [ACS variable types](https://www.census.gov/data/developers/data-sets/acs-5year.html) and annotation symbol meanings on the Census website. 
 
 You can retrieve these annotation variables manually, by specifying a list of variables. We'll get the estimate, margin of error and annotations for median household income in the past 12 months for Census tracts in Alaska.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
