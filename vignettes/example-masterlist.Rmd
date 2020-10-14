@@ -163,24 +163,6 @@ asm_product <- getCensus(
 head(asm_product)
 ```
 
-## Business Dynamics Statistics
-[Business Dynamics Statistics documentation](https://www.census.gov/data/developers/data-sets/business-dynamics.html)
-```{r}
-firms_states <- getCensus(
-	name = "timeseries/bds/firms",
-	vars = c("firms", "emp", "fage4"),
-	region = "state:*",
-	time = 2014)
-head(firms_states)
-
-firms_years <- getCensus(
-	name = "timeseries/bds/firms",
-	vars = c("firms", "emp"),
-	region = "state:01",
-	time = "from 1977 to 2014")
-head(firms_years)
-```
-
 ## County Business Patterns and Nonemployer Statistics
 [County Business Patterns and Nonemployer Statistics documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html)
 

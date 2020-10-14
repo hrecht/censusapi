@@ -36,11 +36,8 @@ listCensusApis <- function() {
 #' @keywords metadata
 #' @export
 #' @examples
-#' bds_vars <- listCensusMetadata(name = "timeseries/bds/firms", type = "variables")
-#' head(bds_vars)
-#'
-#' bds_geos <- listCensusMetadata(name = "timeseries/bds/firms", type = "geographies")
-#' head(bds_geos)
+#' \donttest{sahie_vars <- listCensusMetadata(name = "timeseries/healthins/sahie, type = "variables")
+#' head(sahie_vars)
 #'
 #' acs_geos <- listCensusMetadata(name = "acs/acs5", vintage = 2017, type = "geographies")
 #' head(acs_geos)
@@ -52,7 +49,7 @@ listCensusApis <- function() {
 #' vintage = 2017,
 #' type = "variables",
 #' group = "B17020")
-#' head(group_B17020)
+#' head(group_B17020)}
 listCensusMetadata <-
 	function(name,
 					 vintage = NULL,

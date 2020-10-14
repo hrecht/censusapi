@@ -1,8 +1,8 @@
 pandoc: 2.7.3
-pkgdown: 1.5.1
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   example-masterlist: example-masterlist.html
   getting-started: getting-started.html
-last_built: 2020-09-09T15:27Z
+last_built: 2020-10-14T12:51Z
 

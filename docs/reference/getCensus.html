@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.1</span>
       </span>
     </div>
 
@@ -122,29 +122,29 @@
     <p>Retrieve Census data from a given API</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getCensus</span>(
-  <span class='no'>name</span>,
-  <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"CENSUS_KEY"</span>),
-  <span class='no'>vars</span>,
-  <span class='kw'>region</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>period</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>monthly</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>show_call</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>category_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data_type_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>naics</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>pscode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>naics2012</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>naics2007</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>naics2002</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>naics1997</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>getCensus</span><span class='op'>(</span>
+  <span class='va'>name</span>,
+  vintage <span class='op'>=</span> <span class='cn'>NULL</span>,
+  key <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"CENSUS_KEY"</span><span class='op'>)</span>,
+  <span class='va'>vars</span>,
+  region <span class='op'>=</span> <span class='cn'>NULL</span>,
+  regionin <span class='op'>=</span> <span class='cn'>NULL</span>,
+  time <span class='op'>=</span> <span class='cn'>NULL</span>,
+  date <span class='op'>=</span> <span class='cn'>NULL</span>,
+  period <span class='op'>=</span> <span class='cn'>NULL</span>,
+  monthly <span class='op'>=</span> <span class='cn'>NULL</span>,
+  show_call <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  category_code <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data_type_code <span class='op'>=</span> <span class='cn'>NULL</span>,
+  naics <span class='op'>=</span> <span class='cn'>NULL</span>,
+  pscode <span class='op'>=</span> <span class='cn'>NULL</span>,
+  naics2012 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  naics2007 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  naics2002 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  naics1997 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sic <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -201,10 +201,11 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2017</span>,
-<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"B01001_001E"</span>, <span class='st'>"NAME"</span>, <span class='st'>"B01002_001E"</span>, <span class='st'>"B19013_001E"</span>),
-<span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"tract:*"</span>, <span class='kw'>regionin</span> <span class='kw'>=</span> <span class='st'>"state:06"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>df</span>)</div><div class='output co'>#&gt;   state county  tract B01001_001E
+    <pre class="examples"><div class='input'><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>getCensus</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"acs/acs5"</span>, vintage <span class='op'>=</span> <span class='fl'>2017</span>,
+vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"B01001_001E"</span>, <span class='st'>"NAME"</span>, <span class='st'>"B01002_001E"</span>, <span class='st'>"B19013_001E"</span><span class='op'>)</span>,
+region <span class='op'>=</span> <span class='st'>"tract:*"</span>, regionin <span class='op'>=</span> <span class='st'>"state:06"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   state county  tract B01001_001E
 #&gt; 1    06    083 002806        2430
 #&gt; 2    06    083 002913        3869
 #&gt; 3    06    083 002914        3386
@@ -220,10 +221,12 @@
 #&gt; 6    Census Tract 18, Santa Barbara County, California        42.0       50208</div><div class='input'>
 <span class='co'># Use American Community Survey variable groups to get all data from a given table.</span>
 <span class='co'># This returns estimates as well as margins of error and annotation flags.</span>
-<span class='no'>acs_group</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>,
-<span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2017</span>,
-<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"NAME"</span>, <span class='st'>"group(B19013)"</span>),
-<span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"county:*"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by coercion</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>acs_group</span>)</div><div class='output co'>#&gt;   state county                          NAME         GEO_ID B19013_001E
+<span class='va'>acs_group</span> <span class='op'>&lt;-</span> <span class='fu'>getCensus</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"acs/acs5"</span>,
+vintage <span class='op'>=</span> <span class='fl'>2017</span>,
+vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"NAME"</span>, <span class='st'>"group(B19013)"</span><span class='op'>)</span>,
+region <span class='op'>=</span> <span class='st'>"county:*"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by coercion</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>acs_group</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   state county                          NAME         GEO_ID B19013_001E
 #&gt; 1    72    073 Jayuya Municipio, Puerto Rico 0500000US72073       15615
 #&gt; 2    30    019       Daniels County, Montana 0500000US30019       53591
 #&gt; 3    24    023      Garrett County, Maryland 0500000US24023       48174
@@ -238,12 +241,13 @@
 #&gt; 5        1604     NA         &lt;NA&gt;         &lt;NA&gt;
 #&gt; 6        3442     NA         &lt;NA&gt;         &lt;NA&gt;</div><div class='input'>
 <span class='co'># Retreive block-level data within a specific tract using a nested regionin argument</span>
-<span class='no'>data2010</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"dec/sf1"</span>,
-<span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2010</span>,
-<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"NAME"</span>,<span class='st'>"P001001"</span>),
-<span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"block:*"</span>,
-<span class='kw'>regionin</span> <span class='kw'>=</span> <span class='st'>"state:36+county:027+tract:010000"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>data2010</span>)</div><div class='output co'>#&gt;   state county  tract block
+<span class='va'>data2010</span> <span class='op'>&lt;-</span> <span class='fu'>getCensus</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"dec/sf1"</span>,
+vintage <span class='op'>=</span> <span class='fl'>2010</span>,
+vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"NAME"</span>,<span class='st'>"P001001"</span><span class='op'>)</span>,
+region <span class='op'>=</span> <span class='st'>"block:*"</span>,
+regionin <span class='op'>=</span> <span class='st'>"state:36+county:027+tract:010000"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>data2010</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   state county  tract block
 #&gt; 1    36    027 010000  1000
 #&gt; 2    36    027 010000  1011
 #&gt; 3    36    027 010000  1028
@@ -265,11 +269,12 @@
 #&gt; 5       0
 #&gt; 6       4</div><div class='input'>
 <span class='co'># Get poverty rates for children and all ages over time</span>
-<span class='no'>saipe</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/poverty/saipe"</span>,
-<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"NAME"</span>, <span class='st'>"SAEPOVRT0_17_PT"</span>, <span class='st'>"SAEPOVRTALL_PT"</span>),
-<span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"state:01"</span>,
-<span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"from 2000 to 2017"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>saipe</span>)</div><div class='output co'>#&gt;   time state    NAME SAEPOVRT0_17_PT SAEPOVRTALL_PT
+<span class='va'>saipe</span> <span class='op'>&lt;-</span> <span class='fu'>getCensus</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"timeseries/poverty/saipe"</span>,
+vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"NAME"</span>, <span class='st'>"SAEPOVRT0_17_PT"</span>, <span class='st'>"SAEPOVRTALL_PT"</span><span class='op'>)</span>,
+region <span class='op'>=</span> <span class='st'>"state:01"</span>,
+time <span class='op'>=</span> <span class='st'>"from 2000 to 2017"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>saipe</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   time state    NAME SAEPOVRT0_17_PT SAEPOVRTALL_PT
 #&gt; 1 2000    01 Alabama            20.5           14.6
 #&gt; 2 2001    01 Alabama            22.1           15.7
 #&gt; 3 2002    01 Alabama            21.6           15.4
@@ -277,12 +282,13 @@
 #&gt; 5 2004    01 Alabama            22.6           16.1
 #&gt; 6 2005    01 Alabama            24.3           16.9</div><div class='input'>
 <span class='co'># Get county business patterns data for a specific NAICS sector</span>
-<span class='no'>cbp_2016</span> <span class='kw'>&lt;-</span> <span class='fu'>getCensus</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"cbp"</span>,
-<span class='kw'>vintage</span> <span class='kw'>=</span> <span class='st'>"2016"</span>,
-<span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"EMP"</span>, <span class='st'>"ESTAB"</span>, <span class='st'>"NAICS2012_TTL"</span>, <span class='st'>"GEO_TTL"</span>),
-<span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"state:*"</span>,
-<span class='kw'>naics2012</span> <span class='kw'>=</span> <span class='st'>"23"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>cbp_2016</span>)</div><div class='output co'>#&gt;   state    EMP ESTAB NAICS2012_TTL                      GEO_TTL NAICS2012
+<span class='va'>cbp_2016</span> <span class='op'>&lt;-</span> <span class='fu'>getCensus</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"cbp"</span>,
+vintage <span class='op'>=</span> <span class='st'>"2016"</span>,
+vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"EMP"</span>, <span class='st'>"ESTAB"</span>, <span class='st'>"NAICS2012_TTL"</span>, <span class='st'>"GEO_TTL"</span><span class='op'>)</span>,
+region <span class='op'>=</span> <span class='st'>"state:*"</span>,
+naics2012 <span class='op'>=</span> <span class='st'>"23"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>cbp_2016</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   state    EMP ESTAB NAICS2012_TTL                      GEO_TTL NAICS2012
 #&gt; 1    01  82327  7424  Construction                      Alabama        23
 #&gt; 2    02  17022  2521  Construction                       Alaska        23
 #&gt; 3    78   1348   154  Construction United States Virgin Islands        23
@@ -304,7 +310,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

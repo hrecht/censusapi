@@ -1,3 +1,6 @@
+# censusapi 0.7.1
+* Removes `listCensusMetadata()` and masterlist examples that used Business Dynamic Statistics endpoints, which were recently deprecated.
+
 # censusapi 0.7.0
 * Adds `show_call` option to `getCensus()`, which shows the underlying API call (otherwise only shown on errors) and link to package documentation when used.
 * Converts improperly formatted string "N/A" and "NULL" values from underlying Census data to true NA values.

@@ -20,23 +20,4 @@ of variables only.}
 \description{
 Get variable or geography metadata for a given API as a data frame
 }
-\examples{
-bds_vars <- listCensusMetadata(name = "timeseries/bds/firms", type = "variables")
-head(bds_vars)
-
-bds_geos <- listCensusMetadata(name = "timeseries/bds/firms", type = "geographies")
-head(bds_geos)
-
-acs_geos <- listCensusMetadata(name = "acs/acs5", vintage = 2017, type = "geographies")
-head(acs_geos)
-
-acs_groups <- listCensusMetadata(name = "acs/acs5", vintage = 2017, type = "groups")
-head(acs_groups)
-
-group_B17020 <- listCensusMetadata(name = "acs/acs5",
-vintage = 2017,
-type = "variables",
-group = "B17020")
-head(group_B17020)
-}
 \keyword{metadata}

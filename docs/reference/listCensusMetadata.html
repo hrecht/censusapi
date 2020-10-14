@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.1</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@
     <p>Get variable or geography metadata for a given API as a data frame</p>
     </div>
 
-    <pre class="usage"><span class='fu'>listCensusMetadata</span>(<span class='no'>name</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"variables"</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>listCensusMetadata</span><span class='op'>(</span><span class='va'>name</span>, vintage <span class='op'>=</span> <span class='cn'>NULL</span>, type <span class='op'>=</span> <span class='st'>"variables"</span>, group <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,89 +148,6 @@ of variables only.</p></td>
     </table>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>bds_vars</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"variables"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>bds_vars</span>)</div><div class='output co'>#&gt;                      name                                          label
-#&gt; 1       reallocation_rate                              Reallocation rate
-#&gt; 2  job_destruction_deaths                         Job destruction deaths
-#&gt; 3 job_creation_continuers                        Job creation continuers
-#&gt; 4                    year                                 Year of survey
-#&gt; 5             estabs_exit                          Establishments exited
-#&gt; 6                  estabs Physical locations where business is conducted
-#&gt;               concept predicateType group limit required
-#&gt; 1 Economic Statistics           int   N/A     0     &lt;NA&gt;
-#&gt; 2 Economic Statistics           int   N/A     0     &lt;NA&gt;
-#&gt; 3 Economic Statistics           int   N/A     0     &lt;NA&gt;
-#&gt; 4 Economic Statistics           int   N/A     0     &lt;NA&gt;
-#&gt; 5 Economic Statistics           int   N/A     0     &lt;NA&gt;
-#&gt; 6 Economic Statistics           int   N/A     0     &lt;NA&gt;</div><div class='input'>
-<span class='no'>bds_geos</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"timeseries/bds/firms"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"geographies"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>bds_geos</span>)</div><div class='output co'>#&gt;                            name geoLevelId referenceDate
-#&gt; 1                            us        010    2012-01-01
-#&gt; 2 metropolitan statistical area        310          &lt;NA&gt;
-#&gt; 3                         state        040    2012-01-01</div><div class='input'>
-<span class='no'>acs_geos</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2017</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"geographies"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>acs_geos</span>)</div><div class='output co'>#&gt;                 name geoLevelDisplay referenceDate      requires wildcard
-#&gt; 1                 us             010    2017-01-01          NULL     NULL
-#&gt; 2             region             020    2017-01-01          NULL     NULL
-#&gt; 3           division             030    2017-01-01          NULL     NULL
-#&gt; 4              state             040    2017-01-01          NULL     NULL
-#&gt; 5             county             050    2017-01-01         state    state
-#&gt; 6 county subdivision             060    2017-01-01 state, county   county
-#&gt;   optionalWithWCFor
-#&gt; 1              &lt;NA&gt;
-#&gt; 2              &lt;NA&gt;
-#&gt; 3              &lt;NA&gt;
-#&gt; 4              &lt;NA&gt;
-#&gt; 5             state
-#&gt; 6            county</div><div class='input'>
-<span class='no'>acs_groups</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>, <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2017</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"groups"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>acs_groups</span>)</div><div class='output co'>#&gt;     name
-#&gt; 1 B17015
-#&gt; 2 B18104
-#&gt; 3 B17016
-#&gt; 4 B18105
-#&gt; 5 B17017
-#&gt; 6 B18106
-#&gt;                                                                                                                                                         description
-#&gt; 1 POVERTY STATUS IN THE PAST 12 MONTHS OF FAMILIES BY FAMILY TYPE BY SOCIAL SECURITY INCOME BY SUPPLEMENTAL SECURITY INCOME (SSI) AND CASH PUBLIC ASSISTANCE INCOME
-#&gt; 2                                                                                                                                SEX BY AGE BY COGNITIVE DIFFICULTY
-#&gt; 3                                                      POVERTY STATUS IN THE PAST 12 MONTHS OF FAMILIES BY FAMILY TYPE BY WORK EXPERIENCE OF HOUSEHOLDER AND SPOUSE
-#&gt; 4                                                                                                                               SEX BY AGE BY AMBULATORY DIFFICULTY
-#&gt; 5                                                                                      POVERTY STATUS IN THE PAST 12 MONTHS BY HOUSEHOLD TYPE BY AGE OF HOUSEHOLDER
-#&gt; 6                                                                                                                                SEX BY AGE BY SELF-CARE DIFFICULTY
-#&gt;                                                      variables
-#&gt; 1 https://api.census.gov/data/2017/acs/acs5/groups/B17015.json
-#&gt; 2 https://api.census.gov/data/2017/acs/acs5/groups/B18104.json
-#&gt; 3 https://api.census.gov/data/2017/acs/acs5/groups/B17016.json
-#&gt; 4 https://api.census.gov/data/2017/acs/acs5/groups/B18105.json
-#&gt; 5 https://api.census.gov/data/2017/acs/acs5/groups/B17017.json
-#&gt; 6 https://api.census.gov/data/2017/acs/acs5/groups/B18106.json</div><div class='input'>
-<span class='no'>group_B17020</span> <span class='kw'>&lt;-</span> <span class='fu'>listCensusMetadata</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"acs/acs5"</span>,
-<span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>2017</span>,
-<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"variables"</span>,
-<span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"B17020"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>group_B17020</span>)</div><div class='output co'>#&gt;           name
-#&gt; 1 B17020_017EA
-#&gt; 2 B17020_016MA
-#&gt; 3 B17020_016EA
-#&gt; 4 B17020_015MA
-#&gt; 5 B17020_015EA
-#&gt; 6 B17020_014EA
-#&gt;                                                                                                          label
-#&gt; 1     Annotation of Estimate!!Total!!Income in the past 12 months at or above poverty level!!85 years and over
-#&gt; 2 Annotation of Margin of Error!!Total!!Income in the past 12 months at or above poverty level!!75 to 84 years
-#&gt; 3        Annotation of Estimate!!Total!!Income in the past 12 months at or above poverty level!!75 to 84 years
-#&gt; 4 Annotation of Margin of Error!!Total!!Income in the past 12 months at or above poverty level!!60 to 74 years
-#&gt; 5        Annotation of Estimate!!Total!!Income in the past 12 months at or above poverty level!!60 to 74 years
-#&gt; 6        Annotation of Estimate!!Total!!Income in the past 12 months at or above poverty level!!18 to 59 years
-#&gt;   predicateType  group limit predicateOnly concept
-#&gt; 1        string B17020     0          TRUE    &lt;NA&gt;
-#&gt; 2        string B17020     0          TRUE    &lt;NA&gt;
-#&gt; 3        string B17020     0          TRUE    &lt;NA&gt;
-#&gt; 4        string B17020     0          TRUE    &lt;NA&gt;
-#&gt; 5        string B17020     0          TRUE    &lt;NA&gt;
-#&gt; 6        string B17020     0          TRUE    &lt;NA&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -246,7 +163,7 @@ of variables only.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
