@@ -83,25 +83,25 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Get the latest stable release from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"censusapi"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"censusapi"</span><span class="op">)</span></code></pre></div>
 <p>You can also install the latest development version of <code>censusapi</code> from Github using <code>devtools</code>. Most people will not want to do this - BEWARE!:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"hrecht/censusapi"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"hrecht/censusapi"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="api-key-setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#api-key-setup" class="anchor"></a>API key setup</h2>
 <p>To use the Census APIs, <a href="http://api.census.gov/data/key_signup.html">sign up</a> for an API key, which will be sent to your provided email address. You’ll need that key to use this package. While Census currently does not require an API key for all APIs, that can change at any moment and so this package enforces key usage.</p>
 <p>A recommended way to manage your key is to add it to you .Renviron file. Most users will want to do this. Within R, run:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co"># Add key to .Renviron</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Add key to .Renviron</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>CENSUS_KEY<span class="op">=</span><span class="va">YOURKEYHERE</span><span class="op">)</span>
 <span class="co"># Reload .Renviron</span>
 <span class="fu"><a href="https://rdrr.io/r/base/readRenviron.html">readRenviron</a></span><span class="op">(</span><span class="st">"~/.Renviron"</span><span class="op">)</span>
 <span class="co"># Check to see that the expected key is output in your R console</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"CENSUS_KEY"</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"CENSUS_KEY"</span><span class="op">)</span></code></pre></div>
 <p>Or, open your .Renviron file in a text editor and add the following line: <code>CENSUS_KEY=YOURKEYHERE</code></p>
 <p>Once you’ve added your census key to your system environment, censusapi will use it by default without any extra work on your part.</p>
 <p>In some instances you might not want to put your key in your .Renviron - for example, if you’re on a shared school computer. You can always choose to manually set <code>key="YOURKEY"</code> as an argument in getCensus if you prefer.</p>
@@ -109,12 +109,12 @@
 <div id="usage-examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage-examples" class="anchor"></a>Usage examples</h2>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hrecht/censusapi">censusapi</a></span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hrecht/censusapi">censusapi</a></span><span class="op">)</span></code></pre></div>
 <p>Get uninsured rates from the Small Area Health Insurance Estimates <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html">(SAHIE) timeseries API</a> using <code><a href="reference/getCensus.html">getCensus()</a></code>.</p>
 <p>State-level data by income group within Alabama.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="reference/getCensus.html">getCensus</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/getCensus.html">getCensus</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, 
     region <span class="op">=</span> <span class="st">"state:01"</span>,
     time <span class="op">=</span> <span class="fl">2017</span><span class="op">)</span>
@@ -124,10 +124,10 @@
 <span class="co">#&gt; 3 2017    01 Alabama      2      &lt;= 250% of Poverty     17.3</span>
 <span class="co">#&gt; 4 2017    01 Alabama      3      &lt;= 138% of Poverty     19.4</span>
 <span class="co">#&gt; 5 2017    01 Alabama      4      &lt;= 400% of Poverty     14.5</span>
-<span class="co">#&gt; 6 2017    01 Alabama      5 138% to 400% of Poverty     11.5</span></pre></div>
+<span class="co">#&gt; 6 2017    01 Alabama      5 138% to 400% of Poverty     11.5</span></code></pre></div>
 <p>County-level data within Alabama, specified by adding the <code>regionin</code> parameter.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">sahie_counties</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getCensus.html">getCensus</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sahie_counties</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getCensus.html">getCensus</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, 
     region <span class="op">=</span> <span class="st">"county:*"</span>,
     regionin <span class="op">=</span> <span class="st">"state:01"</span>,
@@ -145,10 +145,10 @@
 <span class="co">#&gt; 9  2017    01    027     Clay County, AL      0 All Incomes     13.9</span>
 <span class="co">#&gt; 10 2017    01    017 Chambers County, AL      0 All Incomes     11.9</span>
 <span class="co">#&gt; 11 2017    01    019 Cherokee County, AL      0 All Incomes     11.2</span>
-<span class="co">#&gt; 12 2017    01    021  Chilton County, AL      0 All Incomes     13.8</span></pre></div>
+<span class="co">#&gt; 12 2017    01    021  Chilton County, AL      0 All Incomes     13.8</span></code></pre></div>
 <p>Retrieve annual data using the <code>time</code> argument by specifying a start year and stop year.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">sahie_annual</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getCensus.html">getCensus</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sahie_annual</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getCensus.html">getCensus</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>,
     region <span class="op">=</span> <span class="st">"state:01"</span>,
     time <span class="op">=</span> <span class="st">"from 2006 to 2017"</span><span class="op">)</span>
@@ -165,10 +165,10 @@
 <span class="co">#&gt; 9  2014    01 Alabama     14.2</span>
 <span class="co">#&gt; 10 2015    01 Alabama     11.9</span>
 <span class="co">#&gt; 11 2016    01 Alabama     10.8</span>
-<span class="co">#&gt; 12 2017    01 Alabama     11.0</span></pre></div>
+<span class="co">#&gt; 12 2017    01 Alabama     11.0</span></code></pre></div>
 <p>Get the uninsured rate for non-elderly adults (<code>AGECAT = 1</code>) with incomes of 138 to 400% of the poverty line (<code>IPRCAT = 5</code>), by race (<code>RACECAT</code>) and state.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">sahie_nonelderly</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getCensus.html">getCensus</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sahie_nonelderly</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getCensus.html">getCensus</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span><span class="op">)</span>, 
     region <span class="op">=</span> <span class="st">"state:*"</span>, 
     time <span class="op">=</span> <span class="fl">2017</span>,
@@ -181,7 +181,7 @@
 <span class="co">#&gt; 3 2017    04    Arizona     16.6 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1</span>
 <span class="co">#&gt; 4 2017    05   Arkansas     12.4 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1</span>
 <span class="co">#&gt; 5 2017    06 California     13.6 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1</span>
-<span class="co">#&gt; 6 2017    08   Colorado     14.6 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1</span></pre></div>
+<span class="co">#&gt; 6 2017    08   Colorado     14.6 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1</span></code></pre></div>
 <p>Read more on how to build a <code>censusapi</code> call in <a href="https://hrecht.github.io/censusapi/articles/getting-started.html">Getting started with censusapi</a> and see examples from every API in the <a href="https://hrecht.github.io/censusapi/articles/example-masterlist.html">example master list</a>.</p>
 </div>
 <div id="disclaimer" class="section level2">
