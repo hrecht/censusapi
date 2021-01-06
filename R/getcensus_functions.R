@@ -223,9 +223,7 @@ getCensus <-
 		vars <- split(vars, ceiling(seq_along(vars)/50))
 		get <- lapply(vars, function(x) paste(x, sep='', collapse=","))
 		data <- lapply(get, function(x) getFunction(apiurl, name, key, x, region, regionin, time, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...))
-		colnames <- unlist(lapply(data, names))
-		data <- do.call(cbind,data)
-		names(data) <- colnames
+		data <- Reduce(function(dtf1, dtf2) merge(dtf1, dtf2, all=TRUE, sort=FALSE), data)
 	} else {
 		get <- paste(vars, sep='', collapse=',')
 		data <- getFunction(apiurl, name, key, get, region, regionin, time, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...)
