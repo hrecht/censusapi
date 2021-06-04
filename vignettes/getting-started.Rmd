@@ -90,13 +90,13 @@ listCensusMetadata(
 ```
 This API has three geographic levels: `us`, `county` within states, and `state`.
 
-First, using `getCensus`, let's get uninsured rate by income group at the national level for 2017.
+First, using `getCensus`, let's get uninsured rate by income group at the national level for 2018.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 sahie_national <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region = "us:*", 
-	time = 2018)
+	year = 2018)
 sahie_national
 ```
 
@@ -106,7 +106,7 @@ sahie_states <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region = "state:*", 
-	time = 2018)
+	year = 2018)
 head(sahie_states)
 ```
 
@@ -117,17 +117,17 @@ sahie_counties <- getCensus(
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region = "county:*", 
 	regionin = "state:01,02", 
-	time = 2018)
+	year = 2018)
 head(sahie_counties, n=12L)
 ```
 
-Because the SAHIE API is a timeseries (as indicated in its name), we can get multiple years of data at once using the `time` argument.
+Because the SAHIE API is a timeseries (as indicated in its name), we can get multiple years of data at once using the `year` argument.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
 sahie_years <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT"), 
 	region = "state:01", 
-	time = "from 2006 to 2018")
+	year = "2006:2018")
 head(sahie_years)
 ```
 
@@ -138,7 +138,7 @@ This package allows access to the full range of the U.S. Census Bureau's APIs. W
 ### Miscellaneous parameters
 Some of the APIs allow complex calls, including specifying a country FIPS code or age. The most commonly used parameters, including `time`, `date`, and `sic` are included as built-in options in `getCensus`, but you can also specify other parameters yourself. (Note: this generally does not apply to the popular American Community Survey and Decennial Census APIs.)
 
-In the SAHIE API, we can filter data by the categorical variables `AGECAT` (age group), `IPRCAT` (income group), `RACECAT` (race) and `SEXCAT` (sex), in addition to geography and time. More information on those variables is available in the [online documentation](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html).
+In the SAHIE API, we can filter data by the categorical variables `AGECAT` (age group), `IPRCAT` (income group), `RACECAT` (race) and `SEXCAT` (sex), in addition to geography and year. More information on those variables is available in the [online documentation](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html).
 
 Here's how to get the uninsured rate (`PCTUI_PT`) for non-elderly adults (`AGECAT = 1`) with incomes of 138 to 400% of the poverty line (`IPRCAT = 5`), by race (`RACECAT`) and state.
 ```{r, purl = NOT_CRAN, eval = NOT_CRAN}
@@ -146,7 +146,7 @@ sahie_nonelderly <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT", "IPR_DESC", "AGE_DESC", "RACECAT", "RACE_DESC"), 
 	region = "state:*", 
-	time = 2018,
+	year = 2018,
 	IPRCAT = 5,
 	AGECAT = 1)
 head(sahie_nonelderly)
@@ -159,7 +159,7 @@ sahie_nonelderly_annual <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT", "PCTUI_MOE", "NUI_PT", "NUI_MOE", "IPRCAT", "IPR_DESC", "AGE_DESC", "RACECAT", "RACE_DESC"), 
 	region = "us:*", 
-	time = "from 2006 to 2018",
+	year = "2006:2018",
 	AGECAT = 1)
 head(sahie_nonelderly_annual)
 ```

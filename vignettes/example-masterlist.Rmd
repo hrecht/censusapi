@@ -38,7 +38,7 @@ Get median household income, with associated annotations and margin of error, fo
 ```{r}
 acs_income <- getCensus(
 	name = "acs/acs5",
-	vintage = 2018, 
+	vintage = 2019, 
 	vars = c("NAME", "B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA"), 
 	region = "tract:*",
 	regionin = "state:02")
@@ -71,20 +71,21 @@ head(acs_subject)
 ```{r}
 acs_profile <- getCensus(
 	name = "acs/acs1/profile",
-	vintage = 2018, 
+	vintage = 2019, 
 	vars = "group(DP05)", 
 	region = "region:*")
 ```
 
 ### ACS Comparison Profiles
 
-Get the mean travel time to work (in minutes) for the past five years.
+Get the annaul median household income in constant 2019 dollars for Alabama cities for the past five years.
 ```{r}
 acs_comparison <- getCensus(
 	name = "acs/acs1/cprofile",
-	vintage = 2017, 
-	vars = c("NAME", "CP03_2013_025E", "CP03_2014_025E", "CP03_2015_025E", "CP03_2016_025E", "CP03_2017_025E"), 
-	region = "metropolitan statistical area/micropolitan statistical area:*")
+	vintage = 2019, 
+	vars = c("NAME", "CP03_2015_062E", "CP03_2016_062E", "CP03_2017_062E", "CP03_2018_062E"), 
+	region = "place:*",
+	regionin = "state:01")
 head(acs_comparison)
 ```
 
@@ -342,7 +343,7 @@ sahie <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"),
 	region = "state:01",
-	time = 2018)
+	year = 2018)
 head(sahie)
 ```
 
@@ -352,7 +353,7 @@ sahie_annual <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT"),
 	region = "state:01",
-	time = "from 2006 to 2018")
+	year = "2006:2018")
 sahie_annual
 ```
 
@@ -362,7 +363,7 @@ sahie_nonelderly <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPR_DESC", "PCTUI_PT", "AGE_DESC", "RACECAT", "RACE_DESC"), 
 	region = "state:*", 
-	time = 2018,
+	year = 2018,
 	IPRCAT = 5,
 	AGECAT = 1)
 head(sahie_nonelderly)
@@ -453,7 +454,7 @@ poverty <- getCensus(
 	name = "timeseries/poverty/histpov2",
 	vars = c("RACE", "PCTPOV"),
 	region = "us:*",
-	time = "from 1968 to 2018")
+	time = "from 1968 to 2019")
 head(poverty)
 ```
 
@@ -465,7 +466,7 @@ saipe <- getCensus(
 	name = "timeseries/poverty/saipe",
 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region = "state:*",
-	time = 2018)
+	year = 2019)
 head(saipe)
 ```
 
@@ -476,7 +477,7 @@ saipe_years <- getCensus(
 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region = "county:001",
 	regionin = "state:12",
-	time = "from 2000 to 2018")
+	year = "2000:2019")
 head(saipe_years)
 ```
 ### SAIPE School Districts
@@ -487,7 +488,7 @@ saipe_schools <- getCensus(
 	vars = c("SD_NAME", "SAEPOV5_17V_PT", "SAEPOVRAT5_17RV_PT"),
 	region = "school district (unified):*",
 	regionin = "state:25",
-	time = 2018)
+	year = 2019)
 head(saipe_schools)
 ```
 
@@ -522,7 +523,7 @@ qwi <- getCensus(
 	name = "timeseries/qwi/sa",
 	region = "state:02",
 	vars = c("Emp", "sex"),
-	year = 2012,
+	time = 2012,
 	quarter = 1,
 	agegrp = "A07",
 	ownercode = "A05",

@@ -76,7 +76,7 @@ temporal (helpful for some time series), description, modified date" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2</span>
       </span>
     </div>
 
@@ -98,7 +98,7 @@ temporal (helpful for some time series), description, modified date" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/hrecht/censusapi">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -133,41 +133,34 @@ temporal (helpful for some time series), description, modified date</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>apis</span> <span class='op'>&lt;-</span> <span class='fu'>listCensusApis</span><span class='op'>(</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>apis</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;                                                                   title
-#&gt; 451                     Annual Economic Surveys: Annual Business Survey
-#&gt; 454                     Annual Economic Surveys: Annual Business Survey
-#&gt; 458                     Annual Economic Surveys: Annual Business Survey
-#&gt; 391 American Community Survey: 1-Year Estimates: Detailed Tables 1-Year
-#&gt; 395 American Community Survey: 1-Year Estimates: Detailed Tables 1-Year
-#&gt; 397 American Community Survey: 1-Year Estimates: Detailed Tables 1-Year
-#&gt;         name vintage                                       url isTimeseries
-#&gt; 451    abscb    2017    https://api.census.gov/data/2017/abscb           NA
-#&gt; 454   abscbo    2017   https://api.census.gov/data/2017/abscbo           NA
-#&gt; 458    abscs    2017    https://api.census.gov/data/2017/abscs           NA
-#&gt; 391 acs/acs1    2005 https://api.census.gov/data/2005/acs/acs1           NA
-#&gt; 395 acs/acs1    2006 https://api.census.gov/data/2006/acs/acs1           NA
-#&gt; 397 acs/acs1    2007 https://api.census.gov/data/2007/acs/acs1           NA
-#&gt;         temporal
-#&gt; 451 unidentified
-#&gt; 454 unidentified
-#&gt; 458 unidentified
-#&gt; 391 unidentified
-#&gt; 395 unidentified
-#&gt; 397 unidentified
-#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               description
-#&gt; 451                                                The Annual Business Survey (ABS) provides information on selected economic and demographic characteristics for businesses and business owners by sex, ethnicity, race, and veteran status. Further, the survey measures research and development (for microbusinesses), new business topics such as innovation and technology, as well as other business characteristics. The U.S. Census Bureau and the National Center conduct the ABS jointly for Science and Engineering Statistics within the National Science Foundation. The ABS replaces the five-year Survey of Business Owners (SBO) for employer businesses, the Annual Survey of Entrepreneurs (ASE), the Business R&amp;D and Innovation for Microbusinesses survey (BRDI-M), and the innovation section of the Business R&amp;D and Innovation Survey (BRDI-S). https://www.census.gov/programs-surveys/abs.html
-#&gt; 454                                                The Annual Business Survey (ABS) provides information on selected economic and demographic characteristics for businesses and business owners by sex, ethnicity, race, and veteran status. Further, the survey measures research and development (for microbusinesses), new business topics such as innovation and technology, as well as other business characteristics. The U.S. Census Bureau and the National Center conduct the ABS jointly for Science and Engineering Statistics within the National Science Foundation. The ABS replaces the five-year Survey of Business Owners (SBO) for employer businesses, the Annual Survey of Entrepreneurs (ASE), the Business R&amp;D and Innovation for Microbusinesses survey (BRDI-M), and the innovation section of the Business R&amp;D and Innovation Survey (BRDI-S). https://www.census.gov/programs-surveys/abs.html
-#&gt; 458                                                The Annual Business Survey (ABS) provides information on selected economic and demographic characteristics for businesses and business owners by sex, ethnicity, race, and veteran status. Further, the survey measures research and development (for microbusinesses), new business topics such as innovation and technology, as well as other business characteristics. The U.S. Census Bureau and the National Center conduct the ABS jointly for Science and Engineering Statistics within the National Science Foundation. The ABS replaces the five-year Survey of Business Owners (SBO) for employer businesses, the Annual Survey of Entrepreneurs (ASE), the Business R&amp;D and Innovation for Microbusinesses survey (BRDI-M), and the innovation section of the Business R&amp;D and Innovation Survey (BRDI-S). https://www.census.gov/programs-surveys/abs.html
-#&gt; 391 The American Community Survey (ACS) is an ongoing survey that provides data every year -- giving communities the current information they need to plan investments and services. The ACS covers a broad range of topics about social, economic, demographic, and housing characteristics of the U.S. population. Much of the ACS data provided on the Census Bureau's Web site are available separately by age group, race, Hispanic origin, and sex.  Summary files, Subject tables, Data profiles, and Comparison profiles are available for the nation, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more.  Detail Tables contain the most detailed cross-tabulations published for areas 65k and more. The data are population counts. There are over 31,000 variables in this dataset.
-#&gt; 395 The American Community Survey (ACS) is an ongoing survey that provides data every year -- giving communities the current information they need to plan investments and services. The ACS covers a broad range of topics about social, economic, demographic, and housing characteristics of the U.S. population. Much of the ACS data provided on the Census Bureau's Web site are available separately by age group, race, Hispanic origin, and sex.  Summary files, Subject tables, Data profiles, and Comparison profiles are available for the nation, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more.  Detail Tables contain the most detailed cross-tabulations published for areas 65k and more. The data are population counts. There are over 31,000 variables in this dataset.
-#&gt; 397 The American Community Survey (ACS) is an ongoing survey that provides data every year -- giving communities the current information they need to plan investments and services. The ACS covers a broad range of topics about social, economic, demographic, and housing characteristics of the U.S. population. Much of the ACS data provided on the Census Bureau's Web site are available separately by age group, race, Hispanic origin, and sex.  Summary files, Subject tables, Data profiles, and Comparison profiles are available for the nation, all 50 states, the District of Columbia, Puerto Rico, every congressional district, every metropolitan area, and all counties and places with populations of 65,000 or more.  Detail Tables contain the most detailed cross-tabulations published for areas 65k and more. The data are population counts. There are over 31,000 variables in this dataset.
+</div><div class='output co'>#&gt;                                               title   name vintage
+#&gt; 457 Annual Economic Surveys: Annual Business Survey  abscb    2017
+#&gt; 541 Annual Economic Surveys: Annual Business Survey  abscb    2018
+#&gt; 458 Annual Economic Surveys: Annual Business Survey abscbo    2017
+#&gt; 542 Annual Economic Surveys: Annual Business Survey abscbo    2018
+#&gt; 459 Annual Economic Surveys: Annual Business Survey  abscs    2017
+#&gt; 543 Annual Economic Surveys: Annual Business Survey  abscs    2018
+#&gt;                                         url isTimeseries     temporal
+#&gt; 457  https://api.census.gov/data/2017/abscb           NA unidentified
+#&gt; 541  https://api.census.gov/data/2018/abscb           NA unidentified
+#&gt; 458 https://api.census.gov/data/2017/abscbo           NA unidentified
+#&gt; 542 https://api.census.gov/data/2018/abscbo           NA unidentified
+#&gt; 459  https://api.census.gov/data/2017/abscs           NA unidentified
+#&gt; 543  https://api.census.gov/data/2018/abscs           NA unidentified
+#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 description
+#&gt; 457 The Annual Business Survey (ABS) provides information on selected economic and demographic characteristics for businesses and business owners by sex, ethnicity, race, and veteran status. Further, the survey measures research and development (for microbusinesses), new business topics such as innovation and technology, as well as other business characteristics. The U.S. Census Bureau and the National Center conduct the ABS jointly for Science and Engineering Statistics within the National Science Foundation. The ABS replaces the five-year Survey of Business Owners (SBO) for employer businesses, the Annual Survey of Entrepreneurs (ASE), the Business R&amp;D and Innovation for Microbusinesses survey (BRDI-M), and the innovation section of the Business R&amp;D and Innovation Survey (BRDI-S). https://www.census.gov/programs-surveys/abs.html 
+#&gt; 541 The Annual Business Survey (ABS) provides information on selected economic and demographic characteristics for businesses and business owners by sex, ethnicity, race, and veteran status. Further, the survey measures research and development (for microbusinesses), new business topics such as innovation and technology, as well as other business characteristics. The U.S. Census Bureau and the National Center conduct the ABS jointly for Science and Engineering Statistics within the National Science Foundation. The ABS replaces the five-year Survey of Business Owners (SBO) for employer businesses, the Annual Survey of Entrepreneurs (ASE), the Business R&amp;D and Innovation for Microbusinesses survey (BRDI-M), and the innovation section of the Business R&amp;D and Innovation Survey (BRDI-S). https://www.census.gov/programs-surveys/abs.html 
+#&gt; 458 The Annual Business Survey (ABS) provides information on selected economic and demographic characteristics for businesses and business owners by sex, ethnicity, race, and veteran status. Further, the survey measures research and development (for microbusinesses), new business topics such as innovation and technology, as well as other business characteristics. The U.S. Census Bureau and the National Center conduct the ABS jointly for Science and Engineering Statistics within the National Science Foundation. The ABS replaces the five-year Survey of Business Owners (SBO) for employer businesses, the Annual Survey of Entrepreneurs (ASE), the Business R&amp;D and Innovation for Microbusinesses survey (BRDI-M), and the innovation section of the Business R&amp;D and Innovation Survey (BRDI-S). https://www.census.gov/programs-surveys/abs.html 
+#&gt; 542 The Annual Business Survey (ABS) provides information on selected economic and demographic characteristics for businesses and business owners by sex, ethnicity, race, and veteran status. Further, the survey measures research and development (for microbusinesses), new business topics such as innovation and technology, as well as other business characteristics. The U.S. Census Bureau and the National Center conduct the ABS jointly for Science and Engineering Statistics within the National Science Foundation. The ABS replaces the five-year Survey of Business Owners (SBO) for employer businesses, the Annual Survey of Entrepreneurs (ASE), the Business R&amp;D and Innovation for Microbusinesses survey (BRDI-M), and the innovation section of the Business R&amp;D and Innovation Survey (BRDI-S). https://www.census.gov/programs-surveys/abs.html 
+#&gt; 459 The Annual Business Survey (ABS) provides information on selected economic and demographic characteristics for businesses and business owners by sex, ethnicity, race, and veteran status. Further, the survey measures research and development (for microbusinesses), new business topics such as innovation and technology, as well as other business characteristics. The U.S. Census Bureau and the National Center conduct the ABS jointly for Science and Engineering Statistics within the National Science Foundation. The ABS replaces the five-year Survey of Business Owners (SBO) for employer businesses, the Annual Survey of Entrepreneurs (ASE), the Business R&amp;D and Innovation for Microbusinesses survey (BRDI-M), and the innovation section of the Business R&amp;D and Innovation Survey (BRDI-S). https://www.census.gov/programs-surveys/abs.html 
+#&gt; 543 The Annual Business Survey (ABS) provides information on selected economic and demographic characteristics for businesses and business owners by sex, ethnicity, race, and veteran status. Further, the survey measures research and development (for microbusinesses), new business topics such as innovation and technology, as well as other business characteristics. The U.S. Census Bureau and the National Center conduct the ABS jointly for Science and Engineering Statistics within the National Science Foundation. The ABS replaces the five-year Survey of Business Owners (SBO) for employer businesses, the Annual Survey of Entrepreneurs (ASE), the Business R&amp;D and Innovation for Microbusinesses survey (BRDI-M), and the innovation section of the Business R&amp;D and Innovation Survey (BRDI-S). https://www.census.gov/programs-surveys/abs.html 
 #&gt;                  modified
-#&gt; 451 2020-04-30 00:00:00.0
-#&gt; 454 2020-04-30 00:00:00.0
+#&gt; 457 2020-04-30 00:00:00.0
+#&gt; 541 2020-10-26 00:00:00.0
 #&gt; 458 2020-04-30 00:00:00.0
-#&gt; 391 2019-08-27 12:50:06.0
-#&gt; 395 2019-08-27 10:47:47.0
-#&gt; 397 2019-08-27 10:05:20.0</div></pre>
+#&gt; 542 2020-10-26 00:00:00.0
+#&gt; 459 2020-04-30 00:00:00.0
+#&gt; 543 2020-10-26 00:00:00.0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

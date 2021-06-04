@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2</span>
       </span>
     </div>
 
@@ -54,7 +54,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/hrecht/censusapi">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -68,10 +68,18 @@
 
       
 
-      </header><script src="example-masterlist_files/jquery-1.11.3/jquery.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1">
+      </header><script src="example-masterlist_files/header-attrs-2.8/header-attrs.js"></script><script src="example-masterlist_files/jquery-1.11.3/jquery.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="example-masterlist_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
-<script src="example-masterlist_files/bootstrap-3.3.5/js/bootstrap.min.js"></script><script src="example-masterlist_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script><script src="example-masterlist_files/bootstrap-3.3.5/shim/respond.min.js"></script><script src="example-masterlist_files/navigation-1.1/tabsets.js"></script><script src="example-masterlist_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="example-masterlist_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="example-masterlist_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+<script src="example-masterlist_files/bootstrap-3.3.5/js/bootstrap.min.js"></script><script src="example-masterlist_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script><script src="example-masterlist_files/bootstrap-3.3.5/shim/respond.min.js"></script><style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="example-masterlist_files/navigation-1.1/tabsets.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Example masterlist</h1>
@@ -103,7 +111,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">acs_income</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
     name <span class="op">=</span> <span class="st">"acs/acs5"</span>,
-    vintage <span class="op">=</span> <span class="fl">2018</span>, 
+    vintage <span class="op">=</span> <span class="fl">2019</span>, 
     vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"B19013_001E"</span>, <span class="st">"B19013_001EA"</span>, <span class="st">"B19013_001M"</span>, <span class="st">"B19013_001MA"</span><span class="op">)</span>, 
     region <span class="op">=</span> <span class="st">"tract:*"</span>,
     regionin <span class="op">=</span> <span class="st">"state:02"</span><span class="op">)</span>
@@ -133,62 +141,62 @@
 <tbody>
 <tr class="odd">
 <td align="left">02</td>
-<td align="left">068</td>
-<td align="left">000100</td>
-<td align="left">Census Tract 1, Denali Borough, Alaska</td>
-<td align="right">84196</td>
+<td align="left">016</td>
+<td align="left">000200</td>
+<td align="left">Census Tract 2, Aleutians West Census Area, Alaska</td>
+<td align="right">94750</td>
 <td align="left">NA</td>
-<td align="right">7160</td>
+<td align="right">6374</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
-<td align="left">261</td>
-<td align="left">000200</td>
-<td align="left">Census Tract 2, Valdez-Cordova Census Area, Alaska</td>
-<td align="right">85933</td>
+<td align="left">016</td>
+<td align="left">000100</td>
+<td align="left">Census Tract 1, Aleutians West Census Area, Alaska</td>
+<td align="right">59583</td>
 <td align="left">NA</td>
-<td align="right">5274</td>
+<td align="right">7224</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
 <td align="left">02</td>
-<td align="left">261</td>
-<td align="left">000300</td>
-<td align="left">Census Tract 3, Valdez-Cordova Census Area, Alaska</td>
-<td align="right">92813</td>
+<td align="left">060</td>
+<td align="left">000100</td>
+<td align="left">Census Tract 1, Bristol Bay Borough, Alaska</td>
+<td align="right">79808</td>
 <td align="left">NA</td>
-<td align="right">19527</td>
+<td align="right">8316</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
-<td align="left">261</td>
-<td align="left">000100</td>
-<td align="left">Census Tract 1, Valdez-Cordova Census Area, Alaska</td>
-<td align="right">52419</td>
+<td align="left">150</td>
+<td align="left">000500</td>
+<td align="left">Census Tract 5, Kodiak Island Borough, Alaska</td>
+<td align="right">85521</td>
 <td align="left">NA</td>
-<td align="right">11601</td>
+<td align="right">9699</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
 <td align="left">02</td>
-<td align="left">122</td>
-<td align="left">000200</td>
-<td align="left">Census Tract 2, Kenai Peninsula Borough, Alaska</td>
-<td align="right">56838</td>
+<td align="left">150</td>
+<td align="left">000400</td>
+<td align="left">Census Tract 4, Kodiak Island Borough, Alaska</td>
+<td align="right">71429</td>
 <td align="left">NA</td>
-<td align="right">6437</td>
+<td align="right">21914</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
-<td align="left">122</td>
-<td align="left">000800</td>
-<td align="left">Census Tract 8, Kenai Peninsula Borough, Alaska</td>
-<td align="right">53882</td>
+<td align="left">150</td>
+<td align="left">000100</td>
+<td align="left">Census Tract 1, Kodiak Island Borough, Alaska</td>
+<td align="right">70625</td>
 <td align="left">NA</td>
-<td align="right">2985</td>
+<td align="right">17377</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -264,19 +272,6 @@
 </tr>
 <tr class="even">
 <td align="left">36</td>
-<td align="left">005</td>
-<td align="left">Bronx County, New York</td>
-<td align="right">21.3</td>
-<td align="right">1.0</td>
-<td align="right">39.0</td>
-<td align="right">2.5</td>
-<td align="right">17.4</td>
-<td align="right">1.4</td>
-<td align="right">6.8</td>
-<td align="right">1.2</td>
-</tr>
-<tr class="odd">
-<td align="left">36</td>
 <td align="left">061</td>
 <td align="left">New York County, New York</td>
 <td align="right">12.6</td>
@@ -287,6 +282,19 @@
 <td align="right">1.8</td>
 <td align="right">3.3</td>
 <td align="right">0.6</td>
+</tr>
+<tr class="odd">
+<td align="left">36</td>
+<td align="left">005</td>
+<td align="left">Bronx County, New York</td>
+<td align="right">21.3</td>
+<td align="right">1.0</td>
+<td align="right">39.0</td>
+<td align="right">2.5</td>
+<td align="right">17.4</td>
+<td align="right">1.4</td>
+<td align="right">6.8</td>
+<td align="right">1.2</td>
 </tr>
 <tr class="even">
 <td align="left">36</td>
@@ -324,95 +332,87 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">acs_profile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
     name <span class="op">=</span> <span class="st">"acs/acs1/profile"</span>,
-    vintage <span class="op">=</span> <span class="fl">2018</span>, 
+    vintage <span class="op">=</span> <span class="fl">2019</span>, 
     vars <span class="op">=</span> <span class="st">"group(DP05)"</span>, 
     region <span class="op">=</span> <span class="st">"region:*"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="acs-comparison-profiles" class="section level3">
 <h3 class="hasAnchor">
 <a href="#acs-comparison-profiles" class="anchor"></a>ACS Comparison Profiles</h3>
-<p>Get the mean travel time to work (in minutes) for the past five years.</p>
+<p>Get the annaul median household income in constant 2019 dollars for Alabama cities for the past five years.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">acs_comparison</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
     name <span class="op">=</span> <span class="st">"acs/acs1/cprofile"</span>,
-    vintage <span class="op">=</span> <span class="fl">2017</span>, 
-    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"CP03_2013_025E"</span>, <span class="st">"CP03_2014_025E"</span>, <span class="st">"CP03_2015_025E"</span>, <span class="st">"CP03_2016_025E"</span>, <span class="st">"CP03_2017_025E"</span><span class="op">)</span>, 
-    region <span class="op">=</span> <span class="st">"metropolitan statistical area/micropolitan statistical area:*"</span><span class="op">)</span>
+    vintage <span class="op">=</span> <span class="fl">2019</span>, 
+    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"CP03_2015_062E"</span>, <span class="st">"CP03_2016_062E"</span>, <span class="st">"CP03_2017_062E"</span>, <span class="st">"CP03_2018_062E"</span><span class="op">)</span>, 
+    region <span class="op">=</span> <span class="st">"place:*"</span>,
+    regionin <span class="op">=</span> <span class="st">"state:01"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">acs_comparison</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <table class="table">
-<colgroup>
-<col width="35%">
-<col width="19%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-</colgroup>
 <thead><tr class="header">
-<th align="left">metropolitan_statistical_area_micropolitan_statistical_area</th>
+<th align="left">state</th>
+<th align="left">place</th>
 <th align="left">NAME</th>
-<th align="right">CP03_2013_025E</th>
-<th align="right">CP03_2014_025E</th>
-<th align="right">CP03_2015_025E</th>
-<th align="right">CP03_2016_025E</th>
-<th align="right">CP03_2017_025E</th>
+<th align="right">CP03_2015_062E</th>
+<th align="right">CP03_2016_062E</th>
+<th align="right">CP03_2017_062E</th>
+<th align="right">CP03_2018_062E</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">10140</td>
-<td align="left">Aberdeen, WA Micro Area</td>
-<td align="right">24.0</td>
-<td align="right">25.0</td>
-<td align="right">23.3</td>
-<td align="right">26.5</td>
-<td align="right">29.6</td>
+<td align="left">01</td>
+<td align="left">50000</td>
+<td align="left">Mobile city, Alabama</td>
+<td align="right">41530</td>
+<td align="right">41963</td>
+<td align="right">42024</td>
+<td align="right">39349</td>
 </tr>
 <tr class="even">
-<td align="left">10180</td>
-<td align="left">Abilene, TX Metro Area</td>
-<td align="right">16.9</td>
-<td align="right">17.0</td>
-<td align="right">15.6</td>
-<td align="right">19.1</td>
-<td align="right">18.3</td>
+<td align="left">01</td>
+<td align="left">77256</td>
+<td align="left">Tuscaloosa city, Alabama</td>
+<td align="right">46960</td>
+<td align="right">41950</td>
+<td align="right">49226</td>
+<td align="right">44314</td>
 </tr>
 <tr class="odd">
-<td align="left">10300</td>
-<td align="left">Adrian, MI Micro Area</td>
-<td align="right">25.4</td>
-<td align="right">26.8</td>
-<td align="right">29.6</td>
-<td align="right">25.3</td>
-<td align="right">27.7</td>
+<td align="left">01</td>
+<td align="left">51000</td>
+<td align="left">Montgomery city, Alabama</td>
+<td align="right">44702</td>
+<td align="right">44250</td>
+<td align="right">44303</td>
+<td align="right">49771</td>
 </tr>
 <tr class="even">
-<td align="left">10380</td>
-<td align="left">Aguadilla-Isabela, PR Metro Area</td>
-<td align="right">26.0</td>
-<td align="right">24.8</td>
-<td align="right">25.3</td>
-<td align="right">23.9</td>
-<td align="right">25.2</td>
+<td align="left">01</td>
+<td align="left">07000</td>
+<td align="left">Birmingham city, Alabama</td>
+<td align="right">34831</td>
+<td align="right">38529</td>
+<td align="right">35235</td>
+<td align="right">37055</td>
 </tr>
 <tr class="odd">
-<td align="left">10420</td>
-<td align="left">Akron, OH Metro Area</td>
-<td align="right">23.1</td>
-<td align="right">22.9</td>
-<td align="right">24.3</td>
-<td align="right">22.9</td>
-<td align="right">23.2</td>
+<td align="left">01</td>
+<td align="left">35896</td>
+<td align="left">Hoover city, Alabama</td>
+<td align="right">83387</td>
+<td align="right">84004</td>
+<td align="right">87954</td>
+<td align="right">88899</td>
 </tr>
 <tr class="even">
-<td align="left">10460</td>
-<td align="left">Alamogordo, NM Micro Area</td>
-<td align="right">18.3</td>
-<td align="right">18.4</td>
-<td align="right">17.7</td>
-<td align="right">20.4</td>
-<td align="right">17.3</td>
+<td align="left">01</td>
+<td align="left">21184</td>
+<td align="left">Dothan city, Alabama</td>
+<td align="right">47645</td>
+<td align="right">45112</td>
+<td align="right">45973</td>
+<td align="right">50156</td>
 </tr>
 </tbody>
 </table>
@@ -1140,27 +1140,27 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">31</td>
-<td align="right">49552</td>
-<td align="right">6527</td>
-<td align="left">23</td>
-</tr>
-<tr class="even">
 <td align="left">28</td>
 <td align="right">43156</td>
 <td align="right">3890</td>
 <td align="left">23</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">29</td>
 <td align="right">129188</td>
 <td align="right">13540</td>
 <td align="left">23</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">30</td>
 <td align="right">26859</td>
 <td align="right">5656</td>
+<td align="left">23</td>
+</tr>
+<tr class="even">
+<td align="left">31</td>
+<td align="right">49552</td>
+<td align="right">6527</td>
 <td align="left">23</td>
 </tr>
 <tr class="odd">
@@ -1677,7 +1677,7 @@
 <td align="left">21</td>
 <td align="left">137</td>
 <td align="left">Lincoln County, Kentucky</td>
-<td align="left">2020-10-28</td>
+<td align="left">2021-01-29</td>
 <td align="right">69.1</td>
 <td align="right">26.7</td>
 </tr>
@@ -1685,7 +1685,7 @@
 <td align="left">21</td>
 <td align="left">139</td>
 <td align="left">Livingston County, Kentucky</td>
-<td align="left">2020-10-28</td>
+<td align="left">2021-01-29</td>
 <td align="right">62.6</td>
 <td align="right">32.7</td>
 </tr>
@@ -1693,7 +1693,7 @@
 <td align="left">21</td>
 <td align="left">143</td>
 <td align="left">Lyon County, Kentucky</td>
-<td align="left">2020-10-28</td>
+<td align="left">2021-01-29</td>
 <td align="right">55.6</td>
 <td align="right">24.1</td>
 </tr>
@@ -1701,7 +1701,7 @@
 <td align="left">21</td>
 <td align="left">145</td>
 <td align="left">McCracken County, Kentucky</td>
-<td align="left">2020-10-28</td>
+<td align="left">2021-01-29</td>
 <td align="right">71.9</td>
 <td align="right">56.7</td>
 </tr>
@@ -1709,7 +1709,7 @@
 <td align="left">21</td>
 <td align="left">149</td>
 <td align="left">McLean County, Kentucky</td>
-<td align="left">2020-10-28</td>
+<td align="left">2021-01-29</td>
 <td align="right">63.8</td>
 <td align="right">26.2</td>
 </tr>
@@ -1717,7 +1717,7 @@
 <td align="left">21</td>
 <td align="left">151</td>
 <td align="left">Madison County, Kentucky</td>
-<td align="left">2020-10-28</td>
+<td align="left">2021-01-29</td>
 <td align="right">72.2</td>
 <td align="right">60.3</td>
 </tr>
@@ -1748,7 +1748,7 @@
 <td align="left">36</td>
 <td align="left">23745</td>
 <td align="left">Elba village, New York</td>
-<td align="left">2020-10-28</td>
+<td align="left">2021-01-29</td>
 <td align="right">66.3</td>
 <td align="right">52.9</td>
 </tr>
@@ -1756,7 +1756,7 @@
 <td align="left">36</td>
 <td align="left">23965</td>
 <td align="left">Ellenville village, New York</td>
-<td align="left">2020-10-28</td>
+<td align="left">2021-01-29</td>
 <td align="right">58.5</td>
 <td align="right">45.3</td>
 </tr>
@@ -1764,7 +1764,7 @@
 <td align="left">36</td>
 <td align="left">24075</td>
 <td align="left">Ellisburg village, New York</td>
-<td align="left">2020-10-28</td>
+<td align="left">2021-01-29</td>
 <td align="right">52.6</td>
 <td align="right">18.1</td>
 </tr>
@@ -1772,25 +1772,25 @@
 <td align="left">36</td>
 <td align="left">24229</td>
 <td align="left">Elmira city, New York</td>
-<td align="left">2020-10-28</td>
+<td align="left">2021-01-29</td>
 <td align="right">60.1</td>
-<td align="right">40.7</td>
+<td align="right">40.8</td>
 </tr>
 <tr class="odd">
 <td align="left">36</td>
 <td align="left">24295</td>
 <td align="left">Elmsford village, New York</td>
-<td align="left">2020-10-28</td>
+<td align="left">2021-01-29</td>
 <td align="right">62.9</td>
-<td align="right">55.0</td>
+<td align="right">55.1</td>
 </tr>
 <tr class="even">
 <td align="left">36</td>
 <td align="left">24515</td>
 <td align="left">Endicott village, New York</td>
-<td align="left">2020-10-28</td>
-<td align="right">58.3</td>
-<td align="right">45.0</td>
+<td align="left">2021-01-29</td>
+<td align="right">58.4</td>
+<td align="right">45.1</td>
 </tr>
 </tbody>
 </table>
@@ -2195,66 +2195,66 @@
     name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>,
     region <span class="op">=</span> <span class="st">"state:01"</span>,
-    time <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span>
+    year <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">sahie</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
-<th align="left">time</th>
 <th align="left">state</th>
 <th align="left">NAME</th>
 <th align="left">IPRCAT</th>
 <th align="left">IPR_DESC</th>
 <th align="right">PCTUI_PT</th>
+<th align="left">YEAR</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">0</td>
 <td align="left">All Incomes</td>
 <td align="right">11.9</td>
+<td align="left">2018</td>
 </tr>
 <tr class="even">
-<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">1</td>
 <td align="left">&lt;= 200% of Poverty</td>
 <td align="right">19.6</td>
+<td align="left">2018</td>
 </tr>
 <tr class="odd">
-<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">2</td>
 <td align="left">&lt;= 250% of Poverty</td>
 <td align="right">18.5</td>
+<td align="left">2018</td>
 </tr>
 <tr class="even">
-<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">3</td>
 <td align="left">&lt;= 138% of Poverty</td>
 <td align="right">20.6</td>
+<td align="left">2018</td>
 </tr>
 <tr class="odd">
-<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">4</td>
 <td align="left">&lt;= 400% of Poverty</td>
 <td align="right">15.5</td>
+<td align="left">2018</td>
 </tr>
 <tr class="even">
-<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">5</td>
 <td align="left">138% to 400% of Poverty</td>
 <td align="right">12.5</td>
+<td align="left">2018</td>
 </tr>
 </tbody>
 </table>
@@ -2265,94 +2265,94 @@
     name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>,
     region <span class="op">=</span> <span class="st">"state:01"</span>,
-    time <span class="op">=</span> <span class="st">"from 2006 to 2018"</span><span class="op">)</span>
+    year <span class="op">=</span> <span class="st">"2006:2018"</span><span class="op">)</span>
 <span class="va">sahie_annual</span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
-<th align="left">time</th>
 <th align="left">state</th>
 <th align="left">NAME</th>
 <th align="right">PCTUI_PT</th>
+<th align="left">YEAR</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2006</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="right">15.7</td>
+<td align="left">2006</td>
 </tr>
 <tr class="even">
-<td align="left">2007</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="right">14.6</td>
+<td align="left">2007</td>
 </tr>
 <tr class="odd">
-<td align="left">2008</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="right">15.3</td>
+<td align="left">2008</td>
 </tr>
 <tr class="even">
-<td align="left">2009</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="right">15.8</td>
+<td align="left">2009</td>
 </tr>
 <tr class="odd">
-<td align="left">2010</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="right">16.9</td>
+<td align="left">2010</td>
 </tr>
 <tr class="even">
-<td align="left">2011</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="right">16.6</td>
+<td align="left">2011</td>
 </tr>
 <tr class="odd">
-<td align="left">2012</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="right">15.8</td>
+<td align="left">2012</td>
 </tr>
 <tr class="even">
-<td align="left">2013</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="right">15.9</td>
+<td align="left">2013</td>
 </tr>
 <tr class="odd">
-<td align="left">2014</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="right">14.2</td>
+<td align="left">2014</td>
 </tr>
 <tr class="even">
-<td align="left">2015</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="right">11.9</td>
+<td align="left">2015</td>
 </tr>
 <tr class="odd">
-<td align="left">2016</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="right">10.8</td>
+<td align="left">2016</td>
 </tr>
 <tr class="even">
-<td align="left">2017</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="right">11.0</td>
+<td align="left">2017</td>
 </tr>
 <tr class="odd">
-<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="right">11.9</td>
+<td align="left">2018</td>
 </tr>
 </tbody>
 </table>
@@ -2363,14 +2363,13 @@
     name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
     vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span><span class="op">)</span>, 
     region <span class="op">=</span> <span class="st">"state:*"</span>, 
-    time <span class="op">=</span> <span class="fl">2018</span>,
+    year <span class="op">=</span> <span class="fl">2018</span>,
     IPRCAT <span class="op">=</span> <span class="fl">5</span>,
     AGECAT <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">sahie_nonelderly</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <colgroup>
-<col width="4%">
 <col width="5%">
 <col width="6%">
 <col width="20%">
@@ -2378,11 +2377,11 @@
 <col width="13%">
 <col width="6%">
 <col width="22%">
+<col width="4%">
 <col width="6%">
 <col width="6%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">time</th>
 <th align="left">state</th>
 <th align="left">NAME</th>
 <th align="left">IPR_DESC</th>
@@ -2390,12 +2389,12 @@
 <th align="left">AGE_DESC</th>
 <th align="left">RACECAT</th>
 <th align="left">RACE_DESC</th>
+<th align="left">YEAR</th>
 <th align="left">IPRCAT</th>
 <th align="left">AGECAT</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">138% to 400% of Poverty</td>
@@ -2403,11 +2402,11 @@
 <td align="left">18 to 64 years</td>
 <td align="left">0</td>
 <td align="left">All Races</td>
+<td align="left">2018</td>
 <td align="left">5</td>
 <td align="left">1</td>
 </tr>
 <tr class="even">
-<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">138% to 400% of Poverty</td>
@@ -2415,11 +2414,11 @@
 <td align="left">18 to 64 years</td>
 <td align="left">1</td>
 <td align="left">White alone, not Hispanic</td>
+<td align="left">2018</td>
 <td align="left">5</td>
 <td align="left">1</td>
 </tr>
 <tr class="odd">
-<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">138% to 400% of Poverty</td>
@@ -2427,11 +2426,11 @@
 <td align="left">18 to 64 years</td>
 <td align="left">2</td>
 <td align="left">Black alone, not Hispanic</td>
+<td align="left">2018</td>
 <td align="left">5</td>
 <td align="left">1</td>
 </tr>
 <tr class="even">
-<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
 <td align="left">138% to 400% of Poverty</td>
@@ -2439,11 +2438,11 @@
 <td align="left">18 to 64 years</td>
 <td align="left">3</td>
 <td align="left">Hispanic (any race)</td>
+<td align="left">2018</td>
 <td align="left">5</td>
 <td align="left">1</td>
 </tr>
 <tr class="odd">
-<td align="left">2018</td>
 <td align="left">02</td>
 <td align="left">Alaska</td>
 <td align="left">138% to 400% of Poverty</td>
@@ -2451,11 +2450,11 @@
 <td align="left">18 to 64 years</td>
 <td align="left">0</td>
 <td align="left">All Races</td>
+<td align="left">2018</td>
 <td align="left">5</td>
 <td align="left">1</td>
 </tr>
 <tr class="even">
-<td align="left">2018</td>
 <td align="left">02</td>
 <td align="left">Alaska</td>
 <td align="left">138% to 400% of Poverty</td>
@@ -2463,6 +2462,7 @@
 <td align="left">18 to 64 years</td>
 <td align="left">1</td>
 <td align="left">White alone, not Hispanic</td>
+<td align="left">2018</td>
 <td align="left">5</td>
 <td align="left">1</td>
 </tr>
@@ -2493,45 +2493,45 @@
 <tbody>
 <tr class="odd">
 <td align="left">2020</td>
-<td align="left">Aruba</td>
-<td align="left">AA</td>
-<td align="left">119428</td>
-<td align="right">77.52</td>
+<td align="left">Andorra</td>
+<td align="left">AN</td>
+<td align="left">85722</td>
+<td align="right">83.03</td>
+</tr>
+<tr class="even">
+<td align="left">2020</td>
+<td align="left">United Arab Emirates</td>
+<td align="left">AE</td>
+<td align="left">9792173</td>
+<td align="right">79.17</td>
+</tr>
+<tr class="odd">
+<td align="left">2020</td>
+<td align="left">Afghanistan</td>
+<td align="left">AF</td>
+<td align="left">36594776</td>
+<td align="right">52.84</td>
 </tr>
 <tr class="even">
 <td align="left">2020</td>
 <td align="left">Antigua and Barbuda</td>
 <td align="left">AC</td>
-<td align="left">98179</td>
+<td align="left">98012</td>
 <td align="right">77.31</td>
 </tr>
 <tr class="odd">
 <td align="left">2020</td>
-<td align="left">United Arab Emirates</td>
-<td align="left">AE</td>
-<td align="left">9992083</td>
+<td align="left">Anguilla</td>
+<td align="left">AV</td>
+<td align="left">18066</td>
+<td align="right">81.79</td>
+</tr>
+<tr class="even">
+<td align="left">2020</td>
+<td align="left">Albania</td>
+<td align="left">AL</td>
+<td align="left">3080930</td>
 <td align="right">78.99</td>
-</tr>
-<tr class="even">
-<td align="left">2020</td>
-<td align="left">Afghanistan</td>
-<td align="left">AF</td>
-<td align="left">36643815</td>
-<td align="right">52.84</td>
-</tr>
-<tr class="odd">
-<td align="left">2020</td>
-<td align="left">Algeria</td>
-<td align="left">AG</td>
-<td align="left">42972878</td>
-<td align="right">77.54</td>
-</tr>
-<tr class="even">
-<td align="left">2020</td>
-<td align="left">Azerbaijan</td>
-<td align="left">AJ</td>
-<td align="left">10205810</td>
-<td align="right">73.58</td>
 </tr>
 </tbody>
 </table>
@@ -2558,42 +2558,42 @@
 <tr class="odd">
 <td align="left">2050</td>
 <td align="left">Norway</td>
-<td align="left">66971</td>
+<td align="left">66797</td>
 <td align="left">NO</td>
 <td align="left">10</td>
 </tr>
 <tr class="even">
 <td align="left">2050</td>
 <td align="left">Norway</td>
-<td align="left">67018</td>
+<td align="left">66877</td>
 <td align="left">NO</td>
 <td align="left">11</td>
 </tr>
 <tr class="odd">
 <td align="left">2050</td>
 <td align="left">Norway</td>
-<td align="left">67097</td>
+<td align="left">66975</td>
 <td align="left">NO</td>
 <td align="left">12</td>
 </tr>
 <tr class="even">
 <td align="left">2050</td>
 <td align="left">Norway</td>
-<td align="left">67199</td>
+<td align="left">67090</td>
 <td align="left">NO</td>
 <td align="left">13</td>
 </tr>
 <tr class="odd">
 <td align="left">2050</td>
 <td align="left">Norway</td>
-<td align="left">67352</td>
+<td align="left">67258</td>
 <td align="left">NO</td>
 <td align="left">14</td>
 </tr>
 <tr class="even">
 <td align="left">2050</td>
 <td align="left">Norway</td>
-<td align="left">67605</td>
+<td align="left">67513</td>
 <td align="left">NO</td>
 <td align="left">15</td>
 </tr>
@@ -2886,7 +2886,7 @@
     name <span class="op">=</span> <span class="st">"timeseries/poverty/histpov2"</span>,
     vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"RACE"</span>, <span class="st">"PCTPOV"</span><span class="op">)</span>,
     region <span class="op">=</span> <span class="st">"us:*"</span>,
-    time <span class="op">=</span> <span class="st">"from 1968 to 2018"</span><span class="op">)</span>
+    time <span class="op">=</span> <span class="st">"from 1968 to 2019"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">poverty</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -2898,40 +2898,40 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2018</td>
+<td align="left">2019</td>
 <td align="left">1</td>
 <td align="left">1</td>
-<td align="left">11.8</td>
+<td align="left">10.5</td>
 </tr>
 <tr class="even">
-<td align="left">2017</td>
+<td align="left">2019</td>
 <td align="left">1</td>
-<td align="left">1</td>
-<td align="left">12.3</td>
+<td align="left">2</td>
+<td align="left">9.1</td>
 </tr>
 <tr class="odd">
-<td align="left">2017</td>
+<td align="left">2019</td>
 <td align="left">1</td>
-<td align="left">1</td>
-<td align="left">12.3</td>
+<td align="left">4</td>
+<td align="left">7.3</td>
 </tr>
 <tr class="even">
-<td align="left">2016</td>
+<td align="left">2019</td>
 <td align="left">1</td>
-<td align="left">1</td>
-<td align="left">12.7</td>
+<td align="left">6</td>
+<td align="left">18.7</td>
 </tr>
 <tr class="odd">
-<td align="left">2015</td>
+<td align="left">2019</td>
 <td align="left">1</td>
-<td align="left">1</td>
-<td align="left">13.5</td>
+<td align="left">7</td>
+<td align="left">18.8</td>
 </tr>
 <tr class="even">
-<td align="left">2014</td>
+<td align="left">2019</td>
 <td align="left">1</td>
-<td align="left">1</td>
-<td align="left">14.8</td>
+<td align="left">9</td>
+<td align="left">7.1</td>
 </tr>
 </tbody>
 </table>
@@ -2946,59 +2946,59 @@
     name <span class="op">=</span> <span class="st">"timeseries/poverty/saipe"</span>,
     vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"SAEPOVRT0_17_PT"</span>, <span class="st">"SAEPOVRTALL_PT"</span><span class="op">)</span>,
     region <span class="op">=</span> <span class="st">"state:*"</span>,
-    time <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span>
+    year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">saipe</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
-<th align="left">time</th>
 <th align="left">state</th>
 <th align="left">NAME</th>
 <th align="right">SAEPOVRT0_17_PT</th>
 <th align="right">SAEPOVRTALL_PT</th>
+<th align="left">YEAR</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2018</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="right">23.9</td>
-<td align="right">16.8</td>
+<td align="right">21.9</td>
+<td align="right">15.6</td>
+<td align="left">2019</td>
 </tr>
 <tr class="even">
-<td align="left">2018</td>
 <td align="left">02</td>
 <td align="left">Alaska</td>
-<td align="right">14.5</td>
-<td align="right">11.1</td>
+<td align="right">13.2</td>
+<td align="right">10.2</td>
+<td align="left">2019</td>
 </tr>
 <tr class="odd">
-<td align="left">2018</td>
 <td align="left">04</td>
 <td align="left">Arizona</td>
-<td align="right">20.4</td>
-<td align="right">14.1</td>
+<td align="right">19.2</td>
+<td align="right">13.5</td>
+<td align="left">2019</td>
 </tr>
 <tr class="even">
-<td align="left">2018</td>
 <td align="left">05</td>
 <td align="left">Arkansas</td>
-<td align="right">23.8</td>
-<td align="right">16.8</td>
+<td align="right">21.7</td>
+<td align="right">16.0</td>
+<td align="left">2019</td>
 </tr>
 <tr class="odd">
-<td align="left">2018</td>
 <td align="left">06</td>
 <td align="left">California</td>
-<td align="right">17.4</td>
-<td align="right">12.8</td>
+<td align="right">15.6</td>
+<td align="right">11.8</td>
+<td align="left">2019</td>
 </tr>
 <tr class="even">
-<td align="left">2018</td>
 <td align="left">08</td>
 <td align="left">Colorado</td>
-<td align="right">12.1</td>
-<td align="right">9.7</td>
+<td align="right">11.2</td>
+<td align="right">9.4</td>
+<td align="left">2019</td>
 </tr>
 </tbody>
 </table>
@@ -3010,66 +3010,66 @@
     vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"SAEPOVRT0_17_PT"</span>, <span class="st">"SAEPOVRTALL_PT"</span><span class="op">)</span>,
     region <span class="op">=</span> <span class="st">"county:001"</span>,
     regionin <span class="op">=</span> <span class="st">"state:12"</span>,
-    time <span class="op">=</span> <span class="st">"from 2000 to 2018"</span><span class="op">)</span>
+    year <span class="op">=</span> <span class="st">"2000:2019"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">saipe_years</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
-<th align="left">time</th>
 <th align="left">state</th>
 <th align="left">county</th>
 <th align="left">NAME</th>
 <th align="right">SAEPOVRT0_17_PT</th>
 <th align="right">SAEPOVRTALL_PT</th>
+<th align="left">YEAR</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2000</td>
 <td align="left">12</td>
 <td align="left">001</td>
 <td align="left">Alachua County</td>
 <td align="right">17.4</td>
 <td align="right">14.7</td>
+<td align="left">2000</td>
 </tr>
 <tr class="even">
-<td align="left">2001</td>
 <td align="left">12</td>
 <td align="left">001</td>
 <td align="left">Alachua County</td>
 <td align="right">18.3</td>
 <td align="right">15.1</td>
+<td align="left">2001</td>
 </tr>
 <tr class="odd">
-<td align="left">2002</td>
 <td align="left">12</td>
 <td align="left">001</td>
 <td align="left">Alachua County</td>
 <td align="right">17.6</td>
 <td align="right">15.1</td>
+<td align="left">2002</td>
 </tr>
 <tr class="even">
-<td align="left">2003</td>
 <td align="left">12</td>
 <td align="left">001</td>
 <td align="left">Alachua County</td>
 <td align="right">19.8</td>
 <td align="right">16.2</td>
+<td align="left">2003</td>
 </tr>
 <tr class="odd">
-<td align="left">2004</td>
 <td align="left">12</td>
 <td align="left">001</td>
 <td align="left">Alachua County</td>
 <td align="right">16.9</td>
 <td align="right">14.5</td>
+<td align="left">2004</td>
 </tr>
 <tr class="even">
-<td align="left">2005</td>
 <td align="left">12</td>
 <td align="left">001</td>
 <td align="left">Alachua County</td>
 <td align="right">22.8</td>
 <td align="right">21.8</td>
+<td align="left">2005</td>
 </tr>
 </tbody>
 </table>
@@ -3085,66 +3085,66 @@
     vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SD_NAME"</span>, <span class="st">"SAEPOV5_17V_PT"</span>, <span class="st">"SAEPOVRAT5_17RV_PT"</span><span class="op">)</span>,
     region <span class="op">=</span> <span class="st">"school district (unified):*"</span>,
     regionin <span class="op">=</span> <span class="st">"state:25"</span>,
-    time <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span>
+    year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">saipe_schools</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
-<th align="left">time</th>
 <th align="left">state</th>
 <th align="left">school_district_unified</th>
 <th align="left">SD_NAME</th>
 <th align="right">SAEPOV5_17V_PT</th>
 <th align="right">SAEPOVRAT5_17RV_PT</th>
+<th align="left">YEAR</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2018</td>
 <td align="left">25</td>
 <td align="left">00001</td>
 <td align="left">Quabbin School District</td>
-<td align="right">2871</td>
-<td align="right">4.7</td>
+<td align="right">2852</td>
+<td align="right">7.9</td>
+<td align="left">2019</td>
 </tr>
 <tr class="even">
-<td align="left">2018</td>
 <td align="left">25</td>
 <td align="left">00002</td>
 <td align="left">Spencer-East Brookfield School District</td>
-<td align="right">2087</td>
-<td align="right">7.8</td>
+<td align="right">2073</td>
+<td align="right">9.9</td>
+<td align="left">2019</td>
 </tr>
 <tr class="odd">
-<td align="left">2018</td>
 <td align="left">25</td>
 <td align="left">00013</td>
 <td align="left">Southwick-Tolland-Granville Regional School District</td>
-<td align="right">1880</td>
-<td align="right">10.9</td>
+<td align="right">1847</td>
+<td align="right">7.1</td>
+<td align="left">2019</td>
 </tr>
 <tr class="even">
-<td align="left">2018</td>
 <td align="left">25</td>
 <td align="left">00067</td>
 <td align="left">Manchester Essex Regional School District</td>
-<td align="right">1578</td>
-<td align="right">4.8</td>
+<td align="right">1555</td>
+<td align="right">3.9</td>
+<td align="left">2019</td>
 </tr>
 <tr class="odd">
-<td align="left">2018</td>
 <td align="left">25</td>
 <td align="left">00542</td>
 <td align="left">Ayer-Shirley School District</td>
-<td align="right">2191</td>
-<td align="right">10.2</td>
+<td align="right">2173</td>
+<td align="right">5.6</td>
+<td align="left">2019</td>
 </tr>
 <tr class="even">
-<td align="left">2018</td>
 <td align="left">25</td>
 <td align="left">00544</td>
 <td align="left">Monomoy Regional School District</td>
-<td align="right">1785</td>
-<td align="right">8.3</td>
+<td align="right">1744</td>
+<td align="right">11.1</td>
+<td align="left">2019</td>
 </tr>
 </tbody>
 </table>
@@ -3175,43 +3175,43 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">11389</td>
-<td align="left">2887</td>
+<td align="left">11411</td>
+<td align="left">2909</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">001</td>
 </tr>
 <tr class="even">
-<td align="left">65363</td>
-<td align="left">2648</td>
+<td align="left">65908</td>
+<td align="left">2608</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">003</td>
 </tr>
 <tr class="odd">
-<td align="left">7592</td>
-<td align="left">2668</td>
+<td align="left">7762</td>
+<td align="left">2664</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">005</td>
 </tr>
 <tr class="even">
-<td align="left">4008</td>
-<td align="left">2853</td>
+<td align="left">4114</td>
+<td align="left">2976</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">007</td>
 </tr>
 <tr class="odd">
-<td align="left">8024</td>
-<td align="left">2664</td>
+<td align="left">8141</td>
+<td align="left">2668</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">009</td>
 </tr>
 <tr class="even">
-<td align="left">2659</td>
-<td align="left">2543</td>
+<td align="left">2895</td>
+<td align="left">2373</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">011</td>
@@ -3237,38 +3237,38 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">1873162</td>
-<td align="left">2833</td>
+<td align="left">1870919</td>
+<td align="left">2834</td>
 <td align="left">2007-Q1</td>
 <td align="left">01</td>
 </tr>
 <tr class="even">
-<td align="left">1897715</td>
-<td align="left">2786</td>
+<td align="left">1881458</td>
+<td align="left">2802</td>
 <td align="left">2007-Q2</td>
 <td align="left">01</td>
 </tr>
 <tr class="odd">
-<td align="left">1889780</td>
-<td align="left">2773</td>
+<td align="left">1898630</td>
+<td align="left">2780</td>
 <td align="left">2007-Q3</td>
 <td align="left">01</td>
 </tr>
 <tr class="even">
-<td align="left">1907646</td>
-<td align="left">2978</td>
+<td align="left">1893166</td>
+<td align="left">2988</td>
 <td align="left">2007-Q4</td>
 <td align="left">01</td>
 </tr>
 <tr class="odd">
-<td align="left">1878593</td>
+<td align="left">1884183</td>
 <td align="left">2894</td>
 <td align="left">2008-Q1</td>
 <td align="left">01</td>
 </tr>
 <tr class="even">
-<td align="left">1901380</td>
-<td align="left">2880</td>
+<td align="left">1884149</td>
+<td align="left">2893</td>
 <td align="left">2008-Q2</td>
 <td align="left">01</td>
 </tr>
@@ -3281,7 +3281,7 @@
     name <span class="op">=</span> <span class="st">"timeseries/qwi/sa"</span>,
     region <span class="op">=</span> <span class="st">"state:02"</span>,
     vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Emp"</span>, <span class="st">"sex"</span><span class="op">)</span>,
-    year <span class="op">=</span> <span class="fl">2012</span>,
+    time <span class="op">=</span> <span class="fl">2012</span>,
     quarter <span class="op">=</span> <span class="fl">1</span>,
     agegrp <span class="op">=</span> <span class="st">"A07"</span>,
     ownercode <span class="op">=</span> <span class="st">"A05"</span>,
@@ -3294,7 +3294,7 @@
 <thead><tr class="header">
 <th align="left">Emp</th>
 <th align="left">sex</th>
-<th align="left">year</th>
+<th align="left">time</th>
 <th align="left">quarter</th>
 <th align="left">agegrp</th>
 <th align="left">ownercode</th>
@@ -3305,9 +3305,9 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">52</td>
+<td align="left">55</td>
 <td align="left">0</td>
-<td align="left">2012</td>
+<td align="left">2012-Q1</td>
 <td align="left">1</td>
 <td align="left">A07</td>
 <td align="left">A05</td>
@@ -3317,9 +3317,9 @@
 <td align="left">02</td>
 </tr>
 <tr class="even">
-<td align="left">46</td>
+<td align="left">48</td>
 <td align="left">1</td>
-<td align="left">2012</td>
+<td align="left">2012-Q1</td>
 <td align="left">1</td>
 <td align="left">A07</td>
 <td align="left">A05</td>
@@ -3329,9 +3329,9 @@
 <td align="left">02</td>
 </tr>
 <tr class="odd">
-<td align="left">6</td>
+<td align="left">8</td>
 <td align="left">2</td>
-<td align="left">2012</td>
+<td align="left">2012-Q1</td>
 <td align="left">1</td>
 <td align="left">A07</td>
 <td align="left">A05</td>

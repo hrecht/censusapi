@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2</span>
       </span>
     </div>
 
@@ -96,7 +96,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/hrecht/censusapi">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -130,6 +130,7 @@
   region <span class='op'>=</span> <span class='cn'>NULL</span>,
   regionin <span class='op'>=</span> <span class='cn'>NULL</span>,
   time <span class='op'>=</span> <span class='cn'>NULL</span>,
+  year <span class='op'>=</span> <span class='cn'>NULL</span>,
   date <span class='op'>=</span> <span class='cn'>NULL</span>,
   period <span class='op'>=</span> <span class='cn'>NULL</span>,
   monthly <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -174,7 +175,7 @@
       <td><p>Optional hierarchical geography to limit region</p></td>
     </tr>
     <tr>
-      <th>time, date, period, monthly</th>
+      <th>time, year, date, period, monthly</th>
       <td><p>Optional arguments used for some time series APIs</p></td>
     </tr>
     <tr>
@@ -206,19 +207,19 @@ vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/
 region <span class='op'>=</span> <span class='st'>"tract:*"</span>, regionin <span class='op'>=</span> <span class='st'>"state:06"</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;   state county  tract B01001_001E
-#&gt; 1    06    083 002806        2430
-#&gt; 2    06    083 002913        3869
-#&gt; 3    06    083 002914        3386
-#&gt; 4    06    083 000400        5411
-#&gt; 5    06    083 001203        3029
-#&gt; 6    06    083 001800         941
-#&gt;                                                   NAME B01002_001E B19013_001E
-#&gt; 1 Census Tract 28.06, Santa Barbara County, California        36.5       63259
-#&gt; 2 Census Tract 29.13, Santa Barbara County, California        46.3       91106
-#&gt; 3 Census Tract 29.14, Santa Barbara County, California        44.8       93125
-#&gt; 4     Census Tract 4, Santa Barbara County, California        37.0       74795
-#&gt; 5 Census Tract 12.03, Santa Barbara County, California        48.9       59135
-#&gt; 6    Census Tract 18, Santa Barbara County, California        42.0       50208</div><div class='input'>
+#&gt; 1    06    037 503502        4359
+#&gt; 2    06    037 504102           7
+#&gt; 3    06    037 265700        5181
+#&gt; 4    06    037 267300        4751
+#&gt; 5    06    037 267502        3524
+#&gt; 6    06    037 267700        3141
+#&gt;                                                   NAME  B01002_001E B19013_001E
+#&gt; 1 Census Tract 5035.02, Los Angeles County, California         35.8       73979
+#&gt; 2 Census Tract 5041.02, Los Angeles County, California -666666666.0  -666666666
+#&gt; 3    Census Tract 2657, Los Angeles County, California         47.5       84327
+#&gt; 4    Census Tract 2673, Los Angeles County, California         34.6       61290
+#&gt; 5 Census Tract 2675.02, Los Angeles County, California         30.8       80313
+#&gt; 6    Census Tract 2677, Los Angeles County, California         35.0       84608</div><div class='input'>
 <span class='co'># Use American Community Survey variable groups to get all data from a given table.</span>
 <span class='co'># This returns estimates as well as margins of error and annotation flags.</span>
 <span class='va'>acs_group</span> <span class='op'>&lt;-</span> <span class='fu'>getCensus</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"acs/acs5"</span>,
@@ -226,20 +227,20 @@ vintage <span class='op'>=</span> <span class='fl'>2017</span>,
 vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"NAME"</span>, <span class='st'>"group(B19013)"</span><span class='op'>)</span>,
 region <span class='op'>=</span> <span class='st'>"county:*"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by coercion</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>acs_group</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   state county                          NAME         GEO_ID B19013_001E
-#&gt; 1    72    073 Jayuya Municipio, Puerto Rico 0500000US72073       15615
-#&gt; 2    30    019       Daniels County, Montana 0500000US30019       53591
-#&gt; 3    24    023      Garrett County, Maryland 0500000US24023       48174
-#&gt; 4    30    079       Prairie County, Montana 0500000US30079       50850
-#&gt; 5    39    173             Wood County, Ohio 0500000US39173       58033
-#&gt; 6    08    011         Bent County, Colorado 0500000US08011       32500
-#&gt;   B19013_001M NAME_1 B19013_001EA B19013_001MA
-#&gt; 1        3424     NA         &lt;NA&gt;         &lt;NA&gt;
-#&gt; 2        3318     NA         &lt;NA&gt;         &lt;NA&gt;
-#&gt; 3        2234     NA         &lt;NA&gt;         &lt;NA&gt;
-#&gt; 4        6481     NA         &lt;NA&gt;         &lt;NA&gt;
-#&gt; 5        1604     NA         &lt;NA&gt;         &lt;NA&gt;
-#&gt; 6        3442     NA         &lt;NA&gt;         &lt;NA&gt;</div><div class='input'>
+</div><div class='output co'>#&gt;   state county                          NAME B19013_001E B19013_001EA
+#&gt; 1    30    019       Daniels County, Montana       53591         &lt;NA&gt;
+#&gt; 2    72    073 Jayuya Municipio, Puerto Rico       15615         &lt;NA&gt;
+#&gt; 3    30    079       Prairie County, Montana       50850         &lt;NA&gt;
+#&gt; 4    39    173             Wood County, Ohio       58033         &lt;NA&gt;
+#&gt; 5    24    023      Garrett County, Maryland       48174         &lt;NA&gt;
+#&gt; 6    08    011         Bent County, Colorado       32500         &lt;NA&gt;
+#&gt;   B19013_001M B19013_001MA         GEO_ID NAME_1
+#&gt; 1        3318         &lt;NA&gt; 0500000US30019     NA
+#&gt; 2        3424         &lt;NA&gt; 0500000US72073     NA
+#&gt; 3        6481         &lt;NA&gt; 0500000US30079     NA
+#&gt; 4        1604         &lt;NA&gt; 0500000US39173     NA
+#&gt; 5        2234         &lt;NA&gt; 0500000US24023     NA
+#&gt; 6        3442         &lt;NA&gt; 0500000US08011     NA</div><div class='input'>
 <span class='co'># Retreive block-level data within a specific tract using a nested regionin argument</span>
 <span class='va'>data2010</span> <span class='op'>&lt;-</span> <span class='fu'>getCensus</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"dec/sf1"</span>,
 vintage <span class='op'>=</span> <span class='fl'>2010</span>,
@@ -272,15 +273,15 @@ regionin <span class='op'>=</span> <span class='st'>"state:36+county:027+tract:0
 <span class='va'>saipe</span> <span class='op'>&lt;-</span> <span class='fu'>getCensus</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"timeseries/poverty/saipe"</span>,
 vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"NAME"</span>, <span class='st'>"SAEPOVRT0_17_PT"</span>, <span class='st'>"SAEPOVRTALL_PT"</span><span class='op'>)</span>,
 region <span class='op'>=</span> <span class='st'>"state:01"</span>,
-time <span class='op'>=</span> <span class='st'>"from 2000 to 2017"</span><span class='op'>)</span>
+year <span class='op'>=</span> <span class='st'>"2000:2019"</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>saipe</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   time state    NAME SAEPOVRT0_17_PT SAEPOVRTALL_PT
-#&gt; 1 2000    01 Alabama            20.5           14.6
-#&gt; 2 2001    01 Alabama            22.1           15.7
-#&gt; 3 2002    01 Alabama            21.6           15.4
-#&gt; 4 2003    01 Alabama            22.3           15.3
-#&gt; 5 2004    01 Alabama            22.6           16.1
-#&gt; 6 2005    01 Alabama            24.3           16.9</div><div class='input'>
+</div><div class='output co'>#&gt;   state    NAME SAEPOVRT0_17_PT SAEPOVRTALL_PT YEAR
+#&gt; 1    01 Alabama            20.5           14.6 2000
+#&gt; 2    01 Alabama            22.1           15.7 2001
+#&gt; 3    01 Alabama            21.6           15.4 2002
+#&gt; 4    01 Alabama            22.3           15.3 2003
+#&gt; 5    01 Alabama            22.6           16.1 2004
+#&gt; 6    01 Alabama            24.3           16.9 2005</div><div class='input'>
 <span class='co'># Get county business patterns data for a specific NAICS sector</span>
 <span class='va'>cbp_2016</span> <span class='op'>&lt;-</span> <span class='fu'>getCensus</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"cbp"</span>,
 vintage <span class='op'>=</span> <span class='st'>"2016"</span>,
@@ -292,9 +293,9 @@ naics2012 <span class='op'>=</span> <span class='st'>"23"</span><span class='op'
 #&gt; 1    27 118033 16360  Construction   Minnesota        23
 #&gt; 2    28  44551  3796  Construction Mississippi        23
 #&gt; 3    29 121494 13263  Construction    Missouri        23
-#&gt; 4    26 138920 18803  Construction    Michigan        23
-#&gt; 5    30  25036  5326  Construction     Montana        23
-#&gt; 6    31  45909  6357  Construction    Nebraska        23</div></pre>
+#&gt; 4    30  25036  5326  Construction     Montana        23
+#&gt; 5    31  45909  6357  Construction    Nebraska        23
+#&gt; 6    32  72817  4839  Construction      Nevada        23</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -12,6 +12,7 @@ getCensus(
   region = NULL,
   regionin = NULL,
   time = NULL,
+  year = NULL,
   date = NULL,
   period = NULL,
   monthly = NULL,
@@ -41,7 +42,7 @@ getCensus(
 
 \item{regionin}{Optional hierarchical geography to limit region}
 
-\item{time, date, period, monthly}{Optional arguments used for some time series APIs}
+\item{time, year, date, period, monthly}{Optional arguments used for some time series APIs}
 
 \item{show_call}{List the underlying API call sent to the Census Bureau and other info}
 
@@ -82,7 +83,7 @@ head(data2010)
 saipe <- getCensus(name = "timeseries/poverty/saipe",
 vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 region = "state:01",
-time = "from 2000 to 2017")
+year = "2000:2019")
 head(saipe)
 
 # Get county business patterns data for a specific NAICS sector

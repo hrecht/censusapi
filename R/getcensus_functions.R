@@ -1,9 +1,9 @@
 #' Internal function: Get the API response, return a data frame
 #'
-#' @param apiurl, key, get, region, time
+#' @param apiurl, key, get, region, time, etc
 #' @keywords internal
 #' @export
-getFunction <- function(apiurl, name, key, get, region, regionin, time, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...) {
+getFunction <- function(apiurl, name, key, get, region, regionin, time, year, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...) {
 
 	# Return API's built in error message if invalid call
 	apiCheck <- function(req) {
@@ -107,7 +107,7 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, date, pe
 	}
 
 	# Assemble call
-	req <- httr::GET(apiurl, query = list(key = key, get = get, "for" = region, "in" = regionin, category_code = category_code, data_type_code = data_type_code, time = time, DATE = date, PERIOD = period, MONTHLY = monthly, NAICS=naics, PSCODE=pscode, NAICS2012 = naics2012, NAICS2007 = naics2007, NAICS2002 = naics2002, NAICS1997 = naics1997, SIC = sic, ...))
+	req <- httr::GET(apiurl, query = list(key = key, get = get, "for" = region, "in" = regionin, category_code = category_code, data_type_code = data_type_code, time = time, YEAR = year, DATE = date, PERIOD = period, MONTHLY = monthly, NAICS=naics, PSCODE=pscode, NAICS2012 = naics2012, NAICS2007 = naics2007, NAICS2002 = naics2002, NAICS1997 = naics1997, SIC = sic, ...))
 
 	# Check the API call for a valid response
 	apiCheck(req)
@@ -126,7 +126,7 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, date, pe
 #' @param vars List of variables to get
 #' @param region Geography to get
 #' @param regionin Optional hierarchical geography to limit region
-#' @param time,date,period,monthly Optional arguments used for some time series APIs
+#' @param time,year,date,period,monthly Optional arguments used for some time series APIs
 #' @param show_call List the underlying API call sent to the Census Bureau and other info
 #' @param category_code,data_type_code Arguments used in Economic Indicators Time Series API
 #' @param naics,pscode Arguments used in Annual Survey of Manufactures API
@@ -160,7 +160,7 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, date, pe
 #' saipe <- getCensus(name = "timeseries/poverty/saipe",
 #' vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 #' region = "state:01",
-#' time = "from 2000 to 2017")
+#' year = "2000:2019")
 #' head(saipe)
 #'
 #' # Get county business patterns data for a specific NAICS sector
@@ -178,6 +178,7 @@ getCensus <-
 					 region = NULL,
 					 regionin = NULL,
 					 time = NULL,
+					 year = NULL,
 					 date = NULL,
 					 period = NULL,
 					 monthly = NULL,
@@ -222,13 +223,13 @@ getCensus <-
 		# Split vars into list
 		vars <- split(vars, ceiling(seq_along(vars)/50))
 		get <- lapply(vars, function(x) paste(x, sep='', collapse=","))
-		data <- lapply(get, function(x) getFunction(apiurl, name, key, x, region, regionin, time, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...))
+		data <- lapply(get, function(x) getFunction(apiurl, name, key, x, region, regionin, time, year, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...))
 		colnames <- unlist(lapply(data, names))
 		data <- do.call(cbind,data)
 		names(data) <- colnames
 	} else {
 		get <- paste(vars, sep='', collapse=',')
-		data <- getFunction(apiurl, name, key, get, region, regionin, time, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...)
+		data <- getFunction(apiurl, name, key, get, region, regionin, time, year, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...)
 	}
 	# If there are any duplicate columns (ie if you put a variable in vars twice) remove the duplicates
 	data <- data[, !duplicated(colnames(data))]

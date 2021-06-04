@@ -45,80 +45,36 @@ library(censusapi)
 
 Get uninsured rates from the Small Area Health Insurance Estimates [(SAHIE) timeseries API](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html) using `getCensus()`.
 
-State-level data by income group within Alabama.
+A simple example: get state-level uninsured rates by income group in Alabama.
 ```R 
 getCensus(name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region = "state:01",
-	time = 2017)
-#>   time state    NAME IPRCAT                IPR_DESC PCTUI_PT
-#> 1 2017    01 Alabama      0             All Incomes     11.0
-#> 2 2017    01 Alabama      1      <= 200% of Poverty     18.3
-#> 3 2017    01 Alabama      2      <= 250% of Poverty     17.3
-#> 4 2017    01 Alabama      3      <= 138% of Poverty     19.4
-#> 5 2017    01 Alabama      4      <= 400% of Poverty     14.5
-#> 6 2017    01 Alabama      5 138% to 400% of Poverty     11.5
-```
-County-level data within Alabama, specified by adding the `regionin` parameter.
-```R
-sahie_counties <- getCensus(name = "timeseries/healthins/sahie",
-	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
-	region = "county:*",
-	regionin = "state:01",
-	time = 2017)
-head(sahie_counties, n=12L)
-#>    time state county                NAME IPRCAT    IPR_DESC PCTUI_PT
-#> 1  2017    01    003  Baldwin County, AL      0 All Incomes     11.3
-#> 2  2017    01    001  Autauga County, AL      0 All Incomes      8.7
-#> 3  2017    01    015  Calhoun County, AL      0 All Incomes     11.9
-#> 4  2017    01    005  Barbour County, AL      0 All Incomes     12.2
-#> 5  2017    01    007     Bibb County, AL      0 All Incomes     10.2
-#> 6  2017    01    009   Blount County, AL      0 All Incomes     13.4
-#> 7  2017    01    011  Bullock County, AL      0 All Incomes     11.4
-#> 8  2017    01    013   Butler County, AL      0 All Incomes     11.2
-#> 9  2017    01    027     Clay County, AL      0 All Incomes     13.9
-#> 10 2017    01    017 Chambers County, AL      0 All Incomes     11.9
-#> 11 2017    01    019 Cherokee County, AL      0 All Incomes     11.2
-#> 12 2017    01    021  Chilton County, AL      0 All Incomes     13.8
-```
-Retrieve annual data using the `time` argument by specifying a start year and stop year.
-```R
-sahie_annual <- getCensus(name = "timeseries/healthins/sahie",
-    vars = c("NAME", "PCTUI_PT"),
-    region = "state:01",
-    time = "from 2006 to 2017")
-sahie_annual
-#> 		time state    NAME PCTUI_PT
-#> 1  2006    01 Alabama     15.7
-#> 2  2007    01 Alabama     14.6
-#> 3  2008    01 Alabama     15.3
-#> 4  2009    01 Alabama     15.8
-#> 5  2010    01 Alabama     16.9
-#> 6  2011    01 Alabama     16.6
-#> 7  2012    01 Alabama     15.8
-#> 8  2013    01 Alabama     15.9
-#> 9  2014    01 Alabama     14.2
-#> 10 2015    01 Alabama     11.9
-#> 11 2016    01 Alabama     10.8
-#> 12 2017    01 Alabama     11.0
+	year = 2018)
+#>   state    NAME IPRCAT                IPR_DESC PCTUI_PT YEAR
+#> 1    01 Alabama      0             All Incomes     11.9 2018
+#> 2    01 Alabama      1      <= 200% of Poverty     19.6 2018
+#> 3    01 Alabama      2      <= 250% of Poverty     18.5 2018
+#> 4    01 Alabama      3      <= 138% of Poverty     20.6 2018
+#> 5    01 Alabama      4      <= 400% of Poverty     15.5 2018
+#> 6    01 Alabama      5 138% to 400% of Poverty     12.5 2018
 ```
 
-Get the uninsured rate for non-elderly adults (`AGECAT = 1`) with incomes of 138 to 400% of the poverty line (`IPRCAT = 5`), by race (`RACECAT`) and state.
+A more complicated example: Get the uninsured rate (`PCTUI_PT`) and number of unisured people (`NUI_PT`) for non-elderly adults (`AGECAT = 1`) in Florida (`state = 12`) with incomes of 138 to 400% of the poverty line (`IPRCAT = 5`), by race (`RACECAT`) and ethnicity.
 ```R
-sahie_nonelderly <- getCensus(name = "timeseries/healthins/sahie",
-	vars = c("NAME", "PCTUI_PT", "IPR_DESC", "AGE_DESC", "RACECAT", "RACE_DESC"), 
-	region = "state:*", 
-	time = 2017,
+sahie_detail <- getCensus(
+	name = "timeseries/healthins/sahie",
+	vars = c("NAME", "PCTUI_PT", "NUI_PT", "IPR_DESC", "AGE_DESC", "RACECAT", "RACE_DESC"), 
+	region = "state:12", 
+	year = 2018,
 	IPRCAT = 5,
 	AGECAT = 1)
-head(sahie_nonelderly)
-#>   time state       NAME PCTUI_PT                IPR_DESC       AGE_DESC RACECAT RACE_DESC IPRCAT AGECAT
-#> 1 2017    01    Alabama     14.6 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1
-#> 2 2017    02     Alaska     24.3 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1
-#> 3 2017    04    Arizona     16.6 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1
-#> 4 2017    05   Arkansas     12.4 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1
-#> 5 2017    06 California     13.6 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1
-#> 6 2017    08   Colorado     14.6 138% to 400% of Poverty 18 to 64 years       0 All Races      5      1
+sahie_detail
+#>   	 state    NAME PCTUI_PT  NUI_PT                IPR_DESC       AGE_DESC RACECAT									RACE_DESC YEAR IPRCAT AGECAT
+#>   1    12 Florida     22.3 1220199 138% to 400% of Poverty 18 to 64 years       0                	All Races 2018      5      1
+#>   2    12 Florida     19.3  477724 138% to 400% of Poverty 18 to 64 years       1	White alone, not Hispanic 2018      5      1
+#>   3    12 Florida     20.2  200193 138% to 400% of Poverty 18 to 64 years       2	Black alone, not Hispanic 2018      5      1
+#>   4    12 Florida     28.2  494054 138% to 400% of Poverty 18 to 64 years       3	Black alone, not Hispanic 2018      5      1
 ```
 
 Read more on how to build a `censusapi` call in [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html) and see examples from every API in the [example master list](https://hrecht.github.io/censusapi/articles/example-masterlist.html).
