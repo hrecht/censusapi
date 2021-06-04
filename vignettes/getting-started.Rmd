@@ -200,7 +200,7 @@ qwi <- getCensus(
 	name = "timeseries/qwi/sa",
 	region = "state:02",
 	vars = c("Emp", "sex"),
-	year = 2012,
+	time = 2012,
 	quarter = 1,
 	agegrp = "A07",
 	ownercode = "A05",
