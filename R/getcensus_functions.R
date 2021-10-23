@@ -55,7 +55,7 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 		df[] <- lapply(df, as.character)
 
 		# Make columns numeric based on column names - unfortunately best strategy without additional API calls given structure of data across endpoints
-		string_col_parts <- "_TTL|_NAME|NAICS2012|NAICS2017|NAICS2012_TTL|NAICS2017_TTL|fage4|FAGE4|LABEL|_DESC|CAT"
+		string_col_parts <- "_TTL|_NAME|NAICS2012|NAICS2017|NAICS2012_TTL|NAICS2017_TTL|fage4|FAGE4|LABEL|_DESC|CAT|UNIT_QY|_FLAG"
 
 		# For ACS data, do not make columns numeric if they are ACS annotation variables - ending in MA or EA or SS
 		if (grepl("acs/acs", name, ignore.case = T)) {
