@@ -1,15 +1,14 @@
+template:
+  bootstrap: 5
+  bootswatch: simplex
+  bslib:
+    base_font: {google: "Roboto"}
+    primary: "#0d565c"
 navbar:
-  title: ~
-  type: default
-  left:
-  - text: Reference
-    href: reference/index.html
-  - text: Getting started with censusapi
+ components:
+   intro:
+    text: Get started
     href: articles/getting-started.html
-  - text: Example master list
+   articles:
+    text: Example masterlist
     href: articles/example-masterlist.html
-  - text: News
-    href: news/index.html
-  right:
-  - icon: fa-github fa-lg
-    href: https://github.com/hrecht/censusapi

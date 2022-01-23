@@ -4,15 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="A wrapper for the U.S. Census Bureau APIs that returns data frames of 
+	Census data and metadata. Available datasets include the 
+	Decennial Census, American Community Survey, Small Area Health Insurance Estimates,
+	Small Area Income and Poverty Estimates, Population Estimates and Projections, and more.">
 <title>Retrieve Data from the Census APIs • censusapi</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="deps/_Roboto-0.4.0/font.css" rel="stylesheet">
+<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
-<meta property="og:title" content="Retrieve Data from the Census APIs">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Retrieve Data from the Census APIs">
 <meta property="og:description" content="A wrapper for the U.S. Census Bureau APIs that returns data frames of 
 	Census data and metadata. Available datasets include the 
 	Decennial Census, American Community Survey, Small Area Health Insurance Estimates,
@@ -22,100 +25,97 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-home">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">censusapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2</span>
-      </span>
-    </div>
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="reference/index.html">Reference</a>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="index.html">censusapi</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.3.9000</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="articles/getting-started.html">Get started</a>
 </li>
-<li>
-  <a href="articles/getting-started.html">Getting started with censusapi</a>
+<li class="nav-item">
+  <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="articles/example-masterlist.html">Example master list</a>
+<li class="nav-item">
+  <a class="nav-link" href="articles/example-masterlist.html">Example masterlist</a>
 </li>
-<li>
-  <a href="news/index.html">News</a>
+<li class="nav-item">
+  <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/hrecht/censusapi">
-    <span class="fas fa-github fa-lg"></span>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/hrecht/censusapi/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+    
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-home">
+<div class="row">
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header"><h1 id="censusapi">censusapi<a class="anchor" aria-label="anchor" href="#censusapi"></a>
+</h1></div>
 
-      
-
-      </header><div class="row">
-  <div class="contents col-md-9">
-<div id="censusapi" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#censusapi" class="anchor"></a>censusapi</h1></div>
-
-<p><code>censusapi</code> is an accessor for the United States Census Bureau’s <a href="https://www.census.gov/developers/">APIs</a>. More than <a href="https://api.census.gov/data.html">300 Census API endpoints</a> are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—<code>getCensus</code>—and the same syntax for each dataset.</p>
+<p><code>censusapi</code> is an accessor for the United States Census Bureau’s <a href="https://www.census.gov/developers/" class="external-link">APIs</a>. More than <a href="https://api.census.gov/data.html" class="external-link">300 Census API endpoints</a> are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—<code>getCensus</code>—and the same syntax for each dataset.</p>
 <p><code>censusapi</code> generally uses the APIs’ original parameter names so that users can easily transition between Census’s documentation and examples and this package. It also includes metadata functions to return data frames of available APIs, variables, and geographies.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>Get the latest stable release from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"censusapi"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"censusapi"</span><span class="op">)</span></code></pre></div>
 <p>You can also install the latest development version of <code>censusapi</code> from Github using <code>devtools</code>. Most people will not want to do this - BEWARE!:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"hrecht/censusapi"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"hrecht/censusapi"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="api-key-setup" class="section level2">
-<h2 class="hasAnchor">
-<a href="#api-key-setup" class="anchor"></a>API key setup</h2>
-<p>To use the Census APIs, <a href="http://api.census.gov/data/key_signup.html">sign up</a> for an API key, which will be sent to your provided email address. You’ll need that key to use this package. While Census currently does not require an API key for all APIs, that can change at any moment and so this package enforces key usage.</p>
+<div class="section level2">
+<h2 id="api-key-setup">API key setup<a class="anchor" aria-label="anchor" href="#api-key-setup"></a>
+</h2>
+<p>To use the Census APIs, <a href="http://api.census.gov/data/key_signup.html" class="external-link">sign up</a> for an API key, which will be sent to your provided email address. You’ll need that key to use this package. While Census currently does not require an API key for all APIs, that can change at any moment and so this package enforces key usage.</p>
 <p>A recommended way to manage your key is to add it to you .Renviron file. Most users will want to do this. Within R, run:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Add key to .Renviron</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>CENSUS_KEY<span class="op">=</span><span class="va">YOURKEYHERE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>CENSUS_KEY<span class="op">=</span><span class="va">YOURKEYHERE</span><span class="op">)</span>
 <span class="co"># Reload .Renviron</span>
-<span class="fu"><a href="https://rdrr.io/r/base/readRenviron.html">readRenviron</a></span><span class="op">(</span><span class="st">"~/.Renviron"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/readRenviron.html" class="external-link">readRenviron</a></span><span class="op">(</span><span class="st">"~/.Renviron"</span><span class="op">)</span>
 <span class="co"># Check to see that the expected key is output in your R console</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"CENSUS_KEY"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"CENSUS_KEY"</span><span class="op">)</span></code></pre></div>
 <p>Or, open your .Renviron file in a text editor and add the following line: <code>CENSUS_KEY=YOURKEYHERE</code></p>
 <p>Once you’ve added your census key to your system environment, censusapi will use it by default without any extra work on your part.</p>
 <p>In some instances you might not want to put your key in your .Renviron - for example, if you’re on a shared school computer. You can always choose to manually set <code>key="YOURKEY"</code> as an argument in getCensus if you prefer.</p>
 </div>
-<div id="usage-examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage-examples" class="anchor"></a>Usage examples</h2>
+<div class="section level2">
+<h2 id="usage-examples">Usage examples<a class="anchor" aria-label="anchor" href="#usage-examples"></a>
+</h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hrecht/censusapi">censusapi</a></span><span class="op">)</span></code></pre></div>
-<p>Get uninsured rates from the Small Area Health Insurance Estimates <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html">(SAHIE) timeseries API</a> using <code><a href="reference/getCensus.html">getCensus()</a></code>.</p>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hrecht/censusapi" class="external-link">censusapi</a></span><span class="op">)</span></code></pre></div>
+<p>Get uninsured rates from the Small Area Health Insurance Estimates <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html" class="external-link">(SAHIE) timeseries API</a> using <code><a href="reference/getCensus.html">getCensus()</a></code>.</p>
 <p>A simple example: get state-level uninsured rates by income group in Alabama.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/getCensus.html">getCensus</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
-    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, 
+    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, 
     region <span class="op">=</span> <span class="st">"state:01"</span>,
     year <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span>
 <span class="co">#&gt;   state    NAME IPRCAT                IPR_DESC PCTUI_PT YEAR</span>
@@ -129,7 +129,7 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sahie_detail</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getCensus.html">getCensus</a></span><span class="op">(</span>
     name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
-    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"NUI_PT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span><span class="op">)</span>, 
+    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"NUI_PT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span><span class="op">)</span>, 
     region <span class="op">=</span> <span class="st">"state:12"</span>, 
     year <span class="op">=</span> <span class="fl">2018</span>,
     IPRCAT <span class="op">=</span> <span class="fl">5</span>,
@@ -140,72 +140,80 @@
 <span class="co">#&gt;   2    12 Florida     19.3  477724 138% to 400% of Poverty 18 to 64 years       1    White alone, not Hispanic 2018      5      1</span>
 <span class="co">#&gt;   3    12 Florida     20.2  200193 138% to 400% of Poverty 18 to 64 years       2    Black alone, not Hispanic 2018      5      1</span>
 <span class="co">#&gt;   4    12 Florida     28.2  494054 138% to 400% of Poverty 18 to 64 years       3    Black alone, not Hispanic 2018      5      1</span></code></pre></div>
-<p>Read more on how to build a <code>censusapi</code> call in <a href="https://hrecht.github.io/censusapi/articles/getting-started.html">Getting started with censusapi</a> and see examples from every API in the <a href="https://hrecht.github.io/censusapi/articles/example-masterlist.html">example master list</a>.</p>
+<p>Read more on how to build a <code>censusapi</code> call in <a href="https://hrecht.github.io/censusapi/articles/getting-started.html" class="external-link">Getting started with censusapi</a> and see examples from every API in the <a href="https://hrecht.github.io/censusapi/articles/example-masterlist.html" class="external-link">example master list</a>.</p>
 </div>
-<div id="disclaimer" class="section level2">
-<h2 class="hasAnchor">
-<a href="#disclaimer" class="anchor"></a>Disclaimer</h2>
+<div class="section level2">
+<h2 id="disclaimer">Disclaimer<a class="anchor" aria-label="anchor" href="#disclaimer"></a>
+</h2>
 <p>This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.</p>
-<p>Please note that this project is released with a <a href="https://github.com/hrecht/censusapi/blob/master/CODE_OF_CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
+<p>Please note that this project is released with a <a href="https://github.com/hrecht/censusapi/blob/master/CODE_OF_CONDUCT.md" class="external-link">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
 </div>
 </div>
-  </div>
+  </main><aside class="col-md-3"><div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=censusapi" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/hrecht/censusapi/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/hrecht/censusapi/issues" class="external-link">Report a bug</a></li>
+</ul>
+</div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="links">
-<h2>Links</h2>
-<ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=censusapi">https://​cloud.r-project.org/​package=censusapi</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/hrecht/censusapi/">https://​github.com/​hrecht/​censusapi/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/hrecht/censusapi/issues">https://​github.com/​hrecht/​censusapi/​issues</a>
-</li>
-</ul>
-</div>
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></li>
+<li><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></li>
 </ul>
 </div>
+
 <div class="community">
-<h2>Community</h2>
+<h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
 </ul>
 </div>
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing censusapi</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Hannah Recht <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/hrecht/censusapi"><img src="https://travis-ci.org/hrecht/censusapi.svg?branch=master" alt="Build Status"></a></li>
-<li><a href="https://cran.r-project.org/package=censusapi"><img src="https://www.r-pkg.org/badges/version/censusapi" alt="CRAN Badge"></a></li>
+<li><a href="https://travis-ci.org/hrecht/censusapi" class="external-link"><img src="https://travis-ci.org/hrecht/censusapi.svg?branch=master" alt="Build Status"></a></li>
+<li><a href="https://cran.r-project.org/package=censusapi" class="external-link"><img src="https://www.r-pkg.org/badges/version/censusapi" alt="CRAN Badge"></a></li>
 </ul>
 </div>
-</div>
-</div>
 
-
-      <footer><div class="copyright">
-  <p>Developed by Hannah Recht.</p>
+  </aside>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+
+    <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by Hannah Recht.</p>
 </div>
 
-      </footer>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+</div>
+
+    </footer>
 </div>
 
   
 
+  
 
   </body>
 </html>

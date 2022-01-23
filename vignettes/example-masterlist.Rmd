@@ -536,20 +536,20 @@ qwi
 ## Survey of Business Owners
 [Survey of Business Owners documentation](https://www.census.gov/data/developers/data-sets/business-owners.html)
 ```{r}
-sbo <- getCensus(
-	name = "sbo",
-	vintage = 2012,
-	vars = c("GEO_TTL", "RCPSZFI", "RCPSZFI_TTL", "FIRMPDEMP"),
-	region = "state:*")
-head(sbo)
-
-sbo_groups <- getCensus(
-	name = "sbo",
-	vintage = 2012,
-	vars = c("GEO_TTL", "RACE_GROUP", "RACE_GROUP_TTL", "FIRMPDEMP"),
-	region = "county:*",
-	regionin = "state:09")
-head(sbo_groups)
+# sbo <- getCensus(
+# 	name = "sbo",
+# 	vintage = 2012,
+# 	vars = c("GEO_TTL", "RCPSZFI", "RCPSZFI_TTL", "FIRMPDEMP"),
+# 	region = "state:*")
+# head(sbo)
+# 
+# sbo_groups <- getCensus(
+# 	name = "sbo",
+# 	vintage = 2012,
+# 	vars = c("GEO_TTL", "RACE_GROUP", "RACE_GROUP_TTL", "FIRMPDEMP"),
+# 	region = "county:*",
+# 	regionin = "state:09")
+# head(sbo_groups)
 ```
 
 ## The Planning Database

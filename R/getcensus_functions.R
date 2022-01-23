@@ -89,6 +89,12 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 			numeric_cols <- grep("[0-9]|CINT|MIN|MED|AVG|MAX|DRR|CRR", names(df), value=TRUE, ignore.case = T)
 			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
 
+			# International trade
+		} else if (grepl("timeseries/intltrade/", name, ignore.case = T)) {
+			numeric_cols <- grep("[0-9]", names(df), value=TRUE, ignore.case = T)
+			string_col_parts <- paste0(string_col_parts, "|UNIT_QY|_FLAG")
+			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+
 
 		} else {
 			# Do not make known string/label variables numeric

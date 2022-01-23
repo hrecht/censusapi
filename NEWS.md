@@ -1,3 +1,6 @@
+# censusapi 0.7.3
+* Properly types certain variables in international trade timeseries APIs.
+
 # censusapi 0.7.2
 * Adds named parameter for `YEAR` to `getCensus()` per changes to some timeseries endpoints that previously used `TIME` as a parameter.
 * Updates examples using SAHIE and SAIPE APIs per Census Bureau changes to these endpoints.
