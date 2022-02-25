@@ -244,4 +244,103 @@ getCensus <-
 	# Reorder columns so that lowercase column names (geographies) are first
 	data <- data[,c(which(grepl("[a-z]", colnames(data))), which(!grepl("[a-z]", colnames(data))))]
 	return(data)
+	}
+
+
+
+
+#' Retrieve Census data for multiple states
+#'
+#' @param iterate_over character vector of state FIPS codes to retrieve data for
+#' @param ... additional arguments to pass to \code{\link{getCensus}}
+#' @param regionin hierarchical geography to limit region; do not include state
+#' @return data frame with data from the given states
+#' @export
+#' @examples
+#' \donttest{
+#'
+#'
+#'
+#' # Retrieve Block Level Data from the Planning Database for given states
+#' # iterate_over argument includes NA to demonstrate error handling behavior
+#' pdb_ex <- getCensusByState(
+#'     iterate_over = c("01", "02", NA, "04"),
+#'     name = "pdb/blockgroup",
+#'     vintage = 2021,
+#'     key = Sys.getenv("CENSUS_KEY"),
+#'     vars = c( "Tot_Population_CEN_2010",
+#'         "Tot_Population_ACS_15_19"),
+#'     regionin = "county:*+tract:*",
+#'     region = "block group:*")
+#'     vintage = 2017,
+#'     vars = c("NAME", "group(B19013)"),
+#'     region = "county:*")
+#'
+#'
+#'  # retrieve P2 variable group regarding rural/urban status
+#'  # at the county subdivision level for given states
+#' dec_ex <- getCensusByState(
+#'     iterate_over = c("01", "02"),
+#'     key = Sys.getenv("CENSUS_KEY"),
+#'     name = "dec/sf1",
+#'     vintage = 2010,
+#'     vars = "group(P2)",
+#'     regionin = "county:*",
+#'     region = "county subdivision:*")
+#'
+#' # retrieve internet data at the county level for given states
+#' acs1_ex <- getCensusByState(
+#'     iterate_over = c("36", "38"),
+#'     name = "acs/acs1/subject",
+#'     key = Sys.getenv("CENSUS_KEY"),
+#'     vintage = 2018,
+#'     vars = c("NAME", "S2801_C02_019E",
+#'              "S2801_C02_019M",
+#'              "S2801_C02_023E",
+#'              "S2801_C02_023M"),
+#'     region = "county:*")
+#'
+#' # get annual median income for given states in 2015 and 2016
+# # at the place level
+#' acs_ex <- getCensusByState(
+#'       iterate_over = c("08", "12"),
+#'     key = Sys.getenv("CENSUS_KEY"),
+#'     name = "acs/acs1/cprofile",
+#'     vintage = 2019,
+#'     vars = c("NAME",
+#'         "CP03_2015_062E",
+#'         "CP03_2016_062E"),
+#'     region = "place:*") }
+#'
+
+getCensusByState <- function(iterate_over, ..., regionin = NULL) {
+  # if regionin argument is given, update regionin argument with each state
+  if (!is.null(regionin)) {
+    regionin <- paste0("state:", iterate_over, "+", regionin)
+  }
+  else {
+    # otherwise regionin argument is just the state
+    regionin <- paste0("state:", iterate_over)
+  }
+  # handle errors so function will not crash if there
+  # is a problematic state in the list
+  safe <- function(iterate_over, ...) {
+    tryCatch(getCensus(iterate_over, ... ),
+             error = function(e) {
+               # warn user about which entry caused the issue
+               message("\nIssue with:\n", iterate_over)
+               message(e, "\n")
+             },
+             # if an error occurs, return NULL
+             finally = NULL) }
+
+  # extract data for each state, with error handling
+  result <- lapply(regionin, safe, ...)
+
+  # rbind results into a data.frame
+  df <- Reduce(rbind, result)
+
+  # return the data for each given state as a single data.frame
+  return(df)
 }
+
