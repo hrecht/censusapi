@@ -1,4 +1,4 @@
-# censusapi 0.8.0
+# censusapi 0.8.0 
 * The API metadata gathered in `listCensusMetadata()` now has new columns: dataset `contact` and dataset `type`: either Aggregate, Timeseries, or Microdata.
 * Documentation and examples are updated, including new vignettes on microdata access and advanced censusapi usage.
 
