@@ -1,6 +1,10 @@
 ---
 title: "Even more censusapi examples"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    df_print: kable
+pkgdown:
+  as_is: true
 description: >
   Examples from many of the summary data APIs.
 vignette: >
@@ -557,7 +561,3 @@ pdb <- getCensus(
 	regionin = "state:01+county:001")
 head(pdb)
 ```
-
-
-## Disclaimer
-This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.

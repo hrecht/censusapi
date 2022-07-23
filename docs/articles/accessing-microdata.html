@@ -73,8 +73,6 @@
 </nav><div class="container template-article">
 
 
-
-
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Accessing microdata</h1>
@@ -98,20 +96,67 @@ API documentation</a> closely.</p>
 by mail?) and <code>PESEX</code> (gender), along with the appropriate
 weighting variable, <code>PWSSWGT</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># https://api.census.gov/data/2020/cps/voting/nov?get=PES1,PES5,PESEX,PWSSWGT&amp;for=state:01</span></span>
-<span><span class="va">cps_voting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">cps_voting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"cps/voting/nov"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PES1"</span>, <span class="st">"PES5"</span>, <span class="st">"PESEX"</span>, <span class="st">"PWSSWGT"</span><span class="op">)</span>,</span>
 <span>    region <span class="op">=</span> <span class="st">"state:36"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cps_voting</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   state PES1 PES5 PESEX   PWSSWGT</span></span>
-<span><span class="co">## 1    36    1    1     1 4571.2161</span></span>
-<span><span class="co">## 2    36    1    1     2 4806.3694</span></span>
-<span><span class="co">## 3    36   -1   -1     1 4907.6452</span></span>
-<span><span class="co">## 4    36   -1   -1     2 5128.4311</span></span>
-<span><span class="co">## 5    36    1    1     2 3440.3007</span></span>
-<span><span class="co">## 6    36    1   -3     1 5204.5663</span></span></code></pre>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="right">PES1</th>
+<th align="right">PES5</th>
+<th align="left">PESEX</th>
+<th align="left">PWSSWGT</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">36</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">1</td>
+<td align="left">4571.2161</td>
+</tr>
+<tr class="even">
+<td align="left">36</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">2</td>
+<td align="left">4806.3694</td>
+</tr>
+<tr class="odd">
+<td align="left">36</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+<td align="left">1</td>
+<td align="left">4907.6452</td>
+</tr>
+<tr class="even">
+<td align="left">36</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+<td align="left">2</td>
+<td align="left">5128.4311</td>
+</tr>
+<tr class="odd">
+<td align="left">36</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">2</td>
+<td align="left">3440.3007</td>
+</tr>
+<tr class="even">
+<td align="left">36</td>
+<td align="right">1</td>
+<td align="right">-3</td>
+<td align="left">1</td>
+<td align="left">5204.5663</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>As for all other endpoints, <code>censusapi</code> retrieves the data
 so that you can perform your own analysis using your methodology of
 choice. If you’re looking for a simple tool to perform analysis on the
@@ -126,14 +171,7 @@ protocol)</li>
 </li>
 <li>Retrieve microdata via the Census APIs with <a href="https://walker-data.com/tidycensus/articles/pums-data.html" class="external-link">tidycensus</a>,
 which has more robust functions for working with this data.</li>
-</ul>
-<div class="section level2">
-<h2 id="disclaimer">Disclaimer<a class="anchor" aria-label="anchor" href="#disclaimer"></a>
-</h2>
-<p>This product uses the Census Bureau Data API but is not endorsed or
-certified by the Census Bureau.</p>
-</div>
-  </main>
+</ul></main>
 </div>
 
 

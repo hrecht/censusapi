@@ -73,8 +73,6 @@
 </nav><div class="container template-article">
 
 
-
-
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Advanced censusapi features</h1>
@@ -86,9 +84,6 @@
 
     
     
-<div class="section level2">
-<h2 id="advanced-topics">Advanced topics<a class="anchor" aria-label="anchor" href="#advanced-topics"></a>
-</h2>
 <p>This package allows access to the full range of the U.S. Census
 Bureau’s APIs. Where the API allows it, you can specify complicated
 geographies or filter based on a range of parameters. Each API is a
@@ -123,27 +118,115 @@ of the poverty line (<code>IPRCAT = 5</code>), by race
 <span>    IPRCAT <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>    AGECAT <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_nonelderly</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   state    NAME PCTUI_PT                IPR_DESC       AGE_DESC RACECAT</span></span>
-<span><span class="co">## 1    01 Alabama     16.0 138% to 400% of Poverty 18 to 64 years       0</span></span>
-<span><span class="co">## 2    01 Alabama     14.4 138% to 400% of Poverty 18 to 64 years       1</span></span>
-<span><span class="co">## 3    01 Alabama     15.9 138% to 400% of Poverty 18 to 64 years       2</span></span>
-<span><span class="co">## 4    01 Alabama     37.5 138% to 400% of Poverty 18 to 64 years       3</span></span>
-<span><span class="co">## 5    02  Alaska     22.5 138% to 400% of Poverty 18 to 64 years       0</span></span>
-<span><span class="co">## 6    02  Alaska     18.5 138% to 400% of Poverty 18 to 64 years       1</span></span>
-<span><span class="co">##                   RACE_DESC YEAR IPRCAT AGECAT</span></span>
-<span><span class="co">## 1                 All Races 2018      5      1</span></span>
-<span><span class="co">## 2 White alone, not Hispanic 2018      5      1</span></span>
-<span><span class="co">## 3 Black alone, not Hispanic 2018      5      1</span></span>
-<span><span class="co">## 4       Hispanic (any race) 2018      5      1</span></span>
-<span><span class="co">## 5                 All Races 2018      5      1</span></span>
-<span><span class="co">## 6 White alone, not Hispanic 2018      5      1</span></span></code></pre>
+<div class="kable-table">
+<table class="table">
+<colgroup>
+<col width="5%">
+<col width="6%">
+<col width="7%">
+<col width="20%">
+<col width="13%">
+<col width="6%">
+<col width="22%">
+<col width="4%">
+<col width="6%">
+<col width="6%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">NAME</th>
+<th align="right">PCTUI_PT</th>
+<th align="left">IPR_DESC</th>
+<th align="left">AGE_DESC</th>
+<th align="left">RACECAT</th>
+<th align="left">RACE_DESC</th>
+<th align="left">YEAR</th>
+<th align="left">IPRCAT</th>
+<th align="left">AGECAT</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="right">16.0</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">2018</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="right">14.4</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">1</td>
+<td align="left">White alone, not Hispanic</td>
+<td align="left">2018</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="right">15.9</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">2</td>
+<td align="left">Black alone, not Hispanic</td>
+<td align="left">2018</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="right">37.5</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">3</td>
+<td align="left">Hispanic (any race)</td>
+<td align="left">2018</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">02</td>
+<td align="left">Alaska</td>
+<td align="right">22.5</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">2018</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">02</td>
+<td align="left">Alaska</td>
+<td align="right">18.5</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">1</td>
+<td align="left">White alone, not Hispanic</td>
+<td align="left">2018</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Note: data by race is only returned where the population is large
 enough, so some states will not have rows for some race groups. Here’s
 another example, getting national data from percent uninsured
 (<code>PCTUI_PT</code>) and number uninsured (<code>NUI_PT</code>),
 along with the associated margins of error, by race group and income
 group for all years.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_nonelderly_annual</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"PCTUI_MOE"</span>, <span class="st">"NUI_PT"</span>, <span class="st">"NUI_MOE"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span><span class="op">)</span>, </span>
@@ -151,80 +234,313 @@ group for all years.</p>
 <span>    year <span class="op">=</span> <span class="st">"2006:2018"</span>,</span>
 <span>    AGECAT <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_nonelderly_annual</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   us          NAME PCTUI_PT PCTUI_MOE   NUI_PT NUI_MOE IPRCAT</span></span>
-<span><span class="co">## 1  1 United States     19.5       0.3 36363986  549708      0</span></span>
-<span><span class="co">## 2  1 United States     39.5       0.7 19368368  440544      1</span></span>
-<span><span class="co">## 3  1 United States     36.5       0.6 23595529  455801      2</span></span>
-<span><span class="co">## 4  1 United States     13.7       0.3 17094552  364661      0</span></span>
-<span><span class="co">## 5  1 United States     32.0       0.8  7846458  277188      1</span></span>
-<span><span class="co">## 6  1 United States     28.5       0.7  9614431  291480      2</span></span>
-<span><span class="co">##             IPR_DESC       AGE_DESC RACECAT                 RACE_DESC YEAR</span></span>
-<span><span class="co">## 1        All Incomes 18 to 64 years       0                 All Races 2006</span></span>
-<span><span class="co">## 2 &lt;= 200% of Poverty 18 to 64 years       0                 All Races 2006</span></span>
-<span><span class="co">## 3 &lt;= 250% of Poverty 18 to 64 years       0                 All Races 2006</span></span>
-<span><span class="co">## 4        All Incomes 18 to 64 years       1 White alone, not Hispanic 2006</span></span>
-<span><span class="co">## 5 &lt;= 200% of Poverty 18 to 64 years       1 White alone, not Hispanic 2006</span></span>
-<span><span class="co">## 6 &lt;= 250% of Poverty 18 to 64 years       1 White alone, not Hispanic 2006</span></span>
-<span><span class="co">##   AGECAT</span></span>
-<span><span class="co">## 1      1</span></span>
-<span><span class="co">## 2      1</span></span>
-<span><span class="co">## 3      1</span></span>
-<span><span class="co">## 4      1</span></span>
-<span><span class="co">## 5      1</span></span>
-<span><span class="co">## 6      1</span></span></code></pre>
+<div class="kable-table">
+<table class="table">
+<colgroup>
+<col width="2%">
+<col width="10%">
+<col width="6%">
+<col width="7%">
+<col width="6%">
+<col width="5%">
+<col width="5%">
+<col width="13%">
+<col width="10%">
+<col width="5%">
+<col width="18%">
+<col width="3%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">us</th>
+<th align="left">NAME</th>
+<th align="right">PCTUI_PT</th>
+<th align="right">PCTUI_MOE</th>
+<th align="right">NUI_PT</th>
+<th align="right">NUI_MOE</th>
+<th align="left">IPRCAT</th>
+<th align="left">IPR_DESC</th>
+<th align="left">AGE_DESC</th>
+<th align="left">RACECAT</th>
+<th align="left">RACE_DESC</th>
+<th align="left">YEAR</th>
+<th align="left">AGECAT</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="right">19.5</td>
+<td align="right">0.3</td>
+<td align="right">36363986</td>
+<td align="right">549708</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">2006</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="right">39.5</td>
+<td align="right">0.7</td>
+<td align="right">19368368</td>
+<td align="right">440544</td>
+<td align="left">1</td>
+<td align="left">&lt;= 200% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">2006</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="right">36.5</td>
+<td align="right">0.6</td>
+<td align="right">23595529</td>
+<td align="right">455801</td>
+<td align="left">2</td>
+<td align="left">&lt;= 250% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">2006</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="right">13.7</td>
+<td align="right">0.3</td>
+<td align="right">17094552</td>
+<td align="right">364661</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="left">18 to 64 years</td>
+<td align="left">1</td>
+<td align="left">White alone, not Hispanic</td>
+<td align="left">2006</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="right">32.0</td>
+<td align="right">0.8</td>
+<td align="right">7846458</td>
+<td align="right">277188</td>
+<td align="left">1</td>
+<td align="left">&lt;= 200% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">1</td>
+<td align="left">White alone, not Hispanic</td>
+<td align="left">2006</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="right">28.5</td>
+<td align="right">0.7</td>
+<td align="right">9614431</td>
+<td align="right">291480</td>
+<td align="left">2</td>
+<td align="left">&lt;= 250% of Poverty</td>
+<td align="left">18 to 64 years</td>
+<td align="left">1</td>
+<td align="left">White alone, not Hispanic</td>
+<td align="left">2006</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Other APIs can be filtered too. For example, the <a href="https://www.census.gov/data/developers/data-sets/international-database.html" class="external-link">International
 Data Base</a> population projections APIs allow you to get data by age
 and country.</p>
 <p>See what variables the IDB 1 year API allows:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/idb/1year"</span>, </span>
 <span>    type <span class="op">=</span> <span class="st">"variables"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##       name</span></span>
-<span><span class="co">## 1      POP</span></span>
-<span><span class="co">## 2     GENC</span></span>
-<span><span class="co">## 3 AREA_KM2</span></span>
-<span><span class="co">## 4     FIPS</span></span>
-<span><span class="co">## 5      SEX</span></span>
-<span><span class="co">## 6       YR</span></span>
-<span><span class="co">## 7     NAME</span></span>
-<span><span class="co">## 8      AGE</span></span>
-<span><span class="co">##                                                                                label</span></span>
-<span><span class="co">## 1                                                          Total mid-year population</span></span>
-<span><span class="co">## 2 Geopolitical Entities, Names, and Codes (GENC) two character country code standard</span></span>
-<span><span class="co">## 3                                                          Area in square kilometers</span></span>
-<span><span class="co">## 4                                                             FIPS country/area Code</span></span>
-<span><span class="co">## 5                                                                                Sex</span></span>
-<span><span class="co">## 6                                                                               Year</span></span>
-<span><span class="co">## 7                                                               Country or area name</span></span>
-<span><span class="co">## 8                                                     Single year of age from 0-100+</span></span>
-<span><span class="co">##   predicateType group limit concept hasGeoCollectionSupport required</span></span>
-<span><span class="co">## 1           int   N/A     0    &lt;NA&gt;                    &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">## 2        string   N/A     0    &lt;NA&gt;                    &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">## 3           int   N/A     0    &lt;NA&gt;                    &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">## 4        string   N/A     0    &lt;NA&gt;                    &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">## 5           int   N/A     0    &lt;NA&gt;                    &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">## 6           int   N/A     0    &lt;NA&gt;                    &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">## 7        string   N/A     0    &lt;NA&gt;                    &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">## 8           int   N/A     0    &lt;NA&gt;                    &lt;NA&gt;     &lt;NA&gt;</span></span></code></pre>
+<div class="kable-table">
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="5%">
+<col width="52%">
+<col width="8%">
+<col width="3%">
+<col width="3%">
+<col width="5%">
+<col width="15%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="left">label</th>
+<th align="left">predicateType</th>
+<th align="left">group</th>
+<th align="left">limit</th>
+<th align="left">concept</th>
+<th align="left">hasGeoCollectionSupport</th>
+<th align="left">required</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">POP</td>
+<td align="left">Total mid-year population</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">GENC</td>
+<td align="left">Geopolitical Entities, Names, and Codes (GENC) two
+character country code standard</td>
+<td align="left">string</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">AREA_KM2</td>
+<td align="left">Area in square kilometers</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">FIPS</td>
+<td align="left">FIPS country/area Code</td>
+<td align="left">string</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">SEX</td>
+<td align="left">Sex</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">YR</td>
+<td align="left">Year</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">NAME</td>
+<td align="left">Country or area name</td>
+<td align="left">string</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">AGE</td>
+<td align="left">Single year of age from 0-100+</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Here’s a simple call getting projected population by age for all
 countries in 2050.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pop_2050</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"timeseries/idb/1year"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FIPS"</span>, <span class="st">"NAME"</span>, <span class="st">"AGE"</span>, <span class="st">"POP"</span><span class="op">)</span>,</span>
 <span>    time <span class="op">=</span> <span class="fl">2050</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pop_2050</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   time FIPS    NAME AGE POP</span></span>
-<span><span class="co">## 1 2050   AN Andorra   0 533</span></span>
-<span><span class="co">## 2 2050   AN Andorra   1 540</span></span>
-<span><span class="co">## 3 2050   AN Andorra   2 549</span></span>
-<span><span class="co">## 4 2050   AN Andorra   3 559</span></span>
-<span><span class="co">## 5 2050   AN Andorra   4 568</span></span>
-<span><span class="co">## 6 2050   AN Andorra   5 581</span></span></code></pre>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="left">FIPS</th>
+<th align="left">NAME</th>
+<th align="left">AGE</th>
+<th align="left">POP</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">AN</td>
+<td align="left">Andorra</td>
+<td align="left">0</td>
+<td align="left">533</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">AN</td>
+<td align="left">Andorra</td>
+<td align="left">1</td>
+<td align="left">540</td>
+</tr>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">AN</td>
+<td align="left">Andorra</td>
+<td align="left">2</td>
+<td align="left">549</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">AN</td>
+<td align="left">Andorra</td>
+<td align="left">3</td>
+<td align="left">559</td>
+</tr>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">AN</td>
+<td align="left">Andorra</td>
+<td align="left">4</td>
+<td align="left">568</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">AN</td>
+<td align="left">Andorra</td>
+<td align="left">5</td>
+<td align="left">581</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>But we can make a much more specific call by specifying
 <code>FIPS</code> and <code>AGE</code> to get just the population
 projections for teenagers in Portugal.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pop_portugal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/idb/1year"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"POP"</span><span class="op">)</span>,</span>
@@ -232,32 +548,170 @@ projections for teenagers in Portugal.</p>
 <span>    FIPS <span class="op">=</span> <span class="st">"PO"</span>,</span>
 <span>    AGE <span class="op">=</span> <span class="st">"13:19"</span><span class="op">)</span></span>
 <span><span class="va">pop_portugal</span></span></code></pre></div>
-<pre><code><span><span class="co">##    time     NAME   POP FIPS AGE</span></span>
-<span><span class="co">## 1  2050 Portugal 81372   PO  13</span></span>
-<span><span class="co">## 2  2050 Portugal 81824   PO  14</span></span>
-<span><span class="co">## 3  2050 Portugal 82260   PO  15</span></span>
-<span><span class="co">## 4  2050 Portugal 82665   PO  16</span></span>
-<span><span class="co">## 5  2050 Portugal 82937   PO  17</span></span>
-<span><span class="co">## 6  2050 Portugal 83067   PO  18</span></span>
-<span><span class="co">## 7  2050 Portugal 83081   PO  19</span></span>
-<span><span class="co">## 8  2050 Portugal 42002   PO  13</span></span>
-<span><span class="co">## 9  2050 Portugal 42273   PO  14</span></span>
-<span><span class="co">## 10 2050 Portugal 42522   PO  15</span></span>
-<span><span class="co">## 11 2050 Portugal 42746   PO  16</span></span>
-<span><span class="co">## 12 2050 Portugal 42900   PO  17</span></span>
-<span><span class="co">## 13 2050 Portugal 42979   PO  18</span></span>
-<span><span class="co">## 14 2050 Portugal 42998   PO  19</span></span>
-<span><span class="co">## 15 2050 Portugal 39370   PO  13</span></span>
-<span><span class="co">## 16 2050 Portugal 39551   PO  14</span></span>
-<span><span class="co">## 17 2050 Portugal 39738   PO  15</span></span>
-<span><span class="co">## 18 2050 Portugal 39919   PO  16</span></span>
-<span><span class="co">## 19 2050 Portugal 40037   PO  17</span></span>
-<span><span class="co">## 20 2050 Portugal 40088   PO  18</span></span>
-<span><span class="co">## 21 2050 Portugal 40083   PO  19</span></span></code></pre>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="left">NAME</th>
+<th align="left">POP</th>
+<th align="left">FIPS</th>
+<th align="left">AGE</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">81372</td>
+<td align="left">PO</td>
+<td align="left">13</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">81824</td>
+<td align="left">PO</td>
+<td align="left">14</td>
+</tr>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">82260</td>
+<td align="left">PO</td>
+<td align="left">15</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">82665</td>
+<td align="left">PO</td>
+<td align="left">16</td>
+</tr>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">82937</td>
+<td align="left">PO</td>
+<td align="left">17</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">83067</td>
+<td align="left">PO</td>
+<td align="left">18</td>
+</tr>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">83081</td>
+<td align="left">PO</td>
+<td align="left">19</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">42002</td>
+<td align="left">PO</td>
+<td align="left">13</td>
+</tr>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">42273</td>
+<td align="left">PO</td>
+<td align="left">14</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">42522</td>
+<td align="left">PO</td>
+<td align="left">15</td>
+</tr>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">42746</td>
+<td align="left">PO</td>
+<td align="left">16</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">42900</td>
+<td align="left">PO</td>
+<td align="left">17</td>
+</tr>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">42979</td>
+<td align="left">PO</td>
+<td align="left">18</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">42998</td>
+<td align="left">PO</td>
+<td align="left">19</td>
+</tr>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">39370</td>
+<td align="left">PO</td>
+<td align="left">13</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">39551</td>
+<td align="left">PO</td>
+<td align="left">14</td>
+</tr>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">39738</td>
+<td align="left">PO</td>
+<td align="left">15</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">39919</td>
+<td align="left">PO</td>
+<td align="left">16</td>
+</tr>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">40037</td>
+<td align="left">PO</td>
+<td align="left">17</td>
+</tr>
+<tr class="even">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">40088</td>
+<td align="left">PO</td>
+<td align="left">18</td>
+</tr>
+<tr class="odd">
+<td align="left">2050</td>
+<td align="left">Portugal</td>
+<td align="left">40083</td>
+<td align="left">PO</td>
+<td align="left">19</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>The <a href="https://www.census.gov/data/developers/data-sets/qwi.html" class="external-link">Quarterly
 Workforce Indicators APIs</a> allow even more specific calls. Here’s one
 example:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">qwi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/qwi/sa"</span>,</span>
 <span>    region <span class="op">=</span> <span class="st">"state:02"</span>,</span>
@@ -270,20 +724,74 @@ example:</p>
 <span>    seasonadj <span class="op">=</span> <span class="st">"U"</span>,</span>
 <span>    industry <span class="op">=</span> <span class="fl">21</span><span class="op">)</span></span>
 <span><span class="va">qwi</span></span></code></pre></div>
-<pre><code><span><span class="co">##   Emp sex    time quarter agegrp ownercode firmsize seasonadj industry state</span></span>
-<span><span class="co">## 1  54   0 2012-Q1       1    A07       A05        1         U       21    02</span></span>
-<span><span class="co">## 2  48   1 2012-Q1       1    A07       A05        1         U       21    02</span></span>
-<span><span class="co">## 3   6   2 2012-Q1       1    A07       A05        1         U       21    02</span></span></code></pre>
+<div class="kable-table">
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="5%">
+<col width="5%">
+<col width="10%">
+<col width="10%">
+<col width="9%">
+<col width="13%">
+<col width="12%">
+<col width="13%">
+<col width="12%">
+<col width="8%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">Emp</th>
+<th align="left">sex</th>
+<th align="left">time</th>
+<th align="left">quarter</th>
+<th align="left">agegrp</th>
+<th align="left">ownercode</th>
+<th align="left">firmsize</th>
+<th align="left">seasonadj</th>
+<th align="left">industry</th>
+<th align="left">state</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">54</td>
+<td align="left">0</td>
+<td align="left">2012-Q1</td>
+<td align="left">1</td>
+<td align="left">A07</td>
+<td align="left">A05</td>
+<td align="left">1</td>
+<td align="left">U</td>
+<td align="left">21</td>
+<td align="left">02</td>
+</tr>
+<tr class="even">
+<td align="left">48</td>
+<td align="left">1</td>
+<td align="left">2012-Q1</td>
+<td align="left">1</td>
+<td align="left">A07</td>
+<td align="left">A05</td>
+<td align="left">1</td>
+<td align="left">U</td>
+<td align="left">21</td>
+<td align="left">02</td>
+</tr>
+<tr class="odd">
+<td align="left">6</td>
+<td align="left">2</td>
+<td align="left">2012-Q1</td>
+<td align="left">1</td>
+<td align="left">A07</td>
+<td align="left">A05</td>
+<td align="left">1</td>
+<td align="left">U</td>
+<td align="left">21</td>
+<td align="left">02</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<div class="section level2">
-<h2 id="disclaimer">Disclaimer<a class="anchor" aria-label="anchor" href="#disclaimer"></a>
-</h2>
-<p>This product uses the Census Bureau Data API but is not endorsed or
-certified by the Census Bureau.</p>
-</div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
-    </nav></aside>
+  </main>
 </div>
 
 

@@ -1,6 +1,10 @@
 ---
 title: "Getting started with censusapi"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    df_print: kable
+pkgdown:
+  as_is: true
 description: >
   If you're new to censusapi, start here.
 vignette: >
@@ -272,5 +276,3 @@ Occasionally you might get the general error message `"There was an error while 
 ## Additional resources
 * [Census Data API User Guide](https://www.census.gov/data/developers/guidance/api-user-guide.Overview.html)
 
-## Disclaimer
-This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.

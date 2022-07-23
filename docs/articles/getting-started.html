@@ -73,8 +73,6 @@
 </nav><div class="container template-article">
 
 
-
-
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Getting started with censusapi</h1>
@@ -185,27 +183,86 @@ available in the SAHIE API:</p>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>, </span>
 <span>    type <span class="op">=</span> <span class="st">"variables"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_vars</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##        name</span></span>
-<span><span class="co">## 1 NIPR_LB90</span></span>
-<span><span class="co">## 2   NIPR_PT</span></span>
-<span><span class="co">## 3    AGECAT</span></span>
-<span><span class="co">## 4    NIC_PT</span></span>
-<span><span class="co">## 5     GEOID</span></span>
-<span><span class="co">## 6     STATE</span></span>
-<span><span class="co">##                                                                                            label</span></span>
-<span><span class="co">## 1 Number in Demographic Group for Selected Income Range, Lower Bound for 90% Confidence Interval</span></span>
-<span><span class="co">## 2                                Number in Demographic Group for Selected Income Range, Estimate</span></span>
-<span><span class="co">## 3                                                                                   Age Category</span></span>
-<span><span class="co">## 4                                                                       Number Insured, Estimate</span></span>
-<span><span class="co">## 5                                                                         State+County FIPS Code</span></span>
-<span><span class="co">## 6                                                                                State FIPS Code</span></span>
-<span><span class="co">##               concept predicateType group limit          required</span></span>
-<span><span class="co">## 1 Uncertainty Measure           int   N/A     0              &lt;NA&gt;</span></span>
-<span><span class="co">## 2            Estimate           int   N/A     0              &lt;NA&gt;</span></span>
-<span><span class="co">## 3      Demographic ID           int   N/A     6 default displayed</span></span>
-<span><span class="co">## 4            Estimate           int   N/A     0              &lt;NA&gt;</span></span>
-<span><span class="co">## 5 Uncertainty Measure           int   N/A     0              &lt;NA&gt;</span></span>
-<span><span class="co">## 6       Geographic ID           int   N/A     0              &lt;NA&gt;</span></span></code></pre>
+<div class="kable-table">
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="5%">
+<col width="56%">
+<col width="11%">
+<col width="8%">
+<col width="3%">
+<col width="3%">
+<col width="10%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="left">label</th>
+<th align="left">concept</th>
+<th align="left">predicateType</th>
+<th align="left">group</th>
+<th align="left">limit</th>
+<th align="left">required</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">NIPR_LB90</td>
+<td align="left">Number in Demographic Group for Selected Income Range,
+Lower Bound for 90% Confidence Interval</td>
+<td align="left">Uncertainty Measure</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">NIPR_PT</td>
+<td align="left">Number in Demographic Group for Selected Income Range,
+Estimate</td>
+<td align="left">Estimate</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">AGECAT</td>
+<td align="left">Age Category</td>
+<td align="left">Demographic ID</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">6</td>
+<td align="left">default displayed</td>
+</tr>
+<tr class="even">
+<td align="left">NIC_PT</td>
+<td align="left">Number Insured, Estimate</td>
+<td align="left">Estimate</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">GEOID</td>
+<td align="left">State+County FIPS Code</td>
+<td align="left">Uncertainty Measure</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">STATE</td>
+<td align="left">State FIPS Code</td>
+<td align="left">Geographic ID</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>We’ll use a few of these variables to get uninsured rates by income
 group:</p>
 <ul>
@@ -227,53 +284,210 @@ county name)</li>
 </h3>
 <p>We can also use <code>listCensusMetadata</code> to see which
 geographic levels we can get data for using the SAHIE API.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>, </span>
 <span>    type <span class="op">=</span> <span class="st">"geography"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##     name geoLevelId limit referenceDate requires wildcard optionalWithWCFor</span></span>
-<span><span class="co">## 1     us        010     1    2015-01-01     NULL     NULL              &lt;NA&gt;</span></span>
-<span><span class="co">## 2 county        050  3142    2015-01-01    state    state             state</span></span>
-<span><span class="co">## 3  state        040    52    2015-01-01     NULL     NULL              &lt;NA&gt;</span></span></code></pre>
+<div class="kable-table">
+<table class="table">
+<colgroup>
+<col width="9%">
+<col width="14%">
+<col width="8%">
+<col width="18%">
+<col width="12%">
+<col width="12%">
+<col width="24%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="left">geoLevelId</th>
+<th align="left">limit</th>
+<th align="left">referenceDate</th>
+<th align="left">requires</th>
+<th align="left">wildcard</th>
+<th align="left">optionalWithWCFor</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">us</td>
+<td align="left">010</td>
+<td align="left">1</td>
+<td align="left">2015-01-01</td>
+<td align="left">NULL</td>
+<td align="left">NULL</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">county</td>
+<td align="left">050</td>
+<td align="left">3142</td>
+<td align="left">2015-01-01</td>
+<td align="left">state</td>
+<td align="left">state</td>
+<td align="left">state</td>
+</tr>
+<tr class="odd">
+<td align="left">state</td>
+<td align="left">040</td>
+<td align="left">52</td>
+<td align="left">2015-01-01</td>
+<td align="left">NULL</td>
+<td align="left">NULL</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>This API has three geographic levels: <code>us</code>,
 <code>county</code> within states, and <code>state</code>.</p>
 <p>First, using <code>getCensus</code>, let’s get uninsured rate by
 income group at the national level for 2018.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_national</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
 <span>    region <span class="op">=</span> <span class="st">"us:*"</span>, </span>
 <span>    year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
 <span><span class="va">sahie_national</span></span></code></pre></div>
-<pre><code><span><span class="co">##   us          NAME IPRCAT                IPR_DESC PCTUI_PT YEAR</span></span>
-<span><span class="co">## 1  1 United States      0             All Incomes     10.8 2019</span></span>
-<span><span class="co">## 2  1 United States      1      &lt;= 200% of Poverty     18.0 2019</span></span>
-<span><span class="co">## 3  1 United States      2      &lt;= 250% of Poverty     17.5 2019</span></span>
-<span><span class="co">## 4  1 United States      3      &lt;= 138% of Poverty     18.1 2019</span></span>
-<span><span class="co">## 5  1 United States      4      &lt;= 400% of Poverty     15.2 2019</span></span>
-<span><span class="co">## 6  1 United States      5 138% to 400% of Poverty     13.8 2019</span></span></code></pre>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">us</th>
+<th align="left">NAME</th>
+<th align="left">IPRCAT</th>
+<th align="left">IPR_DESC</th>
+<th align="right">PCTUI_PT</th>
+<th align="left">YEAR</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="right">10.8</td>
+<td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="left">1</td>
+<td align="left">&lt;= 200% of Poverty</td>
+<td align="right">18.0</td>
+<td align="left">2019</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="left">2</td>
+<td align="left">&lt;= 250% of Poverty</td>
+<td align="right">17.5</td>
+<td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="left">3</td>
+<td align="left">&lt;= 138% of Poverty</td>
+<td align="right">18.1</td>
+<td align="left">2019</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="left">4</td>
+<td align="left">&lt;= 400% of Poverty</td>
+<td align="right">15.2</td>
+<td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="left">5</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="right">13.8</td>
+<td align="left">2019</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>We can also get this data at the state level for every state by
 changing <code>region</code> to <code>"state:*"</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_states</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
 <span>    region <span class="op">=</span> <span class="st">"state:*"</span>, </span>
 <span>    year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_states</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   state    NAME IPRCAT                IPR_DESC PCTUI_PT YEAR</span></span>
-<span><span class="co">## 1    01 Alabama      0             All Incomes     11.6 2019</span></span>
-<span><span class="co">## 2    01 Alabama      1      &lt;= 200% of Poverty     18.9 2019</span></span>
-<span><span class="co">## 3    01 Alabama      2      &lt;= 250% of Poverty     18.0 2019</span></span>
-<span><span class="co">## 4    01 Alabama      3      &lt;= 138% of Poverty     19.9 2019</span></span>
-<span><span class="co">## 5    01 Alabama      4      &lt;= 400% of Poverty     15.1 2019</span></span>
-<span><span class="co">## 6    01 Alabama      5 138% to 400% of Poverty     12.5 2019</span></span></code></pre>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">NAME</th>
+<th align="left">IPRCAT</th>
+<th align="left">IPR_DESC</th>
+<th align="right">PCTUI_PT</th>
+<th align="left">YEAR</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="right">11.6</td>
+<td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">1</td>
+<td align="left">&lt;= 200% of Poverty</td>
+<td align="right">18.9</td>
+<td align="left">2019</td>
+</tr>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">2</td>
+<td align="left">&lt;= 250% of Poverty</td>
+<td align="right">18.0</td>
+<td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">3</td>
+<td align="left">&lt;= 138% of Poverty</td>
+<td align="right">19.9</td>
+<td align="left">2019</td>
+</tr>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">4</td>
+<td align="left">&lt;= 400% of Poverty</td>
+<td align="right">15.1</td>
+<td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="left">5</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="right">12.5</td>
+<td align="left">2019</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Finally, we can get county-level data. The geography metadata showed
 that we can choose to get county-level data within states. We’ll use
 <code>region</code> to specify county-level results and
 <code>regionin</code> to request data for Alabama and Alaska.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_counties</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
@@ -281,30 +495,149 @@ that we can choose to get county-level data within states. We’ll use
 <span>    regionin <span class="op">=</span> <span class="st">"state:01,02"</span>, </span>
 <span>    year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_counties</span>, n<span class="op">=</span><span class="fl">12L</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##    state county               NAME IPRCAT                IPR_DESC PCTUI_PT YEAR</span></span>
-<span><span class="co">## 1     01    001 Autauga County, AL      0             All Incomes      9.4 2019</span></span>
-<span><span class="co">## 2     01    001 Autauga County, AL      1      &lt;= 200% of Poverty     17.3 2019</span></span>
-<span><span class="co">## 3     01    001 Autauga County, AL      2      &lt;= 250% of Poverty     16.3 2019</span></span>
-<span><span class="co">## 4     01    001 Autauga County, AL      3      &lt;= 138% of Poverty     18.5 2019</span></span>
-<span><span class="co">## 5     01    001 Autauga County, AL      4      &lt;= 400% of Poverty     12.8 2019</span></span>
-<span><span class="co">## 6     01    001 Autauga County, AL      5 138% to 400% of Poverty     10.2 2019</span></span>
-<span><span class="co">## 7     01    003 Baldwin County, AL      0             All Incomes     10.9 2019</span></span>
-<span><span class="co">## 8     01    003 Baldwin County, AL      1      &lt;= 200% of Poverty     20.1 2019</span></span>
-<span><span class="co">## 9     01    003 Baldwin County, AL      2      &lt;= 250% of Poverty     18.7 2019</span></span>
-<span><span class="co">## 10    01    003 Baldwin County, AL      3      &lt;= 138% of Poverty     21.0 2019</span></span>
-<span><span class="co">## 11    01    003 Baldwin County, AL      4      &lt;= 400% of Poverty     15.2 2019</span></span>
-<span><span class="co">## 12    01    003 Baldwin County, AL      5 138% to 400% of Poverty     12.9 2019</span></span></code></pre>
+<div class="kable-table">
+<table class="table">
+<colgroup>
+<col width="7%">
+<col width="9%">
+<col width="24%">
+<col width="9%">
+<col width="31%">
+<col width="11%">
+<col width="6%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">county</th>
+<th align="left">NAME</th>
+<th align="left">IPRCAT</th>
+<th align="left">IPR_DESC</th>
+<th align="right">PCTUI_PT</th>
+<th align="left">YEAR</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">001</td>
+<td align="left">Autauga County, AL</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="right">9.4</td>
+<td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="left">01</td>
+<td align="left">001</td>
+<td align="left">Autauga County, AL</td>
+<td align="left">1</td>
+<td align="left">&lt;= 200% of Poverty</td>
+<td align="right">17.3</td>
+<td align="left">2019</td>
+</tr>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">001</td>
+<td align="left">Autauga County, AL</td>
+<td align="left">2</td>
+<td align="left">&lt;= 250% of Poverty</td>
+<td align="right">16.3</td>
+<td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="left">01</td>
+<td align="left">001</td>
+<td align="left">Autauga County, AL</td>
+<td align="left">3</td>
+<td align="left">&lt;= 138% of Poverty</td>
+<td align="right">18.5</td>
+<td align="left">2019</td>
+</tr>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">001</td>
+<td align="left">Autauga County, AL</td>
+<td align="left">4</td>
+<td align="left">&lt;= 400% of Poverty</td>
+<td align="right">12.8</td>
+<td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="left">01</td>
+<td align="left">001</td>
+<td align="left">Autauga County, AL</td>
+<td align="left">5</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="right">10.2</td>
+<td align="left">2019</td>
+</tr>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">003</td>
+<td align="left">Baldwin County, AL</td>
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+<td align="right">10.9</td>
+<td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="left">01</td>
+<td align="left">003</td>
+<td align="left">Baldwin County, AL</td>
+<td align="left">1</td>
+<td align="left">&lt;= 200% of Poverty</td>
+<td align="right">20.1</td>
+<td align="left">2019</td>
+</tr>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">003</td>
+<td align="left">Baldwin County, AL</td>
+<td align="left">2</td>
+<td align="left">&lt;= 250% of Poverty</td>
+<td align="right">18.7</td>
+<td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="left">01</td>
+<td align="left">003</td>
+<td align="left">Baldwin County, AL</td>
+<td align="left">3</td>
+<td align="left">&lt;= 138% of Poverty</td>
+<td align="right">21.0</td>
+<td align="left">2019</td>
+</tr>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">003</td>
+<td align="left">Baldwin County, AL</td>
+<td align="left">4</td>
+<td align="left">&lt;= 400% of Poverty</td>
+<td align="right">15.2</td>
+<td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="left">01</td>
+<td align="left">003</td>
+<td align="left">Baldwin County, AL</td>
+<td align="left">5</td>
+<td align="left">138% to 400% of Poverty</td>
+<td align="right">12.9</td>
+<td align="left">2019</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Because the SAHIE API is a timeseries (as indicated in its name), we
 can get multiple years of data at once using the <code>year</code>
 argument.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
 <span>    region <span class="op">=</span> <span class="st">"state:01,17"</span>, </span>
 <span>    year <span class="op">=</span> <span class="st">"2006:2019"</span><span class="op">)</span></span></code></pre></div>
 <p>Here’s a simple chart of that yearly data using the <a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot2</a> package.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">sahie_years</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">YEAR</span>, y <span class="op">=</span> <span class="va">PCTUI_PT</span>, group <span class="op">=</span> <span class="va">state</span>, color <span class="op">=</span> <span class="va">state</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -326,7 +659,7 @@ argument.</p>
 <span>        subtitle <span class="op">=</span> <span class="st">"For people below age 65"</span>,</span>
 <span>        caption <span class="op">=</span> <span class="st">"Source: Small Area Health Insurance Estimates"</span></span>
 <span>    <span class="op">)</span></span></code></pre></div>
-<p><img src="getting-started_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
+<p><img src="getting-started_files/figure-html/unnamed-chunk-11-1.png"><!-- --></p>
 </div>
 <div class="section level3">
 <h3 id="annotations">Annotations<a class="anchor" aria-label="anchor" href="#annotations"></a>
@@ -351,7 +684,7 @@ that is above that threshold is listed as $250,000. Some are not
 available and are listed as -666666666. You can see these annotations in
 the “EA” (estimate annotation) and “MA” (margin of error annotation)
 columns.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acs_income</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>, </span>
@@ -359,10 +692,57 @@ columns.</p>
 <span>    region <span class="op">=</span> <span class="st">"tract:006804,007703,000903"</span>,</span>
 <span>    regionin <span class="op">=</span> <span class="st">"county:001&amp;state:11"</span><span class="op">)</span></span>
 <span><span class="va">acs_income</span></span></code></pre></div>
-<pre><code><span><span class="co">##   state county  tract B19013_001E B19013_001EA B19013_001M B19013_001MA</span></span>
-<span><span class="co">## 1    11    001 007703       46156         &lt;NA&gt;       24087         &lt;NA&gt;</span></span>
-<span><span class="co">## 2    11    001 000903      250001     250,000+  -333333333          ***</span></span>
-<span><span class="co">## 3    11    001 006804  -666666666            -  -222222222           **</span></span></code></pre>
+<div class="kable-table">
+<table class="table">
+<colgroup>
+<col width="8%">
+<col width="10%">
+<col width="10%">
+<col width="17%">
+<col width="18%">
+<col width="17%">
+<col width="18%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">county</th>
+<th align="left">tract</th>
+<th align="right">B19013_001E</th>
+<th align="left">B19013_001EA</th>
+<th align="right">B19013_001M</th>
+<th align="left">B19013_001MA</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">11</td>
+<td align="left">001</td>
+<td align="left">007703</td>
+<td align="right">46156</td>
+<td align="left">NA</td>
+<td align="right">24087</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">11</td>
+<td align="left">001</td>
+<td align="left">000903</td>
+<td align="right">250001</td>
+<td align="left">250,000+</td>
+<td align="right">-333333333</td>
+<td align="left">***</td>
+</tr>
+<tr class="odd">
+<td align="left">11</td>
+<td align="left">001</td>
+<td align="left">006804</td>
+<td align="right">-666666666</td>
+<td align="left">-</td>
+<td align="right">-222222222</td>
+<td align="left">**</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="section level3">
 <h3 id="variable-groups">Variable groups<a class="anchor" aria-label="anchor" href="#variable-groups"></a>
@@ -381,7 +761,7 @@ website.</p>
 list of variables. We’ll get the estimate, margin of error and
 annotations for median household income in the past 12 months for Census
 tracts in Alaska.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acs_income</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2017</span>, </span>
@@ -389,24 +769,96 @@ tracts in Alaska.</p>
 <span>    region <span class="op">=</span> <span class="st">"tract:*"</span>, </span>
 <span>    regionin <span class="op">=</span> <span class="st">"state:02"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_income</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   state county  tract                                               NAME</span></span>
-<span><span class="co">## 1    02    068 000100             Census Tract 1, Denali Borough, Alaska</span></span>
-<span><span class="co">## 2    02    261 000200 Census Tract 2, Valdez-Cordova Census Area, Alaska</span></span>
-<span><span class="co">## 3    02    261 000300 Census Tract 3, Valdez-Cordova Census Area, Alaska</span></span>
-<span><span class="co">## 4    02    261 000100 Census Tract 1, Valdez-Cordova Census Area, Alaska</span></span>
-<span><span class="co">## 5    02    122 000200    Census Tract 2, Kenai Peninsula Borough, Alaska</span></span>
-<span><span class="co">## 6    02    122 000800    Census Tract 8, Kenai Peninsula Borough, Alaska</span></span>
-<span><span class="co">##   B19013_001E B19013_001EA B19013_001M B19013_001MA</span></span>
-<span><span class="co">## 1       83295         &lt;NA&gt;        6362         &lt;NA&gt;</span></span>
-<span><span class="co">## 2       95227         &lt;NA&gt;       22638         &lt;NA&gt;</span></span>
-<span><span class="co">## 3       89000         &lt;NA&gt;       20435         &lt;NA&gt;</span></span>
-<span><span class="co">## 4       49076         &lt;NA&gt;        7165         &lt;NA&gt;</span></span>
-<span><span class="co">## 5       57694         &lt;NA&gt;        6526         &lt;NA&gt;</span></span>
-<span><span class="co">## 6       50904         &lt;NA&gt;        3723         &lt;NA&gt;</span></span></code></pre>
+<div class="kable-table">
+<table class="table">
+<colgroup>
+<col width="4%">
+<col width="5%">
+<col width="5%">
+<col width="42%">
+<col width="9%">
+<col width="10%">
+<col width="9%">
+<col width="10%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">county</th>
+<th align="left">tract</th>
+<th align="left">NAME</th>
+<th align="right">B19013_001E</th>
+<th align="left">B19013_001EA</th>
+<th align="right">B19013_001M</th>
+<th align="left">B19013_001MA</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">02</td>
+<td align="left">068</td>
+<td align="left">000100</td>
+<td align="left">Census Tract 1, Denali Borough, Alaska</td>
+<td align="right">83295</td>
+<td align="left">NA</td>
+<td align="right">6362</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">02</td>
+<td align="left">261</td>
+<td align="left">000200</td>
+<td align="left">Census Tract 2, Valdez-Cordova Census Area, Alaska</td>
+<td align="right">95227</td>
+<td align="left">NA</td>
+<td align="right">22638</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">02</td>
+<td align="left">261</td>
+<td align="left">000300</td>
+<td align="left">Census Tract 3, Valdez-Cordova Census Area, Alaska</td>
+<td align="right">89000</td>
+<td align="left">NA</td>
+<td align="right">20435</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">02</td>
+<td align="left">261</td>
+<td align="left">000100</td>
+<td align="left">Census Tract 1, Valdez-Cordova Census Area, Alaska</td>
+<td align="right">49076</td>
+<td align="left">NA</td>
+<td align="right">7165</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">02</td>
+<td align="left">122</td>
+<td align="left">000200</td>
+<td align="left">Census Tract 2, Kenai Peninsula Borough, Alaska</td>
+<td align="right">57694</td>
+<td align="left">NA</td>
+<td align="right">6526</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">02</td>
+<td align="left">122</td>
+<td align="left">000800</td>
+<td align="left">Census Tract 8, Kenai Peninsula Borough, Alaska</td>
+<td align="right">50904</td>
+<td align="left">NA</td>
+<td align="right">3723</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>You can also retrieve also estimates and annotations for a group of
 variables in one command. Here’s the <code>group</code> call for that
 same table, <a href="https://api.census.gov/data/2016/acs/acs5/groups/B19013.html" class="external-link">B19013</a>.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># See descriptions of the variables in group B19013</span></span>
 <span><span class="va">group_B19013</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span>
@@ -414,27 +866,75 @@ same table, <a href="https://api.census.gov/data/2016/acs/acs5/groups/B19013.htm
 <span>    type <span class="op">=</span> <span class="st">"variables"</span>,</span>
 <span>    group <span class="op">=</span> <span class="st">"B19013"</span><span class="op">)</span></span>
 <span><span class="va">group_B19013</span></span></code></pre></div>
-<pre><code><span><span class="co">##           name</span></span>
-<span><span class="co">## 1 B19013_001MA</span></span>
-<span><span class="co">## 2 B19013_001EA</span></span>
-<span><span class="co">## 3  B19013_001E</span></span>
-<span><span class="co">## 4  B19013_001M</span></span>
-<span><span class="co">##                                                                                                               label</span></span>
-<span><span class="co">## 1 Annotation of Margin of Error!!Median household income in the past 12 months (in 2017 inflation-adjusted dollars)</span></span>
-<span><span class="co">## 2        Annotation of Estimate!!Median household income in the past 12 months (in 2017 inflation-adjusted dollars)</span></span>
-<span><span class="co">## 3                      Estimate!!Median household income in the past 12 months (in 2017 inflation-adjusted dollars)</span></span>
-<span><span class="co">## 4               Margin of Error!!Median household income in the past 12 months (in 2017 inflation-adjusted dollars)</span></span>
-<span><span class="co">##                                                                              concept</span></span>
-<span><span class="co">## 1 MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2017 INFLATION-ADJUSTED DOLLARS)</span></span>
-<span><span class="co">## 2 MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2017 INFLATION-ADJUSTED DOLLARS)</span></span>
-<span><span class="co">## 3 MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2017 INFLATION-ADJUSTED DOLLARS)</span></span>
-<span><span class="co">## 4 MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2017 INFLATION-ADJUSTED DOLLARS)</span></span>
-<span><span class="co">##   predicateType  group limit predicateOnly</span></span>
-<span><span class="co">## 1        string B19013     0          TRUE</span></span>
-<span><span class="co">## 2        string B19013     0          TRUE</span></span>
-<span><span class="co">## 3           int B19013     0          TRUE</span></span>
-<span><span class="co">## 4           int B19013     0          TRUE</span></span></code></pre>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="kable-table">
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="5%">
+<col width="45%">
+<col width="33%">
+<col width="5%">
+<col width="2%">
+<col width="2%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="left">label</th>
+<th align="left">concept</th>
+<th align="left">predicateType</th>
+<th align="left">group</th>
+<th align="left">limit</th>
+<th align="left">predicateOnly</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">B19013_001MA</td>
+<td align="left">Annotation of Margin of Error!!Median household income
+in the past 12 months (in 2017 inflation-adjusted dollars)</td>
+<td align="left">MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2017
+INFLATION-ADJUSTED DOLLARS)</td>
+<td align="left">string</td>
+<td align="left">B19013</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">B19013_001EA</td>
+<td align="left">Annotation of Estimate!!Median household income in the
+past 12 months (in 2017 inflation-adjusted dollars)</td>
+<td align="left">MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2017
+INFLATION-ADJUSTED DOLLARS)</td>
+<td align="left">string</td>
+<td align="left">B19013</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">B19013_001E</td>
+<td align="left">Estimate!!Median household income in the past 12 months
+(in 2017 inflation-adjusted dollars)</td>
+<td align="left">MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2017
+INFLATION-ADJUSTED DOLLARS)</td>
+<td align="left">int</td>
+<td align="left">B19013</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">B19013_001M</td>
+<td align="left">Margin of Error!!Median household income in the past 12
+months (in 2017 inflation-adjusted dollars)</td>
+<td align="left">MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2017
+INFLATION-ADJUSTED DOLLARS)</td>
+<td align="left">int</td>
+<td align="left">B19013</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acs_income_group</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>, </span>
 <span>    vintage <span class="op">=</span> <span class="fl">2017</span>, </span>
@@ -442,20 +942,108 @@ same table, <a href="https://api.census.gov/data/2016/acs/acs5/groups/B19013.htm
 <span>    region <span class="op">=</span> <span class="st">"tract:*"</span>, </span>
 <span>    regionin <span class="op">=</span> <span class="st">"state:02"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_income_group</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   state county  tract                                               NAME</span></span>
-<span><span class="co">## 1    02    068 000100             Census Tract 1, Denali Borough, Alaska</span></span>
-<span><span class="co">## 2    02    261 000200 Census Tract 2, Valdez-Cordova Census Area, Alaska</span></span>
-<span><span class="co">## 3    02    261 000300 Census Tract 3, Valdez-Cordova Census Area, Alaska</span></span>
-<span><span class="co">## 4    02    261 000100 Census Tract 1, Valdez-Cordova Census Area, Alaska</span></span>
-<span><span class="co">## 5    02    122 000200    Census Tract 2, Kenai Peninsula Borough, Alaska</span></span>
-<span><span class="co">## 6    02    122 000800    Census Tract 8, Kenai Peninsula Borough, Alaska</span></span>
-<span><span class="co">##   B19013_001E B19013_001EA B19013_001M B19013_001MA               GEO_ID NAME_1</span></span>
-<span><span class="co">## 1       83295         &lt;NA&gt;        6362         &lt;NA&gt; 1400000US02068000100     NA</span></span>
-<span><span class="co">## 2       95227         &lt;NA&gt;       22638         &lt;NA&gt; 1400000US02261000200     NA</span></span>
-<span><span class="co">## 3       89000         &lt;NA&gt;       20435         &lt;NA&gt; 1400000US02261000300     NA</span></span>
-<span><span class="co">## 4       49076         &lt;NA&gt;        7165         &lt;NA&gt; 1400000US02261000100     NA</span></span>
-<span><span class="co">## 5       57694         &lt;NA&gt;        6526         &lt;NA&gt; 1400000US02122000200     NA</span></span>
-<span><span class="co">## 6       50904         &lt;NA&gt;        3723         &lt;NA&gt; 1400000US02122000800     NA</span></span></code></pre>
+<div class="kable-table">
+<table class="table">
+<colgroup>
+<col width="4%">
+<col width="4%">
+<col width="4%">
+<col width="34%">
+<col width="8%">
+<col width="8%">
+<col width="8%">
+<col width="8%">
+<col width="14%">
+<col width="4%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">county</th>
+<th align="left">tract</th>
+<th align="left">NAME</th>
+<th align="right">B19013_001E</th>
+<th align="left">B19013_001EA</th>
+<th align="right">B19013_001M</th>
+<th align="left">B19013_001MA</th>
+<th align="left">GEO_ID</th>
+<th align="right">NAME_1</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">02</td>
+<td align="left">068</td>
+<td align="left">000100</td>
+<td align="left">Census Tract 1, Denali Borough, Alaska</td>
+<td align="right">83295</td>
+<td align="left">NA</td>
+<td align="right">6362</td>
+<td align="left">NA</td>
+<td align="left">1400000US02068000100</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">02</td>
+<td align="left">261</td>
+<td align="left">000200</td>
+<td align="left">Census Tract 2, Valdez-Cordova Census Area, Alaska</td>
+<td align="right">95227</td>
+<td align="left">NA</td>
+<td align="right">22638</td>
+<td align="left">NA</td>
+<td align="left">1400000US02261000200</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">02</td>
+<td align="left">261</td>
+<td align="left">000300</td>
+<td align="left">Census Tract 3, Valdez-Cordova Census Area, Alaska</td>
+<td align="right">89000</td>
+<td align="left">NA</td>
+<td align="right">20435</td>
+<td align="left">NA</td>
+<td align="left">1400000US02261000300</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">02</td>
+<td align="left">261</td>
+<td align="left">000100</td>
+<td align="left">Census Tract 1, Valdez-Cordova Census Area, Alaska</td>
+<td align="right">49076</td>
+<td align="left">NA</td>
+<td align="right">7165</td>
+<td align="left">NA</td>
+<td align="left">1400000US02261000100</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">02</td>
+<td align="left">122</td>
+<td align="left">000200</td>
+<td align="left">Census Tract 2, Kenai Peninsula Borough, Alaska</td>
+<td align="right">57694</td>
+<td align="left">NA</td>
+<td align="right">6526</td>
+<td align="left">NA</td>
+<td align="left">1400000US02122000200</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">02</td>
+<td align="left">122</td>
+<td align="left">000800</td>
+<td align="left">Census Tract 8, Kenai Peninsula Borough, Alaska</td>
+<td align="right">50904</td>
+<td align="left">NA</td>
+<td align="right">3723</td>
+<td align="left">NA</td>
+<td align="left">1400000US02122000800</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="section level3">
 <h3 id="advanced-geographies">Advanced geographies<a class="anchor" aria-label="anchor" href="#advanced-geographies"></a>
@@ -472,7 +1060,7 @@ Census can only be requested from one state at a time.</p>
 <a href="https://www.census.gov/library/reference/code-lists/ansi.html" class="external-link">FIPS
 codes</a> to request tract-level data from each state and join into a
 single data frame.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tracts</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">f</span> <span class="kw">in</span> <span class="va">fips</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">stateget</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"state:"</span>, <span class="va">f</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
@@ -485,20 +1073,61 @@ single data frame.</p>
 <span>    <span class="va">tracts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">tracts</span>, <span class="va">temp</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tracts</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   state county  tract P001001</span></span>
-<span><span class="co">## 1    01    001 020100    1912</span></span>
-<span><span class="co">## 2    01    001 020500   10766</span></span>
-<span><span class="co">## 3    01    001 020300    3373</span></span>
-<span><span class="co">## 4    01    001 020400    4386</span></span>
-<span><span class="co">## 5    01    001 020200    2170</span></span>
-<span><span class="co">## 6    01    001 020600    3668</span></span></code></pre>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">county</th>
+<th align="left">tract</th>
+<th align="right">P001001</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">001</td>
+<td align="left">020100</td>
+<td align="right">1912</td>
+</tr>
+<tr class="even">
+<td align="left">01</td>
+<td align="left">001</td>
+<td align="left">020500</td>
+<td align="right">10766</td>
+</tr>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">001</td>
+<td align="left">020300</td>
+<td align="right">3373</td>
+</tr>
+<tr class="even">
+<td align="left">01</td>
+<td align="left">001</td>
+<td align="left">020400</td>
+<td align="right">4386</td>
+</tr>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">001</td>
+<td align="left">020200</td>
+<td align="right">2170</td>
+</tr>
+<tr class="even">
+<td align="left">01</td>
+<td align="left">001</td>
+<td align="left">020600</td>
+<td align="right">3668</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>The <code>regionin</code> argument of <code>getCensus</code> can also
 be used with a string of nested geographies, as shown below.</p>
 <p>The 2010 Decennial Census summary file 1 requires you to specify a
 state and county to retrieve block-level data. Use <code>region</code>
 to request block level data, and <code>regionin</code> to specify the
 desired state and county.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data2010</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"dec/sf1"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2010</span>,</span>
@@ -506,13 +1135,61 @@ desired state and county.</p>
 <span>    region <span class="op">=</span> <span class="st">"block:*"</span>,</span>
 <span>    regionin <span class="op">=</span> <span class="st">"state:36+county:027+tract:010000"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data2010</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   state county  tract block P001001</span></span>
-<span><span class="co">## 1    36    027 010000  1000      31</span></span>
-<span><span class="co">## 2    36    027 010000  1011      17</span></span>
-<span><span class="co">## 3    36    027 010000  1028      41</span></span>
-<span><span class="co">## 4    36    027 010000  1001       0</span></span>
-<span><span class="co">## 5    36    027 010000  1031       0</span></span>
-<span><span class="co">## 6    36    027 010000  1002       4</span></span></code></pre>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">county</th>
+<th align="left">tract</th>
+<th align="left">block</th>
+<th align="right">P001001</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">36</td>
+<td align="left">027</td>
+<td align="left">010000</td>
+<td align="left">1000</td>
+<td align="right">31</td>
+</tr>
+<tr class="even">
+<td align="left">36</td>
+<td align="left">027</td>
+<td align="left">010000</td>
+<td align="left">1011</td>
+<td align="right">17</td>
+</tr>
+<tr class="odd">
+<td align="left">36</td>
+<td align="left">027</td>
+<td align="left">010000</td>
+<td align="left">1028</td>
+<td align="right">41</td>
+</tr>
+<tr class="even">
+<td align="left">36</td>
+<td align="left">027</td>
+<td align="left">010000</td>
+<td align="left">1001</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">36</td>
+<td align="left">027</td>
+<td align="left">010000</td>
+<td align="left">1031</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">36</td>
+<td align="left">027</td>
+<td align="left">010000</td>
+<td align="left">1002</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>For many more examples and advanced topics check out <a href="https://www.hrecht.com/censusapi/articles/." class="external-link">all of the
 articles</a></p>
 </div>
@@ -590,12 +1267,6 @@ underlying data and APIs.</li>
 <li><a href="https://www.census.gov/data/developers/guidance/api-user-guide.Overview.html" class="external-link">Census
 Data API User Guide</a></li>
 </ul>
-</div>
-<div class="section level2">
-<h2 id="disclaimer">Disclaimer<a class="anchor" aria-label="anchor" href="#disclaimer"></a>
-</h2>
-<p>This product uses the Census Bureau Data API but is not endorsed or
-certified by the Census Bureau.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

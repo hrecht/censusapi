@@ -3,6 +3,8 @@ title: "Accessing microdata"
 output: 
   rmarkdown::html_vignette:
     df_print: kable
+pkgdown:
+  as_is: true
 description: >
   Access Census microdata.
 vignette: >
@@ -23,7 +25,6 @@ Microdata, the individual-level responses, should be used by advanced data users
 From the CPS Voting supplement, get data on method of voting using `PES1` (Did you vote?) `PES5` (Vote in person or by mail?) and `PESEX` (gender), along with the appropriate weighting variable, `PWSSWGT`.
 
 ```{r}
-# https://api.census.gov/data/2020/cps/voting/nov?get=PES1,PES5,PESEX,PWSSWGT&for=state:01
 cps_voting <- getCensus(
 	name = "cps/voting/nov",
 	vintage = 2020,
@@ -40,5 +41,3 @@ Some other ways to access the Census microdata are:
 * Retrieve standardized, cleaned microdata data from [IPUMS](https://www.ipums.org/) and import with the [impumsr package](https://tech.popdata.org/ipumsr/)
 * Retrieve microdata via the Census APIs with [tidycensus](https://walker-data.com/tidycensus/articles/pums-data.html), which has more robust functions for working with this data.
 
-## Disclaimer
-This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.
