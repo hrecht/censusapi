@@ -2,14 +2,13 @@
 % Please edit documentation in R/metadata_functions.R
 \name{listCensusApis}
 \alias{listCensusApis}
-\title{Get dataset metadata on all available APIs as a data frame}
+\title{Get useful dataset metadata on all available APIs as a data frame}
 \usage{
 listCensusApis()
 }
 \description{
 Scrapes {https://api.census.gov/data.json} and returns a dataframe
-that includes: title, name, vintage (where applicable), url, isTimeseries (binary),
-temporal (helpful for some time series), description, modified date
+that includes: title, description, name, vintage, url, dataset type, and other useful fields.
 }
 \examples{
 apis <- listCensusApis()

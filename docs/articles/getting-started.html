@@ -5,15 +5,17 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="censusapi">
+<meta name="description" content="If you're new to censusapi, start here.
+">
 <title>Getting started with censusapi • censusapi</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../deps/_Roboto-0.4.0/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.2/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Getting started with censusapi">
-<meta property="og:description" content="censusapi">
+<meta property="og:description" content="If you're new to censusapi, start here.
+">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -27,7 +29,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">censusapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,14 +38,17 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="active nav-item">
-  <a class="nav-link" href="../articles/getting-started.html">Get started</a>
-</li>
 <li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/example-masterlist.html">Example masterlist</a>
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/getting-started.html">Getting started with censusapi</a>
+    <a class="dropdown-item" href="../articles/example-masterlist.html">List of examples</a>
+    <a class="dropdown-item" href="../articles/advanced-usage.html">Advanced censusapi usage</a>
+    <a class="dropdown-item" href="../articles/accessing-microdata.html">Accessing microdata</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -68,8 +73,10 @@
 </nav><div class="container template-article">
 
 
+
+
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Getting started with censusapi</h1>
             
       
@@ -79,515 +86,500 @@
 
     
     
-<p><code>censusapi</code> is a wrapper for the United States Census Bureau’s <a href="https://www.census.gov/data/developers/data-sets.html" class="external-link">APIs</a>. As of 2017 over 200 Census API endpoints are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—<code>getCensus</code>—and the same syntax for each dataset.</p>
-<p><code>censusapi</code> generally uses the APIs’ original parameter names so that users can easily transition between Census’s documentation and examples and this package. It also includes metadata functions to return data frames of available APIs, variables, and geographies.</p>
+<p><code>censusapi</code> is a wrapper for the United States Census
+Bureau’s <a href="https://www.census.gov/data/developers/data-sets.html" class="external-link">APIs</a>.
+As of 2017 over 200 Census API endpoints are available, including
+Decennial Census, American Community Survey, Poverty Statistics, and
+Population Estimates APIs. This package is designed to let you get data
+from all of those APIs using the same main
+function—<code>getCensus</code>—and the same syntax for each
+dataset.</p>
+<p><code>censusapi</code> generally uses the APIs’ original parameter
+names so that users can easily transition between Census’s documentation
+and examples and this package. It also includes metadata functions to
+return data frames of available APIs, variables, and geographies.</p>
+<p>This package returns the data as-is with the original variable names
+created by the Census Bureau and any quirks inherent in the data. Each
+dataset is a little different. Some are documented thoroughly, others
+have documentation that is sparse. Sometimes variable names change
+between years or geographies are added or dropped. This package can’t
+overcome those challenges, but tries to make it easier to get the data
+for use in your analysis. Make sure to thoroughly read the <a href="https://www.census.gov/data/developers/data-sets.html" class="external-link">documentation</a>
+for your dataset and see below for how to <a href="#Other-ways-to-get-help">get help with Census data.</a></p>
 <div class="section level2">
 <h2 id="api-key-setup">API key setup<a class="anchor" aria-label="anchor" href="#api-key-setup"></a>
 </h2>
-<p>To use the Census APIs, <a href="https://api.census.gov/data/key_signup.html" class="external-link">sign up</a> for an API key. Then, if you’re on a non-shared computer, add your Census API key to your .Renviron profile and call it CENSUS_KEY. <code>censusapi</code> will use it by default without any extra work on your part. Within R, run:</p>
+<p>To use the Census APIs, <a href="http://api.census.gov/data/key_signup.html" class="external-link">sign up</a> for an API
+key, which will be sent to your provided email address. You’ll need that
+key to use this package. <code>censusapi</code> will use it by default
+without any extra work on your part.</p>
+<p>Within R, run:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Add key to .Renviron</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>CENSUS_KEY<span class="op">=</span><span class="va">YOURKEYHERE</span><span class="op">)</span>
-<span class="co"># Reload .Renviron</span>
-<span class="fu"><a href="https://rdrr.io/r/base/readRenviron.html" class="external-link">readRenviron</a></span><span class="op">(</span><span class="st">"~/.Renviron"</span><span class="op">)</span>
-<span class="co"># Check to see that the expected key is output in your R console</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"CENSUS_KEY"</span><span class="op">)</span></code></pre></div>
-<p>In some instances you might not want to put your key in your .Renviron - for example, if you’re on a shared school computer. You can always choose to specify your key within <code>getCensus</code> instead.</p>
+<code class="sourceCode R"><span><span class="co"># Add key to .Renviron</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>CENSUS_KEY<span class="op">=</span><span class="va">YOURKEYHERE</span><span class="op">)</span></span>
+<span><span class="co"># Reload .Renviron</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/readRenviron.html" class="external-link">readRenviron</a></span><span class="op">(</span><span class="st">"~/.Renviron"</span><span class="op">)</span></span>
+<span><span class="co"># Check to see that the expected key is output in your R console</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"CENSUS_KEY"</span><span class="op">)</span></span></code></pre></div>
+<p>Once you’ve added your census key to your system environment,
+censusapi will use it by default without any extra work on your
+part.</p>
+<p>In some instances you might not want to put your key in your
+.Renviron - for example, if you’re on a shared school computer. You can
+always choose to manually set <code>key = "YOURKEY"</code> as an
+argument in <code><a href="../reference/getCensus.html">getCensus()</a></code> if you prefer.</p>
 </div>
 <div class="section level2">
 <h2 id="finding-your-api">Finding your API<a class="anchor" aria-label="anchor" href="#finding-your-api"></a>
 </h2>
 <p>To get started, load the <code>censusapi</code> library.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hrecht/censusapi" class="external-link">censusapi</a></span><span class="op">)</span></code></pre></div>
-<p>The Census APIs have over 200 endpoints, covering dozens of different datasets.</p>
-<p>To see a current table of every available endpoint, run <code>listCensusApis</code>:</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hrecht/censusapi" class="external-link">censusapi</a></span><span class="op">)</span></span></code></pre></div>
+<p>The Census APIs have over 200 endpoints, covering dozens of different
+datasets.</p>
+<p>To see a current table of every available endpoint, run
+<code>listCensusApis</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">apis</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusApis.html">listCensusApis</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">apis</span><span class="op">)</span></code></pre></div>
-<p><img src="img/apis.png"> This returns useful information about each endpoint, including <code>name</code>, which you’ll need to make your API call.</p>
+<code class="sourceCode R"><span><span class="va">apis</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusApis.html">listCensusApis</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">apis</span><span class="op">)</span></span></code></pre></div>
+<p>This returns useful information about each endpoint, including
+<code>name</code>, which you’ll need to make your API call.</p>
 </div>
 <div class="section level2">
 <h2 id="using-getcensus">Using <code>getCensus</code><a class="anchor" aria-label="anchor" href="#using-getcensus"></a>
 </h2>
-<p>The main function in <code>censusapi</code> is <code>getCensus</code>, which makes an API call to a given Census API and returns a data frame of results. Each API has slightly different parameters, but there are always a few required arguments:</p>
+<p>The main function in <code>censusapi</code> is
+<code>getCensus</code>, which makes an API call to a given Census API
+and returns a data frame of results. Each API has slightly different
+parameters, but there are always a few required arguments:</p>
 <ul>
 <li>
-<code>name</code>: the name of the API as defined by the Census, like “acs5” or “timeseries/bds/firms”</li>
+<code>name</code>: the name of the API as defined by the Census,
+like “acs5” or “timeseries/bds/firms”</li>
 <li>
-<code>vintage</code>: the dataset year, generally required for non-timeseries APIs</li>
+<code>vintage</code>: the dataset year, generally required for
+non-timeseries APIs</li>
 <li>
 <code>vars</code>: the list of variable names to get</li>
 <li>
-<code>region</code>: the geography level to return, like state or county</li>
+<code>region</code>: the geography level to return, like state or
+county</li>
 </ul>
-<p>Some APIs have additional required or optional arguments, like <code>time</code>, <code>monthly</code>, or <code>period</code>. Check the specific <a href="https://www.census.gov/data/developers/data-sets.html" class="external-link">documentation</a> for your API to see what options are allowed.</p>
-<p>Let’s walk through an example getting uninsured rates by income group using the <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html" class="external-link">Small Area Health Insurance Estimates API</a>, which provides detailed annual state-level and county-level estimates of health insurance rates.</p>
+<p>Some APIs have additional required or optional arguments, like
+<code>time</code>, <code>monthly</code>, or <code>period</code>. Check
+the specific <a href="https://www.census.gov/data/developers/data-sets.html" class="external-link">documentation</a>
+for your API to see what options are allowed.</p>
+<p>Let’s walk through an example getting uninsured rates by income group
+using the <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html" class="external-link">Small
+Area Health Insurance Estimates API</a>, which provides detailed annual
+state-level and county-level estimates of health insurance rates.</p>
 <div class="section level3">
 <h3 id="choosing-variables">Choosing variables<a class="anchor" aria-label="anchor" href="#choosing-variables"></a>
 </h3>
-<p><code>censusapi</code> includes a metadata function called <code>listCensusMetadata</code> to get information about an API’s variable options and geography options. Let’s see what variables are available in the SAHIE API:</p>
+<p><code>censusapi</code> includes a metadata function called
+<code>listCensusMetadata</code> to get information about an API’s
+variable options and geography options. Let’s see what variables are
+available in the SAHIE API:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sahie_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>, 
-    type <span class="op">=</span> <span class="st">"variables"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_vars</span><span class="op">)</span></code></pre></div>
-<div class="kable-table">
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="5%">
-<col width="56%">
-<col width="11%">
-<col width="8%">
-<col width="3%">
-<col width="3%">
-<col width="10%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">name</th>
-<th align="left">label</th>
-<th align="left">concept</th>
-<th align="left">predicateType</th>
-<th align="left">group</th>
-<th align="left">limit</th>
-<th align="left">required</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">NIPR_LB90</td>
-<td align="left">Number in Demographic Group for Selected Income Range, Lower Bound for 90% Confidence Interval</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">NIPR_PT</td>
-<td align="left">Number in Demographic Group for Selected Income Range, Estimate</td>
-<td align="left">Estimate</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">AGECAT</td>
-<td align="left">Age Category</td>
-<td align="left">Demographic ID</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">6</td>
-<td align="left">default displayed</td>
-</tr>
-<tr class="even">
-<td align="left">NIC_PT</td>
-<td align="left">Number Insured, Estimate</td>
-<td align="left">Estimate</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">GEOID</td>
-<td align="left">State+County FIPS Code</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">STATE</td>
-<td align="left">State FIPS Code</td>
-<td align="left">Geographic ID</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>We’ll use a few of these variables to get uninsured rates by income group:</p>
+<code class="sourceCode R"><span><span class="va">sahie_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>, </span>
+<span>    type <span class="op">=</span> <span class="st">"variables"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_vars</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##        name</span></span>
+<span><span class="co">## 1 NIPR_LB90</span></span>
+<span><span class="co">## 2   NIPR_PT</span></span>
+<span><span class="co">## 3    AGECAT</span></span>
+<span><span class="co">## 4    NIC_PT</span></span>
+<span><span class="co">## 5     GEOID</span></span>
+<span><span class="co">## 6     STATE</span></span>
+<span><span class="co">##                                                                                            label</span></span>
+<span><span class="co">## 1 Number in Demographic Group for Selected Income Range, Lower Bound for 90% Confidence Interval</span></span>
+<span><span class="co">## 2                                Number in Demographic Group for Selected Income Range, Estimate</span></span>
+<span><span class="co">## 3                                                                                   Age Category</span></span>
+<span><span class="co">## 4                                                                       Number Insured, Estimate</span></span>
+<span><span class="co">## 5                                                                         State+County FIPS Code</span></span>
+<span><span class="co">## 6                                                                                State FIPS Code</span></span>
+<span><span class="co">##               concept predicateType group limit          required</span></span>
+<span><span class="co">## 1 Uncertainty Measure           int   N/A     0              &lt;NA&gt;</span></span>
+<span><span class="co">## 2            Estimate           int   N/A     0              &lt;NA&gt;</span></span>
+<span><span class="co">## 3      Demographic ID           int   N/A     6 default displayed</span></span>
+<span><span class="co">## 4            Estimate           int   N/A     0              &lt;NA&gt;</span></span>
+<span><span class="co">## 5 Uncertainty Measure           int   N/A     0              &lt;NA&gt;</span></span>
+<span><span class="co">## 6       Geographic ID           int   N/A     0              &lt;NA&gt;</span></span></code></pre>
+<p>We’ll use a few of these variables to get uninsured rates by income
+group:</p>
 <ul>
 <li>
 <code>IPRCAT</code>: Income Poverty Ratio Category</li>
 <li>
-<code>IPR_DESC</code>: Income Poverty Ratio Category Description</li>
+<code>IPR_DESC</code>: Income Poverty Ratio Category
+Description</li>
 <li>
-<code>PCTUI_PT</code>: Percent Uninsured in Demographic Group for Selected Income Range, Estimate</li>
+<code>PCTUI_PT</code>: Percent Uninsured in Demographic Group for
+Selected Income Range, Estimate</li>
 <li>
-<code>NAME</code>: Name of the geography returned (e.g. state or county name)</li>
+<code>NAME</code>: Name of the geography returned (e.g. state or
+county name)</li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="choosing-regions">Choosing regions<a class="anchor" aria-label="anchor" href="#choosing-regions"></a>
 </h3>
-<p>We can also use <code>listCensusMetadata</code> to see which geographic levels we can get data for using the SAHIE API.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>, 
-    type <span class="op">=</span> <span class="st">"geography"</span><span class="op">)</span></code></pre></div>
-<div class="kable-table">
-<table class="table">
-<thead><tr class="header">
-<th align="left">name</th>
-<th align="left">geoLevelId</th>
-<th align="left">limit</th>
-<th align="left">referenceDate</th>
-<th align="left">requires</th>
-<th align="left">wildcard</th>
-<th align="left">optionalWithWCFor</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">us</td>
-<td align="left">010</td>
-<td align="left">1</td>
-<td align="left">2015-01-01</td>
-<td align="left">NULL</td>
-<td align="left">NULL</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">county</td>
-<td align="left">050</td>
-<td align="left">3142</td>
-<td align="left">2015-01-01</td>
-<td align="left">state</td>
-<td align="left">state</td>
-<td align="left">state</td>
-</tr>
-<tr class="odd">
-<td align="left">state</td>
-<td align="left">040</td>
-<td align="left">52</td>
-<td align="left">2015-01-01</td>
-<td align="left">NULL</td>
-<td align="left">NULL</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>This API has three geographic levels: <code>us</code>, <code>county</code> within states, and <code>state</code>.</p>
-<p>First, using <code>getCensus</code>, let’s get uninsured rate by income group at the national level for 2018.</p>
+<p>We can also use <code>listCensusMetadata</code> to see which
+geographic levels we can get data for using the SAHIE API.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sahie_national</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
-    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, 
-    region <span class="op">=</span> <span class="st">"us:*"</span>, 
-    year <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span>
-<span class="va">sahie_national</span></code></pre></div>
-<p>We can also get this data at the state level for every state by changing <code>region</code> to <code>"state:*"</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sahie_states</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
-    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, 
-    region <span class="op">=</span> <span class="st">"state:*"</span>, 
-    year <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_states</span><span class="op">)</span></code></pre></div>
-<p>Finally, we can get county-level data. The geography metadata showed that we can choose to get county-level data within states. We’ll use <code>region</code> to specify county-level results and <code>regionin</code> to request data for Alabama and Alaska.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>, </span>
+<span>    type <span class="op">=</span> <span class="st">"geography"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##     name geoLevelId limit referenceDate requires wildcard optionalWithWCFor</span></span>
+<span><span class="co">## 1     us        010     1    2015-01-01     NULL     NULL              &lt;NA&gt;</span></span>
+<span><span class="co">## 2 county        050  3142    2015-01-01    state    state             state</span></span>
+<span><span class="co">## 3  state        040    52    2015-01-01     NULL     NULL              &lt;NA&gt;</span></span></code></pre>
+<p>This API has three geographic levels: <code>us</code>,
+<code>county</code> within states, and <code>state</code>.</p>
+<p>First, using <code>getCensus</code>, let’s get uninsured rate by
+income group at the national level for 2018.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sahie_counties</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
-    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, 
-    region <span class="op">=</span> <span class="st">"county:*"</span>, 
-    regionin <span class="op">=</span> <span class="st">"state:01,02"</span>, 
-    year <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_counties</span>, n<span class="op">=</span><span class="fl">12L</span><span class="op">)</span></code></pre></div>
-<p>Because the SAHIE API is a timeseries (as indicated in its name), we can get multiple years of data at once using the <code>year</code> argument.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sahie_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
-    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, 
-    region <span class="op">=</span> <span class="st">"state:01"</span>, 
-    year <span class="op">=</span> <span class="st">"2006:2018"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_years</span><span class="op">)</span></code></pre></div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="advanced-topics">Advanced topics<a class="anchor" aria-label="anchor" href="#advanced-topics"></a>
-</h2>
-<p>This package allows access to the full range of the U.S. Census Bureau’s APIs. Where the API allows it, you can specify complicated geographies or filter based on a range of parameters. Each API is a little different, so be sure to read the documentation for the specific API that you’re using. Also see more examples in the <a href="https://hrecht.github.io/censusapi/articles/example-masterlist.html" class="external-link">example masterlist</a>.</p>
-<div class="section level3">
-<h3 id="miscellaneous-parameters">Miscellaneous parameters<a class="anchor" aria-label="anchor" href="#miscellaneous-parameters"></a>
-</h3>
-<p>Some of the APIs allow complex calls, including specifying a country FIPS code or age. The most commonly used parameters, including <code>time</code>, <code>date</code>, and <code>sic</code> are included as built-in options in <code>getCensus</code>, but you can also specify other parameters yourself. (Note: this generally does not apply to the popular American Community Survey and Decennial Census APIs.)</p>
-<p>In the SAHIE API, we can filter data by the categorical variables <code>AGECAT</code> (age group), <code>IPRCAT</code> (income group), <code>RACECAT</code> (race) and <code>SEXCAT</code> (sex), in addition to geography and year. More information on those variables is available in the <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html" class="external-link">online documentation</a>.</p>
-<p>Here’s how to get the uninsured rate (<code>PCTUI_PT</code>) for non-elderly adults (<code>AGECAT = 1</code>) with incomes of 138 to 400% of the poverty line (<code>IPRCAT = 5</code>), by race (<code>RACECAT</code>) and state.</p>
+<code class="sourceCode R"><span><span class="va">sahie_national</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
+<span>    region <span class="op">=</span> <span class="st">"us:*"</span>, </span>
+<span>    year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
+<span><span class="va">sahie_national</span></span></code></pre></div>
+<pre><code><span><span class="co">##   us          NAME IPRCAT                IPR_DESC PCTUI_PT YEAR</span></span>
+<span><span class="co">## 1  1 United States      0             All Incomes     10.8 2019</span></span>
+<span><span class="co">## 2  1 United States      1      &lt;= 200% of Poverty     18.0 2019</span></span>
+<span><span class="co">## 3  1 United States      2      &lt;= 250% of Poverty     17.5 2019</span></span>
+<span><span class="co">## 4  1 United States      3      &lt;= 138% of Poverty     18.1 2019</span></span>
+<span><span class="co">## 5  1 United States      4      &lt;= 400% of Poverty     15.2 2019</span></span>
+<span><span class="co">## 6  1 United States      5 138% to 400% of Poverty     13.8 2019</span></span></code></pre>
+<p>We can also get this data at the state level for every state by
+changing <code>region</code> to <code>"state:*"</code>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sahie_nonelderly</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
-    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span><span class="op">)</span>, 
-    region <span class="op">=</span> <span class="st">"state:*"</span>, 
-    year <span class="op">=</span> <span class="fl">2018</span>,
-    IPRCAT <span class="op">=</span> <span class="fl">5</span>,
-    AGECAT <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_nonelderly</span><span class="op">)</span></code></pre></div>
-<p>Note: data by race is only returned where the population is large enough, so some states will not have rows for some race groups. Here’s another example, getting national data from percent uninsured (<code>PCTUI_PT</code>) and number uninsured (<code>NUI_PT</code>), along with the associated margins of error, by race group and income group for all years.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sahie_nonelderly_annual</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,
-    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"PCTUI_MOE"</span>, <span class="st">"NUI_PT"</span>, <span class="st">"NUI_MOE"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span><span class="op">)</span>, 
-    region <span class="op">=</span> <span class="st">"us:*"</span>, 
-    year <span class="op">=</span> <span class="st">"2006:2018"</span>,
-    AGECAT <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_nonelderly_annual</span><span class="op">)</span></code></pre></div>
-<p>Other APIs can be filtered too. For example, the <a href="https://www.census.gov/data/developers/data-sets/international-database.html" class="external-link">International Data Base</a> population projections APIs allow you to get data by age and country.</p>
-<p>See what variables the IDB 1 year API allows:</p>
+<code class="sourceCode R"><span><span class="va">sahie_states</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
+<span>    region <span class="op">=</span> <span class="st">"state:*"</span>, </span>
+<span>    year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_states</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   state    NAME IPRCAT                IPR_DESC PCTUI_PT YEAR</span></span>
+<span><span class="co">## 1    01 Alabama      0             All Incomes     11.6 2019</span></span>
+<span><span class="co">## 2    01 Alabama      1      &lt;= 200% of Poverty     18.9 2019</span></span>
+<span><span class="co">## 3    01 Alabama      2      &lt;= 250% of Poverty     18.0 2019</span></span>
+<span><span class="co">## 4    01 Alabama      3      &lt;= 138% of Poverty     19.9 2019</span></span>
+<span><span class="co">## 5    01 Alabama      4      &lt;= 400% of Poverty     15.1 2019</span></span>
+<span><span class="co">## 6    01 Alabama      5 138% to 400% of Poverty     12.5 2019</span></span></code></pre>
+<p>Finally, we can get county-level data. The geography metadata showed
+that we can choose to get county-level data within states. We’ll use
+<code>region</code> to specify county-level results and
+<code>regionin</code> to request data for Alabama and Alaska.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"timeseries/idb/1year"</span>, 
-    type <span class="op">=</span> <span class="st">"variables"</span><span class="op">)</span></code></pre></div>
-<div class="kable-table">
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="5%">
-<col width="52%">
-<col width="8%">
-<col width="3%">
-<col width="3%">
-<col width="5%">
-<col width="15%">
-<col width="5%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">name</th>
-<th align="left">label</th>
-<th align="left">predicateType</th>
-<th align="left">group</th>
-<th align="left">limit</th>
-<th align="left">concept</th>
-<th align="left">hasGeoCollectionSupport</th>
-<th align="left">required</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">POP</td>
-<td align="left">Total mid-year population</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">GENC</td>
-<td align="left">Geopolitical Entities, Names, and Codes (GENC) two character country code standard</td>
-<td align="left">string</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">AREA_KM2</td>
-<td align="left">Area in square kilometers</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">FIPS</td>
-<td align="left">FIPS country/area Code</td>
-<td align="left">string</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">SEX</td>
-<td align="left">Sex</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">YR</td>
-<td align="left">Year</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">NAME</td>
-<td align="left">Country or area name</td>
-<td align="left">string</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">AGE</td>
-<td align="left">Single year of age from 0-100+</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Here’s a simple call getting projected population by age for all countries in 2050.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pop_2050</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"timeseries/idb/1year"</span>,
-    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FIPS"</span>, <span class="st">"NAME"</span>, <span class="st">"AGE"</span>, <span class="st">"POP"</span><span class="op">)</span>,
-    time <span class="op">=</span> <span class="fl">2050</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pop_2050</span><span class="op">)</span></code></pre></div>
-<p>But we can make a much more specific call by specifying <code>FIPS</code> and <code>AGE</code> to get just the population projections for teenagers in Portugal.</p>
+<code class="sourceCode R"><span><span class="va">sahie_counties</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
+<span>    region <span class="op">=</span> <span class="st">"county:*"</span>, </span>
+<span>    regionin <span class="op">=</span> <span class="st">"state:01,02"</span>, </span>
+<span>    year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_counties</span>, n<span class="op">=</span><span class="fl">12L</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##    state county               NAME IPRCAT                IPR_DESC PCTUI_PT YEAR</span></span>
+<span><span class="co">## 1     01    001 Autauga County, AL      0             All Incomes      9.4 2019</span></span>
+<span><span class="co">## 2     01    001 Autauga County, AL      1      &lt;= 200% of Poverty     17.3 2019</span></span>
+<span><span class="co">## 3     01    001 Autauga County, AL      2      &lt;= 250% of Poverty     16.3 2019</span></span>
+<span><span class="co">## 4     01    001 Autauga County, AL      3      &lt;= 138% of Poverty     18.5 2019</span></span>
+<span><span class="co">## 5     01    001 Autauga County, AL      4      &lt;= 400% of Poverty     12.8 2019</span></span>
+<span><span class="co">## 6     01    001 Autauga County, AL      5 138% to 400% of Poverty     10.2 2019</span></span>
+<span><span class="co">## 7     01    003 Baldwin County, AL      0             All Incomes     10.9 2019</span></span>
+<span><span class="co">## 8     01    003 Baldwin County, AL      1      &lt;= 200% of Poverty     20.1 2019</span></span>
+<span><span class="co">## 9     01    003 Baldwin County, AL      2      &lt;= 250% of Poverty     18.7 2019</span></span>
+<span><span class="co">## 10    01    003 Baldwin County, AL      3      &lt;= 138% of Poverty     21.0 2019</span></span>
+<span><span class="co">## 11    01    003 Baldwin County, AL      4      &lt;= 400% of Poverty     15.2 2019</span></span>
+<span><span class="co">## 12    01    003 Baldwin County, AL      5 138% to 400% of Poverty     12.9 2019</span></span></code></pre>
+<p>Because the SAHIE API is a timeseries (as indicated in its name), we
+can get multiple years of data at once using the <code>year</code>
+argument.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pop_portugal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"timeseries/idb/1year"</span>,
-    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"POP"</span><span class="op">)</span>,
-    time <span class="op">=</span> <span class="fl">2050</span>,
-    FIPS <span class="op">=</span> <span class="st">"PO"</span>,
-    AGE <span class="op">=</span> <span class="st">"13:19"</span><span class="op">)</span>
-<span class="va">pop_portugal</span></code></pre></div>
-<p>The <a href="https://www.census.gov/data/developers/data-sets/qwi.html" class="external-link">Quarterly Workforce Indicators APIs</a> allow even more specific calls. Here’s one example:</p>
+<code class="sourceCode R"><span><span class="va">sahie_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
+<span>    region <span class="op">=</span> <span class="st">"state:01,17"</span>, </span>
+<span>    year <span class="op">=</span> <span class="st">"2006:2019"</span><span class="op">)</span></span></code></pre></div>
+<p>Here’s a simple chart of that yearly data using the <a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot2</a> package.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">qwi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"timeseries/qwi/sa"</span>,
-    region <span class="op">=</span> <span class="st">"state:02"</span>,
-    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emp"</span>, <span class="st">"sex"</span><span class="op">)</span>,
-    time <span class="op">=</span> <span class="fl">2012</span>,
-    quarter <span class="op">=</span> <span class="fl">1</span>,
-    agegrp <span class="op">=</span> <span class="st">"A07"</span>,
-    ownercode <span class="op">=</span> <span class="st">"A05"</span>,
-    firmsize <span class="op">=</span> <span class="fl">1</span>,
-    seasonadj <span class="op">=</span> <span class="st">"U"</span>,
-    industry <span class="op">=</span> <span class="fl">21</span><span class="op">)</span>
-<span class="va">qwi</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">sahie_years</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">YEAR</span>, y <span class="op">=</span> <span class="va">PCTUI_PT</span>, group <span class="op">=</span> <span class="va">state</span>, color <span class="op">=</span> <span class="va">state</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span></span>
+<span>        breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">18</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>        limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">18</span><span class="op">)</span>,</span>
+<span>        expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
+<span>        legend.position <span class="op">=</span> <span class="st">"top"</span>,</span>
+<span>        panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        panel.grid.major.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        panel.border <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html" class="external-link">scale_color_discrete</a></span><span class="op">(</span></span>
+<span>        labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Alabama"</span>, <span class="st">"Illinois"</span><span class="op">)</span>, </span>
+<span>        breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"01"</span>, <span class="st">"17"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
+<span>        title <span class="op">=</span> <span class="st">"Percent of people who are uninsured by state"</span>,</span>
+<span>        subtitle <span class="op">=</span> <span class="st">"For people below age 65"</span>,</span>
+<span>        caption <span class="op">=</span> <span class="st">"Source: Small Area Health Insurance Estimates"</span></span>
+<span>    <span class="op">)</span></span></code></pre></div>
+<p><img src="getting-started_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
+</div>
+<div class="section level3">
+<h3 id="annotations">Annotations<a class="anchor" aria-label="anchor" href="#annotations"></a>
+</h3>
+<p>Some Census datasets, inclduing the American Community Survey, use
+annotated values. These values use numbers or symbols to indicate that
+the data is unavailable, has been topcoded, has an insufficient sample
+size, or other noteworthy characteristics. Read more from the Census
+Bureau on <a href="https://www.census.gov/data/developers/data-sets/acs-1year/notes-on-acs-estimate-and-annotation-values.html" class="external-link">ACS
+annotation meanings</a> and <a href="https://www.census.gov/data/developers/data-sets/acs-1year/notes-on-acs-api-variable-types.html" class="external-link">ACS
+variable types</a>.</p>
+<p>The <code>censusapi</code> package is intended to return the data
+as-is so that you can receive those unaltered annotations. If you are
+using data for a small geography make sure to check for values like
+<code>-666666666</code> or check the annotation columns for non-empty
+values to exclude as needed.</p>
+<p>As an example, we’ll get median income with associated annotations
+and margin of error, for three census tracts in Washington, DC — one
+that is available, one that is topcoded, and one that is unavailable.
+Notice that income is topcoded at $250,000 — meaning any tract’s income
+that is above that threshold is listed as $250,000. Some are not
+available and are listed as -666666666. You can see these annotations in
+the “EA” (estimate annotation) and “MA” (margin of error annotation)
+columns.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">acs_income</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span>
+<span>    vintage <span class="op">=</span> <span class="fl">2020</span>, </span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B19013_001E"</span>, <span class="st">"B19013_001EA"</span>, <span class="st">"B19013_001M"</span>, <span class="st">"B19013_001MA"</span><span class="op">)</span>, </span>
+<span>    region <span class="op">=</span> <span class="st">"tract:006804,007703,000903"</span>,</span>
+<span>    regionin <span class="op">=</span> <span class="st">"county:001&amp;state:11"</span><span class="op">)</span></span>
+<span><span class="va">acs_income</span></span></code></pre></div>
+<pre><code><span><span class="co">##   state county  tract B19013_001E B19013_001EA B19013_001M B19013_001MA</span></span>
+<span><span class="co">## 1    11    001 007703       46156         &lt;NA&gt;       24087         &lt;NA&gt;</span></span>
+<span><span class="co">## 2    11    001 000903      250001     250,000+  -333333333          ***</span></span>
+<span><span class="co">## 3    11    001 006804  -666666666            -  -222222222           **</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="variable-groups">Variable groups<a class="anchor" aria-label="anchor" href="#variable-groups"></a>
 </h3>
-<p>For some surveys, particularly the American Community Survey and Decennial Census, you can get many related variables at once using a <code>group</code>, defined by the Census Bureau. In some other data tools, like American FactFinder, this idea is referred to as a <code>table</code>.</p>
-<p>The American Community Survey (ACS) APIs include estimates (variable names ending in “E”), annotations, margins of error, and statistical significance, depending on the data set. Read more on <a href="https://www.census.gov/data/developers/data-sets/acs-5year.html" class="external-link">ACS variable types</a> and annotation symbol meanings on the Census website.</p>
-<p>You can retrieve these annotation variables manually, by specifying a list of variables. We’ll get the estimate, margin of error and annotations for median household income in the past 12 months for Census tracts in Alaska.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">acs_income</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,
-    vintage <span class="op">=</span> <span class="fl">2017</span>, 
-    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"B19013_001E"</span>, <span class="st">"B19013_001EA"</span>, <span class="st">"B19013_001M"</span>, <span class="st">"B19013_001MA"</span><span class="op">)</span>, 
-    region <span class="op">=</span> <span class="st">"tract:*"</span>, 
-    regionin <span class="op">=</span> <span class="st">"state:02"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_income</span><span class="op">)</span></code></pre></div>
-<p>You can also retrieve also estimates and annotations for a group of variables in one command. Here’s the <code>group</code> call for that same table, <a href="https://api.census.gov/data/2016/acs/acs5/groups/B19013.html" class="external-link">B19013</a>.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># See descriptions of the variables in group B19013</span>
-<span class="va">group_B19013</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,
-    vintage <span class="op">=</span> <span class="fl">2017</span>,
-    type <span class="op">=</span> <span class="st">"variables"</span>,
-    group <span class="op">=</span> <span class="st">"B19013"</span><span class="op">)</span>
-<span class="va">group_B19013</span>
-
-<span class="va">acs_income_group</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"acs/acs5"</span>, 
-    vintage <span class="op">=</span> <span class="fl">2017</span>, 
-    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"group(B19013)"</span><span class="op">)</span>, 
-    region <span class="op">=</span> <span class="st">"tract:*"</span>, 
-    regionin <span class="op">=</span> <span class="st">"state:02"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_income_group</span><span class="op">)</span></code></pre></div>
-<p>Some variable groups contain many related variables and their associated annotations. As an example, we’ll get the list of variables included in group <a href="https://api.census.gov/data/2016/acs/acs5/groups/B17020.html" class="external-link">B17020</a>, poverty status by age.</p>
+<p>For some surveys, particularly the American Community Survey and
+Decennial Census, you can get many related variables at once using a
+<code>group</code>, defined by the Census Bureau. In some other data
+tools, like American FactFinder, this idea is referred to as a
+<code>table</code>.</p>
+<p>The American Community Survey (ACS) APIs include estimates (variable
+names ending in “E”), annotations, margins of error, and statistical
+significance, depending on the data set. Read more on <a href="https://www.census.gov/data/developers/data-sets/acs-5year.html" class="external-link">ACS
+variable types</a> and annotation symbol meanings on the Census
+website.</p>
+<p>You can retrieve these annotation variables manually, by specifying a
+list of variables. We’ll get the estimate, margin of error and
+annotations for median household income in the past 12 months for Census
+tracts in Alaska.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">group_B17020</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,
-    vintage <span class="op">=</span> <span class="fl">2017</span>,
-    type <span class="op">=</span> <span class="st">"variables"</span>,
-    group <span class="op">=</span> <span class="st">"B17020"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">group_B17020</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">acs_income</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span>
+<span>    vintage <span class="op">=</span> <span class="fl">2017</span>, </span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"B19013_001E"</span>, <span class="st">"B19013_001EA"</span>, <span class="st">"B19013_001M"</span>, <span class="st">"B19013_001MA"</span><span class="op">)</span>, </span>
+<span>    region <span class="op">=</span> <span class="st">"tract:*"</span>, </span>
+<span>    regionin <span class="op">=</span> <span class="st">"state:02"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_income</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   state county  tract                                               NAME</span></span>
+<span><span class="co">## 1    02    068 000100             Census Tract 1, Denali Borough, Alaska</span></span>
+<span><span class="co">## 2    02    261 000200 Census Tract 2, Valdez-Cordova Census Area, Alaska</span></span>
+<span><span class="co">## 3    02    261 000300 Census Tract 3, Valdez-Cordova Census Area, Alaska</span></span>
+<span><span class="co">## 4    02    261 000100 Census Tract 1, Valdez-Cordova Census Area, Alaska</span></span>
+<span><span class="co">## 5    02    122 000200    Census Tract 2, Kenai Peninsula Borough, Alaska</span></span>
+<span><span class="co">## 6    02    122 000800    Census Tract 8, Kenai Peninsula Borough, Alaska</span></span>
+<span><span class="co">##   B19013_001E B19013_001EA B19013_001M B19013_001MA</span></span>
+<span><span class="co">## 1       83295         &lt;NA&gt;        6362         &lt;NA&gt;</span></span>
+<span><span class="co">## 2       95227         &lt;NA&gt;       22638         &lt;NA&gt;</span></span>
+<span><span class="co">## 3       89000         &lt;NA&gt;       20435         &lt;NA&gt;</span></span>
+<span><span class="co">## 4       49076         &lt;NA&gt;        7165         &lt;NA&gt;</span></span>
+<span><span class="co">## 5       57694         &lt;NA&gt;        6526         &lt;NA&gt;</span></span>
+<span><span class="co">## 6       50904         &lt;NA&gt;        3723         &lt;NA&gt;</span></span></code></pre>
+<p>You can also retrieve also estimates and annotations for a group of
+variables in one command. Here’s the <code>group</code> call for that
+same table, <a href="https://api.census.gov/data/2016/acs/acs5/groups/B19013.html" class="external-link">B19013</a>.</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># See descriptions of the variables in group B19013</span></span>
+<span><span class="va">group_B19013</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span>
+<span>    vintage <span class="op">=</span> <span class="fl">2017</span>,</span>
+<span>    type <span class="op">=</span> <span class="st">"variables"</span>,</span>
+<span>    group <span class="op">=</span> <span class="st">"B19013"</span><span class="op">)</span></span>
+<span><span class="va">group_B19013</span></span></code></pre></div>
+<pre><code><span><span class="co">##           name</span></span>
+<span><span class="co">## 1 B19013_001MA</span></span>
+<span><span class="co">## 2 B19013_001EA</span></span>
+<span><span class="co">## 3  B19013_001E</span></span>
+<span><span class="co">## 4  B19013_001M</span></span>
+<span><span class="co">##                                                                                                               label</span></span>
+<span><span class="co">## 1 Annotation of Margin of Error!!Median household income in the past 12 months (in 2017 inflation-adjusted dollars)</span></span>
+<span><span class="co">## 2        Annotation of Estimate!!Median household income in the past 12 months (in 2017 inflation-adjusted dollars)</span></span>
+<span><span class="co">## 3                      Estimate!!Median household income in the past 12 months (in 2017 inflation-adjusted dollars)</span></span>
+<span><span class="co">## 4               Margin of Error!!Median household income in the past 12 months (in 2017 inflation-adjusted dollars)</span></span>
+<span><span class="co">##                                                                              concept</span></span>
+<span><span class="co">## 1 MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2017 INFLATION-ADJUSTED DOLLARS)</span></span>
+<span><span class="co">## 2 MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2017 INFLATION-ADJUSTED DOLLARS)</span></span>
+<span><span class="co">## 3 MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2017 INFLATION-ADJUSTED DOLLARS)</span></span>
+<span><span class="co">## 4 MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2017 INFLATION-ADJUSTED DOLLARS)</span></span>
+<span><span class="co">##   predicateType  group limit predicateOnly</span></span>
+<span><span class="co">## 1        string B19013     0          TRUE</span></span>
+<span><span class="co">## 2        string B19013     0          TRUE</span></span>
+<span><span class="co">## 3           int B19013     0          TRUE</span></span>
+<span><span class="co">## 4           int B19013     0          TRUE</span></span></code></pre>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">acs_income_group</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>, </span>
+<span>    vintage <span class="op">=</span> <span class="fl">2017</span>, </span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"group(B19013)"</span><span class="op">)</span>, </span>
+<span>    region <span class="op">=</span> <span class="st">"tract:*"</span>, </span>
+<span>    regionin <span class="op">=</span> <span class="st">"state:02"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_income_group</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   state county  tract                                               NAME</span></span>
+<span><span class="co">## 1    02    068 000100             Census Tract 1, Denali Borough, Alaska</span></span>
+<span><span class="co">## 2    02    261 000200 Census Tract 2, Valdez-Cordova Census Area, Alaska</span></span>
+<span><span class="co">## 3    02    261 000300 Census Tract 3, Valdez-Cordova Census Area, Alaska</span></span>
+<span><span class="co">## 4    02    261 000100 Census Tract 1, Valdez-Cordova Census Area, Alaska</span></span>
+<span><span class="co">## 5    02    122 000200    Census Tract 2, Kenai Peninsula Borough, Alaska</span></span>
+<span><span class="co">## 6    02    122 000800    Census Tract 8, Kenai Peninsula Borough, Alaska</span></span>
+<span><span class="co">##   B19013_001E B19013_001EA B19013_001M B19013_001MA               GEO_ID NAME_1</span></span>
+<span><span class="co">## 1       83295         &lt;NA&gt;        6362         &lt;NA&gt; 1400000US02068000100     NA</span></span>
+<span><span class="co">## 2       95227         &lt;NA&gt;       22638         &lt;NA&gt; 1400000US02261000200     NA</span></span>
+<span><span class="co">## 3       89000         &lt;NA&gt;       20435         &lt;NA&gt; 1400000US02261000300     NA</span></span>
+<span><span class="co">## 4       49076         &lt;NA&gt;        7165         &lt;NA&gt; 1400000US02261000100     NA</span></span>
+<span><span class="co">## 5       57694         &lt;NA&gt;        6526         &lt;NA&gt; 1400000US02122000200     NA</span></span>
+<span><span class="co">## 6       50904         &lt;NA&gt;        3723         &lt;NA&gt; 1400000US02122000800     NA</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="advanced-geographies">Advanced geographies<a class="anchor" aria-label="anchor" href="#advanced-geographies"></a>
 </h3>
-<p>Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API and run <code>listCensusMetadata</code> to see the available geographies.</p>
-<p>You may want to get get data for many geographies that require a parent geography. For example, tract-level data from the 2010 Decennial Census can only be requested from one state at a time.</p>
-<p>In this example, we use the built in <code>fips</code> list of state <a href="https://www.census.gov/library/reference/code-lists/ansi.html" class="external-link">FIPS codes</a> to request tract-level data from each state and join into a single data frame.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tracts</span> <span class="op">&lt;-</span> <span class="cn">NULL</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">f</span> <span class="kw">in</span> <span class="va">fips</span><span class="op">)</span> <span class="op">{</span>
-    <span class="va">stateget</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"state:"</span>, <span class="va">f</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>
-    <span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
-        name <span class="op">=</span> <span class="st">"dec/sf1"</span>,
-        vintage <span class="op">=</span> <span class="fl">2010</span>,
-        vars <span class="op">=</span> <span class="st">"P001001"</span>,
-        region <span class="op">=</span> <span class="st">"tract:*"</span>,
-        regionin <span class="op">=</span> <span class="va">stateget</span><span class="op">)</span>
-    <span class="va">tracts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">tracts</span>, <span class="va">temp</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tracts</span><span class="op">)</span></code></pre></div>
-<p>The <code>regionin</code> argument of <code>getCensus</code> can also be used with a string of nested geographies, as shown below.</p>
-<p>The 2010 Decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use <code>region</code> to request block level data, and <code>regionin</code> to specify the desired state and county.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data2010</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span>
-    name <span class="op">=</span> <span class="st">"dec/sf1"</span>,
-    vintage <span class="op">=</span> <span class="fl">2010</span>,
-    vars <span class="op">=</span> <span class="st">"P001001"</span>, 
-    region <span class="op">=</span> <span class="st">"block:*"</span>,
-    regionin <span class="op">=</span> <span class="st">"state:36+county:027+tract:010000"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data2010</span><span class="op">)</span></code></pre></div>
+<p>Some geographies, particularly Census tracts and blocks, need to be
+specified within larger geographies like states and counties. This
+varies by API endpoint, so make sure to read the documentation for your
+specific API and run <code>listCensusMetadata</code> to see the
+available geographies.</p>
+<p>You may want to get get data for many geographies that require a
+parent geography. For example, tract-level data from the 2010 Decennial
+Census can only be requested from one state at a time.</p>
+<p>In this example, we use the built in <code>fips</code> list of state
+<a href="https://www.census.gov/library/reference/code-lists/ansi.html" class="external-link">FIPS
+codes</a> to request tract-level data from each state and join into a
+single data frame.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tracts</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">f</span> <span class="kw">in</span> <span class="va">fips</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">stateget</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"state:"</span>, <span class="va">f</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
+<span>    <span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<span>        name <span class="op">=</span> <span class="st">"dec/sf1"</span>,</span>
+<span>        vintage <span class="op">=</span> <span class="fl">2010</span>,</span>
+<span>        vars <span class="op">=</span> <span class="st">"P001001"</span>,</span>
+<span>        region <span class="op">=</span> <span class="st">"tract:*"</span>,</span>
+<span>        regionin <span class="op">=</span> <span class="va">stateget</span><span class="op">)</span></span>
+<span>    <span class="va">tracts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">tracts</span>, <span class="va">temp</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tracts</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   state county  tract P001001</span></span>
+<span><span class="co">## 1    01    001 020100    1912</span></span>
+<span><span class="co">## 2    01    001 020500   10766</span></span>
+<span><span class="co">## 3    01    001 020300    3373</span></span>
+<span><span class="co">## 4    01    001 020400    4386</span></span>
+<span><span class="co">## 5    01    001 020200    2170</span></span>
+<span><span class="co">## 6    01    001 020600    3668</span></span></code></pre>
+<p>The <code>regionin</code> argument of <code>getCensus</code> can also
+be used with a string of nested geographies, as shown below.</p>
+<p>The 2010 Decennial Census summary file 1 requires you to specify a
+state and county to retrieve block-level data. Use <code>region</code>
+to request block level data, and <code>regionin</code> to specify the
+desired state and county.</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data2010</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"dec/sf1"</span>,</span>
+<span>    vintage <span class="op">=</span> <span class="fl">2010</span>,</span>
+<span>    vars <span class="op">=</span> <span class="st">"P001001"</span>, </span>
+<span>    region <span class="op">=</span> <span class="st">"block:*"</span>,</span>
+<span>    regionin <span class="op">=</span> <span class="st">"state:36+county:027+tract:010000"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data2010</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   state county  tract block P001001</span></span>
+<span><span class="co">## 1    36    027 010000  1000      31</span></span>
+<span><span class="co">## 2    36    027 010000  1011      17</span></span>
+<span><span class="co">## 3    36    027 010000  1028      41</span></span>
+<span><span class="co">## 4    36    027 010000  1001       0</span></span>
+<span><span class="co">## 5    36    027 010000  1031       0</span></span>
+<span><span class="co">## 6    36    027 010000  1002       4</span></span></code></pre>
+<p>For many more examples and advanced topics check out <a href="https://www.hrecht.com/censusapi/articles/." class="external-link">all of the
+articles</a></p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="troubleshooting">Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"></a>
 </h2>
-<p>The APIs contain hundreds of API endpoints and dozens of datasets, each of which work a little differently. The Census Bureau also makes frequent updates, which unfortunately are not always announced in advance. If you’re getting an error message or unexpected results, here are some things to check.</p>
+<p>The APIs contain hundreds of API endpoints and dozens of datasets,
+each of which work a little differently. The Census Bureau also makes
+frequent updates, which unfortunately are not always announced in
+advance. If you’re getting an error message or unexpected results, here
+are some things to check.</p>
 <div class="section level3">
 <h3 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
 </h3>
-<p>Use <code>listCensusMetadata(type = "variables")</code> on your API to see the table of available variables.</p>
+<p>Use <code>listCensusMetadata(type = "variables")</code> on your API
+to see the table of available variables.</p>
 <ul>
-<li>Occasionally the variable names will change with data updates or API updates. The names may be different from year to year. Capitalization may also be inconsistent between datasets or years.</li>
-<li>The Census APIs are case-sensitive, which means that if the variable name you want is uppercase you’ll need to write it uppercase in your request. Most of the APIs use uppercase variable names, but some use lowercase and some even use sentence case.</li>
+<li>Occasionally the variable names will change with data updates or API
+updates. The names may be different from year to year. Capitalization
+may also be inconsistent between datasets or years.</li>
+<li>The Census APIs are case-sensitive, which means that if the variable
+name you want is uppercase you’ll need to write it uppercase in your
+request. Most of the APIs use uppercase variable names, but some use
+lowercase and some even use sentence case.</li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="geographies">Geographies<a class="anchor" aria-label="anchor" href="#geographies"></a>
 </h3>
-<p>Use <code>listCensusMetadata(type = "geographies")</code> on your dataset to check which geographies you can use.</p>
+<p>Use <code>listCensusMetadata(type = "geographies")</code> on your
+dataset to check which geographies you can use.</p>
 <ul>
-<li>Each API has its own list of valid geographies and they occasionally change as the Census Bureau makes updates. If a previously available geography isn’t available anymore, email <a href="mailto:cnmp.developers.list@census.gov" class="email">cnmp.developers.list@census.gov</a> detailing the issue.</li>
-<li>If you’re specifying a region by FIPS code, for example <code>state:01</code>, make sure to use the full code, padded with 0s if necessary. The APIs did not always enforce this (previously, <code>state:1</code> usually worked), but now they do. See the Census <a href="https://www.census.gov/geographies/reference-files/2017/demo/popest/2017-fips.html" class="external-link">reference files</a> for valid FIPS codes.</li>
+<li>Each API has its own list of valid geographies and they occasionally
+change as the Census Bureau makes updates. If a previously available
+geography isn’t available anymore, email <a href="mailto:cnmp.developers.list@census.gov" class="email">cnmp.developers.list@census.gov</a> detailing the
+issue.</li>
+<li>If you’re specifying a region by FIPS code, for example
+<code>state:01</code>, make sure to use the full code, padded with 0s if
+necessary. The APIs did not always enforce this (previously,
+<code>state:1</code> usually worked), but now they do. See the Census <a href="https://www.census.gov/geographies/reference-files/2017/demo/popest/2017-fips.html" class="external-link">reference
+files</a> for valid FIPS codes.</li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="unexpected-errors">Unexpected errors<a class="anchor" aria-label="anchor" href="#unexpected-errors"></a>
 </h3>
-<p>Occasionally you might get the general error message <code>"There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience."</code> This comes from the Census Bureau and could be caused by any number of problems, including server issues. Try rerunning your API call. If that doesn’t work and you are requesting a large amount of data, try reducing the amount that you’re requesting, for example getting only one state at a time. If you’re still having trouble, email <a href="mailto:cnmp.developers.list@census.gov" class="email">cnmp.developers.list@census.gov</a>. Include in your email the raw API call that’s provided in your <code>getCensus</code> error message (not your R code) so that they can try to help.</p>
-</div>
-<div class="section level3">
-<h3 id="margins-of-error-and-annotations">Margins of error and annotations<a class="anchor" aria-label="anchor" href="#margins-of-error-and-annotations"></a>
-</h3>
-<p>Read the <a href="https://www.census.gov/data/developers/data-sets/acs-1year/notes-on-acs-estimate-and-annotation-values.html" class="external-link">documentation</a> to understand why you might see values like <code>-555555555</code> in your margin of error columns. These values are set by the Census Bureau, not this <code>censusapi</code> package.</p>
+<p>Occasionally you might get the general error message
+<code>"There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience."</code>
+This comes from the Census Bureau and could be caused by any number of
+problems, including server issues. Try rerunning your API call. If that
+doesn’t work and you are requesting a large amount of data, try reducing
+the amount that you’re requesting, for example getting only one state at
+a time. If you’re still having trouble, email <a href="mailto:census.data@census.gov" class="email">census.data@census.gov</a>. Include in your email the raw
+API call that’s provided in your <code>getCensus</code> error message
+(not your R code) so that they can try to help.</p>
 </div>
 <div class="section level3">
 <h3 id="other-ways-to-get-help">Other ways to get help<a class="anchor" aria-label="anchor" href="#other-ways-to-get-help"></a>
 </h3>
 <ul>
-<li>Open a <a href="https://github.com/hrecht/censusapi/issues" class="external-link">Github issue</a> for bugs or issues with this R package.</li>
-<li>Join the public Census Bureau <a href="http://links.govdelivery.com/track?type=click&amp;enid=ZWFzPTEmbWFpbGluZ2lkPTIwMTgwOTE3Ljk0OTc1NjkxJm1lc3NhZ2VpZD1NREItUFJELUJVTC0yMDE4MDkxNy45NDk3NTY5MSZkYXRhYmFzZWlkPTEwMDEmc2VyaWFsPTE3MjA3MjUwJmVtYWlsaWQ9aHJlY2h0MkBnbWFpbC5jb20mdXNlcmlkPWhyZWNodDJAZ21haWwuY29tJmZsPSZleHRyYT1NdWx0aXZhcmlhdGVJZD0mJiY=&amp;&amp;&amp;105&amp;&amp;&amp;https://join.slack.com/t/uscensusbureau/shared_invite/enQtMjQ3NzUyNTM3NDU3LTZmNGI1MmQzY2Y2ZTU1ODJhNDQwMmY2YmZiNmFkNzg4YmJkYmQzZjQyNDhkNDYxN2JhYjkxZDEwMGI2OGU5NzQ?eml=gd&amp;utm_medium=email&amp;utm_source=govdelivery" class="external-link">Slack channel</a> and ask your question in the R or API rooms.</li>
-<li>Email the Census Bureau API team at <a href="mailto:cnmp.developers.list@census.gov" class="email">cnmp.developers.list@census.gov</a> for questions relating to the underlying data and APIs.</li>
+<li>Open a <a href="https://github.com/hrecht/censusapi/issues" class="external-link">Github
+issue</a> for bugs or issues with this R package.</li>
+<li>Join the public Census Bureau <a href="http://links.govdelivery.com/track?type=click&amp;enid=ZWFzPTEmbWFpbGluZ2lkPTIwMTgwOTE3Ljk0OTc1NjkxJm1lc3NhZ2VpZD1NREItUFJELUJVTC0yMDE4MDkxNy45NDk3NTY5MSZkYXRhYmFzZWlkPTEwMDEmc2VyaWFsPTE3MjA3MjUwJmVtYWlsaWQ9aHJlY2h0MkBnbWFpbC5jb20mdXNlcmlkPWhyZWNodDJAZ21haWwuY29tJmZsPSZleHRyYT1NdWx0aXZhcmlhdGVJZD0mJiY=&amp;&amp;&amp;105&amp;&amp;&amp;https://join.slack.com/t/uscensusbureau/shared_invite/enQtMjQ3NzUyNTM3NDU3LTZmNGI1MmQzY2Y2ZTU1ODJhNDQwMmY2YmZiNmFkNzg4YmJkYmQzZjQyNDhkNDYxN2JhYjkxZDEwMGI2OGU5NzQ?eml=gd&amp;utm_medium=email&amp;utm_source=govdelivery" class="external-link">Slack
+channel</a> and ask your question in the R or API rooms.</li>
+<li>Email the Census Bureau API team at <a href="mailto:census.data@census.gov" class="email">census.data@census.gov</a> for questions relating to the
+underlying data and APIs.</li>
 </ul>
 </div>
 </div>
@@ -595,13 +587,15 @@
 <h2 id="additional-resources">Additional resources<a class="anchor" aria-label="anchor" href="#additional-resources"></a>
 </h2>
 <ul>
-<li><a href="https://www.census.gov/data/developers/guidance/api-user-guide.Overview.html" class="external-link">Census Data API User Guide</a></li>
+<li><a href="https://www.census.gov/data/developers/guidance/api-user-guide.Overview.html" class="external-link">Census
+Data API User Guide</a></li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="disclaimer">Disclaimer<a class="anchor" aria-label="anchor" href="#disclaimer"></a>
 </h2>
-<p>This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.</p>
+<p>This product uses the Census Bureau Data API but is not endorsed or
+certified by the Census Bureau.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -616,7 +610,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

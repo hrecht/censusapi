@@ -6,9 +6,14 @@ template:
     primary: "#0d565c"
 navbar:
  components:
-   intro:
-    text: Get started
-    href: articles/getting-started.html
-   articles:
-    text: Example masterlist
-    href: articles/example-masterlist.html
+  articles:
+    text: Articles
+    menu:
+      - text: Getting started with censusapi
+        href: articles/getting-started.html
+      - text: List of examples
+        href: articles/example-masterlist.html
+      - text: Advanced censusapi usage
+        href: articles/advanced-usage.html
+      - text: Accessing microdata
+        href: articles/accessing-microdata.html

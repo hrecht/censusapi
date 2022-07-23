@@ -1,47 +1,50 @@
 ---
-title: "Example masterlist"
-output:
-  html_document:
-    toc: true
-    toc_depth: 2
-    df_print: kable
-pkgdown:
-  as_is: true
+title: "Even more censusapi examples"
+output: rmarkdown::html_vignette
+description: >
+  Examples from many of the summary data APIs.
+vignette: >
+  %\VignetteIndexEntry{Even more censusapi examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
-```{r, echo = FALSE}
-NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
-knitr::opts_chunk$set(purl = NOT_CRAN,
-											comment = "#>")
+```{r include = FALSE, message = FALSE}
+library(censusapi)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 ```
 
 
-The Census APIs have over 200 endpoints, covering dozens of different datasets.
+The Census APIs have more than 1,000 endpoints, covering dozens of different surveys.
 ```{r, message = FALSE}
 library(censusapi)
 ```
 
 To see a current table of every available endpoint, run `listCensusApis`:
-```{r, eval = FALSE}
+```{r}
 apis <- listCensusApis()
-View(apis)
 ```
-![](img/apis.png)
-
-Here is a list of examples for dozens of the Census's API endpoints. Read more about discovering an API's variable and geography options in [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html)
 
 ## American Community Survey
+There are multiple useful ACS datasets with slightly different purposes. Here's how the Census Bureau [describes them](https://www.census.gov/data/developers/data-sets/acs-5year.html):
+"Detailed Tables contain the most detailed cross-tabulations, many of which are published down to block groups. The data are population counts. There are over 20,000 variables in this dataset.
+
+Subject Tables provide an overview of the estimates available in a particular topic.  The data are presented as population counts and percentages.  There are over 18,000 variables in this dataset. 
+
+Data Profiles contain broad social, economic, housing, and demographic information. The data are presented as population counts and percentages. There are over 1,000 variables in this dataset.
+
+Comparison Profiles are similar to Data Profiles but also include comparisons with past-year data.  The current year data are compared with prior 5-Year data and include statistical significance testing.  There are over 1,000 variables in this dataset."
 
 ### ACS Detailed Tables
 
-Get median household income, with associated annotations and margin of error, for census tracts in Alaska.
+Get total population and median income for places (towns, cities, etc) in Indiana.
 ```{r}
 acs_income <- getCensus(
 	name = "acs/acs5",
-	vintage = 2019, 
-	vars = c("NAME", "B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA"), 
-	region = "tract:*",
-	regionin = "state:02")
+	vintage = 2020, 
+	vars = c("NAME", "B01001_001E", "B19013_001E"), 
+	region = "place:*",
+	regionin = "state:18")
 head(acs_income)
 ```
 
@@ -67,18 +70,9 @@ head(acs_subject)
 ```
 
 
-### ACS Data Profile
-```{r}
-acs_profile <- getCensus(
-	name = "acs/acs1/profile",
-	vintage = 2019, 
-	vars = "group(DP05)", 
-	region = "region:*")
-```
-
 ### ACS Comparison Profiles
 
-Get the annaul median household income in constant 2019 dollars for Alabama cities for the past five years.
+Get the annaul median household income in inflation-adjusted 2019 dollars for Alabama cities for the past five years.
 ```{r}
 acs_comparison <- getCensus(
 	name = "acs/acs1/cprofile",
@@ -217,7 +211,8 @@ head(nonemp)
 
 ## Decennial Census
 [Decennial Census documentation](https://www.census.gov/data/developers/data-sets/decennial-census.html)
-Total population and housing units for metropolitan/micropolitan statistical areas in 2010.
+
+Get total population and the number of housing units for metropolitan/micropolitan statistical areas in 2010.
 ```{r}
 data2010 <- getCensus(
 	name = "dec/sf1",
@@ -334,7 +329,7 @@ eits <- getCensus(
 head(eits)
 ```
 
-## Health Insurance Statistics
+## Health Insurance: Small Area Health Insurance Estimates
 [Health Insurance Statistics documentation](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html)
 
 Get the uninsured rate by income group in Alabama for a single year.
@@ -343,7 +338,7 @@ sahie <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"),
 	region = "state:01",
-	year = 2018)
+	year = 2019)
 head(sahie)
 ```
 
@@ -353,7 +348,7 @@ sahie_annual <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT"),
 	region = "state:01",
-	year = "2006:2018")
+	year = "2006:2019")
 sahie_annual
 ```
 
@@ -363,7 +358,7 @@ sahie_nonelderly <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPR_DESC", "PCTUI_PT", "AGE_DESC", "RACECAT", "RACE_DESC"), 
 	region = "state:*", 
-	year = 2018,
+	year = 2019,
 	IPRCAT = 5,
 	AGECAT = 1)
 head(sahie_nonelderly)
@@ -411,7 +406,7 @@ head(imports)
 
 ### Population Estimates
 [Population Estimates documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html)
-Note that variable names in the PEP APIs are not always consistent from year to year.
+Note that variable names and data structure in the PEP APIs are not always consistent from year to year.
 
 ```{r}
 popest <- getCensus(
@@ -454,11 +449,11 @@ poverty <- getCensus(
 	name = "timeseries/poverty/histpov2",
 	vars = c("RACE", "PCTPOV"),
 	region = "us:*",
-	time = "from 1968 to 2019")
+	time = "from 1970 to 2020")
 head(poverty)
 ```
 
-### Small Area Income and Poverty Estimates
+### Small Area Income and Poverty Estimates (SAIPE)
 
 Get poverty rate for children and overall for a single year.
 ```{r}
@@ -491,11 +486,28 @@ saipe_schools <- getCensus(
 	year = 2019)
 head(saipe_schools)
 ```
+## Public Sector Statistics
+[Public Sector Statistics documentation](https://www.census.gov/data/developers/data-sets/annual-public-sector-stats.html) 
+
+This endpoint includes data from multiple surveys organized be sure to read the Census Bureau's documentation for variable definitions and labels.
+
+Get expenditures for Public Elementary-Secondary School System Finances for Massachusetts.
+```{r}
+govs <- getCensus(
+	name = "timeseries/govs",
+	vars = c("SVY_COMP_LABEL", "AGG_DESC", "AGG_DESC_LABEL" ,"AMOUNT"),
+	region = "state:25",
+	year = "2020",
+	SVY_COMP = "06",
+	EXPENDTYPE = "001")
+head(govs)
+```
+
 
 ## Quarterly Workforce Indicators
 [Quarterly Workforce Indicators documentation](https://www.census.gov/data/developers/data-sets/qwi.html)
 
-The allow both simple calls and very specfic ones. Make sure to read the documentation closely.
+The QWI endpoints allow both simple calls and very specfic ones. Make sure to read the documentation closely.
 Here's a simple call that gets employment data by county.
 ```{r}
 qwi_counties <- getCensus(
@@ -507,13 +519,13 @@ qwi_counties <- getCensus(
 head(qwi_counties)
 ```
 
-Employment data over time for a single state.
+Got total employment and average earnings by quarter for a single state.
 ```{r}
 qwi_time <- getCensus(
 	name = "timeseries/qwi/sa",
 	vars = c("Emp", "EarnBeg"),
 	region = "state:01",
-	time = "from 2007 to 2017")
+	time = "from 2018 to 2022")
 head(qwi_time)
 ```
 
@@ -533,25 +545,6 @@ qwi <- getCensus(
 qwi
 ```
 
-## Survey of Business Owners
-[Survey of Business Owners documentation](https://www.census.gov/data/developers/data-sets/business-owners.html)
-```{r}
-# sbo <- getCensus(
-# 	name = "sbo",
-# 	vintage = 2012,
-# 	vars = c("GEO_TTL", "RCPSZFI", "RCPSZFI_TTL", "FIRMPDEMP"),
-# 	region = "state:*")
-# head(sbo)
-# 
-# sbo_groups <- getCensus(
-# 	name = "sbo",
-# 	vintage = 2012,
-# 	vars = c("GEO_TTL", "RACE_GROUP", "RACE_GROUP_TTL", "FIRMPDEMP"),
-# 	region = "county:*",
-# 	regionin = "state:09")
-# head(sbo_groups)
-```
-
 ## The Planning Database
 [The Planning Database documentation](https://www.census.gov/data/developers/data-sets/planning-database.html)
 Get population and 2010 Census mail return rates for block groups in Autauga County, AL.
@@ -564,6 +557,7 @@ pdb <- getCensus(
 	regionin = "state:01+county:001")
 head(pdb)
 ```
+
 
 ## Disclaimer
 This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.

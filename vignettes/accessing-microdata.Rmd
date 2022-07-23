@@ -1,0 +1,44 @@
+---
+title: "Accessing microdata"
+output: 
+  rmarkdown::html_vignette:
+    df_print: kable
+description: >
+  Access Census microdata.
+vignette: >
+  %\VignetteIndexEntry{Accessing microdata}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r include = FALSE, message = FALSE}
+library(censusapi)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```
+
+This package provides basic support for the Census's new microdata APIs, using the same `getCensus()` functions used for aggregate data. 
+
+Microdata, the individual-level responses, should be used by advanced data users only. Weighting the individual-level responses is required. Please read the [microdata API documentation](https://www.census.gov/data/developers/data-sets/census-microdata-api.html) closely.
+
+From the CPS Voting supplement, get data on method of voting using `PES1` (Did you vote?) `PES5` (Vote in person or by mail?) and `PESEX` (gender), along with the appropriate weighting variable, `PWSSWGT`.
+
+```{r}
+# https://api.census.gov/data/2020/cps/voting/nov?get=PES1,PES5,PESEX,PWSSWGT&for=state:01
+cps_voting <- getCensus(
+	name = "cps/voting/nov",
+	vintage = 2020,
+	vars = c("PES1", "PES5", "PESEX", "PWSSWGT"),
+	region = "state:36")
+head(cps_voting)
+```
+
+As for all other endpoints, `censusapi` retrieves the data so that you can perform your own analysis using your methodology of choice. If you're looking for a simple tool to perform analysis on the microdata, try the [data.census.gov microdata interactive tool](https://data.census.gov/mdat/#/) or the [IPUMS online data analysis tool](https://cps.ipums.org/cps/sda.shtml).
+
+Some other ways to access the Census microdata are:
+
+* Download bulk files from the Census FTP (file-transfer protocol)
+* Retrieve standardized, cleaned microdata data from [IPUMS](https://www.ipums.org/) and import with the [impumsr package](https://tech.popdata.org/ipumsr/)
+* Retrieve microdata via the Census APIs with [tidycensus](https://walker-data.com/tidycensus/articles/pums-data.html), which has more robust functions for working with this data.
+
+## Disclaimer
+This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.

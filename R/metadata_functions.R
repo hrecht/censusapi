@@ -1,8 +1,7 @@
-#' Get dataset metadata on all available APIs as a data frame
+#' Get useful dataset metadata on all available APIs as a data frame
 #'
 #' Scrapes {https://api.census.gov/data.json} and returns a dataframe
-#' that includes: title, name, vintage (where applicable), url, isTimeseries (binary),
-#' temporal (helpful for some time series), description, modified date
+#' that includes: title, description, name, vintage, url, dataset type, and other useful fields.
 #'
 #' @keywords metadata
 #' @export
@@ -15,13 +14,21 @@ listCensusApis <- function() {
 	raw <- jsonlite::fromJSON(u)
 	datasets <- jsonlite::flatten(raw$dataset)
 
-	# Format for user
+	# Format variable names and values
 	colnames(datasets) <- gsub("c_", "", colnames(datasets))
 	datasets$name <- apply(datasets, 1, function(x) paste(x$dataset, collapse = "/"))
 	datasets$url <- apply(datasets, 1, function(x) x$distribution$accessURL)
 
-	dt <- datasets[, c("title", "name", "vintage", "url", "isTimeseries", "temporal", "description", "modified")]
-	dt <- dt[order(dt$name, dt$vintage),]
+	names(datasets)[names(datasets) == "contactPoint.hasEmail"] <- "contact"
+
+	# Add a dataset type variable built from binary variables
+	datasets$type <- ifelse(datasets$isMicrodata %in% TRUE , "Microdata",
+													ifelse(datasets$isTimeseries %in% TRUE, "Timeseries",
+																 ifelse(datasets$isAggregate %in% TRUE, "Aggregate",
+																 			 NA)))
+
+	dt <- datasets[, c("title", "name", "vintage", "type", "temporal", "url", "modified", "description", "contact")]
+	dt <- dt[order(-dt$vintage, dt$name),]
 	return(dt)
 }
 
