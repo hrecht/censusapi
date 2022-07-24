@@ -227,7 +227,7 @@ will have a lot of numbers instead of text labels.</p>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
-<th align="left">value</th>
+<th align="left">code</th>
 <th align="left">label</th>
 </tr></thead>
 <tbody>
@@ -261,7 +261,8 @@ will have a lot of numbers instead of text labels.</p>
 <p>If you want to make a full data dictionary including the defintions
 and labels for every variable in the dataset, use
 <code>type = "variables"</code> and
-<code>include_values = "TRUE"</code>.</p>
+<code>include_values = "TRUE"</code>. There will be one row per
+variable-label pair.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">voting_dict</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"cps/voting/nov"</span>,</span>

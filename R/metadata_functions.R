@@ -307,8 +307,8 @@ listCensusMetadata <-
 				stop(paste("Value labels are not available for the selected variable:", variable_name))
 			}
 			dt <- utils::stack(raw$values$item)
-			colnames(dt) <- c("label", "value")
-			dt <- dt[, c("value", "label")]
+			colnames(dt) <- c("label", "code")
+			dt <- dt[, c("code", "label")]
 
 		}	else {
 			stop(paste('For "type", you entered: "', type, '". Did you mean "variables", "geography", "groups", or "values"?', sep = ""))
