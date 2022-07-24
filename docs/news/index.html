@@ -57,7 +57,7 @@
 <h2 class="pkg-version" data-toc-text="0.8.0" id="censusapi-080">censusapi 0.8.0<a class="anchor" aria-label="anchor" href="#censusapi-080"></a></h2>
 <ul><li><p><code><a href="../reference/listCensusApis.html">listCensusApis()</a></code> has new columns in the resulting data frame of available API endpoints: the API <code>contact</code> email address and <code>type</code>: either Aggregate, Timeseries, or Microdata.</p></li>
 <li>
-<p><code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code> has a new type: values, for use with variables where the values are encoded in the Census data. Specify <code>type = "values"</code> and <code>variable = "VARIABLE OF INTEREST"</code> to return a dataframe of variable response values and labels.</p>
+<p><code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code> has new functionality to use <code>value</code> metadata. This is particularly useful for some of the economic datasets and the microdata APIs. Use <code>type = "variables"</code> and <code>include_values = TRUE</code> to create a dictionary with all value labels for a given dataset. To get value labels for a single variable in a given dataset, use <code>type = "values"</code> and <code>variable = "VARIABLE OF INTEREST"</code>.</p>
 <p>Note: This metadata, while incredibly useful, only exists for some datasets. For other datasets you’ll still need to reference external files until the Census Bureau adds this functionality.</p>
 <p>For example, get the value labels for the <code>NAICS2017</code> in the County Business Patterns dataset:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -67,6 +67,14 @@
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>,</span>
 <span>    type <span class="op">=</span> <span class="st">"values"</span>,</span>
 <span>    variable <span class="op">=</span> <span class="st">"NAICS2017"</span><span class="op">)</span></span></code></pre></div>
+<p>Or make a full dictionary for the Current Population Survey Voting Patterns microdata API:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">cbp_dict</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"cbp"</span>,</span>
+<span>    vintage <span class="op">=</span> <span class="fl">2020</span>,</span>
+<span>    type <span class="op">=</span> <span class="st">"variables"</span>,</span>
+<span>    include_values <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </li>
 <li><p><code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code> now properly handles metadata attribute names in the new Microdata APIs that contain invalid JSON. This solves (<a href="https://github.com/hrecht/censusapi/issues/84" class="external-link">#84</a>).</p></li>
 <li><p>Documentation and examples are updated. There are two new vignettes: <a href="https://www.hrecht.com/censusapi/articles/advanced-usage.html">Advanced censusapi usage</a> (previously included elsewhere) and <a href="https://www.hrecht.com/censusapi/articles/accessing-microdata.html">Accessing microdata.</a></p></li>

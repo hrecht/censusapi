@@ -42,6 +42,8 @@ listCensusApis <- function() {
 #' of variables only. This field is not used in all APIs.
 #' @param variable_name A name of a specific variable used to return metadata about that
 #' variable. This field is not used in all APIs.
+#' @param include_values Include value metadata for all variables in a dataset if that
+#' metadata exists. Default is "FALSE".
 #' @keywords metadata
 #' @examples
 #' \dontrun{
@@ -59,12 +61,21 @@ listCensusApis <- function() {
 #'   type = "geographies")
 #'  head(acs_geographies)
 #'
-#' # list the variable groups available in the 5-year 2020 American Community Survey.
+#' # List the variable groups available in the 5-year 2020 American Community Survey.
 #' acs_groups <- listCensusMetadata(
 #'   name = "acs/acs5",
 #'   vintage = 2020,
 #'   type = "groups")
 #'  head(acs_groups)
+
+#' # Create a data dictionary with all variable names and encoded values for
+#' # a microdata API.
+#' cbp_dict <- listCensusMetadata(
+#'   name = "cbp",
+#'   vintage = 2020,
+#'   type = "variables",
+#'   include_values = TRUE)
+#'  head(cbp_dict)
 #'
 #' # List the value labels of the NAICS2017 variable in the 2020 County
 #' # Business Patterns dataset.
@@ -177,8 +188,11 @@ listCensusMetadata <-
 				# Remove invalid dashes in variable names - new problem with Microdata APIs
 				cols <- gsub("-", "_", cols)
 
-				if (include_values == FALSE) {
+				if (include_values == FALSE | !("values" %in% cols)) {
 
+					if (include_values == TRUE & !("values" %in% cols)) {
+						warning("You've set `include_values` to TRUE but this dataset does not contain variable values. Variable values will not be returned")
+					}
 					cols <- cols[!(cols %in% c("predicateOnly", "datetime", "validValues", "values"))]
 
 					# REVIST THIS - unnecessarily complicated, can remove those columns later
@@ -203,35 +217,60 @@ listCensusMetadata <-
 					})
 
 				} else if (include_values == TRUE) {
-					cols <- cols[!(cols %in% c("predicateOnly", "datetime", "validValues", "values"))]
 
-					# REVIST THIS - unnecessarily complicated, can remove those columns later
+			  	# Prepare for value code and label if the value metadata is present
+					if ("values" %in% cols) {
+						# print("VALUES ARE PRESENT")
+						cols <- c(cols, "values_code", "values_label")
+						cols <- cols[cols != "values"]
+					}
+
 					makeDf <- function(d) {
 						names(d) <- gsub("-", "_", names(d))
-						if ("validValues" %in% names(d)) {
-							d$validValues <- NULL
-						}
-						if ("values" %in% names(d)) {
+
+						# As of right now, not using the "range" metadata in some of the microdata,
+						# only item labels
+						if ("values" %in% names(d) & "item" %in% names(d$values)) {
+							# print(("YES VALUES META")
+							# Make data frame of value labels
+							temp_vals <- utils::stack(d$values$item)
+
+							# Column cleaning
+							colnames(temp_vals) <- c("label", "code")
+							temp_vals <- temp_vals[, c("code", "label")]
+							# Use character, not factor
+							temp_vals$code <- as.character(temp_vals$code)
+
+							# Assign back to parent
+							d$values <- temp_vals
+
+							df <- as.data.frame(d)
+							names(df) <- gsub("\\.", "_", names(df))
+
+						} else {
+							# print("NO VALUES META")
+							# Set values to null in case it exists but without `item` labels
 							d$values <- NULL
+
+							df <- as.data.frame(d)
 						}
-						df <- data.frame(d)
 
 						df[, setdiff(cols, names(df))] <- NA
 						return(df)
 					}
 
-					dts <- lapply(raw$variables, function(x) if (!("predicateOnly" %in% names(x))) {
-						makeDf(x)
-					} else {x <- NULL})
+					dts <- lapply(raw$variables, makeDf)
 				}
 			}
 
 			temp <- Filter(is.data.frame, dts)
 			dt <- do.call(rbind, temp)
 
-			# Clean up
+			# Clean up row names aka variable names
 			dt <- cbind(name = row.names(dt), dt)
 			row.names(dt) <- NULL
+			# If there are periods in the name field from concatenated numbers, remove
+			dt$name <- gsub("\\..*", "", dt$name)
 			dt[] <- lapply(dt, as.character)
 
 

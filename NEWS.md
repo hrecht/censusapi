@@ -1,6 +1,8 @@
 # censusapi 0.8.0 
 * `listCensusApis()` has new columns in the resulting data frame of available API endpoints: the API `contact` email address and `type`: either Aggregate, Timeseries, or Microdata.
-* `listCensusMetadata()` has a new type: values, for use with variables where the values are encoded in the Census data. Specify `type = "values"` and `variable = "VARIABLE OF INTEREST"` to return a dataframe of variable response values and labels. 
+* `listCensusMetadata()` has new functionality to use `value` metadata. This is particularly useful for some of the economic datasets and the microdata APIs.
+	Use `type = "variables"` and `include_values = TRUE` to create a dictionary with all value labels for a given dataset.
+	To get value labels for a single variable in a given dataset, use `type = "values"` and `variable = "VARIABLE OF INTEREST"`. 
 
 	Note: This metadata, while incredibly useful, only exists for some datasets. For other datasets you'll still need to reference external files until the Census Bureau adds this functionality.
 	
@@ -13,6 +15,17 @@
 		type = "values",
 		variable = "NAICS2017")
 	```
+	
+	Or make a full dictionary for the Current Population Survey Voting Patterns microdata API:
+	
+	```R 
+	cbp_dict <- listCensusMetadata(
+		name = "cbp",
+		vintage = 2020,
+		type = "variables",
+		include_values = TRUE)
+	```
+
 
 * `listCensusMetadata()` now properly handles metadata attribute names in the new Microdata APIs that contain invalid JSON. This solves (#84).
 * Documentation and examples are updated. There are two new vignettes: [Advanced censusapi usage](https://www.hrecht.com/censusapi/articles/advanced-usage.html) (previously included elsewhere) and [Accessing microdata.](https://www.hrecht.com/censusapi/articles/accessing-microdata.html)

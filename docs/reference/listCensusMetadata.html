@@ -65,7 +65,8 @@
 <span>  vintage <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"variables"</span>,</span>
 <span>  group <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  variable_name <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  variable_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  include_values <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -92,6 +93,11 @@ of variables only. This field is not used in all APIs.</p></dd>
 <dt>variable_name</dt>
 <dd><p>A name of a specific variable used to return metadata about that
 variable. This field is not used in all APIs.</p></dd>
+
+
+<dt>include_values</dt>
+<dd><p>Include value metadata for all variables in a dataset if that
+metadata exists. Default is "FALSE".</p></dd>
 
 </dl></div>
 
@@ -147,7 +153,7 @@ variable. This field is not used in all APIs.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5             state</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6            county</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># list the variable groups available in the 5-year 2020 American Community Survey.</span></span></span>
+<span class="r-in"><span><span class="co"># List the variable groups available in the 5-year 2020 American Community Survey.</span></span></span>
 <span class="r-in"><span><span class="va">acs_groups</span> <span class="op">&lt;-</span> <span class="fu">listCensusMetadata</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span></span>
 <span class="r-in"><span>  vintage <span class="op">=</span> <span class="fl">2020</span>,</span></span>
@@ -174,6 +180,42 @@ variable. This field is not used in all APIs.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4 http://api.census.gov/data/2020/acs/acs5/groups/B18105.json NONINST_05_OVER</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5 http://api.census.gov/data/2020/acs/acs5/groups/B17017.json           HSHLD</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6 http://api.census.gov/data/2020/acs/acs5/groups/B18106.json NONINST_05_OVER</span>
+<span class="r-in"><span><span class="co"># Create a data dictionary with all variable names and encoded values for</span></span></span>
+<span class="r-in"><span><span class="co"># a microdata API.</span></span></span>
+<span class="r-in"><span><span class="va">cbp_dict</span> <span class="op">&lt;-</span> <span class="fu">listCensusMetadata</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  name <span class="op">=</span> <span class="st">"cbp"</span>,</span></span>
+<span class="r-in"><span>  vintage <span class="op">=</span> <span class="fl">2020</span>,</span></span>
+<span class="r-in"><span>  type <span class="op">=</span> <span class="st">"variables"</span>,</span></span>
+<span class="r-in"><span>  include_values <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cbp_dict</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        name                                      label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       for               Census API FIPS 'for' clause</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        in                Census API FIPS 'in' clause</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     ucgid Uniform Census Geography Identifier clause</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     EMP_N        Noise range for number of employees</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     STATE                                  Geography</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 PAYQTR1_N      Noise range for first-quarter payroll</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                                                                     concept</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                                                                                                        Census API Geography Specification</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                                                                                                        Census API Geography Specification</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                                                                                                                        Census API Geography Specification</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 All Sectors: County Business Patterns, including ZIP Code Business Patterns, by Legal Form of Organization and Employment Size Class for the U.S., States, and Selected Geographies: 2020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                                                                                                                                                      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 All Sectors: County Business Patterns, including ZIP Code Business Patterns, by Legal Form of Organization and Employment Size Class for the U.S., States, and Selected Geographies: 2020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   predicateType     group limit predicateOnly hasGeoCollectionSupport</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      fips-for       N/A     0          TRUE                    &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       fips-in       N/A     0          TRUE                    &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         ucgid       N/A     0          TRUE                    TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4           int CB2000CBP     0          &lt;NA&gt;                    &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          &lt;NA&gt;       N/A     0          &lt;NA&gt;                    &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6           int CB2000CBP     0          &lt;NA&gt;                    &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    attributes required values_code values_label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     EMP_N_F     &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5        &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 PAYQTR1_N_F     &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># List the value labels of the NAICS2017 variable in the 2020 County</span></span></span>
 <span class="r-in"><span><span class="co"># Business Patterns dataset.</span></span></span>

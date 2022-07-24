@@ -9,7 +9,8 @@ listCensusMetadata(
   vintage = NULL,
   type = "variables",
   group = NULL,
-  variable_name = NULL
+  variable_name = NULL,
+  include_values = FALSE
 )
 }
 \arguments{
@@ -25,6 +26,9 @@ of variables only. This field is not used in all APIs.}
 
 \item{variable_name}{A name of a specific variable used to return metadata about that
 variable. This field is not used in all APIs.}
+
+\item{include_values}{Include value metadata for all variables in a dataset if that
+metadata exists. Default is "FALSE".}
 }
 \description{
 Get information about a specific API as a data frame
@@ -45,12 +49,20 @@ acs_geographies <- listCensusMetadata(
   type = "geographies")
  head(acs_geographies)
 
-# list the variable groups available in the 5-year 2020 American Community Survey.
+# List the variable groups available in the 5-year 2020 American Community Survey.
 acs_groups <- listCensusMetadata(
   name = "acs/acs5",
   vintage = 2020,
   type = "groups")
  head(acs_groups)
+# Create a data dictionary with all variable names and encoded values for
+# a microdata API.
+cbp_dict <- listCensusMetadata(
+  name = "cbp",
+  vintage = 2020,
+  type = "variables",
+  include_values = TRUE)
+ head(cbp_dict)
 
 # List the value labels of the NAICS2017 variable in the 2020 County
 # Business Patterns dataset.
