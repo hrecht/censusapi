@@ -162,7 +162,7 @@ ggplot(sahie_years, aes(x = YEAR, y = PCTUI_PT, group = state, color = state)) +
 	)
 ```
 
-### Annotations
+## Annotations
 Some Census datasets, inclduing the American Community Survey, use annotated values. These values use numbers or symbols to indicate that the data is unavailable, has been topcoded, has an insufficient sample size, or other noteworthy characteristics. Read more from the Census Bureau on [ACS annotation meanings](https://www.census.gov/data/developers/data-sets/acs-1year/notes-on-acs-estimate-and-annotation-values.html) and [ACS variable types](https://www.census.gov/data/developers/data-sets/acs-1year/notes-on-acs-api-variable-types.html).
 
 The `censusapi` package is intended to return the data as-is so that you can receive those unaltered annotations. If you are using data for a small geography make sure to check for values like `-666666666` or check the annotation columns for non-empty values to exclude as needed.
@@ -180,7 +180,7 @@ acs_income <- getCensus(
 acs_income
 ```
 
-### Variable groups
+## Variable groups
 For some surveys, particularly the American Community Survey and Decennial Census, you can get many related variables at once using a `group`, defined by the Census Bureau. In some other data tools, like American FactFinder, this idea is referred to as a `table`.
 
 The American Community Survey (ACS) APIs include estimates (variable names ending in "E"), annotations, margins of error, and statistical significance, depending on the data set. Read more on [ACS variable types](https://www.census.gov/data/developers/data-sets/acs-5year.html) and annotation symbol meanings on the Census website. 
@@ -216,7 +216,7 @@ head(acs_income_group)
 ```
 
 
-### Advanced geographies
+## Advanced geographies
 
 Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API and run `listCensusMetadata` to see the available geographies.
 

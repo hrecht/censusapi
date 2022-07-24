@@ -6,9 +6,9 @@
 [![R-CMD-check](https://github.com/hrecht/censusapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hrecht/censusapi/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-`censusapi` is an accessor for the United States Census Bureau's [APIs](https://www.census.gov/developers/). More than [300 Census API endpoints](https://api.census.gov/data.html) are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—`getCensus`—and the same syntax for each dataset.
+`censusapi` is a lightweight package to get data from the U.S. Census Bureau's [APIs](https://www.census.gov/developers/). More than [1,000 Census API endpoints](https://api.census.gov/data.html) are available, including the Decennial Census, American Community Survey, Poverty Statistics, Population Estimates, and Census microdata. This package is designed to let you get data from all of those APIs using the same main function — `getCensus` — and the same syntax for each dataset.
 
-`censusapi` generally uses the APIs' original parameter names so that users can easily transition between Census's documentation and examples and this package. It also includes metadata functions to return data frames of available APIs, variables, and geographies.
+`getCensus()` is designed to work with any new Census API endpoint when it is released, as long as it conforms to Census's existing standards. The package also includes metadata functions so that users determine [which datasets](https://www.hrecht.com/censusapi/reference/listCensusApis.html) are available and [for each dataset](https://www.hrecht.com/censusapi/reference/listCensusMetadata.html), what variables, geographies, and groups can be used.
 
 ## Installation
 Get the latest stable release from CRAN: 
