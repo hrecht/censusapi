@@ -24,7 +24,7 @@ listCensusMetadata(
 \item{group}{An optional variable group code, used to return metadata for a specific group
 of variables only. This field is not used in all APIs.}
 
-\item{variable_name}{A name of a specific variable used to return metadata about that
+\item{variable_name}{A name of a specific variable used to return value labels for that
 variable. This field is not used in all APIs.}
 
 \item{include_values}{Include value metadata for all variables in a dataset if that

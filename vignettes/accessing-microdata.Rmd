@@ -18,6 +18,7 @@ library(censusapi)
 knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 ```
 
+*NOTE*: This article is under construction.
 
 This package provides basic support for the Census's new microdata APIs, using the same `getCensus()` functions used for summary data. Getting the data with `getCensus()` is easy. Using it responsibly takes some homework.
 
@@ -56,6 +57,17 @@ PES5_values <- listCensusMetadata(
 	type = "values",
 	variable = "PES5")
 PES5_values
+```
+
+If you want to make a full data dictionary including the defintions and labels for every variable in the dataset, use `type = "variables"` and `include_values = "TRUE"`. There will be one row per variable-label pair.
+
+```{r}
+voting_dict <- listCensusMetadata(
+	name = "cps/voting/nov",
+	vintage = 2020,
+	type = "variables",
+	include_values = TRUE)
+head(voting_dict)
 ```
 
 From the CPS Voting supplement, get data on method of voting in New York state using `PES5` (Vote in person or by mail?) and `PESEX` (gender), along with the appropriate weighting variable, `PWSSWGT`. We'll only get data for people with a response of `1` (yes) to `PES1` (Did you vote?).

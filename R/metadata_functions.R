@@ -40,7 +40,7 @@ listCensusApis <- function() {
 #' "groups", or "values". Default is variables.
 #' @param group An optional variable group code, used to return metadata for a specific group
 #' of variables only. This field is not used in all APIs.
-#' @param variable_name A name of a specific variable used to return metadata about that
+#' @param variable_name A name of a specific variable used to return value labels for that
 #' variable. This field is not used in all APIs.
 #' @param include_values Include value metadata for all variables in a dataset if that
 #' metadata exists. Default is "FALSE".
@@ -303,8 +303,8 @@ listCensusMetadata <-
 
 			# If check didn't fail, parse the content
 			raw <- apiParse(req)
-			if (length(raw$values) == 0) {
-				stop(paste("Values are not available for the selected variable:", variable_name))
+			if (length(raw$values) == 0 | !("item" %in% names(raw$values))) {
+				stop(paste("Value labels are not available for the selected variable:", variable_name))
 			}
 			dt <- utils::stack(raw$values$item)
 			colnames(dt) <- c("label", "value")
