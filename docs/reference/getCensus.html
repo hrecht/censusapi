@@ -25,7 +25,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/getting-started.html">Getting started with censusapi</a>
-    <a class="dropdown-item" href="../articles/example-masterlist.html">List of examples</a>
+    <a class="dropdown-item" href="../articles/example-list.html">List of examples</a>
     <a class="dropdown-item" href="../articles/advanced-usage.html">Advanced censusapi usage</a>
     <a class="dropdown-item" href="../articles/accessing-microdata.html">Accessing microdata</a>
   </div>
@@ -139,7 +139,7 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># Get total population and median household income for places (cities, towns, villages)</span></span></span>
 <span class="r-in"><span><span class="co"># in one state from the 5-year ACS.</span></span></span>
 <span class="r-in"><span><span class="va">acs_simple</span> <span class="op">&lt;-</span> <span class="fu">getCensus</span><span class="op">(</span></span></span>
@@ -149,6 +149,13 @@
 <span class="r-in"><span>  region <span class="op">=</span> <span class="st">"place:*"</span>,</span></span>
 <span class="r-in"><span>  regionin <span class="op">=</span> <span class="st">"state:01"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_simple</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   state place                         NAME B01001_001E B19013_001E</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    01 44536    Lowndesboro town, Alabama          75       41667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    01 44608         Loxley town, Alabama        2767       62292</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    01 44728        Luverne city, Alabama        2742       48468</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    01 44800           Lynn town, Alabama         832       36115</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    01 45040         McCalla CDP, Alabama       12077       71061</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    01 45208 McDonald Chapel CDP, Alabama         662       49038</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get all data from the B19013 variable group.</span></span></span>
 <span class="r-in"><span><span class="co"># This returns estimates as well as margins of error and annotation flags.</span></span></span>
@@ -159,6 +166,20 @@
 <span class="r-in"><span>  region <span class="op">=</span> <span class="st">"place:*"</span>,</span></span>
 <span class="r-in"><span>  regionin <span class="op">=</span> <span class="st">"state:01"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_group</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   state place B01001_001E B19013_001E B19013_001EA B19013_001M B19013_001MA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    01 44536          75       41667         &lt;NA&gt;       27339         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    01 44608        2767       62292         &lt;NA&gt;       17233         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    01 44728        2742       48468         &lt;NA&gt;       10129         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    01 44800         832       36115         &lt;NA&gt;        8289         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    01 45040       12077       71061         &lt;NA&gt;        3184         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    01 45208         662       49038         &lt;NA&gt;       11453         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             GEO_ID                         NAME</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1600000US0144536    Lowndesboro town, Alabama</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1600000US0144608         Loxley town, Alabama</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 1600000US0144728        Luverne city, Alabama</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 1600000US0144800           Lynn town, Alabama</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 1600000US0145040         McCalla CDP, Alabama</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 1600000US0145208 McDonald Chapel CDP, Alabama</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Retreive 2010 Decennial Census block-level data within a specific tract,</span></span></span>
 <span class="r-in"><span><span class="co"># using the regionin argument to precisely specify the Census tract.</span></span></span>
@@ -169,6 +190,27 @@
 <span class="r-in"><span>  region <span class="op">=</span> <span class="st">"block:*"</span>,</span></span>
 <span class="r-in"><span>  regionin <span class="op">=</span> <span class="st">"state:36+county:027+tract:010000"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">decennial_2010</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   state county  tract block</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    36    027 010000  1000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    36    027 010000  1011</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    36    027 010000  1028</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    36    027 010000  1001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    36    027 010000  1031</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    36    027 010000  1002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                     NAME</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Block 1000, Block Group 1, Census Tract 100, Dutchess County, New York</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Block 1011, Block Group 1, Census Tract 100, Dutchess County, New York</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Block 1028, Block Group 1, Census Tract 100, Dutchess County, New York</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 Block 1001, Block Group 1, Census Tract 100, Dutchess County, New York</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 Block 1031, Block Group 1, Census Tract 100, Dutchess County, New York</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 Block 1002, Block Group 1, Census Tract 100, Dutchess County, New York</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P001001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       4</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get poverty rates for children and for people of all ages over time using the</span></span></span>
 <span class="r-in"><span><span class="co"># Small Area Income and Poverty Estimates API</span></span></span>
@@ -178,6 +220,13 @@
 <span class="r-in"><span>  region <span class="op">=</span> <span class="st">"state:01"</span>,</span></span>
 <span class="r-in"><span>  year <span class="op">=</span> <span class="st">"2000:2019"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">saipe</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   state    NAME SAEPOVRT0_17_PT SAEPOVRTALL_PT YEAR</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    01 Alabama            20.5           14.6 2000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    01 Alabama            22.1           15.7 2001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    01 Alabama            21.6           15.4 2002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    01 Alabama            22.3           15.3 2003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    01 Alabama            22.6           16.1 2004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    01 Alabama            24.3           16.9 2005</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get County Business Patterns data for a specific NAICS sector.</span></span></span>
 <span class="r-in"><span><span class="va">cbp_2016</span> <span class="op">&lt;-</span> <span class="fu">getCensus</span><span class="op">(</span></span></span>
@@ -187,7 +236,14 @@
 <span class="r-in"><span>  region <span class="op">=</span> <span class="st">"state:*"</span>,</span></span>
 <span class="r-in"><span>  naics2012 <span class="op">=</span> <span class="st">"23"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cbp_2016</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   state    EMP ESTAB NAICS2012_TTL     GEO_TTL NAICS2012</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    27 118033 16360  Construction   Minnesota        23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    28  44551  3796  Construction Mississippi        23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    29 121494 13263  Construction    Missouri        23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    30  25036  5326  Construction     Montana        23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    31  45909  6357  Construction    Nebraska        23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    32  72817  4839  Construction      Nevada        23</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -15,7 +15,7 @@ navbar:
       - text: Getting started with censusapi
         href: articles/getting-started.html
       - text: List of examples
-        href: articles/example-masterlist.html
+        href: articles/example-list.html
       - text: Advanced censusapi usage
         href: articles/advanced-usage.html
       - text: Accessing microdata

@@ -254,10 +254,10 @@ getCensus <-
 		get <- paste(vars, sep='', collapse=',')
 		data <- getFunction(apiurl, name, key, get, region, regionin, time, year, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...)
 	}
+
 	# If there are any duplicate columns (ie if you put a variable in vars twice) remove the duplicates
 	data <- data[, !duplicated(colnames(data))]
-	# Reorder columns so that numeric fields follow non-numeric fields
-	# data <- data[,c(which(sapply(data, class)!='numeric'), which(sapply(data, class)=='numeric'))]
+
 	# Reorder columns so that lowercase column names (geographies) are first
 	data <- data[,c(which(grepl("[a-z]", colnames(data))), which(!grepl("[a-z]", colnames(data))))]
 	return(data)
