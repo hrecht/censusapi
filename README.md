@@ -1,7 +1,10 @@
 # censusapi
 
-[![CRAN version number badge](https://www.r-pkg.org/badges/version/censusapi)](https://cran.r-project.org/package=censusapi) 
+<!-- badges: start -->
+  [![R-CMD-check](https://github.com/hrecht/censusapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hrecht/censusapi/actions/workflows/R-CMD-check.yaml)
+  [![CRAN version number badge](https://www.r-pkg.org/badges/version/censusapi)](https://cran.r-project.org/package=censusapi) 
 [![CRAN downloads badge](http://cranlogs.r-pkg.org/badges/grand-total/censusapi)](http://cranlogs.r-pkg.org/badges/grand-total/censusapi)
+<!-- badges: end -->
 
 `censusapi` is an accessor for the United States Census Bureau's [APIs](https://www.census.gov/developers/). More than [300 Census API endpoints](https://api.census.gov/data.html) are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—`getCensus`—and the same syntax for each dataset.
 
@@ -13,13 +16,14 @@ Get the latest stable release from CRAN:
 install.packages("censusapi")
 ```
 
-You can also install the latest development version of `censusapi` from Github using `devtools`. Most people will not want to do this:
+You can also install the latest development version of `censusapi` from Github using `devtools`:
 ```R
+# Install the package if needed
 # install.packages("devtools")
 devtools::install_github("hrecht/censusapi")
 ```
 
-Read more on how to build a `censusapi` call in [Getting started with censusapi](https://hrecht.github.io/censusapi/articles/getting-started.html) and see lots more examples in the [list of examples](https://hrecht.github.io/censusapi/articles/example-masterlist.html).
+To learn more about using `censusapi`, read the package documentation and articles at  [https://www.hrecht.com/censusapi/](https://www.hrecht.com/censusapi/.)
 
 ## Disclaimer
 This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.
