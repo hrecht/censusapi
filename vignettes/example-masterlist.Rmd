@@ -170,24 +170,24 @@ head(asm_product)
 
 Get employment data for the construction industry.
 ```{r}
-cbp_2018 <- getCensus(
+cbp <- getCensus(
 	name = "cbp",
-	vintage = 2018,
+	vintage = 2020,
 	vars = c("EMP", "ESTAB"),
 	region = "state:*",
 	NAICS2017 = 23)
-head(cbp_2018)
+head(cbp)
 ```
 
-Get employment data by state for companies with more than 1,000 employees.
+Get the number of companies and employees at organizations with more than 1,000 employees (`EMPSZES = 260`).
 ```{r}
-cbp_2008 <- getCensus(
+cbp_large_companies <- getCensus(
 	name = "cbp",
-	vintage = 2008,
-	vars = c("YEAR", "GEO_TTL", "EMPSZES_TTL", "EMP", "ESTAB", "PAYANN"),
+	vintage = 2020,
+	vars = c("NAME", "EMP", "ESTAB"),
 	region = "state:*",
 	EMPSZES = 260)
-head(cbp_2008)
+head(cbp_large_companies)
 ```
 
 ### Zip Codes Business Patterns

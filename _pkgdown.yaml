@@ -1,9 +1,12 @@
+url: https://www.hrecht.com/censusapi/
+
 template:
   bootstrap: 5
   bootswatch: simplex
   bslib:
     base_font: {google: "Roboto"}
     primary: "#0d565c"
+
 navbar:
  components:
   articles:

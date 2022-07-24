@@ -55,8 +55,21 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.8.0" id="censusapi-080">censusapi 0.8.0<a class="anchor" aria-label="anchor" href="#censusapi-080"></a></h2>
-<ul><li>The API metadata gathered in <code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code> now has new columns: dataset <code>contact</code> and dataset <code>type</code>: either Aggregate, Timeseries, or Microdata.</li>
-<li>Documentation and examples are updated, including new vignettes on microdata access and advanced censusapi usage.</li>
+<ul><li><p><code><a href="../reference/listCensusApis.html">listCensusApis()</a></code> has new columns in the resulting data frame of available API endpoints: the API <code>contact</code> email address and <code>type</code>: either Aggregate, Timeseries, or Microdata.</p></li>
+<li>
+<p><code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code> has a new type: values, for use with variables where the values are encoded in the Census data. Specify <code>type = "values"</code> and <code>variable = "VARIABLE OF INTEREST"</code> to return a dataframe of variable response values and labels.</p>
+<p>Note: This metadata, while incredibly useful, only exists for some datasets. For other datasets you’ll still need to reference external files until the Census Bureau adds this functionality.</p>
+<p>For example, get the value labels for the <code>NAICS2017</code> in the County Business Patterns dataset:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">cbp_naics_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"cbp"</span>,</span>
+<span>    vintage <span class="op">=</span> <span class="fl">2020</span>,</span>
+<span>    type <span class="op">=</span> <span class="st">"values"</span>,</span>
+<span>    variable <span class="op">=</span> <span class="st">"NAICS2017"</span><span class="op">)</span></span></code></pre></div>
+</li>
+<li><p><code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code> now properly handles metadata attribute names in the new Microdata APIs that contain invalid JSON. This solves (<a href="https://github.com/hrecht/censusapi/issues/84" class="external-link">#84</a>).</p></li>
+<li><p>Documentation and examples are updated. There are two new vignettes: <a href="https://www.hrecht.com/censusapi/articles/advanced-usage.html">Advanced censusapi usage</a> (previously included elsewhere) and <a href="https://www.hrecht.com/censusapi/articles/accessing-microdata.html">Accessing microdata.</a></p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.3" id="censusapi-073">censusapi 0.7.3<a class="anchor" aria-label="anchor" href="#censusapi-073"></a></h2>
@@ -145,18 +158,12 @@
 <code>listCensusMetadata</code> allows full word or single letter argument in <code>type</code> parameter</li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0.9001" id="censusapi-0109001">censusapi 0.1.0.9001<a class="anchor" aria-label="anchor" href="#censusapi-0109001"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.1.0" id="censusapi-010">censusapi 0.1.0<a class="anchor" aria-label="anchor" href="#censusapi-010"></a></h2>
 <ul><li>Scrapes <a href="http://api.census.gov/data.json" class="external-link uri">http://api.census.gov/data.json</a> rather than .html in <code>listCensusApis</code>, in starts of removing XML dependency. The .json data also includes several fields not present in the .html file, the most useful of which are added to the returned data frame.</li>
 <li>Changes dataset used in <code>listCensusMetadata</code> examples, mainly for build/checks speed.</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0.9000" id="censusapi-0109000">censusapi 0.1.0.9000<a class="anchor" aria-label="anchor" href="#censusapi-0109000"></a></h2>
-<ul><li>Set <code>getCensus(key)</code> argument’s default value to be CENSUS_KEY in .Renviron. Explicitly encourages Census key to be added to .Renviron. (Users can always override this with any given input.)</li>
+<li>Set <code>getCensus(key)</code> argument’s default value to be CENSUS_KEY in .Renviron. Explicitly encourages Census key to be added to .Renviron. (Users can always override this with any given input.)</li>
 <li>Parses HTML response code. This is particularly important for the response that the Census APIs provided for invalid keys.</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0" id="censusapi-010">censusapi 0.1.0<a class="anchor" aria-label="anchor" href="#censusapi-010"></a></h2>
-<ul><li>Removes fips code 72 (Puerto Rico) from included fips dataset because Puerto Rico is not included in most Census API datasets.</li>
+<li>Removes fips code 72 (Puerto Rico) from included fips dataset because Puerto Rico is not included in most Census API datasets.</li>
 <li>Changes census key references in examples to Sys.getenv(“CENSUS_KEY”).</li>
 </ul></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -9,4 +9,6 @@ pkgdown/
 ^pkgdown$
 .github/
 ^.github$
-^vignettes$
+vignettes/example-masterlist.Rmd
+vignettes/advanced-usage.Rmd
+vignettes/accessing-microdata.Rmd

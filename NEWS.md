@@ -1,6 +1,21 @@
 # censusapi 0.8.0 
-* The API metadata gathered in `listCensusMetadata()` now has new columns: dataset `contact` and dataset `type`: either Aggregate, Timeseries, or Microdata.
-* Documentation and examples are updated, including new vignettes on microdata access and advanced censusapi usage.
+* `listCensusApis()` has new columns in the resulting data frame of available API endpoints: the API `contact` email address and `type`: either Aggregate, Timeseries, or Microdata.
+* `listCensusMetadata()` has a new type: values, for use with variables where the values are encoded in the Census data. Specify `type = "values"` and `variable = "VARIABLE OF INTEREST"` to return a dataframe of variable response values and labels. 
+
+	Note: This metadata, while incredibly useful, only exists for some datasets. For other datasets you'll still need to reference external files until the Census Bureau adds this functionality.
+	
+  For example, get the value labels for the `NAICS2017` in the County Business Patterns dataset:
+
+	```R 
+	cbp_naics_values <- listCensusMetadata(
+		name = "cbp",
+		vintage = 2020,
+		type = "values",
+		variable = "NAICS2017")
+	```
+
+* `listCensusMetadata()` now properly handles metadata attribute names in the new Microdata APIs that contain invalid JSON. This solves (#84).
+* Documentation and examples are updated. There are two new vignettes: [Advanced censusapi usage](https://www.hrecht.com/censusapi/articles/advanced-usage.html) (previously included elsewhere) and [Accessing microdata.](https://www.hrecht.com/censusapi/articles/accessing-microdata.html)
 
 # censusapi 0.7.3
 * Properly types certain variables in international trade timeseries APIs.
@@ -71,14 +86,10 @@
   * Note: this change has generally increased the run time for retrieving variable metadata with `listCensusMetadata`. For most APIs, this function will run in under one second. A lag may be noticeable for the American Community Survey APIs, which each have more than 40,000 variables. Improvements are planned in future releases.
 * `listCensusMetadata` allows full word or single letter argument in `type` parameter
 
-# censusapi 0.1.0.9001
+# censusapi 0.1.0
 * Scrapes http://api.census.gov/data.json rather than .html in `listCensusApis`, in starts of removing XML dependency. The .json data also includes several fields not present in the .html file, the most useful of which are added to the returned data frame.
 * Changes dataset used in `listCensusMetadata` examples, mainly for build/checks speed.
-
-# censusapi 0.1.0.9000
 * Set `getCensus(key)` argument's default value to be CENSUS_KEY in .Renviron. Explicitly encourages Census key to be added to .Renviron. (Users can always override this with any given input.)
 * Parses HTML response code. This is particularly important for the response that the Census APIs provided for invalid keys.
-
-# censusapi 0.1.0
 * Removes fips code 72 (Puerto Rico) from included fips dataset because Puerto Rico is not included in most Census API datasets.
 * Changes census key references in examples to Sys.getenv("CENSUS_KEY").

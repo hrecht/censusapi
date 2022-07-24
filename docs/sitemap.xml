@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://www.hrecht.com/censusapi/404.html</loc>
   </url>
   <url>
-    <loc>/CODE_OF_CONDUCT.html</loc>
+    <loc>https://www.hrecht.com/censusapi/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>/articles/accessing-microdata.html</loc>
+    <loc>https://www.hrecht.com/censusapi/articles/accessing-microdata.html</loc>
   </url>
   <url>
-    <loc>/articles/advanced-usage.html</loc>
+    <loc>https://www.hrecht.com/censusapi/articles/advanced-usage.html</loc>
   </url>
   <url>
-    <loc>/articles/example-masterlist.html</loc>
+    <loc>https://www.hrecht.com/censusapi/articles/example-masterlist.html</loc>
   </url>
   <url>
-    <loc>/articles/getting-started.html</loc>
+    <loc>https://www.hrecht.com/censusapi/articles/getting-started.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://www.hrecht.com/censusapi/articles/index.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://www.hrecht.com/censusapi/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://www.hrecht.com/censusapi/index.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>https://www.hrecht.com/censusapi/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/fips.html</loc>
+    <loc>https://www.hrecht.com/censusapi/reference/fips.html</loc>
   </url>
   <url>
-    <loc>/reference/getCensus.html</loc>
+    <loc>https://www.hrecht.com/censusapi/reference/getCensus.html</loc>
   </url>
   <url>
-    <loc>/reference/getFunction.html</loc>
+    <loc>https://www.hrecht.com/censusapi/reference/getFunction.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://www.hrecht.com/censusapi/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/listCensusApis.html</loc>
+    <loc>https://www.hrecht.com/censusapi/reference/listCensusApis.html</loc>
   </url>
   <url>
-    <loc>/reference/listCensusMetadata.html</loc>
+    <loc>https://www.hrecht.com/censusapi/reference/listCensusMetadata.html</loc>
   </url>
   <url>
-    <loc>/reference/makeVarlist.html</loc>
+    <loc>https://www.hrecht.com/censusapi/reference/makeVarlist.html</loc>
   </url>
 </urlset>

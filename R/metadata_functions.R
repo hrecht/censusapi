@@ -32,36 +32,65 @@ listCensusApis <- function() {
 	return(dt)
 }
 
-#' Get variable or geography metadata for a given API as a data frame
+#' Get information about a specific API as a data frame
 #'
-#' @param name API name - e.g. acs5. See list at https://api.census.gov/data.html
-#' @param vintage Vintage of dataset, e.g. 2014 - not required for timeseries APIs
-#' @param type Type of metadata to return, either "variables", "geographies" or "geography", or
-#' "groups". Default is variables.
+#' @param name API programmatic name - e.g. acs/acs5. See list of names with listCensusApis().
+#' @param vintage Vintage (year) of dataset. Not required for timeseries APIs
+#' @param type Type of metadata to return, either "variables", "geographies",
+#' "groups", or "values". Default is variables.
 #' @param group An optional variable group code, used to return metadata for a specific group
-#' of variables only.
+#' of variables only. This field is not used in all APIs.
+#' @param variable_name A name of a specific variable used to return metadata about that
+#' variable. This field is not used in all APIs.
 #' @keywords metadata
-#' @export
 #' @examples
-#' \donttest{sahie_vars <- listCensusMetadata(name = "timeseries/healthins/sahie, type = "variables")
-#' head(sahie_vars)
+#' \dontrun{
 #'
-#' acs_geos <- listCensusMetadata(name = "acs/acs5", vintage = 2017, type = "geographies")
-#' head(acs_geos)
+#' # List the variables available in the Small Area Health Insurance Estimates.
+#' sahie_variables <- listCensusMetadata(
+#'   name = "timeseries/healthins/sahie",
+#'   type = "variables")
+#'  head(sahie_variables)
 #'
-#' acs_groups <- listCensusMetadata(name = "acs/acs5", vintage = 2017, type = "groups")
-#' head(acs_groups)
+#' # List the geographies available in the 5-year 2020 American Community Survey.
+#' acs_geographies <- listCensusMetadata(
+#'   name = "acs/acs5",
+#'   vintage = 2020,
+#'   type = "geographies")
+#'  head(acs_geographies)
 #'
-#' group_B17020 <- listCensusMetadata(name = "acs/acs5",
-#' vintage = 2017,
-#' type = "variables",
-#' group = "B17020")
-#' head(group_B17020)}
+#' # list the variable groups available in the 5-year 2020 American Community Survey.
+#' acs_groups <- listCensusMetadata(
+#'   name = "acs/acs5",
+#'   vintage = 2020,
+#'   type = "groups")
+#'  head(acs_groups)
+#'
+#' # List the value labels of the NAICS2017 variable in the 2020 County
+#' # Business Patterns dataset.
+#' cbp_naics_values <- listCensusMetadata(
+#'   name = "cbp",
+#'   vintage = 2020,
+#'   type = "values",
+#'   variable = "NAICS2017")
+#'  head(cbp_naics_values)
+#'
+#' # List of variables that are included in the B17020 group in the
+#' # 5-year American Community Survey.
+#' group_B17020 <- listCensusMetadata(
+#'   name = "acs/acs5",
+#'   vintage = 2017,
+#'   type = "variables",
+#'   group = "B17020")
+#'  head(group_B17020)
+#' }
+#' @export
 listCensusMetadata <-
 	function(name,
 					 vintage = NULL,
 					 type = "variables",
-					 group = NULL) {
+					 group = NULL,
+					 variable_name = NULL) {
 
 		constructURL <- function(name, vintage) {
 			if (is.null(vintage)) {
@@ -140,20 +169,34 @@ listCensusMetadata <-
 				# Generally, predicateOnly = parameter, exclude predicateOnly (parameters)
 
 				# Manual fill with NAs as needed to avoid adding a dplyr::bind_rows or similar dependency
+
+				# Get the list of possible column names
 				cols <- unique(unlist(lapply(raw$variables, names)))
+
+				# Remove invalid dashes in variable names - new problem with Microdata APIs
+				cols <- gsub("-", "_", cols)
+
 				cols <- cols[!(cols %in% c("predicateOnly", "datetime", "validValues", "values"))]
+
+				# REVIST THIS - unnecessarily complicated, can remove those columns later
 				makeDf <- function(d) {
-					if("validValues" %in% names(d)) {
+					names(d) <- gsub("-", "_", names(d))
+					if ("validValues" %in% names(d)) {
 						d$validValues <- NULL
 					}
-					if("values" %in% names(d)) {
+					if ("values" %in% names(d)) {
 						d$values <- NULL
 					}
 					df <- data.frame(d)
+
 					df[, setdiff(cols, names(df))] <- NA
 					return(df)
 				}
-				dts <- lapply(raw$variables, function(x) if(!("predicateOnly" %in% names(x))) {makeDf(x)} else {x <- NULL})
+
+				dts <- lapply(raw$variables, function(x) if (!("predicateOnly" %in% names(x))) {
+						makeDf(x)
+					} else {x <- NULL}
+				)
 			}
 			temp <- Filter(is.data.frame, dts)
 			dt <- do.call(rbind, temp)
@@ -185,8 +228,24 @@ listCensusMetadata <-
 			if (is.null(dim(dt))) {
 				stop("Groups are not available for the selected API endpoint.")
 			}
+		} else if (type == "values") {
+			u <- paste0(apiurl, "/variables/", variable_name, ".json")
+			req <- httr::GET(u)
+			# Check the API call for a valid response
+			apiCheck(req)
+
+			# If check didn't fail, parse the content
+			raw <- apiParse(req)
+			if (length(raw$values) == 0) {
+				stop(paste("Values are not available for the selected variable:", variable_name))
+			}
+			dt <- utils::stack(raw$values$item)
+			colnames(dt) <- c("label", "value")
+			dt <- dt[, c("value", "label")]
+
 		}	else {
-			stop(paste('For "type", you entered: "', type, '". Did you mean "variables" or "geography" or "groups"?', sep = ""))
+			stop(paste('For "type", you entered: "', type, '". Did you mean "variables", "geography", "groups", or "values"?', sep = ""))
 		}
 		return(dt)
 	}
+
