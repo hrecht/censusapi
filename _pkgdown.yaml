@@ -6,6 +6,8 @@ template:
   bslib:
     base_font: {google: "Roboto"}
     primary: "#0d565c"
+    headings-line-height: 2.2
+    paragraph-margin-bottom: 1.5rem
 
 navbar:
  components:
@@ -20,3 +22,6 @@ navbar:
         href: articles/advanced-usage.html
       - text: Accessing microdata
         href: articles/accessing-microdata.html
+
+redirects:
+  - ["articles/example-masterlist.html", "articles/example-list.html"]
