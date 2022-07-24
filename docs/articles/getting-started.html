@@ -84,18 +84,12 @@
 
     
     
-<p><code>censusapi</code> is a wrapper for the United States Census
-Bureau’s <a href="https://www.census.gov/data/developers/data-sets.html" class="external-link">APIs</a>.
-As of 2017 over 200 Census API endpoints are available, including
-Decennial Census, American Community Survey, Poverty Statistics, and
-Population Estimates APIs. This package is designed to let you get data
-from all of those APIs using the same main
-function—<code>getCensus</code>—and the same syntax for each
-dataset.</p>
-<p><code>censusapi</code> generally uses the APIs’ original parameter
-names so that users can easily transition between Census’s documentation
-and examples and this package. It also includes metadata functions to
-return data frames of available APIs, variables, and geographies.</p>
+<p><code>censusapi</code> is a lightweight package to get data from the
+U.S. Census Bureau’s <a href="https://www.census.gov/developers/" class="external-link">APIs</a>. More than <a href="https://api.census.gov/data.html" class="external-link">1,000 Census API endpoints</a>
+are available, including the Decennial Census, American Community
+Survey, Poverty Statistics, Population Estimates, and Census microdata.
+This package is designed to let you get data from all of those APIs
+using the same main functions and syntax for every dataset.</p>
 <p>This package returns the data as-is with the original variable names
 created by the Census Bureau and any quirks inherent in the data. Each
 dataset is a little different. Some are documented thoroughly, others
@@ -147,7 +141,7 @@ datasets.</p>
 <h2 id="using-getcensus">Using <code>getCensus</code><a class="anchor" aria-label="anchor" href="#using-getcensus"></a>
 </h2>
 <p>The main function in <code>censusapi</code> is
-<code>getCensus</code>, which makes an API call to a given Census API
+<code><a href="../reference/getCensus.html">getCensus()</a></code>, which makes an API call to a given Census API
 and returns a data frame of results. Each API has slightly different
 parameters, but there are always a few required arguments:</p>
 <ul>
@@ -341,7 +335,7 @@ geographic levels we can get data for using the SAHIE API.</p>
 </div>
 <p>This API has three geographic levels: <code>us</code>,
 <code>county</code> within states, and <code>state</code>.</p>
-<p>First, using <code>getCensus</code>, let’s get uninsured rate by
+<p>First, using <code><a href="../reference/getCensus.html">getCensus()</a></code>, let’s get uninsured rate by
 income group at the national level for 2018.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_national</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
@@ -681,7 +675,7 @@ values to exclude as needed.</p>
 and margin of error, for three census tracts in Washington, DC — one
 that is available, one that is topcoded, and one that is unavailable.
 Notice that income is topcoded at $250,000 — meaning any tract’s income
-that is above that threshold is listed as $250,000. Some are not
+that is above that threshold is listed as $250,001. Some are not
 available and are listed as -666666666. You can see these annotations in
 the “EA” (estimate annotation) and “MA” (margin of error annotation)
 columns.</p>
@@ -1052,7 +1046,7 @@ INFLATION-ADJUSTED DOLLARS)</td>
 <p>Some geographies, particularly Census tracts and blocks, need to be
 specified within larger geographies like states and counties. This
 varies by API endpoint, so make sure to read the documentation for your
-specific API and run <code>listCensusMetadata</code> to see the
+specific API and run <code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code> to see the
 available geographies.</p>
 <p>You may want to get get data for many geographies that require a
 parent geography. For example, tract-level data from the 2010 Decennial
@@ -1122,8 +1116,8 @@ single data frame.</p>
 </tbody>
 </table>
 </div>
-<p>The <code>regionin</code> argument of <code>getCensus</code> can also
-be used with a string of nested geographies, as shown below.</p>
+<p>The <code>regionin</code> argument of <code><a href="../reference/getCensus.html">getCensus()</a></code> can
+also be used with a string of nested geographies, as shown below.</p>
 <p>The 2010 Decennial Census summary file 1 requires you to specify a
 state and county to retrieve block-level data. Use <code>region</code>
 to request block level data, and <code>regionin</code> to specify the
@@ -1244,7 +1238,7 @@ problems, including server issues. Try rerunning your API call. If that
 doesn’t work and you are requesting a large amount of data, try reducing
 the amount that you’re requesting, for example getting only one state at
 a time. If you’re still having trouble, email <a href="mailto:census.data@census.gov" class="email">census.data@census.gov</a>. Include in your email the raw
-API call that’s provided in your <code>getCensus</code> error message
+API call that’s provided in your <code><a href="../reference/getCensus.html">getCensus()</a></code> error message
 (not your R code) so that they can try to help.</p>
 </div>
 <div class="section level3">

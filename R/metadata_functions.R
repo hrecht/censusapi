@@ -90,7 +90,8 @@ listCensusMetadata <-
 					 vintage = NULL,
 					 type = "variables",
 					 group = NULL,
-					 variable_name = NULL) {
+					 variable_name = NULL,
+					 include_values = FALSE) {
 
 		constructURL <- function(name, vintage) {
 			if (is.null(vintage)) {
@@ -112,7 +113,7 @@ listCensusMetadata <-
 			if (!(req$status_code %in% c(200, 201, 202))) {
 				if (req$status_code == 404) {
 					stop(paste("Invalid metadata request, (404) not found.",
-							 "\n Your API call was: ", print(req$url)), call. = FALSE)
+										 "\n Your API call was: ", print(req$url)), call. = FALSE)
 				} else if (req$status_code==400) {
 					stop(paste("The Census Bureau returned the following error message:\n", req$error_message,
 										 "\n Your API call was: ", print(req$url)))
@@ -176,28 +177,55 @@ listCensusMetadata <-
 				# Remove invalid dashes in variable names - new problem with Microdata APIs
 				cols <- gsub("-", "_", cols)
 
-				cols <- cols[!(cols %in% c("predicateOnly", "datetime", "validValues", "values"))]
+				if (include_values == FALSE) {
 
-				# REVIST THIS - unnecessarily complicated, can remove those columns later
-				makeDf <- function(d) {
-					names(d) <- gsub("-", "_", names(d))
-					if ("validValues" %in% names(d)) {
-						d$validValues <- NULL
+					cols <- cols[!(cols %in% c("predicateOnly", "datetime", "validValues", "values"))]
+
+					# REVIST THIS - unnecessarily complicated, can remove those columns later
+					makeDf <- function(d) {
+						names(d) <- gsub("-", "_", names(d))
+						if ("validValues" %in% names(d)) {
+							d$validValues <- NULL
+						}
+						if ("values" %in% names(d)) {
+							d$values <- NULL
+						}
+						df <- data.frame(d)
+
+						df[, setdiff(cols, names(df))] <- NA
+						return(df)
 					}
-					if ("values" %in% names(d)) {
-						d$values <- NULL
-					}
-					df <- data.frame(d)
 
-					df[, setdiff(cols, names(df))] <- NA
-					return(df)
-				}
-
-				dts <- lapply(raw$variables, function(x) if (!("predicateOnly" %in% names(x))) {
+					dts <- lapply(raw$variables, function(x) if (!("predicateOnly" %in% names(x))) {
 						makeDf(x)
-					} else {x <- NULL}
-				)
+					} else {
+						x <- NULL
+					})
+
+				} else if (include_values == TRUE) {
+					cols <- cols[!(cols %in% c("predicateOnly", "datetime", "validValues", "values"))]
+
+					# REVIST THIS - unnecessarily complicated, can remove those columns later
+					makeDf <- function(d) {
+						names(d) <- gsub("-", "_", names(d))
+						if ("validValues" %in% names(d)) {
+							d$validValues <- NULL
+						}
+						if ("values" %in% names(d)) {
+							d$values <- NULL
+						}
+						df <- data.frame(d)
+
+						df[, setdiff(cols, names(df))] <- NA
+						return(df)
+					}
+
+					dts <- lapply(raw$variables, function(x) if (!("predicateOnly" %in% names(x))) {
+						makeDf(x)
+					} else {x <- NULL})
+				}
 			}
+
 			temp <- Filter(is.data.frame, dts)
 			dt <- do.call(rbind, temp)
 

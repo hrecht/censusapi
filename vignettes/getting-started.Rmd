@@ -21,9 +21,7 @@ knitr::opts_chunk$set(message = FALSE,
 											comment = "#>")
 ```
 
-`censusapi` is a wrapper for the United States Census Bureau's [APIs](https://www.census.gov/data/developers/data-sets.html). As of 2017 over 200 Census API endpoints are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—`getCensus`—and the same syntax for each dataset.
-
-`censusapi` generally uses the APIs' original parameter names so that users can easily transition between Census's documentation and examples and this package. It also includes metadata functions to return data frames of available APIs, variables, and geographies.
+`censusapi` is a lightweight package to get data from the U.S. Census Bureau's [APIs](https://www.census.gov/developers/). More than [1,000 Census API endpoints](https://api.census.gov/data.html) are available, including the Decennial Census, American Community Survey, Poverty Statistics, Population Estimates, and Census microdata. This package is designed to let you get data from all of those APIs using the same main functions and syntax for every dataset.
 
 This package returns the data as-is with the original variable names created by the Census Bureau and any quirks inherent in the data. Each dataset is a little different. Some are documented thoroughly, others have documentation that is sparse. Sometimes variable names change between years or geographies are added or dropped. This package can't overcome those challenges, but tries to make it easier to get the data for use in your analysis. Make sure to thoroughly read the [documentation](https://www.census.gov/data/developers/data-sets.html) for your dataset and see below for how to [get help with Census data.](#Other-ways-to-get-help) 
 
@@ -60,7 +58,7 @@ View(apis)
 This returns useful information about each endpoint, including `name`, which you'll need to make your API call.
 
 ## Using `getCensus`
-The main function in `censusapi` is `getCensus`, which makes an API call to a given Census API and returns a data frame of results. Each API has slightly different parameters, but there are always a few required arguments:
+The main function in `censusapi` is `getCensus()`, which makes an API call to a given Census API and returns a data frame of results. Each API has slightly different parameters, but there are always a few required arguments:
 
 * `name`: the name of the API as defined by the Census, like "acs5" or "timeseries/bds/firms"
 * `vintage`: the dataset year, generally required for non-timeseries APIs
@@ -97,7 +95,7 @@ listCensusMetadata(
 ```
 This API has three geographic levels: `us`, `county` within states, and `state`.
 
-First, using `getCensus`, let's get uninsured rate by income group at the national level for 2018.
+First, using `getCensus()`, let's get uninsured rate by income group at the national level for 2018.
 ```{r}
 sahie_national <- getCensus(
 	name = "timeseries/healthins/sahie",
@@ -167,7 +165,7 @@ Some Census datasets, inclduing the American Community Survey, use annotated val
 
 The `censusapi` package is intended to return the data as-is so that you can receive those unaltered annotations. If you are using data for a small geography make sure to check for values like `-666666666` or check the annotation columns for non-empty values to exclude as needed.
 
-As an example, we'll get median income with associated annotations and margin of error, for three census tracts in Washington, DC — one that is available, one that is topcoded, and one that is unavailable. Notice that income is topcoded at $250,000 — meaning any tract's income that is above that threshold is listed as $250,000. Some are not available and are listed as -666666666. You can see these annotations in the "EA" (estimate annotation) and "MA" (margin of error annotation) columns.
+As an example, we'll get median income with associated annotations and margin of error, for three census tracts in Washington, DC — one that is available, one that is topcoded, and one that is unavailable. Notice that income is topcoded at $250,000 — meaning any tract's income that is above that threshold is listed as $250,001. Some are not available and are listed as -666666666. You can see these annotations in the "EA" (estimate annotation) and "MA" (margin of error annotation) columns.
 
 
 ```{r}
@@ -218,7 +216,7 @@ head(acs_income_group)
 
 ## Advanced geographies
 
-Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API and run `listCensusMetadata` to see the available geographies.
+Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API and run `listCensusMetadata()` to see the available geographies.
 
 You may want to get get data for many geographies that require a parent geography. For example, tract-level data from the 2010 Decennial Census can only be requested from one state at a time. 
 
@@ -238,7 +236,7 @@ for (f in fips) {
 head(tracts)
 ```
 
-The `regionin` argument of `getCensus` can also be used with a string of nested geographies, as shown below.
+The `regionin` argument of `getCensus()` can also be used with a string of nested geographies, as shown below.
 
 The 2010 Decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use `region` to request block level data, and `regionin` to specify the desired state and county.
 ```{r}
@@ -269,7 +267,7 @@ Use `listCensusMetadata(type = "geographies")` on your dataset to check which ge
 * If you're specifying a region by FIPS code, for example `state:01`, make sure to use the full code, padded with 0s if necessary. The APIs did not always enforce this (previously, `state:1` usually worked), but now they do. See the Census [reference files](https://www.census.gov/geographies/reference-files/2017/demo/popest/2017-fips.html) for valid FIPS codes.
 
 ### Unexpected errors
-Occasionally you might get the general error message `"There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience."` This comes from the Census Bureau and could be caused by any number of problems, including server issues. Try rerunning your API call. If that doesn't work and you are requesting a large amount of data, try reducing the amount that you're requesting, for example getting only one state at a time. If you're still having trouble, email census.data@census.gov. Include in your email the raw API call that's provided in your `getCensus` error message (not your R code) so that they can try to help.
+Occasionally you might get the general error message `"There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience."` This comes from the Census Bureau and could be caused by any number of problems, including server issues. Try rerunning your API call. If that doesn't work and you are requesting a large amount of data, try reducing the amount that you're requesting, for example getting only one state at a time. If you're still having trouble, email census.data@census.gov. Include in your email the raw API call that's provided in your `getCensus()` error message (not your R code) so that they can try to help.
 
 ### Other ways to get help
 * Open a [Github issue](https://github.com/hrecht/censusapi/issues) for bugs or issues with this R package.
