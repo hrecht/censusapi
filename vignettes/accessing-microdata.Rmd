@@ -24,7 +24,7 @@ This package provides basic support for the Census's new microdata APIs, using t
 
 ## About microdata
 
-Microdata contains individual-level responses: one row per person. It is a vital tool to perform custom analysis, but with great power comes great responsibility. Appropriately weighting the individual-level responses is required. You'll often need to work with household relationships and will need to handle responses that aren't in the universe of the question (for example, removing children in an analysis about college graduation rate.) 
+Microdata contains individual-level responses: one row per person. It is a vital tool to perform custom analysis, but with great power comes great responsibility. Appropriately weighting the individual-level responses is required. You'll often need to work with household relationships and will need to handle responses that aren't in the universe of the question (for example, removing children in an analysis about college graduation rate.)
 
 If you're new to working with microdata you'll need to do some reading before diving in. Here are some resources from the Census Bureau:
 
