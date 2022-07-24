@@ -18,7 +18,7 @@ NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 knitr::opts_chunk$set(message = FALSE, 
 											warning = FALSE,
 											purl = NOT_CRAN,
-											comment = "#>") 
+											comment = "#>")
 ```
 
 `censusapi` is a wrapper for the United States Census Bureau's [APIs](https://www.census.gov/data/developers/data-sets.html). As of 2017 over 200 Census API endpoints are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—`getCensus`—and the same syntax for each dataset.
