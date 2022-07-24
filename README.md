@@ -1,9 +1,9 @@
 # censusapi
 
 <!-- badges: start -->
-  [![R-CMD-check](https://github.com/hrecht/censusapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hrecht/censusapi/actions/workflows/R-CMD-check.yaml)
-  [![CRAN version number badge](https://www.r-pkg.org/badges/version/censusapi)](https://cran.r-project.org/package=censusapi) 
+[![CRAN status](https://www.r-pkg.org/badges/version/censusapi)](https://CRAN.R-project.org/package=censusapi)
 [![CRAN downloads badge](http://cranlogs.r-pkg.org/badges/grand-total/censusapi)](http://cranlogs.r-pkg.org/badges/grand-total/censusapi)
+[![R-CMD-check](https://github.com/hrecht/censusapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hrecht/censusapi/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 `censusapi` is an accessor for the United States Census Bureau's [APIs](https://www.census.gov/developers/). More than [300 Census API endpoints](https://api.census.gov/data.html) are available, including Decennial Census, American Community Survey, Poverty Statistics, and Population Estimates APIs. This package is designed to let you get data from all of those APIs using the same main function—`getCensus`—and the same syntax for each dataset.
