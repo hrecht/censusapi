@@ -89,6 +89,9 @@
 APIs, using the same <code><a href="../reference/getCensus.html">getCensus()</a></code> functions used for summary
 data. Getting the data with <code><a href="../reference/getCensus.html">getCensus()</a></code> is easy. Using it
 responsibly takes some homework.</p>
+<div class="section level2">
+<h2 id="about-microdata">About microdata<a class="anchor" aria-label="anchor" href="#about-microdata"></a>
+</h2>
 <p>Microdata contains individual-level responses: one row per person. It
 is a vital tool to perform custom analysis, but with great power comes
 great responsibility. Appropriately weighting the individual-level
@@ -100,9 +103,12 @@ about college graduation rate.)</p>
 reading before diving in. Here are some resources from the Census
 Bureau:</p>
 <ul>
-<li><a href="https://www.census.gov/data/academy/data-gems/2020/what-is-microdata-and-why-should-i-use-it.html" class="external-link">What
-is Microdata and Why Should I Use It?</a></li>
-<li><a href="https://www.census.gov/data/developers/guidance/microdata-api-user-guide.What_is_Public_Use_Microdata.html" class="external-link">https://www.census.gov/data/developers/guidance/microdata-api-user-guide.What_is_Public_Use_Microdata.html</a></li>
+<li>
+<a href="https://www.census.gov/data/academy/data-gems/2020/what-is-microdata-and-why-should-i-use-it.html" class="external-link">What
+is microdata and why should I use it?</a> (video and transcript)</li>
+<li>
+<a href="https://www.census.gov/data/developers/guidance/microdata-api-user-guide.What_is_Public_Use_Microdata.html" class="external-link">Census
+Microdata API User Guide</a> (pdf)</li>
 <li><a href="https://www.census.gov/data/developers/data-sets/census-microdata-api.html" class="external-link">Microdata
 API documentation</a></li>
 </ul>
@@ -115,6 +121,10 @@ tool</a>.</p>
 <p>Once you’ve learned how to use microdata and gained and understanding
 of weighting, getting the data using <code>censusapi</code> is
 simple.</p>
+</div>
+<div class="section level2">
+<h2 id="getting-microdata-with-censusapi">Getting microdata with censusapi<a class="anchor" aria-label="anchor" href="#getting-microdata-with-censusapi"></a>
+</h2>
 <p>As an example, we’ll get data from the 2020 <a href="https://www.census.gov/data/developers/data-sets/census-microdata-api/cps/voting.html" class="external-link">Current
 Population Survey Voting Supplement.</a> This survey asks people if they
 voted, how, and when, and includes useful demographic data.</p>
@@ -212,57 +222,88 @@ business/farm,y/n</td>
 </tbody>
 </table>
 </div>
-<p>Most of microdata variables are encoded, which means that your data
-will have a lot of numbers instead of text labels.</p>
-<p>You can look up the meaning of those labels using the same function,
-<code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code>. Here are the values of
-<code>PES5</code>, the variable for “Vote in person or by mail?”</p>
+<p>From the CPS Voting supplement, get data on method of voting in New
+York state using <code>PES5</code> (Vote in person or by mail?) and
+<code>PESEX</code> (gender), along with the appropriate weighting
+variable, <code>PWSSWGT</code>. We’ll only get data for people with a
+response of <code>1</code> (yes) to <code>PES1</code> (Did you
+vote?).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">PES5_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">cps_voting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"cps/voting/nov"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>,</span>
-<span>    type <span class="op">=</span> <span class="st">"values"</span>,</span>
-<span>    variable <span class="op">=</span> <span class="st">"PES5"</span><span class="op">)</span></span>
-<span><span class="va">PES5_values</span></span></code></pre></div>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PES5"</span>, <span class="st">"PESEX"</span>, <span class="st">"PWSSWGT"</span><span class="op">)</span>,</span>
+<span>    region <span class="op">=</span> <span class="st">"state:36"</span>,</span>
+<span>    PES1 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cps_voting</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
-<th align="left">code</th>
-<th align="left">label</th>
+<th align="left">state</th>
+<th align="right">PES5</th>
+<th align="left">PESEX</th>
+<th align="left">PWSSWGT</th>
+<th align="right">PES1</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2</td>
-<td align="left">By Mail</td>
-</tr>
-<tr class="even">
-<td align="left">-2</td>
-<td align="left">Don’t Know</td>
-</tr>
-<tr class="odd">
+<td align="left">36</td>
+<td align="right">1</td>
 <td align="left">1</td>
-<td align="left">In person</td>
+<td align="left">4571.2161</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="left">-1</td>
-<td align="left">Not in Universe</td>
+<td align="left">36</td>
+<td align="right">1</td>
+<td align="left">2</td>
+<td align="left">4806.3694</td>
+<td align="right">1</td>
 </tr>
 <tr class="odd">
-<td align="left">-9</td>
-<td align="left">No Response</td>
+<td align="left">36</td>
+<td align="right">1</td>
+<td align="left">2</td>
+<td align="left">3440.3007</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="left">-3</td>
-<td align="left">Refused</td>
+<td align="left">36</td>
+<td align="right">-3</td>
+<td align="left">1</td>
+<td align="left">5204.5663</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">36</td>
+<td align="right">-3</td>
+<td align="left">2</td>
+<td align="left">4993.8192</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">36</td>
+<td align="right">1</td>
+<td align="left">2</td>
+<td align="left">4602.9585</td>
+<td align="right">1</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>If you want to make a full data dictionary including the defintions
-and labels for every variable in the dataset, use
-<code>type = "variables"</code> and
-<code>include_values = "TRUE"</code>. There will be one row per
-variable-label pair.</p>
+</div>
+<div class="section level2">
+<h2 id="making-a-data-dictionary">Making a data dictionary<a class="anchor" aria-label="anchor" href="#making-a-data-dictionary"></a>
+</h2>
+<p>Most of microdata variables are encoded, which means that your data
+will have a lot of numbers instead of text labels.</p>
+<p>A data dictionary, which includes the definitions and labels for
+every variable in the dataset, is helpful. This is possible with
+<code>listCensusMetasdata(include_values = "TRUE)</code> returns a data
+dictionary with one row for each variable-label pair. That means if
+there are 30 codes for a given variable, it will have 30 rows in the
+data dictionary. Variables that don’t have value labels in the metadata
+will have only one row.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">voting_dict</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"cps/voting/nov"</span>,</span>
@@ -380,75 +421,55 @@ variable-label pair.</p>
 </tbody>
 </table>
 </div>
-<p>From the CPS Voting supplement, get data on method of voting in New
-York state using <code>PES5</code> (Vote in person or by mail?) and
-<code>PESEX</code> (gender), along with the appropriate weighting
-variable, <code>PWSSWGT</code>. We’ll only get data for people with a
-response of <code>1</code> (yes) to <code>PES1</code> (Did you
-vote?).</p>
+<p>You can also look up the meaning of those codes for a single variable
+using the same function, <code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code>. Here are the
+values of <code>PES5</code>, the variable for “Vote in person or by
+mail?”</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">cps_voting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">PES5_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"cps/voting/nov"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>,</span>
-<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PES5"</span>, <span class="st">"PESEX"</span>, <span class="st">"PWSSWGT"</span><span class="op">)</span>,</span>
-<span>    region <span class="op">=</span> <span class="st">"state:36"</span>,</span>
-<span>    PES1 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cps_voting</span><span class="op">)</span></span></code></pre></div>
+<span>    type <span class="op">=</span> <span class="st">"values"</span>,</span>
+<span>    variable <span class="op">=</span> <span class="st">"PES5"</span><span class="op">)</span></span>
+<span><span class="va">PES5_values</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
-<th align="left">state</th>
-<th align="right">PES5</th>
-<th align="left">PESEX</th>
-<th align="left">PWSSWGT</th>
-<th align="right">PES1</th>
+<th align="left">value</th>
+<th align="left">label</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">36</td>
-<td align="right">1</td>
-<td align="left">1</td>
-<td align="left">4571.2161</td>
-<td align="right">1</td>
+<td align="left">2</td>
+<td align="left">By Mail</td>
 </tr>
 <tr class="even">
-<td align="left">36</td>
-<td align="right">1</td>
-<td align="left">2</td>
-<td align="left">4806.3694</td>
-<td align="right">1</td>
+<td align="left">-2</td>
+<td align="left">Don’t Know</td>
 </tr>
 <tr class="odd">
-<td align="left">36</td>
-<td align="right">1</td>
-<td align="left">2</td>
-<td align="left">3440.3007</td>
-<td align="right">1</td>
+<td align="left">1</td>
+<td align="left">In person</td>
 </tr>
 <tr class="even">
-<td align="left">36</td>
-<td align="right">-3</td>
-<td align="left">1</td>
-<td align="left">5204.5663</td>
-<td align="right">1</td>
+<td align="left">-1</td>
+<td align="left">Not in Universe</td>
 </tr>
 <tr class="odd">
-<td align="left">36</td>
-<td align="right">-3</td>
-<td align="left">2</td>
-<td align="left">4993.8192</td>
-<td align="right">1</td>
+<td align="left">-9</td>
+<td align="left">No Response</td>
 </tr>
 <tr class="even">
-<td align="left">36</td>
-<td align="right">1</td>
-<td align="left">2</td>
-<td align="left">4602.9585</td>
-<td align="right">1</td>
+<td align="left">-3</td>
+<td align="left">Refused</td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
+<div class="section level2">
+<h2 id="what-to-do-with-microdata">What to do with microdata<a class="anchor" aria-label="anchor" href="#what-to-do-with-microdata"></a>
+</h2>
 <p>With this microdata, you could look at voting patterns by gender or
 any of the other demographic, geographic, and economic variables
 available in the voting supplement.</p>
@@ -465,7 +486,10 @@ protocols.)</li>
 <li>Retrieve American Community Survey microdata via the Census APIs
 with <a href="https://walker-data.com/tidycensus/articles/pums-data.html" class="external-link">tidycensus</a>,
 which has helpful functions for working with those endpoints.</li>
-</ul></main>
+</ul>
+</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 

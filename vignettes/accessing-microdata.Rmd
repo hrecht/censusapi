@@ -22,18 +22,22 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 
 This package provides basic support for the Census's new microdata APIs, using the same `getCensus()` functions used for summary data. Getting the data with `getCensus()` is easy. Using it responsibly takes some homework.
 
+## About microdata
+
 Microdata contains individual-level responses: one row per person. It is a vital tool to perform custom analysis, but with great power comes great responsibility. Appropriately weighting the individual-level responses is required. You'll often need to work with household relationships and will need to handle responses that aren't in the universe of the question (for example, removing children in an analysis about college graduation rate.) 
 
 If you're new to working with microdata you'll need to do some reading before diving in. Here are some resources from the Census Bureau:
 
-* [What is Microdata and Why Should I Use It?](https://www.census.gov/data/academy/data-gems/2020/what-is-microdata-and-why-should-i-use-it.html)
-* [https://www.census.gov/data/developers/guidance/microdata-api-user-guide.What_is_Public_Use_Microdata.html](https://www.census.gov/data/developers/guidance/microdata-api-user-guide.What_is_Public_Use_Microdata.html)
+* [What is microdata and why should I use it?](https://www.census.gov/data/academy/data-gems/2020/what-is-microdata-and-why-should-i-use-it.html) (video and transcript)
+* [Census Microdata API User Guide](https://www.census.gov/data/developers/guidance/microdata-api-user-guide.What_is_Public_Use_Microdata.html) (pdf)
 * [Microdata API documentation](https://www.census.gov/data/developers/data-sets/census-microdata-api.html)
 
 As for all other endpoints, `censusapi` retrieves the data so that you can perform your own analysis using your methodology of choice. If you're looking for an interactive microdata analysis tool, try the [data.census.gov microdata interactive tool](https://data.census.gov/mdat/#/) or the [IPUMS online data analysis tool](https://cps.ipums.org/cps/sda.shtml).
 
 Once you've learned how to use microdata and gained and understanding of weighting, getting the data using `censusapi` is simple.
 
+
+## Getting microdata with censusapi
 As an example, we'll get data from the 2020 [Current Population Survey Voting Supplement.](https://www.census.gov/data/developers/data-sets/census-microdata-api/cps/voting.html) This survey asks people if they voted, how, and when, and includes useful demographic data.
 
 See the available variables:
@@ -46,29 +50,6 @@ voting_vars <- listCensusMetadata(
 head(voting_vars)
 ```
 
-Most of microdata variables are encoded, which means that your data will have a lot of numbers instead of text labels.
-
-You can look up the meaning of those labels using the same function, `listCensusMetadata()`. Here are the values of `PES5`, the variable for "Vote in person or by mail?"
-
-```{r}
-PES5_values <- listCensusMetadata(
-	name = "cps/voting/nov",
-	vintage = 2020,
-	type = "values",
-	variable = "PES5")
-PES5_values
-```
-
-If you want to make a full data dictionary including the defintions and labels for every variable in the dataset, use `type = "variables"` and `include_values = "TRUE"`. There will be one row per variable-label pair.
-
-```{r}
-voting_dict <- listCensusMetadata(
-	name = "cps/voting/nov",
-	vintage = 2020,
-	type = "variables",
-	include_values = TRUE)
-head(voting_dict)
-```
 
 From the CPS Voting supplement, get data on method of voting in New York state using `PES5` (Vote in person or by mail?) and `PESEX` (gender), along with the appropriate weighting variable, `PWSSWGT`. We'll only get data for people with a response of `1` (yes) to `PES1` (Did you vote?).
 
@@ -81,6 +62,38 @@ cps_voting <- getCensus(
 	PES1 = 1)
 head(cps_voting)
 ```
+
+## Making a data dictionary
+
+Most of microdata variables are encoded, which means that your data will have a lot of numbers instead of text labels.
+
+A data dictionary, which includes the definitions and labels for every variable in the dataset, is helpful. This is possible with `listCensusMetasdata(include_values = "TRUE)` returns a data dictionary with one row for each variable-label pair. That means if there are 30 codes for a given variable, it will have 30 rows in the data dictionary. Variables that don't have value labels in the metadata will have only one row.
+
+
+```{r}
+voting_dict <- listCensusMetadata(
+	name = "cps/voting/nov",
+	vintage = 2020,
+	type = "variables",
+	include_values = TRUE)
+head(voting_dict)
+```
+
+
+You can also look up the meaning of those codes for a single variable using the same function, `listCensusMetadata()`. Here are the values of `PES5`, the variable for "Vote in person or by mail?"
+
+```{r}
+PES5_values <- listCensusMetadata(
+	name = "cps/voting/nov",
+	vintage = 2020,
+	type = "values",
+	variable = "PES5")
+PES5_values
+```
+
+
+## What to do with microdata
+
 With this microdata, you could look at voting patterns by gender or any of the other demographic, geographic, and economic variables available in the voting supplement.
 
 Some other ways to access the Census microdata are:
