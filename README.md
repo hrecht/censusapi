@@ -18,7 +18,7 @@ install.packages("censusapi")
 
 You can also install the latest development version of `censusapi` from Github using `devtools`:
 ```R
-# Install the package if needed
+# Install the devtools package if needed
 # install.packages("devtools")
 devtools::install_github("hrecht/censusapi")
 ```
