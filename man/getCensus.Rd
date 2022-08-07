@@ -17,6 +17,7 @@ getCensus(
   period = NULL,
   monthly = NULL,
   show_call = FALSE,
+  convert_variables = TRUE,
   category_code = NULL,
   data_type_code = NULL,
   naics = NULL,
@@ -47,6 +48,10 @@ This function will default to a `CENSUS_KEY` stored in your .Renviron if availab
 \item{time, year, date, period, monthly}{Optional arguments used for some time series APIs.}
 
 \item{show_call}{List the underlying API call that was sent to the Census Bureau.}
+
+\item{convert_variables}{Convert likely numeric variables into numeric data.
+Default is true. If false, results will be characters, which is the type returned by
+the Census Bureau.}
 
 \item{category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic}{Optional arguments used in economic data APIs.}
 

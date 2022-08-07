@@ -3,7 +3,7 @@
 #' @param apiurl, key, get, region, time, etc
 #' @keywords internal
 #' @export
-getFunction <- function(apiurl, name, key, get, region, regionin, time, year, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...) {
+getFunction <- function(apiurl, name, key, get, region, regionin, time, year, date, period, monthly, show_call, convert_variables, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...) {
 
 	# Return API's built in error message if invalid call
 	apiCheck <- function(req) {
@@ -55,58 +55,59 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 		df[] <- lapply(df, as.character)
 
 		# Make columns numeric based on column names - unfortunately best strategy without additional API calls given structure of data across endpoints
-		string_col_parts <- "_TTL|_NAME|NAICS2012|NAICS2017|NAICS2012_TTL|NAICS2017_TTL|fage4|FAGE4|LABEL|_DESC|CAT"
+		if (convert_variables == TRUE) {
+			string_col_parts <- "_TTL|_NAME|NAICS2012|NAICS2017|NAICS2012_TTL|NAICS2017_TTL|fage4|FAGE4|LABEL|_DESC|CAT"
 
-		# For ACS data, do not make columns numeric if they are ACS annotation variables - ending in MA or EA or SS
-		if (grepl("acs/acs", name, ignore.case = T)) {
-			# Do not make known string/label variables numeric
-			numeric_cols <- grep("[0-9]", names(df), value=TRUE)
-			string_cols <- grep(paste0("MA|EA|SS|", string_col_parts), numeric_cols, value = TRUE, ignore.case = T)
+			# For ACS data, do not make columns numeric if they are ACS annotation variables - ending in MA or EA or SS
+			if (grepl("acs/acs", name, ignore.case = T)) {
+				# Do not make known string/label variables numeric
+				numeric_cols <- grep("[0-9]", names(df), value=TRUE)
+				string_cols <- grep(paste0("MA|EA|SS|", string_col_parts), numeric_cols, value = TRUE, ignore.case = T)
 
-			# Small Area Health Insurance Estimates
-		} else if (grepl("healthins/sahie", name, ignore.case = T)) {
-			numeric_cols <- grep("[0-9]|_PT|NIPR|PCTIC|PCTUI|NIC|NUI", names(df), value=TRUE, ignore.case = T)
-			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+				# Small Area Health Insurance Estimates
+			} else if (grepl("healthins/sahie", name, ignore.case = T)) {
+				numeric_cols <- grep("[0-9]|_PT|NIPR|PCTIC|PCTUI|NIC|NUI", names(df), value=TRUE, ignore.case = T)
+				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
 
-			# Small Area Income and Poverty Estimates
-		} else if (grepl("poverty/saipe", name, ignore.case = T)) {
-			numeric_cols <- grep("[0-9]|SAEMHI|SAEPOV", names(df), value=TRUE, ignore.case = T)
-			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+				# Small Area Income and Poverty Estimates
+			} else if (grepl("poverty/saipe", name, ignore.case = T)) {
+				numeric_cols <- grep("[0-9]|SAEMHI|SAEPOV", names(df), value=TRUE, ignore.case = T)
+				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
 
-			# Population and Housing Estimates
-		} else if (grepl("pep/", name, ignore.case = T)) {
-			numeric_cols <- grep("[0-9]|POP|DENSITY|HUEST", names(df), value=TRUE, ignore.case = T)
-			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+				# Population and Housing Estimates
+			} else if (grepl("pep/", name, ignore.case = T)) {
+				numeric_cols <- grep("[0-9]|POP|DENSITY|HUEST", names(df), value=TRUE, ignore.case = T)
+				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
 
-			# County Business Patterns
-		} else if (name == "cbp" | name == "zbp") {
-			# Exact matches for CBP variables
-			numeric_cols <- grep("[0-9]|\\<EMP\\>|\\<ESTAB\\>|PAYANN", names(df), value=TRUE, ignore.case = T)
-			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+				# County Business Patterns
+			} else if (name == "cbp" | name == "zbp") {
+				# Exact matches for CBP variables
+				numeric_cols <- grep("[0-9]|\\<EMP\\>|\\<ESTAB\\>|PAYANN", names(df), value=TRUE, ignore.case = T)
+				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
 
-			# Decennial Response Rates
-		} else if (name == "dec/responserate") {
-			numeric_cols <- grep("[0-9]|CINT|MIN|MED|AVG|MAX|DRR|CRR", names(df), value=TRUE, ignore.case = T)
-			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+				# Decennial Response Rates
+			} else if (name == "dec/responserate") {
+				numeric_cols <- grep("[0-9]|CINT|MIN|MED|AVG|MAX|DRR|CRR", names(df), value=TRUE, ignore.case = T)
+				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
 
-			# International trade
-		} else if (grepl("timeseries/intltrade/", name, ignore.case = T)) {
-			numeric_cols <- grep("[0-9]", names(df), value=TRUE, ignore.case = T)
-			string_col_parts <- paste0(string_col_parts, "|UNIT_QY|_FLAG")
-			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+				# International trade
+			} else if (grepl("timeseries/intltrade/", name, ignore.case = T)) {
+				numeric_cols <- grep("[0-9]", names(df), value=TRUE, ignore.case = T)
+				string_col_parts <- paste0(string_col_parts, "|UNIT_QY|_FLAG")
+				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
 
 
-		} else {
-			# Do not make known string/label variables numeric
-			numeric_cols <- grep("[0-9]", names(df), value=TRUE)
-			string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+			} else {
+				# Do not make known string/label variables numeric
+				numeric_cols <- grep("[0-9]", names(df), value=TRUE)
+				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+			}
+
+			# Convert string "NULL" or "N/A" values to true NA
+			df[(df == "NULL" | df == "N/A" | df == "NA")] <- NA
+
+			for(col in setdiff(numeric_cols, string_cols)) df[,col] <- as.numeric(df[,col])
 		}
-
-		# Convert string "NULL" or "N/A" values to true NA
-		df[(df == "NULL" | df == "N/A" | df == "NA")] <- NA
-
-		for(col in setdiff(numeric_cols, string_cols)) df[,col] <- as.numeric(df[,col])
-
 		row.names(df) <- NULL
 
 		return(df)
@@ -137,6 +138,9 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 #' @param category_code,data_type_code,naics,pscode,naics2012,naics2007,naics2002,naics1997,sic
 #' Optional arguments used in economic data APIs.
 #' @param show_call List the underlying API call that was sent to the Census Bureau.
+#' @param convert_variables Convert likely numeric variables into numeric data.
+#' Default is true. If false, results will be characters, which is the type returned by
+#' the Census Bureau.
 #' @param key Your Census API key, obtained at https://api.census.gov/data/key_signup.html.
 #' This function will default to a `CENSUS_KEY` stored in your .Renviron if available.
 #' @param ... Other valid arguments to pass to the Census API. Note: the APIs are case sensitive.
@@ -207,6 +211,7 @@ getCensus <-
 					 period = NULL,
 					 monthly = NULL,
 					 show_call = FALSE,
+					 convert_variables = TRUE,
 					 category_code = NULL,
 					 data_type_code = NULL,
 					 naics = NULL,
@@ -247,13 +252,13 @@ getCensus <-
 		# Split vars into list
 		vars <- split(vars, ceiling(seq_along(vars)/50))
 		get <- lapply(vars, function(x) paste(x, sep='', collapse=","))
-		data <- lapply(get, function(x) getFunction(apiurl, name, key, x, region, regionin, time, year, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...))
+		data <- lapply(get, function(x) getFunction(apiurl, name, key, x, region, regionin, time, year, date, period, monthly, show_call, convert_variables, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...))
 
 		data <- Reduce(function(x, y) merge(x, y, all = TRUE, sort = FALSE), data)
 
 	} else {
 		get <- paste(vars, sep='', collapse=',')
-		data <- getFunction(apiurl, name, key, get, region, regionin, time, year, date, period, monthly, show_call, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...)
+		data <- getFunction(apiurl, name, key, get, region, regionin, time, year, date, period, monthly, show_call, convert_variables, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...)
 	}
 
 	# If there are any duplicate columns (ie if you put a variable in vars twice) remove the duplicates

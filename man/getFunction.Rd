@@ -17,6 +17,7 @@ getFunction(
   period,
   monthly,
   show_call,
+  convert_variables,
   category_code,
   data_type_code,
   naics,
