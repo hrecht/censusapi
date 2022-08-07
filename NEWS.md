@@ -29,7 +29,7 @@
 
 * `getCensus()` has a new option `convert_variables` re discussion in (#68) and (#80). The default is `TRUE` — as in previous versions, this converts columns of numbers to R's numeric data type. Setting `convert variables = FALSE` leaves all columns in the original character data type returned by the Census Bureau.
 * `listCensusMetadata()` now properly handles metadata attribute names in the new Microdata APIs that contain invalid JSON. This solves (#84).
-* Documentation and examples are updated. There are two new vignettes: [Advanced censusapi usage](https://www.hrecht.com/censusapi/articles/advanced-usage.html) (previously included elsewhere) and [Accessing microdata.](https://www.hrecht.com/censusapi/articles/accessing-microdata.html)
+* Documentation and examples are updated. There is a new vignette: [Accessing microdata.](https://www.hrecht.com/censusapi/articles/accessing-microdata.html)
 
 # censusapi 0.7.3
 * Properly types certain variables in international trade timeseries APIs.

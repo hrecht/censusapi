@@ -18,8 +18,6 @@ navbar:
         href: articles/getting-started.html
       - text: List of examples
         href: articles/example-list.html
-      - text: Advanced censusapi usage
-        href: articles/advanced-usage.html
       - text: Accessing microdata
         href: articles/accessing-microdata.html
 

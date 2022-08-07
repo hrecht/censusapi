@@ -46,7 +46,6 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/getting-started.html">Getting started with censusapi</a>
     <a class="dropdown-item" href="../articles/example-list.html">List of examples</a>
-    <a class="dropdown-item" href="../articles/advanced-usage.html">Advanced censusapi usage</a>
     <a class="dropdown-item" href="../articles/accessing-microdata.html">Accessing microdata</a>
   </div>
 </li>
@@ -401,88 +400,171 @@ dollars for Alabama cities for the past five years.</p>
 </h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/acs-migration-flows.html" class="external-link">American
 Community Survey Migration Flows documentation</a></p>
+<p>Get the number of people who moved in and out of Los Angeles county
+by their origin or destination.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">flows</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/flows"</span>,</span>
-<span>    vintage <span class="op">=</span> <span class="fl">2016</span>,</span>
-<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MOVEDIN"</span>, <span class="st">"MOVEDOUT"</span>, <span class="st">"FULL1_NAME"</span>, <span class="st">"FULL2_NAME"</span>, <span class="st">"GEOID2"</span><span class="op">)</span>,</span>
-<span>    region <span class="op">=</span> <span class="st">"county:001"</span>,</span>
-<span>    regionin <span class="op">=</span> <span class="st">"state:01"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">flows</span><span class="op">)</span></span></code></pre></div>
+<span>    vintage <span class="op">=</span> <span class="fl">2019</span>,</span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MOVEDIN"</span>, <span class="st">"MOVEDOUT"</span>, <span class="st">"GEOID2"</span>, <span class="st">"FULL1_NAME"</span>, <span class="st">"FULL2_NAME"</span><span class="op">)</span>,</span>
+<span>    region <span class="op">=</span> <span class="st">"county:037"</span>,</span>
+<span>    regionin <span class="op">=</span> <span class="st">"state:06"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">flows</span>, n <span class="op">=</span> <span class="fl">15L</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <colgroup>
+<col width="6%">
 <col width="7%">
 <col width="8%">
 <col width="9%">
-<col width="10%">
-<col width="28%">
-<col width="28%">
-<col width="8%">
+<col width="7%">
+<col width="33%">
+<col width="26%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">state</th>
 <th align="left">county</th>
 <th align="left">MOVEDIN</th>
 <th align="left">MOVEDOUT</th>
+<th align="right">GEOID2</th>
 <th align="left">FULL1_NAME</th>
 <th align="left">FULL2_NAME</th>
-<th align="right">GEOID2</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">01</td>
-<td align="left">001</td>
-<td align="left">70</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">2585</td>
 <td align="left">NA</td>
-<td align="left">Autauga County, Alabama</td>
+<td align="right">NA</td>
+<td align="left">Los Angeles County, California</td>
+<td align="left">Africa</td>
+</tr>
+<tr class="even">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">37932</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">Los Angeles County, California</td>
 <td align="left">Asia</td>
-<td align="right">NA</td>
 </tr>
-<tr class="even">
-<td align="left">01</td>
-<td align="left">001</td>
-<td align="left">51</td>
+<tr class="odd">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">13073</td>
 <td align="left">NA</td>
-<td align="left">Autauga County, Alabama</td>
-<td align="left">Europe</td>
 <td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">01</td>
-<td align="left">001</td>
-<td align="left">36</td>
-<td align="left">126</td>
-<td align="left">Autauga County, Alabama</td>
-<td align="left">Baldwin County, Alabama</td>
-<td align="right">1003</td>
+<td align="left">Los Angeles County, California</td>
+<td align="left">Central America</td>
 </tr>
 <tr class="even">
-<td align="left">01</td>
-<td align="left">001</td>
-<td align="left">4</td>
-<td align="left">0</td>
-<td align="left">Autauga County, Alabama</td>
-<td align="left">Barbour County, Alabama</td>
-<td align="right">1005</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">962</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">Los Angeles County, California</td>
+<td align="left">Caribbean</td>
 </tr>
 <tr class="odd">
-<td align="left">01</td>
-<td align="left">001</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">9953</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">Los Angeles County, California</td>
+<td align="left">Europe</td>
+</tr>
+<tr class="even">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">312</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">Los Angeles County, California</td>
+<td align="left">U.S. Island Areas</td>
+</tr>
+<tr class="odd">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">1774</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">Los Angeles County, California</td>
+<td align="left">Northern America</td>
+</tr>
+<tr class="even">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">2001</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">Los Angeles County, California</td>
+<td align="left">Oceania and At Sea</td>
+</tr>
+<tr class="odd">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">4341</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">Los Angeles County, California</td>
+<td align="left">South America</td>
+</tr>
+<tr class="even">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">0</td>
 <td align="left">7</td>
-<td align="left">135</td>
-<td align="left">Autauga County, Alabama</td>
-<td align="left">Bibb County, Alabama</td>
-<td align="right">1007</td>
+<td align="right">1003</td>
+<td align="left">Los Angeles County, California</td>
+<td align="left">Baldwin County, Alabama</td>
+</tr>
+<tr class="odd">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">9</td>
+<td align="left">0</td>
+<td align="right">1009</td>
+<td align="left">Los Angeles County, California</td>
+<td align="left">Blount County, Alabama</td>
 </tr>
 <tr class="even">
-<td align="left">01</td>
-<td align="left">001</td>
-<td align="left">4</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">20</td>
+<td align="left">40</td>
+<td align="right">1015</td>
+<td align="left">Los Angeles County, California</td>
+<td align="left">Calhoun County, Alabama</td>
+</tr>
+<tr class="odd">
+<td align="left">06</td>
+<td align="left">037</td>
 <td align="left">0</td>
-<td align="left">Autauga County, Alabama</td>
-<td align="left">Blount County, Alabama</td>
-<td align="right">1009</td>
+<td align="left">9</td>
+<td align="right">1031</td>
+<td align="left">Los Angeles County, California</td>
+<td align="left">Coffee County, Alabama</td>
+</tr>
+<tr class="even">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">0</td>
+<td align="left">60</td>
+<td align="right">1045</td>
+<td align="left">Los Angeles County, California</td>
+<td align="left">Dale County, Alabama</td>
+</tr>
+<tr class="odd">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">0</td>
+<td align="left">16</td>
+<td align="right">1051</td>
+<td align="left">Los Angeles County, California</td>
+<td align="left">Elmore County, Alabama</td>
 </tr>
 </tbody>
 </table>
@@ -742,33 +824,6 @@ Survey of Entrepreneurs documentation</a></p>
 <td align="left">Total for all sectors</td>
 <td align="left">0000</td>
 <td align="left">All firms</td>
-<td align="left">LZ</td>
-<td align="left">Jointly owned and equally operated by spouses</td>
-<td align="left">2014</td>
-<td align="left">335149</td>
-<td align="left">30.6</td>
-<td align="left">493143589</td>
-<td align="left">NA</td>
-<td align="left">15.4</td>
-<td align="left">3303608</td>
-<td align="left">23.0</td>
-<td align="left">104343482</td>
-<td align="left">19.2</td>
-<td align="left">0.6</td>
-<td align="left">0.3</td>
-<td align="left">3.7</td>
-<td align="left">5.5</td>
-<td align="left">1.7</td>
-<td align="left">6.2</td>
-<td align="left">1.8</td>
-<td align="left">5.5</td>
-</tr>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">United States</td>
-<td align="left">Total for all sectors</td>
-<td align="left">0000</td>
-<td align="left">All firms</td>
 <td align="left">MA</td>
 <td align="left">Jointly owned but primarily operated by male
 spouse</td>
@@ -790,6 +845,33 @@ spouse</td>
 <td align="left">3.5</td>
 <td align="left">3.0</td>
 <td align="left">3.5</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">United States</td>
+<td align="left">Total for all sectors</td>
+<td align="left">0000</td>
+<td align="left">All firms</td>
+<td align="left">LZ</td>
+<td align="left">Jointly owned and equally operated by spouses</td>
+<td align="left">2014</td>
+<td align="left">335149</td>
+<td align="left">30.6</td>
+<td align="left">493143589</td>
+<td align="left">NA</td>
+<td align="left">15.4</td>
+<td align="left">3303608</td>
+<td align="left">23.0</td>
+<td align="left">104343482</td>
+<td align="left">19.2</td>
+<td align="left">0.6</td>
+<td align="left">0.3</td>
+<td align="left">3.7</td>
+<td align="left">5.5</td>
+<td align="left">1.7</td>
+<td align="left">6.2</td>
+<td align="left">1.8</td>
+<td align="left">5.5</td>
 </tr>
 <tr class="even">
 <td align="left">1</td>
@@ -1045,13 +1127,21 @@ Survey of Manufactures documentation</a></p>
 </tr>
 <tr class="odd">
 <td align="left">2016</td>
+<td align="left">56</td>
+<td align="left">Wyoming</td>
+<td align="left">Manufacturing</td>
+<td align="left">8377</td>
+<td align="left">31-33</td>
+</tr>
+<tr class="even">
+<td align="left">2016</td>
 <td align="left">04</td>
 <td align="left">Arizona</td>
 <td align="left">Manufacturing</td>
 <td align="left">136946</td>
 <td align="left">31-33</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2016</td>
 <td align="left">05</td>
 <td align="left">Arkansas</td>
@@ -1059,20 +1149,12 @@ Survey of Manufactures documentation</a></p>
 <td align="left">145733</td>
 <td align="left">31-33</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2016</td>
 <td align="left">06</td>
 <td align="left">California</td>
 <td align="left">Manufacturing</td>
 <td align="left">1119896</td>
-<td align="left">31-33</td>
-</tr>
-<tr class="even">
-<td align="left">2016</td>
-<td align="left">08</td>
-<td align="left">Colorado</td>
-<td align="left">Manufacturing</td>
-<td align="left">121069</td>
 <td align="left">31-33</td>
 </tr>
 </tbody>
@@ -1217,31 +1299,31 @@ than 1,000 employees (<code>EMPSZES = 260</code>).</p>
 <td align="left">260</td>
 </tr>
 <tr class="odd">
-<td align="left">30</td>
-<td align="left">Montana</td>
-<td align="right">22451</td>
-<td align="right">13</td>
+<td align="left">01</td>
+<td align="left">Alabama</td>
+<td align="right">224854</td>
+<td align="right">109</td>
 <td align="left">260</td>
 </tr>
 <tr class="even">
-<td align="left">31</td>
-<td align="left">Nebraska</td>
-<td align="right">119676</td>
-<td align="right">58</td>
+<td align="left">02</td>
+<td align="left">Alaska</td>
+<td align="right">20120</td>
+<td align="right">12</td>
 <td align="left">260</td>
 </tr>
 <tr class="odd">
-<td align="left">32</td>
-<td align="left">Nevada</td>
-<td align="right">255015</td>
-<td align="right">103</td>
+<td align="left">04</td>
+<td align="left">Arizona</td>
+<td align="right">427983</td>
+<td align="right">194</td>
 <td align="left">260</td>
 </tr>
 <tr class="even">
-<td align="left">33</td>
-<td align="left">New Hampshire</td>
-<td align="right">80441</td>
-<td align="right">28</td>
+<td align="left">05</td>
+<td align="left">Arkansas</td>
+<td align="right">125584</td>
+<td align="right">74</td>
 <td align="left">260</td>
 </tr>
 </tbody>
@@ -2029,16 +2111,16 @@ Census documentation</a></p>
 <td align="left">54</td>
 </tr>
 <tr class="odd">
-<td align="left">02</td>
-<td align="left">17328</td>
-<td align="left">T</td>
+<td align="left">08</td>
+<td align="left">4616</td>
+<td align="left">Y</td>
 <td align="left">02</td>
 <td align="left">54</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
-<td align="left">320</td>
-<td align="left">Y</td>
+<td align="left">17328</td>
+<td align="left">T</td>
 <td align="left">02</td>
 <td align="left">54</td>
 </tr>
@@ -2213,19 +2295,29 @@ Indicators documentation</a></p>
 </h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html" class="external-link">Health
 Insurance Statistics documentation</a></p>
-<p>Get the uninsured rate by income group in Alabama for a single
+<p>Get the uninsured rate by income group for each county for a single
 year.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>,</span>
-<span>    region <span class="op">=</span> <span class="st">"state:01"</span>,</span>
+<span>    region <span class="op">=</span> <span class="st">"county:*"</span>,</span>
 <span>    year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
+<colgroup>
+<col width="7%">
+<col width="9%">
+<col width="24%">
+<col width="9%">
+<col width="31%">
+<col width="11%">
+<col width="6%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">state</th>
+<th align="left">county</th>
 <th align="left">NAME</th>
 <th align="left">IPRCAT</th>
 <th align="left">IPR_DESC</th>
@@ -2235,190 +2327,209 @@ year.</p>
 <tbody>
 <tr class="odd">
 <td align="left">01</td>
-<td align="left">Alabama</td>
+<td align="left">001</td>
+<td align="left">Autauga County, AL</td>
 <td align="left">0</td>
 <td align="left">All Incomes</td>
-<td align="right">11.6</td>
+<td align="right">9.4</td>
 <td align="left">2019</td>
 </tr>
 <tr class="even">
 <td align="left">01</td>
-<td align="left">Alabama</td>
+<td align="left">001</td>
+<td align="left">Autauga County, AL</td>
 <td align="left">1</td>
 <td align="left">&lt;= 200% of Poverty</td>
-<td align="right">18.9</td>
+<td align="right">17.3</td>
 <td align="left">2019</td>
 </tr>
 <tr class="odd">
 <td align="left">01</td>
-<td align="left">Alabama</td>
+<td align="left">001</td>
+<td align="left">Autauga County, AL</td>
 <td align="left">2</td>
 <td align="left">&lt;= 250% of Poverty</td>
-<td align="right">18.0</td>
+<td align="right">16.3</td>
 <td align="left">2019</td>
 </tr>
 <tr class="even">
 <td align="left">01</td>
-<td align="left">Alabama</td>
+<td align="left">001</td>
+<td align="left">Autauga County, AL</td>
 <td align="left">3</td>
 <td align="left">&lt;= 138% of Poverty</td>
-<td align="right">19.9</td>
+<td align="right">18.5</td>
 <td align="left">2019</td>
 </tr>
 <tr class="odd">
 <td align="left">01</td>
-<td align="left">Alabama</td>
+<td align="left">001</td>
+<td align="left">Autauga County, AL</td>
 <td align="left">4</td>
 <td align="left">&lt;= 400% of Poverty</td>
-<td align="right">15.1</td>
+<td align="right">12.8</td>
 <td align="left">2019</td>
 </tr>
 <tr class="even">
 <td align="left">01</td>
-<td align="left">Alabama</td>
+<td align="left">001</td>
+<td align="left">Autauga County, AL</td>
 <td align="left">5</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="right">12.5</td>
+<td align="right">10.2</td>
 <td align="left">2019</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Get the uninsured rate in Alabama for multiple years.</p>
+<p>Get the uninsured rate for a county for multiple years.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_annual</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>,</span>
-<span>    region <span class="op">=</span> <span class="st">"state:01"</span>,</span>
+<span>    region <span class="op">=</span> <span class="st">"county:037"</span>,</span>
+<span>    regionin <span class="op">=</span> <span class="st">"state:06"</span>,</span>
 <span>    year <span class="op">=</span> <span class="st">"2006:2019"</span><span class="op">)</span></span>
 <span><span class="va">sahie_annual</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
 <th align="left">state</th>
+<th align="left">county</th>
 <th align="left">NAME</th>
 <th align="right">PCTUI_PT</th>
 <th align="left">YEAR</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">15.7</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">23.8</td>
 <td align="left">2006</td>
 </tr>
 <tr class="even">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">14.6</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">23.1</td>
 <td align="left">2007</td>
 </tr>
 <tr class="odd">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">15.3</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">23.8</td>
 <td align="left">2008</td>
 </tr>
 <tr class="even">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">15.8</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">24.9</td>
 <td align="left">2009</td>
 </tr>
 <tr class="odd">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">16.9</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">25.9</td>
 <td align="left">2010</td>
 </tr>
 <tr class="even">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">16.6</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">24.8</td>
 <td align="left">2011</td>
 </tr>
 <tr class="odd">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">15.8</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">24.5</td>
 <td align="left">2012</td>
 </tr>
 <tr class="even">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">15.9</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">23.7</td>
 <td align="left">2013</td>
 </tr>
 <tr class="odd">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">14.2</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">17.4</td>
 <td align="left">2014</td>
 </tr>
 <tr class="even">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">11.9</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">12.5</td>
 <td align="left">2015</td>
 </tr>
 <tr class="odd">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">10.8</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">10.7</td>
 <td align="left">2016</td>
 </tr>
 <tr class="even">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">11.0</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">10.1</td>
 <td align="left">2017</td>
 </tr>
 <tr class="odd">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">11.9</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">10.2</td>
 <td align="left">2018</td>
 </tr>
 <tr class="even">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">11.6</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">11.1</td>
 <td align="left">2019</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Get the uninsured rate for non-elderly adults with incomes of 138 to
-400% of the poverty line, by race and state.</p>
+<p>Get the uninsured rate for non-elderly adults
+(<code>AGECAT = 1</code>) with incomes of 138 to 400% of the poverty
+line (<code>IPRCAT = 5</code>), by race and state.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_nonelderly</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
-<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"AGE_DESC"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span><span class="op">)</span>, </span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span><span class="op">)</span>, </span>
 <span>    region <span class="op">=</span> <span class="st">"state:*"</span>, </span>
 <span>    year <span class="op">=</span> <span class="fl">2019</span>,</span>
 <span>    IPRCAT <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>    AGECAT <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_nonelderly</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="5%">
-<col width="6%">
-<col width="20%">
 <col width="7%">
-<col width="13%">
+<col width="10%">
+<col width="11%">
+<col width="10%">
+<col width="34%">
 <col width="6%">
-<col width="22%">
-<col width="4%">
-<col width="6%">
-<col width="6%">
+<col width="9%">
+<col width="9%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">state</th>
 <th align="left">NAME</th>
-<th align="left">IPR_DESC</th>
 <th align="right">PCTUI_PT</th>
-<th align="left">AGE_DESC</th>
 <th align="left">RACECAT</th>
 <th align="left">RACE_DESC</th>
 <th align="left">YEAR</th>
@@ -2429,9 +2540,7 @@ year.</p>
 <tr class="odd">
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">138% to 400% of Poverty</td>
 <td align="right">16.0</td>
-<td align="left">18 to 64 years</td>
 <td align="left">0</td>
 <td align="left">All Races</td>
 <td align="left">2019</td>
@@ -2441,9 +2550,7 @@ year.</p>
 <tr class="even">
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">138% to 400% of Poverty</td>
 <td align="right">14.5</td>
-<td align="left">18 to 64 years</td>
 <td align="left">1</td>
 <td align="left">White alone, not Hispanic</td>
 <td align="left">2019</td>
@@ -2453,9 +2560,7 @@ year.</p>
 <tr class="odd">
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">138% to 400% of Poverty</td>
 <td align="right">15.8</td>
-<td align="left">18 to 64 years</td>
 <td align="left">2</td>
 <td align="left">Black alone, not Hispanic</td>
 <td align="left">2019</td>
@@ -2465,9 +2570,7 @@ year.</p>
 <tr class="even">
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="left">138% to 400% of Poverty</td>
 <td align="right">36.1</td>
-<td align="left">18 to 64 years</td>
 <td align="left">3</td>
 <td align="left">Hispanic (any race)</td>
 <td align="left">2019</td>
@@ -2477,9 +2580,7 @@ year.</p>
 <tr class="odd">
 <td align="left">02</td>
 <td align="left">Alaska</td>
-<td align="left">138% to 400% of Poverty</td>
 <td align="right">21.1</td>
-<td align="left">18 to 64 years</td>
 <td align="left">0</td>
 <td align="left">All Races</td>
 <td align="left">2019</td>
@@ -2489,9 +2590,7 @@ year.</p>
 <tr class="even">
 <td align="left">02</td>
 <td align="left">Alaska</td>
-<td align="left">138% to 400% of Poverty</td>
 <td align="right">16.4</td>
-<td align="left">18 to 64 years</td>
 <td align="left">1</td>
 <td align="left">White alone, not Hispanic</td>
 <td align="left">2019</td>

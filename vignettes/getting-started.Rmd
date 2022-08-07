@@ -256,7 +256,7 @@ data2010 <- getCensus(
 head(data2010)
 ```
 
-For many more examples and advanced topics check out [all of the articles](https://www.hrecht.com/censusapi/articles/.)
+For many more examples and advanced topics check out [all of the articles](https://www.hrecht.com/censusapi/articles/).
 
 ## Troubleshooting
 The APIs contain hundreds of API endpoints and dozens of datasets, each of which work a little differently. The Census Bureau also makes frequent updates, which unfortunately are not always announced in advance. If you're getting an error message or unexpected results, here are some things to check.

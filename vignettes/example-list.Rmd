@@ -89,14 +89,16 @@ head(acs_comparison)
 
 ### ACS Migration Flows
 [American Community Survey Migration Flows documentation](https://www.census.gov/data/developers/data-sets/acs-migration-flows.html)
+
+Get the number of people who moved in and out of Los Angeles county by their origin or destination.
 ```{r}
 flows <- getCensus(
 	name = "acs/flows",
-	vintage = 2016,
-	vars = c("MOVEDIN", "MOVEDOUT", "FULL1_NAME", "FULL2_NAME", "GEOID2"),
-	region = "county:001",
-	regionin = "state:01")
-head(flows)
+	vintage = 2019,
+	vars = c("MOVEDIN", "MOVEDOUT", "GEOID2", "FULL1_NAME", "FULL2_NAME"),
+	region = "county:037",
+	regionin = "state:06")
+head(flows, n = 15L)
 ```
 
 ### American Community Survey Language Statistics
@@ -336,31 +338,32 @@ head(eits)
 ## Health Insurance: Small Area Health Insurance Estimates
 [Health Insurance Statistics documentation](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html)
 
-Get the uninsured rate by income group in Alabama for a single year.
+Get the uninsured rate by income group for each county for a single year.
 ```{r}
 sahie <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"),
-	region = "state:01",
+	region = "county:*",
 	year = 2019)
 head(sahie)
 ```
 
-Get the uninsured rate in Alabama for multiple years.
+Get the uninsured rate for a county for multiple years.
 ```{r}
 sahie_annual <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT"),
-	region = "state:01",
+	region = "county:037",
+	regionin = "state:06",
 	year = "2006:2019")
 sahie_annual
 ```
 
-Get the uninsured rate for non-elderly adults with incomes of 138 to 400% of the poverty line, by race and state.
+Get the uninsured rate for non-elderly adults (`AGECAT = 1`) with incomes of 138 to 400% of the poverty line (`IPRCAT = 5`), by race and state.
 ```{r}
 sahie_nonelderly <- getCensus(
 	name = "timeseries/healthins/sahie",
-	vars = c("NAME", "IPR_DESC", "PCTUI_PT", "AGE_DESC", "RACECAT", "RACE_DESC"), 
+	vars = c("NAME", "PCTUI_PT", "RACECAT", "RACE_DESC"), 
 	region = "state:*", 
 	year = 2019,
 	IPRCAT = 5,

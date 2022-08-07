@@ -92,13 +92,11 @@ PES5_values
 ```
 
 
-## What to do with microdata
+## Other ways to access microdata
 
-With this microdata, you could look at voting patterns by gender or any of the other demographic, geographic, and economic variables available in the voting supplement.
+The Census Bureau microdata APIs are helpful for working with a limited just-released datasets. But they're not you're only option. Some other ways to get microdata are:
 
-Some other ways to access the Census microdata are:
-
-* Retrieve standardized, cleaned microdata data from [IPUMS](https://www.ipums.org/) and import with the [impumsr package](https://tech.popdata.org/ipumsr/). These files are generally released months to a year after the raw Census microdata that is available here. IPUMS is widely used in research when the data needed is not brand new. I highly recommend that you check out IPUMS' cleaned files of slightly older microdata, as well as their historic geographic data.
-* Download bulk files from the Census FTPs (file transfer protocols.)
+* Retrieve standardized, cleaned microdata data from [IPUMS](https://www.ipums.org/) and import with the [impumsr package](https://tech.popdata.org/ipumsr/). IPUMS is widely used in research when the data needed is not brand new. I highly recommend that you check out IPUMS' cleaned files microdata files as well as historic geographic data. These standardized files are generally released months to a year after the raw Census microdata that is available directly from the Census Bureau.
+* Download complete bulk files from the Census FTPs (file transfer protocols.) This is helpful if you need the a large number of variables. You might run in to size limitations getting many variables through the APIs.
 * Retrieve American Community Survey microdata via the Census APIs with [tidycensus](https://walker-data.com/tidycensus/articles/pums-data.html), which has helpful functions for working with those endpoints.
 
