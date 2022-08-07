@@ -137,8 +137,50 @@ the underyling data.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">apis</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] "title"       "name"        "vintage"     "type"        "temporal"   </span></span>
 <span><span class="co">#&gt; [6] "url"         "modified"    "description" "contact"</span></span></code></pre>
-<p>This returns useful information about each endpoint, including
-<code>name</code>, which you’ll need to make your API call.</p>
+<p>This returns useful information about each endpoint.</p>
+<ul>
+<li>title: Short written description of the dataset</li>
+<li>name: Programmatic name of the dataset, to be used with
+<code>censusapi</code>
+</li>
+<li>vintage: Year of the survey, for use with most endpoints</li>
+<li>type: Dataset type, which is either Aggregate, Microdata, or
+Timeseries</li>
+<li>temporal: Time period of the dataset - only documented
+sometimes</li>
+<li>url: Base URL of the endpoint</li>
+<li>modified: Date last modified</li>
+<li>description: Long written description of the dataset</li>
+<li>contact: Email address for specific questions about the Census
+Bureau survey</li>
+</ul>
+<div class="section level3">
+<h3 id="dataset-types">Dataset types<a class="anchor" aria-label="anchor" href="#dataset-types"></a>
+</h3>
+<p>There are three types of datasets included in the Census Bureau API
+universe: aggregate, microdata, and timeseries. These type names were
+defined by the Census Bureau and are included as a column in
+<code><a href="../reference/listCensusApis.html">listCensusApis()</a></code>.</p>
+<p>Most users will work with summary data, either aggregate or
+timeseries datasets. Summary data contains pre-calculated numbers or
+percentages for a given statistic — like the number of children in a
+state or the median household income. The examples below and in the
+broader <a href="https://www.hrecht.com/censusapi/articles/example-list.html">list
+of censusapi examples</a> use summary data.</p>
+<p>Aggregate datasets, like the American Community Survey or Decennial
+Census, include data for only one time period, usually one year.
+Datasets like the American Community Survey contain thousands of these
+pre-computed variables.</p>
+<p>Timeseries datasets, including the Small Area Income and Poverty
+Estimates, the Quarterly Workforce Estimates, and International Trade
+statistics, allow users to query data for more than one time period in
+just one API call.</p>
+<p>Microdata contains the individual-level responses for a survey for
+use in custom analysis. One row represents one person. Only advanced
+analysts will want to use microdata. Learn more about what microdata is
+and how to use it with <code>censusapi</code> in <a href="https://www.hrecht.com/censusapi/articles/accessing-microdata.html">Accessing
+microdata</a>.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="using-getcensus">Using <code>getCensus</code><a class="anchor" aria-label="anchor" href="#using-getcensus"></a>
@@ -163,7 +205,8 @@ county</li>
 <p>Some APIs have additional required or optional arguments, like
 <code>time</code>, <code>monthly</code>, or <code>period</code>. Check
 the specific <a href="https://www.census.gov/data/developers/data-sets.html" class="external-link">documentation</a>
-for your API to see what options are allowed.</p>
+for your API and explore its metadata with
+<code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code> to see what options are allowed.</p>
 <p>Let’s walk through an example getting uninsured rates by income group
 using the <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html" class="external-link">Small
 Area Health Insurance Estimates API</a>, which provides detailed annual
@@ -182,16 +225,15 @@ available in the SAHIE API:</p>
 <span>    type <span class="op">=</span> <span class="st">"variables"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_vars</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
 <col width="5%">
-<col width="47%">
-<col width="17%">
-<col width="7%">
+<col width="56%">
+<col width="11%">
+<col width="8%">
 <col width="3%">
 <col width="3%">
-<col width="7%">
-<col width="9%">
+<col width="10%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">name</th>
@@ -200,41 +242,10 @@ available in the SAHIE API:</p>
 <th align="left">predicateType</th>
 <th align="left">group</th>
 <th align="left">limit</th>
-<th align="left">predicateOnly</th>
 <th align="left">required</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">for</td>
-<td align="left">Census API FIPS ‘for’ clause</td>
-<td align="left">Census API Geography Specification</td>
-<td align="left">fips-for</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">in</td>
-<td align="left">Census API FIPS ‘in’ clause</td>
-<td align="left">Census API Geography Specification</td>
-<td align="left">fips-in</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">time</td>
-<td align="left">ISO-8601 Date/Time value</td>
-<td align="left">Census API Date/Time Specification</td>
-<td align="left">datetime</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">TRUE</td>
-<td align="left">true</td>
-</tr>
-<tr class="even">
 <td align="left">NIPR_LB90</td>
 <td align="left">Number in Demographic Group for Selected Income Range,
 Lower Bound for 90% Confidence Interval</td>
@@ -243,9 +254,8 @@ Lower Bound for 90% Confidence Interval</td>
 <td align="left">N/A</td>
 <td align="left">0</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NIPR_PT</td>
 <td align="left">Number in Demographic Group for Selected Income Range,
 Estimate</td>
@@ -254,17 +264,42 @@ Estimate</td>
 <td align="left">N/A</td>
 <td align="left">0</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">AGECAT</td>
 <td align="left">Age Category</td>
 <td align="left">Demographic ID</td>
 <td align="left">int</td>
 <td align="left">N/A</td>
 <td align="left">6</td>
-<td align="left">NA</td>
 <td align="left">default displayed</td>
+</tr>
+<tr class="even">
+<td align="left">NIC_PT</td>
+<td align="left">Number Insured, Estimate</td>
+<td align="left">Estimate</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">GEOID</td>
+<td align="left">State+County FIPS Code</td>
+<td align="left">Uncertainty Measure</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">STATE</td>
+<td align="left">State FIPS Code</td>
+<td align="left">Geographic ID</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
 </tr>
 </tbody>
 </table>
@@ -332,6 +367,11 @@ geographic levels we can get data for using the SAHIE API.</p>
 </div>
 <p>This API has three geographic levels: <code>us</code>,
 <code>county</code> within states, and <code>state</code>.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="making-a-censusapi-call">Making a censusapi call<a class="anchor" aria-label="anchor" href="#making-a-censusapi-call"></a>
+</h2>
 <p>First, using <code><a href="../reference/getCensus.html">getCensus()</a></code>, let’s get the percent
 (<code>PCTUI_PT</code>) and number (<code>NUI_PT</code>) of people
 uninsured, using the wildcard star (*) to retrieve data for all
@@ -837,7 +877,6 @@ group.</p>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 <div class="section level2">

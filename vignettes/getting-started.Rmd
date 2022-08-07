@@ -55,7 +55,28 @@ apis <- listCensusApis()
 colnames(apis)
 ```
 
-This returns useful information about each endpoint, including `name`, which you'll need to make your API call.
+This returns useful information about each endpoint.
+
+* title: Short written description of the dataset
+* name: Programmatic name of the dataset, to be used with `censusapi`
+* vintage: Year of the survey, for use with most endpoints
+* type: Dataset type, which is either Aggregate, Microdata, or Timeseries
+* temporal: Time period of the dataset - only documented sometimes
+* url: Base URL of the endpoint
+* modified: Date last modified
+* description: Long written description of the dataset
+* contact: Email address for specific questions about the Census Bureau survey
+
+### Dataset types
+There are three types of datasets included in the Census Bureau API universe: aggregate, microdata, and timeseries. These type names were defined by the Census Bureau and are included as a column in `listCensusApis()`. 
+
+Most users will work with summary data, either aggregate or timeseries datasets. Summary data contains pre-calculated numbers or percentages for a given statistic — like the number of children in a state or the median household income. The examples below and in the broader [list of censusapi examples](https://www.hrecht.com/censusapi/articles/example-list.html) use summary data. 
+
+Aggregate datasets, like the American Community Survey or Decennial Census, include data for only one time period, usually one year. Datasets like the American Community Survey contain thousands of these pre-computed variables.
+
+Timeseries datasets, including the Small Area Income and Poverty Estimates, the Quarterly Workforce Estimates, and International Trade statistics, allow users to query data for more than one time period in just one API call. 
+
+Microdata contains the individual-level responses for a survey for use in custom analysis. One row represents one person. Only advanced analysts will want to use microdata. Learn more about what microdata is and how to use it with `censusapi` in [Accessing microdata](https://www.hrecht.com/censusapi/articles/accessing-microdata.html).
 
 ## Using `getCensus`
 The main function in `censusapi` is `getCensus()`, which makes an API call to a given Census API and returns a data frame of results. Each API has slightly different parameters, but there are always a few required arguments:
@@ -65,7 +86,7 @@ The main function in `censusapi` is `getCensus()`, which makes an API call to a 
 * `vars`: a list of variables to retrieve
 * `region`: the geography level to retrieve, like state or county
 
-Some APIs have additional required or optional arguments, like `time`, `monthly`, or `period`. Check the specific [documentation](https://www.census.gov/data/developers/data-sets.html) for your API to see what options are allowed.
+Some APIs have additional required or optional arguments, like `time`, `monthly`, or `period`. Check the specific [documentation](https://www.census.gov/data/developers/data-sets.html) for your API and explore its metadata with `listCensusMetadata()` to see what options are allowed.
 
 Let's walk through an example getting uninsured rates by income group using the [Small Area Health Insurance Estimates API](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html), which provides detailed annual state-level and county-level estimates of health insurance rates for people below age 65.
 
@@ -89,6 +110,8 @@ listCensusMetadata(
 ```
 This API has three geographic levels: `us`, `county` within states, and `state`.
 
+
+## Making a censusapi call
 First, using `getCensus()`, let's get the percent (`PCTUI_PT`) and number (`NUI_PT`) of people uninsured, using the wildcard star (*) to retrieve data for all counties.
 ```{r}
 sahie_counties <- getCensus(
