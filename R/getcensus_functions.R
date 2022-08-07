@@ -127,18 +127,19 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 
 #' Retrieve Census data from a given API
 #'
-#' @param name API name - e.g. acs5. See list at https://api.census.gov/data.html
-#' @param vintage Year of dataset, e.g. 2014 - not required for timeseries APIs
-#' @param key Your Census API key, gotten from https://api.census.gov/data/key_signup.html
-#' @param vars List of variables to get
-#' @param region Geography to get
-#' @param regionin Optional hierarchical geography to limit region
-#' @param time,year,date,period,monthly Optional arguments used for some time series APIs
-#' @param show_call List the underlying API call sent to the Census Bureau and other info
-#' @param category_code,data_type_code Arguments used in Economic Indicators Time Series API
-#' @param naics,pscode Arguments used in Annual Survey of Manufactures API
-#' @param naics2012,naics2007,naics2002,naics1997,sic Arguments used in Economy Wide Key Statistics APIs and Business Patterns APIs
-#' @param ... Other valid parameters to pass to the Census API. Note: the APIs are case sensitive.
+#' @param name The programmatic name of your dataset, e.g. `timeseries/poverty/saipe`
+#' or `acs/acs5`. See `listCensusApis()` for options.
+#' @param vintage Vintage (year) of dataset, e.g. 2014. Not required for timeseries APIs.
+#' @param vars List of variables to get. Required.
+#' @param region Geography to get.
+#' @param regionin Optional hierarchical geography to limit region.
+#' @param time,year,date,period,monthly Optional arguments used for some time series APIs.
+#' @param category_code,data_type_code,naics,pscode,naics2012,naics2007,naics2002,naics1997,sic
+#' Optional arguments used in economic data APIs.
+#' @param show_call List the underlying API call that was sent to the Census Bureau.
+#' @param key Your Census API key, obtained at https://api.census.gov/data/key_signup.html.
+#' This function will default to a `CENSUS_KEY` stored in your .Renviron if available.
+#' @param ... Other valid arguments to pass to the Census API. Note: the APIs are case sensitive.
 #' @keywords api
 #' @examples
 #' \dontrun{

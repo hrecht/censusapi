@@ -30,29 +30,27 @@ getCensus(
 )
 }
 \arguments{
-\item{name}{API name - e.g. acs5. See list at https://api.census.gov/data.html}
+\item{name}{The programmatic name of your dataset, e.g. `timeseries/poverty/saipe`
+or `acs/acs5`. See `listCensusApis()` for options.}
 
-\item{vintage}{Year of dataset, e.g. 2014 - not required for timeseries APIs}
+\item{vintage}{Vintage (year) of dataset, e.g. 2014. Not required for timeseries APIs.}
 
-\item{key}{Your Census API key, gotten from https://api.census.gov/data/key_signup.html}
+\item{key}{Your Census API key, obtained at https://api.census.gov/data/key_signup.html.
+This function will default to a `CENSUS_KEY` stored in your .Renviron if available.}
 
-\item{vars}{List of variables to get}
+\item{vars}{List of variables to get. Required.}
 
-\item{region}{Geography to get}
+\item{region}{Geography to get.}
 
-\item{regionin}{Optional hierarchical geography to limit region}
+\item{regionin}{Optional hierarchical geography to limit region.}
 
-\item{time, year, date, period, monthly}{Optional arguments used for some time series APIs}
+\item{time, year, date, period, monthly}{Optional arguments used for some time series APIs.}
 
-\item{show_call}{List the underlying API call sent to the Census Bureau and other info}
+\item{show_call}{List the underlying API call that was sent to the Census Bureau.}
 
-\item{category_code, data_type_code}{Arguments used in Economic Indicators Time Series API}
+\item{category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic}{Optional arguments used in economic data APIs.}
 
-\item{naics, pscode}{Arguments used in Annual Survey of Manufactures API}
-
-\item{naics2012, naics2007, naics2002, naics1997, sic}{Arguments used in Economy Wide Key Statistics APIs and Business Patterns APIs}
-
-\item{...}{Other valid parameters to pass to the Census API. Note: the APIs are case sensitive.}
+\item{...}{Other valid arguments to pass to the Census API. Note: the APIs are case sensitive.}
 }
 \description{
 Retrieve Census data from a given API

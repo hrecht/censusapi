@@ -89,51 +89,45 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>name</dt>
-<dd><p>API name - e.g. acs5. See list at https://api.census.gov/data.html</p></dd>
+<dd><p>The programmatic name of your dataset, e.g. `timeseries/poverty/saipe`
+or `acs/acs5`. See `listCensusApis()` for options.</p></dd>
 
 
 <dt>vintage</dt>
-<dd><p>Year of dataset, e.g. 2014 - not required for timeseries APIs</p></dd>
+<dd><p>Vintage (year) of dataset, e.g. 2014. Not required for timeseries APIs.</p></dd>
 
 
 <dt>key</dt>
-<dd><p>Your Census API key, gotten from https://api.census.gov/data/key_signup.html</p></dd>
+<dd><p>Your Census API key, obtained at https://api.census.gov/data/key_signup.html.
+This function will default to a `CENSUS_KEY` stored in your .Renviron if available.</p></dd>
 
 
 <dt>vars</dt>
-<dd><p>List of variables to get</p></dd>
+<dd><p>List of variables to get. Required.</p></dd>
 
 
 <dt>region</dt>
-<dd><p>Geography to get</p></dd>
+<dd><p>Geography to get.</p></dd>
 
 
 <dt>regionin</dt>
-<dd><p>Optional hierarchical geography to limit region</p></dd>
+<dd><p>Optional hierarchical geography to limit region.</p></dd>
 
 
 <dt>time, year, date, period, monthly</dt>
-<dd><p>Optional arguments used for some time series APIs</p></dd>
+<dd><p>Optional arguments used for some time series APIs.</p></dd>
 
 
 <dt>show_call</dt>
-<dd><p>List the underlying API call sent to the Census Bureau and other info</p></dd>
+<dd><p>List the underlying API call that was sent to the Census Bureau.</p></dd>
 
 
-<dt>category_code, data_type_code</dt>
-<dd><p>Arguments used in Economic Indicators Time Series API</p></dd>
-
-
-<dt>naics, pscode</dt>
-<dd><p>Arguments used in Annual Survey of Manufactures API</p></dd>
-
-
-<dt>naics2012, naics2007, naics2002, naics1997, sic</dt>
-<dd><p>Arguments used in Economy Wide Key Statistics APIs and Business Patterns APIs</p></dd>
+<dt>category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic</dt>
+<dd><p>Optional arguments used in economic data APIs.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>Other valid parameters to pass to the Census API. Note: the APIs are case sensitive.</p></dd>
+<dd><p>Other valid arguments to pass to the Census API. Note: the APIs are case sensitive.</p></dd>
 
 </dl></div>
 

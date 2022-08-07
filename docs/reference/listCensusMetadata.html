@@ -81,8 +81,12 @@
 
 
 <dt>type</dt>
-<dd><p>Type of metadata to return, either "variables", "geographies",
-"groups", or "values". Default is variables.</p></dd>
+<dd><p>Type of metadata to return. Options are:
+* `variables` (default) - list of variable names and descriptions for the dataset.
+* `geographies` - available geographies.
+* `groups` - available variable groups. Not used for all datasets.
+* `values` - encoded value labels for a given variable. Pair with
+   `variable_name`. Not used for all datasets.</p></dd>
 
 
 <dt>group</dt>

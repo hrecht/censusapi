@@ -36,8 +36,12 @@ listCensusApis <- function() {
 #'
 #' @param name API programmatic name - e.g. acs/acs5. See list of names with listCensusApis().
 #' @param vintage Vintage (year) of dataset. Not required for timeseries APIs
-#' @param type Type of metadata to return, either "variables", "geographies",
-#' "groups", or "values". Default is variables.
+#' @param type Type of metadata to return. Options are:
+#'   * `variables` (default) - list of variable names and descriptions for the dataset.
+#'   * `geographies` - available geographies.
+#'   * `groups` - available variable groups. Not used for all datasets.
+#'   * `values` - encoded value labels for a given variable. Pair with
+#'      `variable_name`. Not used for all datasets.
 #' @param group An optional variable group code, used to return metadata for a specific group
 #' of variables only. This field is not used in all APIs.
 #' @param variable_name A name of a specific variable used to return value labels for that
