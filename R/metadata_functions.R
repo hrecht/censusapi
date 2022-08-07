@@ -27,10 +27,11 @@ listCensusApis <- function() {
 																 ifelse(datasets$isAggregate %in% TRUE, "Aggregate",
 																 			 NA)))
 
+	# Keep only valuable columns - many are not useful (empty or the same for all datasets)
 	dt <- datasets[, c("title", "name", "vintage", "type", "temporal", "url", "modified", "description", "contact")]
-
 	dt$contact <- gsub("mailto:", "", dt$contact)
 
+	# Give some logic to the row ordering
 	dt <- dt[order(-dt$vintage, dt$name),]
 	rownames(dt) <- NULL
 	return(dt)
@@ -47,11 +48,11 @@ listCensusApis <- function() {
 #'   * `values` - encoded value labels for a given variable. Pair with
 #'      `variable_name`. Not used for all datasets.
 #' @param group An optional variable group code, used to return metadata for a specific group
-#' of variables only. This field is not used in all APIs.
+#' of variables only. Variable groups are not used for all APIs.
 #' @param variable_name A name of a specific variable used to return value labels for that
-#' variable. This field is not used in all APIs.
-#' @param include_values Include value metadata for all variables in a dataset if that
-#' metadata exists. Default is "FALSE".
+#' variable. Value labels are not published for all APIs.
+#' @param include_values Use with `type = "variables"`. Include value metadata
+#' for all variables in a dataset if value metadata exists. Default is "FALSE".
 #' @keywords metadata
 #' @examples
 #' \dontrun{
@@ -155,7 +156,7 @@ listCensusMetadata <-
 
 		apiurl <- constructURL(name, vintage)
 
-		if (type %in% c("variables", "v")) {
+		if (type %in% c("variables")) {
 			# Too nested and irregular for automatic conversion
 
 			if (!is.null(group)) {
@@ -193,17 +194,18 @@ listCensusMetadata <-
 				# Get the list of possible column names
 				cols <- unique(unlist(lapply(raw$variables, names)))
 
-				# Remove invalid dashes in variable names - new problem with Microdata APIs
+				# Remove invalid dashes in variable names - problem present in Microdata APIs
 				cols <- gsub("-", "_", cols)
 
 				if (include_values == FALSE | !("values" %in% cols)) {
 
+					# Warn the user if they've asked for value labels but none are present
 					if (include_values == TRUE & !("values" %in% cols)) {
 						warning("You've set `include_values` to TRUE but this dataset does not contain variable values. Variable values will not be returned")
 					}
-					cols <- cols[!(cols %in% c("predicateOnly", "datetime", "validValues", "values"))]
+					cols <- cols[!(cols %in% c("validValues", "values", "datetime"))]
 
-					# REVIST THIS - unnecessarily complicated, can remove those columns later
+					# Remove attributes that have nested lists
 					makeDf <- function(d) {
 						names(d) <- gsub("-", "_", names(d))
 						if ("validValues" %in% names(d)) {
@@ -212,17 +214,16 @@ listCensusMetadata <-
 						if ("values" %in% names(d)) {
 							d$values <- NULL
 						}
+						if ("datetime" %in% names(d)) {
+							d$datetime <- NULL
+						}
 						df <- data.frame(d)
 
 						df[, setdiff(cols, names(df))] <- NA
 						return(df)
 					}
 
-					dts <- lapply(raw$variables, function(x) if (!("predicateOnly" %in% names(x))) {
-						makeDf(x)
-					} else {
-						x <- NULL
-					})
+					dts <- lapply(raw$variables, makeDf)
 
 				} else if (include_values == TRUE) {
 
@@ -282,7 +283,7 @@ listCensusMetadata <-
 			dt[] <- lapply(dt, as.character)
 
 
-		} else if (type %in% c("geography", "geographies", "g")) {
+		} else if (type %in% c("geographies", "geography")) {
 			u <- paste(apiurl, "geography.json", sep="/")
 			req <- httr::GET(u)
 			# Check the API call for a valid response
@@ -291,7 +292,7 @@ listCensusMetadata <-
 			# If check didn't fail, parse the content
 			raw <- apiParse(req)
 			dt <- raw$fips
-		} else if (type %in% c("groups", "group")) {
+		} else if (type %in% c("groups")) {
 			u <- paste(apiurl, "groups.json", sep="/")
 			req <- httr::GET(u)
 			# Check the API call for a valid response
@@ -319,7 +320,7 @@ listCensusMetadata <-
 			dt <- dt[, c("code", "label")]
 
 		}	else {
-			stop(paste('For "type", you entered: "', type, '". Did you mean "variables", "geography", "groups", or "values"?', sep = ""))
+			stop(paste('For "type", you entered: "', type, '". Did you mean "variables", "geographies", "groups", or "values"?', sep = ""))
 		}
 		return(dt)
 	}

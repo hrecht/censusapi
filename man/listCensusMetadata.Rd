@@ -26,13 +26,13 @@ listCensusMetadata(
    `variable_name`. Not used for all datasets.}
 
 \item{group}{An optional variable group code, used to return metadata for a specific group
-of variables only. This field is not used in all APIs.}
+of variables only. Variable groups are not used for all APIs.}
 
 \item{variable_name}{A name of a specific variable used to return value labels for that
-variable. This field is not used in all APIs.}
+variable. Value labels are not published for all APIs.}
 
-\item{include_values}{Include value metadata for all variables in a dataset if that
-metadata exists. Default is "FALSE".}
+\item{include_values}{Use with `type = "variables"`. Include value metadata
+for all variables in a dataset if value metadata exists. Default is "FALSE".}
 }
 \description{
 Get information about a specific API as a data frame
