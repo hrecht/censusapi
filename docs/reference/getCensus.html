@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">censusapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,6 +73,7 @@
 <span>  period <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  monthly <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  show_call <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  convert_variables <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  category_code <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  data_type_code <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  naics <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -120,6 +121,12 @@ This function will default to a `CENSUS_KEY` stored in your .Renviron if availab
 
 <dt>show_call</dt>
 <dd><p>List the underlying API call that was sent to the Census Bureau.</p></dd>
+
+
+<dt>convert_variables</dt>
+<dd><p>Convert likely numeric variables into numeric data.
+Default is true. If false, results will be characters, which is the type returned by
+the Census Bureau.</p></dd>
 
 
 <dt>category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic</dt>

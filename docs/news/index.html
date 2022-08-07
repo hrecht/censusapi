@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">censusapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,6 +76,7 @@
 <span>    type <span class="op">=</span> <span class="st">"variables"</span>,</span>
 <span>    include_values <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </li>
+<li><p><code><a href="../reference/getCensus.html">getCensus()</a></code> has a new option <code>convert_variables</code> re discussion in (<a href="https://github.com/hrecht/censusapi/issues/68" class="external-link">#68</a>) and (<a href="https://github.com/hrecht/censusapi/issues/80" class="external-link">#80</a>). The default is <code>TRUE</code> — as in previous versions, this converts columns of numbers to R’s numeric data type. Setting <code>convert variables = FALSE</code> leaves all columns in the original character data type returned by the Census Bureau.</p></li>
 <li><p><code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code> now properly handles metadata attribute names in the new Microdata APIs that contain invalid JSON. This solves (<a href="https://github.com/hrecht/censusapi/issues/84" class="external-link">#84</a>).</p></li>
 <li><p>Documentation and examples are updated. There are two new vignettes: <a href="https://www.hrecht.com/censusapi/articles/advanced-usage.html">Advanced censusapi usage</a> (previously included elsewhere) and <a href="https://www.hrecht.com/censusapi/articles/accessing-microdata.html">Accessing microdata.</a></p></li>
 </ul></div>
