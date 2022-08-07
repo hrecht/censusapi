@@ -28,7 +28,11 @@ listCensusApis <- function() {
 																 			 NA)))
 
 	dt <- datasets[, c("title", "name", "vintage", "type", "temporal", "url", "modified", "description", "contact")]
+
+	dt$contact <- gsub("mailto:", "", dt$contact)
+
 	dt <- dt[order(-dt$vintage, dt$name),]
+	rownames(dt) <- NULL
 	return(dt)
 }
 
