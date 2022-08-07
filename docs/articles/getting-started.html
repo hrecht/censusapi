@@ -1422,34 +1422,27 @@ are some things to check.</p>
 <div class="section level3">
 <h3 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
 </h3>
-<p>Use <code>listCensusMetadata(type = "variables")</code> on your API
-to see the table of available variables.</p>
-<ul>
-<li>Occasionally the variable names will change with data updates or API
-updates. The names may be different from year to year. Capitalization
-may also be inconsistent between datasets or years.</li>
-<li>The Census APIs are case-sensitive, which means that if the variable
+<p>Use <code>listCensusMetadata(type = "variables")</code> on your
+endpoint to see what variables are available. Occasionally the variable
+names will change with data updates or API updates. Variable names
+commonly change between ACS and Decennial survey years.</p>
+<p>The Census APIs are case-sensitive, which means that if the variable
 name you want is uppercase you’ll need to write it uppercase in your
 request. Most of the APIs use uppercase variable names, but some use
-lowercase and some even use sentence case.</li>
-</ul>
+lowercase and some even use sentence case.</p>
 </div>
 <div class="section level3">
 <h3 id="geographies">Geographies<a class="anchor" aria-label="anchor" href="#geographies"></a>
 </h3>
 <p>Use <code>listCensusMetadata(type = "geographies")</code> on your
-dataset to check which geographies you can use.</p>
-<ul>
-<li>Each API has its own list of valid geographies and they occasionally
-change as the Census Bureau makes updates. If a previously available
-geography isn’t available anymore, email <a href="mailto:cnmp.developers.list@census.gov" class="email">cnmp.developers.list@census.gov</a> detailing the
-issue.</li>
-<li>If you’re specifying a region by FIPS code, for example
+dataset to check which geographies you can use. Each API has its own
+list of valid geographies and they occasionally change as the Census
+Bureau makes updates.</p>
+<p>If you’re specifying a region by FIPS code, for example
 <code>state:01</code>, make sure to use the full code, padded with 0s if
 necessary. The APIs did not always enforce this (previously,
-<code>state:1</code> usually worked), but now they do. See the Census <a href="https://www.census.gov/geographies/reference-files/2017/demo/popest/2017-fips.html" class="external-link">reference
-files</a> for valid FIPS codes.</li>
-</ul>
+<code>state:1</code> usually worked), but now they do. See the <a href="https://www.census.gov/library/reference/code-lists/ansi.html" class="external-link">Census
+Bureau fIPS reference</a> for valid FIPS codes.</p>
 </div>
 <div class="section level3">
 <h3 id="unexpected-errors">Unexpected errors<a class="anchor" aria-label="anchor" href="#unexpected-errors"></a>
@@ -1459,10 +1452,9 @@ files</a> for valid FIPS codes.</li>
 This comes from the Census Bureau and could be caused by any number of
 problems, including server issues. Try rerunning your API call. If that
 doesn’t work and you are requesting a large amount of data, try reducing
-the amount that you’re requesting, for example getting only one state at
-a time. If you’re still having trouble, email <a href="mailto:census.data@census.gov" class="email">census.data@census.gov</a>. Include in your email the raw
-API call that’s provided in your <code><a href="../reference/getCensus.html">getCensus()</a></code> error message
-(not your R code) so that they can try to help.</p>
+the amount that you’re requesting, for example getting data for only one
+state at a time. If you’re still having trouble, see below for ways to
+get help.</p>
 </div>
 <div class="section level3">
 <h3 id="other-ways-to-get-help">Other ways to get help<a class="anchor" aria-label="anchor" href="#other-ways-to-get-help"></a>
@@ -1473,9 +1465,12 @@ issue</a> for bugs or issues with this R package.</li>
 <li>Join the public Census Bureau <a href="http://links.govdelivery.com/track?type=click&amp;enid=ZWFzPTEmbWFpbGluZ2lkPTIwMTgwOTE3Ljk0OTc1NjkxJm1lc3NhZ2VpZD1NREItUFJELUJVTC0yMDE4MDkxNy45NDk3NTY5MSZkYXRhYmFzZWlkPTEwMDEmc2VyaWFsPTE3MjA3MjUwJmVtYWlsaWQ9aHJlY2h0MkBnbWFpbC5jb20mdXNlcmlkPWhyZWNodDJAZ21haWwuY29tJmZsPSZleHRyYT1NdWx0aXZhcmlhdGVJZD0mJiY=&amp;&amp;&amp;105&amp;&amp;&amp;https://join.slack.com/t/uscensusbureau/shared_invite/enQtMjQ3NzUyNTM3NDU3LTZmNGI1MmQzY2Y2ZTU1ODJhNDQwMmY2YmZiNmFkNzg4YmJkYmQzZjQyNDhkNDYxN2JhYjkxZDEwMGI2OGU5NzQ?eml=gd&amp;utm_medium=email&amp;utm_source=govdelivery" class="external-link">Slack
 channel</a> and ask your question in the R or API rooms.</li>
 <li>Email the Census Bureau API team at <a href="mailto:census.data@census.gov" class="email">census.data@census.gov</a> for questions relating to the
-underlying data and APIs. You can also reach out to the contact listed
-in the dataset metadata found in <code><a href="../reference/listCensusApis.html">listCensusApis()</a></code> for
-questions about a specific survey.</li>
+underlying data and APIs. Make sure to include the underlying API call
+if you’re having trouble with a specific API request, not the R code.
+You can see this API call in the <code>censusapi</code> error message.
+You can also reach out to the contact listed in the dataset metadata
+found in <code><a href="../reference/listCensusApis.html">listCensusApis()</a></code> for questions about a specific
+survey.</li>
 </ul>
 </div>
 </div>

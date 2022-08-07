@@ -262,24 +262,22 @@ For many more examples and advanced topics check out [all of the articles](https
 The APIs contain hundreds of API endpoints and dozens of datasets, each of which work a little differently. The Census Bureau also makes frequent updates, which unfortunately are not always announced in advance. If you're getting an error message or unexpected results, here are some things to check.
 
 ### Variables
-Use `listCensusMetadata(type = "variables")` on your API to see the table of available variables.
+Use `listCensusMetadata(type = "variables")` on your endpoint to see what variables are available. Occasionally the variable names will change with data updates or API updates. Variable names commonly change between ACS and Decennial survey years.
 
-* Occasionally the variable names will change with data updates or API updates. The names may be different from year to year. Capitalization may also be inconsistent between datasets or years.
-* The Census APIs are case-sensitive, which means that if the variable name you want is uppercase you'll need to write it uppercase in your request. Most of the APIs use uppercase variable names, but some use lowercase and some even use sentence case. 
+The Census APIs are case-sensitive, which means that if the variable name you want is uppercase you'll need to write it uppercase in your request. Most of the APIs use uppercase variable names, but some use lowercase and some even use sentence case. 
 
 ### Geographies
-Use `listCensusMetadata(type = "geographies")` on your dataset to check which geographies you can use.
+Use `listCensusMetadata(type = "geographies")` on your dataset to check which geographies you can use. Each API has its own list of valid geographies and they occasionally change as the Census Bureau makes updates.
 
-* Each API has its own list of valid geographies and they occasionally change as the Census Bureau makes updates. If a previously available geography isn't available anymore, email cnmp.developers.list@census.gov detailing the issue.
-* If you're specifying a region by FIPS code, for example `state:01`, make sure to use the full code, padded with 0s if necessary. The APIs did not always enforce this (previously, `state:1` usually worked), but now they do. See the Census [reference files](https://www.census.gov/geographies/reference-files/2017/demo/popest/2017-fips.html) for valid FIPS codes.
+If you're specifying a region by FIPS code, for example `state:01`, make sure to use the full code, padded with 0s if necessary. The APIs did not always enforce this (previously, `state:1` usually worked), but now they do. See the [Census Bureau fIPS reference](https://www.census.gov/library/reference/code-lists/ansi.html) for valid FIPS codes.
 
 ### Unexpected errors
-Occasionally you might get the general error message `"There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience."` This comes from the Census Bureau and could be caused by any number of problems, including server issues. Try rerunning your API call. If that doesn't work and you are requesting a large amount of data, try reducing the amount that you're requesting, for example getting only one state at a time. If you're still having trouble, email census.data@census.gov. Include in your email the raw API call that's provided in your `getCensus()` error message (not your R code) so that they can try to help.
+Occasionally you might get the general error message `"There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience."` This comes from the Census Bureau and could be caused by any number of problems, including server issues. Try rerunning your API call. If that doesn't work and you are requesting a large amount of data, try reducing the amount that you're requesting, for example getting data for only one state at a time. If you're still having trouble, see below for ways to get help.
 
 ### Other ways to get help
 * Open a [Github issue](https://github.com/hrecht/censusapi/issues) for bugs or issues with this R package.
 * Join the public Census Bureau [Slack channel](http://links.govdelivery.com/track?type=click&enid=ZWFzPTEmbWFpbGluZ2lkPTIwMTgwOTE3Ljk0OTc1NjkxJm1lc3NhZ2VpZD1NREItUFJELUJVTC0yMDE4MDkxNy45NDk3NTY5MSZkYXRhYmFzZWlkPTEwMDEmc2VyaWFsPTE3MjA3MjUwJmVtYWlsaWQ9aHJlY2h0MkBnbWFpbC5jb20mdXNlcmlkPWhyZWNodDJAZ21haWwuY29tJmZsPSZleHRyYT1NdWx0aXZhcmlhdGVJZD0mJiY=&&&105&&&https://join.slack.com/t/uscensusbureau/shared_invite/enQtMjQ3NzUyNTM3NDU3LTZmNGI1MmQzY2Y2ZTU1ODJhNDQwMmY2YmZiNmFkNzg4YmJkYmQzZjQyNDhkNDYxN2JhYjkxZDEwMGI2OGU5NzQ?eml=gd&utm_medium=email&utm_source=govdelivery) and ask your question in the R or API rooms.
-* Email the Census Bureau API team at census.data@census.gov for questions relating to the underlying data and APIs. You can also reach out to the contact listed in the dataset metadata found in `listCensusApis()` for questions about a specific survey.
+* Email the Census Bureau API team at census.data@census.gov for questions relating to the underlying data and APIs. Make sure to include the underlying API call if you're having trouble with a specific API request, not the R code. You can see this API call in the `censusapi` error message. You can also reach out to the contact listed in the dataset metadata found in `listCensusApis()` for questions about a specific survey.
 
 ## Additional resources
 * [Census Data API User Guide](https://www.census.gov/data/developers/guidance/api-user-guide.Overview.html)
