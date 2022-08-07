@@ -91,17 +91,17 @@
 
 <dt>group</dt>
 <dd><p>An optional variable group code, used to return metadata for a specific group
-of variables only. This field is not used in all APIs.</p></dd>
+of variables only. Variable groups are not used for all APIs.</p></dd>
 
 
 <dt>variable_name</dt>
 <dd><p>A name of a specific variable used to return value labels for that
-variable. This field is not used in all APIs.</p></dd>
+variable. Value labels are not published for all APIs.</p></dd>
 
 
 <dt>include_values</dt>
-<dd><p>Include value metadata for all variables in a dataset if that
-metadata exists. Default is "FALSE".</p></dd>
+<dd><p>Use with `type = "variables"`. Include value metadata
+for all variables in a dataset if value metadata exists. Default is "FALSE".</p></dd>
 
 </dl></div>
 
@@ -115,26 +115,33 @@ metadata exists. Default is "FALSE".</p></dd>
 <span class="r-in"><span>  type <span class="op">=</span> <span class="st">"variables"</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_variables</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 NIPR_LB90</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   NIPR_PT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    AGECAT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    NIC_PT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     GEOID</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     STATE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       for</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        in</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 NIPR_LB90</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   NIPR_PT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    AGECAT</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                            label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Number in Demographic Group for Selected Income Range, Lower Bound for 90% Confidence Interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                Number in Demographic Group for Selected Income Range, Estimate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                                                   Age Category</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                                                       Number Insured, Estimate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                                         State+County FIPS Code</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                                                                State FIPS Code</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               concept predicateType group limit          required</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Uncertainty Measure           int   N/A     0              &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2            Estimate           int   N/A     0              &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      Demographic ID           int   N/A     6 default displayed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4            Estimate           int   N/A     0              &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 Uncertainty Measure           int   N/A     0              &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6       Geographic ID           int   N/A     0              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                   Census API FIPS 'for' clause</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                    Census API FIPS 'in' clause</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                                       ISO-8601 Date/Time value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 Number in Demographic Group for Selected Income Range, Lower Bound for 90% Confidence Interval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                Number in Demographic Group for Selected Income Range, Estimate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                                                                   Age Category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              concept predicateType group limit predicateOnly</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Census API Geography Specification      fips-for   N/A     0          TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Census API Geography Specification       fips-in   N/A     0          TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Census API Date/Time Specification      datetime   N/A     0          TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                Uncertainty Measure           int   N/A     0          &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                           Estimate           int   N/A     0          &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                     Demographic ID           int   N/A     6          &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            required</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3              true</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 default displayed</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># List the geographies available in the 5-year 2020 American Community Survey.</span></span></span>
 <span class="r-in"><span><span class="va">acs_geographies</span> <span class="op">&lt;-</span> <span class="fu">listCensusMetadata</span><span class="op">(</span></span></span>

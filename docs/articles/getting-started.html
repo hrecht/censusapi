@@ -127,13 +127,16 @@ argument in <code><a href="../reference/getCensus.html">getCensus()</a></code> i
 <p>To get started, load the <code>censusapi</code> library.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.hrecht.com/censusapi/">censusapi</a></span><span class="op">)</span></span></code></pre></div>
-<p>The Census APIs have over 200 endpoints, covering dozens of different
-datasets.</p>
-<p>To see a current table of every available endpoint, run
-<code>listCensusApis</code>:</p>
+<p>To see a current table of every available endpoint,
+use<code><a href="../reference/listCensusApis.html">listCensusApis()</a></code>. This data frame includes useful
+information for making your API call, including the dataset’s name,
+description and title, as well as a contact email for questions about
+the underyling data.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">apis</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusApis.html">listCensusApis</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">apis</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">apis</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; [1] "title"       "name"        "vintage"     "type"        "temporal"   </span></span>
+<span><span class="co">#&gt; [6] "url"         "modified"    "description" "contact"</span></span></code></pre>
 <p>This returns useful information about each endpoint, including
 <code>name</code>, which you’ll need to make your API call.</p>
 </div>
@@ -146,15 +149,15 @@ and returns a data frame of results. Each API has slightly different
 parameters, but there are always a few required arguments:</p>
 <ul>
 <li>
-<code>name</code>: the name of the API as defined by the Census,
-like “acs5” or “timeseries/bds/firms”</li>
+<code>name</code>: the programmatic name of the API as defined by
+the Census, like “acs/acs5” or “timeseries/bds/firms”</li>
 <li>
-<code>vintage</code>: the dataset year, generally required for
-non-timeseries APIs</li>
+<code>vintage</code>: the dataset year, required for non-timeseries
+APIs</li>
 <li>
-<code>vars</code>: the list of variable names to get</li>
+<code>vars</code>: a list of variables to retrieve</li>
 <li>
-<code>region</code>: the geography level to return, like state or
+<code>region</code>: the geography level to retrieve, like state or
 county</li>
 </ul>
 <p>Some APIs have additional required or optional arguments, like
@@ -164,15 +167,16 @@ for your API to see what options are allowed.</p>
 <p>Let’s walk through an example getting uninsured rates by income group
 using the <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html" class="external-link">Small
 Area Health Insurance Estimates API</a>, which provides detailed annual
-state-level and county-level estimates of health insurance rates.</p>
+state-level and county-level estimates of health insurance rates for
+people below age 65.</p>
 <div class="section level3">
 <h3 id="choosing-variables">Choosing variables<a class="anchor" aria-label="anchor" href="#choosing-variables"></a>
 </h3>
 <p><code>censusapi</code> includes a metadata function called
-<code>listCensusMetadata</code> to get information about an API’s
+<code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code> to get information about an API’s
 variable options and geography options. Let’s see what variables are
 available in the SAHIE API:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>, </span>
 <span>    type <span class="op">=</span> <span class="st">"variables"</span><span class="op">)</span></span>
@@ -257,28 +261,13 @@ Estimate</td>
 </tbody>
 </table>
 </div>
-<p>We’ll use a few of these variables to get uninsured rates by income
-group:</p>
-<ul>
-<li>
-<code>IPRCAT</code>: Income Poverty Ratio Category</li>
-<li>
-<code>IPR_DESC</code>: Income Poverty Ratio Category
-Description</li>
-<li>
-<code>PCTUI_PT</code>: Percent Uninsured in Demographic Group for
-Selected Income Range, Estimate</li>
-<li>
-<code>NAME</code>: Name of the geography returned (e.g. state or
-county name)</li>
-</ul>
 </div>
 <div class="section level3">
 <h3 id="choosing-regions">Choosing regions<a class="anchor" aria-label="anchor" href="#choosing-regions"></a>
 </h3>
 <p>We can also use <code>listCensusMetadata</code> to see which
 geographic levels we can get data for using the SAHIE API.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>, </span>
 <span>    type <span class="op">=</span> <span class="st">"geography"</span><span class="op">)</span></span></code></pre></div>
@@ -335,325 +324,512 @@ geographic levels we can get data for using the SAHIE API.</p>
 </div>
 <p>This API has three geographic levels: <code>us</code>,
 <code>county</code> within states, and <code>state</code>.</p>
-<p>First, using <code><a href="../reference/getCensus.html">getCensus()</a></code>, let’s get uninsured rate by
-income group at the national level for 2018.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sahie_national</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
-<span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
-<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
-<span>    region <span class="op">=</span> <span class="st">"us:*"</span>, </span>
-<span>    year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
-<span><span class="va">sahie_national</span></span></code></pre></div>
-<div class="kable-table">
-<table class="table">
-<thead><tr class="header">
-<th align="left">us</th>
-<th align="left">NAME</th>
-<th align="left">IPRCAT</th>
-<th align="left">IPR_DESC</th>
-<th align="right">PCTUI_PT</th>
-<th align="left">YEAR</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">United States</td>
-<td align="left">0</td>
-<td align="left">All Incomes</td>
-<td align="right">10.8</td>
-<td align="left">2019</td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">United States</td>
-<td align="left">1</td>
-<td align="left">&lt;= 200% of Poverty</td>
-<td align="right">18.0</td>
-<td align="left">2019</td>
-</tr>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">United States</td>
-<td align="left">2</td>
-<td align="left">&lt;= 250% of Poverty</td>
-<td align="right">17.5</td>
-<td align="left">2019</td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">United States</td>
-<td align="left">3</td>
-<td align="left">&lt;= 138% of Poverty</td>
-<td align="right">18.1</td>
-<td align="left">2019</td>
-</tr>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">United States</td>
-<td align="left">4</td>
-<td align="left">&lt;= 400% of Poverty</td>
-<td align="right">15.2</td>
-<td align="left">2019</td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">United States</td>
-<td align="left">5</td>
-<td align="left">138% to 400% of Poverty</td>
-<td align="right">13.8</td>
-<td align="left">2019</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>We can also get this data at the state level for every state by
-changing <code>region</code> to <code>"state:*"</code>:</p>
+<p>First, using <code><a href="../reference/getCensus.html">getCensus()</a></code>, let’s get the percent
+(<code>PCTUI_PT</code>) and number (<code>NUI_PT</code>) of people
+uninsured, using the wildcard star (*) to retrieve data for all
+counties.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sahie_states</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">sahie_counties</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
-<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
-<span>    region <span class="op">=</span> <span class="st">"state:*"</span>, </span>
-<span>    year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_states</span><span class="op">)</span></span></code></pre></div>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"NUI_PT"</span><span class="op">)</span>, </span>
+<span>    region <span class="op">=</span> <span class="st">"county:*"</span>, </span>
+<span>    time <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_counties</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
+<th align="left">time</th>
 <th align="left">state</th>
+<th align="left">county</th>
 <th align="left">NAME</th>
-<th align="left">IPRCAT</th>
-<th align="left">IPR_DESC</th>
 <th align="right">PCTUI_PT</th>
-<th align="left">YEAR</th>
+<th align="right">NUI_PT</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="left">0</td>
-<td align="left">All Incomes</td>
-<td align="right">11.6</td>
 <td align="left">2019</td>
+<td align="left">01</td>
+<td align="left">001</td>
+<td align="left">Autauga County, AL</td>
+<td align="right">9.4</td>
+<td align="right">4366</td>
 </tr>
 <tr class="even">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="left">1</td>
-<td align="left">&lt;= 200% of Poverty</td>
-<td align="right">18.9</td>
 <td align="left">2019</td>
+<td align="left">01</td>
+<td align="left">003</td>
+<td align="left">Baldwin County, AL</td>
+<td align="right">10.9</td>
+<td align="right">19085</td>
 </tr>
 <tr class="odd">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="left">2</td>
-<td align="left">&lt;= 250% of Poverty</td>
-<td align="right">18.0</td>
 <td align="left">2019</td>
+<td align="left">01</td>
+<td align="left">005</td>
+<td align="left">Barbour County, AL</td>
+<td align="right">13.0</td>
+<td align="right">2194</td>
 </tr>
 <tr class="even">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="left">3</td>
-<td align="left">&lt;= 138% of Poverty</td>
-<td align="right">19.9</td>
 <td align="left">2019</td>
+<td align="left">01</td>
+<td align="left">007</td>
+<td align="left">Bibb County, AL</td>
+<td align="right">11.0</td>
+<td align="right">1824</td>
 </tr>
 <tr class="odd">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="left">4</td>
-<td align="left">&lt;= 400% of Poverty</td>
-<td align="right">15.1</td>
 <td align="left">2019</td>
+<td align="left">01</td>
+<td align="left">009</td>
+<td align="left">Blount County, AL</td>
+<td align="right">14.3</td>
+<td align="right">6663</td>
 </tr>
 <tr class="even">
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="left">5</td>
-<td align="left">138% to 400% of Poverty</td>
-<td align="right">12.5</td>
 <td align="left">2019</td>
+<td align="left">01</td>
+<td align="left">011</td>
+<td align="left">Bullock County, AL</td>
+<td align="right">11.1</td>
+<td align="right">752</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Finally, we can get county-level data. The geography metadata showed
-that we can choose to get county-level data within states. We’ll use
-<code>region</code> to specify county-level results and
-<code>regionin</code> to request data for Alabama and Alaska.</p>
+<p>We can also get data on detailed income and demographic groups from
+the SAHIE. We’ll use <code>region</code> to specify county-level results
+and <code>regionin</code> to request uninsured rates by income group
+(<code>IPRCAT</code>) for Virginia.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sahie_counties</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">sahie_virginia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
 <span>    region <span class="op">=</span> <span class="st">"county:*"</span>, </span>
-<span>    regionin <span class="op">=</span> <span class="st">"state:01,02"</span>, </span>
-<span>    year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_counties</span>, n<span class="op">=</span><span class="fl">12L</span><span class="op">)</span></span></code></pre></div>
+<span>    regionin <span class="op">=</span> <span class="st">"state:51"</span>, </span>
+<span>    time <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_virginia</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <colgroup>
-<col width="7%">
-<col width="9%">
-<col width="24%">
-<col width="9%">
-<col width="31%">
-<col width="11%">
 <col width="6%">
+<col width="7%">
+<col width="8%">
+<col width="25%">
+<col width="8%">
+<col width="30%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
+<th align="left">time</th>
 <th align="left">state</th>
 <th align="left">county</th>
 <th align="left">NAME</th>
 <th align="left">IPRCAT</th>
 <th align="left">IPR_DESC</th>
 <th align="right">PCTUI_PT</th>
-<th align="left">YEAR</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">01</td>
+<td align="left">2019</td>
+<td align="left">51</td>
 <td align="left">001</td>
-<td align="left">Autauga County, AL</td>
+<td align="left">Accomack County, VA</td>
 <td align="left">0</td>
 <td align="left">All Incomes</td>
-<td align="right">9.4</td>
-<td align="left">2019</td>
+<td align="right">15.1</td>
 </tr>
 <tr class="even">
-<td align="left">01</td>
+<td align="left">2019</td>
+<td align="left">51</td>
 <td align="left">001</td>
-<td align="left">Autauga County, AL</td>
+<td align="left">Accomack County, VA</td>
 <td align="left">1</td>
 <td align="left">&lt;= 200% of Poverty</td>
-<td align="right">17.3</td>
-<td align="left">2019</td>
+<td align="right">19.6</td>
 </tr>
 <tr class="odd">
-<td align="left">01</td>
+<td align="left">2019</td>
+<td align="left">51</td>
 <td align="left">001</td>
-<td align="left">Autauga County, AL</td>
+<td align="left">Accomack County, VA</td>
 <td align="left">2</td>
 <td align="left">&lt;= 250% of Poverty</td>
+<td align="right">19.4</td>
+</tr>
+<tr class="even">
+<td align="left">2019</td>
+<td align="left">51</td>
+<td align="left">001</td>
+<td align="left">Accomack County, VA</td>
+<td align="left">3</td>
+<td align="left">&lt;= 138% of Poverty</td>
+<td align="right">19.7</td>
+</tr>
+<tr class="odd">
+<td align="left">2019</td>
+<td align="left">51</td>
+<td align="left">001</td>
+<td align="left">Accomack County, VA</td>
+<td align="left">4</td>
+<td align="left">&lt;= 400% of Poverty</td>
+<td align="right">17.5</td>
+</tr>
+<tr class="even">
+<td align="left">2019</td>
+<td align="left">51</td>
+<td align="left">001</td>
+<td align="left">Accomack County, VA</td>
+<td align="left">5</td>
+<td align="left">138% to 400% of Poverty</td>
 <td align="right">16.3</td>
-<td align="left">2019</td>
-</tr>
-<tr class="even">
-<td align="left">01</td>
-<td align="left">001</td>
-<td align="left">Autauga County, AL</td>
-<td align="left">3</td>
-<td align="left">&lt;= 138% of Poverty</td>
-<td align="right">18.5</td>
-<td align="left">2019</td>
-</tr>
-<tr class="odd">
-<td align="left">01</td>
-<td align="left">001</td>
-<td align="left">Autauga County, AL</td>
-<td align="left">4</td>
-<td align="left">&lt;= 400% of Poverty</td>
-<td align="right">12.8</td>
-<td align="left">2019</td>
-</tr>
-<tr class="even">
-<td align="left">01</td>
-<td align="left">001</td>
-<td align="left">Autauga County, AL</td>
-<td align="left">5</td>
-<td align="left">138% to 400% of Poverty</td>
-<td align="right">10.2</td>
-<td align="left">2019</td>
-</tr>
-<tr class="odd">
-<td align="left">01</td>
-<td align="left">003</td>
-<td align="left">Baldwin County, AL</td>
-<td align="left">0</td>
-<td align="left">All Incomes</td>
-<td align="right">10.9</td>
-<td align="left">2019</td>
-</tr>
-<tr class="even">
-<td align="left">01</td>
-<td align="left">003</td>
-<td align="left">Baldwin County, AL</td>
-<td align="left">1</td>
-<td align="left">&lt;= 200% of Poverty</td>
-<td align="right">20.1</td>
-<td align="left">2019</td>
-</tr>
-<tr class="odd">
-<td align="left">01</td>
-<td align="left">003</td>
-<td align="left">Baldwin County, AL</td>
-<td align="left">2</td>
-<td align="left">&lt;= 250% of Poverty</td>
-<td align="right">18.7</td>
-<td align="left">2019</td>
-</tr>
-<tr class="even">
-<td align="left">01</td>
-<td align="left">003</td>
-<td align="left">Baldwin County, AL</td>
-<td align="left">3</td>
-<td align="left">&lt;= 138% of Poverty</td>
-<td align="right">21.0</td>
-<td align="left">2019</td>
-</tr>
-<tr class="odd">
-<td align="left">01</td>
-<td align="left">003</td>
-<td align="left">Baldwin County, AL</td>
-<td align="left">4</td>
-<td align="left">&lt;= 400% of Poverty</td>
-<td align="right">15.2</td>
-<td align="left">2019</td>
-</tr>
-<tr class="even">
-<td align="left">01</td>
-<td align="left">003</td>
-<td align="left">Baldwin County, AL</td>
-<td align="left">5</td>
-<td align="left">138% to 400% of Poverty</td>
-<td align="right">12.9</td>
-<td align="left">2019</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Because the SAHIE API is a timeseries (as indicated in its name), we
-can get multiple years of data at once using the <code>year</code>
-argument.</p>
+<p>Because the SAHIE API is a timeseries dataset (as indicated in its
+name), we can get multiple years of data at once by changing
+<code>time = X</code> to <code>time = "from X to Y"</code>. Let’s get
+that data for DeKalb County, Georgia using county fips code 089 and
+state fips code 13. You can look up fips codes on the <a href="https://www.census.gov/library/reference/code-lists/ansi.html" class="external-link">Census
+Bureau website</a>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
-<span>    region <span class="op">=</span> <span class="st">"state:01,17"</span>, </span>
-<span>    year <span class="op">=</span> <span class="st">"2006:2019"</span><span class="op">)</span></span></code></pre></div>
-<p>Here’s a simple chart of that yearly data using the <a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot2</a> package.</p>
+<span>    region <span class="op">=</span> <span class="st">"county:089"</span>, </span>
+<span>    regionin <span class="op">=</span> <span class="st">"state:13"</span>,</span>
+<span>    time <span class="op">=</span> <span class="st">"from 2006 to 2019"</span><span class="op">)</span></span>
+<span><span class="va">sahie_years</span></span></code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="left">state</th>
+<th align="left">county</th>
+<th align="left">NAME</th>
+<th align="right">PCTUI_PT</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2006</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">19.0</td>
+</tr>
+<tr class="even">
+<td align="left">2007</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">17.2</td>
+</tr>
+<tr class="odd">
+<td align="left">2008</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">22.5</td>
+</tr>
+<tr class="even">
+<td align="left">2009</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">22.9</td>
+</tr>
+<tr class="odd">
+<td align="left">2010</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">25.8</td>
+</tr>
+<tr class="even">
+<td align="left">2011</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">23.9</td>
+</tr>
+<tr class="odd">
+<td align="left">2012</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">21.7</td>
+</tr>
+<tr class="even">
+<td align="left">2013</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">22.1</td>
+</tr>
+<tr class="odd">
+<td align="left">2014</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">19.4</td>
+</tr>
+<tr class="even">
+<td align="left">2015</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">16.9</td>
+</tr>
+<tr class="odd">
+<td align="left">2016</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">15.3</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">15.9</td>
+</tr>
+<tr class="odd">
+<td align="left">2018</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">17.1</td>
+</tr>
+<tr class="even">
+<td align="left">2019</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">16.9</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We can also filter the data by income group using the
+<code>IPRCAT</code> variable again. <code>IPRCAT</code> = 3 represents
+&lt;=138% of the federal poverty line. That is the threshold for <a href="https://www.healthcare.gov/glossary/federal-poverty-level-fpl/" class="external-link">Medicaid
+eligibility</a> in states that have expanded it under the Affordable
+Care Act.</p>
+<p>Getting this data for Los Angeles county (fips code 06037) we can see
+the dramatic decrease in the uninsured rate in this income group after
+California expanded Medicaid.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">sahie_years</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">YEAR</span>, y <span class="op">=</span> <span class="va">PCTUI_PT</span>, group <span class="op">=</span> <span class="va">state</span>, color <span class="op">=</span> <span class="va">state</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span></span>
-<span>        breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">18</span>, <span class="fl">2</span><span class="op">)</span>,</span>
-<span>        limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">18</span><span class="op">)</span>,</span>
-<span>        expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
-<span>        legend.position <span class="op">=</span> <span class="st">"top"</span>,</span>
-<span>        panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        panel.grid.major.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        panel.border <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html" class="external-link">scale_color_discrete</a></span><span class="op">(</span></span>
-<span>        labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Alabama"</span>, <span class="st">"Illinois"</span><span class="op">)</span>, </span>
-<span>        breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"01"</span>, <span class="st">"17"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
-<span>        title <span class="op">=</span> <span class="st">"Percent of people who are uninsured by state"</span>,</span>
-<span>        subtitle <span class="op">=</span> <span class="st">"For people below age 65"</span>,</span>
-<span>        caption <span class="op">=</span> <span class="st">"Source: Small Area Health Insurance Estimates"</span></span>
-<span>    <span class="op">)</span></span></code></pre></div>
-<p><img src="getting-started_files/figure-html/unnamed-chunk-11-1.png"><!-- --></p>
+<code class="sourceCode R"><span><span class="va">sahie_138</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"NUI_PT"</span><span class="op">)</span>, </span>
+<span>    region <span class="op">=</span> <span class="st">"county:037"</span>, </span>
+<span>    regionin <span class="op">=</span> <span class="st">"state:06"</span>, </span>
+<span>    IPRCAT <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    time <span class="op">=</span> <span class="st">"from 2010 to 2019"</span><span class="op">)</span></span>
+<span><span class="va">sahie_138</span></span></code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="left">state</th>
+<th align="left">county</th>
+<th align="left">NAME</th>
+<th align="right">PCTUI_PT</th>
+<th align="right">NUI_PT</th>
+<th align="left">IPRCAT</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2010</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">37.4</td>
+<td align="right">894385</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">2011</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">35.1</td>
+<td align="right">867577</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">2012</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">34.4</td>
+<td align="right">865516</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">2013</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">33.0</td>
+<td align="right">818978</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">2014</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">24.9</td>
+<td align="right">607542</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">2015</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">17.8</td>
+<td align="right">402977</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">2016</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">15.4</td>
+<td align="right">329251</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">14.3</td>
+<td align="right">281842</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">2018</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">13.9</td>
+<td align="right">255520</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">2019</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">15.1</td>
+<td align="right">254740</td>
+<td align="left">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We can also get data for other useful demographics, like age
+group.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sahie_age</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"NUI_PT"</span>, <span class="st">"AGECAT"</span>, <span class="st">"AGE_DESC"</span><span class="op">)</span>, </span>
+<span>    region <span class="op">=</span> <span class="st">"county:037"</span>, </span>
+<span>    regionin <span class="op">=</span> <span class="st">"state:06"</span>,</span>
+<span>    time <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
+<span><span class="va">sahie_age</span></span></code></pre></div>
+<div class="kable-table">
+<table class="table">
+<colgroup>
+<col width="6%">
+<col width="7%">
+<col width="8%">
+<col width="29%">
+<col width="11%">
+<col width="8%">
+<col width="8%">
+<col width="18%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="left">state</th>
+<th align="left">county</th>
+<th align="left">NAME</th>
+<th align="right">PCTUI_PT</th>
+<th align="right">NUI_PT</th>
+<th align="left">AGECAT</th>
+<th align="left">AGE_DESC</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2019</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">11.1</td>
+<td align="right">940376</td>
+<td align="left">0</td>
+<td align="left">Under 65 years</td>
+</tr>
+<tr class="even">
+<td align="left">2019</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">13.6</td>
+<td align="right">864634</td>
+<td align="left">1</td>
+<td align="left">18 to 64 years</td>
+</tr>
+<tr class="odd">
+<td align="left">2019</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">12.8</td>
+<td align="right">406708</td>
+<td align="left">2</td>
+<td align="left">40 to 64 years</td>
+</tr>
+<tr class="even">
+<td align="left">2019</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">11.3</td>
+<td align="right">208558</td>
+<td align="left">3</td>
+<td align="left">50 to 64 years</td>
+</tr>
+<tr class="odd">
+<td align="left">2019</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">3.9</td>
+<td align="right">85306</td>
+<td align="left">4</td>
+<td align="left">Under 19 years</td>
+</tr>
+<tr class="even">
+<td align="left">2019</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">13.7</td>
+<td align="right">822705</td>
+<td align="left">5</td>
+<td align="left">21 to 64 years</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div class="section level2">
@@ -679,7 +855,7 @@ that is above that threshold is listed as $250,001. Some are not
 available and are listed as -666666666. You can see these annotations in
 the “EA” (estimate annotation) and “MA” (margin of error annotation)
 columns.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acs_income</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>, </span>
@@ -756,7 +932,7 @@ website.</p>
 list of variables. We’ll get the estimate, margin of error and
 annotations for median household income in the past 12 months for Census
 tracts in Alaska.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acs_income</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2017</span>, </span>
@@ -853,7 +1029,7 @@ tracts in Alaska.</p>
 <p>You can also retrieve also estimates and annotations for a group of
 variables in one command. Here’s the <code>group</code> call for that
 same table, <a href="https://api.census.gov/data/2016/acs/acs5/groups/B19013.html" class="external-link">B19013</a>.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># See descriptions of the variables in group B19013</span></span>
 <span><span class="va">group_B19013</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span>
@@ -929,7 +1105,7 @@ INFLATION-ADJUSTED DOLLARS)</td>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acs_income_group</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>, </span>
 <span>    vintage <span class="op">=</span> <span class="fl">2017</span>, </span>
@@ -1055,7 +1231,7 @@ Census can only be requested from one state at a time.</p>
 <a href="https://www.census.gov/library/reference/code-lists/ansi.html" class="external-link">FIPS
 codes</a> to request tract-level data from each state and join into a
 single data frame.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tracts</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">f</span> <span class="kw">in</span> <span class="va">fips</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">stateget</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"state:"</span>, <span class="va">f</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
@@ -1122,7 +1298,7 @@ also be used with a string of nested geographies, as shown below.</p>
 state and county to retrieve block-level data. Use <code>region</code>
 to request block level data, and <code>regionin</code> to specify the
 desired state and county.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data2010</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"dec/sf1"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2010</span>,</span>
@@ -1250,7 +1426,9 @@ issue</a> for bugs or issues with this R package.</li>
 <li>Join the public Census Bureau <a href="http://links.govdelivery.com/track?type=click&amp;enid=ZWFzPTEmbWFpbGluZ2lkPTIwMTgwOTE3Ljk0OTc1NjkxJm1lc3NhZ2VpZD1NREItUFJELUJVTC0yMDE4MDkxNy45NDk3NTY5MSZkYXRhYmFzZWlkPTEwMDEmc2VyaWFsPTE3MjA3MjUwJmVtYWlsaWQ9aHJlY2h0MkBnbWFpbC5jb20mdXNlcmlkPWhyZWNodDJAZ21haWwuY29tJmZsPSZleHRyYT1NdWx0aXZhcmlhdGVJZD0mJiY=&amp;&amp;&amp;105&amp;&amp;&amp;https://join.slack.com/t/uscensusbureau/shared_invite/enQtMjQ3NzUyNTM3NDU3LTZmNGI1MmQzY2Y2ZTU1ODJhNDQwMmY2YmZiNmFkNzg4YmJkYmQzZjQyNDhkNDYxN2JhYjkxZDEwMGI2OGU5NzQ?eml=gd&amp;utm_medium=email&amp;utm_source=govdelivery" class="external-link">Slack
 channel</a> and ask your question in the R or API rooms.</li>
 <li>Email the Census Bureau API team at <a href="mailto:census.data@census.gov" class="email">census.data@census.gov</a> for questions relating to the
-underlying data and APIs.</li>
+underlying data and APIs. You can also reach out to the contact listed
+in the dataset metadata found in <code><a href="../reference/listCensusApis.html">listCensusApis()</a></code> for
+questions about a specific survey.</li>
 </ul>
 </div>
 </div>

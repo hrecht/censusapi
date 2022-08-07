@@ -47,12 +47,12 @@ To get started, load the `censusapi` library.
 ```{r}
 library(censusapi)
 ```
-The Census APIs have over 200 endpoints, covering dozens of different datasets.
 
-To see a current table of every available endpoint, run `listCensusApis`:
-```{r, eval = FALSE}
+To see a current table of every available endpoint, use`listCensusApis()`. This data frame includes useful information for making your API call, including the dataset's name, description and title, as well as a contact email for questions about the underyling data.
+
+```{r}
 apis <- listCensusApis()
-View(apis)
+colnames(apis)
 ```
 
 This returns useful information about each endpoint, including `name`, which you'll need to make your API call.
@@ -60,17 +60,17 @@ This returns useful information about each endpoint, including `name`, which you
 ## Using `getCensus`
 The main function in `censusapi` is `getCensus()`, which makes an API call to a given Census API and returns a data frame of results. Each API has slightly different parameters, but there are always a few required arguments:
 
-* `name`: the name of the API as defined by the Census, like "acs5" or "timeseries/bds/firms"
-* `vintage`: the dataset year, generally required for non-timeseries APIs
-* `vars`: the list of variable names to get
-* `region`: the geography level to return, like state or county
+* `name`: the programmatic name of the API as defined by the Census, like "acs/acs5" or "timeseries/bds/firms"
+* `vintage`: the dataset year, required for non-timeseries APIs
+* `vars`: a list of variables to retrieve
+* `region`: the geography level to retrieve, like state or county
 
 Some APIs have additional required or optional arguments, like `time`, `monthly`, or `period`. Check the specific [documentation](https://www.census.gov/data/developers/data-sets.html) for your API to see what options are allowed.
 
-Let's walk through an example getting uninsured rates by income group using the [Small Area Health Insurance Estimates API](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html), which provides detailed annual state-level and county-level estimates of health insurance rates.
+Let's walk through an example getting uninsured rates by income group using the [Small Area Health Insurance Estimates API](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html), which provides detailed annual state-level and county-level estimates of health insurance rates for people below age 65.
 
 ### Choosing variables
-`censusapi` includes a metadata function called `listCensusMetadata` to get information about an API's variable options and geography options.
+`censusapi` includes a metadata function called `listCensusMetadata()` to get information about an API's variable options and geography options.
 Let's see what variables are available in the SAHIE API:
 
 ```{r}
@@ -79,12 +79,6 @@ sahie_vars <- listCensusMetadata(
 	type = "variables")
 head(sahie_vars)
 ```
-We'll use a few of these variables to get uninsured rates by income group:
-
-* `IPRCAT`: Income Poverty Ratio Category
-* `IPR_DESC`: Income Poverty Ratio Category Description
-* `PCTUI_PT`: Percent Uninsured in Demographic Group for Selected Income Range, Estimate
-* `NAME`: Name of the geography returned (e.g. state or county name)
 
 ### Choosing regions
 We can also use `listCensusMetadata` to see which geographic levels we can get data for using the SAHIE API.
@@ -95,69 +89,60 @@ listCensusMetadata(
 ```
 This API has three geographic levels: `us`, `county` within states, and `state`.
 
-First, using `getCensus()`, let's get uninsured rate by income group at the national level for 2018.
-```{r}
-sahie_national <- getCensus(
-	name = "timeseries/healthins/sahie",
-	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
-	region = "us:*", 
-	year = 2019)
-sahie_national
-```
-
-We can also get this data at the state level for every state by changing `region` to `"state:*"`:
-```{r}
-sahie_states <- getCensus(
-	name = "timeseries/healthins/sahie",
-	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
-	region = "state:*", 
-	year = 2019)
-head(sahie_states)
-```
-
-Finally, we can get county-level data. The geography metadata showed that we can choose to get county-level data within states. We'll use `region` to specify county-level results and `regionin` to request data for Alabama and Alaska.
+First, using `getCensus()`, let's get the percent (`PCTUI_PT`) and number (`NUI_PT`) of people uninsured, using the wildcard star (*) to retrieve data for all counties.
 ```{r}
 sahie_counties <- getCensus(
 	name = "timeseries/healthins/sahie",
-	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
+	vars = c("NAME", "PCTUI_PT", "NUI_PT"), 
 	region = "county:*", 
-	regionin = "state:01,02", 
-	year = 2019)
-head(sahie_counties, n=12L)
+	time = 2019)
+head(sahie_counties)
 ```
 
-Because the SAHIE API is a timeseries (as indicated in its name), we can get multiple years of data at once using the `year` argument.
+We can also get data on detailed income and demographic groups from the SAHIE. We'll use `region` to specify county-level results and `regionin` to request uninsured rates by income group (`IPRCAT`) for Virginia.
+```{r}
+sahie_virginia <- getCensus(
+	name = "timeseries/healthins/sahie",
+	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
+	region = "county:*", 
+	regionin = "state:51", 
+	time = 2019)
+head(sahie_virginia)
+```
+
+Because the SAHIE API is a timeseries dataset (as indicated in its name), we can get multiple years of data at once by changing `time = X` to `time = "from X to Y"`. Let's get that data for DeKalb County, Georgia using county fips code 089 and state fips code 13. You can look up fips codes on the [Census Bureau website](https://www.census.gov/library/reference/code-lists/ansi.html).
 ```{r}
 sahie_years <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT"), 
-	region = "state:01,17", 
-	year = "2006:2019")
+	region = "county:089", 
+	regionin = "state:13",
+	time = "from 2006 to 2019")
+sahie_years
 ```
+We can also filter the data by income group using the `IPRCAT` variable again. `IPRCAT` = 3 represents <=138% of the federal poverty line. That is the threshold for [Medicaid eligibility](https://www.healthcare.gov/glossary/federal-poverty-level-fpl/) in states that have expanded it under the Affordable Care Act.
 
-Here's a simple chart of that yearly data using the [ggplot2](https://ggplot2.tidyverse.org/) package.
+Getting this data for Los Angeles county (fips code 06037) we can see the dramatic decrease in the uninsured rate in this income group after California expanded Medicaid.
+
 ```{r}
-library(ggplot2)
-ggplot(sahie_years, aes(x = YEAR, y = PCTUI_PT, group = state, color = state)) +
-	geom_line() +
-	scale_y_continuous(
-		breaks = seq(6, 18, 2),
-		limits = c(6, 18),
-		expand = c(0, 0)) +
-	theme(
-		legend.position = "top",
-		panel.grid.minor = element_blank(),
-		panel.grid.major.x = element_blank(),
-		panel.border = element_blank(),
-		axis.title = element_blank()) +
-	scale_color_discrete(
-		labels = c("Alabama", "Illinois"), 
-		breaks = c("01", "17")) +
-	labs(
-		title = "Percent of people who are uninsured by state",
-		subtitle = "For people below age 65",
-		caption = "Source: Small Area Health Insurance Estimates"
-	)
+sahie_138 <- getCensus(
+	name = "timeseries/healthins/sahie",
+	vars = c("NAME", "PCTUI_PT", "NUI_PT"), 
+	region = "county:037", 
+	regionin = "state:06", 
+	IPRCAT = 3,
+	time = "from 2010 to 2019")
+sahie_138
+```
+We can also get data for other useful demographics, like age group.
+```{r}
+sahie_age <- getCensus(
+	name = "timeseries/healthins/sahie",
+	vars = c("NAME", "PCTUI_PT", "NUI_PT", "AGECAT", "AGE_DESC"), 
+	region = "county:037", 
+	regionin = "state:06",
+	time = 2019)
+sahie_age
 ```
 
 ## Annotations
@@ -166,7 +151,6 @@ Some Census datasets, inclduing the American Community Survey, use annotated val
 The `censusapi` package is intended to return the data as-is so that you can receive those unaltered annotations. If you are using data for a small geography make sure to check for values like `-666666666` or check the annotation columns for non-empty values to exclude as needed.
 
 As an example, we'll get median income with associated annotations and margin of error, for three census tracts in Washington, DC — one that is available, one that is topcoded, and one that is unavailable. Notice that income is topcoded at $250,000 — meaning any tract's income that is above that threshold is listed as $250,001. Some are not available and are listed as -666666666. You can see these annotations in the "EA" (estimate annotation) and "MA" (margin of error annotation) columns.
-
 
 ```{r}
 acs_income <- getCensus(
@@ -272,7 +256,7 @@ Occasionally you might get the general error message `"There was an error while 
 ### Other ways to get help
 * Open a [Github issue](https://github.com/hrecht/censusapi/issues) for bugs or issues with this R package.
 * Join the public Census Bureau [Slack channel](http://links.govdelivery.com/track?type=click&enid=ZWFzPTEmbWFpbGluZ2lkPTIwMTgwOTE3Ljk0OTc1NjkxJm1lc3NhZ2VpZD1NREItUFJELUJVTC0yMDE4MDkxNy45NDk3NTY5MSZkYXRhYmFzZWlkPTEwMDEmc2VyaWFsPTE3MjA3MjUwJmVtYWlsaWQ9aHJlY2h0MkBnbWFpbC5jb20mdXNlcmlkPWhyZWNodDJAZ21haWwuY29tJmZsPSZleHRyYT1NdWx0aXZhcmlhdGVJZD0mJiY=&&&105&&&https://join.slack.com/t/uscensusbureau/shared_invite/enQtMjQ3NzUyNTM3NDU3LTZmNGI1MmQzY2Y2ZTU1ODJhNDQwMmY2YmZiNmFkNzg4YmJkYmQzZjQyNDhkNDYxN2JhYjkxZDEwMGI2OGU5NzQ?eml=gd&utm_medium=email&utm_source=govdelivery) and ask your question in the R or API rooms.
-* Email the Census Bureau API team at census.data@census.gov for questions relating to the underlying data and APIs.
+* Email the Census Bureau API team at census.data@census.gov for questions relating to the underlying data and APIs. You can also reach out to the contact listed in the dataset metadata found in `listCensusApis()` for questions about a specific survey.
 
 ## Additional resources
 * [Census Data API User Guide](https://www.census.gov/data/developers/guidance/api-user-guide.Overview.html)

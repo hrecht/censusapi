@@ -372,29 +372,76 @@ and country.</p>
 <div class="kable-table">
 <table style="width:100%;" class="table">
 <colgroup>
-<col width="5%">
-<col width="52%">
-<col width="8%">
-<col width="3%">
-<col width="3%">
-<col width="5%">
-<col width="15%">
-<col width="5%">
+<col width="4%">
+<col width="41%">
+<col width="17%">
+<col width="6%">
+<col width="2%">
+<col width="2%">
+<col width="6%">
+<col width="11%">
+<col width="4%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">name</th>
 <th align="left">label</th>
+<th align="left">concept</th>
 <th align="left">predicateType</th>
 <th align="left">group</th>
 <th align="left">limit</th>
-<th align="left">concept</th>
+<th align="left">predicateOnly</th>
 <th align="left">hasGeoCollectionSupport</th>
 <th align="left">required</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="left">for</td>
+<td align="left">Census API FIPS ‘for’ clause</td>
+<td align="left">Census API Geography Specification</td>
+<td align="left">fips-for</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">in</td>
+<td align="left">Census API FIPS ‘in’ clause</td>
+<td align="left">Census API Geography Specification</td>
+<td align="left">fips-in</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">ucgid</td>
+<td align="left">Uniform Census Geography Identifier clause</td>
+<td align="left">Census API Geography Specification</td>
+<td align="left">ucgid</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">time</td>
+<td align="left">ISO-8601 Date/Time value</td>
+<td align="left">Census API Date/Time Specification</td>
+<td align="left">datetime</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+<td align="left">true</td>
+</tr>
+<tr class="odd">
 <td align="left">POP</td>
 <td align="left">Total mid-year population</td>
+<td align="left">NA</td>
 <td align="left">int</td>
 <td align="left">N/A</td>
 <td align="left">0</td>
@@ -406,6 +453,7 @@ and country.</p>
 <td align="left">GENC</td>
 <td align="left">Geopolitical Entities, Names, and Codes (GENC) two
 character country code standard</td>
+<td align="left">NA</td>
 <td align="left">string</td>
 <td align="left">N/A</td>
 <td align="left">0</td>
@@ -416,6 +464,7 @@ character country code standard</td>
 <tr class="odd">
 <td align="left">AREA_KM2</td>
 <td align="left">Area in square kilometers</td>
+<td align="left">NA</td>
 <td align="left">int</td>
 <td align="left">N/A</td>
 <td align="left">0</td>
@@ -426,6 +475,7 @@ character country code standard</td>
 <tr class="even">
 <td align="left">FIPS</td>
 <td align="left">FIPS country/area Code</td>
+<td align="left">NA</td>
 <td align="left">string</td>
 <td align="left">N/A</td>
 <td align="left">0</td>
@@ -436,6 +486,7 @@ character country code standard</td>
 <tr class="odd">
 <td align="left">SEX</td>
 <td align="left">Sex</td>
+<td align="left">NA</td>
 <td align="left">int</td>
 <td align="left">N/A</td>
 <td align="left">0</td>
@@ -446,6 +497,7 @@ character country code standard</td>
 <tr class="even">
 <td align="left">YR</td>
 <td align="left">Year</td>
+<td align="left">NA</td>
 <td align="left">int</td>
 <td align="left">N/A</td>
 <td align="left">0</td>
@@ -456,6 +508,7 @@ character country code standard</td>
 <tr class="odd">
 <td align="left">NAME</td>
 <td align="left">Country or area name</td>
+<td align="left">NA</td>
 <td align="left">string</td>
 <td align="left">N/A</td>
 <td align="left">0</td>
@@ -466,6 +519,7 @@ character country code standard</td>
 <tr class="even">
 <td align="left">AGE</td>
 <td align="left">Single year of age from 0-100+</td>
+<td align="left">NA</td>
 <td align="left">int</td>
 <td align="left">N/A</td>
 <td align="left">0</td>

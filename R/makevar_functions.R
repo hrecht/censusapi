@@ -13,7 +13,8 @@
 #' @export
 #' @examples
 #' # Return a list, and then use getCensus function to retrieve those variables
-#' \donttest{myvars <- makeVarlist(name = "timeseries/poverty/saipe",
+#' \dontrun{
+#' myvars <- makeVarlist(name = "timeseries/poverty/saipe",
 #'   find = "Ages 0-4",
 #'   varsearch = "label")
 #' myvars
@@ -21,23 +22,24 @@
 #'   time = 2016,
 #'   vars = myvars,
 #'   region = "state:*")
-#' head(saipe_dt)}
+#' head(saipe_dt)
+#' }
 
-makeVarlist <- function(name, vintage=NULL, find, varsearch="all", output="list") {
-	df <- listCensusMetadata(name, vintage, type="v")
+makeVarlist <- function(name, vintage = NULL, find, varsearch = "all", output = "list") {
+	df <- listCensusMetadata(name, vintage, type = "variables")
 	index_name <- with(df, grepl(find, name, ignore.case = T))
 	index_label <- with(df, grepl(find, label, ignore.case = T))
 	index_concept <- with(df, grepl(find, concept, ignore.case = T))
-	if (varsearch=="all") {
+	if (varsearch == "all") {
 		vartable <- df[index_name|index_label|index_concept, ]
-	} else if (varsearch=="name") {
+	} else if (varsearch == "name") {
 		vartable <- df[index_name, ]
-	} else if (varsearch=="label") {
+	} else if (varsearch == "label") {
 		vartable <- df[index_label, ]
-	} else if (varsearch=="concept") {
+	} else if (varsearch == "concept") {
 		vartable <- df[index_concept, ]
 	}
-	if (output=="dataframe") {
+	if (output == "dataframe") {
 		return(vartable)
 	} else {
 		varlist <- vartable$name
