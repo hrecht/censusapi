@@ -28,6 +28,7 @@
 
 
 * `getCensus()` has a new option `convert_variables` re discussion in (#68) and (#80). The default is `TRUE` — as in previous versions, this converts columns of numbers to R's numeric data type. Setting `convert variables = FALSE` leaves all columns in the original character data type returned by the Census Bureau.
+* `getCensus()` has improved data binding for responses from requests where more than 50 variables are manually specified. Occasionally these large requests were not returned from the Census Bureau in the same order, leading to mismatched rows. This fixes (#82).
 * `listCensusMetadata()` now properly handles metadata attribute names in the new Microdata APIs that contain invalid JSON. This solves (#84).
 * Documentation and examples are updated. There is a new vignette: [Accessing microdata.](https://www.hrecht.com/censusapi/articles/accessing-microdata.html)
 

@@ -28,7 +28,7 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 			# Show call if option is true
 			if (show_call == TRUE) {
 				print(paste("Your successful api call was: ", req$url))
-				print("For more information, visit the documentation at https://hrecht.github.io/censusapi/index.html")
+				print("For more information, visit the documentation at https://www.hrecht.com/censusapi/")
 			}
 			raw <- jsonlite::fromJSON(httr::content(req, as = "text"))
 		}
@@ -96,6 +96,12 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 				string_col_parts <- paste0(string_col_parts, "|UNIT_QY|_FLAG")
 				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
 
+				# Microdata weighting variables
+			} else if (grepl("cps/", name, ignore.case = T) |
+								 name %in% c("acs/acs5/pums", "acs/acs5/pumspr", "acs/acs1/pums", "acs/acs1/pumspr")) {
+				numeric_cols <- grep("[0-9]|PWSSWGT|HWHHWGT|PWFMWGT|PWLGWGT|PWCMPWGT
+|PWORWGT|PWVETWGT|WGTP|PWGTP", names(df), value=TRUE, ignore.case = T)
+				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
 
 			} else {
 				# Do not make known string/label variables numeric

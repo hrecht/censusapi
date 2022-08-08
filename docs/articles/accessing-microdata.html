@@ -135,87 +135,95 @@ voted, how, and when, and includes useful demographic data.</p>
 <span>    type <span class="op">=</span> <span class="st">"variables"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">voting_vars</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="7%">
-<col width="42%">
-<col width="11%">
 <col width="4%">
-<col width="4%">
-<col width="13%">
-<col width="6%">
+<col width="32%">
+<col width="21%">
 <col width="8%">
+<col width="3%">
+<col width="3%">
+<col width="8%">
+<col width="10%">
+<col width="6%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">name</th>
 <th align="left">label</th>
+<th align="left">concept</th>
 <th align="left">predicateType</th>
 <th align="left">group</th>
 <th align="left">limit</th>
+<th align="left">predicateOnly</th>
 <th align="left">suggested_weight</th>
-<th align="left">concept</th>
 <th align="left">is_weight</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">PEEDUCA</td>
-<td align="left">Demographics-highest level of school completed</td>
-<td align="left">int</td>
+<td align="left">for</td>
+<td align="left">Census API FIPS ‘for’ clause</td>
+<td align="left">Census API Geography Specification</td>
+<td align="left">fips-for</td>
 <td align="left">N/A</td>
 <td align="left">0</td>
-<td align="left">PWSSWGT</td>
+<td align="left">TRUE</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
+<td align="left">in</td>
+<td align="left">Census API FIPS ‘in’ clause</td>
+<td align="left">Census API Geography Specification</td>
+<td align="left">fips-in</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">ucgid</td>
+<td align="left">Uniform Census Geography Identifier clause</td>
+<td align="left">Census API Geography Specification</td>
+<td align="left">ucgid</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">PEEDUCA</td>
+<td align="left">Demographics-highest level of school completed</td>
+<td align="left">NA</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">PWSSWGT</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
 <td align="left">PUBUS1</td>
 <td align="left">Labor Force-unpaid work in family
 business/farm,y/n</td>
+<td align="left">NA</td>
 <td align="left">int</td>
 <td align="left">N/A</td>
 <td align="left">0</td>
+<td align="left">NA</td>
 <td align="left">PWCMPWGT</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">PRCOW1</td>
 <td align="left">Indus.&amp;Occ.-(main job)class of worker-recode</td>
+<td align="left">NA</td>
 <td align="left">int</td>
 <td align="left">N/A</td>
 <td align="left">0</td>
+<td align="left">NA</td>
 <td align="left">PWCMPWGT</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">HETELHHD</td>
-<td align="left">Household-phone in living quarters,y/n</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">HWHHWGT</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">PRCOW2</td>
-<td align="left">Indus.&amp;Occ.-(second job)class of worker-recode</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">PWCMPWGT</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">PEERNLAB</td>
-<td align="left">Earnings-union member,y/n</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">PWORWGT</td>
-<td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -241,7 +249,7 @@ vote?).</p>
 <th align="left">state</th>
 <th align="right">PES5</th>
 <th align="left">PESEX</th>
-<th align="left">PWSSWGT</th>
+<th align="right">PWSSWGT</th>
 <th align="right">PES1</th>
 </tr></thead>
 <tbody>
@@ -249,42 +257,42 @@ vote?).</p>
 <td align="left">36</td>
 <td align="right">1</td>
 <td align="left">1</td>
-<td align="left">4571.2161</td>
+<td align="right">4571.216</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">36</td>
 <td align="right">1</td>
 <td align="left">2</td>
-<td align="left">4806.3694</td>
+<td align="right">4806.369</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">36</td>
 <td align="right">1</td>
 <td align="left">2</td>
-<td align="left">3440.3007</td>
+<td align="right">3440.301</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">36</td>
 <td align="right">-3</td>
 <td align="left">1</td>
-<td align="left">5204.5663</td>
+<td align="right">5204.566</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">36</td>
 <td align="right">-3</td>
 <td align="left">2</td>
-<td align="left">4993.8192</td>
+<td align="right">4993.819</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">36</td>
 <td align="right">1</td>
 <td align="left">2</td>
-<td align="left">4602.9585</td>
+<td align="right">4602.958</td>
 <td align="right">1</td>
 </tr>
 </tbody>
@@ -434,7 +442,7 @@ mail?”</p>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
-<th align="left">value</th>
+<th align="left">code</th>
 <th align="left">label</th>
 </tr></thead>
 <tbody>
