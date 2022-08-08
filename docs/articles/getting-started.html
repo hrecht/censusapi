@@ -164,7 +164,7 @@ defined by the Census Bureau and are included as a column in
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">apis</span><span class="op">$</span><span class="va">type</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Aggregate  Microdata Timeseries </span></span>
-<span><span class="co">#&gt;        556        636         57</span></span></code></pre>
+<span><span class="co">#&gt;        556        637         57</span></span></code></pre>
 <p>Most users will work with summary data, either aggregate or
 timeseries. Summary data contains pre-calculated numbers or percentages
 for a given statistic — like the number of children in a state or the
@@ -225,18 +225,31 @@ in the SAHIE API:</p>
 <code class="sourceCode R"><span><span class="va">sahie_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>, </span>
 <span>    type <span class="op">=</span> <span class="st">"variables"</span><span class="op">)</span></span>
-<span><span class="va">sahie_vars</span></span></code></pre></div>
+<span></span>
+<span><span class="co"># See the full list of variables</span></span>
+<span><span class="va">sahie_vars</span><span class="op">$</span><span class="va">name</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt;  [1] "for"        "in"         "time"       "NIPR_LB90"  "NIPR_PT"   </span></span>
+<span><span class="co">#&gt;  [6] "AGECAT"     "NIC_PT"     "GEOID"      "STATE"      "RACE_DESC" </span></span>
+<span><span class="co">#&gt; [11] "YEAR"       "IPRCAT"     "PCTIC_UB90" "NIPR_MOE"   "PCTUI_LB90"</span></span>
+<span><span class="co">#&gt; [16] "NIC_MOE"    "US"         "COUNTY"     "NUI_UB90"   "PCTUI_MOE" </span></span>
+<span><span class="co">#&gt; [21] "NIC_UB90"   "NUI_MOE"    "SEXCAT"     "PCTUI_PT"   "PCTIC_LB90"</span></span>
+<span><span class="co">#&gt; [26] "PCTUI_UB90" "NUI_PT"     "STABREV"    "AGE_DESC"   "NAME"      </span></span>
+<span><span class="co">#&gt; [31] "NIC_LB90"   "PCTIC_PT"   "PCTIC_MOE"  "IPR_DESC"   "NIPR_UB90" </span></span>
+<span><span class="co">#&gt; [36] "NUI_LB90"   "GEOCAT"     "SEX_DESC"   "RACECAT"</span></span></code></pre>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Full info on the first several variables</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_vars</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <colgroup>
 <col width="5%">
-<col width="50%">
-<col width="16%">
-<col width="6%">
-<col width="2%">
-<col width="2%">
-<col width="6%">
-<col width="8%">
+<col width="47%">
+<col width="17%">
+<col width="7%">
+<col width="3%">
+<col width="3%">
+<col width="7%">
+<col width="9%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">name</th>
@@ -311,350 +324,6 @@ Estimate</td>
 <td align="left">NA</td>
 <td align="left">default displayed</td>
 </tr>
-<tr class="odd">
-<td align="left">NIC_PT</td>
-<td align="left">Number Insured, Estimate</td>
-<td align="left">Estimate</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">GEOID</td>
-<td align="left">State+County FIPS Code</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">STATE</td>
-<td align="left">State FIPS Code</td>
-<td align="left">Geographic ID</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">RACE_DESC</td>
-<td align="left">Race Category Description</td>
-<td align="left">Demographic ID</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">YEAR</td>
-<td align="left">Estimate Year</td>
-<td align="left">Reference Period</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">12</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">IPRCAT</td>
-<td align="left">Income Poverty Ratio Category</td>
-<td align="left">Demographic ID</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">6</td>
-<td align="left">NA</td>
-<td align="left">default displayed</td>
-</tr>
-<tr class="odd">
-<td align="left">PCTIC_UB90</td>
-<td align="left">Percent Insured, Upper Bound for 90% Confidence
-Interval</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">NIPR_MOE</td>
-<td align="left">Number in Demographic Group for Selected Income Range,
-Margin of Error</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">PCTUI_LB90</td>
-<td align="left">Percent Uninsured in Demographic Group for Selected
-Income Range, Lower Bound for 90% Confidence Interval</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">NIC_MOE</td>
-<td align="left">Number Insured, Margin of Error</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">US</td>
-<td align="left">FIPS US Code</td>
-<td align="left">Selectable Geographies</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">COUNTY</td>
-<td align="left">County FIPS Code</td>
-<td align="left">Geographic ID</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">NUI_UB90</td>
-<td align="left">Number Uninsured, Upper Bound for 90% Confidence
-Interval</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">PCTUI_MOE</td>
-<td align="left">Percent Uninsured in Demographic Group for Selected
-Income Range, Margin of Error</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">NIC_UB90</td>
-<td align="left">Number Insured, Upper Bound for 90% Confidence
-Interval</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">NUI_MOE</td>
-<td align="left">Number Uninsured, Margin of Error</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">SEXCAT</td>
-<td align="left">Sex Category</td>
-<td align="left">Demographic ID</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">3</td>
-<td align="left">NA</td>
-<td align="left">default displayed</td>
-</tr>
-<tr class="even">
-<td align="left">PCTUI_PT</td>
-<td align="left">Percent Uninsured in Demographic Group for Selected
-Income Range, Estimate</td>
-<td align="left">Estimate</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">PCTIC_LB90</td>
-<td align="left">Percent Insured, Lower Bound for 90% Confidence
-Interval</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">PCTUI_UB90</td>
-<td align="left">Percent Uninsured in Demographic Group for Selected
-Income Range, Upper Bound for 90% Confidence Interval</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">NUI_PT</td>
-<td align="left">Number Uninsured, Estimate</td>
-<td align="left">Estimate</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">STABREV</td>
-<td align="left">Two-letter Postal Abbreviation</td>
-<td align="left">Geographic ID</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">AGE_DESC</td>
-<td align="left">Age Category Description</td>
-<td align="left">Demographic ID</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">NAME</td>
-<td align="left">State or County Name</td>
-<td align="left">Geographic ID</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">NIC_LB90</td>
-<td align="left">Number Insured, Lower Bound for 90% Confidence
-Interval</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">PCTIC_PT</td>
-<td align="left">Percent Insured in Demographic Group for Selected
-Income Range, Estimate</td>
-<td align="left">Estimate</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">PCTIC_MOE</td>
-<td align="left">Percent Insured in Demographic Group for Selected
-Income Range, Margin of Error</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">IPR_DESC</td>
-<td align="left">Income Poverty Ratio Category Description</td>
-<td align="left">Demographic ID</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">NIPR_UB90</td>
-<td align="left">Number in Demographic Group for Selected Income Range,
-Upper Bound for 90% Confidence Interval</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">NUI_LB90</td>
-<td align="left">Number Uninsured, Lower Bound for 90% Confidence
-Interval</td>
-<td align="left">Uncertainty Measure</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">GEOCAT</td>
-<td align="left">Summary Level (040= state, 050= county)</td>
-<td align="left">Geographic ID</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">SEX_DESC</td>
-<td align="left">Sex Category Description</td>
-<td align="left">Demographic ID</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">RACECAT</td>
-<td align="left">Race Category</td>
-<td align="left">Demographic ID</td>
-<td align="left">int</td>
-<td align="left">N/A</td>
-<td align="left">4</td>
-<td align="left">NA</td>
-<td align="left">default displayed</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -664,7 +333,7 @@ Interval</td>
 </h3>
 <p>We can also use <code>listCensusMetadata</code> to see which
 geographic levels are available.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>, </span>
 <span>    type <span class="op">=</span> <span class="st">"geography"</span><span class="op">)</span></span></code></pre></div>
@@ -731,7 +400,7 @@ for all counties nationally or within a specific state.</p>
 (<code>PCTUI_PT</code>) and number (<code>NUI_PT</code>) of people
 uninsured, using the wildcard star (*) to retrieve data for all
 counties.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_counties</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"NUI_PT"</span><span class="op">)</span>, </span>
@@ -804,7 +473,7 @@ counties.</p>
 the SAHIE. We’ll use <code>region</code> to specify county-level results
 and <code>regionin</code> to filter to Virginia, state code 51. We’ll
 get uninsured rates by income group, <code>IPRCAT</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_virginia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
@@ -896,7 +565,7 @@ changing <code>time = X</code> to <code>time = "from X to Y"</code>.
 Let’s get that data for DeKalb County, Georgia using county fips code
 089 and state fips code 13. You can look up fips codes on the <a href="https://www.census.gov/library/reference/code-lists/ansi.html" class="external-link">Census
 Bureau website</a>.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
@@ -1023,7 +692,7 @@ Care Act.</p>
 <p>Getting this data for Los Angeles county (fips code 06037) we can see
 the dramatic decrease in the uninsured rate in this income group after
 California expanded Medicaid.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_138</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"NUI_PT"</span><span class="op">)</span>, </span>
@@ -1139,7 +808,7 @@ California expanded Medicaid.</p>
 </div>
 <p>We can also get data for other useful demographics such as age
 group.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_age</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"NUI_PT"</span>, <span class="st">"AGECAT"</span>, <span class="st">"AGE_DESC"</span><span class="op">)</span>, </span>
@@ -1256,7 +925,7 @@ Notice that income is top coded at $250,000 — meaning any tract’s income
 that is above that threshold is listed as $250,001. You can see a value
 has a special meaning in the “EA” (estimate annotation) and “MA” (margin
 of error annotation) columns.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acs_income</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>, </span>
@@ -1329,7 +998,7 @@ an example, we’ll get the estimate, margin of error and annotations for
 median household income in the past 12 months for Census tracts in
 Alaska using group <code>B19013</code>.</p>
 <p>First, see descriptions of the variables in group B19013:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">group_B19013</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2017</span>,</span>
@@ -1408,7 +1077,7 @@ INFLATION-ADJUSTED DOLLARS)</td>
 could alternatively manually list each variable as
 <code>vars = c("NAME", "B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA")</code>,
 but using the groups is much easier.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acs_income_group</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>, </span>
 <span>    vintage <span class="op">=</span> <span class="fl">2017</span>, </span>
@@ -1525,7 +1194,7 @@ from one state at a time. In this example, we use the built in
 <code>fips</code> list of state <a href="https://www.census.gov/library/reference/code-lists/ansi.html" class="external-link">FIPS
 codes</a> to request tract-level data from each state and join into a
 single data frame.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tracts</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">f</span> <span class="kw">in</span> <span class="va">fips</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">stateget</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"state:"</span>, <span class="va">f</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
@@ -1540,7 +1209,7 @@ single data frame.</p>
 <span><span class="co"># How many tracts are present?</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">tracts</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] 73057</span></span></code></pre>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tracts</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -1596,7 +1265,7 @@ also be used with a string of nested geographies, as shown below.</p>
 state and county to retrieve block-level data. Use <code>region</code>
 to request block level data, and <code>regionin</code> to specify the
 desired state and county.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data2010</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"dec/sf1"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2010</span>,</span>

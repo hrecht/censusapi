@@ -102,7 +102,12 @@ Let's see what variables are available in the SAHIE API:
 sahie_vars <- listCensusMetadata(
 	name = "timeseries/healthins/sahie", 
 	type = "variables")
-sahie_vars
+
+# See the full list of variables
+sahie_vars$name
+
+# Full info on the first several variables
+head(sahie_vars)
 ```
 
 ### Choosing regions
