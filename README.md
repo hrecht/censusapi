@@ -2,7 +2,7 @@
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/censusapi)](https://CRAN.R-project.org/package=censusapi)
-[![CRAN downloads badge](http://cranlogs.r-pkg.org/badges/grand-total/censusapi)](http://cranlogs.r-pkg.org/badges/grand-total/censusapi)
+[![CRAN downloads badge](https://cranlogs.r-pkg.org:443/badges/grand-total/censusapi)](https://cranlogs.r-pkg.org:443/badges/grand-total/censusapi)
 [![R-CMD-check](https://github.com/hrecht/censusapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hrecht/censusapi/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 

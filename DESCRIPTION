@@ -18,7 +18,6 @@ Imports:
     utils
 Suggests:
     knitr,
-    rmarkdown,
-    ggplot2
+    rmarkdown
 VignetteBuilder: knitr
 Encoding: UTF-8
