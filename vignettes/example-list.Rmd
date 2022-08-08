@@ -76,7 +76,7 @@ head(acs_subject)
 
 ### ACS Comparison Profiles
 
-Get the annaul median household income in inflation-adjusted 2019 dollars for Alabama cities for the past five years.
+Get the annual median household income in inflation-adjusted 2019 dollars for Alabama cities for the past five years.
 ```{r}
 acs_comparison <- getCensus(
 	name = "acs/acs1/cprofile",
@@ -218,6 +218,17 @@ head(nonemp)
 ## Decennial Census
 [Decennial Census documentation](https://www.census.gov/data/developers/data-sets/decennial-census.html)
 
+Using the 2020 Decennial Census redistricting file, get the total population for places in Arkansas.
+```{r}
+data2020 <- getCensus(
+	name = "dec/pl",
+	vintage = 2020,
+	vars = c("NAME", "P1_001N"), 
+	region = "place:*",
+	regionin = "state:05")
+head(data2020)
+```
+
 Get total population and the number of housing units for metropolitan/micropolitan statistical areas in 2010.
 ```{r}
 data2010 <- getCensus(
@@ -261,7 +272,7 @@ head(tract_pop)
 [Decennial Census Self-Response Rates documentation](https://www.census.gov/data/developers/data-sets/decennial-response-rates.html)
 Get self-response rates for the 2020 and 2010 Decennial Census by state, county, tract, place and more.
 
-Get overall and internet reponse rates for all counties.
+Get overall and internet repose rates for all counties.
 ```{r}
 county_responses <- getCensus(
 	name = "dec/responserate",
@@ -514,7 +525,7 @@ head(govs)
 ## Quarterly Workforce Indicators
 [Quarterly Workforce Indicators documentation](https://www.census.gov/data/developers/data-sets/qwi.html)
 
-The QWI endpoints allow both simple calls and very specfic ones. Make sure to read the documentation closely.
+The QWI endpoints allow both simple calls and very specific ones. Make sure to read the documentation closely.
 Here's a simple call that gets employment data by county.
 ```{r}
 qwi_counties <- getCensus(

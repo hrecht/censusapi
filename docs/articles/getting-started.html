@@ -130,7 +130,7 @@ argument in <code><a href="../reference/getCensus.html">getCensus()</a></code> i
 use<code><a href="../reference/listCensusApis.html">listCensusApis()</a></code>. This data frame includes useful
 information for making your API call, including the dataset’s name,
 description and title, as well as a contact email for questions about
-the underyling data.</p>
+the underlying data.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">apis</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusApis.html">listCensusApis</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">apis</span><span class="op">)</span></span></code></pre></div>
@@ -224,16 +224,15 @@ available in the SAHIE API:</p>
 <span>    type <span class="op">=</span> <span class="st">"variables"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_vars</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
 <col width="5%">
-<col width="47%">
-<col width="17%">
-<col width="7%">
+<col width="56%">
+<col width="11%">
+<col width="8%">
 <col width="3%">
 <col width="3%">
-<col width="7%">
-<col width="9%">
+<col width="10%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">name</th>
@@ -242,41 +241,10 @@ available in the SAHIE API:</p>
 <th align="left">predicateType</th>
 <th align="left">group</th>
 <th align="left">limit</th>
-<th align="left">predicateOnly</th>
 <th align="left">required</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">for</td>
-<td align="left">Census API FIPS ‘for’ clause</td>
-<td align="left">Census API Geography Specification</td>
-<td align="left">fips-for</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">in</td>
-<td align="left">Census API FIPS ‘in’ clause</td>
-<td align="left">Census API Geography Specification</td>
-<td align="left">fips-in</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">time</td>
-<td align="left">ISO-8601 Date/Time value</td>
-<td align="left">Census API Date/Time Specification</td>
-<td align="left">datetime</td>
-<td align="left">N/A</td>
-<td align="left">0</td>
-<td align="left">TRUE</td>
-<td align="left">true</td>
-</tr>
-<tr class="even">
 <td align="left">NIPR_LB90</td>
 <td align="left">Number in Demographic Group for Selected Income Range,
 Lower Bound for 90% Confidence Interval</td>
@@ -285,9 +253,8 @@ Lower Bound for 90% Confidence Interval</td>
 <td align="left">N/A</td>
 <td align="left">0</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NIPR_PT</td>
 <td align="left">Number in Demographic Group for Selected Income Range,
 Estimate</td>
@@ -296,17 +263,42 @@ Estimate</td>
 <td align="left">N/A</td>
 <td align="left">0</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">AGECAT</td>
 <td align="left">Age Category</td>
 <td align="left">Demographic ID</td>
 <td align="left">int</td>
 <td align="left">N/A</td>
 <td align="left">6</td>
-<td align="left">NA</td>
 <td align="left">default displayed</td>
+</tr>
+<tr class="even">
+<td align="left">NIC_PT</td>
+<td align="left">Number Insured, Estimate</td>
+<td align="left">Estimate</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">GEOID</td>
+<td align="left">State+County FIPS Code</td>
+<td align="left">Uncertainty Measure</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">STATE</td>
+<td align="left">State FIPS Code</td>
+<td align="left">Geographic ID</td>
+<td align="left">int</td>
+<td align="left">N/A</td>
+<td align="left">0</td>
+<td align="left">NA</td>
 </tr>
 </tbody>
 </table>
@@ -889,9 +881,9 @@ group.</p>
 <div class="section level2">
 <h2 id="annotations">Annotations<a class="anchor" aria-label="anchor" href="#annotations"></a>
 </h2>
-<p>Some Census datasets, inclduing the American Community Survey, use
+<p>Some Census datasets, including the American Community Survey, use
 annotated values. These values use numbers or symbols to indicate that
-the data is unavailable, has been topcoded, has an insufficient sample
+the data is unavailable, has been top coded, has an insufficient sample
 size, or other noteworthy characteristics. Read more from the Census
 Bureau on <a href="https://www.census.gov/data/developers/data-sets/acs-1year/notes-on-acs-estimate-and-annotation-values.html" class="external-link">ACS
 annotation meanings</a> and <a href="https://www.census.gov/data/developers/data-sets/acs-1year/notes-on-acs-api-variable-types.html" class="external-link">ACS
@@ -903,8 +895,8 @@ using data for a small geography make sure to check for values like
 values to exclude as needed.</p>
 <p>As an example, we’ll get median income with associated annotations
 and margin of error, for three census tracts in Washington, DC — one
-that is available, one that is topcoded, and one that is unavailable.
-Notice that income is topcoded at $250,000 — meaning any tract’s income
+that is available, one that is top coded, and one that is unavailable.
+Notice that income is top coded at $250,000 — meaning any tract’s income
 that is above that threshold is listed as $250,001. Some are not
 available and are listed as -666666666. You can see these annotations in
 the “EA” (estimate annotation) and “MA” (margin of error annotation)
@@ -1452,6 +1444,15 @@ necessary. The APIs did not always enforce this (previously,
 Bureau fIPS reference</a> for valid FIPS codes.</p>
 </div>
 <div class="section level3">
+<h3 id="general">General<a class="anchor" aria-label="anchor" href="#general"></a>
+</h3>
+<p>Read the <a href="https://www.census.gov/data/developers/data-sets.html" class="external-link">online
+documentation</a> for your dataset. Unfortunately, some information is
+not included in the dataset metadata or webpage and is only available in
+PDFs. These PDFs are linked on the Census Bureau’s online documentation
+pages. Please check for PDF documentation.</p>
+</div>
+<div class="section level3">
 <h3 id="unexpected-errors">Unexpected errors<a class="anchor" aria-label="anchor" href="#unexpected-errors"></a>
 </h3>
 <p>Occasionally you might get the general error message
@@ -1480,14 +1481,6 @@ found in <code><a href="../reference/listCensusApis.html">listCensusApis()</a></
 survey.</li>
 </ul>
 </div>
-</div>
-<div class="section level2">
-<h2 id="additional-resources">Additional resources<a class="anchor" aria-label="anchor" href="#additional-resources"></a>
-</h2>
-<ul>
-<li><a href="https://www.census.gov/data/developers/guidance/api-user-guide.Overview.html" class="external-link">Census
-Data API User Guide</a></li>
-</ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
