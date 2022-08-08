@@ -19,5 +19,4 @@ Imports:
 Suggests:
     knitr,
     rmarkdown
-VignetteBuilder: knitr
 Encoding: UTF-8

@@ -106,13 +106,41 @@ for all variables in a dataset if value metadata exists. Default is "FALSE".</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># List the variables available in the Small Area Health Insurance Estimates.</span></span></span>
 <span class="r-in"><span><span class="va">sahie_variables</span> <span class="op">&lt;-</span> <span class="fu">listCensusMetadata</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span></span>
 <span class="r-in"><span>  type <span class="op">=</span> <span class="st">"variables"</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_variables</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       for</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        in</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 NIPR_LB90</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   NIPR_PT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    AGECAT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                            label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                   Census API FIPS 'for' clause</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                    Census API FIPS 'in' clause</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                                       ISO-8601 Date/Time value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 Number in Demographic Group for Selected Income Range, Lower Bound for 90% Confidence Interval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                Number in Demographic Group for Selected Income Range, Estimate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                                                                   Age Category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              concept predicateType group limit predicateOnly</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Census API Geography Specification      fips-for   N/A     0          TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Census API Geography Specification       fips-in   N/A     0          TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Census API Date/Time Specification      datetime   N/A     0          TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                Uncertainty Measure           int   N/A     0          &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                           Estimate           int   N/A     0          &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                     Demographic ID           int   N/A     6          &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            required</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3              true</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 default displayed</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># List the geographies available in the 5-year 2020 American Community Survey.</span></span></span>
 <span class="r-in"><span><span class="va">acs_geographies</span> <span class="op">&lt;-</span> <span class="fu">listCensusMetadata</span><span class="op">(</span></span></span>
@@ -120,6 +148,20 @@ for all variables in a dataset if value metadata exists. Default is "FALSE".</p>
 <span class="r-in"><span>  vintage <span class="op">=</span> <span class="fl">2020</span>,</span></span>
 <span class="r-in"><span>  type <span class="op">=</span> <span class="st">"geographies"</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_geographies</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 name geoLevelDisplay referenceDate      requires wildcard</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                 us             010    2020-01-01          NULL     NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2             region             020    2020-01-01          NULL     NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3           division             030    2020-01-01          NULL     NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4              state             040    2020-01-01          NULL     NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5             county             050    2020-01-01         state    state</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 county subdivision             060    2020-01-01 state, county   county</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   optionalWithWCFor</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5             state</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6            county</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># List the variable groups available in the 5-year 2020 American Community Survey.</span></span></span>
 <span class="r-in"><span><span class="va">acs_groups</span> <span class="op">&lt;-</span> <span class="fu">listCensusMetadata</span><span class="op">(</span></span></span>
@@ -127,6 +169,27 @@ for all variables in a dataset if value metadata exists. Default is "FALSE".</p>
 <span class="r-in"><span>  vintage <span class="op">=</span> <span class="fl">2020</span>,</span></span>
 <span class="r-in"><span>  type <span class="op">=</span> <span class="st">"groups"</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_groups</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 B17015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 B18104</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 B17016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 B18105</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 B17017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 B18106</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                                         description</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 POVERTY STATUS IN THE PAST 12 MONTHS OF FAMILIES BY FAMILY TYPE BY SOCIAL SECURITY INCOME BY SUPPLEMENTAL SECURITY INCOME (SSI) AND CASH PUBLIC ASSISTANCE INCOME</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                                                                                SEX BY AGE BY COGNITIVE DIFFICULTY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                      POVERTY STATUS IN THE PAST 12 MONTHS OF FAMILIES BY FAMILY TYPE BY WORK EXPERIENCE OF HOUSEHOLDER AND SPOUSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                                                                                                               SEX BY AGE BY AMBULATORY DIFFICULTY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                                                      POVERTY STATUS IN THE PAST 12 MONTHS BY HOUSEHOLD TYPE BY AGE OF HOUSEHOLDER</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                                                                                                                SEX BY AGE BY SELF-CARE DIFFICULTY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                     variables       universe </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 http://api.census.gov/data/2020/acs/acs5/groups/B17015.json          FAMILY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 http://api.census.gov/data/2020/acs/acs5/groups/B18104.json NONINST_05_OVER</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 http://api.census.gov/data/2020/acs/acs5/groups/B17016.json          FAMILY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 http://api.census.gov/data/2020/acs/acs5/groups/B18105.json NONINST_05_OVER</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 http://api.census.gov/data/2020/acs/acs5/groups/B17017.json           HSHLD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 http://api.census.gov/data/2020/acs/acs5/groups/B18106.json NONINST_05_OVER</span>
 <span class="r-in"><span><span class="co"># Create a data dictionary with all variable names and encoded values for</span></span></span>
 <span class="r-in"><span><span class="co"># a microdata API.</span></span></span>
 <span class="r-in"><span><span class="va">cbp_dict</span> <span class="op">&lt;-</span> <span class="fu">listCensusMetadata</span><span class="op">(</span></span></span>
@@ -135,6 +198,34 @@ for all variables in a dataset if value metadata exists. Default is "FALSE".</p>
 <span class="r-in"><span>  type <span class="op">=</span> <span class="st">"variables"</span>,</span></span>
 <span class="r-in"><span>  include_values <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cbp_dict</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        name                                      label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       for               Census API FIPS 'for' clause</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        in                Census API FIPS 'in' clause</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     ucgid Uniform Census Geography Identifier clause</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     EMP_N        Noise range for number of employees</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     STATE                                  Geography</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 PAYQTR1_N      Noise range for first-quarter payroll</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                                                                     concept</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                                                                                                        Census API Geography Specification</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                                                                                                        Census API Geography Specification</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                                                                                                                        Census API Geography Specification</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 All Sectors: County Business Patterns, including ZIP Code Business Patterns, by Legal Form of Organization and Employment Size Class for the U.S., States, and Selected Geographies: 2020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                                                                                                                                                      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 All Sectors: County Business Patterns, including ZIP Code Business Patterns, by Legal Form of Organization and Employment Size Class for the U.S., States, and Selected Geographies: 2020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   predicateType     group limit predicateOnly hasGeoCollectionSupport</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      fips-for       N/A     0          TRUE                    &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       fips-in       N/A     0          TRUE                    &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         ucgid       N/A     0          TRUE                    TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4           int CB2000CBP     0          &lt;NA&gt;                    &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          &lt;NA&gt;       N/A     0          &lt;NA&gt;                    &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6           int CB2000CBP     0          &lt;NA&gt;                    &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    attributes required values_code values_label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     EMP_N_F     &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5        &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 PAYQTR1_N_F     &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># List the value labels of the NAICS2017 variable in the 2020 County</span></span></span>
 <span class="r-in"><span><span class="co"># Business Patterns dataset.</span></span></span>
@@ -144,6 +235,13 @@ for all variables in a dataset if value metadata exists. Default is "FALSE".</p>
 <span class="r-in"><span>  type <span class="op">=</span> <span class="st">"values"</span>,</span></span>
 <span class="r-in"><span>  variable <span class="op">=</span> <span class="st">"NAICS2017"</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cbp_naics_values</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     code                                      label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     00                      Total for all sectors</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 000000                             Industry total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     11 Agriculture, forestry, fishing and hunting</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    111                            Crop production</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   1111                  Oilseed and grain farming</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  11111                            Soybean farming</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># List of variables that are included in the B17020 group in the</span></span></span>
 <span class="r-in"><span><span class="co"># 5-year American Community Survey.</span></span></span>
@@ -153,7 +251,35 @@ for all variables in a dataset if value metadata exists. Default is "FALSE".</p>
 <span class="r-in"><span>  type <span class="op">=</span> <span class="st">"variables"</span>,</span></span>
 <span class="r-in"><span>  group <span class="op">=</span> <span class="st">"B17020"</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">group_B17020</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 B17020_017EA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 B17020_016MA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 B17020_016EA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 B17020_015MA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 B17020_015EA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 B17020_014EA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                          label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     Annotation of Estimate!!Total!!Income in the past 12 months at or above poverty level!!85 years and over</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Annotation of Margin of Error!!Total!!Income in the past 12 months at or above poverty level!!75 to 84 years</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        Annotation of Estimate!!Total!!Income in the past 12 months at or above poverty level!!75 to 84 years</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 Annotation of Margin of Error!!Total!!Income in the past 12 months at or above poverty level!!60 to 74 years</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5        Annotation of Estimate!!Total!!Income in the past 12 months at or above poverty level!!60 to 74 years</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6        Annotation of Estimate!!Total!!Income in the past 12 months at or above poverty level!!18 to 59 years</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                       concept predicateType  group limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 POVERTY STATUS IN THE PAST 12 MONTHS BY AGE        string B17020     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 POVERTY STATUS IN THE PAST 12 MONTHS BY AGE        string B17020     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 POVERTY STATUS IN THE PAST 12 MONTHS BY AGE        string B17020     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 POVERTY STATUS IN THE PAST 12 MONTHS BY AGE        string B17020     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 POVERTY STATUS IN THE PAST 12 MONTHS BY AGE        string B17020     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 POVERTY STATUS IN THE PAST 12 MONTHS BY AGE        string B17020     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   predicateOnly</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6          TRUE</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

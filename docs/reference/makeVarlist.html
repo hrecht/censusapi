@@ -95,17 +95,34 @@ Options are "all", "name", "label", or "concept".</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Return a list, and then use getCensus function to retrieve those variables</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="va">myvars</span> <span class="op">&lt;-</span> <span class="fu">makeVarlist</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"timeseries/poverty/saipe"</span>,</span></span>
 <span class="r-in"><span>  find <span class="op">=</span> <span class="st">"Ages 0-4"</span>,</span></span>
 <span class="r-in"><span>  varsearch <span class="op">=</span> <span class="st">"label"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">myvars</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "SAEPOVRT0_4_MOE"  "SAEPOVRT0_4_UB90" "SAEPOVRT0_4_LB90" "SAEPOVRT0_4_PT"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "SAEPOV0_4_PT"     "SAEPOVU_0_4"      "SAEPOV0_4_MOE"    "SAEPOV0_4_UB90"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [9] "SAEPOV0_4_LB90"  </span>
 <span class="r-in"><span><span class="va">saipe_dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="getCensus.html">getCensus</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"timeseries/poverty/saipe"</span>,</span></span>
 <span class="r-in"><span>  time <span class="op">=</span> <span class="fl">2016</span>,</span></span>
 <span class="r-in"><span>  vars <span class="op">=</span> <span class="va">myvars</span>,</span></span>
 <span class="r-in"><span>  region <span class="op">=</span> <span class="st">"state:*"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">saipe_dt</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   time state SAEPOVRT0_4_MOE SAEPOVRT0_4_UB90 SAEPOVRT0_4_LB90 SAEPOVRT0_4_PT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2016    01             1.5             28.9             25.9           27.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2016    02             1.9             17.0             13.2           15.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 2016    04             1.2             26.1             23.7           24.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 2016    05             1.8             29.1             25.5           27.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 2016    06             0.5             21.2             20.2           20.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 2016    08             1.2             15.1             12.7           13.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   SAEPOV0_4_PT SAEPOVU_0_4 SAEPOV0_4_MOE SAEPOV0_4_UB90 SAEPOV0_4_LB90</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        78675      287177          4418          83093          74257</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         7919       52408          1021           8940           6898</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       106817      428317          5131         111948         101686</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4        50341      184115          3246          53587          47095</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       502432     2430975         13017         515449         489415</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6        46111      330815          3894          50005          42217</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
