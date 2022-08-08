@@ -6,8 +6,10 @@
 #' @keywords metadata
 #' @export
 #' @examples
+#' \dontrun{
 #' apis <- listCensusApis()
 #' head(apis)
+#' }
 listCensusApis <- function() {
 	# Get data.json
 	u <- "https://api.census.gov/data.json"
