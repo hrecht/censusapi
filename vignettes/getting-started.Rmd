@@ -21,17 +21,17 @@ knitr::opts_chunk$set(message = FALSE,
 											comment = "#>")
 ```
 
-`censusapi` is a lightweight package to get data from the U.S. Census Bureau's [APIs](https://www.census.gov/developers/). More than [1,000 Census API endpoints](https://api.census.gov/data.html) are available, including the Decennial Census, American Community Survey, Poverty Statistics, Population Estimates, and Census microdata. This package is designed to let you get data from all of those APIs using the same main functions and syntax for every dataset.
+`censusapi` is a lightweight package that retrieves data from the U.S. Census Bureau's [APIs](https://www.census.gov/developers/). More than [1,000 Census API endpoints](https://api.census.gov/data.html) are available, including the Decennial Census, American Community Survey, Poverty Statistics, Population Estimates, and Census microdata. This package is designed to let you get data from all of those APIs using the same main functions and syntax for every dataset.
 
-This package returns the data as-is with the original variable names created by the Census Bureau and any quirks inherent in the data. Each dataset is a little different. Some are documented thoroughly, others have documentation that is sparse. Sometimes variable names change between years or geographies are added or dropped. This package can't overcome those challenges, but tries to make it easier to get the data for use in your analysis. Make sure to thoroughly read the [documentation](https://www.census.gov/data/developers/data-sets.html) for your dataset and see below for how to [get help with Census data.](#Other-ways-to-get-help) 
+This package returns the data as-is with the original variable names created by the Census Bureau and any quirks inherent in the data. Each dataset is a little different. Some are documented thoroughly, others have documentation that is sparse. Sometimes variable names change each year. This package can't overcome those challenges, but tries to make it easier to get the data for use in your analysis. Make sure to thoroughly read the [documentation](https://www.census.gov/data/developers/data-sets.html) for your dataset and see below for how to [get help with Census data.](#Other-ways-to-get-help) 
 
 ## API key setup
 To use the Census APIs, [sign up](http://api.census.gov/data/key_signup.html) for an API key, which will be sent to your provided email address. You'll need that key to use this package. `censusapi` will use it by default without any extra work on your part. 
 
-Within R, run:
+To save your API key, within R, run:
 ```{r, eval = FALSE}
 # Add key to .Renviron
-Sys.setenv(CENSUS_KEY=YOURKEYHERE)
+Sys.setenv(CENSUS_KEY=PASTEYOURKEYHERE)
 # Reload .Renviron
 readRenviron("~/.Renviron")
 # Check to see that the expected key is output in your R console
@@ -58,8 +58,8 @@ colnames(apis)
 This returns useful information about each endpoint.
 
 * title: Short written description of the dataset
-* name: Programmatic name of the dataset, to be used with `censusapi`
-* vintage: Year of the survey, for use with most endpoints
+* name: Programmatic name of the dataset, to be used with `censusapi` functions
+* vintage: Year of the survey, for use with microdata and aggregate datasets
 * type: Dataset type, which is either Aggregate, Microdata, or Timeseries
 * temporal: Time period of the dataset - only documented sometimes
 * url: Base URL of the endpoint
@@ -70,46 +70,49 @@ This returns useful information about each endpoint.
 ### Dataset types
 There are three types of datasets included in the Census Bureau API universe: aggregate, microdata, and timeseries. These type names were defined by the Census Bureau and are included as a column in `listCensusApis()`. 
 
-Most users will work with summary data, either aggregate or timeseries datasets. Summary data contains pre-calculated numbers or percentages for a given statistic — like the number of children in a state or the median household income. The examples below and in the broader [list of censusapi examples](https://www.hrecht.com/censusapi/articles/example-list.html) use summary data. 
+```{r}
+table(apis$type)
+```
 
-Aggregate datasets, like the American Community Survey or Decennial Census, include data for only one time period, usually one year. Datasets like the American Community Survey contain thousands of these pre-computed variables.
+Most users will work with summary data, either aggregate or timeseries. Summary data contains pre-calculated numbers or percentages for a given statistic — like the number of children in a state or the median household income. The examples below and in the broader [list of censusapi examples](https://www.hrecht.com/censusapi/articles/example-list.html) use summary data. 
 
-Timeseries datasets, including the Small Area Income and Poverty Estimates, the Quarterly Workforce Estimates, and International Trade statistics, allow users to query data for more than one time period in just one API call. 
+Aggregate datasets, like the American Community Survey or Decennial Census, include data for only one time period (a `vintage`), usually one year. Datasets like the American Community Survey contain thousands of these pre-computed variables.
+
+Timeseries datasets, including the Small Area Income and Poverty Estimates, the Quarterly Workforce Estimates, and International Trade statistics, allow users to query data for more than one time period in a single API call. 
 
 Microdata contains the individual-level responses for a survey for use in custom analysis. One row represents one person. Only advanced analysts will want to use microdata. Learn more about what microdata is and how to use it with `censusapi` in [Accessing microdata](https://www.hrecht.com/censusapi/articles/accessing-microdata.html).
 
 ## Using `getCensus`
-The main function in `censusapi` is `getCensus()`, which makes an API call to a given Census API and returns a data frame of results. Each API has slightly different parameters, but there are always a few required arguments:
+The main function in `censusapi` is `getCensus()`, which makes an API call to a given endpoint and returns a data frame with results. Each API has slightly different parameters, but there are always a few required arguments:
 
-* `name`: the programmatic name of the API as defined by the Census, like "acs/acs5" or "timeseries/bds/firms"
-* `vintage`: the dataset year, required for non-timeseries APIs
+* `name`: the programmatic name of the endpoint as defined by the Census, like "acs/acs5" or "timeseries/bds/firms"
+* `vintage`: the survey year, required for aggregate or microdata APIs
 * `vars`: a list of variables to retrieve
-* `region`: the geography level to retrieve, like state or county
+* `region`: the geography level to retrieve, such as state or county, required for most endpoints
 
-Some APIs have additional required or optional arguments, like `time`, `monthly`, or `period`. Check the specific [documentation](https://www.census.gov/data/developers/data-sets.html) for your API and explore its metadata with `listCensusMetadata()` to see what options are allowed.
+Some APIs have additional required or optional arguments, like `time` or `monthly` for some timeseries datasets. Check the specific [documentation](https://www.census.gov/data/developers/data-sets.html) for your API and explore its metadata with `listCensusMetadata()` to see what options are allowed.
 
-Let's walk through an example getting uninsured rates by income group using the [Small Area Health Insurance Estimates API](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html), which provides detailed annual state-level and county-level estimates of health insurance rates for people below age 65.
+Let's walk through an example getting uninsured rates using the [Small Area Health Insurance Estimates API](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html), which provides detailed annual state-level and county-level estimates of health insurance rates for people below age 65.
 
 ### Choosing variables
-`censusapi` includes a metadata function called `listCensusMetadata()` to get information about an API's variable options and geography options.
+`censusapi` includes a metadata function called `listCensusMetadata()` to get information about an API's variable and geography options.
 Let's see what variables are available in the SAHIE API:
 
 ```{r}
 sahie_vars <- listCensusMetadata(
 	name = "timeseries/healthins/sahie", 
 	type = "variables")
-head(sahie_vars)
+sahie_vars
 ```
 
 ### Choosing regions
-We can also use `listCensusMetadata` to see which geographic levels we can get data for using the SAHIE API.
+We can also use `listCensusMetadata` to see which geographic levels are available.
 ```{r}
 listCensusMetadata(
 	name = "timeseries/healthins/sahie", 
 	type = "geography")
 ```
-This API has three geographic levels: `us`, `county` within states, and `state`.
-
+This API has three geographic levels: `us`, `county`, and `state`. County data can be queried for all counties nationally or within a specific state.
 
 ## Making a censusapi call
 First, using `getCensus()`, let's get the percent (`PCTUI_PT`) and number (`NUI_PT`) of people uninsured, using the wildcard star (*) to retrieve data for all counties.
@@ -122,7 +125,7 @@ sahie_counties <- getCensus(
 head(sahie_counties)
 ```
 
-We can also get data on detailed income and demographic groups from the SAHIE. We'll use `region` to specify county-level results and `regionin` to request uninsured rates by income group (`IPRCAT`) for Virginia.
+We can also get data on detailed income and demographic groups from the SAHIE. We'll use `region` to specify county-level results and `regionin` to filter to Virginia, state code 51. We'll get uninsured rates by income group, `IPRCAT`.
 ```{r}
 sahie_virginia <- getCensus(
 	name = "timeseries/healthins/sahie",
@@ -133,7 +136,7 @@ sahie_virginia <- getCensus(
 head(sahie_virginia)
 ```
 
-Because the SAHIE API is a timeseries dataset (as indicated in its name), we can get multiple years of data at once by changing `time = X` to `time = "from X to Y"`. Let's get that data for DeKalb County, Georgia using county fips code 089 and state fips code 13. You can look up fips codes on the [Census Bureau website](https://www.census.gov/library/reference/code-lists/ansi.html).
+Because the SAHIE API is a timeseries dataset, as indicated in its `name`,, we can get multiple years of data at once by changing `time = X` to `time = "from X to Y"`. Let's get that data for DeKalb County, Georgia using county fips code 089 and state fips code 13. You can look up fips codes on the [Census Bureau website](https://www.census.gov/library/reference/code-lists/ansi.html).
 ```{r}
 sahie_years <- getCensus(
 	name = "timeseries/healthins/sahie",
@@ -143,7 +146,7 @@ sahie_years <- getCensus(
 	time = "from 2006 to 2019")
 sahie_years
 ```
-We can also filter the data by income group using the `IPRCAT` variable again. `IPRCAT` = 3 represents <=138% of the federal poverty line. That is the threshold for [Medicaid eligibility](https://www.healthcare.gov/glossary/federal-poverty-level-fpl/) in states that have expanded it under the Affordable Care Act.
+We can also filter the data by income group using the `IPRCAT` variable again. `IPRCAT = 3` represents <=138% of the federal poverty line. That is the threshold for [Medicaid eligibility](https://www.healthcare.gov/glossary/federal-poverty-level-fpl/) in states that have expanded it under the Affordable Care Act.
 
 Getting this data for Los Angeles county (fips code 06037) we can see the dramatic decrease in the uninsured rate in this income group after California expanded Medicaid.
 
@@ -157,7 +160,7 @@ sahie_138 <- getCensus(
 	time = "from 2010 to 2019")
 sahie_138
 ```
-We can also get data for other useful demographics, like age group.
+We can also get data for other useful demographics such as age group.
 ```{r}
 sahie_age <- getCensus(
 	name = "timeseries/healthins/sahie",
@@ -171,9 +174,9 @@ sahie_age
 ## Annotations
 Some Census datasets, including the American Community Survey, use annotated values. These values use numbers or symbols to indicate that the data is unavailable, has been top coded, has an insufficient sample size, or other noteworthy characteristics. Read more from the Census Bureau on [ACS annotation meanings](https://www.census.gov/data/developers/data-sets/acs-1year/notes-on-acs-estimate-and-annotation-values.html) and [ACS variable types](https://www.census.gov/data/developers/data-sets/acs-1year/notes-on-acs-api-variable-types.html).
 
-The `censusapi` package is intended to return the data as-is so that you can receive those unaltered annotations. If you are using data for a small geography make sure to check for values like `-666666666` or check the annotation columns for non-empty values to exclude as needed.
+The `censusapi` package is intended to return the data as-is so that you can receive those unaltered annotations. If you are using data for a small geography like Census tract or block group make sure to check for values like `-666666666` or check the annotation columns for non-empty values to exclude as needed.
 
-As an example, we'll get median income with associated annotations and margin of error, for three census tracts in Washington, DC — one that is available, one that is top coded, and one that is unavailable. Notice that income is top coded at $250,000 — meaning any tract's income that is above that threshold is listed as $250,001. Some are not available and are listed as -666666666. You can see these annotations in the "EA" (estimate annotation) and "MA" (margin of error annotation) columns.
+As an example, we'll get median income with associated annotations and margin of error for three census tracts in Washington, DC. The value for one tract is available, one is top coded, and one is unavailable. Notice that income is top coded at $250,000 — meaning any tract's income that is above that threshold is listed as $250,001. You can see a value has a special meaning in the "EA" (estimate annotation) and "MA" (margin of error annotation) columns.
 
 ```{r}
 acs_income <- getCensus(
@@ -186,48 +189,37 @@ acs_income
 ```
 
 ## Variable groups
-For some surveys, particularly the American Community Survey and Decennial Census, you can get many related variables at once using a `group`, defined by the Census Bureau. In some other data tools, like American FactFinder, this idea is referred to as a `table`.
+For some surveys, particularly the American Community Survey and Decennial Census, you can get many related variables at once using a variable `group`. These groups are defined by the Census Bureau. In some other data tools, like [data.census.gov](https://data.census.gov/cedsci/), this concept is referred to as a `table`.
 
-The American Community Survey (ACS) APIs include estimates (variable names ending in "E"), annotations, margins of error, and statistical significance, depending on the data set. Read more on [ACS variable types](https://www.census.gov/data/developers/data-sets/acs-5year.html) and annotation symbol meanings on the Census website. 
+Some groups have several dozen variables, others just have a few. As an example, we'll get the estimate, margin of error and annotations for median household income in the past 12 months for Census tracts in Alaska using group `B19013`.
 
-You can retrieve these annotation variables manually, by specifying a list of variables. We'll get the estimate, margin of error and annotations for median household income in the past 12 months for Census tracts in Alaska.
+First, see descriptions of the variables in group B19013:
 ```{r}
-acs_income <- getCensus(
-	name = "acs/acs5",
-	vintage = 2017, 
-	vars = c("NAME", "B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA"), 
-	region = "tract:*", 
-	regionin = "state:02")
-head(acs_income)
-```
-
-You can also retrieve also estimates and annotations for a group of variables in one command. Here's the `group` call for that same table, [B19013](https://api.census.gov/data/2016/acs/acs5/groups/B19013.html).
-```{r}
-# See descriptions of the variables in group B19013
 group_B19013 <- listCensusMetadata(
 	name = "acs/acs5",
 	vintage = 2017,
 	type = "variables",
 	group = "B19013")
 group_B19013
+```
 
+Now, retrieve the data using `vars = "group(B19013)"`. You could alternatively manually list each variable as `vars = c("NAME", "B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA")`, but using the groups is much easier.
+```{r}
 acs_income_group <- getCensus(
 	name = "acs/acs5", 
 	vintage = 2017, 
-	vars = c("NAME", "group(B19013)"), 
+	vars = "group(B19013)", 
 	region = "tract:*", 
 	regionin = "state:02")
 head(acs_income_group)
 ```
 
-
 ## Advanced geographies
 
-Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API and run `listCensusMetadata()` to see the available geographies.
+Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API and run `listCensusMetadata(type = "geographies")` to see the available options.
 
-You may want to get get data for many geographies that require a parent geography. For example, tract-level data from the 2010 Decennial Census can only be requested from one state at a time. 
+Tract-level data from the 2010 Decennial Census can only be requested from one state at a time. In this example, we use the built in `fips` list of state [FIPS codes](https://www.census.gov/library/reference/code-lists/ansi.html) to request tract-level data from each state and join into a single data frame.
 
-In this example, we use the built in `fips` list of state [FIPS codes](https://www.census.gov/library/reference/code-lists/ansi.html) to request tract-level data from each state and join into a single data frame.
 ```{r}
 tracts <- NULL
 for (f in fips) {
@@ -240,6 +232,9 @@ for (f in fips) {
 		regionin = stateget)
 	tracts <- rbind(tracts, temp)
 }
+# How many tracts are present?
+nrow(tracts)
+
 head(tracts)
 ```
 
@@ -259,26 +254,27 @@ head(data2010)
 For many more examples and advanced topics check out [all of the articles](https://www.hrecht.com/censusapi/articles/).
 
 ## Troubleshooting
-The APIs contain hundreds of API endpoints and dozens of datasets, each of which work a little differently. The Census Bureau also makes frequent updates, which unfortunately are not always announced in advance. If you're getting an error message or unexpected results, here are some things to check.
+The APIs contain more than 1,000 endpoints, each of which work a little differently. The Census Bureau also makes frequent changes to the APIs, which unfortunately are not usually announced in advance. If you're getting an error message or unexpected results, here are some things to check.
 
 ### Variables
-Use `listCensusMetadata(type = "variables")` on your endpoint to see what variables are available. Occasionally the variable names will change with data updates or API updates. Variable names commonly change between ACS and Decennial survey years.
+Use `listCensusMetadata(type = "variables")` on your endpoint to see what variables are available. Occasionally the names will change from year to year. This is very common with the ACS and Decennial surveys as a well as the Population Estimates Program.
 
-The Census APIs are case-sensitive, which means that if the variable name you want is uppercase you'll need to write it uppercase in your request. Most of the APIs use uppercase variable names, but some use lowercase and some even use sentence case. 
+The Census APIs are case-sensitive, which means that if the variable name you want is uppercase you'll need to write it uppercase in your request. Most of the APIs use uppercase, but some use lowercase and some even use sentence case variable names. 
 
 ### Geographies
 Use `listCensusMetadata(type = "geographies")` on your dataset to check which geographies you can use. Each API has its own list of valid geographies and they occasionally change as the Census Bureau makes updates.
 
-If you're specifying a region by FIPS code, for example `state:01`, make sure to use the full code, padded with 0s if necessary. The APIs did not always enforce this (previously, `state:1` usually worked), but now they do. See the [Census Bureau fIPS reference](https://www.census.gov/library/reference/code-lists/ansi.html) for valid FIPS codes.
+If you're specifying a region by FIPS code, for example `state:01`, make sure to use the full code, padded with 0s if necessary. Previously, specifying `state:1` usually worked, but the APIs now enforce using the full character FIPS codes. See the [Census Bureau FIPS reference](https://www.census.gov/library/reference/code-lists/ansi.html) for valid codes.
 
 ### General
-Read the [online documentation](https://www.census.gov/data/developers/data-sets.html) for your dataset. Unfortunately, some information is not included in the dataset metadata or webpage and is only available in PDFs. These PDFs are linked on the Census Bureau's online documentation pages. Please check for PDF documentation.
+Read the [online documentation](https://www.census.gov/data/developers/data-sets.html) for your dataset. Unfortunately, some information is not included in the developer metadata or documentation pages and is only available in PDFs. These PDFs are linked on the Census Bureau's website. Please check for PDF documentation.
 
 ### Unexpected errors
-Occasionally you might get the general error message `"There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience."` This comes from the Census Bureau and could be caused by any number of problems, including server issues. Try rerunning your API call. If that doesn't work and you are requesting a large amount of data, try reducing the amount that you're requesting, for example getting data for only one state at a time. If you're still having trouble, see below for ways to get help.
+Occasionally you might get the general error message `"There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience."` This comes from the Census Bureau and could be caused by any number of problems, including server issues. Try rerunning your API call. If that doesn't work and you are requesting a large amount of data, try reducing the amount that you're requesting. If you're still having trouble, see below for ways to get help.
 
 ### Other ways to get help
-* Open a [Github issue](https://github.com/hrecht/censusapi/issues) for bugs or issues with this R package.
+* If your `getCensus()` call results in an error, it will print the underlying API call in your R console. You can open this URL in your web browser to view it directly. You can always view the underlying call by using `getCensus(show_call = TRUE)`.
+* Open a [Github issue](https://github.com/hrecht/censusapi/issues) for bugs or issues caused by this R package.
 * Join the public Census Bureau [Slack channel](http://links.govdelivery.com/track?type=click&enid=ZWFzPTEmbWFpbGluZ2lkPTIwMTgwOTE3Ljk0OTc1NjkxJm1lc3NhZ2VpZD1NREItUFJELUJVTC0yMDE4MDkxNy45NDk3NTY5MSZkYXRhYmFzZWlkPTEwMDEmc2VyaWFsPTE3MjA3MjUwJmVtYWlsaWQ9aHJlY2h0MkBnbWFpbC5jb20mdXNlcmlkPWhyZWNodDJAZ21haWwuY29tJmZsPSZleHRyYT1NdWx0aXZhcmlhdGVJZD0mJiY=&&&105&&&https://join.slack.com/t/uscensusbureau/shared_invite/enQtMjQ3NzUyNTM3NDU3LTZmNGI1MmQzY2Y2ZTU1ODJhNDQwMmY2YmZiNmFkNzg4YmJkYmQzZjQyNDhkNDYxN2JhYjkxZDEwMGI2OGU5NzQ?eml=gd&utm_medium=email&utm_source=govdelivery) and ask your question in the R or API rooms.
 * Email the Census Bureau API team at census.data@census.gov for questions relating to the underlying data and APIs. Make sure to include the underlying API call if you're having trouble with a specific API request, not the R code. You can see this API call in the `censusapi` error message. You can also reach out to the contact listed in the dataset metadata found in `listCensusApis()` for questions about a specific survey.
 
