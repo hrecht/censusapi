@@ -149,6 +149,7 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 #' the Census Bureau.
 #' @param key Your Census API key, obtained at https://api.census.gov/data/key_signup.html.
 #' This function will default to a `CENSUS_KEY` stored in your .Renviron if available.
+#' You can specify key as NULL. Census allows a limited number of requests with no API key.
 #' @param ... Other valid arguments to pass to the Census API. Note: the APIs are case sensitive.
 #' @keywords api
 #' @examples
@@ -245,9 +246,11 @@ getCensus <-
 	}
 
 	# Check for key in environment
-	key_env <- Sys.getenv("CENSUS_KEY")
-	if ((key_env == "" & key == key_env)) {
-		stop("'key' argument is missing. A Census API key is required and can be requested at https://api.census.gov/data/key_signup.html.\nPlease add your Census key to your .Renviron - see instructions at https://github.com/hrecht/censusapi#api-key-setup")
+	if (!is.null(key)){
+	  key_env <- Sys.getenv("CENSUS_KEY")
+	  if ((key_env == "" & key == key_env)) {
+	    stop("'key' argument is missing. A Census API key is required and can be requested at https://api.census.gov/data/key_signup.html.\nPlease add your Census key to your .Renviron - see instructions at https://github.com/hrecht/censusapi#api-key-setup")
+	  }
 	}
 
 	apiurl <- constructURL(name, vintage)

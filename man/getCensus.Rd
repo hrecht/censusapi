@@ -37,7 +37,8 @@ or `acs/acs5`. See `listCensusApis()` for options.}
 \item{vintage}{Vintage (year) of dataset, e.g. 2014. Not required for timeseries APIs.}
 
 \item{key}{Your Census API key, obtained at https://api.census.gov/data/key_signup.html.
-This function will default to a `CENSUS_KEY` stored in your .Renviron if available.}
+This function will default to a `CENSUS_KEY` stored in your .Renviron if available.
+You can specify key as NULL. Census allows a limited number of requests with no API key.}
 
 \item{vars}{List of variables to get. Required.}
 
