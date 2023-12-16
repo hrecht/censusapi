@@ -9,11 +9,11 @@
 ">
 <title>Even more censusapi examples • censusapi</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.2/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.8/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Even more censusapi examples">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Even more censusapi examples">
 <meta property="og:description" content="Examples from many of the summary data APIs.
 ">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -1127,21 +1127,13 @@ Survey of Manufactures documentation</a></p>
 </tr>
 <tr class="odd">
 <td align="left">2016</td>
-<td align="left">56</td>
-<td align="left">Wyoming</td>
-<td align="left">Manufacturing</td>
-<td align="left">8377</td>
-<td align="left">31-33</td>
-</tr>
-<tr class="even">
-<td align="left">2016</td>
 <td align="left">04</td>
 <td align="left">Arizona</td>
 <td align="left">Manufacturing</td>
 <td align="left">136946</td>
 <td align="left">31-33</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2016</td>
 <td align="left">05</td>
 <td align="left">Arkansas</td>
@@ -1149,12 +1141,20 @@ Survey of Manufactures documentation</a></p>
 <td align="left">145733</td>
 <td align="left">31-33</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2016</td>
 <td align="left">06</td>
 <td align="left">California</td>
 <td align="left">Manufacturing</td>
 <td align="left">1119896</td>
+<td align="left">31-33</td>
+</tr>
+<tr class="even">
+<td align="left">2016</td>
+<td align="left">08</td>
+<td align="left">Colorado</td>
+<td align="left">Manufacturing</td>
+<td align="left">121069</td>
 <td align="left">31-33</td>
 </tr>
 </tbody>
@@ -1244,21 +1244,21 @@ Business Patterns documentation</a></p>
 <td align="left">23</td>
 </tr>
 <tr class="even">
-<td align="left">41</td>
-<td align="right">108291</td>
-<td align="right">13885</td>
+<td align="left">31</td>
+<td align="right">51768</td>
+<td align="right">6531</td>
 <td align="left">23</td>
 </tr>
 <tr class="odd">
-<td align="left">26</td>
-<td align="right">165921</td>
-<td align="right">19831</td>
+<td align="left">32</td>
+<td align="right">91266</td>
+<td align="right">5379</td>
 <td align="left">23</td>
 </tr>
 <tr class="even">
-<td align="left">27</td>
-<td align="right">134064</td>
-<td align="right">16938</td>
+<td align="left">33</td>
+<td align="right">30802</td>
+<td align="right">4455</td>
 <td align="left">23</td>
 </tr>
 </tbody>
@@ -1306,24 +1306,24 @@ than 1,000 employees (<code>EMPSZES = 260</code>).</p>
 <td align="left">260</td>
 </tr>
 <tr class="even">
-<td align="left">53</td>
-<td align="left">Washington</td>
-<td align="right">466849</td>
-<td align="right">179</td>
+<td align="left">31</td>
+<td align="left">Nebraska</td>
+<td align="right">119676</td>
+<td align="right">58</td>
 <td align="left">260</td>
 </tr>
 <tr class="odd">
-<td align="left">08</td>
-<td align="left">Colorado</td>
-<td align="right">364415</td>
-<td align="right">146</td>
+<td align="left">32</td>
+<td align="left">Nevada</td>
+<td align="right">255015</td>
+<td align="right">103</td>
 <td align="left">260</td>
 </tr>
 <tr class="even">
-<td align="left">25</td>
-<td align="left">Massachusetts</td>
-<td align="right">655117</td>
-<td align="right">258</td>
+<td align="left">33</td>
+<td align="left">New Hampshire</td>
+<td align="right">80441</td>
+<td align="right">28</td>
 <td align="left">260</td>
 </tr>
 </tbody>
@@ -2169,16 +2169,16 @@ Census documentation</a></p>
 <td align="left">54</td>
 </tr>
 <tr class="odd">
-<td align="left">08</td>
-<td align="left">4616</td>
-<td align="left">Y</td>
+<td align="left">02</td>
+<td align="left">17328</td>
+<td align="left">T</td>
 <td align="left">02</td>
 <td align="left">54</td>
 </tr>
 <tr class="even">
 <td align="left">02</td>
-<td align="left">17328</td>
-<td align="left">T</td>
+<td align="left">320</td>
+<td align="left">Y</td>
 <td align="left">02</td>
 <td align="left">54</td>
 </tr>
@@ -2285,63 +2285,63 @@ Indicators documentation</a></p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">367</td>
-<td align="left">MULTI</td>
-<td align="left">653</td>
-<td align="left">no</td>
-<td align="left">ACOMPLETIONS</td>
-<td align="left">yes</td>
-<td align="left">2004-05</td>
-<td align="left">1</td>
-</tr>
-<tr class="even">
-<td align="left">1893</td>
-<td align="left">TOTAL</td>
-<td align="left">653</td>
-<td align="left">no</td>
-<td align="left">ACOMPLETIONS</td>
-<td align="left">yes</td>
-<td align="left">2004-05</td>
-<td align="left">1</td>
-</tr>
-<tr class="odd">
-<td align="left">1505</td>
-<td align="left">SINGLE</td>
-<td align="left">653</td>
-<td align="left">no</td>
-<td align="left">ACOMPLETIONS</td>
-<td align="left">yes</td>
-<td align="left">2004-05</td>
-<td align="left">1</td>
-</tr>
-<tr class="even">
-<td align="left">11</td>
+<td align="left">10</td>
 <td align="left">E_MULTI</td>
-<td align="left">653</td>
+<td align="left">0</td>
 <td align="left">yes</td>
-<td align="left">ACOMPLETIONS</td>
+<td align="left">ASTARTS</td>
+<td align="left">yes</td>
+<td align="left">2004-12</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">1652</td>
+<td align="left">SINGLE</td>
+<td align="left">0</td>
+<td align="left">no</td>
+<td align="left">ASTARTS</td>
 <td align="left">yes</td>
 <td align="left">2004-05</td>
 <td align="left">1</td>
 </tr>
 <tr class="odd">
-<td align="left">4</td>
-<td align="left">E_TOTAL</td>
-<td align="left">653</td>
+<td align="left">1526</td>
+<td align="left">SINGLE</td>
+<td align="left">0</td>
+<td align="left">no</td>
+<td align="left">ASTARTS</td>
 <td align="left">yes</td>
-<td align="left">ACOMPLETIONS</td>
-<td align="left">yes</td>
-<td align="left">2004-05</td>
+<td align="left">2004-06</td>
 <td align="left">1</td>
 </tr>
 <tr class="even">
-<td align="left">4</td>
-<td align="left">E_SINGLE</td>
-<td align="left">653</td>
+<td align="left">1675</td>
+<td align="left">SINGLE</td>
+<td align="left">0</td>
+<td align="left">no</td>
+<td align="left">ASTARTS</td>
 <td align="left">yes</td>
-<td align="left">ACOMPLETIONS</td>
+<td align="left">2004-07</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">1691</td>
+<td align="left">SINGLE</td>
+<td align="left">0</td>
+<td align="left">no</td>
+<td align="left">ASTARTS</td>
 <td align="left">yes</td>
-<td align="left">2004-05</td>
+<td align="left">2004-08</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">1555</td>
+<td align="left">SINGLE</td>
+<td align="left">0</td>
+<td align="left">no</td>
+<td align="left">ASTARTS</td>
+<td align="left">yes</td>
+<td align="left">2004-09</td>
 <td align="left">1</td>
 </tr>
 </tbody>
@@ -2463,99 +2463,99 @@ year.</p>
 <td align="left">06</td>
 <td align="left">037</td>
 <td align="left">Los Angeles County, CA</td>
-<td align="right">23.8</td>
-<td align="left">2006</td>
-</tr>
-<tr class="even">
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">23.1</td>
-<td align="left">2007</td>
-</tr>
-<tr class="odd">
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">23.8</td>
-<td align="left">2008</td>
-</tr>
-<tr class="even">
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">24.9</td>
-<td align="left">2009</td>
-</tr>
-<tr class="odd">
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">25.9</td>
-<td align="left">2010</td>
-</tr>
-<tr class="even">
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">24.8</td>
-<td align="left">2011</td>
-</tr>
-<tr class="odd">
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">24.5</td>
-<td align="left">2012</td>
-</tr>
-<tr class="even">
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">23.7</td>
-<td align="left">2013</td>
-</tr>
-<tr class="odd">
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">17.4</td>
-<td align="left">2014</td>
-</tr>
-<tr class="even">
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
 <td align="right">12.5</td>
 <td align="left">2015</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">06</td>
 <td align="left">037</td>
 <td align="left">Los Angeles County, CA</td>
 <td align="right">10.7</td>
 <td align="left">2016</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">06</td>
 <td align="left">037</td>
 <td align="left">Los Angeles County, CA</td>
 <td align="right">10.1</td>
 <td align="left">2017</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">06</td>
 <td align="left">037</td>
 <td align="left">Los Angeles County, CA</td>
 <td align="right">10.2</td>
 <td align="left">2018</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">06</td>
 <td align="left">037</td>
 <td align="left">Los Angeles County, CA</td>
 <td align="right">11.1</td>
 <td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">23.8</td>
+<td align="left">2006</td>
+</tr>
+<tr class="odd">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">23.1</td>
+<td align="left">2007</td>
+</tr>
+<tr class="even">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">23.8</td>
+<td align="left">2008</td>
+</tr>
+<tr class="odd">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">24.9</td>
+<td align="left">2009</td>
+</tr>
+<tr class="even">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">25.9</td>
+<td align="left">2010</td>
+</tr>
+<tr class="odd">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">24.8</td>
+<td align="left">2011</td>
+</tr>
+<tr class="even">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">24.5</td>
+<td align="left">2012</td>
+</tr>
+<tr class="odd">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">23.7</td>
+<td align="left">2013</td>
+</tr>
+<tr class="even">
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">17.4</td>
+<td align="left">2014</td>
 </tr>
 </tbody>
 </table>
@@ -2575,14 +2575,14 @@ line (<code>IPRCAT = 5</code>), by race and state.</p>
 <div class="kable-table">
 <table style="width:100%;" class="table">
 <colgroup>
+<col width="5%">
 <col width="7%">
-<col width="10%">
-<col width="11%">
-<col width="10%">
-<col width="34%">
+<col width="8%">
+<col width="7%">
+<col width="52%">
+<col width="4%">
 <col width="6%">
-<col width="9%">
-<col width="9%">
+<col width="6%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">state</th>
@@ -2610,7 +2610,7 @@ line (<code>IPRCAT = 5</code>), by race and state.</p>
 <td align="left">Alabama</td>
 <td align="right">14.5</td>
 <td align="left">1</td>
-<td align="left">White alone, not Hispanic</td>
+<td align="left">White alone, not Hispanic or Latino</td>
 <td align="left">2019</td>
 <td align="left">5</td>
 <td align="left">1</td>
@@ -2620,7 +2620,8 @@ line (<code>IPRCAT = 5</code>), by race and state.</p>
 <td align="left">Alabama</td>
 <td align="right">15.8</td>
 <td align="left">2</td>
-<td align="left">Black alone, not Hispanic</td>
+<td align="left">Black or African American alone, not Hispanic or
+Latino</td>
 <td align="left">2019</td>
 <td align="left">5</td>
 <td align="left">1</td>
@@ -2630,7 +2631,7 @@ line (<code>IPRCAT = 5</code>), by race and state.</p>
 <td align="left">Alabama</td>
 <td align="right">36.1</td>
 <td align="left">3</td>
-<td align="left">Hispanic (any race)</td>
+<td align="left">Hispanic or Latino (any race)</td>
 <td align="left">2019</td>
 <td align="left">5</td>
 <td align="left">1</td>
@@ -2650,7 +2651,7 @@ line (<code>IPRCAT = 5</code>), by race and state.</p>
 <td align="left">Alaska</td>
 <td align="right">16.4</td>
 <td align="left">1</td>
-<td align="left">White alone, not Hispanic</td>
+<td align="left">White alone, not Hispanic or Latino</td>
 <td align="left">2019</td>
 <td align="left">5</td>
 <td align="left">1</td>
@@ -2669,7 +2670,7 @@ at birth by country.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">intl_pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/idb/5year"</span>,</span>
-<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"FIPS"</span>, <span class="st">"POP"</span>, <span class="st">"E0"</span><span class="op">)</span>,</span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"GENC"</span>, <span class="st">"POP"</span>, <span class="st">"E0"</span><span class="op">)</span>,</span>
 <span>    time <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">intl_pop</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
@@ -2677,7 +2678,7 @@ at birth by country.</p>
 <thead><tr class="header">
 <th align="left">time</th>
 <th align="left">NAME</th>
-<th align="left">FIPS</th>
+<th align="left">GENC</th>
 <th align="left">POP</th>
 <th align="right">E0</th>
 </tr></thead>
@@ -2685,7 +2686,7 @@ at birth by country.</p>
 <tr class="odd">
 <td align="left">2020</td>
 <td align="left">Andorra</td>
-<td align="left">AN</td>
+<td align="left">AD</td>
 <td align="left">85722</td>
 <td align="right">83.03</td>
 </tr>
@@ -2706,14 +2707,14 @@ at birth by country.</p>
 <tr class="even">
 <td align="left">2020</td>
 <td align="left">Antigua and Barbuda</td>
-<td align="left">AC</td>
+<td align="left">AG</td>
 <td align="left">98012</td>
 <td align="right">77.31</td>
 </tr>
 <tr class="odd">
 <td align="left">2020</td>
 <td align="left">Anguilla</td>
-<td align="left">AV</td>
+<td align="left">AI</td>
 <td align="left">18066</td>
 <td align="right">81.79</td>
 </tr>
@@ -2723,71 +2724,6 @@ at birth by country.</p>
 <td align="left">AL</td>
 <td align="left">3080930</td>
 <td align="right">78.99</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Get predictions of population by age in 2050 for Norway for ages
-10-18. <a href="https://api.census.gov/data/timeseries/idb/1year?get=AREA_KM2,NAME,AGE,POP&amp;FIPS=NO&amp;time=2050" class="external-link uri">https://api.census.gov/data/timeseries/idb/1year?get=AREA_KM2,NAME,AGE,POP&amp;FIPS=NO&amp;time=2050</a></p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">norway_pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
-<span>    name <span class="op">=</span> <span class="st">"timeseries/idb/1year"</span>,</span>
-<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"POP"</span><span class="op">)</span>,</span>
-<span>    time <span class="op">=</span> <span class="fl">2050</span>,</span>
-<span>    FIPS <span class="op">=</span> <span class="st">"NO"</span>,</span>
-<span>    AGE <span class="op">=</span> <span class="st">"10:18"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">norway_pop</span><span class="op">)</span></span></code></pre></div>
-<div class="kable-table">
-<table class="table">
-<thead><tr class="header">
-<th align="left">time</th>
-<th align="left">NAME</th>
-<th align="left">POP</th>
-<th align="left">FIPS</th>
-<th align="left">AGE</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">2050</td>
-<td align="left">Norway</td>
-<td align="left">66797</td>
-<td align="left">NO</td>
-<td align="left">10</td>
-</tr>
-<tr class="even">
-<td align="left">2050</td>
-<td align="left">Norway</td>
-<td align="left">66877</td>
-<td align="left">NO</td>
-<td align="left">11</td>
-</tr>
-<tr class="odd">
-<td align="left">2050</td>
-<td align="left">Norway</td>
-<td align="left">66975</td>
-<td align="left">NO</td>
-<td align="left">12</td>
-</tr>
-<tr class="even">
-<td align="left">2050</td>
-<td align="left">Norway</td>
-<td align="left">67090</td>
-<td align="left">NO</td>
-<td align="left">13</td>
-</tr>
-<tr class="odd">
-<td align="left">2050</td>
-<td align="left">Norway</td>
-<td align="left">67258</td>
-<td align="left">NO</td>
-<td align="left">14</td>
-</tr>
-<tr class="even">
-<td align="left">2050</td>
-<td align="left">Norway</td>
-<td align="left">67513</td>
-<td align="left">NO</td>
-<td align="left">15</td>
 </tr>
 </tbody>
 </table>
@@ -2806,7 +2742,7 @@ you run in to repeated issues or inconsistencies, contact the Census
 Bureau for help or consider using a bulk data download instead.</p>
 <p>Get the general imports value and imports for consumption value for
 all end-use codes and all countries for January 2018.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">imports</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/intltrade/imports/enduse"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CTY_CODE"</span>, <span class="st">"CTY_NAME"</span>, <span class="st">"I_ENDUSE"</span>, <span class="st">"I_ENDUSE_LDESC"</span>, <span class="st">"GEN_VAL_MO"</span>, <span class="st">"CON_VAL_MO"</span><span class="op">)</span>,</span>
@@ -2902,7 +2838,7 @@ Estimates and Projections documentation</a></p>
 <p><a href="https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html" class="external-link">Population
 Estimates documentation</a> Note that variable names and data structure
 in the PEP APIs are not always consistent from year to year.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">popest</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"pep/population"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2019</span>,</span>
@@ -2950,7 +2886,7 @@ in the PEP APIs are not always consistent from year to year.</p>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">popest_housing</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"pep/housing"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2018</span>,</span>
@@ -3019,7 +2955,7 @@ in the PEP APIs are not always consistent from year to year.</p>
 </h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/popest-popproj/popproj.html" class="external-link">Population
 Projections documentation</a></p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">popproj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"pep/projpop"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2014</span>,</span>
@@ -3085,7 +3021,7 @@ Statistics documentation</a></p>
 <h3 id="current-population-survey-poverty-statistics">Current Population Survey Poverty Statistics<a class="anchor" aria-label="anchor" href="#current-population-survey-poverty-statistics"></a>
 </h3>
 <p>Get national poverty rates by race for the past 50 years.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">poverty</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/poverty/histpov2"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RACE"</span>, <span class="st">"PCTPOV"</span><span class="op">)</span>,</span>
@@ -3105,7 +3041,7 @@ Statistics documentation</a></p>
 <td align="left">2020</td>
 <td align="left">1</td>
 <td align="left">1</td>
-<td align="left">11.4</td>
+<td align="left">11.5</td>
 </tr>
 <tr class="even">
 <td align="left">2020</td>
@@ -3129,7 +3065,7 @@ Statistics documentation</a></p>
 <td align="left">2020</td>
 <td align="left">1</td>
 <td align="left">7</td>
-<td align="left">19.5</td>
+<td align="left">19.6</td>
 </tr>
 <tr class="even">
 <td align="left">2020</td>
@@ -3145,7 +3081,7 @@ Statistics documentation</a></p>
 <h3 id="small-area-income-and-poverty-estimates-saipe">Small Area Income and Poverty Estimates (SAIPE)<a class="anchor" aria-label="anchor" href="#small-area-income-and-poverty-estimates-saipe"></a>
 </h3>
 <p>Get poverty rate for children and overall for a single year.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">saipe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/poverty/saipe"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"SAEPOVRT0_17_PT"</span>, <span class="st">"SAEPOVRTALL_PT"</span><span class="op">)</span>,</span>
@@ -3209,7 +3145,7 @@ Statistics documentation</a></p>
 </div>
 <p>Get the poverty rate for children and overall in a single county over
 time.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">saipe_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/poverty/saipe"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"SAEPOVRT0_17_PT"</span>, <span class="st">"SAEPOVRTALL_PT"</span><span class="op">)</span>,</span>
@@ -3286,7 +3222,7 @@ time.</p>
 <p>Get the number (<code>SAEPOV5_17V_PT</code>) and rate
 (<code>SAEPOVRAT5_17RV_PT</code>) of children ages 5-17 living in
 poverty for unified school districts in Massachusetts.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">saipe_schools</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/poverty/saipe/schdist"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SD_NAME"</span>, <span class="st">"SAEPOV5_17V_PT"</span>, <span class="st">"SAEPOVRAT5_17RV_PT"</span><span class="op">)</span>,</span>
@@ -3377,7 +3313,7 @@ to read the Census Bureau’s documentation for variable definitions and
 labels.</p>
 <p>Get expenditures for Public Elementary-Secondary School System
 Finances for Massachusetts.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">govs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/govs"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SVY_COMP_LABEL"</span>, <span class="st">"AGG_DESC"</span>, <span class="st">"AGG_DESC_LABEL"</span> ,<span class="st">"AMOUNT"</span><span class="op">)</span>,</span>
@@ -3414,7 +3350,7 @@ Finances for Massachusetts.</p>
 <td align="left">Annual Survey of School System Finance</td>
 <td align="left">SS0601</td>
 <td align="left">Total current spending</td>
-<td align="left">18243103</td>
+<td align="left">18319427</td>
 <td align="left">2020</td>
 <td align="left">06</td>
 <td align="left">001</td>
@@ -3424,7 +3360,7 @@ Finances for Massachusetts.</p>
 <td align="left">Annual Survey of School System Finance</td>
 <td align="left">SS0604</td>
 <td align="left">Current spending - Instruction - Total</td>
-<td align="left">11837313</td>
+<td align="left">11896530</td>
 <td align="left">2020</td>
 <td align="left">06</td>
 <td align="left">001</td>
@@ -3434,7 +3370,7 @@ Finances for Massachusetts.</p>
 <td align="left">Annual Survey of School System Finance</td>
 <td align="left">SS0610</td>
 <td align="left">Current spending - All other functions</td>
-<td align="left">506940</td>
+<td align="left">507031</td>
 <td align="left">2020</td>
 <td align="left">06</td>
 <td align="left">001</td>
@@ -3445,7 +3381,7 @@ Finances for Massachusetts.</p>
 <td align="left">SS0708</td>
 <td align="left">Current spending - Support services - Other and
 nonspecified support services</td>
-<td align="left">388291</td>
+<td align="left">394395</td>
 <td align="left">2020</td>
 <td align="left">06</td>
 <td align="left">001</td>
@@ -3455,7 +3391,7 @@ nonspecified support services</td>
 <td align="left">Annual Survey of School System Finance</td>
 <td align="left">SS0701</td>
 <td align="left">Current spending - Support services - Total</td>
-<td align="left">5898850</td>
+<td align="left">5915866</td>
 <td align="left">2020</td>
 <td align="left">06</td>
 <td align="left">001</td>
@@ -3466,7 +3402,7 @@ nonspecified support services</td>
 <td align="left">SS0702</td>
 <td align="left">Current spending - Support services - Pupil support
 services</td>
-<td align="left">1469771</td>
+<td align="left">1450732</td>
 <td align="left">2020</td>
 <td align="left">06</td>
 <td align="left">001</td>
@@ -3483,7 +3419,7 @@ Workforce Indicators documentation</a></p>
 <p>The QWI endpoints allow both simple calls and very specific ones.
 Make sure to read the documentation closely. Here’s a simple call that
 gets employment data by county.</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">qwi_counties</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/qwi/sa"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emp"</span>, <span class="st">"EarnBeg"</span><span class="op">)</span>,</span>
@@ -3502,43 +3438,43 @@ gets employment data by county.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">11366</td>
-<td align="left">2751</td>
+<td align="left">11298</td>
+<td align="left">2779</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">001</td>
 </tr>
 <tr class="even">
-<td align="left">66146</td>
-<td align="left">2643</td>
+<td align="left">66223</td>
+<td align="left">2630</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">003</td>
 </tr>
 <tr class="odd">
-<td align="left">7840</td>
-<td align="left">2570</td>
+<td align="left">7812</td>
+<td align="left">2607</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">005</td>
 </tr>
 <tr class="even">
-<td align="left">4008</td>
-<td align="left">2921</td>
+<td align="left">4007</td>
+<td align="left">2942</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">007</td>
 </tr>
 <tr class="odd">
-<td align="left">8127</td>
-<td align="left">2647</td>
+<td align="left">8054</td>
+<td align="left">2615</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">009</td>
 </tr>
 <tr class="even">
-<td align="left">2684</td>
-<td align="left">2387</td>
+<td align="left">2695</td>
+<td align="left">2369</td>
 <td align="left">2016-Q1</td>
 <td align="left">01</td>
 <td align="left">011</td>
@@ -3548,7 +3484,7 @@ gets employment data by county.</p>
 </div>
 <p>Got total employment and average earnings by quarter for a single
 state.</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">qwi_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/qwi/sa"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emp"</span>, <span class="st">"EarnBeg"</span><span class="op">)</span>,</span>
@@ -3565,37 +3501,37 @@ state.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">1881745</td>
+<td align="left">1881761</td>
 <td align="left">3515</td>
 <td align="left">2018-Q1</td>
 <td align="left">01</td>
 </tr>
 <tr class="even">
-<td align="left">1891438</td>
+<td align="left">1891364</td>
 <td align="left">3471</td>
 <td align="left">2018-Q2</td>
 <td align="left">01</td>
 </tr>
 <tr class="odd">
-<td align="left">1911704</td>
+<td align="left">1911647</td>
 <td align="left">3434</td>
 <td align="left">2018-Q3</td>
 <td align="left">01</td>
 </tr>
 <tr class="even">
-<td align="left">1908636</td>
+<td align="left">1908752</td>
 <td align="left">3687</td>
 <td align="left">2018-Q4</td>
 <td align="left">01</td>
 </tr>
 <tr class="odd">
-<td align="left">1913671</td>
+<td align="left">1913724</td>
 <td align="left">3597</td>
 <td align="left">2019-Q1</td>
 <td align="left">01</td>
 </tr>
 <tr class="even">
-<td align="left">1919022</td>
+<td align="left">1918936</td>
 <td align="left">3578</td>
 <td align="left">2019-Q2</td>
 <td align="left">01</td>
@@ -3606,7 +3542,7 @@ state.</p>
 <p>Here’s a much more specific call. Read the Census Bureau’s
 documentation closely to see all of the options allowed by the QWI
 APIs.</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">qwi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/qwi/sa"</span>,</span>
 <span>    region <span class="op">=</span> <span class="st">"state:02"</span>,</span>
@@ -3692,7 +3628,7 @@ APIs.</p>
 <p><a href="https://www.census.gov/data/developers/data-sets/planning-database.html" class="external-link">The
 Planning Database documentation</a> Get population and 2010 Census mail
 return rates for block groups in Autauga County, AL.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pdb</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"pdb/blockgroup"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2018</span>,</span>
@@ -3808,7 +3744,7 @@ return rates for block groups in Autauga County, AL.</p>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer>

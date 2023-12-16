@@ -388,21 +388,9 @@ Get Census Bureau projections of 2020 populations and life expectancy at birth b
 ```{r}
 intl_pop <- getCensus(
 	name = "timeseries/idb/5year",
-	vars = c("NAME", "FIPS", "POP", "E0"),
+	vars = c("NAME", "GENC", "POP", "E0"),
 	time = 2020)
 head(intl_pop)
-```
-
-Get predictions of population by age in 2050 for Norway for ages 10-18.
-https://api.census.gov/data/timeseries/idb/1year?get=AREA_KM2,NAME,AGE,POP&FIPS=NO&time=2050
-```{r}
-norway_pop <- getCensus(
-	name = "timeseries/idb/1year",
-	vars = c("NAME", "POP"),
-	time = 2050,
-	FIPS = "NO",
-	AGE = "10:18")
-head(norway_pop)
 ```
 
 ## International Trade
