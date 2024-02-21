@@ -227,6 +227,7 @@ dec_elderly <- getCensus(
 	vintage = 2020,
 	vars = c("NAME", "DP1_0024P"),
 	region = "metropolitan statistical area/micropolitan statistical area:*")
+head(dec_elderly)
 ```
 
 Using the 2020 Demographic and Housing Characteristics File, get the total number of households ([H9_001N](https://api.census.gov/data/2020/dec/dhc/variables/H9_001N.json)) and the number of 1-person households ([H9_002N](https://api.census.gov/data/2020/dec/dhc/variables/H9_002N.json)) for counties in Maryland.
@@ -237,6 +238,7 @@ dec <- getCensus(
 	vars = c("NAME", "H9_001N", "H9_002N"),
 	region = "county:*",
 	regionin = "state:24")
+head(dec)
 ```
 
 We can use the Detailed Demographic and Housing Characteristics File A (Detailed DHC-A) to get detailed data for specific race and ethnicity groups.

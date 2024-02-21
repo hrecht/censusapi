@@ -1128,13 +1128,21 @@ Survey of Manufactures documentation</a></p>
 </tr>
 <tr class="odd">
 <td align="left">2016</td>
+<td align="left">56</td>
+<td align="left">Wyoming</td>
+<td align="left">Manufacturing</td>
+<td align="left">8377</td>
+<td align="left">31-33</td>
+</tr>
+<tr class="even">
+<td align="left">2016</td>
 <td align="left">04</td>
 <td align="left">Arizona</td>
 <td align="left">Manufacturing</td>
 <td align="left">136946</td>
 <td align="left">31-33</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2016</td>
 <td align="left">05</td>
 <td align="left">Arkansas</td>
@@ -1142,20 +1150,12 @@ Survey of Manufactures documentation</a></p>
 <td align="left">145733</td>
 <td align="left">31-33</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2016</td>
 <td align="left">06</td>
 <td align="left">California</td>
 <td align="left">Manufacturing</td>
 <td align="left">1119896</td>
-<td align="left">31-33</td>
-</tr>
-<tr class="even">
-<td align="left">2016</td>
-<td align="left">08</td>
-<td align="left">Colorado</td>
-<td align="left">Manufacturing</td>
-<td align="left">121069</td>
 <td align="left">31-33</td>
 </tr>
 </tbody>
@@ -1485,7 +1485,54 @@ for metro and micropolitan statistical areas.</p>
 <span>    name <span class="op">=</span> <span class="st">"dec/dp"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"DP1_0024P"</span><span class="op">)</span>,</span>
-<span>    region <span class="op">=</span> <span class="st">"metropolitan statistical area/micropolitan statistical area:*"</span><span class="op">)</span></span></code></pre></div>
+<span>    region <span class="op">=</span> <span class="st">"metropolitan statistical area/micropolitan statistical area:*"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dec_elderly</span><span class="op">)</span></span></code></pre></div>
+<div class="kable-table">
+<table class="table">
+<colgroup>
+<col width="58%">
+<col width="32%">
+<col width="9%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">metropolitan_statistical_area_micropolitan_statistical_area</th>
+<th align="left">NAME</th>
+<th align="right">DP1_0024P</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">10100</td>
+<td align="left">Aberdeen, SD Micro Area</td>
+<td align="right">18.6</td>
+</tr>
+<tr class="even">
+<td align="left">10140</td>
+<td align="left">Aberdeen, WA Micro Area</td>
+<td align="right">22.5</td>
+</tr>
+<tr class="odd">
+<td align="left">10180</td>
+<td align="left">Abilene, TX Metro Area</td>
+<td align="right">16.0</td>
+</tr>
+<tr class="even">
+<td align="left">10220</td>
+<td align="left">Ada, OK Micro Area</td>
+<td align="right">17.2</td>
+</tr>
+<tr class="odd">
+<td align="left">10300</td>
+<td align="left">Adrian, MI Micro Area</td>
+<td align="right">20.0</td>
+</tr>
+<tr class="even">
+<td align="left">10380</td>
+<td align="left">Aguadilla-Isabela, PR Metro Area</td>
+<td align="right">23.0</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Using the 2020 Demographic and Housing Characteristics File, get the
 total number of households (<a href="https://api.census.gov/data/2020/dec/dhc/variables/H9_001N.json" class="external-link">H9_001N</a>)
 and the number of 1-person households (<a href="https://api.census.gov/data/2020/dec/dhc/variables/H9_002N.json" class="external-link">H9_002N</a>)
@@ -1496,7 +1543,63 @@ for counties in Maryland.</p>
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"H9_001N"</span>, <span class="st">"H9_002N"</span><span class="op">)</span>,</span>
 <span>    region <span class="op">=</span> <span class="st">"county:*"</span>,</span>
-<span>    regionin <span class="op">=</span> <span class="st">"state:24"</span><span class="op">)</span></span></code></pre></div>
+<span>    regionin <span class="op">=</span> <span class="st">"state:24"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dec</span><span class="op">)</span></span></code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">county</th>
+<th align="left">NAME</th>
+<th align="right">H9_001N</th>
+<th align="right">H9_002N</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">24</td>
+<td align="left">009</td>
+<td align="left">Calvert County, Maryland</td>
+<td align="right">32754</td>
+<td align="right">6228</td>
+</tr>
+<tr class="even">
+<td align="left">24</td>
+<td align="left">011</td>
+<td align="left">Caroline County, Maryland</td>
+<td align="right">12327</td>
+<td align="right">2905</td>
+</tr>
+<tr class="odd">
+<td align="left">24</td>
+<td align="left">013</td>
+<td align="left">Carroll County, Maryland</td>
+<td align="right">63050</td>
+<td align="right">13324</td>
+</tr>
+<tr class="even">
+<td align="left">24</td>
+<td align="left">015</td>
+<td align="left">Cecil County, Maryland</td>
+<td align="right">39398</td>
+<td align="right">9613</td>
+</tr>
+<tr class="odd">
+<td align="left">24</td>
+<td align="left">017</td>
+<td align="left">Charles County, Maryland</td>
+<td align="right">59107</td>
+<td align="right">13282</td>
+</tr>
+<tr class="even">
+<td align="left">24</td>
+<td align="left">019</td>
+<td align="left">Dorchester County, Maryland</td>
+<td align="right">13721</td>
+<td align="right">4169</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>We can use the Detailed Demographic and Housing Characteristics File
 A (Detailed DHC-A) to get detailed data for specific race and ethnicity
 groups.</p>
@@ -1565,7 +1668,7 @@ of people who are Japanese alone or in any combination
 <table class="table">
 <colgroup>
 <col width="7%">
-<col width="16%">
+<col width="15%">
 <col width="15%">
 <col width="48%">
 <col width="11%">
@@ -1614,9 +1717,9 @@ of people who are Japanese alone or in any combination
 <td align="left">3824</td>
 </tr>
 <tr class="even">
-<td align="left">42</td>
-<td align="left">Pennsylvania</td>
-<td align="right">19434</td>
+<td align="left">13</td>
+<td align="left">Georgia</td>
+<td align="right">22313</td>
 <td align="left">Japanese alone or in any combination</td>
 <td align="left">3824</td>
 </tr>
@@ -3083,22 +3186,13 @@ every survey period available in 2022 and 2023.</p>
 <tr class="even">
 <td align="left">2022</td>
 <td align="left">1</td>
-<td align="right">11.2</td>
-<td align="right">34.1</td>
-<td align="left">March 30, 2022</td>
-<td align="left">April 11, 2022</td>
-<td align="right">44</td>
-</tr>
-<tr class="odd">
-<td align="left">2022</td>
-<td align="left">1</td>
 <td align="right">10.3</td>
 <td align="right">34.3</td>
 <td align="left">March 2, 2022</td>
 <td align="left">March 14, 2022</td>
 <td align="right">43</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2022</td>
 <td align="left">1</td>
 <td align="right">10.1</td>
@@ -3107,7 +3201,7 @@ every survey period available in 2022 and 2023.</p>
 <td align="left">February 7, 2022</td>
 <td align="right">42</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2022</td>
 <td align="left">1</td>
 <td align="right">10.2</td>
@@ -3115,6 +3209,15 @@ every survey period available in 2022 and 2023.</p>
 <td align="left">December 29, 2021</td>
 <td align="left">January 10, 2022</td>
 <td align="right">41</td>
+</tr>
+<tr class="odd">
+<td align="left">2022</td>
+<td align="left">1</td>
+<td align="right">11.2</td>
+<td align="right">34.1</td>
+<td align="left">March 30, 2022</td>
+<td align="left">April 11, 2022</td>
+<td align="right">44</td>
 </tr>
 </tbody>
 </table>
@@ -3783,7 +3886,7 @@ Finances for Massachusetts.</p>
 <span>    EXPENDTYPE <span class="op">=</span> <span class="st">"001"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">govs</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
 <col width="3%">
 <col width="23%">
@@ -3838,17 +3941,6 @@ Finances for Massachusetts.</p>
 <tr class="even">
 <td align="left">25</td>
 <td align="left">Annual Survey of School System Finance</td>
-<td align="left">SS0708</td>
-<td align="left">Current spending - Support services - Other and
-nonspecified support services</td>
-<td align="left">394395</td>
-<td align="left">2020</td>
-<td align="left">06</td>
-<td align="left">001</td>
-</tr>
-<tr class="odd">
-<td align="left">25</td>
-<td align="left">Annual Survey of School System Finance</td>
 <td align="left">SS0701</td>
 <td align="left">Current spending - Support services - Total</td>
 <td align="left">5915866</td>
@@ -3856,13 +3948,24 @@ nonspecified support services</td>
 <td align="left">06</td>
 <td align="left">001</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">25</td>
 <td align="left">Annual Survey of School System Finance</td>
 <td align="left">SS0702</td>
 <td align="left">Current spending - Support services - Pupil support
 services</td>
 <td align="left">1450732</td>
+<td align="left">2020</td>
+<td align="left">06</td>
+<td align="left">001</td>
+</tr>
+<tr class="even">
+<td align="left">25</td>
+<td align="left">Annual Survey of School System Finance</td>
+<td align="left">SS0703</td>
+<td align="left">Current spending - Support services - Instructional
+staff support services</td>
+<td align="left">850493</td>
 <td align="left">2020</td>
 <td align="left">06</td>
 <td align="left">001</td>
