@@ -96,6 +96,11 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 				string_col_parts <- paste0(string_col_parts, "|UNIT_QY|_FLAG")
 				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
 
+				# Household Pulse Survey
+			} else if (name == "timeseries/hps") {
+				numeric_cols <- grep("_RATE|_TOTAL|_UNIV|_MOE|WEEK", names(df), value=TRUE, ignore.case = T)
+				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+
 				# Microdata weighting variables
 			} else if (grepl("cps/", name, ignore.case = T) |
 								 name %in% c("acs/acs5/pums", "acs/acs5/pumspr", "acs/acs1/pums", "acs/acs1/pumspr")) {
