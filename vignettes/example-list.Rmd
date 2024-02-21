@@ -1,14 +1,14 @@
 ---
-title: "Even more censusapi examples"
+title: "censusapi examples"
 output: 
   rmarkdown::html_vignette:
     df_print: kable
 pkgdown:
   as_is: true
 description: >
-  Examples from many of the summary data APIs.
+  Examples from many of the Census APIs.
 vignette: >
-  %\VignetteIndexEntry{Even more censusapi examples}
+  %\VignetteIndexEntry{censusapi examples}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,7 +19,8 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 ```
 
 
-The Census APIs have more than 1,000 endpoints, covering dozens of different surveys.
+The Census APIs have more than 1,000 endpoints, covering dozens of different surveys. This page shows how to get data from most of the key surveys using `censusapi`.
+
 ```{r, message = FALSE}
 library(censusapi)
 ```
@@ -218,17 +219,50 @@ head(nonemp)
 ## Decennial Census
 [Decennial Census documentation](https://www.census.gov/data/developers/data-sets/decennial-census.html)
 
-Using the 2020 Decennial Census redistricting file, get the total population for places in Arkansas.
+### 2020 Decennial Census
+Using the 2020 Demographic Profile, get the percent of the population that is age 65 or older ([DP1_0024P](https://api.census.gov/data/2020/dec/dp/variables/DP1_0024P.json)) for metro and micropolitan statistical areas.
 ```{r}
-data2020 <- getCensus(
-	name = "dec/pl",
+dec_elderly <- getCensus(
+	name = "dec/dp",
 	vintage = 2020,
-	vars = c("NAME", "P1_001N"), 
-	region = "place:*",
-	regionin = "state:05")
-head(data2020)
+	vars = c("NAME", "DP1_0024P"),
+	region = "metropolitan statistical area/micropolitan statistical area:*")
 ```
 
+Using the 2020 Demographic and Housing Characteristics File, get the total number of households ([H9_001N](https://api.census.gov/data/2020/dec/dhc/variables/H9_001N.json)) and the number of 1-person households ([H9_002N](https://api.census.gov/data/2020/dec/dhc/variables/H9_002N.json)) for counties in Maryland.
+```{r}
+dec <- getCensus(
+	name = "dec/dhc",
+	vintage = 2020,
+	vars = c("NAME", "H9_001N", "H9_002N"),
+	region = "county:*",
+	regionin = "state:24")
+```
+
+We can use the Detailed Demographic and Housing Characteristics File A (Detailed DHC-A) to get detailed data for specific race and ethnicity groups.
+
+First, check the value labels for the `POPGROUP` variable.
+```{r}
+popgroup_values <- listCensusMetadata(
+	name = "dec/ddhca",
+	vintage = 2020,	
+	type = "values",
+	variable_name = "POPGROUP") 
+
+head(popgroup_values)
+```
+
+Get the total population ([T01001_001N](https://api.census.gov/data/2020/dec/ddhca/variables/T01001_001N.json)) of people who are Japanese alone or in any combination (`POPGROUP` code 3824) by state.
+```{r}
+dec_population <- getCensus(
+	name = "dec/ddhca",
+	vintage = 2020,
+	vars = c("NAME", "T01001_001N", "POPGROUP_LABEL"),
+	region = "state:*",
+	POPGROUP = 3824)
+head(dec_population)
+```
+### 2010 Decennial Census
 Get total population and the number of housing units for metropolitan/micropolitan statistical areas in 2010.
 ```{r}
 data2010 <- getCensus(
@@ -355,7 +389,7 @@ sahie <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"),
 	region = "county:*",
-	year = 2019)
+	time = 2021)
 head(sahie)
 ```
 
@@ -366,7 +400,7 @@ sahie_annual <- getCensus(
 	vars = c("NAME", "PCTUI_PT"),
 	region = "county:037",
 	regionin = "state:06",
-	year = "2006:2019")
+	time = "from 2006 to 2021")
 sahie_annual
 ```
 
@@ -376,11 +410,40 @@ sahie_nonelderly <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT", "RACECAT", "RACE_DESC"), 
 	region = "state:*", 
-	year = 2019,
+	time = 2021,
 	IPRCAT = 5,
 	AGECAT = 1)
 head(sahie_nonelderly)
 ```
+
+## Household Pulse Survey
+[Household Pulse Survey documentation](https://www.census.gov/data/developers/data-sets/hps.html)
+
+Get the food scarcity rate (Percentage of adults in households where there was either sometimes or often not enough to eat in the last 7 days) and expense difficulty rate (Percentage of adults in households where it has been somewhat or very difficult to pay for usual household expenses in the last 7 days) for every state for one survey period.
+```{r}
+hps_state <- getCensus(
+	name = "timeseries/hps",
+	vars = c("NAME", "FOODSCARCE_RATE", "EXPENSE_RATE",
+					 "COL_START_DATE", "COL_END_DATE"),
+	region = "state:*",
+	WEEK = 63,
+	time = 2023)
+head(hps_state)
+```
+
+Get the national food scarcity rate and expense difficulty rate for every survey period available in 2022 and 2023.
+```{r}
+hps_us <- getCensus(
+	name = "timeseries/hps",
+	vars = c("FOODSCARCE_RATE", "EXPENSE_RATE",
+					 "COL_START_DATE", "COL_END_DATE"),
+	region = "us:*",
+	WEEK = "*",
+	time = "from 2022 to 2023")
+hps_us
+```
+
+
 ## International Data Base
 [International Data Base documentation](https://www.census.gov/data/developers/data-sets/international-database.html)
 

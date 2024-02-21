@@ -1,3 +1,7 @@
+# censusapi 0.9.0 
+* `getCensus()` automatically converts data columns in the Household Pulse Survey to numeric.
+* Update examples in documentation to add new datasets, including more 2020 Decennial Census data and the Household Pulse Survey.
+
 # censusapi 0.8.0 
 * `listCensusApis()` has new columns in the resulting data frame of available API endpoints: the API `contact` email address and `type`: either Aggregate, Timeseries, or Microdata.
 * `listCensusMetadata()` has new functionality to use `value` metadata. This is particularly useful for some of the economic datasets and the microdata APIs.

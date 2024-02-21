@@ -126,7 +126,7 @@ sahie_counties <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT", "NUI_PT"), 
 	region = "county:*", 
-	time = 2019)
+	time = 2021)
 head(sahie_counties)
 ```
 
@@ -137,7 +137,7 @@ sahie_virginia <- getCensus(
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region = "county:*", 
 	regionin = "state:51", 
-	time = 2019)
+	time = 2021)
 head(sahie_virginia)
 ```
 
@@ -148,7 +148,7 @@ sahie_years <- getCensus(
 	vars = c("NAME", "PCTUI_PT"), 
 	region = "county:089", 
 	regionin = "state:13",
-	time = "from 2006 to 2019")
+	time = "from 2006 to 2021")
 sahie_years
 ```
 We can also filter the data by income group using the `IPRCAT` variable again. `IPRCAT = 3` represents <=138% of the federal poverty line. That is the threshold for [Medicaid eligibility](https://www.healthcare.gov/glossary/federal-poverty-level-fpl/) in states that have expanded it under the Affordable Care Act.
@@ -162,7 +162,7 @@ sahie_138 <- getCensus(
 	region = "county:037", 
 	regionin = "state:06", 
 	IPRCAT = 3,
-	time = "from 2010 to 2019")
+	time = "from 2010 to 2021")
 sahie_138
 ```
 We can also get data for other useful demographics such as age group.
@@ -172,7 +172,7 @@ sahie_age <- getCensus(
 	vars = c("NAME", "PCTUI_PT", "NUI_PT", "AGECAT", "AGE_DESC"), 
 	region = "county:037", 
 	regionin = "state:06",
-	time = 2019)
+	time = 2021)
 sahie_age
 ```
 
@@ -186,7 +186,7 @@ As an example, we'll get median income with associated annotations and margin of
 ```{r}
 acs_income <- getCensus(
 	name = "acs/acs5",
-	vintage = 2020, 
+	vintage = 2022, 
 	vars = c("B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA"), 
 	region = "tract:006804,007703,000903",
 	regionin = "county:001&state:11")
@@ -202,7 +202,7 @@ First, see descriptions of the variables in group B19013:
 ```{r}
 group_B19013 <- listCensusMetadata(
 	name = "acs/acs5",
-	vintage = 2017,
+	vintage = 2022,
 	type = "variables",
 	group = "B19013")
 group_B19013
@@ -212,7 +212,7 @@ Now, retrieve the data using `vars = "group(B19013)"`. You could alternatively m
 ```{r}
 acs_income_group <- getCensus(
 	name = "acs/acs5", 
-	vintage = 2017, 
+	vintage = 2022, 
 	vars = "group(B19013)", 
 	region = "tract:*", 
 	regionin = "state:02")
