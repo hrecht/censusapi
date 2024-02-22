@@ -159,34 +159,34 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 #' @examples
 #' \dontrun{
 #' # Get total population and median household income for places (cities, towns, villages)
-#' # in one state from the 5-year ACS.
+#' # in a single state from the 5-year ACS.
 #' acs_simple <- getCensus(
 #'   name = "acs/acs5",
-#'   vintage = 2020,
+#'   vintage = 2022,
 #'   vars = c("NAME", "B01001_001E", "B19013_001E"),
 #'   region = "place:*",
 #'   regionin = "state:01")
 #' head(acs_simple)
 #'
-#' # Get all data from the B19013 variable group.
+#' # Get all data from the B08301 variable group, "Means of Transportation to Work."
 #' # This returns estimates as well as margins of error and annotation flags.
 #' acs_group <- getCensus(
 #'   name = "acs/acs5",
-#'   vintage = 2020,
-#'   vars = c("B01001_001E", "group(B19013)"),
-#'   region = "place:*",
-#'   regionin = "state:01")
+#'   vintage = 2022,
+#'   vars = "group(B08301)",
+#'   region = "state:*)
 #' head(acs_group)
 #'
-#' # Retreive 2010 Decennial Census block-level data within a specific tract,
-#' # using the regionin argument to precisely specify the Census tract.
-#' decennial_2010 <- getCensus(
-#'   name = "dec/sf1",
-#'   vintage = 2010,
-#'   vars = c("NAME","P001001"),
-#'   region = "block:*",
-#'   regionin = "state:36+county:027+tract:010000")
-#' head(decennial_2010)
+#' # Retreive 2020 Decennial Census block group data within a specific Census tract,
+#' # using the regionin argument to precisely specify the Census tract, county,
+#' # and state.
+#' block_group <- getCensus(
+#' 	name = "dec/dhc",
+#' 	vintage = 2020,
+#' 	vars = c("NAME", "P1_001N"),
+#' 	region = "block group:*",
+#' 	regionin = "state:36+county:027+tract:220300")
+#' head(block_group)
 #'
 #' # Get poverty rates for children and for people of all ages over time using the
 #' # Small Area Income and Poverty Estimates API
@@ -194,7 +194,7 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 #'   name = "timeseries/poverty/saipe",
 #'   vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 #'   region = "state:01",
-#'   year = "2000:2019")
+#'   time = "from 2000 to 2022")
 #' head(saipe)
 #'
 #' # Get County Business Patterns data for a specific NAICS sector.

@@ -176,27 +176,10 @@ sahie_age <- getCensus(
 sahie_age
 ```
 
-## Annotations
-Some Census datasets, including the American Community Survey, use annotated values. These values use numbers or symbols to indicate that the data is unavailable, has been top coded, has an insufficient sample size, or other noteworthy characteristics. Read more from the Census Bureau on [ACS annotation meanings](https://www.census.gov/data/developers/data-sets/acs-1year/notes-on-acs-estimate-and-annotation-values.html) and [ACS variable types](https://www.census.gov/data/developers/data-sets/acs-1year/notes-on-acs-api-variable-types.html).
-
-The `censusapi` package is intended to return the data as-is so that you can receive those unaltered annotations. If you are using data for a small geography like Census tract or block group make sure to check for values like `-666666666` or check the annotation columns for non-empty values to exclude as needed.
-
-As an example, we'll get median income with associated annotations and margin of error for three census tracts in Washington, DC. The value for one tract is available, one is top coded, and one is unavailable. Notice that income is top coded at $250,000 — meaning any tract's income that is above that threshold is listed as $250,001. You can see a value has a special meaning in the "EA" (estimate annotation) and "MA" (margin of error annotation) columns.
-
-```{r}
-acs_income <- getCensus(
-	name = "acs/acs5",
-	vintage = 2022, 
-	vars = c("B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA"), 
-	region = "tract:006804,007703,000903",
-	regionin = "county:001&state:11")
-acs_income
-```
-
 ## Variable groups
 For some surveys, particularly the American Community Survey and Decennial Census, you can get many related variables at once using a variable `group`. These groups are defined by the Census Bureau. In some other data tools, like [data.census.gov](https://data.census.gov/cedsci/), this concept is referred to as a `table`.
 
-Some groups have several dozen variables, others just have a few. As an example, we'll get the estimate, margin of error and annotations for median household income in the past 12 months for Census tracts in Alaska using group `B19013`.
+Some groups have several dozen variables, others just have a few. As an example, we'll get the estimate, margin of error and annotations for median household income in the past 12 months for counties in Alabama using group `B19013`.
 
 First, see descriptions of the variables in group B19013:
 ```{r}
@@ -214,8 +197,8 @@ acs_income_group <- getCensus(
 	name = "acs/acs5", 
 	vintage = 2022, 
 	vars = "group(B19013)", 
-	region = "tract:*", 
-	regionin = "state:02")
+	region = "county:*", 
+	regionin = "state:01")
 head(acs_income_group)
 ```
 
@@ -256,30 +239,4 @@ data2010 <- getCensus(
 head(data2010)
 ```
 
-For many more examples and advanced topics check out [all of the articles](https://www.hrecht.com/censusapi/articles/).
-
-## Troubleshooting
-The APIs contain more than 1,000 endpoints, each of which work a little differently. The Census Bureau also makes frequent changes to the APIs, which unfortunately are not usually announced in advance. If you're getting an error message or unexpected results, here are some things to check.
-
-### Variables
-Use `listCensusMetadata(type = "variables")` on your endpoint to see what variables are available. Occasionally the names will change from year to year. This is very common with the ACS and Decennial surveys as a well as the Population Estimates Program.
-
-The Census APIs are case-sensitive, which means that if the variable name you want is uppercase you'll need to write it uppercase in your request. Most of the APIs use uppercase, but some use lowercase and some even use sentence case variable names. 
-
-### Geographies
-Use `listCensusMetadata(type = "geographies")` on your dataset to check which geographies you can use. Each API has its own list of valid geographies and they occasionally change as the Census Bureau makes updates.
-
-If you're specifying a region by FIPS code, for example `state:01`, make sure to use the full code, padded with 0s if necessary. Previously, specifying `state:1` usually worked, but the APIs now enforce using the full character FIPS codes. See the [Census Bureau FIPS reference](https://www.census.gov/library/reference/code-lists/ansi.html) for valid codes.
-
-### General
-Read the [online documentation](https://www.census.gov/data/developers/data-sets.html) for your dataset. Unfortunately, some information is not included in the developer metadata or documentation pages and is only available in PDFs. These PDFs are linked on the Census Bureau's website. Please check for PDF documentation.
-
-### Unexpected errors
-Occasionally you might get the general error message `"There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience."` This comes from the Census Bureau and could be caused by any number of problems, including server issues. Try rerunning your API call. If that doesn't work and you are requesting a large amount of data, try reducing the amount that you're requesting. If you're still having trouble, see below for ways to get help.
-
-### Other ways to get help
-* If your `getCensus()` call results in an error, it will print the underlying API call in your R console. You can open this URL in your web browser to view it directly. You can always view the underlying call by using `getCensus(show_call = TRUE)`.
-* Open a [Github issue](https://github.com/hrecht/censusapi/issues) for bugs or issues caused by this R package.
-* Join the public Census Bureau [Slack channel](http://links.govdelivery.com/track?type=click&enid=ZWFzPTEmbWFpbGluZ2lkPTIwMTgwOTE3Ljk0OTc1NjkxJm1lc3NhZ2VpZD1NREItUFJELUJVTC0yMDE4MDkxNy45NDk3NTY5MSZkYXRhYmFzZWlkPTEwMDEmc2VyaWFsPTE3MjA3MjUwJmVtYWlsaWQ9aHJlY2h0MkBnbWFpbC5jb20mdXNlcmlkPWhyZWNodDJAZ21haWwuY29tJmZsPSZleHRyYT1NdWx0aXZhcmlhdGVJZD0mJiY=&&&105&&&https://join.slack.com/t/uscensusbureau/shared_invite/enQtMjQ3NzUyNTM3NDU3LTZmNGI1MmQzY2Y2ZTU1ODJhNDQwMmY2YmZiNmFkNzg4YmJkYmQzZjQyNDhkNDYxN2JhYjkxZDEwMGI2OGU5NzQ?eml=gd&utm_medium=email&utm_source=govdelivery) and ask your question in the R or API rooms.
-* Email the Census Bureau API team at census.data@census.gov for questions relating to the underlying data and APIs. Make sure to include the underlying API call if you're having trouble with a specific API request, not the R code. You can see this API call in the `censusapi` error message. You can also reach out to the contact listed in the dataset metadata found in `listCensusApis()` for questions about a specific survey.
-
+For many more examples, frequently asked questions, troubleshooting, and advanced topics check out [all of the articles](https://www.hrecht.com/censusapi/articles/).
