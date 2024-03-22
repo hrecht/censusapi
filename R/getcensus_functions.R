@@ -148,13 +148,13 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 #' @param key A Census API key, obtained at https://api.census.gov/data/key_signup.html.
 #' If you have a `CENSUS_KEY` or `CENSUS_API_KEY` stored in your .Renviron file, getCensus()
 #' will automatically use that key. Using a key is recommended but not required.
-#' @param time,year,date,period,monthly Optional arguments used for some time series APIs.
-#' @param category_code,data_type_code,naics,pscode,naics2012,naics2007,naics2002,naics1997,sic
-#' Optional arguments used in economic data APIs.
+#' @param time Time period of data to get, used with time series APIs.
 #' @param show_call List the underlying API call that was sent to the Census Bureau.
 #' @param convert_variables Convert likely numeric variables into numeric data.
 #' Default is true. If false, results will be characters, which is the type returned by
 #' the Census Bureau.
+#' @param year,date,period,monthly,category_code,data_type_code,naics,pscode,naics2012,naics2007,naics2002,naics1997,sic
+#' Optional arguments used in timeseries data APIs.
 #' @param ... Other valid arguments to pass to the Census API. Note: the APIs are case sensitive.
 #' @keywords api
 #' @examples
@@ -175,7 +175,7 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 #'   name = "acs/acs5",
 #'   vintage = 2022,
 #'   vars = "group(B08301)",
-#'   region = "state:*)
+#'   region = "state:*")
 #' head(acs_group)
 #'
 #' # Retreive 2020 Decennial Census block group data within a specific Census tract,
@@ -207,9 +207,7 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 #'   naics2012 = "23")
 #' head(cbp_2016)
 #' }
-#'
 #' @export
-
 getCensus <-
 	function(name,
 					 vintage = NULL,

@@ -26,7 +26,11 @@ knitr::opts_chunk$set(message = FALSE,
 This package returns the data as-is with the original variable names created by the Census Bureau and any quirks inherent in the data. Each dataset is a little different. Some are documented thoroughly, others have documentation that is sparse. Sometimes variable names change each year. This package can't overcome those challenges, but tries to make it easier to get the data for use in your analysis. Make sure to thoroughly read the [documentation](https://www.census.gov/data/developers/data-sets.html) for your dataset and see below for how to [get help with Census data.](#Other-ways-to-get-help) 
 
 ## API key setup
-To use the Census APIs, [sign up](http://api.census.gov/data/key_signup.html) for an API key, which will be sent to your provided email address. You'll need that key to use this package. `censusapi` will use it by default without any extra work on your part. 
+`censusapi` recommends but does not require using an API key from the U.S. Census Bureau. The Census Bureau may limit the number of requests made by IP address if you do not use an API key.
+
+You can [sign up online](http://api.census.gov/data/key_signup.html) to receive a key, which will be sent to your provided email address. 
+
+If you save the key with the name `CENSUS_KEY` or `CENSUS_API_KEY` in your .Renviron file, `censusapi` will use it by default without any extra work on your part.
 
 To save your API key, within R, run:
 ```{r, eval = FALSE}
@@ -38,9 +42,7 @@ readRenviron("~/.Renviron")
 Sys.getenv("CENSUS_KEY")
 ```
 
-Once you've added your census key to your system environment, censusapi will use it by default without any extra work on your part. 
-
-In some instances you might not want to put your key in your .Renviron - for example, if you're on a shared school computer. You can always choose to manually set `key = "YOURKEY"` as an argument in `getCensus()` if you prefer.
+In some instances you might not want to put your key in your .Renviron - for example, if you're on a shared school computer. You can always choose to manually set `key = "PASTEYOURKEYHERE"` as an argument in `getCensus()` if you prefer.
 
 ## Finding your API
 To get started, load the `censusapi` library.

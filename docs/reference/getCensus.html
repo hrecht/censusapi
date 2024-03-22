@@ -116,8 +116,12 @@ will automatically use that key. Using a key is recommended but not required.</p
 <dd><p>Optional hierarchical geography to limit region.</p></dd>
 
 
-<dt>time, year, date, period, monthly</dt>
-<dd><p>Optional arguments used for some time series APIs.</p></dd>
+<dt>time</dt>
+<dd><p>Time period of data to get, used with time series APIs.</p></dd>
+
+
+<dt>year, date, period, monthly, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic</dt>
+<dd><p>Optional arguments used in timeseries data APIs.</p></dd>
 
 
 <dt>show_call</dt>
@@ -130,15 +134,64 @@ Default is true. If false, results will be characters, which is the type returne
 the Census Bureau.</p></dd>
 
 
-<dt>category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic</dt>
-<dd><p>Optional arguments used in economic data APIs.</p></dd>
-
-
 <dt>...</dt>
 <dd><p>Other valid arguments to pass to the Census API. Note: the APIs are case sensitive.</p></dd>
 
 </dl></div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># Get total population and median household income for places (cities, towns, villages)</span></span></span>
+<span class="r-in"><span><span class="co"># in a single state from the 5-year ACS.</span></span></span>
+<span class="r-in"><span><span class="va">acs_simple</span> <span class="op">&lt;-</span> <span class="fu">getCensus</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span></span>
+<span class="r-in"><span>  vintage <span class="op">=</span> <span class="fl">2022</span>,</span></span>
+<span class="r-in"><span>  vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"B01001_001E"</span>, <span class="st">"B19013_001E"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  region <span class="op">=</span> <span class="st">"place:*"</span>,</span></span>
+<span class="r-in"><span>  regionin <span class="op">=</span> <span class="st">"state:01"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_simple</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Get all data from the B08301 variable group, "Means of Transportation to Work."</span></span></span>
+<span class="r-in"><span><span class="co"># This returns estimates as well as margins of error and annotation flags.</span></span></span>
+<span class="r-in"><span><span class="va">acs_group</span> <span class="op">&lt;-</span> <span class="fu">getCensus</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span></span>
+<span class="r-in"><span>  vintage <span class="op">=</span> <span class="fl">2022</span>,</span></span>
+<span class="r-in"><span>  vars <span class="op">=</span> <span class="st">"group(B08301)"</span>,</span></span>
+<span class="r-in"><span>  region <span class="op">=</span> <span class="st">"state:*"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_group</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Retreive 2020 Decennial Census block group data within a specific Census tract,</span></span></span>
+<span class="r-in"><span><span class="co"># using the regionin argument to precisely specify the Census tract, county,</span></span></span>
+<span class="r-in"><span><span class="co"># and state.</span></span></span>
+<span class="r-in"><span><span class="va">block_group</span> <span class="op">&lt;-</span> <span class="fu">getCensus</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  name <span class="op">=</span> <span class="st">"dec/dhc"</span>,</span></span>
+<span class="r-in"><span>  vintage <span class="op">=</span> <span class="fl">2020</span>,</span></span>
+<span class="r-in"><span>  vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"P1_001N"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  region <span class="op">=</span> <span class="st">"block group:*"</span>,</span></span>
+<span class="r-in"><span>  regionin <span class="op">=</span> <span class="st">"state:36+county:027+tract:220300"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">block_group</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Get poverty rates for children and for people of all ages over time using the</span></span></span>
+<span class="r-in"><span><span class="co"># Small Area Income and Poverty Estimates API</span></span></span>
+<span class="r-in"><span><span class="va">saipe</span> <span class="op">&lt;-</span> <span class="fu">getCensus</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  name <span class="op">=</span> <span class="st">"timeseries/poverty/saipe"</span>,</span></span>
+<span class="r-in"><span>  vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"SAEPOVRT0_17_PT"</span>, <span class="st">"SAEPOVRTALL_PT"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  region <span class="op">=</span> <span class="st">"state:01"</span>,</span></span>
+<span class="r-in"><span>  time <span class="op">=</span> <span class="st">"from 2000 to 2022"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">saipe</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Get County Business Patterns data for a specific NAICS sector.</span></span></span>
+<span class="r-in"><span><span class="va">cbp_2016</span> <span class="op">&lt;-</span> <span class="fu">getCensus</span><span class="op">(</span></span></span>
+<span class="r-in"><span> name <span class="op">=</span> <span class="st">"cbp"</span>,</span></span>
+<span class="r-in"><span>  vintage <span class="op">=</span> <span class="st">"2016"</span>,</span></span>
+<span class="r-in"><span>  vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EMP"</span>, <span class="st">"ESTAB"</span>, <span class="st">"NAICS2012_TTL"</span>, <span class="st">"GEO_TTL"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  region <span class="op">=</span> <span class="st">"state:*"</span>,</span></span>
+<span class="r-in"><span>  naics2012 <span class="op">=</span> <span class="st">"23"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cbp_2016</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

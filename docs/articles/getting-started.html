@@ -103,10 +103,16 @@ for your dataset and see below for how to <a href="#Other-ways-to-get-help">get 
 <div class="section level2">
 <h2 id="api-key-setup">API key setup<a class="anchor" aria-label="anchor" href="#api-key-setup"></a>
 </h2>
-<p>To use the Census APIs, <a href="http://api.census.gov/data/key_signup.html" class="external-link">sign up</a> for an API
-key, which will be sent to your provided email address. You’ll need that
-key to use this package. <code>censusapi</code> will use it by default
-without any extra work on your part.</p>
+<p><code>censusapi</code> recommends but does not require using an API
+key from the U.S. Census Bureau. The Census Bureau may limit the number
+of requests made by IP address if you do not use an API key.</p>
+<p>You can <a href="http://api.census.gov/data/key_signup.html" class="external-link">sign up
+online</a> to receive a key, which will be sent to your provided email
+address.</p>
+<p>If you save the key with the name <code>CENSUS_KEY</code> or
+<code>CENSUS_API_KEY</code> in your .Renviron file,
+<code>censusapi</code> will use it by default without any extra work on
+your part.</p>
 <p>To save your API key, within R, run:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Add key to .Renviron</span></span>
@@ -115,13 +121,10 @@ without any extra work on your part.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/readRenviron.html" class="external-link">readRenviron</a></span><span class="op">(</span><span class="st">"~/.Renviron"</span><span class="op">)</span></span>
 <span><span class="co"># Check to see that the expected key is output in your R console</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"CENSUS_KEY"</span><span class="op">)</span></span></code></pre></div>
-<p>Once you’ve added your census key to your system environment,
-censusapi will use it by default without any extra work on your
-part.</p>
 <p>In some instances you might not want to put your key in your
 .Renviron - for example, if you’re on a shared school computer. You can
-always choose to manually set <code>key = "YOURKEY"</code> as an
-argument in <code><a href="../reference/getCensus.html">getCensus()</a></code> if you prefer.</p>
+always choose to manually set <code>key = "PASTEYOURKEYHERE"</code> as
+an argument in <code><a href="../reference/getCensus.html">getCensus()</a></code> if you prefer.</p>
 </div>
 <div class="section level2">
 <h2 id="finding-your-api">Finding your API<a class="anchor" aria-label="anchor" href="#finding-your-api"></a>

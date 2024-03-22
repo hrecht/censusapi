@@ -46,7 +46,9 @@ will automatically use that key. Using a key is recommended but not required.}
 
 \item{regionin}{Optional hierarchical geography to limit region.}
 
-\item{time, year, date, period, monthly}{Optional arguments used for some time series APIs.}
+\item{time}{Time period of data to get, used with time series APIs.}
+
+\item{year, date, period, monthly, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic}{Optional arguments used in timeseries data APIs.}
 
 \item{show_call}{List the underlying API call that was sent to the Census Bureau.}
 
@@ -54,11 +56,60 @@ will automatically use that key. Using a key is recommended but not required.}
 Default is true. If false, results will be characters, which is the type returned by
 the Census Bureau.}
 
-\item{category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic}{Optional arguments used in economic data APIs.}
-
 \item{...}{Other valid arguments to pass to the Census API. Note: the APIs are case sensitive.}
 }
 \description{
 Retrieve Census data from a given API
+}
+\examples{
+\dontrun{
+# Get total population and median household income for places (cities, towns, villages)
+# in a single state from the 5-year ACS.
+acs_simple <- getCensus(
+  name = "acs/acs5",
+  vintage = 2022,
+  vars = c("NAME", "B01001_001E", "B19013_001E"),
+  region = "place:*",
+  regionin = "state:01")
+head(acs_simple)
+
+# Get all data from the B08301 variable group, "Means of Transportation to Work."
+# This returns estimates as well as margins of error and annotation flags.
+acs_group <- getCensus(
+  name = "acs/acs5",
+  vintage = 2022,
+  vars = "group(B08301)",
+  region = "state:*")
+head(acs_group)
+
+# Retreive 2020 Decennial Census block group data within a specific Census tract,
+# using the regionin argument to precisely specify the Census tract, county,
+# and state.
+block_group <- getCensus(
+	name = "dec/dhc",
+	vintage = 2020,
+	vars = c("NAME", "P1_001N"),
+	region = "block group:*",
+	regionin = "state:36+county:027+tract:220300")
+head(block_group)
+
+# Get poverty rates for children and for people of all ages over time using the
+# Small Area Income and Poverty Estimates API
+saipe <- getCensus(
+  name = "timeseries/poverty/saipe",
+  vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
+  region = "state:01",
+  time = "from 2000 to 2022")
+head(saipe)
+
+# Get County Business Patterns data for a specific NAICS sector.
+cbp_2016 <- getCensus(
+ name = "cbp",
+  vintage = "2016",
+  vars = c("EMP", "ESTAB", "NAICS2012_TTL", "GEO_TTL"),
+  region = "state:*",
+  naics2012 = "23")
+head(cbp_2016)
+}
 }
 \keyword{api}
