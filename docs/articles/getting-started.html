@@ -29,7 +29,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">censusapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -167,7 +167,7 @@ defined by the Census Bureau and are included as a column in
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">apis</span><span class="op">$</span><span class="va">type</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Aggregate  Microdata Timeseries </span></span>
-<span><span class="co">#&gt;        623        785         61</span></span></code></pre>
+<span><span class="co">#&gt;        624        856         81</span></span></code></pre>
 <p>Most users will work with summary data, either aggregate or
 timeseries. Summary data contains pre-calculated numbers or percentages
 for a given statistic — like the number of children in a state or the
@@ -564,9 +564,11 @@ get uninsured rates by income group, <code>IPRCAT</code>.</p>
 </div>
 <p>Because the SAHIE API is a timeseries dataset, as indicated in its
 <code>name</code>,, we can get multiple years of data at once by
-changing <code>time = X</code> to <code>time = "from X to Y"</code>.
-Let’s get that data for DeKalb County, Georgia using county fips code
-089 and state fips code 13. You can look up fips codes on the <a href="https://www.census.gov/library/reference/code-lists/ansi.html" class="external-link">Census
+changing <code>time = YYYY</code> to
+<code>time = "from YYYY to YYYY"</code>, or get through the latest data
+available using <code>time = "from YYYY"</code>. Let’s get that data for
+DeKalb County, Georgia using county fips code 089 and state fips code
+13. You can look up fips codes on the <a href="https://www.census.gov/library/reference/code-lists/ansi.html" class="external-link">Census
 Bureau website</a>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
@@ -574,7 +576,7 @@ Bureau website</a>.</p>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
 <span>    region <span class="op">=</span> <span class="st">"county:089"</span>, </span>
 <span>    regionin <span class="op">=</span> <span class="st">"state:13"</span>,</span>
-<span>    time <span class="op">=</span> <span class="st">"from 2006 to 2021"</span><span class="op">)</span></span>
+<span>    time <span class="op">=</span> <span class="st">"from 2006"</span><span class="op">)</span></span>
 <span><span class="va">sahie_years</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -587,116 +589,116 @@ Bureau website</a>.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2015</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">16.9</td>
-</tr>
-<tr class="even">
-<td align="left">2016</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">15.3</td>
-</tr>
-<tr class="odd">
-<td align="left">2017</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">15.9</td>
-</tr>
-<tr class="even">
-<td align="left">2018</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">17.1</td>
-</tr>
-<tr class="odd">
-<td align="left">2019</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">16.9</td>
-</tr>
-<tr class="even">
-<td align="left">2020</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">14.0</td>
-</tr>
-<tr class="odd">
-<td align="left">2021</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">14.2</td>
-</tr>
-<tr class="even">
 <td align="left">2006</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">19.0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2007</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">17.2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2008</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">22.5</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2009</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">22.9</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2010</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">25.8</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2011</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">23.9</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2012</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">21.7</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2013</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">22.1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2014</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">19.4</td>
+</tr>
+<tr class="even">
+<td align="left">2015</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">16.9</td>
+</tr>
+<tr class="odd">
+<td align="left">2016</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">15.3</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">15.9</td>
+</tr>
+<tr class="odd">
+<td align="left">2018</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">17.1</td>
+</tr>
+<tr class="even">
+<td align="left">2019</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">16.9</td>
+</tr>
+<tr class="odd">
+<td align="left">2020</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">14.0</td>
+</tr>
+<tr class="even">
+<td align="left">2021</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">14.2</td>
 </tr>
 </tbody>
 </table>
@@ -716,7 +718,7 @@ California expanded Medicaid.</p>
 <span>    region <span class="op">=</span> <span class="st">"county:037"</span>, </span>
 <span>    regionin <span class="op">=</span> <span class="st">"state:06"</span>, </span>
 <span>    IPRCAT <span class="op">=</span> <span class="fl">3</span>,</span>
-<span>    time <span class="op">=</span> <span class="st">"from 2010 to 2021"</span><span class="op">)</span></span>
+<span>    time <span class="op">=</span> <span class="st">"from 2010"</span><span class="op">)</span></span>
 <span><span class="va">sahie_138</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -731,69 +733,6 @@ California expanded Medicaid.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2015</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">17.8</td>
-<td align="right">402977</td>
-<td align="left">3</td>
-</tr>
-<tr class="even">
-<td align="left">2016</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">15.4</td>
-<td align="right">329251</td>
-<td align="left">3</td>
-</tr>
-<tr class="odd">
-<td align="left">2017</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">14.3</td>
-<td align="right">281842</td>
-<td align="left">3</td>
-</tr>
-<tr class="even">
-<td align="left">2018</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">13.9</td>
-<td align="right">255520</td>
-<td align="left">3</td>
-</tr>
-<tr class="odd">
-<td align="left">2019</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">15.1</td>
-<td align="right">254740</td>
-<td align="left">3</td>
-</tr>
-<tr class="even">
-<td align="left">2020</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">14.4</td>
-<td align="right">230380</td>
-<td align="left">3</td>
-</tr>
-<tr class="odd">
-<td align="left">2021</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">15.1</td>
-<td align="right">249186</td>
-<td align="left">3</td>
-</tr>
-<tr class="even">
 <td align="left">2010</td>
 <td align="left">06</td>
 <td align="left">037</td>
@@ -802,7 +741,7 @@ California expanded Medicaid.</p>
 <td align="right">894385</td>
 <td align="left">3</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2011</td>
 <td align="left">06</td>
 <td align="left">037</td>
@@ -811,7 +750,7 @@ California expanded Medicaid.</p>
 <td align="right">867577</td>
 <td align="left">3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2012</td>
 <td align="left">06</td>
 <td align="left">037</td>
@@ -820,7 +759,7 @@ California expanded Medicaid.</p>
 <td align="right">865516</td>
 <td align="left">3</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2013</td>
 <td align="left">06</td>
 <td align="left">037</td>
@@ -829,13 +768,76 @@ California expanded Medicaid.</p>
 <td align="right">818978</td>
 <td align="left">3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2014</td>
 <td align="left">06</td>
 <td align="left">037</td>
 <td align="left">Los Angeles County, CA</td>
 <td align="right">24.9</td>
 <td align="right">607542</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">2015</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">17.8</td>
+<td align="right">402977</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">2016</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">15.4</td>
+<td align="right">329251</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">2017</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">14.3</td>
+<td align="right">281842</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">2018</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">13.9</td>
+<td align="right">255520</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">2019</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">15.1</td>
+<td align="right">254740</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">2020</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">14.4</td>
+<td align="right">230380</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">2021</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">15.1</td>
+<td align="right">249186</td>
 <td align="left">3</td>
 </tr>
 </tbody>
