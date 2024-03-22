@@ -141,14 +141,14 @@ sahie_virginia <- getCensus(
 head(sahie_virginia)
 ```
 
-Because the SAHIE API is a timeseries dataset, as indicated in its `name`,, we can get multiple years of data at once by changing `time = X` to `time = "from X to Y"`. Let's get that data for DeKalb County, Georgia using county fips code 089 and state fips code 13. You can look up fips codes on the [Census Bureau website](https://www.census.gov/library/reference/code-lists/ansi.html).
+Because the SAHIE API is a timeseries dataset, as indicated in its `name`,, we can get multiple years of data at once by changing `time = YYYY` to `time = "from YYYY to YYYY"`, or get through the latest data available using `time = "from YYYY"`. Let's get that data for DeKalb County, Georgia using county fips code 089 and state fips code 13. You can look up fips codes on the [Census Bureau website](https://www.census.gov/library/reference/code-lists/ansi.html).
 ```{r}
 sahie_years <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT"), 
 	region = "county:089", 
 	regionin = "state:13",
-	time = "from 2006 to 2021")
+	time = "from 2006")
 sahie_years
 ```
 We can also filter the data by income group using the `IPRCAT` variable again. `IPRCAT = 3` represents <=138% of the federal poverty line. That is the threshold for [Medicaid eligibility](https://www.healthcare.gov/glossary/federal-poverty-level-fpl/) in states that have expanded it under the Affordable Care Act.
@@ -162,7 +162,7 @@ sahie_138 <- getCensus(
 	region = "county:037", 
 	regionin = "state:06", 
 	IPRCAT = 3,
-	time = "from 2010 to 2021")
+	time = "from 2010")
 sahie_138
 ```
 We can also get data for other useful demographics such as age group.

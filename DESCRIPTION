@@ -1,5 +1,5 @@
 Package: censusapi
-Version: 0.9.9000
+Version: 0.9.0.9000
 Title: Retrieve Data from the Census APIs
 Authors@R: person("Hannah", "Recht", email = "censusapi.rstats@gmail.com", role = c("aut", "cre"))
 Description: A wrapper for the U.S. Census Bureau APIs that returns data frames of 
@@ -11,7 +11,7 @@ BugReports: https://github.com/hrecht/censusapi/issues
 Depends: R (>= 3.0.0)
 License: GPL-3
 LazyData: true
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.1
 Imports:
     httr,
     jsonlite,

@@ -18,8 +18,6 @@ library(censusapi)
 knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 ```
 
-*NOTE*: This article is under construction.
-
 This package provides basic support for the Census's new microdata APIs, using the same `getCensus()` functions used for summary data. Getting the data with `getCensus()` is easy. Using it responsibly takes some homework.
 
 ## About microdata
@@ -94,7 +92,7 @@ PES5_values
 
 ## Other ways to access microdata
 
-The Census Bureau microdata APIs are helpful for working with a limited just-released datasets. But they're not you're only option. Some other ways to get microdata are:
+The Census Bureau microdata APIs are helpful for working with a limited just-released datasets. But they're not your only option. Some other ways to get microdata are:
 
 * Retrieve standardized, cleaned microdata data from [IPUMS](https://www.ipums.org/) and import with the [impumsr package](https://tech.popdata.org/ipumsr/). IPUMS is widely used in research when the data needed is not brand new. I highly recommend that you check out IPUMS' cleaned files microdata files as well as historic geographic data. These standardized files are generally released months to a year after the raw Census microdata that is available directly from the Census Bureau.
 * Download complete bulk files from the Census FTPs (file transfer protocols.) This is helpful if you need the a large number of variables. You might run in to size limitations getting many variables through the APIs.

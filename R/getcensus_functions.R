@@ -145,6 +145,9 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 #' @param vars List of variables to get. Required.
 #' @param region Geography to get.
 #' @param regionin Optional hierarchical geography to limit region.
+#' @param key A Census API key, obtained at https://api.census.gov/data/key_signup.html.
+#' If you have a `CENSUS_KEY` or `CENSUS_API_KEY` stored in your .Renviron file, getCensus()
+#' will automatically use that key. Using a key is recommended but not required.
 #' @param time,year,date,period,monthly Optional arguments used for some time series APIs.
 #' @param category_code,data_type_code,naics,pscode,naics2012,naics2007,naics2002,naics1997,sic
 #' Optional arguments used in economic data APIs.
@@ -152,8 +155,6 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 #' @param convert_variables Convert likely numeric variables into numeric data.
 #' Default is true. If false, results will be characters, which is the type returned by
 #' the Census Bureau.
-#' @param key Your Census API key, obtained at https://api.census.gov/data/key_signup.html.
-#' This function will default to a `CENSUS_KEY` stored in your .Renviron if available.
 #' @param ... Other valid arguments to pass to the Census API. Note: the APIs are case sensitive.
 #' @keywords api
 #' @examples
@@ -212,7 +213,7 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 getCensus <-
 	function(name,
 					 vintage = NULL,
-					 key = Sys.getenv("CENSUS_KEY"),
+					 key = NULL,
 					 vars,
 					 region = NULL,
 					 regionin = NULL,
@@ -249,12 +250,16 @@ getCensus <-
 		apiurl
 	}
 
-	# Check for key in environment
-	key_env <- Sys.getenv("CENSUS_KEY")
-	if ((key_env == "" & key == key_env)) {
-		stop("'key' argument is missing. A Census API key is required and can be requested at https://api.census.gov/data/key_signup.html.\nPlease add your Census key to your .Renviron - see instructions at https://github.com/hrecht/censusapi#api-key-setup")
+	# Check for key in environment, print a message if one is not provided or in environment
+	if (is.null(key)) {
+		if (Sys.getenv("CENSUS_KEY") != "") {
+			key <- Sys.getenv("CENSUS_KEY")
+		} else if (Sys.getenv("CENSUS_API_KEY") != "") {
+			key <- Sys.getenv("CENSUS_API_KEY")
+		} else {
+			message("You are not using a Census API key. Using a key is recommended but not required.\nThe Census Bureau may limit your daily requests.\nYou can register for an API key at https://api.census.gov/data/key_signup.html\nLearn more at https://www.hrecht.com/censusapi/articles/getting-started.html.")
+		}
 	}
-
 	apiurl <- constructURL(name, vintage)
 
 	# Census API max vars per call = 50
