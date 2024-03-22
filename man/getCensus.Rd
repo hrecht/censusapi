@@ -63,8 +63,8 @@ Retrieve Census data from a given API
 }
 \examples{
 \dontrun{
-# Get total population and median household income for places (cities, towns, villages)
-# in a single state from the 5-year ACS.
+# Get total population and median household income for Census places
+# (cities, towns, villages) in a single state from the 5-year American Community Survey.
 acs_simple <- getCensus(
   name = "acs/acs5",
   vintage = 2022,
@@ -85,31 +85,33 @@ head(acs_group)
 # Retreive 2020 Decennial Census block group data within a specific Census tract,
 # using the regionin argument to precisely specify the Census tract, county,
 # and state.
-block_group <- getCensus(
+decennial_block_group <- getCensus(
 	name = "dec/dhc",
 	vintage = 2020,
 	vars = c("NAME", "P1_001N"),
 	region = "block group:*",
 	regionin = "state:36+county:027+tract:220300")
-head(block_group)
+head(decennial_block_group)
 
-# Get poverty rates for children and for people of all ages over time using the
+# Get poverty rates for children and for people of all ages beginning in 2000 using the
 # Small Area Income and Poverty Estimates API
 saipe <- getCensus(
   name = "timeseries/poverty/saipe",
   vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
   region = "state:01",
-  time = "from 2000 to 2022")
+  time = "from 2000")
 head(saipe)
 
-# Get County Business Patterns data for a specific NAICS sector.
-cbp_2016 <- getCensus(
- name = "cbp",
-  vintage = "2016",
-  vars = c("EMP", "ESTAB", "NAICS2012_TTL", "GEO_TTL"),
-  region = "state:*",
-  naics2012 = "23")
-head(cbp_2016)
+# Get the number of employees and number of establishments in the construction sector,
+# NAICS2017 code 23, using the County Business Patterns API
+cbp <- getCensus(
+	name = "cbp",
+	vintage = 2021,
+	vars = c("EMP", "ESTAB", "NAICS2017_LABEL"),
+	region = "county:*",
+	NAICS2017 = 23)
+head(cbp)
 }
+
 }
 \keyword{api}

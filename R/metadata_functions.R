@@ -58,53 +58,57 @@ listCensusApis <- function() {
 #' @keywords metadata
 #' @examples
 #' \dontrun{
-#'
+#' # type: variables
 #' # List the variables available in the Small Area Health Insurance Estimates.
-#' sahie_variables <- listCensusMetadata(
+#' variables <- listCensusMetadata(
 #'   name = "timeseries/healthins/sahie",
 #'   type = "variables")
-#'  head(sahie_variables)
+#'  head(variables)
 #'
-#' # List the geographies available in the 5-year 2020 American Community Survey.
-#' acs_geographies <- listCensusMetadata(
-#'   name = "acs/acs5",
-#'   vintage = 2020,
-#'   type = "geographies")
-#'  head(acs_geographies)
-#'
-#' # List the variable groups available in the 5-year 2020 American Community Survey.
-#' acs_groups <- listCensusMetadata(
-#'   name = "acs/acs5",
-#'   vintage = 2020,
-#'   type = "groups")
-#'  head(acs_groups)
-
-#' # Create a data dictionary with all variable names and encoded values for
-#' # a microdata API.
-#' cbp_dict <- listCensusMetadata(
-#'   name = "cbp",
-#'   vintage = 2020,
-#'   type = "variables",
-#'   include_values = TRUE)
-#'  head(cbp_dict)
-#'
-#' # List the value labels of the NAICS2017 variable in the 2020 County
-#' # Business Patterns dataset.
-#' cbp_naics_values <- listCensusMetadata(
-#'   name = "cbp",
-#'   vintage = 2020,
-#'   type = "values",
-#'   variable = "NAICS2017")
-#'  head(cbp_naics_values)
-#'
-#' # List of variables that are included in the B17020 group in the
+#' # type: variables for a single variable group
+#' # List the variables that are included in the B17020 group in the
 #' # 5-year American Community Survey.
-#' group_B17020 <- listCensusMetadata(
+#' variable_group <- listCensusMetadata(
 #'   name = "acs/acs5",
-#'   vintage = 2017,
+#'   vintage = 2022,
 #'   type = "variables",
 #'   group = "B17020")
-#'  head(group_B17020)
+#'  head(variable_group)
+#'
+#' # type: variables, with value labels
+#' # Create a data dictionary with all variable names and encoded values for
+#' # a microdata API.
+#' variable_values <- listCensusMetadata(
+#' 	name = "cps/voting/nov",
+#' 	vintage = 2020,
+#' 	type = "variables",
+#' 	include_values = TRUE)
+#' head(variable_values)
+#'
+#'# type: geographies
+#' # List the geographies available in the 5-year American Community Survey.
+#' geographies <- listCensusMetadata(
+#'   name = "acs/acs5",
+#'   vintage = 2022,
+#'   type = "geographies")
+#'  head(geographies)
+#'
+#' # type: groups
+#' # List the variable groups available in the 5-year American Community Survey.
+#' groups <- listCensusMetadata(
+#'   name = "acs/acs5",
+#'   vintage = 2022,
+#'   type = "groups")
+#'  head(groups)
+#'
+#' # type: values for a single variable
+#' # List the value labels of the NAICS2017 variable in the County Business Patterns dataset.
+#' naics_values <- listCensusMetadata(
+#'   name = "cbp",
+#'   vintage = 2021,
+#'   type = "values",
+#'   variable = "NAICS2017")
+#'  head(naics_values)
 #' }
 #' @export
 listCensusMetadata <-

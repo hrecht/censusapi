@@ -1,8 +1,9 @@
 # censusapi 0.9.0 
 * The use of a Census Bureau API key (the `key` parameter) is no longer required with `getCensus()`. Users are still encouraged to register for and use an API key because the Census Bureau may rate limit IP addresses, but it is not required.
 * `getCensus()` automatically converts data columns in the Household Pulse Survey to numeric.
+* Increases required version of R from >=3.0 to >=3.5 based on httr dependency.
 * A new online [frequently asked questions article](https://www.hrecht.com/censusapi/articles/frequently-asked-questions.html) improves documentation.
-* Documentation is updated with new datasets, including more examples from the 2020 Decennial Census and the Household Pulse Survey.
+* Documentation is updated to use newly released datasets.
 
 # censusapi 0.8.0 
 * `listCensusApis()` has new columns in the resulting data frame of available API endpoints: the API `contact` email address and `type`: either Aggregate, Timeseries, or Microdata.

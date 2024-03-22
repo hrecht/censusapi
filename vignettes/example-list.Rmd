@@ -47,7 +47,7 @@ Get total population and median income for places (towns, cities, etc) in Indian
 ```{r}
 acs_income <- getCensus(
 	name = "acs/acs5",
-	vintage = 2020, 
+	vintage = 2022, 
 	vars = c("NAME", "B01001_001E", "B19013_001E"), 
 	region = "place:*",
 	regionin = "state:18")
@@ -65,7 +65,7 @@ Get the percent of people without an internet subscription by income for the fiv
 ```{r}
 acs_subject <- getCensus(
 	name = "acs/acs1/subject",
-	vintage = 2018, 
+	vintage = 2022, 
 	vars = c("NAME", "S2801_C02_019E", "S2801_C02_019M",
 					 "S2801_C02_023E", "S2801_C02_023M", 
 					 "S2801_C02_027E", "S2801_C02_027M",
@@ -78,12 +78,12 @@ head(acs_subject)
 
 ### ACS Comparison Profiles
 
-Get the annual median household income in inflation-adjusted 2019 dollars for Alabama cities for the past five years.
+Get the annual median household income in inflation-adjusted 2019 dollars for Alabama cities since 2018. (2020 1-year data is not available.)
 ```{r}
 acs_comparison <- getCensus(
 	name = "acs/acs1/cprofile",
-	vintage = 2019, 
-	vars = c("NAME", "CP03_2015_062E", "CP03_2016_062E", "CP03_2017_062E", "CP03_2018_062E"), 
+	vintage = 2022, 
+	vars = c("NAME", "CP03_2018_062E", "CP03_2019_062E", "CP03_2021_062E", "CP03_2022_062E"), 
 	region = "place:*",
 	regionin = "state:01")
 head(acs_comparison)
@@ -154,7 +154,7 @@ asm_state <- getCensus(
 	vars = c("GEO_TTL", "NAICS_TTL", "EMP"),
 	region = "state:*",
 	time = 2016,
-	naics = "31-33")
+	NAICS = "31-33")
 head(asm_state)
 
 asm_product <- getCensus(
@@ -162,8 +162,21 @@ asm_product <- getCensus(
 	vars = c("PSCODE_TTL", "GEO_TTL", "PRODVAL"),
 	region = "us:*",
 	time = 2016,
-	pscode = 311111)
+	PSCODE = 311111)
 head(asm_product)
+```
+## Community Resiliency Estimates
+[Community Resilience Estimates documentation](https://www.census.gov/data/developers/data-sets/community-resilience-estimates.html)
+
+For Census tracts in a single county, get the rate of individuals with zero components of social vulnerability, one-two components of social vulnerability, and three or more components of social vulnerability.
+```{r}
+cre <- getCensus(
+	name = "cre",
+	vintage = 2022,
+	vars = c("PRED0_PE", "PRED12_PE", "PRED3_PE"),
+	region = "tract:*",
+	regionin = "state:01&county:001")
+head(cre)
 ```
 
 ## County Business Patterns and Nonemployer Statistics
@@ -176,7 +189,7 @@ Get employment data for the construction industry.
 ```{r}
 cbp <- getCensus(
 	name = "cbp",
-	vintage = 2020,
+	vintage = 2021,
 	vars = c("EMP", "ESTAB"),
 	region = "state:*",
 	NAICS2017 = 23)
@@ -187,7 +200,7 @@ Get the number of companies and employees at organizations with more than 1,000 
 ```{r}
 cbp_large_companies <- getCensus(
 	name = "cbp",
-	vintage = 2020,
+	vintage = 2021,
 	vars = c("NAME", "EMP", "ESTAB"),
 	region = "state:*",
 	EMPSZES = 260)
@@ -207,13 +220,14 @@ head(zbp_2018)
 
 ### Nonemployer statistics
 [Nonemployer statistics documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/nonemp-api.html)
+Get the number of nonemployer establishments by MSA for sector 54, Professional, scientific, and technical services.
 ```{r}
 nonemp <- getCensus(
 	name = "nonemp",
-	vintage = 2016,
-	vars = c("GEO_TTL", "NRCPTOT", "NAICS2012_TTL"),
-	region = "state:*",
-	naics2012 = 54)
+	vintage = 2021,
+	vars = c("NAME", "NESTAB", "NAICS2017_LABEL"),
+	region = "metropolitan statistical area/micropolitan statistical area:*",
+	NAICS2017 = 54)
 head(nonemp)
 ```
 
@@ -361,14 +375,14 @@ ewks_2012 <- getCensus(
 	vintage = 2012,
 	vars = c("EMP", "OPTAX", "GEOTYPE"),
 	region = "state:*",
-	naics2012 = 54)
+	NAICS2012 = 54)
 head(ewks_2012)
 ewks_2007 <- getCensus(
 	name = "ewks",
 	vintage = 2007,
 	vars = c("EMP", "OPTAX", "GEOTYPE"),
 	region = "state:*",
-	naics2007 = 54)
+	NAICS2007 = 54)
 head(ewks_2007)
 ```
 
@@ -379,7 +393,7 @@ eits <- getCensus(
 	name = "timeseries/eits/resconst",
 	vars = c("cell_value", "data_type_code", "time_slot_id", "error_data", "category_code", "seasonally_adj"),
 	region = "us:*",
-	time = "from 2004-05 to 2012-12")
+	time = "from 2023-01")
 head(eits)
 ```
 
@@ -434,7 +448,7 @@ hps_state <- getCensus(
 head(hps_state)
 ```
 
-Get the national food scarcity rate and expense difficulty rate for every survey period available in 2022 and 2023.
+Get the national food scarcity rate and expense difficulty rate for every survey period available since 2022.
 ```{r}
 hps_us <- getCensus(
 	name = "timeseries/hps",
@@ -442,7 +456,7 @@ hps_us <- getCensus(
 					 "COL_START_DATE", "COL_END_DATE"),
 	region = "us:*",
 	WEEK = "*",
-	time = "from 2022 to 2023")
+	time = "from 2022")
 hps_us
 ```
 
@@ -450,26 +464,26 @@ hps_us
 ## International Data Base
 [International Data Base documentation](https://www.census.gov/data/developers/data-sets/international-database.html)
 
-Get Census Bureau projections of 2020 populations and life expectancy at birth by country.
+Get Census Bureau projections of 2024 populations and life expectancy at birth by country.
 ```{r}
 intl_pop <- getCensus(
 	name = "timeseries/idb/5year",
 	vars = c("NAME", "GENC", "POP", "E0"),
-	time = 2020)
+	time = 2024)
 head(intl_pop)
 ```
 
 ## International Trade
 [International Trade documentation](https://www.census.gov/data/developers/data-sets/international-trade.html)
 
-Note: The international trade datasets are buggy and frequently give the general error message of "There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience." This error message comes from the U.S. Census Bureau. If you run in to repeated issues or inconsistencies, contact the Census Bureau for help or consider using a bulk data download instead.
+Note: The international trade datasets can be buggy and often give the general error message of "There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience." This error message comes from the U.S. Census Bureau. If you run in to repeated issues or inconsistencies, contact the Census Bureau for help or consider using a bulk data download instead.
 
-Get the general imports value and imports for consumption value for all end-use codes and all countries for January 2018.
+Get the general imports value and imports for consumption value for all countries for a specific month.
 ```{r}
 imports <- getCensus(
 	name = "timeseries/intltrade/imports/enduse",
-	vars = c("CTY_CODE", "CTY_NAME", "I_ENDUSE", "I_ENDUSE_LDESC", "GEN_VAL_MO", "CON_VAL_MO"),
-	time = "2018-01")
+	vars = c("CTY_CODE", "CTY_NAME", "GEN_VAL_MO", "CON_VAL_MO"),
+	time = "2024-01")
 head(imports)
 ```
 
@@ -478,13 +492,14 @@ head(imports)
 
 ### Population Estimates
 [Population Estimates documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html)
-Note that variable names and data structure in the PEP APIs are not always consistent from year to year.
+PEP data from 2022 and beyond is not currently available via API. You can download the latest data files from the [PEP webpage](https://www.census.gov/programs-surveys/popest.html).
 
+Get the 2021 vintage population estimates for states for 2020 and 2021.
 ```{r}
 popest <- getCensus(
 	name = "pep/population",
-	vintage = 2019,
-	vars = c("POP", "DATE_DESC"),
+	vintage = 2021,
+	vars = c("POP_2020","POP_2021"),
 	region = "state:*")
 head(popest)
 ```
@@ -569,7 +584,7 @@ govs <- getCensus(
 	name = "timeseries/govs",
 	vars = c("SVY_COMP_LABEL", "AGG_DESC", "AGG_DESC_LABEL" ,"AMOUNT"),
 	region = "state:25",
-	year = "2020",
+	time = 2021,
 	SVY_COMP = "06",
 	EXPENDTYPE = "001")
 head(govs)
@@ -587,7 +602,7 @@ qwi_counties <- getCensus(
 	vars = c("Emp", "EarnBeg"),
 	region = "county:*",
 	regionin = "state:01",
-	time = "2016-Q1")
+	time = "2023-Q2")
 head(qwi_counties)
 ```
 
@@ -597,7 +612,7 @@ qwi_time <- getCensus(
 	name = "timeseries/qwi/sa",
 	vars = c("Emp", "EarnBeg"),
 	region = "state:01",
-	time = "from 2018 to 2022")
+	time = "from 2018 to 2023")
 head(qwi_time)
 ```
 
