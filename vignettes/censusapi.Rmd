@@ -1,0 +1,23 @@
+---
+title: "censusapi"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{censusapi}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(censusapi)
+```
+
+See the censusapi website for full documentation: <https://www.hrecht.com/censusapi/index.html>.
+
+Several web-only articles are available at <https://www.hrecht.com/censusapi/articles/>.

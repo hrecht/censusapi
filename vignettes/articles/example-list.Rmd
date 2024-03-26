@@ -1,0 +1,646 @@
+---
+title: "censusapi examples"
+output: 
+  rmarkdown::html_vignette:
+    df_print: kable
+pkgdown:
+  as_is: true
+description: >
+  Examples from many of the Census APIs.
+vignette: >
+  %\VignetteIndexEntry{censusapi examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r include = FALSE, message = FALSE}
+library(censusapi)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```
+
+
+The Census APIs have more than 1,000 endpoints, covering dozens of different surveys. This page shows how to get data from most of the key surveys using `censusapi`.
+
+```{r, message = FALSE}
+library(censusapi)
+```
+
+To see a current table of every available endpoint, run `listCensusApis`:
+```{r}
+apis <- listCensusApis()
+```
+
+## American Community Survey
+There are multiple useful ACS datasets with slightly different purposes. Here's how the Census Bureau [describes them](https://www.census.gov/data/developers/data-sets/acs-5year.html):
+
+	"Detailed Tables contain the most detailed cross-tabulations, many of which are published down to block groups. The data are population counts. There are over 20,000 variables in this dataset.
+	
+	Subject Tables provide an overview of the estimates available in a particular topic.  The data are presented as population counts and percentages.  There are over 18,000 variables in this dataset. 
+	
+	Data Profiles contain broad social, economic, housing, and demographic information. The data are presented as population counts and percentages. There are over 1,000 variables in this dataset.
+	
+	Comparison Profiles are similar to Data Profiles but also include comparisons with past-year data.  The current year data are compared with prior 5-Year data and include statistical significance testing.  There are over 1,000 variables in this dataset."
+
+### ACS Detailed Tables
+
+Get total population and median income for places (towns, cities, etc) in Indiana.
+```{r}
+acs_income <- getCensus(
+	name = "acs/acs5",
+	vintage = 2022, 
+	vars = c("NAME", "B01001_001E", "B19013_001E"), 
+	region = "place:*",
+	regionin = "state:18")
+head(acs_income)
+```
+
+### ACS Subject Tables
+
+Get the percent of people without an internet subscription by income for the five counties of New York City, with associated margins of error: 
+
+* overall: `S2801_C02_019E`
+* income less $20,000: `S2801_C02_023E`
+* income $20,000 to $74,999: `S2801_C02_027E`
+* income $75,000 or greater: `S2801_C02_031E`
+```{r}
+acs_subject <- getCensus(
+	name = "acs/acs1/subject",
+	vintage = 2022, 
+	vars = c("NAME", "S2801_C02_019E", "S2801_C02_019M",
+					 "S2801_C02_023E", "S2801_C02_023M", 
+					 "S2801_C02_027E", "S2801_C02_027M",
+					 "S2801_C02_031E", "S2801_C02_031M"), 
+	region = "county:005,047,061,081,085",
+	regionin = "state:36")
+head(acs_subject)
+```
+
+
+### ACS Comparison Profiles
+
+Get the annual median household income in inflation-adjusted 2019 dollars for Alabama cities since 2018. (2020 1-year data is not available.)
+```{r}
+acs_comparison <- getCensus(
+	name = "acs/acs1/cprofile",
+	vintage = 2022, 
+	vars = c("NAME", "CP03_2018_062E", "CP03_2019_062E", "CP03_2021_062E", "CP03_2022_062E"), 
+	region = "place:*",
+	regionin = "state:01")
+head(acs_comparison)
+```
+
+### ACS Migration Flows
+[American Community Survey Migration Flows documentation](https://www.census.gov/data/developers/data-sets/acs-migration-flows.html)
+
+Get the number of people who moved in and out of Los Angeles county by their origin or destination.
+```{r}
+flows <- getCensus(
+	name = "acs/flows",
+	vintage = 2019,
+	vars = c("MOVEDIN", "MOVEDOUT", "GEOID2", "FULL1_NAME", "FULL2_NAME"),
+	region = "county:037",
+	regionin = "state:06")
+head(flows, n = 15L)
+```
+
+### American Community Survey Language Statistics
+[American Community Survey Language Statistics documentation](https://www.census.gov/data/developers/data-sets/language-stats.html)
+
+Get the number of people in New York state who speak each language.
+```{r}
+languages <- getCensus(
+	name = "language",
+	vintage = 2013,
+	vars = c("EST", "LAN", "LANLABEL"),
+	region = "state:36")
+head(languages)
+```
+
+## Annual Survey of Entrepreneurs
+[Annual Survey of Entrepreneurs documentation](https://www.census.gov/data/developers/data-sets/ase.html)
+```{r}
+ase_csa <- getCensus(
+	name = "ase/csa",
+	vintage = 2014,
+	vars = c("GEO_TTL", "NAICS2012", "NAICS2012_TTL", "EMPSZFI", "EMPSZFI_TTL", "FIRMPDEMP"),
+	region = "us:*")
+head(ase_csa)
+
+ase_cscb <- getCensus(
+	name = "ase/cscb",
+	vintage = 2014,
+	vars = c("GEO_TTL", "NAICS2012_TTL", "ASECB", "ASECB_TTL", "SPOUSES", "SPOUSES_TTL", "YEAR", 
+					 "FIRMPDEMP", "FIRMPDEMP_PCT", "RCPPDEMP", "RCPPDEMP_F", "RCPPDEMP_PCT", 
+					 "EMP", "EMP_PCT", "PAYANN", "PAYANN_PCT", "FIRMPDEMP_S", "FIRMPDEMP_PCT_S", 
+					 "RCPPDEMP_S", "RCPPDEMP_PCT_S", "EMP_S", "EMP_PCT_S", "PAYANN_S", "PAYANN_PCT_S"),
+	region = "us:*")
+head(ase_cscb)
+
+ase_cscbo <- getCensus(
+	name = "ase/cscbo",
+	vintage = 2014,
+	vars = c("GEO_TTL", "NAICS2012_TTL", "ASECBO", "ASECBO_TTL", "ACQBUS", "ACQBUS_TTL", 
+					 "YEAR", "OWNPDEMP", "OWNPDEMP_PCT", "OWNPDEMP_S", "OWNPDEMP_PCT_S"),
+	region = "us:*")
+head(ase_cscbo)
+
+```
+
+## Annual Survey of Manufactures
+[Annual Survey of Manufactures documentation](https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html)
+```{r}
+asm_state <- getCensus(
+	name = "timeseries/asm/state",
+	vars = c("GEO_TTL", "NAICS_TTL", "EMP"),
+	region = "state:*",
+	time = 2016,
+	NAICS = "31-33")
+head(asm_state)
+
+asm_product <- getCensus(
+	name = "timeseries/asm/product",
+	vars = c("PSCODE_TTL", "GEO_TTL", "PRODVAL"),
+	region = "us:*",
+	time = 2016,
+	PSCODE = 311111)
+head(asm_product)
+```
+## Community Resiliency Estimates
+[Community Resilience Estimates documentation](https://www.census.gov/data/developers/data-sets/community-resilience-estimates.html)
+
+For Census tracts in a single county, get the rate of individuals with zero components of social vulnerability, one-two components of social vulnerability, and three or more components of social vulnerability.
+```{r}
+cre <- getCensus(
+	name = "cre",
+	vintage = 2022,
+	vars = c("PRED0_PE", "PRED12_PE", "PRED3_PE"),
+	region = "tract:*",
+	regionin = "state:01&county:001")
+head(cre)
+```
+
+## County Business Patterns and Nonemployer Statistics
+[County Business Patterns and Nonemployer Statistics documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html)
+
+### County Business Patterns
+[County Business Patterns documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/cbp-api.html)
+
+Get employment data for the construction industry.
+```{r}
+cbp <- getCensus(
+	name = "cbp",
+	vintage = 2021,
+	vars = c("EMP", "ESTAB"),
+	region = "state:*",
+	NAICS2017 = 23)
+head(cbp)
+```
+
+Get the number of companies and employees at organizations with more than 1,000 employees (`EMPSZES = 260`).
+```{r}
+cbp_large_companies <- getCensus(
+	name = "cbp",
+	vintage = 2021,
+	vars = c("NAME", "EMP", "ESTAB"),
+	region = "state:*",
+	EMPSZES = 260)
+head(cbp_large_companies)
+```
+
+### Zip Codes Business Patterns
+[Zip Codes Business Patterns documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html)
+```{r}
+zbp_2018 <- getCensus(
+	name = "zbp",
+	vintage = 2018,
+	vars = c("EMP", "ESTAB", "EMPSZES"),
+	region = "zipcode:90210")
+head(zbp_2018)
+```
+
+### Nonemployer statistics
+[Nonemployer statistics documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/nonemp-api.html)
+Get the number of nonemployer establishments by MSA for sector 54, Professional, scientific, and technical services.
+```{r}
+nonemp <- getCensus(
+	name = "nonemp",
+	vintage = 2021,
+	vars = c("NAME", "NESTAB", "NAICS2017_LABEL"),
+	region = "metropolitan statistical area/micropolitan statistical area:*",
+	NAICS2017 = 54)
+head(nonemp)
+```
+
+## Decennial Census
+[Decennial Census documentation](https://www.census.gov/data/developers/data-sets/decennial-census.html)
+
+### 2020 Decennial Census
+Using the 2020 Demographic Profile, get the percent of the population that is age 65 or older ([DP1_0024P](https://api.census.gov/data/2020/dec/dp/variables/DP1_0024P.json)) for metro and micropolitan statistical areas.
+```{r}
+dec_elderly <- getCensus(
+	name = "dec/dp",
+	vintage = 2020,
+	vars = c("NAME", "DP1_0024P"),
+	region = "metropolitan statistical area/micropolitan statistical area:*")
+head(dec_elderly)
+```
+
+Using the 2020 Demographic and Housing Characteristics File, get the total number of households ([H9_001N](https://api.census.gov/data/2020/dec/dhc/variables/H9_001N.json)) and the number of 1-person households ([H9_002N](https://api.census.gov/data/2020/dec/dhc/variables/H9_002N.json)) for counties in Maryland.
+```{r}
+dec <- getCensus(
+	name = "dec/dhc",
+	vintage = 2020,
+	vars = c("NAME", "H9_001N", "H9_002N"),
+	region = "county:*",
+	regionin = "state:24")
+head(dec)
+```
+
+We can use the Detailed Demographic and Housing Characteristics File A (Detailed DHC-A) to get detailed data for specific race and ethnicity groups.
+
+First, check the value labels for the `POPGROUP` variable.
+```{r}
+popgroup_values <- listCensusMetadata(
+	name = "dec/ddhca",
+	vintage = 2020,	
+	type = "values",
+	variable_name = "POPGROUP") 
+
+head(popgroup_values)
+```
+
+Get the total population ([T01001_001N](https://api.census.gov/data/2020/dec/ddhca/variables/T01001_001N.json)) of people who are Japanese alone or in any combination (`POPGROUP` code 3824) by state.
+```{r}
+dec_population <- getCensus(
+	name = "dec/ddhca",
+	vintage = 2020,
+	vars = c("NAME", "T01001_001N", "POPGROUP_LABEL"),
+	region = "state:*",
+	POPGROUP = 3824)
+head(dec_population)
+```
+### 2010 Decennial Census
+Get total population and the number of housing units for metropolitan/micropolitan statistical areas in 2010.
+```{r}
+data2010 <- getCensus(
+	name = "dec/sf1",
+	vintage = 2010,
+	vars = c("NAME", "P001001", "H010001"), 
+	region = "metropolitan statistical area/micropolitan statistical area:*")
+head(data2010)
+```
+
+Get the urban/rural status group of variables (`P2`) by metropolitan/micropolitan statistical areas in 2010.
+```{r}
+# Show variable metadata for the P2 group
+group_p2 <- listCensusMetadata(
+	name = "dec/sf1",
+	vintage = 2010,
+	type = "variables",
+	group = "P2")
+
+# Get the P2 variable group (URBAN AND RURAL)
+data2010 <- getCensus(
+	name = "dec/sf1",
+	vintage = 2010,
+	vars = "group(P2)", 
+	region = "metropolitan statistical area/micropolitan statistical area:*")
+head(data2010)
+```
+
+Get 2010 population by block group within a specific tract.
+```{r}
+tract_pop <- getCensus(
+	name = "dec/sf1",
+	vintage = 2010,
+	vars = "P001001", 
+	region = "block:*",
+	regionin = "state:36+county:027+tract:010000")
+head(tract_pop)
+```
+
+### Decennial Census Self-Response Rates
+[Decennial Census Self-Response Rates documentation](https://www.census.gov/data/developers/data-sets/decennial-response-rates.html)
+Get self-response rates for the 2020 and 2010 Decennial Census by state, county, tract, place and more.
+
+Get overall and internet repose rates for all counties.
+```{r}
+county_responses <- getCensus(
+	name = "dec/responserate",
+	vintage = 2020,
+	vars = c("NAME", "RESP_DATE", "CRRALL", "CRRINT"),
+	region = "county:*")
+head(county_responses)
+```
+
+Get response rates for places (cities, towns, etc) within New York state.
+```{r}
+ny_place_responses <- getCensus(
+	name = "dec/responserate",
+	vintage = 2020,
+	vars = c("NAME", "RESP_DATE", "CRRALL", "CRRINT"),
+	region = "place:*",
+	regionin = "state:36")
+head(ny_place_responses)
+```
+
+Get final 2010 Decennial Census self-response rates.
+```{r}
+county_responses_2010 <- getCensus(
+	name = "dec/responserate",
+	vintage = 2010,
+	vars = c("NAME", "FSRR2010"),
+	region = "county:*")
+head(county_responses_2010)
+```
+
+### Decennial Census Surname Files
+[Decennial Census Surname documentation](https://www.census.gov/data/developers/data-sets/surnames.2010.html)
+
+Get counts of the top 25 most popular surnames and share of each by race.
+```{r}
+top_surnames <- getCensus(
+	name = "surname",
+	vintage = 2010,
+	vars = c("NAME", "COUNT", "PROP100K", "PCTWHITE", "PCTBLACK", "PCTAIAN", "PCTAPI", "PCTHISPANIC", "PCT2PRACE"),
+	RANK = "1:25")
+head(top_surnames)
+```
+
+## Economic Census
+[Economic Census documentation](https://www.census.gov/data/developers/data-sets/economic-census.html)
+```{r}
+ewks_2012 <- getCensus(
+	name = "ewks",
+	vintage = 2012,
+	vars = c("EMP", "OPTAX", "GEOTYPE"),
+	region = "state:*",
+	NAICS2012 = 54)
+head(ewks_2012)
+ewks_2007 <- getCensus(
+	name = "ewks",
+	vintage = 2007,
+	vars = c("EMP", "OPTAX", "GEOTYPE"),
+	region = "state:*",
+	NAICS2007 = 54)
+head(ewks_2007)
+```
+
+## Economic Indicators
+[Economic Indicators documentation](https://www.census.gov/data/developers/data-sets/economic-indicators.html)
+```{r}
+eits <- getCensus(
+	name = "timeseries/eits/resconst",
+	vars = c("cell_value", "data_type_code", "time_slot_id", "error_data", "category_code", "seasonally_adj"),
+	region = "us:*",
+	time = "from 2023-01")
+head(eits)
+```
+
+## Health Insurance: Small Area Health Insurance Estimates
+[Health Insurance Statistics documentation](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html)
+
+Get the uninsured rate by income group for each county for a single year.
+```{r}
+sahie <- getCensus(
+	name = "timeseries/healthins/sahie",
+	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"),
+	region = "county:*",
+	time = 2021)
+head(sahie)
+```
+
+Get the uninsured rate for a county from 2006 to the latest year available.
+```{r}
+sahie_annual <- getCensus(
+	name = "timeseries/healthins/sahie",
+	vars = c("NAME", "PCTUI_PT"),
+	region = "county:037",
+	regionin = "state:06",
+	time = "from 2006")
+sahie_annual
+```
+
+Get the uninsured rate for non-elderly adults (`AGECAT = 1`) with incomes of 138 to 400% of the poverty line (`IPRCAT = 5`), by race and state.
+```{r}
+sahie_adults <- getCensus(
+	name = "timeseries/healthins/sahie",
+	vars = c("NAME", "PCTUI_PT", "RACECAT", "RACE_DESC"), 
+	region = "state:*", 
+	time = 2021,
+	IPRCAT = 5,
+	AGECAT = 1)
+head(sahie_adults)
+```
+
+## Household Pulse Survey
+[Household Pulse Survey documentation](https://www.census.gov/data/developers/data-sets/hps.html)
+
+Get the food scarcity rate (Percentage of adults in households where there was either sometimes or often not enough to eat in the last 7 days) and expense difficulty rate (Percentage of adults in households where it has been somewhat or very difficult to pay for usual household expenses in the last 7 days) for every state for one survey period.
+```{r}
+hps_state <- getCensus(
+	name = "timeseries/hps",
+	vars = c("NAME", "FOODSCARCE_RATE", "EXPENSE_RATE",
+					 "COL_START_DATE", "COL_END_DATE"),
+	region = "state:*",
+	WEEK = 63,
+	time = 2023)
+head(hps_state)
+```
+
+Get the national food scarcity rate and expense difficulty rate for every survey period available since 2022.
+```{r}
+hps_us <- getCensus(
+	name = "timeseries/hps",
+	vars = c("FOODSCARCE_RATE", "EXPENSE_RATE",
+					 "COL_START_DATE", "COL_END_DATE"),
+	region = "us:*",
+	WEEK = "*",
+	time = "from 2022")
+hps_us
+```
+
+
+## International Data Base
+[International Data Base documentation](https://www.census.gov/data/developers/data-sets/international-database.html)
+
+Get Census Bureau projections of 2024 populations and life expectancy at birth by country.
+```{r}
+intl_pop <- getCensus(
+	name = "timeseries/idb/5year",
+	vars = c("NAME", "GENC", "POP", "E0"),
+	time = 2024)
+head(intl_pop)
+```
+
+## International Trade
+[International Trade documentation](https://www.census.gov/data/developers/data-sets/international-trade.html)
+
+Note: The international trade datasets can be buggy and often give the general error message of "There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience." This error message comes from the U.S. Census Bureau. If you run in to repeated issues or inconsistencies, contact the Census Bureau for help or consider using a bulk data download instead.
+
+Get the general imports value and imports for consumption value for all countries for a specific month.
+```{r}
+imports <- getCensus(
+	name = "timeseries/intltrade/imports/enduse",
+	vars = c("CTY_CODE", "CTY_NAME", "GEN_VAL_MO", "CON_VAL_MO"),
+	time = "2024-01")
+head(imports)
+```
+
+## Population Estimates and Projections
+[Population Estimates and Projections documentation](https://www.census.gov/data/developers/data-sets/popest-popproj.html)
+
+### Population Estimates
+[Population Estimates documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html)
+PEP data from 2022 and beyond is not currently available via API. You can download the latest data files from the [PEP webpage](https://www.census.gov/programs-surveys/popest.html).
+
+Get the 2021 vintage population estimates for states for 2020 and 2021.
+```{r}
+popest <- getCensus(
+	name = "pep/population",
+	vintage = 2021,
+	vars = c("POP_2020","POP_2021"),
+	region = "state:*")
+head(popest)
+```
+
+```{r}
+popest_housing <- getCensus(
+	name = "pep/housing",
+	vintage = 2018,
+	vars = c("DATE_CODE", "DATE_DESC", "HUEST"),
+	region = "county:195",
+	regionin = "state:02")
+head(popest_housing)
+```
+
+### Population Projections
+[Population Projections documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popproj.html)
+```{r}
+popproj <- getCensus(
+	name = "pep/projpop",
+	vintage = 2014,
+	vars = c("YEAR", "POP", "AGE"),
+	region = "us:1")
+head(popproj)
+```
+
+## Poverty Statistics
+[Poverty Statistics documentation](https://www.census.gov/data/developers/data-sets/Poverty-Statistics.html)
+
+### Current Population Survey Poverty Statistics
+
+Get national poverty rates by race since 1970.
+```{r}
+poverty <- getCensus(
+	name = "timeseries/poverty/histpov2",
+	vars = c("RACE", "RACE_LABEL", "PCTPOV"),
+	region = "us:*",
+	time = "from 1970")
+head(poverty)
+```
+
+### Small Area Income and Poverty Estimates (SAIPE)
+
+Get poverty rate for children and overall for a single year.
+```{r}
+saipe <- getCensus(
+	name = "timeseries/poverty/saipe",
+	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
+	region = "state:*",
+	time = 2022)
+head(saipe)
+```
+
+Get the poverty rate for children and overall in a single county over time.
+```{r}
+saipe_years <- getCensus(
+	name = "timeseries/poverty/saipe",
+	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
+	region = "county:001",
+	regionin = "state:12",
+	time = "from 2010")
+head(saipe_years)
+```
+### SAIPE School Districts
+Get the number (`SAEPOV5_17V_PT`) and rate (`SAEPOVRAT5_17RV_PT`) of children ages 5-17 living in poverty for unified school districts in Massachusetts.
+```{r}
+saipe_schools <- getCensus(
+	name = "timeseries/poverty/saipe/schdist",
+	vars = c("SD_NAME", "SAEPOV5_17V_PT", "SAEPOVRAT5_17RV_PT"),
+	region = "school district (unified):*",
+	regionin = "state:25",
+	time = 2022)
+head(saipe_schools)
+```
+## Public Sector Statistics
+[Public Sector Statistics documentation](https://www.census.gov/data/developers/data-sets/annual-public-sector-stats.html) 
+
+This endpoint includes data from multiple surveys organized be sure to read the Census Bureau's documentation for variable definitions and labels.
+
+Get expenditures for Public Elementary-Secondary School System Finances for Massachusetts.
+```{r}
+govs <- getCensus(
+	name = "timeseries/govs",
+	vars = c("SVY_COMP_LABEL", "AGG_DESC", "AGG_DESC_LABEL" ,"AMOUNT"),
+	region = "state:25",
+	time = 2021,
+	SVY_COMP = "06",
+	EXPENDTYPE = "001")
+head(govs)
+```
+
+
+## Quarterly Workforce Indicators
+[Quarterly Workforce Indicators documentation](https://www.census.gov/data/developers/data-sets/qwi.html)
+
+The QWI endpoints allow both simple calls and very specific ones. Make sure to read the documentation closely.
+Here's a simple call that gets employment data by county.
+```{r}
+qwi_counties <- getCensus(
+	name = "timeseries/qwi/sa",
+	vars = c("Emp", "EarnBeg"),
+	region = "county:*",
+	regionin = "state:01",
+	time = "2023-Q2")
+head(qwi_counties)
+```
+
+Got total employment and average earnings by quarter for a single state.
+```{r}
+qwi_time <- getCensus(
+	name = "timeseries/qwi/sa",
+	vars = c("Emp", "EarnBeg"),
+	region = "state:01",
+	time = "from 2018 to 2023")
+head(qwi_time)
+```
+
+Here's a much more specific call. Read the Census Bureau's documentation closely to see all of the options allowed by the QWI APIs.
+```{r}
+qwi <- getCensus(
+	name = "timeseries/qwi/sa",
+	region = "state:02",
+	vars = c("Emp", "sex"),
+	time = 2012,
+	quarter = 1,
+	agegrp = "A07",
+	ownercode = "A05",
+	firmsize = 1,
+	seasonadj = "U",
+	industry = 21)
+qwi
+```
+
+## The Planning Database
+[The Planning Database documentation](https://www.census.gov/data/developers/data-sets/planning-database.html)
+Get population and 2010 Census mail return rates for block groups in Autauga County, AL.
+```{r}
+pdb <- getCensus(
+	name = "pdb/blockgroup",
+	vintage = 2018,
+	vars = c("GIDBG", "County_name", "State_name", "Tot_Population_CEN_2010", "Mail_Return_Rate_CEN_2010"),
+	region = "block group:*",
+	regionin = "state:01+county:001")
+head(pdb)
+```

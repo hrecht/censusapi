@@ -84,8 +84,8 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><code>censusapi</code> is a lightweight package to get data from the U.S. Census Bureau’s <a href="https://www.census.gov/data/developers.html" class="external-link">APIs</a>. More than <a href="https://api.census.gov/data.html" class="external-link">1,500 Census API endpoints</a> are available, including the Decennial Census, American Community Survey, Poverty Statistics, Population Estimates, and Census microdata. This package is designed to let you get data from all of those APIs using the same main functions and syntax for every dataset.</p>
-<p>The package also includes metadata functions to help users determine <a href="https://www.hrecht.com/censusapi/reference/listCensusApis.html">which datasets</a> are available and the variable, geography, and other options <a href="https://www.hrecht.com/censusapi/reference/listCensusMetadata.html">each of them contains</a>.</p>
+<p><code>censusapi</code> is a lightweight package to get data from the U.S. Census Bureau’s <a href="https://www.census.gov/data/developers.html" class="external-link">APIs</a>. More than API 1,500 endpoints are available, including data from surveys such as the Decennial Census, American Community Survey, International Trade Datasets, Small Area Health Insurance Estimates and the Economics Indicators Time Series. <code><a href="reference/getCensus.html">getCensus()</a></code> lets users retrieves data from any of those datasets using simple, consistent syntax.</p>
+<p>The package also includes metadata functions to help users determine <a href="https://www.hrecht.com/censusapi/reference/listCensusApis.html">which datasets</a> are available and the variable, geography, and other options in <a href="https://www.hrecht.com/censusapi/reference/listCensusMetadata.html">each of them</a>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -111,6 +111,7 @@
 <span>    time <span class="op">=</span> <span class="st">"from 2010"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">poverty_rate</span></span>
+<span></span>
 <span><span class="co">#&gt;    time  state county NAME               SAEPOVRTALL_PT</span></span>
 <span><span class="co">#&gt; 1  2010  06    037    Los Angeles County           17.6</span></span>
 <span><span class="co">#&gt; 2  2011  06    037    Los Angeles County           18.4</span></span>
@@ -144,6 +145,7 @@
 <span>    regionin <span class="op">=</span> <span class="st">"state:04"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">no_internet</span><span class="op">)</span></span>
+<span></span>
 <span><span class="co">#&gt;   state county tract   S2801_C01_001E S2801_C01_019E S2801_C02_019E NAME                                          </span></span>
 <span><span class="co">#&gt; 1 04    001    942600             429            412           96.0 Census Tract 9426; Apache County; Arizona                </span></span>
 <span><span class="co">#&gt; 2 04    001    942700            1439           1006           69.9 Census Tract 9427; Apache County; Arizona               </span></span>
@@ -151,6 +153,58 @@
 <span><span class="co">#&gt; 4 04    001    944100            1446            966           66.8 Census Tract 9441; Apache County; Arizona               </span></span>
 <span><span class="co">#&gt; 5 04    001    944201            1154            835           72.4 Census Tract 9442.01; Apache County; Arizona            </span></span>
 <span><span class="co">#&gt; 6 04    001    944202            1111            874           78.7 Census Tract 9442.02; Apache County; Arizona            </span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="advanced-usage">Advanced usage<a class="anchor" aria-label="anchor" href="#advanced-usage"></a>
+</h2>
+<p>Users can pass any valid parameters to the APIs using <code><a href="reference/getCensus.html">getCensus()</a></code>. The Census Bureau refers to these filterable parameter variables as “predicates”.</p>
+<p>Using the <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html" class="external-link">Small Area Health Insurance Estimates</a>, get the <a href="https://api.census.gov/data/timeseries/healthins/sahie/variables/PCTUI_PT.json" class="external-link">uninsured rate</a> for non-elderly adults (AGECAT = 1) with incomes of 138 to 400% of the poverty line (IPRCAT = 5), by race and ethnicity for Alabama.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># See the values of `IPRCAT`</span></span>
+<span><span class="fu"><a href="reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
+<span>    type <span class="op">=</span> <span class="st">"values"</span>,</span>
+<span>    variable <span class="op">=</span> <span class="st">"IPRCAT"</span><span class="op">)</span></span>
+<span>    </span>
+<span><span class="co">#&gt;    code                                 label</span></span>
+<span><span class="co">#&gt;  1    0                           All Incomes</span></span>
+<span><span class="co">#&gt;  2    1 Less than or Equal to 200% of Poverty</span></span>
+<span><span class="co">#&gt;  3    2 Less than or Equal to 250% of Poverty</span></span>
+<span><span class="co">#&gt;  4    3 Less than or Equal to 138% of Poverty</span></span>
+<span><span class="co">#&gt;  5    4 Less than or Equal to 400% of Poverty</span></span>
+<span><span class="co">#&gt;  6    5                  138% to 400% Poverty</span></span>
+<span>    </span>
+<span><span class="co"># See the values of `AGECAT`</span></span>
+<span><span class="fu"><a href="reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
+<span>    type <span class="op">=</span> <span class="st">"values"</span>,</span>
+<span>    variable <span class="op">=</span> <span class="st">"AGECAT"</span><span class="op">)</span></span>
+<span>    </span>
+<span><span class="co">#&gt;    code          label</span></span>
+<span><span class="co">#&gt;  1    0 Under 65 years</span></span>
+<span><span class="co">#&gt;  2    1       18 to 64</span></span>
+<span><span class="co">#&gt;  3    2       40 to 64</span></span>
+<span><span class="co">#&gt;  4    3       50 to 64</span></span>
+<span><span class="co">#&gt;  5    4 Under 19 years</span></span>
+<span><span class="co">#&gt;  6    5 21 to 64 years</span></span>
+<span>    </span>
+<span><span class="co"># Get data using `IPRCAT` and `AGECAT` as predicates</span></span>
+<span><span class="va">sahie_nonelderly</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span><span class="op">)</span>, </span>
+<span>    region <span class="op">=</span> <span class="st">"state:*"</span>, </span>
+<span>    time <span class="op">=</span> <span class="fl">2021</span>,</span>
+<span>    IPRCAT <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    AGECAT <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_nonelderly</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt;    time state    NAME PCTUI_PT RACECAT                                                       RACE_DESC IPRCAT AGECAT</span></span>
+<span><span class="co">#&gt;  1 2021    01 Alabama     15.9       0                                                       All Races      5      1</span></span>
+<span><span class="co">#&gt;  2 2021    01 Alabama     14.1       1                             White alone, not Hispanic or Latino      5      1</span></span>
+<span><span class="co">#&gt;  3 2021    01 Alabama     15.4       2         Black or African American alone, not Hispanic or Latino      5      1</span></span>
+<span><span class="co">#&gt;  4 2021    01 Alabama     40.4       3                                   Hispanic or Latino (any race)      5      1</span></span>
+<span><span class="co">#&gt;  5 2021    01 Alabama     20.8       4 American Indian and Alaska Native alone, not Hispanic or Latino      5      1</span></span>
+<span><span class="co">#&gt;  6 2021    01 Alabama     14.8       5                             Asian alone, not Hispanic or Latino      5      1</span></span></code></pre></div>
 <p>To learn more about using <code>censusapi</code>, read the package documentation and articles at <a href="https://www.hrecht.com/censusapi/">https://www.hrecht.com/censusapi/.</a></p>
 </div>
 <div class="section level2">

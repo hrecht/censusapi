@@ -1,0 +1,244 @@
+---
+title: "Getting started with censusapi"
+output: 
+  rmarkdown::html_vignette:
+    df_print: kable
+pkgdown:
+  as_is: true
+description: >
+  If you're new to censusapi, start here.
+vignette: >
+  %\VignetteIndexEntry{Getting started with censusapi}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(message = FALSE, 
+											warning = FALSE,
+											purl = NOT_CRAN,
+											comment = "#>")
+```
+
+`censusapi` is a lightweight package that retrieves data from the U.S. Census Bureau's [APIs](https://www.census.gov/data/developers.html). More than [1,000 Census API endpoints](https://api.census.gov/data.html) are available, including the Decennial Census, American Community Survey, Poverty Statistics, Population Estimates, and Census microdata. This package is designed to let you get data from all of those APIs using the same main functions and syntax for every dataset.
+
+This package returns the data as-is with the original variable names created by the Census Bureau and any quirks inherent in the data. Each dataset is a little different. Some are documented thoroughly, others have documentation that is sparse. Sometimes variable names change each year. This package can't overcome those challenges, but tries to make it easier to get the data for use in your analysis. Make sure to thoroughly read the [documentation](https://www.census.gov/data/developers/data-sets.html) for your dataset and see below for how to [get help with Census data.](#Other-ways-to-get-help) 
+
+## API key setup
+`censusapi` recommends but does not require using an API key from the U.S. Census Bureau. The Census Bureau may limit the number of requests made by IP address if you do not use an API key.
+
+You can [sign up online](http://api.census.gov/data/key_signup.html) to receive a key, which will be sent to your provided email address. 
+
+If you save the key with the name `CENSUS_KEY` or `CENSUS_API_KEY` in your .Renviron file, `censusapi` will use it by default without any extra work on your part.
+
+To save your API key, within R, run:
+```{r, eval = FALSE}
+# Add key to .Renviron
+Sys.setenv(CENSUS_KEY=PASTEYOURKEYHERE)
+# Reload .Renviron
+readRenviron("~/.Renviron")
+# Check to see that the expected key is output in your R console
+Sys.getenv("CENSUS_KEY")
+```
+
+In some instances you might not want to put your key in your .Renviron - for example, if you're on a shared school computer. You can always choose to manually set `key = "PASTEYOURKEYHERE"` as an argument in `getCensus()` if you prefer.
+
+## Finding your API
+To get started, load the `censusapi` library.
+```{r}
+library(censusapi)
+```
+
+To see a current table of every available endpoint, use`listCensusApis()`. This data frame includes useful information for making your API call, including the dataset's name, description and title, as well as a contact email for questions about the underlying data.
+
+```{r}
+apis <- listCensusApis()
+colnames(apis)
+```
+
+This returns useful information about each endpoint.
+
+* title: Short written description of the dataset
+* name: Programmatic name of the dataset, to be used with `censusapi` functions
+* vintage: Year of the survey, for use with microdata and aggregate datasets
+* type: Dataset type, which is either Aggregate, Microdata, or Timeseries
+* temporal: Time period of the dataset - only documented sometimes
+* url: Base URL of the endpoint
+* modified: Date last modified
+* description: Long written description of the dataset
+* contact: Email address for specific questions about the Census Bureau survey
+
+### Dataset types
+There are three types of datasets included in the Census Bureau API universe: aggregate, microdata, and timeseries. These type names were defined by the Census Bureau and are included as a column in `listCensusApis()`. 
+
+```{r}
+table(apis$type)
+```
+
+Most users will work with summary data, either aggregate or timeseries. Summary data contains pre-calculated numbers or percentages for a given statistic — like the number of children in a state or the median household income. The examples below and in the broader [list of censusapi examples](https://www.hrecht.com/censusapi/articles/example-list.html) use summary data. 
+
+Aggregate datasets, like the American Community Survey or Decennial Census, include data for only one time period (a `vintage`), usually one year. Datasets like the American Community Survey contain thousands of these pre-computed variables.
+
+Timeseries datasets, including the Small Area Income and Poverty Estimates, the Quarterly Workforce Estimates, and International Trade statistics, allow users to query data for more than one time period in a single API call. 
+
+Microdata contains the individual-level responses for a survey for use in custom analysis. One row represents one person. Only advanced analysts will want to use microdata. Learn more about what microdata is and how to use it with `censusapi` in [Accessing microdata](https://www.hrecht.com/censusapi/articles/accessing-microdata.html).
+
+## Using `getCensus`
+The main function in `censusapi` is `getCensus()`, which makes an API call to a given endpoint and returns a data frame with results. Each API has slightly different parameters, but there are always a few required arguments:
+
+* `name`: the programmatic name of the endpoint as defined by the Census, like "acs/acs5" or "timeseries/bds/firms"
+* `vintage`: the survey year, required for aggregate or microdata APIs
+* `vars`: a list of variables to retrieve
+* `region`: the geography level to retrieve, such as state or county, required for most endpoints
+
+Some APIs have additional required or optional arguments, like `time` or `monthly` for some timeseries datasets. Check the specific [documentation](https://www.census.gov/data/developers/data-sets.html) for your API and explore its metadata with `listCensusMetadata()` to see what options are allowed.
+
+Let's walk through an example getting uninsured rates using the [Small Area Health Insurance Estimates API](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html), which provides detailed annual state-level and county-level estimates of health insurance rates for people below age 65.
+
+### Choosing variables
+`censusapi` includes a metadata function called `listCensusMetadata()` to get information about an API's variable and geography options.
+Let's see what variables are available in the SAHIE API:
+
+```{r}
+sahie_vars <- listCensusMetadata(
+	name = "timeseries/healthins/sahie", 
+	type = "variables")
+
+# See the full list of variables
+sahie_vars$name
+
+# Full info on the first several variables
+head(sahie_vars)
+```
+
+### Choosing regions
+We can also use `listCensusMetadata` to see which geographic levels are available.
+```{r}
+listCensusMetadata(
+	name = "timeseries/healthins/sahie", 
+	type = "geography")
+```
+This API has three geographic levels: `us`, `county`, and `state`. County data can be queried for all counties nationally or within a specific state.
+
+## Making a censusapi call
+First, using `getCensus()`, let's get the percent (`PCTUI_PT`) and number (`NUI_PT`) of people uninsured, using the wildcard star (*) to retrieve data for all counties.
+```{r}
+sahie_counties <- getCensus(
+	name = "timeseries/healthins/sahie",
+	vars = c("NAME", "PCTUI_PT", "NUI_PT"), 
+	region = "county:*", 
+	time = 2021)
+head(sahie_counties)
+```
+
+We can also get data on detailed income and demographic groups from the SAHIE. We'll use `region` to specify county-level results and `regionin` to filter to Virginia, state code 51. We'll get uninsured rates by income group, `IPRCAT`.
+```{r}
+sahie_virginia <- getCensus(
+	name = "timeseries/healthins/sahie",
+	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
+	region = "county:*", 
+	regionin = "state:51", 
+	time = 2021)
+head(sahie_virginia)
+```
+
+Because the SAHIE API is a timeseries dataset, as indicated in its `name`,, we can get multiple years of data at once by changing `time = YYYY` to `time = "from YYYY to YYYY"`, or get through the latest data available using `time = "from YYYY"`. Let's get that data for DeKalb County, Georgia using county fips code 089 and state fips code 13. You can look up fips codes on the [Census Bureau website](https://www.census.gov/library/reference/code-lists/ansi.html).
+```{r}
+sahie_years <- getCensus(
+	name = "timeseries/healthins/sahie",
+	vars = c("NAME", "PCTUI_PT"), 
+	region = "county:089", 
+	regionin = "state:13",
+	time = "from 2006")
+sahie_years
+```
+We can also filter the data by income group using the `IPRCAT` variable again. `IPRCAT = 3` represents <=138% of the federal poverty line. That is the threshold for [Medicaid eligibility](https://www.healthcare.gov/glossary/federal-poverty-level-fpl/) in states that have expanded it under the Affordable Care Act.
+
+Getting this data for Los Angeles county (fips code 06037) we can see the dramatic decrease in the uninsured rate in this income group after California expanded Medicaid.
+
+```{r}
+sahie_138 <- getCensus(
+	name = "timeseries/healthins/sahie",
+	vars = c("NAME", "PCTUI_PT", "NUI_PT"), 
+	region = "county:037", 
+	regionin = "state:06", 
+	IPRCAT = 3,
+	time = "from 2010")
+sahie_138
+```
+We can also get data for other useful demographics such as age group.
+```{r}
+sahie_age <- getCensus(
+	name = "timeseries/healthins/sahie",
+	vars = c("NAME", "PCTUI_PT", "NUI_PT", "AGECAT", "AGE_DESC"), 
+	region = "county:037", 
+	regionin = "state:06",
+	time = 2021)
+sahie_age
+```
+
+## Variable groups
+For some surveys, particularly the American Community Survey and Decennial Census, you can get many related variables at once using a variable `group`. These groups are defined by the Census Bureau. In some other data tools, like [data.census.gov](https://data.census.gov/cedsci/), this concept is referred to as a `table`.
+
+Some groups have several dozen variables, others just have a few. As an example, we'll get the estimate, margin of error and annotations for median household income in the past 12 months for counties in Alabama using group `B19013`.
+
+First, see descriptions of the variables in group B19013:
+```{r}
+group_B19013 <- listCensusMetadata(
+	name = "acs/acs5",
+	vintage = 2022,
+	type = "variables",
+	group = "B19013")
+group_B19013
+```
+
+Now, retrieve the data using `vars = "group(B19013)"`. You could alternatively manually list each variable as `vars = c("NAME", "B19013_001E", "B19013_001EA", "B19013_001M", "B19013_001MA")`, but using the groups is much easier.
+```{r}
+acs_income_group <- getCensus(
+	name = "acs/acs5", 
+	vintage = 2022, 
+	vars = "group(B19013)", 
+	region = "county:*", 
+	regionin = "state:01")
+head(acs_income_group)
+```
+
+## Advanced geographies
+
+Some geographies, particularly Census tracts and blocks, need to be specified within larger geographies like states and counties. This varies by API endpoint, so make sure to read the documentation for your specific API and run `listCensusMetadata(type = "geographies")` to see the available options.
+
+Tract-level data from the 2010 Decennial Census can only be requested from one state at a time. In this example, we use the built in `fips` list of state [FIPS codes](https://www.census.gov/library/reference/code-lists/ansi.html) to request tract-level data from each state and join into a single data frame.
+
+```{r}
+tracts <- NULL
+for (f in fips) {
+	stateget <- paste("state:", f, sep="")
+	temp <- getCensus(
+		name = "dec/sf1",
+		vintage = 2010,
+		vars = "P001001",
+		region = "tract:*",
+		regionin = stateget)
+	tracts <- rbind(tracts, temp)
+}
+# How many tracts are present?
+nrow(tracts)
+
+head(tracts)
+```
+
+The `regionin` argument of `getCensus()` can also be used with a string of nested geographies, as shown below.
+
+The 2010 Decennial Census summary file 1 requires you to specify a state and county to retrieve block-level data. Use `region` to request block level data, and `regionin` to specify the desired state and county.
+```{r}
+data2010 <- getCensus(
+	name = "dec/sf1",
+	vintage = 2010,
+	vars = "P001001", 
+	region = "block:*",
+	regionin = "state:36+county:027+tract:010000")
+head(data2010)
+```
+
+For many more examples, frequently asked questions, troubleshooting, and advanced topics check out [all of the articles](https://www.hrecht.com/censusapi/articles/).
