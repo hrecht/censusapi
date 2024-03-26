@@ -25,7 +25,7 @@ devtools::install_github("hrecht/censusapi")
 ```
 
 ## Basic usage
-Using the [Small Area Income and Poverty Estimates](https://www.census.gov/data/developers/data-sets/Poverty-Statistics.html) dataset, get the poverty rate [(SAEPOVRTALL_PT)](https://api.census.gov/data/timeseries/poverty/saipe/variables/SAEPOVRTALL_PT.html) for every year since 2010 in Los Angeles County, CA.
+Using the [Small Area Income and Poverty Estimates](https://www.census.gov/data/developers/data-sets/Poverty-Statistics.html) dataset, get the poverty rate [(SAEPOVRTALL_PT)](https://api.census.gov/data/timeseries/poverty/saipe/variables/SAEPOVRTALL_PT.html) for every year since 2010 in Los Angeles County, California.
 
 ```R
 poverty_rate <- getCensus(
@@ -37,7 +37,7 @@ poverty_rate <- getCensus(
 
 poverty_rate
 
-#>    time 	state county NAME 				SAEPOVRTALL_PT
+#>    time 	state county NAME 				      SAEPOVRTALL_PT
 #> 1  2010  06    037 	 Los Angeles County           17.6
 #> 2  2011  06    037    Los Angeles County           18.4
 #> 3  2012  06    037    Los Angeles County           19.1
@@ -84,7 +84,8 @@ head(no_internet)
 ## Advanced usage
 Users can pass any valid parameters to the APIs using `getCensus()`. The Census Bureau refers to these filterable parameter variables as "predicates".
 
-Using the [Small Area Health Insurance Estimates](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html), get the [uninsured rate](https://api.census.gov/data/timeseries/healthins/sahie/variables/PCTUI_PT.json) for non-elderly adults (AGECAT = 1) with incomes of 138 to 400% of the poverty line (IPRCAT = 5), by race and ethnicity for Alabama.
+Using the [Small Area Health Insurance Estimates](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html), we can use these predicates to get the uninsured rate ([PCTUI_PT](https://api.census.gov/data/timeseries/healthins/sahie/variables/PCTUI_PT.json)) for specific demographic groups, including income group, age group, and race/ethnicity.
+
 ```R
 # See the values of `IPRCAT`
 listCensusMetadata(
@@ -114,27 +115,9 @@ listCensusMetadata(
 #> 	5    4 Under 19 years
 #> 	6    5 21 to 64 years
 
-# Get 2021 data for nonelderly adults at 138% to 400% of the federal poverty line
-# by race and ethnicity for Alabama using `IPRCAT` and `AGECAT` as predicates
-sahie_adults <- getCensus(
-    name = "timeseries/healthins/sahie",
-    vars = c("NAME", "PCTUI_PT", "RACECAT", "RACE_DESC"), 
-    region = "state:*", 
-    time = 2021,
-    IPRCAT = 5,
-    AGECAT = 1)
-head(sahie_adults)
-
-#> 	  time state    NAME PCTUI_PT RACECAT                                                       RACE_DESC IPRCAT AGECAT
-#> 	1 2021    01 Alabama     15.9       0                                                       All Races      5      1
-#> 	2 2021    01 Alabama     14.1       1                             White alone, not Hispanic or Latino      5      1
-#> 	3 2021    01 Alabama     15.4       2         Black or African American alone, not Hispanic or Latino      5      1
-#> 	4 2021    01 Alabama     40.4       3                                   Hispanic or Latino (any race)      5      1
-#> 	5 2021    01 Alabama     20.8       4 American Indian and Alaska Native alone, not Hispanic or Latino      5      1
-#> 	6 2021    01 Alabama     14.8       5                             Asian alone, not Hispanic or Latino      5      1
-
-# Get data over time for nonelderly adults at 138% to 400% of the federal poverty line
-# over time in Los Angeles County, California
+# Get the uninsured rate over time for for nonelderly adults (AGECAT = 1)
+# at 138% to 400% of the federal poverty line (IPRCAT = 5) 
+# in Los Angeles County, California
 sahie_la <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT"),
@@ -156,6 +139,26 @@ sahie_la
 #> 	8  2019    06    037 Los Angeles County, CA     18.3      5      1
 #> 	9  2020    06    037 Los Angeles County, CA     16.7      5      1
 #> 	10 2021    06    037 Los Angeles County, CA     16.1      5      1
+
+# Get the 2021 uninsured rate for nonelderly adults (AGECAT = 1)
+# at 138% to 400% of the federal poverty line (IPRCAT = 5)
+# by race and ethnicity for Alabama
+sahie_adults <- getCensus(
+    name = "timeseries/healthins/sahie",
+    vars = c("NAME", "PCTUI_PT", "RACECAT", "RACE_DESC"), 
+    region = "state:*", 
+    time = 2021,
+    IPRCAT = 5,
+    AGECAT = 1)
+head(sahie_adults)
+
+#> 	  time state    NAME PCTUI_PT RACECAT                                                       RACE_DESC IPRCAT AGECAT
+#> 	1 2021    01 Alabama     15.9       0                                                       All Races      5      1
+#> 	2 2021    01 Alabama     14.1       1                             White alone, not Hispanic or Latino      5      1
+#> 	3 2021    01 Alabama     15.4       2         Black or African American alone, not Hispanic or Latino      5      1
+#> 	4 2021    01 Alabama     40.4       3                                   Hispanic or Latino (any race)      5      1
+#> 	5 2021    01 Alabama     20.8       4 American Indian and Alaska Native alone, not Hispanic or Latino      5      1
+#> 	6 2021    01 Alabama     14.8       5                             Asian alone, not Hispanic or Latino      5      1
 
 ```
 
