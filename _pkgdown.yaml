@@ -10,7 +10,12 @@ template:
     paragraph-margin-bottom: 1.5rem
 
 navbar:
+ structure:
+  left:  [start, reference, articles, news]
  components:
+  start:
+    text: Get started
+    href: articles/getting-started.html
   articles:
     text: Articles
     menu:
@@ -22,6 +27,19 @@ navbar:
         href: articles/example-list.html
       - text: Accessing microdata
         href: articles/accessing-microdata.html
+
+reference:
+- title: "Get data"
+  contents:
+  - getCensus
+- title: "Get metadata"
+  contents:
+  - listCensusApis
+  - listCensusMetadata
+  - makeVarlist
+- title: "Helpers"
+  contents:
+  - fips
 
 redirects:
   - ["articles/example-masterlist.html", "articles/example-list.html"]

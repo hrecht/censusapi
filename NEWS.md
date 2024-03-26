@@ -16,12 +16,13 @@ apis_timeseries <- listCensusApis(name = "timeseries")
 ```
 
 ## Minor improvements
-* `getCensus()` automatically converts data columns in the Household Pulse Survey to numeric.
+* `getCensus()` automatically converts data columns from the Household Pulse Survey (`name = "timeseries/hps"`) to numeric.
 
 ## Documentation
 * Function documentation is improved and better formatted.
-* A new online [frequently asked questions article](https://www.hrecht.com/censusapi/articles/frequently-asked-questions.html) improves documentation.
 * Examples are updated to use newly released datasets.
+* A new online [frequently asked questions article](https://www.hrecht.com/censusapi/articles/frequently-asked-questions.html) improves documentation.
+* A new vignette included in the package build directs users to the website to read web-only articles.
 
 # censusapi 0.8.0 
 * `listCensusApis()` has new columns in the resulting data frame of available API endpoints: the API `contact` email address and `type`: either Aggregate, Timeseries, or Microdata.

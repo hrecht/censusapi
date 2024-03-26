@@ -10,30 +10,30 @@
 #'   this needs to be the left-most part of the dataset name before `/`, e.g.
 #'   "timeseries/eits" or "dec" or "acs/acs5".
 #' @param vintage Optional vintage (year) of dataset.
-#' @export
 #' @examples
 #' \dontrun{
 #' # Get information about every dataset available in the APIs
 #' apis <- listCensusApis()
 #' head(apis)
 #'
-#' Get information about all vintage 2022 datasets
+#' # Get information about all vintage 2022 datasets
 #' apis_2022 <- listCensusApis(vintage = 2022)
 #' head(apis_2022)
 #'
-#' Get information about all timeseries datasets
+#' # Get information about all timeseries datasets
 #' apis_timeseries <- listCensusApis(name = "timeseries")
 #' head(apis_timeseries)
 #'
-#' Get information about 2020 Decennial Census datasets
+#' # Get information about 2020 Decennial Census datasets
 #' apis_decennial_2020 <- listCensusApis(name = "dec", vintage = 2020)
 #' head(apis_decennial_2020)
 #'
-#' Get information about one particular dataset
+#' # Get information about one particular dataset
 #' api_sahie <- listCensusApis(name = "timeseries/healthins/sahie")
 #' head(api_sahie)
 #' }
-
+#'
+#' @export
 listCensusApis <- function(name = NULL,
 													 vintage = NULL) {
 	constructURL <- function(name, vintage) {
