@@ -143,22 +143,24 @@ sahie_la
 # Get the 2021 uninsured rate for nonelderly adults (AGECAT = 1)
 # at 138% to 400% of the federal poverty line (IPRCAT = 5)
 # by race and ethnicity for Alabama
-sahie_adults <- getCensus(
+sahie_alabama <- getCensus(
     name = "timeseries/healthins/sahie",
     vars = c("NAME", "PCTUI_PT", "RACECAT", "RACE_DESC"), 
     region = "state:*", 
     time = 2021,
     IPRCAT = 5,
     AGECAT = 1)
-head(sahie_adults)
+sahie_alabama
 
-#> 	  time state    NAME PCTUI_PT RACECAT                                                       RACE_DESC IPRCAT AGECAT
-#> 	1 2021    01 Alabama     15.9       0                                                       All Races      5      1
-#> 	2 2021    01 Alabama     14.1       1                             White alone, not Hispanic or Latino      5      1
-#> 	3 2021    01 Alabama     15.4       2         Black or African American alone, not Hispanic or Latino      5      1
-#> 	4 2021    01 Alabama     40.4       3                                   Hispanic or Latino (any race)      5      1
-#> 	5 2021    01 Alabama     20.8       4 American Indian and Alaska Native alone, not Hispanic or Latino      5      1
-#> 	6 2021    01 Alabama     14.8       5                             Asian alone, not Hispanic or Latino      5      1
+#> 	  time state    NAME PCTUI_PT RACECAT                                                                RACE_DESC IPRCAT AGECAT
+#> 	1 2021    01 Alabama     15.9       0                                                                All Races      5      1
+#> 	2 2021    01 Alabama     14.1       1                                      White alone, not Hispanic or Latino      5      1
+#> 	3 2021    01 Alabama     15.4       2                  Black or African American alone, not Hispanic or Latino      5      1
+#> 	4 2021    01 Alabama     40.4       3                                            Hispanic or Latino (any race)      5      1
+#> 	5 2021    01 Alabama     20.8       4          American Indian and Alaska Native alone, not Hispanic or Latino      5      1
+#> 	6 2021    01 Alabama     14.8       5                                      Asian alone, not Hispanic or Latino      5      1
+#>  7 2021    01 Alabama     20.0       6 Native Hawaiian and Other Pacific Islander alone, not Hispanic or Latino      5      1
+#>  8 2021    01 Alabama     16.9       7                                Two or More Races, not Hispanic or Latino      5      1
 
 ```
 
