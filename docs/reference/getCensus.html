@@ -68,12 +68,12 @@
 <span>  region <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  regionin <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  time <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  show_call <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  convert_variables <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  year <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  date <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  period <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  monthly <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  show_call <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  convert_variables <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  category_code <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  data_type_code <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  naics <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -90,18 +90,21 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>name</dt>
-<dd><p>The programmatic name of your dataset, e.g. `timeseries/poverty/saipe`
-or `acs/acs5`. See `listCensusApis()` for options.</p></dd>
+<dd><p>The programmatic name of your dataset, e.g.
+"timeseries/poverty/saipe" or "acs/acs5". Use listCensusApis() to see valid
+dataset names. Required.</p></dd>
 
 
 <dt>vintage</dt>
-<dd><p>Vintage (year) of dataset, e.g. 2014. Not required for timeseries APIs.</p></dd>
+<dd><p>Vintage (year) of dataset, e.g. 2014. Not required for
+timeseries APIs.</p></dd>
 
 
 <dt>key</dt>
-<dd><p>A Census API key, obtained at https://api.census.gov/data/key_signup.html.
-If you have a `CENSUS_KEY` or `CENSUS_API_KEY` stored in your .Renviron file, getCensus()
-will automatically use that key. Using a key is recommended but not required.</p></dd>
+<dd><p>A Census API key, obtained at
+https://api.census.gov/data/key_signup.html. If you have a `CENSUS_KEY` or
+`CENSUS_API_KEY` stored in your .Renviron file, getCensus() will
+automatically use that key. Using a key is recommended but not required.</p></dd>
 
 
 <dt>vars</dt>
@@ -117,25 +120,27 @@ will automatically use that key. Using a key is recommended but not required.</p
 
 
 <dt>time</dt>
-<dd><p>Time period of data to get, used with time series APIs.</p></dd>
-
-
-<dt>year, date, period, monthly, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic</dt>
-<dd><p>Optional arguments used in timeseries data APIs.</p></dd>
+<dd><p>Time period of data to get. Required for most timeseries APIs.</p></dd>
 
 
 <dt>show_call</dt>
-<dd><p>List the underlying API call that was sent to the Census Bureau.</p></dd>
+<dd><p>Display the underlying API call that was sent to the Census
+Bureau. Default is FALSE.</p></dd>
 
 
 <dt>convert_variables</dt>
-<dd><p>Convert likely numeric variables into numeric data.
-Default is true. If false, results will be characters, which is the type returned by
-the Census Bureau.</p></dd>
+<dd><p>Convert columns that are likely numbers into numeric
+data. Default is TRUE. If false, all columns will be characters, which is
+the type returned by the Census Bureau.</p></dd>
+
+
+<dt>year, date, period, monthly, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic</dt>
+<dd><p>Optional arguments used in some timeseries data APIs.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>Other valid arguments to pass to the Census API. Note: the APIs are case sensitive.</p></dd>
+<dd><p>Other valid arguments to pass to the Census API. Note: the APIs
+are case sensitive.</p></dd>
 
 </dl></div>
 
@@ -323,9 +328,9 @@ the Census Bureau.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    01    001  507    90    Construction        23</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    01    003 4322   705    Construction        23</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3    01    005   75    20    Construction        23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    02    070   36     8    Construction        23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    02    090 1927   345    Construction        23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    05    049   23     9    Construction        23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    01    055  904   128    Construction        23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    02    068   22     7    Construction        23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    04    025 5933   936    Construction        23</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

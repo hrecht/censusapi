@@ -1,19 +1,89 @@
-#' Get general information about the datasets available in the API
+#' Get general information about available datasets
 #'
-#' Scrapes https://api.census.gov/data.json and returns a dataframe
-#' that includes: title, description, name, vintage, url, dataset type, and other useful fields.
+#' Scrapes https://api.census.gov/data.json and returns a dataframe that
+#' includes columns for dataset title, description, name, vintage, url, dataset
+#' type, and other useful fields.
 #'
 #' @keywords metadata
+#' @param name Optional complete or partial API dataset programmatic name. For
+#'   example, "acs", "acs/acs5", "acs/acs5/subject". If using a partial name,
+#'   this needs to be the left-most part of the dataset name before `/`, e.g.
+#'   "timeseries/eits" or "dec" or "acs/acs5".
+#' @param vintage Optional vintage (year) of dataset.
 #' @export
 #' @examples
 #' \dontrun{
+#' # Get information about every dataset available in the APIs
 #' apis <- listCensusApis()
 #' head(apis)
+#'
+#' Get information about all vintage 2022 datasets
+#' apis_2022 <- listCensusApis(vintage = 2022)
+#' head(apis_2022)
+#'
+#' Get information about all timeseries datasets
+#' apis_timeseries <- listCensusApis(name = "timeseries")
+#' head(apis_timeseries)
+#'
+#' Get information about 2020 Decennial Census datasets
+#' apis_decennial_2020 <- listCensusApis(name = "dec", vintage = 2020)
+#' head(apis_decennial_2020)
+#'
+#' Get information about one particular dataset
+#' api_sahie <- listCensusApis(name = "timeseries/healthins/sahie")
+#' head(api_sahie)
 #' }
-listCensusApis <- function() {
-	# Get data.json
-	u <- "https://api.census.gov/data.json"
-	raw <- jsonlite::fromJSON(u)
+
+listCensusApis <- function(name = NULL,
+													 vintage = NULL) {
+	constructURL <- function(name, vintage) {
+			# Get data.json
+		if (is.null(name) & is.null(vintage)) {
+			u <- "https://api.census.gov/data.json"
+		} else if (is.null(vintage) & !is.null(name)) {
+			u <- paste0("https://api.census.gov/data/", name,	".json")
+		} else if (is.null(name) & !is.null(vintage)) {
+			u <- paste0("https://api.census.gov/data/", vintage, ".json")
+		} else if (!is.null(name) & !is.null(vintage)) {
+			u <- paste0("https://api.census.gov/data/", vintage, "/", name, ".json")
+		}
+	}
+
+	# Return API's built in error message if invalid call
+	apiCheck <- function(req) {
+		if (!(req$status_code %in% c(200, 201, 202))) {
+			if (req$status_code == 404) {
+				stop(paste("Invalid metadata request, (404) not found.",
+									 "\n Your API call was: ", print(req$url)), call. = FALSE)
+			} else if (req$status_code==400) {
+				stop(paste("The Census Bureau returned the following error message:\n", req$error_message,
+									 "\n Your API call was: ", print(req$url)))
+			} else if (req$status_code==204) {
+				stop(paste("204, no content was returned. \n Your API call was: ", print(req$url)), call. = FALSE)
+			} else if (identical(httr::content(req, as = "text"), "")) {
+				stop(paste("No output to parse. \n Your API call was: ", print(req$url)), call. = FALSE)
+			}
+		}
+	}
+
+	apiParse <- function (req) {
+		if (jsonlite::validate(httr::content(req, as="text"))[1] == FALSE) {
+			error_message <- (gsub("<[^>]*>", "", httr::content(req, as="text")))
+			stop(paste("The Census Bureau returned the following error message:\n", error_message, "\nYour api call was: ", req$url))
+		} else {
+			raw <- jsonlite::fromJSON(httr::content(req, as = "text"))
+		}
+	}
+
+	u <- constructURL(name = name, vintage = vintage)
+	req <- httr::GET(u)
+	# Check the API call for a valid response
+	apiCheck(req)
+
+	# If check didn't fail, parse the content
+	raw <- apiParse(req)
+
+	#raw <- jsonlite::fromJSON(u)
 	datasets <- jsonlite::flatten(raw$dataset)
 
 	# Format variable names and values
@@ -24,37 +94,86 @@ listCensusApis <- function() {
 	names(datasets)[names(datasets) == "contactPoint.hasEmail"] <- "contact"
 
 	# Add a dataset type variable built from binary variables
-	datasets$type <- ifelse(datasets$isMicrodata %in% TRUE , "Microdata",
-													ifelse(datasets$isTimeseries %in% TRUE, "Timeseries",
-																 ifelse(datasets$isAggregate %in% TRUE, "Aggregate",
-																 			 NA)))
+	# If requesting a subset of datasets it won't have all of these fields
+	# There is surely a more efficient way to write this but it works for now
+	if ("isMicrodata" %in% names(datasets) &
+			"isTimeseries" %in% names(datasets) &
+			"isAggregate" %in% names(datasets)) {
+		datasets$type <- ifelse(datasets$isMicrodata %in% TRUE, "Microdata",
+														ifelse(datasets$isTimeseries %in% TRUE, "Timeseries",
+																	 ifelse(datasets$isAggregate %in% TRUE, "Aggregate",
+																	 			 NA)))
+	} else if ("isMicrodata" %in% names(datasets) &
+						 !("isTimeseries" %in% names(datasets))
+						 & !("isAggregate" %in% names(datasets))) {
+		datasets$type <- ifelse(datasets$isMicrodata %in% TRUE, "Microdata", NA)
+	} else if ("isTimeseries" %in% names(datasets) &
+						 !("isMicrodata" %in% names(datasets))
+						 & !("isAggregate" %in% names(datasets))) {
+		datasets$type <- ifelse(datasets$isTimeseries %in% TRUE, "Timeseries", NA)
+	} else if ("isAggregate" %in% names(datasets) &
+						 !("isMicrodata" %in% names(datasets))
+						 & !("isTimeseries" %in% names(datasets))) {
+		datasets$type <- ifelse(datasets$isAggregate %in% TRUE, "Aggregate", NA)
+	} else if ("isMicrodata" %in% names(datasets) &
+						 "isTimeseries" %in% names(datasets) &
+						 !("isAggregate" %in% names(datasets))) {
+		datasets$type <- ifelse(datasets$isMicrodata %in% TRUE, "Microdata",
+														ifelse(datasets$isTimeseries %in% TRUE, "Timeseries",
+																	 			 NA))
+	} else if ("isMicrodata" %in% names(datasets) &
+						 "isAggregate" %in% names(datasets) &
+						 !("isTimeseries" %in% names(datasets))) {
+		datasets$type <- ifelse(datasets$isMicrodata %in% TRUE, "Microdata",
+														ifelse(datasets$isAggregate %in% TRUE, "Aggregate",
+																	 NA))
+	} else if ("isTimeseries" %in% names(datasets) &
+						 "isAggregate" %in% names(datasets) &
+						 !("isMicrodata" %in% names(datasets))) {
+		datasets$type <- ifelse(datasets$isTimeseries %in% TRUE, "Timeseries",
+														ifelse(datasets$isAggregate %in% TRUE, "Aggregate",
+																	 NA))
+	}
+
 
 	# Keep only valuable columns - many are not useful (empty or the same for all datasets)
-	dt <- datasets[, c("title", "name", "vintage", "type", "temporal", "url", "modified", "description", "contact")]
+	if ("vintage" %in% names(datasets)) {
+		dt <- datasets[, c("title", "name", "vintage", "type", "temporal",
+											 "spatial", "url", "modified", "description", "contact")]
+
+		# Give some logic to the row ordering
+		dt <- dt[order(-dt$vintage, dt$name),]
+	} else {
+		dt <- datasets[, c("title", "name", "type", "temporal", "spatial",
+											 "url", "modified", "description", "contact")]
+		dt <- dt[order(dt$name),]
+	}
 	dt$contact <- gsub("mailto:", "", dt$contact)
 
-	# Give some logic to the row ordering
-	dt <- dt[order(-dt$vintage, dt$name),]
 	rownames(dt) <- NULL
 	return(dt)
 }
 
-#' Get information about a specific API endpoint, such as available variables and geographies
+#' Get metadata about a specific API endpoint, including available variables,
+#' geographies, variable groups, and value labels
 #'
-#' @param name API programmatic name - e.g. acs/acs5. See list of names with listCensusApis().
-#' @param vintage Vintage (year) of dataset. Not required for timeseries APIs
-#' @param type Type of metadata to return. Options are:
-#'   * `variables` (default) - list of variable names and descriptions for the dataset.
-#'   * `geographies` - available geographies.
-#'   * `groups` - available variable groups. Only available for some datasets.
-#'   * `values` - encoded value labels for a given variable. Pair with
-#'      `variable_name`. This information is only available for some datasets.
-#' @param group An optional variable group code, used to return metadata for a specific group
-#' of variables only. Variable groups are not used for all APIs.
-#' @param variable_name A name of a specific variable used to return value labels for that
-#' variable. Value labels are not published for all APIs.
+#' @param name API programmatic name - e.g. acs/acs5. Use `listCensusApis()` to
+#'   see valid dataset names.
+#' @param vintage Vintage (year) of dataset. Not required for timeseries APIs.
+#' @param type Type of metadata to return. Options are: "variables" (default) -
+#'   list of variable names and descriptions for the dataset. "geographies" -
+#'   available geographies. "groups" - available variable groups. Only available
+#'   for some datasets. "values" - encoded value labels for a given variable.
+#'   Pair with "variable_name". This information is only available for some
+#'   datasets.
+#' @param group An optional variable group code, used to return metadata for a
+#'   specific group of variables only. Variable groups are not used for all
+#'   APIs.
+#' @param variable_name A name of a specific variable used to return value
+#'   labels for that variable. Value labels are not used for all APIs.
 #' @param include_values Use with `type = "variables"`. Include value metadata
-#' for all variables in a dataset if value metadata exists. Default is "FALSE".
+#'   for all variables in a dataset if value metadata exists. Default is
+#'   "FALSE".
 #' @keywords metadata
 #' @examples
 #' \dontrun{
@@ -85,7 +204,7 @@ listCensusApis <- function() {
 #' 	include_values = TRUE)
 #' head(variable_values)
 #'
-#'# type: geographies
+#' # type: geographies
 #' # List the geographies available in the 5-year American Community Survey.
 #' geographies <- listCensusMetadata(
 #'   name = "acs/acs5",

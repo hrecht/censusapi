@@ -12,12 +12,12 @@ getCensus(
   region = NULL,
   regionin = NULL,
   time = NULL,
+  show_call = FALSE,
+  convert_variables = TRUE,
   year = NULL,
   date = NULL,
   period = NULL,
   monthly = NULL,
-  show_call = FALSE,
-  convert_variables = TRUE,
   category_code = NULL,
   data_type_code = NULL,
   naics = NULL,
@@ -31,14 +31,17 @@ getCensus(
 )
 }
 \arguments{
-\item{name}{The programmatic name of your dataset, e.g. `timeseries/poverty/saipe`
-or `acs/acs5`. See `listCensusApis()` for options.}
+\item{name}{The programmatic name of your dataset, e.g.
+"timeseries/poverty/saipe" or "acs/acs5". Use listCensusApis() to see valid
+dataset names. Required.}
 
-\item{vintage}{Vintage (year) of dataset, e.g. 2014. Not required for timeseries APIs.}
+\item{vintage}{Vintage (year) of dataset, e.g. 2014. Not required for
+timeseries APIs.}
 
-\item{key}{A Census API key, obtained at https://api.census.gov/data/key_signup.html.
-If you have a `CENSUS_KEY` or `CENSUS_API_KEY` stored in your .Renviron file, getCensus()
-will automatically use that key. Using a key is recommended but not required.}
+\item{key}{A Census API key, obtained at
+https://api.census.gov/data/key_signup.html. If you have a `CENSUS_KEY` or
+`CENSUS_API_KEY` stored in your .Renviron file, getCensus() will
+automatically use that key. Using a key is recommended but not required.}
 
 \item{vars}{List of variables to get. Required.}
 
@@ -46,17 +49,19 @@ will automatically use that key. Using a key is recommended but not required.}
 
 \item{regionin}{Optional hierarchical geography to limit region.}
 
-\item{time}{Time period of data to get, used with time series APIs.}
+\item{time}{Time period of data to get. Required for most timeseries APIs.}
 
-\item{year, date, period, monthly, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic}{Optional arguments used in timeseries data APIs.}
+\item{show_call}{Display the underlying API call that was sent to the Census
+Bureau. Default is FALSE.}
 
-\item{show_call}{List the underlying API call that was sent to the Census Bureau.}
+\item{convert_variables}{Convert columns that are likely numbers into numeric
+data. Default is TRUE. If false, all columns will be characters, which is
+the type returned by the Census Bureau.}
 
-\item{convert_variables}{Convert likely numeric variables into numeric data.
-Default is true. If false, results will be characters, which is the type returned by
-the Census Bureau.}
+\item{year, date, period, monthly, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic}{Optional arguments used in some timeseries data APIs.}
 
-\item{...}{Other valid arguments to pass to the Census API. Note: the APIs are case sensitive.}
+\item{...}{Other valid arguments to pass to the Census API. Note: the APIs
+are case sensitive.}
 }
 \description{
 Retrieve Census data from a given API

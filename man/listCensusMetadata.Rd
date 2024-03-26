@@ -2,7 +2,8 @@
 % Please edit documentation in R/metadata_functions.R
 \name{listCensusMetadata}
 \alias{listCensusMetadata}
-\title{Get information about a specific API as a data frame}
+\title{Get metadata about a specific API endpoint, including available variables,
+geographies, variable groups, and value labels}
 \usage{
 listCensusMetadata(
   name,
@@ -14,28 +15,32 @@ listCensusMetadata(
 )
 }
 \arguments{
-\item{name}{API programmatic name - e.g. acs/acs5. See list of names with listCensusApis().}
+\item{name}{API programmatic name - e.g. acs/acs5. Use `listCensusApis()` to
+see valid dataset names.}
 
-\item{vintage}{Vintage (year) of dataset. Not required for timeseries APIs}
+\item{vintage}{Vintage (year) of dataset. Not required for timeseries APIs.}
 
-\item{type}{Type of metadata to return. Options are:
-* `variables` (default) - list of variable names and descriptions for the dataset.
-* `geographies` - available geographies.
-* `groups` - available variable groups. Not used for all datasets.
-* `values` - encoded value labels for a given variable. Pair with
-   `variable_name`. Not used for all datasets.}
+\item{type}{Type of metadata to return. Options are: "variables" (default) -
+list of variable names and descriptions for the dataset. "geographies" -
+available geographies. "groups" - available variable groups. Only available
+for some datasets. "values" - encoded value labels for a given variable.
+Pair with "variable_name". This information is only available for some
+datasets.}
 
-\item{group}{An optional variable group code, used to return metadata for a specific group
-of variables only. Variable groups are not used for all APIs.}
+\item{group}{An optional variable group code, used to return metadata for a
+specific group of variables only. Variable groups are not used for all
+APIs.}
 
-\item{variable_name}{A name of a specific variable used to return value labels for that
-variable. Value labels are not published for all APIs.}
+\item{variable_name}{A name of a specific variable used to return value
+labels for that variable. Value labels are not used for all APIs.}
 
 \item{include_values}{Use with `type = "variables"`. Include value metadata
-for all variables in a dataset if value metadata exists. Default is "FALSE".}
+for all variables in a dataset if value metadata exists. Default is
+"FALSE".}
 }
 \description{
-Get information about a specific API as a data frame
+Get metadata about a specific API endpoint, including available variables,
+geographies, variable groups, and value labels
 }
 \examples{
 \dontrun{

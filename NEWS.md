@@ -1,9 +1,27 @@
-# censusapi 0.9.0 
-* The use of a Census Bureau API key (the `key` parameter) is no longer required with `getCensus()`. Users are still encouraged to register for and use an API key because the Census Bureau may rate limit IP addresses, but it is not required.
+# censusapi 0.9.0 (development verison)
+## Breaking changes
+* Increases required version of R from >=3.0 to >=3.5 (released in 2018) based on httr dependency.
+
+## New features
+* `getCensus()` no longer requires `key`, the use of a Census Bureau API key. Users are still encouraged to register for and use an API key because the Census Bureau may rate limit IP addresses, but it is not required. (#87)
+
+* `listCensusApis()` now has optional `name` and `vintage` parameters to get metadata for a subset of datasets or a single dataset. (#103)
+
+```R
+# Get metadata for all 2020 Decennial Census datasets
+apis_decennial_2020 <- listCensusApis(name = "dec", vintage = 2020)
+
+# Get metadata for all timeseries datasets
+apis_timeseries <- listCensusApis(name = "timeseries")
+```
+
+## Minor improvements
 * `getCensus()` automatically converts data columns in the Household Pulse Survey to numeric.
-* Increases required version of R from >=3.0 to >=3.5 based on httr dependency.
+
+## Documentation
+* Function documentation is improved and better formatted.
 * A new online [frequently asked questions article](https://www.hrecht.com/censusapi/articles/frequently-asked-questions.html) improves documentation.
-* Documentation is updated to use newly released datasets.
+* Examples are updated to use newly released datasets.
 
 # censusapi 0.8.0 
 * `listCensusApis()` has new columns in the resulting data frame of available API endpoints: the API `contact` email address and `type`: either Aggregate, Timeseries, or Microdata.

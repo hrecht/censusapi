@@ -2,18 +2,44 @@
 % Please edit documentation in R/metadata_functions.R
 \name{listCensusApis}
 \alias{listCensusApis}
-\title{Get useful dataset metadata on all available APIs as a data frame}
+\title{Get general information about available datasets}
 \usage{
-listCensusApis()
+listCensusApis(name = NULL, vintage = NULL)
+}
+\arguments{
+\item{name}{Optional complete or partial API dataset programmatic name. For
+example, "acs", "acs/acs5", "acs/acs5/subject". If using a partial name,
+this needs to be the left-most part of the dataset name before `/`, e.g.
+"timeseries/eits" or "dec" or "acs/acs5".}
+
+\item{vintage}{Optional vintage (year) of dataset.}
 }
 \description{
-Scrapes https://api.census.gov/data.json and returns a dataframe
-that includes: title, description, name, vintage, url, dataset type, and other useful fields.
+Scrapes https://api.census.gov/data.json and returns a dataframe that
+includes columns for dataset title, description, name, vintage, url, dataset
+type, and other useful fields.
 }
 \examples{
 \dontrun{
+# Get information about every dataset available in the APIs
 apis <- listCensusApis()
 head(apis)
+
+Get information about all vintage 2022 datasets
+apis_2022 <- listCensusApis(vintage = 2022)
+head(apis_2022)
+
+Get information about all timeseries datasets
+apis_timeseries <- listCensusApis(name = "timeseries")
+head(apis_timeseries)
+
+Get information about 2020 Decennial Census datasets
+apis_decennial_2020 <- listCensusApis(name = "dec", vintage = 2020)
+head(apis_decennial_2020)
+
+Get information about one particular dataset
+api_sahie <- listCensusApis(name = "timeseries/healthins/sahie")
+head(api_sahie)
 }
 }
 \keyword{metadata}

@@ -139,23 +139,29 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, show_cal
 
 #' Retrieve Census data from a given API
 #'
-#' @param name The programmatic name of your dataset, e.g. `timeseries/poverty/saipe`
-#' or `acs/acs5`. See `listCensusApis()` for options.
-#' @param vintage Vintage (year) of dataset, e.g. 2014. Not required for timeseries APIs.
+#' @param name The programmatic name of your dataset, e.g.
+#'   "timeseries/poverty/saipe" or "acs/acs5". Use listCensusApis() to see valid
+#'   dataset names. Required.
+#' @param vintage Vintage (year) of dataset, e.g. 2014. Not required for
+#'   timeseries APIs.
 #' @param vars List of variables to get. Required.
 #' @param region Geography to get.
 #' @param regionin Optional hierarchical geography to limit region.
-#' @param key A Census API key, obtained at https://api.census.gov/data/key_signup.html.
-#' If you have a `CENSUS_KEY` or `CENSUS_API_KEY` stored in your .Renviron file, getCensus()
-#' will automatically use that key. Using a key is recommended but not required.
-#' @param time Time period of data to get, used with timeseries APIs.
-#' @param show_call Display the underlying API call that was sent to the Census Bureau.
-#' @param convert_variables Convert likely numeric variables into numeric data.
-#' Default is true. If false, results will be characters, which is the type returned by
-#' the Census Bureau.
-#' @param year,date,period,monthly,category_code,data_type_code,naics,pscode,naics2012,naics2007,naics2002,naics1997,sic
+#' @param key A Census API key, obtained at
+#'   https://api.census.gov/data/key_signup.html. If you have a `CENSUS_KEY` or
+#'   `CENSUS_API_KEY` stored in your .Renviron file, getCensus() will
+#'   automatically use that key. Using a key is recommended but not required.
+#' @param time Time period of data to get. Required for most timeseries APIs.
+#' @param show_call Display the underlying API call that was sent to the Census
+#'   Bureau. Default is FALSE.
+#' @param convert_variables Convert columns that are likely numbers into numeric
+#'   data. Default is TRUE. If false, all columns will be characters, which is
+#'   the type returned by the Census Bureau.
+#' @param
+#' year,date,period,monthly,category_code,data_type_code,naics,pscode,naics2012,naics2007,naics2002,naics1997,sic
 #' Optional arguments used in some timeseries data APIs.
-#' @param ... Other valid arguments to pass to the Census API. Note: the APIs are case sensitive.
+#' @param ... Other valid arguments to pass to the Census API. Note: the APIs
+#'   are case sensitive.
 #' @keywords api
 #' @examples
 #' \dontrun{

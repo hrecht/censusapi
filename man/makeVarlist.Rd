@@ -2,30 +2,32 @@
 % Please edit documentation in R/makevar_functions.R
 \name{makeVarlist}
 \alias{makeVarlist}
-\title{Use variable metadata to find variables containing a given string.}
+\title{Use variable metadata to find variables containing a given string}
 \usage{
 makeVarlist(name, vintage = NULL, find, varsearch = "all", output = "list")
 }
 \arguments{
-\item{name}{API name - e.g. acs5. See list at https://api.census.gov/data.html}
+\item{name}{API programmatic name - e.g. acs/acs5. Use `listCensusApis()` to
+see valid dataset names.}
 
-\item{vintage}{Year of dataset, e.g. 2014 - not required for timeseries APIs}
+\item{vintage}{Vintage (year) of dataset. Not required for timeseries APIs.}
 
-\item{find}{A string to find in the variable metadata}
+\item{find}{A string to find in the variable metadata.}
 
-\item{varsearch}{Optional argument specifying which fields to search. Default is "all".
-Options are "all", "name", "label", or "concept".}
+\item{varsearch}{Optional argument specifying which fields to search. Default
+is "all". Options are "all", "name", "label", or "concept".}
 
-\item{output}{Optional argument, specifying output to "list" or "dataframe". Default is "list".}
+\item{output}{Optional argument, specifying output to "list" or "dataframe".
+Default is "list".}
 }
 \description{
-Return a list of variable names or data frame of variable metadata containing a given string.
-This can be used create a list of variables to later pass to getCensus, or a data frame
-documenting variables used in a given project.
+Return a list of variable names or data frame of variable metadata containing
+a given string. This can be used create a list of variables to later pass to
+getCensus, or a data frame documenting variables used in a given project.
 }
 \examples{
-# Return a list, and then use getCensus function to retrieve those variables
 \dontrun{
+# Return a list, and then use getCensus function to retrieve those variables
 myvars <- makeVarlist(name = "timeseries/poverty/saipe",
   find = "Ages 0-4",
   varsearch = "label")
