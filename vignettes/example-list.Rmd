@@ -570,7 +570,7 @@ saipe_schools <- getCensus(
 	vars = c("SD_NAME", "SAEPOV5_17V_PT", "SAEPOVRAT5_17RV_PT"),
 	region = "school district (unified):*",
 	regionin = "state:25",
-	year = 2022)
+	time = 2022)
 head(saipe_schools)
 ```
 ## Public Sector Statistics

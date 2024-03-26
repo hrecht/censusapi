@@ -3,7 +3,7 @@
 #' @param apiurl, key, get, region, time, etc
 #' @keywords internal
 #' @export
-getFunction <- function(apiurl, name, key, get, region, regionin, time, year, date, period, monthly, show_call, convert_variables, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...) {
+getFunction <- function(apiurl, name, key, get, region, regionin, time, show_call, convert_variables, year, date, period, monthly, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...) {
 
 	# Return API's built in error message if invalid call
 	apiCheck <- function(req) {
@@ -148,13 +148,13 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, year, da
 #' @param key A Census API key, obtained at https://api.census.gov/data/key_signup.html.
 #' If you have a `CENSUS_KEY` or `CENSUS_API_KEY` stored in your .Renviron file, getCensus()
 #' will automatically use that key. Using a key is recommended but not required.
-#' @param time Time period of data to get, used with time series APIs.
-#' @param show_call List the underlying API call that was sent to the Census Bureau.
+#' @param time Time period of data to get, used with timeseries APIs.
+#' @param show_call Display the underlying API call that was sent to the Census Bureau.
 #' @param convert_variables Convert likely numeric variables into numeric data.
 #' Default is true. If false, results will be characters, which is the type returned by
 #' the Census Bureau.
 #' @param year,date,period,monthly,category_code,data_type_code,naics,pscode,naics2012,naics2007,naics2002,naics1997,sic
-#' Optional arguments used in timeseries data APIs.
+#' Optional arguments used in some timeseries data APIs.
 #' @param ... Other valid arguments to pass to the Census API. Note: the APIs are case sensitive.
 #' @keywords api
 #' @examples
@@ -218,12 +218,12 @@ getCensus <-
 					 region = NULL,
 					 regionin = NULL,
 					 time = NULL,
+					 show_call = FALSE,
+					 convert_variables = TRUE,
 					 year = NULL,
 					 date = NULL,
 					 period = NULL,
 					 monthly = NULL,
-					 show_call = FALSE,
-					 convert_variables = TRUE,
 					 category_code = NULL,
 					 data_type_code = NULL,
 					 naics = NULL,
@@ -268,13 +268,13 @@ getCensus <-
 		# Split vars into list
 		vars <- split(vars, ceiling(seq_along(vars)/50))
 		get <- lapply(vars, function(x) paste(x, sep='', collapse=","))
-		data <- lapply(get, function(x) getFunction(apiurl, name, key, x, region, regionin, time, year, date, period, monthly, show_call, convert_variables, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...))
+		data <- lapply(get, function(x) getFunction(apiurl, name, key, x, region, regionin, time, show_call, convert_variables, year, date, period, monthly, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...))
 
 		data <- Reduce(function(x, y) merge(x, y, all = TRUE, sort = FALSE), data)
 
 	} else {
 		get <- paste(vars, sep='', collapse=',')
-		data <- getFunction(apiurl, name, key, get, region, regionin, time, year, date, period, monthly, show_call, convert_variables, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...)
+		data <- getFunction(apiurl, name, key, get, region, regionin, time, show_call, convert_variables, year, date, period, monthly, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...)
 	}
 
 	# If there are any duplicate columns (ie if you put a variable in vars twice) remove the duplicates

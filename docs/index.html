@@ -132,21 +132,22 @@
 </li>
 <li>Census tract name</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>no_internet <span class="ot">&lt;-</span> <span class="fu">getCensus</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"acs/acs5/subject"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    <span class="at">vintage =</span> <span class="dv">2022</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>    <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">"S2801_C01_001E"</span>, <span class="st">"S2801_C01_019E"</span>, <span class="st">"S2801_C02_019E"</span>, <span class="st">"NAME"</span>),</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    <span class="at">region =</span> <span class="st">"tract:*"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>    <span class="at">regionin =</span> <span class="st">"state:04"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="fu">head</span>(no internet)</span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt;   state county tract   S2801_C01_001E S2801_C01_019E S2801_C02_019E NAME                                          </span></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt; 1 04    001    942600             429            412           96.0 Census Tract 9426; Apache County; Arizona                </span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt; 2 04    001    942700            1439           1006           69.9 Census Tract 9427; Apache County; Arizona               </span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt; 3 04    001    944000            1556            903           58.0 Census Tract 9440; Apache County; Arizona               </span></span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt; 4 04    001    944100            1446            966           66.8 Census Tract 9441; Apache County; Arizona               </span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; 5 04    001    944201            1154            835           72.4 Census Tract 9442.01; Apache County; Arizona            </span></span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt; 6 04    001    944202            1111            874           78.7 Census Tract 9442.02; Apache County; Arizona            </span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">no_internet</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"acs/acs5/subject"</span>,</span>
+<span>    vintage <span class="op">=</span> <span class="fl">2022</span>,</span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"S2801_C01_001E"</span>, <span class="st">"S2801_C01_019E"</span>, <span class="st">"S2801_C02_019E"</span>, <span class="st">"NAME"</span><span class="op">)</span>,</span>
+<span>    region <span class="op">=</span> <span class="st">"tract:*"</span>,</span>
+<span>    regionin <span class="op">=</span> <span class="st">"state:04"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">no_internet</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   state county tract   S2801_C01_001E S2801_C01_019E S2801_C02_019E NAME                                          </span></span>
+<span><span class="co">#&gt; 1 04    001    942600             429            412           96.0 Census Tract 9426; Apache County; Arizona                </span></span>
+<span><span class="co">#&gt; 2 04    001    942700            1439           1006           69.9 Census Tract 9427; Apache County; Arizona               </span></span>
+<span><span class="co">#&gt; 3 04    001    944000            1556            903           58.0 Census Tract 9440; Apache County; Arizona               </span></span>
+<span><span class="co">#&gt; 4 04    001    944100            1446            966           66.8 Census Tract 9441; Apache County; Arizona               </span></span>
+<span><span class="co">#&gt; 5 04    001    944201            1154            835           72.4 Census Tract 9442.01; Apache County; Arizona            </span></span>
+<span><span class="co">#&gt; 6 04    001    944202            1111            874           78.7 Census Tract 9442.02; Apache County; Arizona            </span></span></code></pre></div>
 <p>To learn more about using <code>censusapi</code>, read the package documentation and articles at <a href="https://www.hrecht.com/censusapi/">https://www.hrecht.com/censusapi/.</a></p>
 </div>
 <div class="section level2">

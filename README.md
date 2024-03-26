@@ -68,7 +68,7 @@ no_internet <- getCensus(
 	region = "tract:*",
 	regionin = "state:04")
 
-head(no internet)
+head(no_internet)
 #> 	 state county tract   S2801_C01_001E S2801_C01_019E	S2801_C02_019E NAME 										 
 #> 1 04    001 	  942600			 429            412		   	  96.0 Census Tract 9426; Apache County; Arizona    			
 #> 2 04    001 	  942700			1439           1006			  69.9 Census Tract 9427; Apache County; Arizona    		   
