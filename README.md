@@ -113,16 +113,17 @@ listCensusMetadata(
 #> 	4    3       50 to 64
 #> 	5    4 Under 19 years
 #> 	6    5 21 to 64 years
-	
-# Get data using `IPRCAT` and `AGECAT` as predicates
-sahie_nonelderly <- getCensus(
+
+# Get 2021 data for nonelderly adults at 138% to 400% of the federal poverty line
+# by race and ethnicity for Alabama using `IPRCAT` and `AGECAT` as predicates
+sahie_adults <- getCensus(
     name = "timeseries/healthins/sahie",
     vars = c("NAME", "PCTUI_PT", "RACECAT", "RACE_DESC"), 
     region = "state:*", 
     time = 2021,
     IPRCAT = 5,
     AGECAT = 1)
-head(sahie_nonelderly)
+head(sahie_adults)
 
 #> 	  time state    NAME PCTUI_PT RACECAT                                                       RACE_DESC IPRCAT AGECAT
 #> 	1 2021    01 Alabama     15.9       0                                                       All Races      5      1
@@ -131,6 +132,31 @@ head(sahie_nonelderly)
 #> 	4 2021    01 Alabama     40.4       3                                   Hispanic or Latino (any race)      5      1
 #> 	5 2021    01 Alabama     20.8       4 American Indian and Alaska Native alone, not Hispanic or Latino      5      1
 #> 	6 2021    01 Alabama     14.8       5                             Asian alone, not Hispanic or Latino      5      1
+
+# Get data over time for nonelderly adults at 138% to 400% of the federal poverty line
+# over time in Los Angeles County, California
+sahie_la <- getCensus(
+	name = "timeseries/healthins/sahie",
+	vars = c("NAME", "PCTUI_PT"),
+	region = "county:037",
+	regionin = "state:06",
+	time = "from 2012",
+	IPRCAT = 5,
+	AGECAT = 1)
+sahie_la
+
+#> 	   time state county                   NAME PCTUI_PT IPRCAT AGECAT
+#> 	1  2012    06    037 Los Angeles County, CA     35.5      5      1
+#> 	2  2013    06    037 Los Angeles County, CA     34.3      5      1
+#> 	3  2014    06    037 Los Angeles County, CA     25.0      5      1
+#> 	4  2015    06    037 Los Angeles County, CA     18.6      5      1
+#> 	5  2016    06    037 Los Angeles County, CA     16.3      5      1
+#> 	6  2017    06    037 Los Angeles County, CA     15.5      5      1
+#> 	7  2018    06    037 Los Angeles County, CA     16.2      5      1
+#> 	8  2019    06    037 Los Angeles County, CA     18.3      5      1
+#> 	9  2020    06    037 Los Angeles County, CA     16.7      5      1
+#> 	10 2021    06    037 Los Angeles County, CA     16.1      5      1
+
 ```
 
 To learn more about using `censusapi`, read the package documentation and articles at  [https://www.hrecht.com/censusapi/.](https://www.hrecht.com/censusapi/)
