@@ -7,7 +7,7 @@
 [![R-CMD-check](https://github.com/hrecht/censusapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hrecht/censusapi/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-`censusapi` is a lightweight package to get data from the U.S. Census Bureau's [APIs](https://www.census.gov/data/developers.html). More than API 1,500 endpoints are available, including data from surveys such as the Decennial Census, American Community Survey, International Trade Datasets, Small Area Health Insurance Estimates and the Economics Indicators Time Series. `getCensus()` lets users retrieves data from any of those datasets using simple, consistent syntax.
+`censusapi` is a lightweight package to get data from the U.S. Census Bureau's [APIs](https://www.census.gov/data/developers.html). More than 1,500 API endpoints are available, including data from surveys such as the Decennial Census, American Community Survey, International Trade Datasets, Small Area Health Insurance Estimates and the Economics Indicators Time Series. `getCensus()` lets users retrieves data from any of those datasets using simple, consistent syntax.
 
 The package also includes metadata functions to help users determine [which datasets](https://www.hrecht.com/censusapi/reference/listCensusApis.html) are available and the variable, geography, and other options in [each of them](https://www.hrecht.com/censusapi/reference/listCensusMetadata.html).
 
@@ -159,8 +159,8 @@ sahie_alabama
 #> 	4 2021    01 Alabama     40.4       3                                            Hispanic or Latino (any race)      5      1
 #> 	5 2021    01 Alabama     20.8       4          American Indian and Alaska Native alone, not Hispanic or Latino      5      1
 #> 	6 2021    01 Alabama     14.8       5                                      Asian alone, not Hispanic or Latino      5      1
-#>  7 2021    01 Alabama     20.0       6 Native Hawaiian and Other Pacific Islander alone, not Hispanic or Latino      5      1
-#>  8 2021    01 Alabama     16.9       7                                Two or More Races, not Hispanic or Latino      5      1
+#> 	7 2021    01 Alabama     20.0       6 Native Hawaiian and Other Pacific Islander alone, not Hispanic or Latino      5      1
+#> 	8 2021    01 Alabama     16.9       7                                Two or More Races, not Hispanic or Latino      5      1
 
 ```
 

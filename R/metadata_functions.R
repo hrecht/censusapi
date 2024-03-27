@@ -94,50 +94,21 @@ listCensusApis <- function(name = NULL,
 	names(datasets)[names(datasets) == "contactPoint.hasEmail"] <- "contact"
 
 	# Add a dataset type variable built from binary variables
-	# If requesting a subset of datasets it won't have all of these fields
-	# There is surely a more efficient way to write this but it works for now
-	if ("isMicrodata" %in% names(datasets) &
-			"isTimeseries" %in% names(datasets) &
-			"isAggregate" %in% names(datasets)) {
-		datasets$type <- ifelse(datasets$isMicrodata %in% TRUE, "Microdata",
-														ifelse(datasets$isTimeseries %in% TRUE, "Timeseries",
-																	 ifelse(datasets$isAggregate %in% TRUE, "Aggregate",
-																	 			 NA)))
-	} else if ("isMicrodata" %in% names(datasets) &
-						 !("isTimeseries" %in% names(datasets))
-						 & !("isAggregate" %in% names(datasets))) {
-		datasets$type <- ifelse(datasets$isMicrodata %in% TRUE, "Microdata", NA)
-	} else if ("isTimeseries" %in% names(datasets) &
-						 !("isMicrodata" %in% names(datasets))
-						 & !("isAggregate" %in% names(datasets))) {
-		datasets$type <- ifelse(datasets$isTimeseries %in% TRUE, "Timeseries", NA)
-	} else if ("isAggregate" %in% names(datasets) &
-						 !("isMicrodata" %in% names(datasets))
-						 & !("isTimeseries" %in% names(datasets))) {
-		datasets$type <- ifelse(datasets$isAggregate %in% TRUE, "Aggregate", NA)
-	} else if ("isMicrodata" %in% names(datasets) &
-						 "isTimeseries" %in% names(datasets) &
-						 !("isAggregate" %in% names(datasets))) {
-		datasets$type <- ifelse(datasets$isMicrodata %in% TRUE, "Microdata",
-														ifelse(datasets$isTimeseries %in% TRUE, "Timeseries",
-																	 			 NA))
-	} else if ("isMicrodata" %in% names(datasets) &
-						 "isAggregate" %in% names(datasets) &
-						 !("isTimeseries" %in% names(datasets))) {
-		datasets$type <- ifelse(datasets$isMicrodata %in% TRUE, "Microdata",
-														ifelse(datasets$isAggregate %in% TRUE, "Aggregate",
-																	 NA))
-	} else if ("isTimeseries" %in% names(datasets) &
-						 "isAggregate" %in% names(datasets) &
-						 !("isMicrodata" %in% names(datasets))) {
-		datasets$type <- ifelse(datasets$isTimeseries %in% TRUE, "Timeseries",
-														ifelse(datasets$isAggregate %in% TRUE, "Aggregate",
-																	 NA))
+	# If requesting a subset of datasets it won't have all of these fields so assign
+	# values one by one
+	datasets$type <- NA
+	if ("isMicrodata" %in% colnames(datasets)) {
+		datasets$type <- ifelse(datasets$isMicrodata %in% TRUE, "Microdata", datasets$type)
+	}
+	if ("isAggregate" %in% colnames(datasets)) {
+		datasets$type <- ifelse(datasets$isAggregate %in% TRUE, "Aggregate", datasets$type)
+	}
+	if ("isTimeseries" %in% colnames(datasets)) {
+		datasets$type <- ifelse(datasets$isTimeseries %in% TRUE, "Timeseries", datasets$type)
 	}
 
-
 	# Keep only valuable columns - many are not useful (empty or the same for all datasets)
-	if ("vintage" %in% names(datasets)) {
+	if ("vintage" %in% colnames(datasets)) {
 		dt <- datasets[, c("title", "name", "vintage", "type", "temporal",
 											 "spatial", "url", "modified", "description", "contact")]
 
