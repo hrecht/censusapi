@@ -149,7 +149,7 @@ are case sensitive.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># Get total population and median household income for Census places</span></span></span>
 <span class="r-in"><span><span class="co"># (cities, towns, villages) in a single state from the 5-year American Community Survey.</span></span></span>
 <span class="r-in"><span><span class="va">acs_simple</span> <span class="op">&lt;-</span> <span class="fu">getCensus</span><span class="op">(</span></span></span>
@@ -159,6 +159,13 @@ are case sensitive.</p></dd>
 <span class="r-in"><span>  region <span class="op">=</span> <span class="st">"place:*"</span>,</span></span>
 <span class="r-in"><span>  regionin <span class="op">=</span> <span class="st">"state:01"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_simple</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   state place                     NAME B01001_001E B19013_001E</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    01 00100      Abanda CDP, Alabama         335       29263</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    01 00124  Abbeville city, Alabama        2309       35147</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    01 00460 Adamsville city, Alabama        4325       58631</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    01 00484    Addison town, Alabama         665       47188</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    01 00676      Akron town, Alabama         310       53929</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    01 00820  Alabaster city, Alabama       33417       89423</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get all data from the B08301 variable group, "Means of Transportation to Work."</span></span></span>
 <span class="r-in"><span><span class="co"># This returns estimates as well as margins of error and annotation flags.</span></span></span>
@@ -168,6 +175,111 @@ are case sensitive.</p></dd>
 <span class="r-in"><span>  vars <span class="op">=</span> <span class="st">"group(B08301)"</span>,</span></span>
 <span class="r-in"><span>  region <span class="op">=</span> <span class="st">"state:*"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_group</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   state B08301_001E B08301_001EA B08301_001M B08301_001MA B08301_002E</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    01     2183677         &lt;NA&gt;        9550         &lt;NA&gt;     1985736</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    02      351067         &lt;NA&gt;        2187         &lt;NA&gt;      274263</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    04     3244419         &lt;NA&gt;        9451         &lt;NA&gt;     2610395</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    05     1304084         &lt;NA&gt;        6929         &lt;NA&gt;     1177402</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    06    18353469         &lt;NA&gt;       22043         &lt;NA&gt;    14313290</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    08     3006848         &lt;NA&gt;        8149         &lt;NA&gt;     2304559</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B08301_002EA B08301_002M B08301_002MA B08301_003E B08301_003EA B08301_003M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt;       10017         &lt;NA&gt;     1808631         &lt;NA&gt;        9646</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;NA&gt;        2820         &lt;NA&gt;      231484         &lt;NA&gt;        3143</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         &lt;NA&gt;       12006         &lt;NA&gt;     2285920         &lt;NA&gt;       12162</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         &lt;NA&gt;        6616         &lt;NA&gt;     1051964         &lt;NA&gt;        6428</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         &lt;NA&gt;       23546         &lt;NA&gt;    12561068         &lt;NA&gt;       25223</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         &lt;NA&gt;        9026         &lt;NA&gt;     2062480         &lt;NA&gt;        8986</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B08301_003MA B08301_004E B08301_004EA B08301_004M B08301_004MA B08301_005E</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt;      177105         &lt;NA&gt;        4751         &lt;NA&gt;      137578</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;NA&gt;       42779         &lt;NA&gt;        2105         &lt;NA&gt;       32397</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         &lt;NA&gt;      324475         &lt;NA&gt;        5200         &lt;NA&gt;      242556</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         &lt;NA&gt;      125438         &lt;NA&gt;        3531         &lt;NA&gt;       94684</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         &lt;NA&gt;     1752222         &lt;NA&gt;       14058         &lt;NA&gt;     1269237</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         &lt;NA&gt;      242079         &lt;NA&gt;        5338         &lt;NA&gt;      180493</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B08301_005EA B08301_005M B08301_005MA B08301_006E B08301_006EA B08301_006M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt;        4204         &lt;NA&gt;       24358         &lt;NA&gt;        1675</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;NA&gt;        1886         &lt;NA&gt;        5712         &lt;NA&gt;         684</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         &lt;NA&gt;        4612         &lt;NA&gt;       48889         &lt;NA&gt;        1844</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         &lt;NA&gt;        2975         &lt;NA&gt;       18415         &lt;NA&gt;        1284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         &lt;NA&gt;       10568         &lt;NA&gt;      281935         &lt;NA&gt;        5811</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         &lt;NA&gt;        4522         &lt;NA&gt;       37353         &lt;NA&gt;        1984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B08301_006MA B08301_007E B08301_007EA B08301_007M B08301_007MA B08301_008E</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt;        8791         &lt;NA&gt;        1005         &lt;NA&gt;        2998</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;NA&gt;        2977         &lt;NA&gt;         646         &lt;NA&gt;        1039</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         &lt;NA&gt;       18286         &lt;NA&gt;        1327         &lt;NA&gt;       10171</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         &lt;NA&gt;        7226         &lt;NA&gt;         913         &lt;NA&gt;        2976</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         &lt;NA&gt;      109445         &lt;NA&gt;        3668         &lt;NA&gt;       61640</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         &lt;NA&gt;       14757         &lt;NA&gt;        1317         &lt;NA&gt;        6621</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B08301_008EA B08301_008M B08301_008MA B08301_009E B08301_009EA B08301_009M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt;         551         &lt;NA&gt;        3380         &lt;NA&gt;         602</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;NA&gt;         255         &lt;NA&gt;         654         &lt;NA&gt;         256</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         &lt;NA&gt;        1062         &lt;NA&gt;        4573         &lt;NA&gt;         689</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         &lt;NA&gt;         636         &lt;NA&gt;        2137         &lt;NA&gt;         354</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         &lt;NA&gt;        2554         &lt;NA&gt;       29965         &lt;NA&gt;        1345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         &lt;NA&gt;         758         &lt;NA&gt;        2855         &lt;NA&gt;         496</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B08301_009MA B08301_010E B08301_010EA B08301_010M B08301_010MA B08301_011E</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt;        6982         &lt;NA&gt;         910         &lt;NA&gt;        6523</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;NA&gt;        3805         &lt;NA&gt;         603         &lt;NA&gt;        3415</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         &lt;NA&gt;       40113         &lt;NA&gt;        2078         &lt;NA&gt;       35607</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         &lt;NA&gt;        3744         &lt;NA&gt;         551         &lt;NA&gt;        3387</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         &lt;NA&gt;      662772         &lt;NA&gt;        7190         &lt;NA&gt;      423288</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         &lt;NA&gt;       63953         &lt;NA&gt;        2586         &lt;NA&gt;       45745</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B08301_011EA B08301_011M B08301_011MA B08301_012E B08301_012EA B08301_012M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt;         928         &lt;NA&gt;         122         &lt;NA&gt;         117</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;NA&gt;         577         &lt;NA&gt;           1         &lt;NA&gt;           3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         &lt;NA&gt;        1989         &lt;NA&gt;         960         &lt;NA&gt;         238</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         &lt;NA&gt;         494         &lt;NA&gt;         114         &lt;NA&gt;          97</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         &lt;NA&gt;        5639         &lt;NA&gt;      140862         &lt;NA&gt;        3435</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         &lt;NA&gt;        2229         &lt;NA&gt;        4035         &lt;NA&gt;         418</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B08301_012MA B08301_013E B08301_013EA B08301_013M B08301_013MA B08301_014E</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt;          77         &lt;NA&gt;          55         &lt;NA&gt;          73</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;NA&gt;          15         &lt;NA&gt;          23         &lt;NA&gt;          14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         &lt;NA&gt;         471         &lt;NA&gt;         198         &lt;NA&gt;        2692</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         &lt;NA&gt;           2         &lt;NA&gt;           5         &lt;NA&gt;          59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         &lt;NA&gt;       58487         &lt;NA&gt;        2233         &lt;NA&gt;       28260</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         &lt;NA&gt;        2546         &lt;NA&gt;         416         &lt;NA&gt;       11234</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B08301_014EA B08301_014M B08301_014MA B08301_015E B08301_015EA B08301_015M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt;          95         &lt;NA&gt;         187         &lt;NA&gt;         100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;NA&gt;          15         &lt;NA&gt;         360         &lt;NA&gt;         176</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         &lt;NA&gt;         455         &lt;NA&gt;         383         &lt;NA&gt;         143</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         &lt;NA&gt;          51         &lt;NA&gt;         182         &lt;NA&gt;         170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         &lt;NA&gt;        1506         &lt;NA&gt;       11875         &lt;NA&gt;         985</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         &lt;NA&gt;         864         &lt;NA&gt;         393         &lt;NA&gt;         164</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B08301_015MA B08301_016E B08301_016EA B08301_016M B08301_016MA B08301_017E</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt;        1253         &lt;NA&gt;         321         &lt;NA&gt;        1878</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;NA&gt;        1599         &lt;NA&gt;         368         &lt;NA&gt;         474</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         &lt;NA&gt;        6508         &lt;NA&gt;         836         &lt;NA&gt;       10036</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         &lt;NA&gt;         603         &lt;NA&gt;         202         &lt;NA&gt;        1278</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         &lt;NA&gt;       37588         &lt;NA&gt;        1610         &lt;NA&gt;       46193</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         &lt;NA&gt;        2955         &lt;NA&gt;         510         &lt;NA&gt;        4587</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B08301_017EA B08301_017M B08301_017MA B08301_018E B08301_018EA B08301_018M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt;         307         &lt;NA&gt;        1805         &lt;NA&gt;         302</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;NA&gt;         127         &lt;NA&gt;        2447         &lt;NA&gt;         414</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         &lt;NA&gt;         824         &lt;NA&gt;       19629         &lt;NA&gt;        1240</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         &lt;NA&gt;         269         &lt;NA&gt;        2052         &lt;NA&gt;         380</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         &lt;NA&gt;        1803         &lt;NA&gt;      135240         &lt;NA&gt;        3079</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         &lt;NA&gt;         503         &lt;NA&gt;       30681         &lt;NA&gt;        1435</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B08301_018MA B08301_019E B08301_019EA B08301_019M B08301_019MA B08301_020E</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt;       24058         &lt;NA&gt;        1737         &lt;NA&gt;       16559</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;NA&gt;       27039         &lt;NA&gt;        1177         &lt;NA&gt;       13159</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         &lt;NA&gt;       54751         &lt;NA&gt;        2254         &lt;NA&gt;       40263</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         &lt;NA&gt;       19571         &lt;NA&gt;        1110         &lt;NA&gt;       11443</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         &lt;NA&gt;      437430         &lt;NA&gt;        5563         &lt;NA&gt;      220114</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         &lt;NA&gt;       79574         &lt;NA&gt;        2429         &lt;NA&gt;       24630</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B08301_020EA B08301_020M B08301_020MA B08301_021E B08301_021EA B08301_021M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt;        1341         &lt;NA&gt;      145406         &lt;NA&gt;        4523</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;NA&gt;         672         &lt;NA&gt;       28281         &lt;NA&gt;        1635</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         &lt;NA&gt;        2081         &lt;NA&gt;      462724         &lt;NA&gt;        7442</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         &lt;NA&gt;        1050         &lt;NA&gt;       87991         &lt;NA&gt;        2781</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         &lt;NA&gt;        4380         &lt;NA&gt;     2500842         &lt;NA&gt;       15830</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         &lt;NA&gt;        1187         &lt;NA&gt;      495909         &lt;NA&gt;        6033</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B08301_021MA      GEO_ID       NAME</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt; 0400000US01    Alabama</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;NA&gt; 0400000US02     Alaska</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         &lt;NA&gt; 0400000US04    Arizona</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         &lt;NA&gt; 0400000US05   Arkansas</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         &lt;NA&gt; 0400000US06 California</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         &lt;NA&gt; 0400000US08   Colorado</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Retreive 2020 Decennial Census block group data within a specific Census tract,</span></span></span>
 <span class="r-in"><span><span class="co"># using the regionin argument to precisely specify the Census tract, county,</span></span></span>
@@ -179,6 +291,16 @@ are case sensitive.</p></dd>
 <span class="r-in"><span>  region <span class="op">=</span> <span class="st">"block group:*"</span>,</span></span>
 <span class="r-in"><span>  regionin <span class="op">=</span> <span class="st">"state:36+county:027+tract:220300"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">decennial_block_group</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   state county  tract block_group</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    36    027 220300           1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    36    027 220300           2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    36    027 220300           3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    36    027 220300           4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                          NAME P1_001N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Block Group 1; Census Tract 2203; Dutchess County; New York    1467</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Block Group 2; Census Tract 2203; Dutchess County; New York    1394</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Block Group 3; Census Tract 2203; Dutchess County; New York    1192</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 Block Group 4; Census Tract 2203; Dutchess County; New York     885</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get poverty rates for children and for people of all ages beginning in 2000 using the</span></span></span>
 <span class="r-in"><span><span class="co"># Small Area Income and Poverty Estimates API</span></span></span>
@@ -188,6 +310,13 @@ are case sensitive.</p></dd>
 <span class="r-in"><span>  region <span class="op">=</span> <span class="st">"state:01"</span>,</span></span>
 <span class="r-in"><span>  time <span class="op">=</span> <span class="st">"from 2000"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">saipe</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   time state    NAME SAEPOVRT0_17_PT SAEPOVRTALL_PT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2000    01 Alabama            20.5           14.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2001    01 Alabama            22.1           15.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 2002    01 Alabama            21.6           15.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 2003    01 Alabama            22.3           15.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 2004    01 Alabama            22.6           16.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 2005    01 Alabama            24.3           16.9</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the number of employees and number of establishments in the construction sector,</span></span></span>
 <span class="r-in"><span><span class="co"># NAICS2017 code 23, using the County Business Patterns API</span></span></span>
@@ -198,7 +327,14 @@ are case sensitive.</p></dd>
 <span class="r-in"><span>  region <span class="op">=</span> <span class="st">"county:*"</span>,</span></span>
 <span class="r-in"><span>  NAICS2017 <span class="op">=</span> <span class="fl">23</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cbp</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   state county  EMP ESTAB NAICS2017_LABEL NAICS2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    18    033  668   112    Construction        23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    18    035 1709   192    Construction        23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    18    037  975   137    Construction        23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    18    039 4209   470    Construction        23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    18    041   83    25    Construction        23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    18    043 2540   192    Construction        23</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
