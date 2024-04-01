@@ -258,13 +258,7 @@ getCensus <-
 
 	# Check for key in environment, print a message if one is not provided or in environment
 	if (is.null(key)) {
-		if (Sys.getenv("CENSUS_KEY") != "") {
-			key <- Sys.getenv("CENSUS_KEY")
-		} else if (Sys.getenv("CENSUS_API_KEY") != "") {
-			key <- Sys.getenv("CENSUS_API_KEY")
-		} else {
-			message("You are not using a Census API key. Using a key is recommended but not required.\nThe Census Bureau may limit your daily requests.\nYou can register for an API key at https://api.census.gov/data/key_signup.html\nLearn more at https://www.hrecht.com/censusapi/articles/getting-started.html.")
-		}
+		key <- get_api_key()
 	}
 	apiurl <- constructURL(name, vintage)
 

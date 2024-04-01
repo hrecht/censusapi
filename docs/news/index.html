@@ -65,6 +65,7 @@
 <div class="section level3">
 <h3 id="new-features-0-9-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-9-0"></a></h3>
 <ul><li><p><code><a href="../reference/getCensus.html">getCensus()</a></code> no longer requires <code>key</code>, the use of a Census Bureau API key. Users are still encouraged to register for and use an API key because the Census Bureau may rate limit IP addresses, but it is not required. (<a href="https://github.com/hrecht/censusapi/issues/87" class="external-link">#87</a>)</p></li>
+<li><p>New <code><a href="../reference/get_api_key.html">get_api_key()</a></code> helper function retrieves the value of a user’s stored Census Bureau API key from a saved environment variable or provides a warning message if none is found.</p></li>
 <li><p><code><a href="../reference/listCensusApis.html">listCensusApis()</a></code> now has optional <code>name</code> and <code>vintage</code> parameters to get metadata for a subset of datasets or a single dataset. (<a href="https://github.com/hrecht/censusapi/issues/103" class="external-link">#103</a>)</p></li>
 </ul><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>

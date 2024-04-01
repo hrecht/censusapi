@@ -87,14 +87,11 @@
 
     
     
-<p><code>censusapi</code> is a lightweight package that retrieves data
-from the U.S. Census Bureau’s <a href="https://www.census.gov/data/developers.html" class="external-link">APIs</a>. More than
-<a href="https://api.census.gov/data.html" class="external-link">1,000 Census API
-endpoints</a> are available, including the Decennial Census, American
-Community Survey, Poverty Statistics, Population Estimates, and Census
-microdata. This package is designed to let you get data from all of
-those APIs using the same main functions and syntax for every
-dataset.</p>
+<p><code>censusapi</code> is a lightweight package that helps you
+retrieve data from the U.S. Census Bureau’s <a href="https://www.census.gov/data/developers.html" class="external-link">1,600 API
+endpoints</a> using one simple function, <code><a href="../reference/getCensus.html">getCensus()</a></code>.
+Additional functions provide information about what datasets are
+available and how to use them.</p>
 <p>This package returns the data as-is with the original variable names
 created by the Census Bureau and any quirks inherent in the data. Each
 dataset is a little different. Some are documented thoroughly, others
@@ -108,94 +105,35 @@ for your dataset and see below for how to <a href="#Other-ways-to-get-help">get 
 </h2>
 <p><code>censusapi</code> recommends but does not require using an API
 key from the U.S. Census Bureau. The Census Bureau may limit the number
-of requests made by IP address if you do not use an API key.</p>
+of requests made by your IP address if you do not use an API key.</p>
 <p>You can <a href="http://api.census.gov/data/key_signup.html" class="external-link">sign up
 online</a> to receive a key, which will be sent to your provided email
 address.</p>
 <p>If you save the key with the name <code>CENSUS_KEY</code> or
-<code>CENSUS_API_KEY</code> in your .Renviron file,
+<code>CENSUS_API_KEY</code> in your Renviron file,
 <code>censusapi</code> will use it by default without any extra work on
 your part.</p>
 <p>To save your API key, within R, run:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Add key to .Renviron</span></span>
+<code class="sourceCode R"><span><span class="co"># Check to see if you already have a CENSUS_KEY or CENSUS_API_KEY saved</span></span>
+<span><span class="co"># If so, no further action is needed</span></span>
+<span><span class="fu"><a href="../reference/get_api_key.html">get_api_key</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># If not, add your key to your Renviron file</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>CENSUS_KEY<span class="op">=</span><span class="va">PASTEYOURKEYHERE</span><span class="op">)</span></span>
+<span></span>
 <span><span class="co"># Reload .Renviron</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/readRenviron.html" class="external-link">readRenviron</a></span><span class="op">(</span><span class="st">"~/.Renviron"</span><span class="op">)</span></span>
+<span></span>
 <span><span class="co"># Check to see that the expected key is output in your R console</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"CENSUS_KEY"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/get_api_key.html">get_api_key</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>In some instances you might not want to put your key in your
 .Renviron - for example, if you’re on a shared school computer. You can
 always choose to manually set <code>key = "PASTEYOURKEYHERE"</code> as
 an argument in <code><a href="../reference/getCensus.html">getCensus()</a></code> if you prefer.</p>
 </div>
 <div class="section level2">
-<h2 id="finding-your-api">Finding your API<a class="anchor" aria-label="anchor" href="#finding-your-api"></a>
-</h2>
-<p>To get started, load the <code>censusapi</code> library.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.hrecht.com/censusapi/">censusapi</a></span><span class="op">)</span></span></code></pre></div>
-<p>To see a current table of every available endpoint,
-use<code><a href="../reference/listCensusApis.html">listCensusApis()</a></code>. This data frame includes useful
-information for making your API call, including the dataset’s name,
-description and title, as well as a contact email for questions about
-the underlying data.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">apis</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusApis.html">listCensusApis</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">apis</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt;  [1] "title"       "name"        "vintage"     "type"        "temporal"   </span></span>
-<span><span class="co">#&gt;  [6] "spatial"     "url"         "modified"    "description" "contact"</span></span></code></pre>
-<p>This returns useful information about each endpoint.</p>
-<ul>
-<li>title: Short written description of the dataset</li>
-<li>name: Programmatic name of the dataset, to be used with
-<code>censusapi</code> functions</li>
-<li>vintage: Year of the survey, for use with microdata and aggregate
-datasets</li>
-<li>type: Dataset type, which is either Aggregate, Microdata, or
-Timeseries</li>
-<li>temporal: Time period of the dataset - only documented
-sometimes</li>
-<li>url: Base URL of the endpoint</li>
-<li>modified: Date last modified</li>
-<li>description: Long written description of the dataset</li>
-<li>contact: Email address for specific questions about the Census
-Bureau survey</li>
-</ul>
-<div class="section level3">
-<h3 id="dataset-types">Dataset types<a class="anchor" aria-label="anchor" href="#dataset-types"></a>
-</h3>
-<p>There are three types of datasets included in the Census Bureau API
-universe: aggregate, microdata, and timeseries. These type names were
-defined by the Census Bureau and are included as a column in
-<code><a href="../reference/listCensusApis.html">listCensusApis()</a></code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">apis</span><span class="op">$</span><span class="va">type</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Aggregate  Microdata Timeseries </span></span>
-<span><span class="co">#&gt;        624        894         81</span></span></code></pre>
-<p>Most users will work with summary data, either aggregate or
-timeseries. Summary data contains pre-calculated numbers or percentages
-for a given statistic — like the number of children in a state or the
-median household income. The examples below and in the broader <a href="https://www.hrecht.com/censusapi/articles/example-list.html">list
-of censusapi examples</a> use summary data.</p>
-<p>Aggregate datasets, like the American Community Survey or Decennial
-Census, include data for only one time period (a <code>vintage</code>),
-usually one year. Datasets like the American Community Survey contain
-thousands of these pre-computed variables.</p>
-<p>Timeseries datasets, including the Small Area Income and Poverty
-Estimates, the Quarterly Workforce Estimates, and International Trade
-statistics, allow users to query data for more than one time period in a
-single API call.</p>
-<p>Microdata contains the individual-level responses for a survey for
-use in custom analysis. One row represents one person. Only advanced
-analysts will want to use microdata. Learn more about what microdata is
-and how to use it with <code>censusapi</code> in <a href="https://www.hrecht.com/censusapi/articles/accessing-microdata.html">Accessing
-microdata</a>.</p>
-</div>
-</div>
-<div class="section level2">
-<h2 id="using-getcensus">Using <code>getCensus</code><a class="anchor" aria-label="anchor" href="#using-getcensus"></a>
+<h2 id="basic-usage">Basic usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
 </h2>
 <p>The main function in <code>censusapi</code> is
 <code><a href="../reference/getCensus.html">getCensus()</a></code>, which makes an API call to a given endpoint
@@ -212,11 +150,10 @@ microdata APIs</li>
 <code>vars</code>: a list of variables to retrieve</li>
 <li>
 <code>region</code>: the geography level to retrieve, such as state
-or county, required for most endpoints</li>
+or county, required for nearly all endpoints</li>
 </ul>
 <p>Some APIs have additional required or optional arguments, like
-<code>time</code> or <code>monthly</code> for some timeseries datasets.
-Check the specific <a href="https://www.census.gov/data/developers/data-sets.html" class="external-link">documentation</a>
+<code>time</code> for some timeseries datasets. Check the specific <a href="https://www.census.gov/data/developers/data-sets.html" class="external-link">documentation</a>
 for your API and explore its metadata with
 <code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code> to see what options are allowed.</p>
 <p>Let’s walk through an example getting uninsured rates using the <a href="https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html" class="external-link">Small
@@ -230,8 +167,10 @@ people below age 65.</p>
 <code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code> to get information about an API’s
 variable and geography options. Let’s see what variables are available
 in the SAHIE API:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sahie_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.hrecht.com/censusapi/">censusapi</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sahie_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>, </span>
 <span>    type <span class="op">=</span> <span class="st">"variables"</span><span class="op">)</span></span>
 <span></span>
@@ -245,7 +184,7 @@ in the SAHIE API:</p>
 <span><span class="co">#&gt; [26] "PCTUI_UB90" "NUI_PT"     "STABREV"    "AGE_DESC"   "NAME"      </span></span>
 <span><span class="co">#&gt; [31] "NIC_LB90"   "PCTIC_PT"   "PCTIC_MOE"  "IPR_DESC"   "NUI_LB90"  </span></span>
 <span><span class="co">#&gt; [36] "NIPR_UB90"  "GEOCAT"     "SEX_DESC"   "RACECAT"</span></span></code></pre>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Full info on the first several variables</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_vars</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
@@ -342,7 +281,7 @@ Estimate</td>
 </h3>
 <p>We can also use <code>listCensusMetadata</code> to see which
 geographic levels are available.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>, </span>
 <span>    type <span class="op">=</span> <span class="st">"geography"</span><span class="op">)</span></span></code></pre></div>
@@ -401,15 +340,14 @@ geographic levels are available.</p>
 <code>county</code>, and <code>state</code>. County data can be queried
 for all counties nationally or within a specific state.</p>
 </div>
-</div>
-<div class="section level2">
-<h2 id="making-a-censusapi-call">Making a censusapi call<a class="anchor" aria-label="anchor" href="#making-a-censusapi-call"></a>
-</h2>
+<div class="section level3">
+<h3 id="making-a-censusapi-call">Making a censusapi call<a class="anchor" aria-label="anchor" href="#making-a-censusapi-call"></a>
+</h3>
 <p>First, using <code><a href="../reference/getCensus.html">getCensus()</a></code>, let’s get the percent
-(<code>PCTUI_PT</code>) and number (<code>NUI_PT</code>) of people
-uninsured, using the wildcard star (*) to retrieve data for all
+(<code>PCTUI_PT</code>) and number (<code>NUI_PT</code>) of people who
+are uninsured, using the wildcard star (*) to retrieve data for all
 counties.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_counties</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"NUI_PT"</span><span class="op">)</span>, </span>
@@ -482,14 +420,14 @@ counties.</p>
 the SAHIE. We’ll use <code>region</code> to specify county-level results
 and <code>regionin</code> to filter to Virginia, state code 51. We’ll
 get uninsured rates by income group, <code>IPRCAT</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_virginia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
 <span>    region <span class="op">=</span> <span class="st">"county:*"</span>, </span>
 <span>    regionin <span class="op">=</span> <span class="st">"state:51"</span>, </span>
 <span>    time <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_virginia</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_virginia</span>, head <span class="op">=</span> <span class="fl">12L</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <colgroup>
@@ -576,7 +514,7 @@ available using <code>time = "from YYYY"</code>. Let’s get that data for
 DeKalb County, Georgia using county fips code 089 and state fips code
 13. You can look up fips codes on the <a href="https://www.census.gov/library/reference/code-lists/ansi.html" class="external-link">Census
 Bureau website</a>.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>, </span>
@@ -595,129 +533,170 @@ Bureau website</a>.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2006</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">19.0</td>
-</tr>
-<tr class="even">
-<td align="left">2007</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">17.2</td>
-</tr>
-<tr class="odd">
-<td align="left">2008</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">22.5</td>
-</tr>
-<tr class="even">
-<td align="left">2009</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">22.9</td>
-</tr>
-<tr class="odd">
-<td align="left">2010</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">25.8</td>
-</tr>
-<tr class="even">
-<td align="left">2011</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">23.9</td>
-</tr>
-<tr class="odd">
-<td align="left">2012</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">21.7</td>
-</tr>
-<tr class="even">
-<td align="left">2013</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">22.1</td>
-</tr>
-<tr class="odd">
-<td align="left">2014</td>
-<td align="left">13</td>
-<td align="left">089</td>
-<td align="left">DeKalb County, GA</td>
-<td align="right">19.4</td>
-</tr>
-<tr class="even">
 <td align="left">2015</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">16.9</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2016</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">15.3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2017</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">15.9</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2018</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">17.1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2019</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">16.9</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2020</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">14.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2021</td>
 <td align="left">13</td>
 <td align="left">089</td>
 <td align="left">DeKalb County, GA</td>
 <td align="right">14.2</td>
 </tr>
+<tr class="even">
+<td align="left">2006</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">19.0</td>
+</tr>
+<tr class="odd">
+<td align="left">2007</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">17.2</td>
+</tr>
+<tr class="even">
+<td align="left">2008</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">22.5</td>
+</tr>
+<tr class="odd">
+<td align="left">2009</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">22.9</td>
+</tr>
+<tr class="even">
+<td align="left">2010</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">25.8</td>
+</tr>
+<tr class="odd">
+<td align="left">2011</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">23.9</td>
+</tr>
+<tr class="even">
+<td align="left">2012</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">21.7</td>
+</tr>
+<tr class="odd">
+<td align="left">2013</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">22.1</td>
+</tr>
+<tr class="even">
+<td align="left">2014</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">19.4</td>
+</tr>
 </tbody>
 </table>
 </div>
 <p>We can also filter the data by income group using the
-<code>IPRCAT</code> variable again. <code>IPRCAT = 3</code> represents
-&lt;=138% of the federal poverty line. That is the threshold for <a href="https://www.healthcare.gov/glossary/federal-poverty-level-fpl/" class="external-link">Medicaid
+<code>IPRCAT</code> variable. See the possible values of
+<code>IPRCAT</code> using <code><a href="../reference/listCensusMetadata.html">listCensusMetadata()</a></code>.</p>
+<p><code>IPRCAT = 3</code> represents &lt;=138% of the federal poverty
+line. That is the threshold for <a href="https://www.healthcare.gov/glossary/federal-poverty-level-fpl/" class="external-link">Medicaid
 eligibility</a> in states that have expanded it under the Affordable
 Care Act.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
+<span>    type <span class="op">=</span> <span class="st">"values"</span>,</span>
+<span>    variable <span class="op">=</span> <span class="st">"IPRCAT"</span><span class="op">)</span></span></code></pre></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">code</th>
+<th align="left">label</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">0</td>
+<td align="left">All Incomes</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">Less than or Equal to 200% of Poverty</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">Less than or Equal to 250% of Poverty</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">Less than or Equal to 138% of Poverty</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">Less than or Equal to 400% of Poverty</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">138% to 400% Poverty</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Getting this data for Los Angeles county (fips code 06037) we can see
 the dramatic decrease in the uninsured rate in this income group after
 California expanded Medicaid.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_138</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"NUI_PT"</span><span class="op">)</span>, </span>
@@ -739,51 +718,6 @@ California expanded Medicaid.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2010</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">37.4</td>
-<td align="right">894385</td>
-<td align="left">3</td>
-</tr>
-<tr class="even">
-<td align="left">2011</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">35.1</td>
-<td align="right">867577</td>
-<td align="left">3</td>
-</tr>
-<tr class="odd">
-<td align="left">2012</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">34.4</td>
-<td align="right">865516</td>
-<td align="left">3</td>
-</tr>
-<tr class="even">
-<td align="left">2013</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">33.0</td>
-<td align="right">818978</td>
-<td align="left">3</td>
-</tr>
-<tr class="odd">
-<td align="left">2014</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">24.9</td>
-<td align="right">607542</td>
-<td align="left">3</td>
-</tr>
-<tr class="even">
 <td align="left">2015</td>
 <td align="left">06</td>
 <td align="left">037</td>
@@ -792,7 +726,7 @@ California expanded Medicaid.</p>
 <td align="right">402977</td>
 <td align="left">3</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2016</td>
 <td align="left">06</td>
 <td align="left">037</td>
@@ -801,7 +735,7 @@ California expanded Medicaid.</p>
 <td align="right">329251</td>
 <td align="left">3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2017</td>
 <td align="left">06</td>
 <td align="left">037</td>
@@ -810,7 +744,7 @@ California expanded Medicaid.</p>
 <td align="right">281842</td>
 <td align="left">3</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2018</td>
 <td align="left">06</td>
 <td align="left">037</td>
@@ -819,7 +753,7 @@ California expanded Medicaid.</p>
 <td align="right">255520</td>
 <td align="left">3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2019</td>
 <td align="left">06</td>
 <td align="left">037</td>
@@ -828,7 +762,7 @@ California expanded Medicaid.</p>
 <td align="right">254740</td>
 <td align="left">3</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2020</td>
 <td align="left">06</td>
 <td align="left">037</td>
@@ -837,7 +771,7 @@ California expanded Medicaid.</p>
 <td align="right">230380</td>
 <td align="left">3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2021</td>
 <td align="left">06</td>
 <td align="left">037</td>
@@ -846,118 +780,329 @@ California expanded Medicaid.</p>
 <td align="right">249186</td>
 <td align="left">3</td>
 </tr>
+<tr class="even">
+<td align="left">2010</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">37.4</td>
+<td align="right">894385</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">2011</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">35.1</td>
+<td align="right">867577</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">2012</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">34.4</td>
+<td align="right">865516</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">2013</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">33.0</td>
+<td align="right">818978</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">2014</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">24.9</td>
+<td align="right">607542</td>
+<td align="left">3</td>
+</tr>
 </tbody>
 </table>
 </div>
-<p>We can also get data for other useful demographics such as age
-group.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sahie_age</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
-<span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
-<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"NUI_PT"</span>, <span class="st">"AGECAT"</span>, <span class="st">"AGE_DESC"</span><span class="op">)</span>, </span>
-<span>    region <span class="op">=</span> <span class="st">"county:037"</span>, </span>
-<span>    regionin <span class="op">=</span> <span class="st">"state:06"</span>,</span>
-<span>    time <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></span>
-<span><span class="va">sahie_age</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="finding-your-api">Finding your API<a class="anchor" aria-label="anchor" href="#finding-your-api"></a>
+</h2>
+<p>What if you don’t already know your dataset’s <code>name</code>? To
+see a current table of every available endpoint, use
+<code><a href="../reference/listCensusApis.html">listCensusApis()</a></code>. This data frame includes useful
+information for making your API call, including the dataset’s name,
+vintage if applicable, description, and title.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">apis</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusApis.html">listCensusApis</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">apis</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt;  [1] "title"       "name"        "vintage"     "type"        "temporal"   </span></span>
+<span><span class="co">#&gt;  [6] "spatial"     "url"         "modified"    "description" "contact"</span></span></code></pre>
+<p>The columns included are:</p>
+<ul>
+<li>title: Short written description of the dataset.</li>
+<li>name: Programmatic name of the dataset, to be used with
+<code>censusapi</code> functions.</li>
+<li>vintage: Year of the survey, for use with microdata and aggregate
+datasets.</li>
+<li>type: Dataset type, which is either “Aggregate”, “Microdata”, or
+“Timeseries”.</li>
+<li>temporal: Time period of the dataset. Warning: not always
+documented.</li>
+<li>spatial: Spatial region of the dataset. Warning: not always
+documented.</li>
+<li>url: Base URL of the dataset endpoint.</li>
+<li>modified: Date last modified. Warning: sometimes out of date.</li>
+<li>description: Long written description of the dataset.</li>
+<li>contact: Email address for specific questions about the Census
+Bureau survey.</li>
+</ul>
+<p>You can also get information on a subset of datasets using the
+optional <code>name</code> and/or <code>vintage</code> parameters. For
+example, get information about 2020 Decennial Census datasets.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dec_apis</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusApis.html">listCensusApis</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"dec"</span>, vintage <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></span>
+<span><span class="va">dec_apis</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <colgroup>
-<col width="6%">
-<col width="7%">
+<col width="56%">
 <col width="8%">
-<col width="29%">
-<col width="11%">
-<col width="8%">
-<col width="8%">
-<col width="18%">
+<col width="3%">
+<col width="4%">
+<col width="4%">
+<col width="21%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">time</th>
-<th align="left">state</th>
-<th align="left">county</th>
-<th align="left">NAME</th>
-<th align="right">PCTUI_PT</th>
-<th align="right">NUI_PT</th>
-<th align="left">AGECAT</th>
-<th align="left">AGE_DESC</th>
+<th align="left">title</th>
+<th align="left">name</th>
+<th align="right">vintage</th>
+<th align="left">type</th>
+<th align="left">temporal</th>
+<th align="left">spatial</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2021</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">10.1</td>
-<td align="right">834424</td>
-<td align="left">0</td>
-<td align="left">Under 65 years</td>
+<td align="left">Decennial Census: 118th Congressional District Summary
+File</td>
+<td align="left">dec/cd118</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">US</td>
 </tr>
 <tr class="even">
-<td align="left">2021</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">12.3</td>
-<td align="right">768094</td>
-<td align="left">1</td>
-<td align="left">18 to 64 years</td>
+<td align="left">Decennial Census of Island Areas: American Samoa
+Detailed Crosstabulations</td>
+<td align="left">dec/crosstabas</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">American Samoa</td>
 </tr>
 <tr class="odd">
-<td align="left">2021</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">11.7</td>
-<td align="right">370339</td>
-<td align="left">2</td>
-<td align="left">40 to 64 years</td>
+<td align="left">Decennial Census of Island Areas: Guam Detailed
+Crosstabulations</td>
+<td align="left">dec/crosstabgu</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">Guam</td>
 </tr>
 <tr class="even">
-<td align="left">2021</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">10.2</td>
-<td align="right">190193</td>
-<td align="left">3</td>
-<td align="left">50 to 64 years</td>
+<td align="left">Decennial Census of Island Areas: Commonwealth of the
+Northern Mariana Islands Detailed Crosstabulations</td>
+<td align="left">dec/crosstabmp</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">Northern Mariana Islands</td>
 </tr>
 <tr class="odd">
-<td align="left">2021</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">3.5</td>
-<td align="right">75771</td>
-<td align="left">4</td>
-<td align="left">Under 19 years</td>
+<td align="left">Decennial Census of Island Areas: U.S. Virgin Islands
+Detailed Crosstabulations</td>
+<td align="left">dec/crosstabvi</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">U.S. Virgin Islands</td>
 </tr>
 <tr class="even">
-<td align="left">2021</td>
-<td align="left">06</td>
-<td align="left">037</td>
-<td align="left">Los Angeles County, CA</td>
-<td align="right">12.5</td>
-<td align="right">737126</td>
-<td align="left">5</td>
-<td align="left">21 to 64 years</td>
+<td align="left">Decennial Census: Detailed Demographic and Housing
+Characteristics File A</td>
+<td align="left">dec/ddhca</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">United States</td>
+</tr>
+<tr class="odd">
+<td align="left">Decennial Census: Demographic and Housing
+Characteristics</td>
+<td align="left">dec/dhc</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">United States</td>
+</tr>
+<tr class="even">
+<td align="left">Decennial Census of Island Areas: American Samoa
+Demographic and Housing Characteristics</td>
+<td align="left">dec/dhcas</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">American Samoa</td>
+</tr>
+<tr class="odd">
+<td align="left">Decennial Census of Island Areas: Guam Demographic and
+Housing Characteristics</td>
+<td align="left">dec/dhcgu</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">Guam</td>
+</tr>
+<tr class="even">
+<td align="left">Decennial Census of Island Areas: Commonwealth of the
+Northern Mariana Islands Demographic and Housing Characteristics</td>
+<td align="left">dec/dhcmp</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">Commonwealth of the Northern Mariana Islands</td>
+</tr>
+<tr class="odd">
+<td align="left">Decennial Census of Island Areas: U.S. Virgin Islands
+Demographic and Housing Characteristics</td>
+<td align="left">dec/dhcvi</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">U.S. Virgin Islands</td>
+</tr>
+<tr class="even">
+<td align="left">Decennial Census: Demographic Profile</td>
+<td align="left">dec/dp</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">United States</td>
+</tr>
+<tr class="odd">
+<td align="left">Decennial Census of Island Areas: American Samoa
+Demographic Profile</td>
+<td align="left">dec/dpas</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">United States</td>
+</tr>
+<tr class="even">
+<td align="left">Decennial Census of Island Areas: Guam Demographic
+Profile</td>
+<td align="left">dec/dpgu</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">United States</td>
+</tr>
+<tr class="odd">
+<td align="left">2020 Commonwealth of the Northern Mariana Islands
+Demographic Profile</td>
+<td align="left">dec/dpmp</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">United States</td>
+</tr>
+<tr class="even">
+<td align="left">Decennial Census of Island Areas: U.S. Virgin Islands
+Demographic Profile</td>
+<td align="left">dec/dpvi</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">United States</td>
+</tr>
+<tr class="odd">
+<td align="left">Decennial Census: Decennial Post-Enumeration
+Survey</td>
+<td align="left">dec/pes</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">US</td>
+</tr>
+<tr class="even">
+<td align="left">Decennial Census: Redistricting Data (PL 94-171)</td>
+<td align="left">dec/pl</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">2020/2020</td>
+<td align="left">United States</td>
+</tr>
+<tr class="odd">
+<td align="left">Decennial Census: Decennial Self-Response Rate</td>
+<td align="left">dec/responserate</td>
+<td align="right">2020</td>
+<td align="left">Aggregate</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section level3">
+<h3 id="dataset-types">Dataset types<a class="anchor" aria-label="anchor" href="#dataset-types"></a>
+</h3>
+<p>There are three types of datasets included in the Census Bureau API
+universe: aggregate, microdata, and timeseries. These type names were
+defined by the Census Bureau and are included as a column in
+<code><a href="../reference/listCensusApis.html">listCensusApis()</a></code>.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">apis</span><span class="op">$</span><span class="va">type</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Aggregate  Microdata Timeseries </span></span>
+<span><span class="co">#&gt;        624        895         81</span></span></code></pre>
+<p>Most users will work with summary data, either aggregate or
+timeseries. Summary data contains pre-calculated numbers or percentages
+for a given statistic — like the number of children in a state or the
+median household income. The examples below and in the broader <a href="https://www.hrecht.com/censusapi/articles/example-list.html">list
+of censusapi examples</a> use summary data.</p>
+<p>Aggregate datasets, like the American Community Survey or Decennial
+Census, include data for only one time period (a <code>vintage</code>),
+usually one year. Datasets like the American Community Survey contain
+thousands of these pre-computed variables.</p>
+<p>Timeseries datasets, including the Small Area Income and Poverty
+Estimates, the Quarterly Workforce Estimates, and International Trade
+statistics, allow users to query data over time in a single API
+call.</p>
+<p>Microdata contains the individual-level responses for a survey for
+use in custom analysis. One row represents one person. Only advanced
+analysts will want to use microdata. Learn more about what microdata is
+and how to use it with <code>censusapi</code> in <a href="https://www.hrecht.com/censusapi/articles/accessing-microdata.html">Accessing
+microdata</a>.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="variable-groups">Variable groups<a class="anchor" aria-label="anchor" href="#variable-groups"></a>
 </h2>
-<p>For some surveys, particularly the American Community Survey and
+<p>For some surveys, including the American Community Survey and
 Decennial Census, you can get many related variables at once using a
 variable <code>group</code>. These groups are defined by the Census
 Bureau. In some other data tools, like <a href="https://data.census.gov/cedsci/" class="external-link">data.census.gov</a>, this concept
 is referred to as a <code>table</code>.</p>
 <p>Some groups have several dozen variables, others just have a few. As
-an example, we’ll get the estimate, margin of error and annotations for
-median household income in the past 12 months for counties in Alabama
-using group <code>B19013</code>.</p>
+an example, we’ll use the American Community Survey to get the estimate,
+margin of error and annotations for median household income in the past
+12 months for Census places (cities, towns, etc) in Alabama using group
+<code>B19013</code>.</p>
 <p>First, see descriptions of the variables in group B19013:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">group_B19013</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
@@ -1049,24 +1194,24 @@ but using the groups is much easier.</p>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>, </span>
 <span>    vintage <span class="op">=</span> <span class="fl">2022</span>, </span>
 <span>    vars <span class="op">=</span> <span class="st">"group(B19013)"</span>, </span>
-<span>    region <span class="op">=</span> <span class="st">"county:*"</span>, </span>
+<span>    region <span class="op">=</span> <span class="st">"place:*"</span>, </span>
 <span>    regionin <span class="op">=</span> <span class="st">"state:01"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_income_group</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <colgroup>
 <col width="5%">
-<col width="6%">
+<col width="5%">
 <col width="11%">
 <col width="12%">
 <col width="11%">
 <col width="12%">
-<col width="14%">
-<col width="23%">
+<col width="16%">
+<col width="24%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">state</th>
-<th align="left">county</th>
+<th align="left">place</th>
 <th align="right">B19013_001E</th>
 <th align="left">B19013_001EA</th>
 <th align="right">B19013_001M</th>
@@ -1077,63 +1222,63 @@ but using the groups is much easier.</p>
 <tbody>
 <tr class="odd">
 <td align="left">01</td>
-<td align="left">001</td>
-<td align="right">68315</td>
+<td align="left">00100</td>
+<td align="right">29263</td>
 <td align="left">NA</td>
-<td align="right">4941</td>
+<td align="right">2846</td>
 <td align="left">NA</td>
-<td align="left">0500000US01001</td>
-<td align="left">Autauga County, Alabama</td>
+<td align="left">1600000US0100100</td>
+<td align="left">Abanda CDP, Alabama</td>
 </tr>
 <tr class="even">
 <td align="left">01</td>
-<td align="left">003</td>
-<td align="right">71039</td>
+<td align="left">00124</td>
+<td align="right">35147</td>
 <td align="left">NA</td>
-<td align="right">2374</td>
+<td align="right">15376</td>
 <td align="left">NA</td>
-<td align="left">0500000US01003</td>
-<td align="left">Baldwin County, Alabama</td>
+<td align="left">1600000US0100124</td>
+<td align="left">Abbeville city, Alabama</td>
 </tr>
 <tr class="odd">
 <td align="left">01</td>
-<td align="left">005</td>
-<td align="right">39712</td>
+<td align="left">00460</td>
+<td align="right">58631</td>
 <td align="left">NA</td>
-<td align="right">3289</td>
+<td align="right">13426</td>
 <td align="left">NA</td>
-<td align="left">0500000US01005</td>
-<td align="left">Barbour County, Alabama</td>
+<td align="left">1600000US0100460</td>
+<td align="left">Adamsville city, Alabama</td>
 </tr>
 <tr class="even">
 <td align="left">01</td>
-<td align="left">007</td>
-<td align="right">50669</td>
+<td align="left">00484</td>
+<td align="right">47188</td>
 <td align="left">NA</td>
-<td align="right">8260</td>
+<td align="right">6288</td>
 <td align="left">NA</td>
-<td align="left">0500000US01007</td>
-<td align="left">Bibb County, Alabama</td>
+<td align="left">1600000US0100484</td>
+<td align="left">Addison town, Alabama</td>
 </tr>
 <tr class="odd">
 <td align="left">01</td>
-<td align="left">009</td>
-<td align="right">57440</td>
+<td align="left">00676</td>
+<td align="right">53929</td>
 <td align="left">NA</td>
-<td align="right">3308</td>
+<td align="right">35679</td>
 <td align="left">NA</td>
-<td align="left">0500000US01009</td>
-<td align="left">Blount County, Alabama</td>
+<td align="left">1600000US0100676</td>
+<td align="left">Akron town, Alabama</td>
 </tr>
 <tr class="even">
 <td align="left">01</td>
-<td align="left">011</td>
-<td align="right">36136</td>
+<td align="left">00820</td>
+<td align="right">89423</td>
 <td align="left">NA</td>
-<td align="right">4731</td>
+<td align="right">6760</td>
 <td align="left">NA</td>
-<td align="left">0500000US01011</td>
-<td align="left">Bullock County, Alabama</td>
+<td align="left">1600000US0100820</td>
+<td align="left">Alabaster city, Alabama</td>
 </tr>
 </tbody>
 </table>

@@ -2,6 +2,7 @@
 
 export(getCensus)
 export(getFunction)
+export(get_api_key)
 export(listCensusApis)
 export(listCensusMetadata)
 export(makeVarlist)

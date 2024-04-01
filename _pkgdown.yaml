@@ -39,6 +39,7 @@ reference:
   - makeVarlist
 - title: "Helpers"
   contents:
+  - get_api_key
   - fips
 
 redirects:
