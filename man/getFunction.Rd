@@ -30,9 +30,6 @@ getFunction(
   ...
 )
 }
-\arguments{
-\item{apiurl, }{key, get, region, time, etc}
-}
 \description{
 Internal function: Get the API response, return a data frame
 }

@@ -90,7 +90,7 @@ We can also use `listCensusMetadata` to see which geographic levels are availabl
 ```{r}
 listCensusMetadata(
 	name = "timeseries/healthins/sahie", 
-	type = "geography")
+	type = "geographies")
 ```
 
 This API has three geographic levels: `us`, `county`, and `state`. County data can be queried for all counties nationally or within a specific state.
@@ -164,19 +164,6 @@ What if you don't already know your dataset's `name`? To see a current table of 
 apis <- listCensusApis()
 colnames(apis)
 ```
-
-The columns included are:
-
--   title: Short written description of the dataset.
--   name: Programmatic name of the dataset, to be used with `censusapi` functions.
--   vintage: Year of the survey, for use with microdata and aggregate datasets.
--   type: Dataset type, which is either "Aggregate", "Microdata", or "Timeseries".
--   temporal: Time period of the dataset. Warning: not always documented.
--   spatial: Spatial region of the dataset. Warning: not always documented.
--   url: Base URL of the dataset endpoint.
--   modified: Date last modified. Warning: sometimes out of date.
--   description: Long written description of the dataset.
--   contact: Email address for specific questions about the Census Bureau survey.
 
 You can also get information on a subset of datasets using the optional `name` and/or `vintage` parameters. For example, get information about 2020 Decennial Census datasets.
 

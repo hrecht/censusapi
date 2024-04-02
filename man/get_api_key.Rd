@@ -7,9 +7,20 @@
 get_api_key()
 }
 \value{
-A CENSUS_KEY or CENSUS_API_KEY value stored in the user's .Renviron.
-  file.
+A CENSUS_KEY or CENSUS_API_KEY string stored in the user's .Renviron.
+file, or a warning message printed once per R session if none is found.
 }
 \description{
 Retrieve a Census API key stored the .Renivron file
 }
+\examples{
+\dontrun{
+get_api_key()
+}
+
+}
+\seealso{
+Other helpers: 
+\code{\link{has_api_key}()}
+}
+\concept{helpers}

@@ -2,8 +2,7 @@
 % Please edit documentation in R/metadata_functions.R
 \name{listCensusMetadata}
 \alias{listCensusMetadata}
-\title{Get metadata about a specific API endpoint, including available variables,
-geographies, variable groups, and value labels}
+\title{Get metadata about a specified API endpoint}
 \usage{
 listCensusMetadata(
   name,
@@ -15,20 +14,21 @@ listCensusMetadata(
 )
 }
 \arguments{
-\item{name}{API programmatic name - e.g. acs/acs5. Use `listCensusApis()` to
+\item{name}{API programmatic name - e.g. acs/acs5. Use \code{listCensusApis()} to
 see valid dataset names.}
 
 \item{vintage}{Vintage (year) of dataset. Not required for timeseries APIs.}
 
 \item{type}{Type of metadata to return. Options are:
-
-  * "variables" (default) - list of variable names and descriptions
-  for the dataset.
-  * "geographies" - available geographies.
-  * "groups" - available variable groups. Only available
-  for some datasets.
-  * "values" - encoded value labels for a given variable. Pair with
-  "variable_name". Only available for some datasets.}
+\itemize{
+\item "variables" (default) - list of variable names and descriptions
+for the dataset.
+\item "geographies" - available geographies.
+\item "groups" - available variable groups. Only available
+for some datasets.
+\item "values" - encoded value labels for a given variable. Pair with
+"variable_name". Only available for some datasets.
+}}
 
 \item{group}{An optional variable group code, used to return metadata for a
 specific group of variables only. Variable groups are not used for all
@@ -37,41 +37,41 @@ APIs.}
 \item{variable_name}{A name of a specific variable used to return value
 labels for that variable. Value labels are not used for all APIs.}
 
-\item{include_values}{Use with `type = "variables"`. Include value metadata
+\item{include_values}{Use with \code{type = "variables"}. Include value metadata
 for all variables in a dataset if value metadata exists. Default is
 "FALSE".}
 }
+\value{
+A data frame with metadata about the specified API endpoint.
+}
 \description{
-Get metadata about a specific API endpoint, including available variables,
-geographies, variable groups, and value labels
+Get information about a Census Bureau API dataset, including its available
+variables, geographies, variable groups, and value labels
 }
 \examples{
-\dontrun{
-# type: variables
-# List the variables available in the Small Area Health Insurance Estimates.
+\dontshow{if (has_api_key()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# type: variables # List the variables available in the Small Area
+# Health Insurance Estimates.
 variables <- listCensusMetadata(
-  name = "timeseries/healthins/sahie",
-  type = "variables")
- head(variables)
+  name = "timeseries/healthins/sahie", type = "variables")
+head(variables)
 
 # type: variables for a single variable group
 # List the variables that are included in the B17020 group in the
 # 5-year American Community Survey.
 variable_group <- listCensusMetadata(
-  name = "acs/acs5",
-  vintage = 2022,
-  type = "variables",
-  group = "B17020")
- head(variable_group)
+  name = "acs/acs5", vintage = 2022,
+  type = "variables", group = "B17020")
+head(variable_group)
 
 # type: variables, with value labels
-# Create a data dictionary with all variable names and encoded values for
-# a microdata API.
+# Create a data dictionary with all variable names and encoded values
+# for a microdata API.
 variable_values <- listCensusMetadata(
-	name = "cps/voting/nov",
-	vintage = 2020,
-	type = "variables",
-	include_values = TRUE)
+  name = "cps/voting/nov",
+  vintage = 2020,
+  type = "variables",
+  include_values = TRUE)
 head(variable_values)
 
 # type: geographies
@@ -80,24 +80,31 @@ geographies <- listCensusMetadata(
   name = "acs/acs5",
   vintage = 2022,
   type = "geographies")
- head(geographies)
+head(geographies)
 
 # type: groups
-# List the variable groups available in the 5-year American Community Survey.
+# List the variable groups available in the 5-year American
+# Community Survey.
 groups <- listCensusMetadata(
   name = "acs/acs5",
   vintage = 2022,
   type = "groups")
- head(groups)
+head(groups)
 
 # type: values for a single variable
-# List the value labels of the NAICS2017 variable in the County Business Patterns dataset.
+# List the value labels of the NAICS2017 variable in the County
+# Business Patterns dataset.
 naics_values <- listCensusMetadata(
   name = "cbp",
   vintage = 2021,
   type = "values",
   variable = "NAICS2017")
- head(naics_values)
+head(naics_values)
+\dontshow{\}) # examplesIf}
 }
+\seealso{
+Other metadata: 
+\code{\link{listCensusApis}()},
+\code{\link{makeVarlist}()}
 }
-\keyword{metadata}
+\concept{metadata}

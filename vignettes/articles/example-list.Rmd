@@ -104,6 +104,7 @@ head(flows, n = 15L)
 ```
 
 ### American Community Survey Language Statistics
+
 [American Community Survey Language Statistics documentation](https://www.census.gov/data/developers/data-sets/language-stats.html)
 
 Get the number of people in New York state who speak each language.
@@ -117,7 +118,9 @@ head(languages)
 ```
 
 ## Annual Survey of Entrepreneurs
+
 [Annual Survey of Entrepreneurs documentation](https://www.census.gov/data/developers/data-sets/ase.html)
+
 ```{r}
 ase_csa <- getCensus(
 	name = "ase/csa",
@@ -147,7 +150,9 @@ head(ase_cscbo)
 ```
 
 ## Annual Survey of Manufactures
+
 [Annual Survey of Manufactures documentation](https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html)
+
 ```{r}
 asm_state <- getCensus(
 	name = "timeseries/asm/state",
@@ -166,6 +171,7 @@ asm_product <- getCensus(
 head(asm_product)
 ```
 ## Community Resiliency Estimates
+
 [Community Resilience Estimates documentation](https://www.census.gov/data/developers/data-sets/community-resilience-estimates.html)
 
 For Census tracts in a single county, get the rate of individuals with zero components of social vulnerability, one-two components of social vulnerability, and three or more components of social vulnerability.
@@ -180,9 +186,11 @@ head(cre)
 ```
 
 ## County Business Patterns and Nonemployer Statistics
+
 [County Business Patterns and Nonemployer Statistics documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html)
 
 ### County Business Patterns
+
 [County Business Patterns documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/cbp-api.html)
 
 Get employment data for the construction industry.
@@ -208,7 +216,9 @@ head(cbp_large_companies)
 ```
 
 ### Zip Codes Business Patterns
+
 [Zip Codes Business Patterns documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html)
+
 ```{r}
 zbp_2018 <- getCensus(
 	name = "zbp",
@@ -219,7 +229,9 @@ head(zbp_2018)
 ```
 
 ### Nonemployer statistics
+
 [Nonemployer statistics documentation](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/nonemp-api.html)
+
 Get the number of nonemployer establishments by MSA for sector 54, Professional, scientific, and technical services.
 ```{r}
 nonemp <- getCensus(
@@ -232,6 +244,7 @@ head(nonemp)
 ```
 
 ## Decennial Census
+
 [Decennial Census documentation](https://www.census.gov/data/developers/data-sets/decennial-census.html)
 
 ### 2020 Decennial Census
@@ -279,6 +292,7 @@ dec_population <- getCensus(
 	POPGROUP = 3824)
 head(dec_population)
 ```
+
 ### 2010 Decennial Census
 Get total population and the number of housing units for metropolitan/micropolitan statistical areas in 2010.
 ```{r}
@@ -320,7 +334,9 @@ head(tract_pop)
 ```
 
 ### Decennial Census Self-Response Rates
+
 [Decennial Census Self-Response Rates documentation](https://www.census.gov/data/developers/data-sets/decennial-response-rates.html)
+
 Get self-response rates for the 2020 and 2010 Decennial Census by state, county, tract, place and more.
 
 Get overall and internet repose rates for all counties.
@@ -355,6 +371,7 @@ head(county_responses_2010)
 ```
 
 ### Decennial Census Surname Files
+
 [Decennial Census Surname documentation](https://www.census.gov/data/developers/data-sets/surnames.2010.html)
 
 Get counts of the top 25 most popular surnames and share of each by race.
@@ -368,7 +385,9 @@ head(top_surnames)
 ```
 
 ## Economic Census
+
 [Economic Census documentation](https://www.census.gov/data/developers/data-sets/economic-census.html)
+
 ```{r}
 ewks_2012 <- getCensus(
 	name = "ewks",
@@ -387,7 +406,9 @@ head(ewks_2007)
 ```
 
 ## Economic Indicators
+
 [Economic Indicators documentation](https://www.census.gov/data/developers/data-sets/economic-indicators.html)
+
 ```{r}
 eits <- getCensus(
 	name = "timeseries/eits/resconst",
@@ -398,6 +419,7 @@ head(eits)
 ```
 
 ## Health Insurance: Small Area Health Insurance Estimates
+
 [Health Insurance Statistics documentation](https://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html)
 
 Get the uninsured rate by income group for each county for a single year.
@@ -434,6 +456,7 @@ head(sahie_adults)
 ```
 
 ## Household Pulse Survey
+
 [Household Pulse Survey documentation](https://www.census.gov/data/developers/data-sets/hps.html)
 
 Get the food scarcity rate (Percentage of adults in households where there was either sometimes or often not enough to eat in the last 7 days) and expense difficulty rate (Percentage of adults in households where it has been somewhat or very difficult to pay for usual household expenses in the last 7 days) for every state for one survey period.
@@ -462,6 +485,7 @@ hps_us
 
 
 ## International Data Base
+
 [International Data Base documentation](https://www.census.gov/data/developers/data-sets/international-database.html)
 
 Get Census Bureau projections of 2024 populations and life expectancy at birth by country.
@@ -474,6 +498,7 @@ head(intl_pop)
 ```
 
 ## International Trade
+
 [International Trade documentation](https://www.census.gov/data/developers/data-sets/international-trade.html)
 
 Note: The international trade datasets can be buggy and often give the general error message of "There was an error while running your query.  We've logged the error and we'll correct it ASAP.  Sorry for the inconvenience." This error message comes from the U.S. Census Bureau. If you run in to repeated issues or inconsistencies, contact the Census Bureau for help or consider using a bulk data download instead.
@@ -488,10 +513,13 @@ head(imports)
 ```
 
 ## Population Estimates and Projections
+
 [Population Estimates and Projections documentation](https://www.census.gov/data/developers/data-sets/popest-popproj.html)
 
 ### Population Estimates
+
 [Population Estimates documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html)
+
 PEP data from 2022 and beyond is not currently available via API. You can download the latest data files from the [PEP webpage](https://www.census.gov/programs-surveys/popest.html).
 
 Get the 2021 vintage population estimates for states for 2020 and 2021.
@@ -515,7 +543,9 @@ head(popest_housing)
 ```
 
 ### Population Projections
+
 [Population Projections documentation](https://www.census.gov/data/developers/data-sets/popest-popproj/popproj.html)
+
 ```{r}
 popproj <- getCensus(
 	name = "pep/projpop",
@@ -526,6 +556,7 @@ head(popproj)
 ```
 
 ## Poverty Statistics
+
 [Poverty Statistics documentation](https://www.census.gov/data/developers/data-sets/Poverty-Statistics.html)
 
 ### Current Population Survey Poverty Statistics
@@ -562,6 +593,7 @@ saipe_years <- getCensus(
 	time = "from 2010")
 head(saipe_years)
 ```
+
 ### SAIPE School Districts
 Get the number (`SAEPOV5_17V_PT`) and rate (`SAEPOVRAT5_17RV_PT`) of children ages 5-17 living in poverty for unified school districts in Massachusetts.
 ```{r}
@@ -573,7 +605,9 @@ saipe_schools <- getCensus(
 	time = 2022)
 head(saipe_schools)
 ```
+
 ## Public Sector Statistics
+
 [Public Sector Statistics documentation](https://www.census.gov/data/developers/data-sets/annual-public-sector-stats.html) 
 
 This endpoint includes data from multiple surveys organized be sure to read the Census Bureau's documentation for variable definitions and labels.
@@ -592,6 +626,7 @@ head(govs)
 
 
 ## Quarterly Workforce Indicators
+
 [Quarterly Workforce Indicators documentation](https://www.census.gov/data/developers/data-sets/qwi.html)
 
 The QWI endpoints allow both simple calls and very specific ones. Make sure to read the documentation closely.
@@ -633,7 +668,9 @@ qwi
 ```
 
 ## The Planning Database
+
 [The Planning Database documentation](https://www.census.gov/data/developers/data-sets/planning-database.html)
+
 Get population and 2010 Census mail return rates for block groups in Autauga County, AL.
 ```{r}
 pdb <- getCensus(

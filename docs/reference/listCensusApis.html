@@ -62,7 +62,7 @@ type, and other useful fields."><!-- mathjax --><script src="https://cdnjs.cloud
     </div>
 
     <div class="ref-description section level2">
-    <p>Scrapes https://api.census.gov/data.json and returns a dataframe that
+    <p>Scrapes <a href="https://api.census.gov/data.json" class="external-link">https://api.census.gov/data.json</a> and returns a dataframe that
 includes columns for dataset title, description, name, vintage, url, dataset
 type, and other useful fields.</p>
     </div>
@@ -77,7 +77,7 @@ type, and other useful fields.</p>
     <dl><dt>name</dt>
 <dd><p>Optional complete or partial API dataset programmatic name. For
 example, "acs", "acs/acs5", "acs/acs5/subject". If using a partial name,
-this needs to be the left-most part of the dataset name before `/`, e.g.
+this needs to be the left-most part of the dataset name before <code>/</code>, e.g.
 "timeseries/eits" or "dec" or "acs/acs5".</p></dd>
 
 
@@ -85,11 +85,31 @@ this needs to be the left-most part of the dataset name before `/`, e.g.
 <dd><p>Optional vintage (year) of dataset.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>A data frame with the following columns:</p><ul><li><p>title: Short written description of the dataset.</p></li>
+<li><p>name: Programmatic name of the dataset.</p></li>
+<li><p>vintage: Year of the survey, for use with microdata and aggregate datasets.</p></li>
+<li><p>type: Dataset type, which is either "Aggregate", "Microdata", or "Timeseries".</p></li>
+<li><p>temporal: Time period of the dataset. Warning: not always documented.</p></li>
+<li><p>spatial: Spatial region of the dataset. Warning: not always documented.</p></li>
+<li><p>url: Base URL of the dataset endpoint.</p></li>
+<li><p>modified: Date last modified. Warning: sometimes out of date.</p></li>
+<li><p>description: Long written description of the dataset.</p></li>
+<li><p>contact: Email address for specific questions about the Census Bureau survey.</p></li>
+</ul></div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other metadata: 
+<code><a href="listCensusMetadata.html">listCensusMetadata</a>()</code>,
+<code><a href="makeVarlist.html">makeVarlist</a>()</code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># Get information about every dataset available in the APIs</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get information about every dataset available in the APIs</span></span></span>
 <span class="r-in"><span><span class="va">apis</span> <span class="op">&lt;-</span> <span class="fu">listCensusApis</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">apis</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                             title          name</span>
@@ -258,8 +278,6 @@ this needs to be the left-most part of the dataset name before `/`, e.g.
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 The U.S. Census Bureau's Small Area Health Insurance Estimates program produces the only source of data for single-year estimates of health insurance coverage status for all counties in the U.S. by selected economic and demographic characteristics. This program is partially funded by the Centers for Disease Control and Prevention's (CDC) Division of Cancer Prevention and Control (DCPC). The CDC have a congressional mandate to provide screening services for breast and cervical cancer to low-income, uninsured, and underserved women through the National Breast and Cervical Cancer Early Detection Program (NBCCEDP). For estimation, SAHIE uses statistical models that combine survey data from the American Community Survey (ACS) with administrative records data and Census 2010 data.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  contact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 Sehsd.sahie@census.gov</span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
-<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

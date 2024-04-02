@@ -1,8 +1,6 @@
 #' Internal function: Get the API response, return a data frame
 #'
-#' @param apiurl, key, get, region, time, etc
 #' @keywords internal
-#' @export
 getFunction <- function(apiurl, name, key, get, region, regionin, time, show_call, convert_variables, year, date, period, monthly, category_code, data_type_code, naics, pscode, naics2012, naics2007, naics2002, naics1997, sic, ...) {
 
 	# Return API's built in error message if invalid call
@@ -162,9 +160,8 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, show_cal
 #' Optional arguments used in some timeseries data APIs.
 #' @param ... Other valid arguments to pass to the Census API. Note: the APIs
 #'   are case sensitive.
-#' @keywords api
-#' @examples
-#' \dontrun{
+#' @returns A data frame with results from the specified U.S. Census Bureau dataset.
+#' @examplesIf has_api_key()
 #' # Get total population and median household income for Census places
 #' # (cities, towns, villages) in a single state from the 5-year American Community Survey.
 #' acs_simple <- getCensus(
@@ -213,7 +210,6 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, show_cal
 #' 	region = "county:*",
 #' 	NAICS2017 = 23)
 #' head(cbp)
-#' }
 #'
 #' @export
 getCensus <-

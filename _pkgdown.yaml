@@ -40,6 +40,9 @@ reference:
 - title: "Helpers"
   contents:
   - get_api_key
+  - has_api_key
+- title: "Datasets"
+  contents:
   - fips
 
 redirects:

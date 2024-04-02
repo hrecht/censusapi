@@ -1,17 +1,27 @@
 #' Get general information about available datasets
 #'
-#' Scrapes https://api.census.gov/data.json and returns a dataframe that
+#' Scrapes <https://api.census.gov/data.json> and returns a dataframe that
 #' includes columns for dataset title, description, name, vintage, url, dataset
 #' type, and other useful fields.
 #'
-#' @keywords metadata
+#' @family metadata
 #' @param name Optional complete or partial API dataset programmatic name. For
 #'   example, "acs", "acs/acs5", "acs/acs5/subject". If using a partial name,
 #'   this needs to be the left-most part of the dataset name before `/`, e.g.
 #'   "timeseries/eits" or "dec" or "acs/acs5".
 #' @param vintage Optional vintage (year) of dataset.
-#' @examples
-#' \dontrun{
+#' @returns A data frame with the following columns:
+#' * title: Short written description of the dataset.
+#' * name: Programmatic name of the dataset.
+#' * vintage: Year of the survey, for use with microdata and aggregate datasets.
+#' * type: Dataset type, which is either "Aggregate", "Microdata", or "Timeseries".
+#' * temporal: Time period of the dataset. Warning: not always documented.
+#' * spatial: Spatial region of the dataset. Warning: not always documented.
+#' * url: Base URL of the dataset endpoint.
+#' * modified: Date last modified. Warning: sometimes out of date.
+#' * description: Long written description of the dataset.
+#' * contact: Email address for specific questions about the Census Bureau survey.
+#' @examplesIf has_api_key()
 #' # Get information about every dataset available in the APIs
 #' apis <- listCensusApis()
 #' head(apis)
@@ -31,7 +41,6 @@
 #' # Get information about one particular dataset
 #' api_sahie <- listCensusApis(name = "timeseries/healthins/sahie")
 #' head(api_sahie)
-#' }
 #'
 #' @export
 listCensusApis <- function(name = NULL,
@@ -125,20 +134,22 @@ listCensusApis <- function(name = NULL,
 	return(dt)
 }
 
-#' Get metadata about a specific API endpoint, including available variables,
-#' geographies, variable groups, and value labels
+#' Get metadata about a specified API endpoint
 #'
+#' Get information about a Census Bureau API dataset, including its available
+#' variables, geographies, variable groups, and value labels
+#'
+#' @family metadata
 #' @param name API programmatic name - e.g. acs/acs5. Use `listCensusApis()` to
 #'   see valid dataset names.
 #' @param vintage Vintage (year) of dataset. Not required for timeseries APIs.
 #' @param type Type of metadata to return. Options are:
-#'
-#'   * "variables" (default) - list of variable names and descriptions
+#' * "variables" (default) - list of variable names and descriptions
 #'   for the dataset.
-#'   * "geographies" - available geographies.
-#'   * "groups" - available variable groups. Only available
+#' * "geographies" - available geographies.
+#' * "groups" - available variable groups. Only available
 #'   for some datasets.
-#'   * "values" - encoded value labels for a given variable. Pair with
+#' * "values" - encoded value labels for a given variable. Pair with
 #'   "variable_name". Only available for some datasets.
 #' @param group An optional variable group code, used to return metadata for a
 #'   specific group of variables only. Variable groups are not used for all
@@ -148,34 +159,30 @@ listCensusApis <- function(name = NULL,
 #' @param include_values Use with `type = "variables"`. Include value metadata
 #'   for all variables in a dataset if value metadata exists. Default is
 #'   "FALSE".
-#' @keywords metadata
-#' @examples
-#' \dontrun{
-#' # type: variables
-#' # List the variables available in the Small Area Health Insurance Estimates.
+#' @returns A data frame with metadata about the specified API endpoint.
+#' @examplesIf has_api_key()
+#' # type: variables # List the variables available in the Small Area
+#' # Health Insurance Estimates.
 #' variables <- listCensusMetadata(
-#'   name = "timeseries/healthins/sahie",
-#'   type = "variables")
-#'  head(variables)
+#'   name = "timeseries/healthins/sahie", type = "variables")
+#' head(variables)
 #'
 #' # type: variables for a single variable group
 #' # List the variables that are included in the B17020 group in the
 #' # 5-year American Community Survey.
 #' variable_group <- listCensusMetadata(
-#'   name = "acs/acs5",
-#'   vintage = 2022,
-#'   type = "variables",
-#'   group = "B17020")
-#'  head(variable_group)
+#'   name = "acs/acs5", vintage = 2022,
+#'   type = "variables", group = "B17020")
+#' head(variable_group)
 #'
 #' # type: variables, with value labels
-#' # Create a data dictionary with all variable names and encoded values for
-#' # a microdata API.
+#' # Create a data dictionary with all variable names and encoded values
+#' # for a microdata API.
 #' variable_values <- listCensusMetadata(
-#' 	name = "cps/voting/nov",
-#' 	vintage = 2020,
-#' 	type = "variables",
-#' 	include_values = TRUE)
+#'   name = "cps/voting/nov",
+#'   vintage = 2020,
+#'   type = "variables",
+#'   include_values = TRUE)
 #' head(variable_values)
 #'
 #' # type: geographies
@@ -184,25 +191,27 @@ listCensusApis <- function(name = NULL,
 #'   name = "acs/acs5",
 #'   vintage = 2022,
 #'   type = "geographies")
-#'  head(geographies)
+#' head(geographies)
 #'
 #' # type: groups
-#' # List the variable groups available in the 5-year American Community Survey.
+#' # List the variable groups available in the 5-year American
+#' # Community Survey.
 #' groups <- listCensusMetadata(
 #'   name = "acs/acs5",
 #'   vintage = 2022,
 #'   type = "groups")
-#'  head(groups)
+#' head(groups)
 #'
 #' # type: values for a single variable
-#' # List the value labels of the NAICS2017 variable in the County Business Patterns dataset.
+#' # List the value labels of the NAICS2017 variable in the County
+#' # Business Patterns dataset.
 #' naics_values <- listCensusMetadata(
 #'   name = "cbp",
 #'   vintage = 2021,
 #'   type = "values",
 #'   variable = "NAICS2017")
-#'  head(naics_values)
-#' }
+#' head(naics_values)
+#'
 #' @export
 listCensusMetadata <-
 	function(name,

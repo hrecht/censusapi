@@ -9,18 +9,33 @@ listCensusApis(name = NULL, vintage = NULL)
 \arguments{
 \item{name}{Optional complete or partial API dataset programmatic name. For
 example, "acs", "acs/acs5", "acs/acs5/subject". If using a partial name,
-this needs to be the left-most part of the dataset name before `/`, e.g.
+this needs to be the left-most part of the dataset name before \code{/}, e.g.
 "timeseries/eits" or "dec" or "acs/acs5".}
 
 \item{vintage}{Optional vintage (year) of dataset.}
 }
+\value{
+A data frame with the following columns:
+\itemize{
+\item title: Short written description of the dataset.
+\item name: Programmatic name of the dataset.
+\item vintage: Year of the survey, for use with microdata and aggregate datasets.
+\item type: Dataset type, which is either "Aggregate", "Microdata", or "Timeseries".
+\item temporal: Time period of the dataset. Warning: not always documented.
+\item spatial: Spatial region of the dataset. Warning: not always documented.
+\item url: Base URL of the dataset endpoint.
+\item modified: Date last modified. Warning: sometimes out of date.
+\item description: Long written description of the dataset.
+\item contact: Email address for specific questions about the Census Bureau survey.
+}
+}
 \description{
-Scrapes https://api.census.gov/data.json and returns a dataframe that
+Scrapes \url{https://api.census.gov/data.json} and returns a dataframe that
 includes columns for dataset title, description, name, vintage, url, dataset
 type, and other useful fields.
 }
 \examples{
-\dontrun{
+\dontshow{if (has_api_key()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Get information about every dataset available in the APIs
 apis <- listCensusApis()
 head(apis)
@@ -40,7 +55,11 @@ head(apis_decennial_2020)
 # Get information about one particular dataset
 api_sahie <- listCensusApis(name = "timeseries/healthins/sahie")
 head(api_sahie)
+\dontshow{\}) # examplesIf}
 }
-
+\seealso{
+Other metadata: 
+\code{\link{listCensusMetadata}()},
+\code{\link{makeVarlist}()}
 }
-\keyword{metadata}
+\concept{metadata}

@@ -1,7 +1,14 @@
 #' Retrieve a Census API key stored the .Renivron file
 #'
-#' @returns A CENSUS_KEY or CENSUS_API_KEY value stored in the user's .Renviron.
-#'   file.
+#' @family helpers
+#' @returns A CENSUS_KEY or CENSUS_API_KEY string stored in the user's .Renviron.
+#'   file, or a warning message printed once per R session if none is found.
+#'
+#' @examples
+#' \dontrun{
+#' get_api_key()
+#' }
+#'
 #' @export
 get_api_key <- function() {
 	if (Sys.getenv("CENSUS_KEY") != "") {
@@ -15,5 +22,19 @@ get_api_key <- function() {
 								.frequency = "once", .frequency_id = "api_key")
 		key <- NULL
 		key
+	}
+}
+#' Is there a saved API token?
+#'
+#' @family helpers
+#' @examples
+#' has_api_key()
+#'
+#' @export
+has_api_key <- function() {
+	if (!is.null(get_api_key())) {
+		TRUE
+	} else {
+		FALSE
 	}
 }
