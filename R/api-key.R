@@ -24,9 +24,10 @@ get_api_key <- function() {
 		key
 	}
 }
-#' Is there a saved API token?
+#' Is there a saved Census API key in the .Renivron file?
 #'
 #' @family helpers
+#' @returns TRUE or FALSE.
 #' @examples
 #' has_api_key()
 #'

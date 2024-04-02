@@ -39,7 +39,7 @@ dataset names. Required.}
 timeseries APIs.}
 
 \item{key}{A Census API key, obtained at
-https://api.census.gov/data/key_signup.html. If you have a \code{CENSUS_KEY} or
+\url{https://api.census.gov/data/key_signup.html}. If you have a \code{CENSUS_KEY} or
 \code{CENSUS_API_KEY} stored in your .Renviron file, getCensus() will
 automatically use that key. Using a key is recommended but not required.}
 

@@ -3,10 +3,12 @@
 * Increases required version of R from >=3.0 to >=3.5 (released in 2018) based on httr dependency.
 
 ## New features
+### API keys
 * `getCensus()` no longer requires `key`, the use of a Census Bureau API key. Users are still encouraged to register for and use an API key because the Census Bureau may rate limit IP addresses, but it is not required. (#87)
-
 * New `get_api_key()` helper function retrieves the value of a user's stored Census Bureau API key from a saved environment variable or provides a warning message if none is found.
 
+
+### Metadata
 * `listCensusApis()` now has optional `name` and `vintage` parameters to get metadata for a subset of datasets or a single dataset. (#103)
 
 ```R
@@ -19,6 +21,7 @@ apis_timeseries <- listCensusApis(name = "timeseries")
 
 ## Minor improvements
 * `getCensus()` automatically converts data columns from the Household Pulse Survey (`name = "timeseries/hps"`) to numeric.
+* New `has_api_key()` helper function detects if there is a stored Census Bureau API key in the Renviron, intended mainly for internal use.
 
 ## Documentation
 * Function documentation is improved and better formatted.

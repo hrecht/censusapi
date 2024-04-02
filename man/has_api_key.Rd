@@ -2,12 +2,15 @@
 % Please edit documentation in R/api-key.R
 \name{has_api_key}
 \alias{has_api_key}
-\title{Is there a saved API token?}
+\title{Is there a saved Census API key in the .Renivron file?}
 \usage{
 has_api_key()
 }
+\value{
+TRUE or FALSE.
+}
 \description{
-Is there a saved API token?
+Is there a saved Census API key in the .Renivron file?
 }
 \examples{
 has_api_key()

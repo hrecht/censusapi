@@ -146,7 +146,7 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, show_cal
 #' @param region Geography to get.
 #' @param regionin Optional hierarchical geography to limit region.
 #' @param key A Census API key, obtained at
-#'   https://api.census.gov/data/key_signup.html. If you have a `CENSUS_KEY` or
+#'   <https://api.census.gov/data/key_signup.html>. If you have a `CENSUS_KEY` or
 #'   `CENSUS_API_KEY` stored in your .Renviron file, getCensus() will
 #'   automatically use that key. Using a key is recommended but not required.
 #' @param time Time period of data to get. Required for most timeseries APIs.
