@@ -70,59 +70,144 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, show_cal
 			# Geography variables - exact matches only
 			geos_list <- c("GEO_ID", "GEOID", "GEOID1", "GEOID2", "GEOCOMP",
 										 "SUMLEVEL", "GEOTYPE",  "GEOMAME", "GEOVARIANT",
+
 										 # Top-level geographies
 										 "NATION", "US", "DIVISION", "REGION", "LSAD_NAME",
+
 										 # Summary levels - but not ACS Flows SUMLEV1 and SUMLEV2 ints
 										 "SUMLEVEL", "SUMMARY_LVL",
+
 										 # States
-										 "STATE", "ST", "STNAME",
+										 "STATE", "ST", "STNAME", "STATE_OR_PART",
+
 										 # Counties
 										 "COUNTY",  "CTY_CODE", "CTY_NAME", "CTYNAME", "EEOCOUNTY",
-										 "COUSUB", "COUNTY1", "COUNTY2",
+										 "COUSUB", "COUNTY1", "COUNTY2", "COUNTY_OR_PART",
+										 "COUNTY_SUBDIVISION", "COUNTY_SUBDIVISION_OR_PART",
+										 "COUNTYSET",
+
 										 # Tracts
-										 "TRACT",
+										 "TRACT", "TRACT_OR_PART",
+
 										 # Places and cities
 										 "PLACE", "PLACEREM", "CONCITY", "CONSCITY", "PRINCITY", "SUBMCD",
+										 "PRINCIPAL_CITY_OR_PART", "PRINCIPAL_CITY", "PLACE_REMAINDER_OR_PART",
+										 "PLACE_OR_PART", "CONSOLIDATED_CITY", "CONSOLIDATED_CITY_OR_PART",
+										 "PLACE_BALANCE_OR_PART", "PLACE_REMAINDER",
+
 										 # PUMAs
 										 "PUMA", "PUMA5", "MIGPUMA", "POWPUMA",
+										 "PUBLIC_USE_MICRODATA_AREA",
+
 										 # Blocks
 										 "BH", "BLKGRP", "BLOCK", "BLOCK_GROUP", "GIDBG",
+										 "BLOCK_GROUP_OR_PART",
+
 										 # AIAN geographies
 										 "AIANHH", "AIARO", "AIHHTL", "AIRES", "ANRC", "TTRACT",
 										 "TBLKGRP", "TRIBALBG", "TRIBALCT", "TRIBALSUB", "TRISUBREM",
+										 "AMERICAN_INDIAN_AREA_ALASKA_NATIVE_AREA_HAWAIIAN_HOME_LAND",
+										 "ALASKA_NATIVE_REGIONAL_CORPORATION",
+										 "AMERICAN_INDIAN_AREA_ALASKA_NATIVE_AREA_HAWAIIAN_HOME_LAND_OR_PART",
+										 "TRIBAL_SUBDIVISION_REMAINDER_OR_PART", "TRIBAL_CENSUS_TRACT_OR_PART",
+										 "AMERICAN_INDIAN_AREA_ALASKA_NATIVE_AREA_RESERVATION_OR_STATISTICAL_ENTITY_ONLY",
+										 "AMERICAN_INDIAN_AREA_OFF_RESERVATION_TRUST_LAND_ONLY_HAWAIIAN_HOME_LAND",
+										 "TRIBAL_CENSUS_TRACT",
+										 "AMERICAN_INDIAN_AREA_OFF_RESERVATION_TRUST_LAND_ONLY_HAWAIIAN_HOME_LAND_OR_PART",
+										 "AMERICAN_INDIAN_AREA_ALASKA_NATIVE_AREA_RESERVATION_OR_STATISTICAL_ENTITY_ONLY_OR_PART",
+										 "AMERICAN_INDIAN_TRIBAL_SUBDIVISION",
+										 "TRIBAL_BLOCK_GROUP_OR_PART", "TRIBAL_SUBDIVISION_REMAINDER",
+										 "AMERICAN_INDIAN_TRIBAL_SUBDIVISION_OR_PART",
+										 "TRIBAL_BLOCK_GROUP",
+										 "ALASKA_NATIVE_REGIONAL_CORPORATION_OR_PART",
+
 										 # Metro areas
 										 "CSA", "MSA", "CBSA", "METDIV", "MSACMSA",
+										 "METROPOLITAN_DIVISION",
 										 "METROPOLITAN_STATISTICAL_AREA_MICROPOLITAN_STATISTICAL_AREA",
+										 "COMBINED_STATISTICAL_AREA",
+										 "METROPOLITAN_STATISTICAL_AREA_MICROPOLITAN_STATISTICAL_AREA_OR_PART",
+										 "COMBINED_STATISTICAL_AREA_OR_PART",
+										 "METROPOLITAN_DIVISION_OR_PART",
+										 "CONSOLIDATED_METROPOLITAN_STATISTICAL_AREA",
+										 "PRIMARY_METROPOLITAN_STATISTICAL_AREA",
+										 "CONSOLIDATED_METROPOLITAN_STATISTICAL_AREA_OR_PART",
+										 "PRIMARY_METROPOLITAN_STATISTICAL_AREA_OR_PART",
+										 "METROPOLITAN_STATISTICAL_AREAS",
+										 "MICROPOLITAN_STATISTICAL_AREA",
+
 										 # Congressional districts
 										 "CD", "CD106", "CD107", "CD108", "CD109", "CD110", "CD111",
 										 "CD112", "CD113", "CD114", "CD115", "CD116", "CDCURR",
+										 "CONGRESSIONAL_DISTRICT", "CONGRESSIONAL_DISTRICT_OR_PART",
 										 # Future proof congress for a while
 										 "CD117", "CD118", "CD119",
+
 										 # State legislative districts
-										 "SLDL", "SLDU",
+										 "SLDL", "SLDU", "STATE_LEGISLATIVE_DISTRICT_LOWER_CHAMBER",
+										 "STATE_LEGISLATIVE_DISTRICT_UPPER_CHAMBER",
+										 "STATE_LEGISLATIVE_DISTRICT_LOWER_CHAMBER_OR_PART",
+										 "STATE_LEGISLATIVE_DISTRICT_UPPER_CHAMBER_OR_PART",
+
 										 # NECTAs and related
-										 "CNECTA", "NECTA", "NECTADIV", "NECMA",
+										 "CNECTA", "NECTA", "NECTADIV", "NECMA", "NECTA_DIVISION",
+										 "NEW_ENGLAND_CITY_AND_TOWN_AREA",
+										 "COMBINED_NEW_ENGLAND_CITY_AND_TOWN_AREA",
+										 "NEW_ENGLAND_CITY_AND_TOWN_AREA_OR_PART",
+										 "COMBINED_NEW_ENGLAND_CITY_AND_TOWN_AREA_OR_PART",
+										 "NECTA_DIVISION_OR_PART",
+										 "NEW_ENGLAND_COUNTY_METROPOLITAN_AREA",
+										 "NEW_ENGLAND_COUNTY_METROPOLITAN_AREA_OR_PART",
+
 										 # School districts
-										 "SDELM", "SDSEC", "SDUNI",
+										 "SDELM", "SDSEC", "SDUNI", "SCHOOL_DISTRICT_ELEMENTARY",
+										 "SCHOOL_DISTRICT_SECONDARY", "SCHOOL_DISTRICT_UNIFIED",
+										 "SCHOOL_DISTRICT_ELEMENTARY_OR_PART",
+										 "SCHOOL_DISTRICT_SECONDARY_OR_PART",
+										 "SCHOOL_DISTRICT_UNIFIED_OR_PART",
+										 "SCHOOL_DISTRICT_ADMINISTRATIVE_AREA",
+
 										 # Sub-Minor Civil Division
-										 "SUBMCD",
+										 "SUBMCD", "SUBMINOR_CIVIL_DIVISION",
+										 "SUBMINOR_CIVIL_DIVISION_OR_PART",
+
 										 # ZCTAs
-										 "ZIPCODE", "ZCTA", "ZCTA5", "ZCTA3",
+										 "ZIPCODE", "ZCTA", "ZCTA5", "ZCTA3", "ZIP_CODE",
+										 "ZIP_CODE_TABULATION_AREA",
+										 "ZIP_CODE_TABULATION_AREA_OR_PART",
+										 "ZIP_CODE_TABULATION_AREA_3_DIGIT",
+										 "ZIP_CODE_TABULATION_AREA_3_DIGIT_OR_PART",
+
 										 # Urban area, Urban/rural
-										 "UA", "UR",
+										 "UA", "UR", "URBAN_AREA", "URBAN_RURAL", "URBAN_AREA_OR_PART",
+
 										 # Voting district
-										 "VTD",
+										 "VTD", "VOTING_DISTRICT",
+										 "VOTING_DISTRICT_OR_PART",
+
 										 # Imports and exports geographies
 										 "USITC", "USITCHISTORY", "USITCREG", "CUSTDISTRICT", "DIST_NAME",
 										 "PORT", "WORLD",
+										 "USITC_STANDARD_COUNTRIES_AND_AREAS",
+										 "USITC_STANDARD_INTERNATIONAL_REGIONS",
+										 "USITC_STANDARD_HISTORICAL_COUNTRIES_AND_AREAS",
+
 										 # Various Economic APIs geographies
 										 "CFSAREA", "COMMREG", "ECPLACE",
+										 "CFS_AREA_OR_PART", "COMMERCIAL_REGION",
+
 										 # 2020 Decennial
 										 "ESTATE",
+
 										 # Random rarely-used geographies
 										 "ESTPLACE", "EUCOUSUB", "EUPB", "GENC",
+										 "WORKFORCE_INVESTMENT_AREA",
+										 "GENC_STANDARD_COUNTRIES_AND_AREAS",
+										 "PUERTO_RICO_PLANNING_AREA",
+
 										 # CPS microdata
 										 "GESTFIPS", "GTCO", "HG_FIPS",
+
 										 # SIPP microdata
 										 "TFIPSST")
 
