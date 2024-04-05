@@ -9,7 +9,7 @@
 * New `has_api_key()` helper function detects if there is a stored Census Bureau API key in the Renviron, intended mainly for internal use.
 
 ### Variable typing
-* `getCensus()` uses improved logic to automatically convert columns that contain all numbers to numeric, unless the column name is in a specific list of geography names or other string type columns. Use `convert_variable = FALSE` to leave all columns as characters.
+* `getCensus()` uses improved logic to automatically convert columns that contain all numbers to numeric, unless the column name is in a specific list of geography names or other string type columns. Use `convert_variables = FALSE` to leave all columns as characters.
 
 ### Metadata
 * `listCensusApis()` now has optional `name` and `vintage` parameters to get metadata for a subset of datasets or a single dataset. (#103)

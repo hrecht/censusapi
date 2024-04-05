@@ -49,24 +49,23 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, show_cal
 		df <- data.frame(raw)
 		df <- df[-1,]
 		df <- cleanColnames(df)
-		# Make all columns character
+
+		# Make all columns character - they already are from the Census but just in
+		# case the Census does wonky things
 		df[] <- lapply(df, as.character)
-
-
-		# Make columns numeric unless they're in specific string/geography column names lists
-		# Microdata weighting variables
-		# 			} else if (grepl("cps/", name, ignore.case = T) |
-		# 								 name %in% c("acs/acs5/pums", "acs/acs5/pumspr", "acs/acs1/pums", "acs/acs1/pumspr")) {
-		# 				numeric_cols <- grep("[0-9]|PWSSWGT|HWHHWGT|PWFMWGT|PWLGWGT|PWCMPWGT|PWORWGT|PWVETWGT|WGTP|PWGTP", names(df), value=TRUE, ignore.case = T)
-		# 				string_cols <- grep(common_string_cols, numeric_cols, value = TRUE, ignore.case = T)
-		#
-		# 			}
 
 		if (convert_variables == TRUE) {
 			# If these are part of the variable name, keep as string
 			string_col_parts_list <- c("_TTL", "_NAME", "NAICS", "FAGE4", "LABEL",
 																 "_DESC", "CAT", "UNIT_QY", "_FLAG",
 																 "DISTRICT", "EMPSZES", "POPGROUP")
+
+			# Collapse into a | delimited string for grepl
+			collapse_col_parts <- function(parts) {
+				collapsed <- paste0(parts, collapse = "|")
+				return(collapsed)
+			}
+			common_string_cols <- collapse_col_parts(string_col_parts_list)
 
 			# Geography variables - exact matches only
 			geos_list <- c("GEO_ID", "GEOID", "GEOID1", "GEOID2", "GEOCOMP",
@@ -127,15 +126,6 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, show_cal
 										 # SIPP microdata
 										 "TFIPSST")
 
-			collapse_col_parts <- function(parts) {
-				collapsed <- paste0(parts, collapse = "|")
-				return(collapsed)
-			}
-			common_string_cols <- collapse_col_parts(string_col_parts_list)
-
-			# Columns that match geos_list exactly
-			geo_cols <- names(df)[toupper(names(df)) %in% geos_list]
-
 			# Microdata APIs - don't convert string identifier variables that appear
 			# in >5 endpoints as strings only or nearly always as strings
 			if (grepl("cps/|pums|sipp", name, ignore.case = T)) {
@@ -154,12 +144,20 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, show_cal
 
 			# For ACS data, also keep as strings ACS annotation variables
 			# ending in MA or EA or SS
-			if (grepl("acs/acs", name, ignore.case = T) & !(grepl("pums", name, ignore.case = T))) {
-				common_string_cols <- collapse_col_parts(c("MA", "EA", "SS", common_string_cols))
+			if (grepl("acs/acs", name, ignore.case = T) &
+					!(grepl("pums", name, ignore.case = T))) {
+				common_string_cols <- collapse_col_parts(
+					c("MA", "EA", "SS",
+						common_string_cols))
 			}
 
-			# Columns that contain string parts
+			# Columns that contain string parts in the name stay as strings
 			string_part_cols <- grep(common_string_cols, names(df), value = TRUE, ignore.case = T)
+
+			# Columns that match geos_list exactly stay as strings (other than case sensitivity)
+			geo_cols <- names(df)[toupper(names(df)) %in% geos_list]
+
+			# Identify all the geo/string columns to keep as strings
 			string_cols <- c(geo_cols, string_part_cols)
 
 			# For columns that aren't explicitly defined here as strings, convert them to numeric
