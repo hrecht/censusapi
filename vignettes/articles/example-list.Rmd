@@ -170,6 +170,34 @@ asm_product <- getCensus(
 	PSCODE = 311111)
 head(asm_product)
 ```
+
+## Business Dynamic Statistics
+
+[Business Dynamic Statistics documentation](https://www.census.gov/data/developers/data-sets/business-dynamics.html)
+
+Get the number of firms (`FIRM`) and number of net jobs created from expanding/contracting and opening/closing establishments during the last 12 months (`NET_JOB_CREATION`) in the construction industry (`NAICS = 23`) for all years available for Queens, New York.
+```{r}
+bds_queens <- getCensus(
+	name = "timeseries/bds",
+	vars = c("FIRM", "NET_JOB_CREATION", "NAICS_LABEL"),
+	region = "county:081",
+	regionin = "state:36",
+	YEAR = "*",
+	NAICS = 23)
+head(bds_queens)
+```
+
+Get the same informtion for all states in 2021.
+```{r}
+bds_states <- getCensus(
+	name = "timeseries/bds",
+	vars = c("FIRM", "NET_JOB_CREATION", "NAICS_LABEL"),
+	region = "state:*",
+	time = 2021,
+	NAICS = 23)
+head(bds_states)
+```
+
 ## Community Resiliency Estimates
 
 [Community Resilience Estimates documentation](https://www.census.gov/data/developers/data-sets/community-resilience-estimates.html)
@@ -396,6 +424,7 @@ ewks_2012 <- getCensus(
 	region = "state:*",
 	NAICS2012 = 54)
 head(ewks_2012)
+
 ewks_2007 <- getCensus(
 	name = "ewks",
 	vintage = 2007,

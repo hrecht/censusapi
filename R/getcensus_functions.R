@@ -52,70 +52,126 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, show_cal
 		# Make all columns character
 		df[] <- lapply(df, as.character)
 
-		# Make columns numeric based on column names - unfortunately best strategy without additional API calls given structure of data across endpoints
+
+		# Make columns numeric unless they're in specific string/geography column names lists
+		# Microdata weighting variables
+		# 			} else if (grepl("cps/", name, ignore.case = T) |
+		# 								 name %in% c("acs/acs5/pums", "acs/acs5/pumspr", "acs/acs1/pums", "acs/acs1/pumspr")) {
+		# 				numeric_cols <- grep("[0-9]|PWSSWGT|HWHHWGT|PWFMWGT|PWLGWGT|PWCMPWGT|PWORWGT|PWVETWGT|WGTP|PWGTP", names(df), value=TRUE, ignore.case = T)
+		# 				string_cols <- grep(common_string_cols, numeric_cols, value = TRUE, ignore.case = T)
+		#
+		# 			}
+
 		if (convert_variables == TRUE) {
-			string_col_parts <- "_TTL|_NAME|NAICS2012|NAICS2017|NAICS2012_TTL|NAICS2017_TTL|fage4|FAGE4|LABEL|_DESC|CAT"
+			# If these are part of the variable name, keep as string
+			string_col_parts_list <- c("_TTL", "_NAME", "NAICS", "FAGE4", "LABEL",
+																 "_DESC", "CAT", "UNIT_QY", "_FLAG",
+																 "DISTRICT", "EMPSZES", "POPGROUP")
 
-			# For ACS data, do not make columns numeric if they are ACS annotation variables - ending in MA or EA or SS
-			if (grepl("acs/acs", name, ignore.case = T)) {
-				# Do not make known string/label variables numeric
-				numeric_cols <- grep("[0-9]", names(df), value=TRUE)
-				string_cols <- grep(paste0("MA|EA|SS|", string_col_parts), numeric_cols, value = TRUE, ignore.case = T)
+			# Geography variables - exact matches only
+			geos_list <- c("GEO_ID", "GEOID", "GEOID1", "GEOID2", "GEOCOMP",
+										 "SUMLEVEL", "GEOTYPE",  "GEOMAME", "GEOVARIANT",
+										 # Top-level geographies
+										 "NATION", "US", "DIVISION", "REGION", "LSAD_NAME",
+										 # Summary levels - but not ACS Flows SUMLEV1 and SUMLEV2 ints
+										 "SUMLEVEL", "SUMMARY_LVL",
+										 # States
+										 "STATE", "ST", "STNAME",
+										 # Counties
+										 "COUNTY",  "CTY_CODE", "CTY_NAME", "CTYNAME", "EEOCOUNTY",
+										 "COUSUB", "COUNTY1", "COUNTY2",
+										 # Tracts
+										 "TRACT",
+										 # Places and cities
+										 "PLACE", "PLACEREM", "CONCITY", "CONSCITY", "PRINCITY", "SUBMCD",
+										 # PUMAs
+										 "PUMA", "PUMA5", "MIGPUMA", "POWPUMA",
+										 # Blocks
+										 "BH", "BLKGRP", "BLOCK", "BLOCK_GROUP", "GIDBG",
+										 # AIAN geographies
+										 "AIANHH", "AIARO", "AIHHTL", "AIRES", "ANRC", "TTRACT",
+										 "TBLKGRP", "TRIBALBG", "TRIBALCT", "TRIBALSUB", "TRISUBREM",
+										 # Metro areas
+										 "CSA", "MSA", "CBSA", "METDIV", "MSACMSA",
+										 "METROPOLITAN_STATISTICAL_AREA_MICROPOLITAN_STATISTICAL_AREA",
+										 # Congressional districts
+										 "CD", "CD106", "CD107", "CD108", "CD109", "CD110", "CD111",
+										 "CD112", "CD113", "CD114", "CD115", "CD116", "CDCURR",
+										 # Future proof congress for a while
+										 "CD117", "CD118", "CD119",
+										 # State legislative districts
+										 "SLDL", "SLDU",
+										 # NECTAs and related
+										 "CNECTA", "NECTA", "NECTADIV", "NECMA",
+										 # School districts
+										 "SDELM", "SDSEC", "SDUNI",
+										 # Sub-Minor Civil Division
+										 "SUBMCD",
+										 # ZCTAs
+										 "ZIPCODE", "ZCTA", "ZCTA5", "ZCTA3",
+										 # Urban area, Urban/rural
+										 "UA", "UR",
+										 # Voting district
+										 "VTD",
+										 # Imports and exports geographies
+										 "USITC", "USITCHISTORY", "USITCREG", "CUSTDISTRICT", "DIST_NAME",
+										 "PORT", "WORLD",
+										 # Various Economic APIs geographies
+										 "CFSAREA", "COMMREG", "ECPLACE",
+										 # 2020 Decennial
+										 "ESTATE",
+										 # Random rarely-used geographies
+										 "ESTPLACE", "EUCOUSUB", "EUPB", "GENC",
+										 # CPS microdata
+										 "GESTFIPS", "GTCO", "HG_FIPS",
+										 # SIPP microdata
+										 "TFIPSST")
 
-				# Small Area Health Insurance Estimates
-			} else if (grepl("healthins/sahie", name, ignore.case = T)) {
-				numeric_cols <- grep("[0-9]|_PT|NIPR|PCTIC|PCTUI|NIC|NUI", names(df), value=TRUE, ignore.case = T)
-				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+			collapse_col_parts <- function(parts) {
+				collapsed <- paste0(parts, collapse = "|")
+				return(collapsed)
+			}
+			common_string_cols <- collapse_col_parts(string_col_parts_list)
 
-				# Small Area Income and Poverty Estimates
-			} else if (grepl("poverty/saipe", name, ignore.case = T)) {
-				numeric_cols <- grep("[0-9]|SAEMHI|SAEPOV", names(df), value=TRUE, ignore.case = T)
-				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+			# Columns that match geos_list exactly
+			geo_cols <- names(df)[toupper(names(df)) %in% geos_list]
 
-				# Population and Housing Estimates
-			} else if (grepl("pep/", name, ignore.case = T)) {
-				numeric_cols <- grep("[0-9]|POP|DENSITY|HUEST", names(df), value=TRUE, ignore.case = T)
-				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+			# Microdata APIs - don't convert string identifier variables that appear
+			# in >5 endpoints as strings only or nearly always as strings
+			if (grepl("cps/|pums|sipp", name, ignore.case = T)) {
 
-				# County Business Patterns
-			} else if (name == "cbp" | name == "zbp") {
-				# Exact matches for CBP variables
-				numeric_cols <- grep("[0-9]|\\<EMP\\>|\\<ESTAB\\>|PAYANN", names(df), value=TRUE, ignore.case = T)
-				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
-
-				# Decennial Response Rates
-			} else if (name == "dec/responserate") {
-				numeric_cols <- grep("[0-9]|CINT|MIN|MED|AVG|MAX|DRR|CRR", names(df), value=TRUE, ignore.case = T)
-				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
-
-				# International trade
-			} else if (grepl("timeseries/intltrade/", name, ignore.case = T)) {
-				numeric_cols <- grep("[0-9]", names(df), value=TRUE, ignore.case = T)
-				string_col_parts <- paste0(string_col_parts, "|UNIT_QY|_FLAG")
-				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
-
-				# Household Pulse Survey
-			} else if (name == "timeseries/hps") {
-				numeric_cols <- grep("_RATE|_TOTAL|_UNIV|_MOE|WEEK", names(df), value=TRUE, ignore.case = T)
-				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
-
-				# Microdata weighting variables
-			} else if (grepl("cps/", name, ignore.case = T) |
-								 name %in% c("acs/acs5/pums", "acs/acs5/pumspr", "acs/acs1/pums", "acs/acs1/pumspr")) {
-				numeric_cols <- grep("[0-9]|PWSSWGT|HWHHWGT|PWFMWGT|PWLGWGT|PWCMPWGT
-|PWORWGT|PWVETWGT|WGTP|PWGTP", names(df), value=TRUE, ignore.case = T)
-				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
-
-			} else {
-				# Do not make known string/label variables numeric
-				numeric_cols <- grep("[0-9]", names(df), value=TRUE)
-				string_cols <- grep(string_col_parts, numeric_cols, value = TRUE, ignore.case = T)
+				common_string_cols <- collapse_col_parts(
+					c( #SIPP PUMS
+						"SSUID",
+						# CPS PUMS
+						"HRHHID", "HRSAMPLE", "HRSERSUF", "GECMSASZ", "H_ID", "H_ID_PL",
+						"H_IDNUM", "OCCURNUM", "QSTNUM",
+						# ACS PUMS
+						"RT", "SERIALNO", "CONCAT_ID", "RECORD_TYPE", "SOCP",
+						"OCCP10", "OCCP02", "OCCP12",
+					common_string_cols))
 			}
 
-			# Convert string "NULL" or "N/A" values to true NA
-			df[(df == "NULL" | df == "N/A" | df == "NA")] <- NA
+			# For ACS data, also keep as strings ACS annotation variables
+			# ending in MA or EA or SS
+			if (grepl("acs/acs", name, ignore.case = T) & !(grepl("pums", name, ignore.case = T))) {
+				common_string_cols <- collapse_col_parts(c("MA", "EA", "SS", common_string_cols))
+			}
 
-			for(col in setdiff(numeric_cols, string_cols)) df[,col] <- as.numeric(df[,col])
+			# Columns that contain string parts
+			string_part_cols <- grep(common_string_cols, names(df), value = TRUE, ignore.case = T)
+			string_cols <- c(geo_cols, string_part_cols)
+
+			# For columns that aren't explicitly defined here as strings, convert them to numeric
+			# If they are actually all numbers
+			for(col in setdiff(names(df), string_cols)) {
+				df[,col] <- utils::type.convert(df[,col],
+																				as.is = TRUE,
+																				# Some returned data contains messy NAs, account for them
+																				na.strings = c(NA, "NULL", "N/A", "NA"))
+				#}
+
+			}
 		}
 		row.names(df) <- NULL
 

@@ -6,7 +6,10 @@
 ### API keys
 * `getCensus()` no longer requires `key`, the use of a Census Bureau API key. Users are still encouraged to register for and use an API key because the Census Bureau may rate limit IP addresses, but it is not required. (#87)
 * New `get_api_key()` helper function retrieves the value of a user's stored Census Bureau API key from a saved environment variable or provides a warning message if none is found.
+* New `has_api_key()` helper function detects if there is a stored Census Bureau API key in the Renviron, intended mainly for internal use.
 
+### Variable typing
+* `getCensus()` uses improved logic to automatically convert columns that contain all numbers to numeric, unless the column name is in a specific list of geography names or other string type columns. Use `convert_variable = FALSE` to leave all columns as characters.
 
 ### Metadata
 * `listCensusApis()` now has optional `name` and `vintage` parameters to get metadata for a subset of datasets or a single dataset. (#103)
@@ -18,10 +21,6 @@ apis_decennial_2020 <- listCensusApis(name = "dec", vintage = 2020)
 # Get metadata for all timeseries datasets
 apis_timeseries <- listCensusApis(name = "timeseries")
 ```
-
-## Minor improvements
-* `getCensus()` automatically converts data columns from the Household Pulse Survey (`name = "timeseries/hps"`) to numeric.
-* New `has_api_key()` helper function detects if there is a stored Census Bureau API key in the Renviron, intended mainly for internal use.
 
 ## Documentation
 * Function documentation is improved and better formatted.
