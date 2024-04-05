@@ -69,7 +69,7 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, show_cal
 
 			# Geography variables - exact matches only
 			geos_list <- c("GEO_ID", "GEOID", "GEOID1", "GEOID2", "GEOCOMP",
-										 "SUMLEVEL", "GEOTYPE",  "GEOMAME", "GEOVARIANT",
+										 "SUMLEVEL", "GEOTYPE",  "GEONAME", "GEOVARIANT",
 
 										 # Top-level geographies
 										 "NATION", "US", "DIVISION", "REGION", "LSAD_NAME",
