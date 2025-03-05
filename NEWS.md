@@ -107,7 +107,7 @@ apis_timeseries <- listCensusApis(name = "timeseries")
 * Updates 2010 Decennial Census examples to use new 2010 `dec/sf1` endpoint, which will replace 2010 `sf1` endpoint on August 30, 2018.
 
 # censusapi 0.4.0
-* Adds support for NAICS code arguments used in [Business Patterns](https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html) APIs, [Economic Census](https://www.census.gov/data/developers/data-sets/economic-census.html) APIs, and [Annual Survey of Manufactures](https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html) APIs.
+* Adds support for NAICS code arguments used in Business Patterns APIs, Economic Census APIs, and Annual Survey of Manufactures APIs.
 
 # censusapi 0.3.0
 * Does not convert ACS annotation flag variables into numeric columns.
@@ -126,7 +126,7 @@ apis_timeseries <- listCensusApis(name = "timeseries")
 * Fixes bug that caused single-row responses to throw an error
 
 # censusapi 0.1.1
-* Uses https rather than http for requests. The Census Bureau [announced](https://content.govdelivery.com/attachments/USCENSUS/2017/05/31/file_attachments/824523/HttpsChangeDocument.pdf) that their APIs will be https-only beginning on August 28, 2017.
+* Uses https rather than http for requests. The Census Bureau announced that their APIs will be https-only beginning on August 28, 2017.
 * Removes XML dependency by parsing .json instead of .html metadata.
   * Note: this change has generally increased the run time for retrieving variable metadata with `listCensusMetadata`. For most APIs, this function will run in under one second. A lag may be noticeable for the American Community Survey APIs, which each have more than 40,000 variables. Improvements are planned in future releases.
 * `listCensusMetadata` allows full word or single letter argument in `type` parameter

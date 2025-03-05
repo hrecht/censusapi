@@ -161,7 +161,7 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.0" id="censusapi-040">censusapi 0.4.0<a class="anchor" aria-label="anchor" href="#censusapi-040"></a></h2>
-<ul><li>Adds support for NAICS code arguments used in <a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp.html" class="external-link">Business Patterns</a> APIs, <a href="https://www.census.gov/data/developers/data-sets/economic-census.html" class="external-link">Economic Census</a> APIs, and <a href="https://www.census.gov/data/developers/data-sets/Annual-Survey-of-Manufactures.html" class="external-link">Annual Survey of Manufactures</a> APIs.</li>
+<ul><li>Adds support for NAICS code arguments used in Business Patterns APIs, Economic Census APIs, and Annual Survey of Manufactures APIs.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="censusapi-030">censusapi 0.3.0<a class="anchor" aria-label="anchor" href="#censusapi-030"></a></h2><p class="text-muted">CRAN release: 2018-05-02</p>
@@ -185,7 +185,7 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1" id="censusapi-011">censusapi 0.1.1<a class="anchor" aria-label="anchor" href="#censusapi-011"></a></h2>
-<ul><li>Uses https rather than http for requests. The Census Bureau <a href="https://content.govdelivery.com/attachments/USCENSUS/2017/05/31/file_attachments/824523/HttpsChangeDocument.pdf" class="external-link">announced</a> that their APIs will be https-only beginning on August 28, 2017.</li>
+<ul><li>Uses https rather than http for requests. The Census Bureau announced that their APIs will be https-only beginning on August 28, 2017.</li>
 <li>Removes XML dependency by parsing .json instead of .html metadata.
 <ul><li>Note: this change has generally increased the run time for retrieving variable metadata with <code>listCensusMetadata</code>. For most APIs, this function will run in under one second. A lag may be noticeable for the American Community Survey APIs, which each have more than 40,000 variables. Improvements are planned in future releases.</li>
 </ul></li>
