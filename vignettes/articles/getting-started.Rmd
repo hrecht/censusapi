@@ -104,7 +104,7 @@ sahie_counties <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT", "NUI_PT"), 
 	region = "county:*", 
-	time = 2021)
+	time = 2022)
 head(sahie_counties)
 ```
 
@@ -116,7 +116,7 @@ sahie_virginia <- getCensus(
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"), 
 	region = "county:*", 
 	regionin = "state:51", 
-	time = 2021)
+	time = 2022)
 head(sahie_virginia, head = 12L)
 ```
 
@@ -199,7 +199,7 @@ First, see descriptions of the variables in group B19013:
 ```{r}
 group_B19013 <- listCensusMetadata(
 	name = "acs/acs5",
-	vintage = 2022,
+	vintage = 2023,
 	type = "variables",
 	group = "B19013")
 group_B19013
@@ -210,7 +210,7 @@ Now, retrieve the data using `vars = "group(B19013)"`. You could alternatively m
 ```{r}
 acs_income_group <- getCensus(
 	name = "acs/acs5", 
-	vintage = 2022, 
+	vintage = 2023, 
 	vars = "group(B19013)", 
 	region = "place:*", 
 	regionin = "state:01")
