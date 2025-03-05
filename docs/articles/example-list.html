@@ -5,80 +5,65 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Examples from many of the Census APIs.
-">
 <title>censusapi examples • censusapi</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.9/font.css" rel="stylesheet">
-<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="censusapi examples">
+<link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="censusapi examples">
+<meta name="description" content="Examples from many of the Census APIs.
+">
 <meta property="og:description" content="Examples from many of the Census APIs.
 ">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">censusapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../articles/getting-started.html">Get started</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../articles/getting-started.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/getting-started.html">Getting started with censusapi</a>
-    <a class="dropdown-item" href="../articles/frequently-asked-questions.html">Frequently asked questions</a>
-    <a class="dropdown-item" href="../articles/example-list.html">censusapi examples</a>
-    <a class="dropdown-item" href="../articles/accessing-microdata.html">Accessing microdata</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/getting-started.html">Getting started with censusapi</a></li>
+    <li><a class="dropdown-item" href="../articles/frequently-asked-questions.html">Frequently asked questions</a></li>
+    <li><a class="dropdown-item" href="../articles/example-list.html">censusapi examples</a></li>
+    <li><a class="dropdown-item" href="../articles/accessing-microdata.html">Accessing microdata</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/hrecht/censusapi/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/hrecht/censusapi/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>censusapi examples</h1>
+
+      <h1>censusapi examples</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/hrecht/censusapi/blob/HEAD/vignettes/articles/example-list.Rmd" class="external-link"><code>vignettes/articles/example-list.Rmd</code></a></small>
@@ -117,7 +102,7 @@ etc) in Indiana.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acs_income</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs5"</span>,</span>
-<span>    vintage <span class="op">=</span> <span class="fl">2022</span>, </span>
+<span>    vintage <span class="op">=</span> <span class="fl">2023</span>, </span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"B01001_001E"</span>, <span class="st">"B19013_001E"</span><span class="op">)</span>, </span>
 <span>    region <span class="op">=</span> <span class="st">"place:*"</span>,</span>
 <span>    regionin <span class="op">=</span> <span class="st">"state:18"</span><span class="op">)</span></span>
@@ -136,43 +121,43 @@ etc) in Indiana.</p>
 <td align="left">18</td>
 <td align="left">00140</td>
 <td align="left">Aberdeen CDP, Indiana</td>
-<td align="right">1756</td>
-<td align="right">129792</td>
+<td align="right">1761</td>
+<td align="right">97344</td>
 </tr>
 <tr class="even">
 <td align="left">18</td>
 <td align="left">00154</td>
 <td align="left">Abington CDP, Indiana</td>
-<td align="right">255</td>
-<td align="right">70167</td>
+<td align="right">208</td>
+<td align="right">73371</td>
 </tr>
 <tr class="odd">
 <td align="left">18</td>
 <td align="left">00352</td>
 <td align="left">Adams CDP, Indiana</td>
-<td align="right">190</td>
-<td align="right">21111</td>
+<td align="right">105</td>
+<td align="right">63068</td>
 </tr>
 <tr class="even">
 <td align="left">18</td>
 <td align="left">00532</td>
 <td align="left">Adams Lake CDP, Indiana</td>
-<td align="right">270</td>
-<td align="right">89923</td>
+<td align="right">284</td>
+<td align="right">91591</td>
 </tr>
 <tr class="odd">
 <td align="left">18</td>
 <td align="left">00640</td>
 <td align="left">Advance town, Indiana</td>
-<td align="right">412</td>
-<td align="right">71042</td>
+<td align="right">418</td>
+<td align="right">65000</td>
 </tr>
 <tr class="even">
 <td align="left">18</td>
 <td align="left">00748</td>
 <td align="left">Akron town, Indiana</td>
-<td align="right">1062</td>
-<td align="right">58958</td>
+<td align="right">1061</td>
+<td align="right">59479</td>
 </tr>
 </tbody>
 </table>
@@ -197,7 +182,7 @@ error:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acs_subject</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs1/subject"</span>,</span>
-<span>    vintage <span class="op">=</span> <span class="fl">2022</span>, </span>
+<span>    vintage <span class="op">=</span> <span class="fl">2023</span>, </span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"S2801_C02_019E"</span>, <span class="st">"S2801_C02_019M"</span>,</span>
 <span>                     <span class="st">"S2801_C02_023E"</span>, <span class="st">"S2801_C02_023M"</span>, </span>
 <span>                     <span class="st">"S2801_C02_027E"</span>, <span class="st">"S2801_C02_027M"</span>,</span>
@@ -238,66 +223,66 @@ error:</p>
 <td align="left">36</td>
 <td align="left">005</td>
 <td align="left">Bronx County, New York</td>
-<td align="right">15.8</td>
-<td align="right">1.0</td>
-<td align="right">26.7</td>
-<td align="right">2.4</td>
-<td align="right">15.0</td>
+<td align="right">11.9</td>
+<td align="right">1.1</td>
+<td align="right">23.5</td>
+<td align="right">2.8</td>
+<td align="right">10.6</td>
 <td align="right">1.8</td>
-<td align="right">7.5</td>
-<td align="right">1.4</td>
+<td align="right">3.9</td>
+<td align="right">0.9</td>
 </tr>
 <tr class="even">
 <td align="left">36</td>
 <td align="left">047</td>
 <td align="left">Kings County, New York</td>
-<td align="right">10.9</td>
-<td align="right">0.7</td>
-<td align="right">26.9</td>
-<td align="right">2.2</td>
-<td align="right">13.0</td>
-<td align="right">1.2</td>
-<td align="right">4.0</td>
-<td align="right">0.6</td>
+<td align="right">9.6</td>
+<td align="right">0.5</td>
+<td align="right">24.4</td>
+<td align="right">2.0</td>
+<td align="right">11.2</td>
+<td align="right">1.1</td>
+<td align="right">3.7</td>
+<td align="right">0.5</td>
 </tr>
 <tr class="odd">
 <td align="left">36</td>
 <td align="left">061</td>
 <td align="left">New York County, New York</td>
-<td align="right">9.1</td>
+<td align="right">5.9</td>
 <td align="right">0.7</td>
-<td align="right">27.0</td>
-<td align="right">2.5</td>
-<td align="right">9.9</td>
-<td align="right">1.8</td>
-<td align="right">3.2</td>
-<td align="right">0.7</td>
+<td align="right">21.3</td>
+<td align="right">2.6</td>
+<td align="right">6.6</td>
+<td align="right">1.5</td>
+<td align="right">1.6</td>
+<td align="right">0.5</td>
 </tr>
 <tr class="even">
 <td align="left">36</td>
 <td align="left">081</td>
 <td align="left">Queens County, New York</td>
-<td align="right">7.9</td>
-<td align="right">0.6</td>
-<td align="right">20.6</td>
-<td align="right">2.2</td>
-<td align="right">10.3</td>
-<td align="right">1.2</td>
-<td align="right">3.3</td>
+<td align="right">6.0</td>
+<td align="right">0.5</td>
+<td align="right">18.4</td>
+<td align="right">2.7</td>
+<td align="right">7.2</td>
+<td align="right">0.9</td>
+<td align="right">2.3</td>
 <td align="right">0.5</td>
 </tr>
 <tr class="odd">
 <td align="left">36</td>
 <td align="left">085</td>
 <td align="left">Richmond County, New York</td>
-<td align="right">8.9</td>
-<td align="right">1.3</td>
-<td align="right">24.5</td>
-<td align="right">6.7</td>
-<td align="right">12.8</td>
-<td align="right">2.3</td>
-<td align="right">3.9</td>
+<td align="right">9.1</td>
 <td align="right">1.2</td>
+<td align="right">22.8</td>
+<td align="right">5.5</td>
+<td align="right">13.1</td>
+<td align="right">2.8</td>
+<td align="right">4.2</td>
+<td align="right">1.4</td>
 </tr>
 </tbody>
 </table>
@@ -306,91 +291,82 @@ error:</p>
 <div class="section level3">
 <h3 id="acs-comparison-profiles">ACS Comparison Profiles<a class="anchor" aria-label="anchor" href="#acs-comparison-profiles"></a>
 </h3>
-<p>Get the annual median household income in inflation-adjusted 2019
-dollars for Alabama cities since 2018. (2020 1-year data is not
-available.)</p>
+<p>Get the annual median household income in inflation-adjusted 2023
+dollars for Alabama cities since 2021.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acs_comparison</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"acs/acs1/cprofile"</span>,</span>
-<span>    vintage <span class="op">=</span> <span class="fl">2022</span>, </span>
-<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"CP03_2018_062E"</span>, <span class="st">"CP03_2019_062E"</span>, <span class="st">"CP03_2021_062E"</span>, <span class="st">"CP03_2022_062E"</span><span class="op">)</span>, </span>
+<span>    vintage <span class="op">=</span> <span class="fl">2023</span>, </span>
+<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"CP03_2021_062E"</span>, <span class="st">"CP03_2022_062E"</span>, <span class="st">"CP03_2023_062E"</span><span class="op">)</span>, </span>
 <span>    region <span class="op">=</span> <span class="st">"place:*"</span>,</span>
 <span>    regionin <span class="op">=</span> <span class="st">"state:01"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">acs_comparison</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="6%">
-<col width="6%">
-<col width="25%">
-<col width="15%">
-<col width="15%">
-<col width="15%">
-<col width="15%">
+<col width="7%">
+<col width="7%">
+<col width="30%">
+<col width="18%">
+<col width="18%">
+<col width="18%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">state</th>
 <th align="left">place</th>
 <th align="left">NAME</th>
-<th align="right">CP03_2018_062E</th>
-<th align="right">CP03_2019_062E</th>
 <th align="right">CP03_2021_062E</th>
 <th align="right">CP03_2022_062E</th>
+<th align="right">CP03_2023_062E</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">01</td>
 <td align="left">03076</td>
 <td align="left">Auburn city, Alabama</td>
-<td align="right">54286</td>
-<td align="right">52853</td>
-<td align="right">52458</td>
-<td align="right">54839</td>
+<td align="right">54622</td>
+<td align="right">57101</td>
+<td align="right">52259</td>
 </tr>
 <tr class="even">
 <td align="left">01</td>
 <td align="left">07000</td>
 <td align="left">Birmingham city, Alabama</td>
-<td align="right">42549</td>
-<td align="right">42201</td>
-<td align="right">39577</td>
-<td align="right">39326</td>
+<td align="right">41210</td>
+<td align="right">40948</td>
+<td align="right">44951</td>
 </tr>
 <tr class="odd">
 <td align="left">01</td>
 <td align="left">21184</td>
 <td align="left">Dothan city, Alabama</td>
-<td align="right">57471</td>
-<td align="right">54438</td>
-<td align="right">48737</td>
-<td align="right">53929</td>
+<td align="right">50747</td>
+<td align="right">56154</td>
+<td align="right">54598</td>
 </tr>
 <tr class="even">
 <td align="left">01</td>
 <td align="left">35896</td>
 <td align="left">Hoover city, Alabama</td>
-<td align="right">102124</td>
-<td align="right">113316</td>
-<td align="right">107309</td>
-<td align="right">103194</td>
+<td align="right">111735</td>
+<td align="right">107451</td>
+<td align="right">102009</td>
 </tr>
 <tr class="odd">
 <td align="left">01</td>
 <td align="left">37000</td>
 <td align="left">Huntsville city, Alabama</td>
-<td align="right">64772</td>
-<td align="right">62396</td>
-<td align="right">76483</td>
-<td align="right">68930</td>
+<td align="right">79638</td>
+<td align="right">71773</td>
+<td align="right">73319</td>
 </tr>
 <tr class="even">
 <td align="left">01</td>
 <td align="left">50000</td>
 <td align="left">Mobile city, Alabama</td>
-<td align="right">45176</td>
-<td align="right">53723</td>
-<td align="right">47329</td>
-<td align="right">50051</td>
+<td align="right">49281</td>
+<td align="right">52116</td>
+<td align="right">50156</td>
 </tr>
 </tbody>
 </table>
@@ -1232,8 +1208,8 @@ for Queens, New York.</p>
 <tr class="odd">
 <td align="left">36</td>
 <td align="left">081</td>
-<td align="right">1777</td>
-<td align="right">1929</td>
+<td align="right">1775</td>
+<td align="right">1960</td>
 <td align="left">Construction</td>
 <td align="right">1978</td>
 <td align="left">23</td>
@@ -1241,8 +1217,8 @@ for Queens, New York.</p>
 <tr class="even">
 <td align="left">36</td>
 <td align="left">081</td>
-<td align="right">1907</td>
-<td align="right">2257</td>
+<td align="right">1904</td>
+<td align="right">2198</td>
 <td align="left">Construction</td>
 <td align="right">1979</td>
 <td align="left">23</td>
@@ -1250,8 +1226,8 @@ for Queens, New York.</p>
 <tr class="odd">
 <td align="left">36</td>
 <td align="left">081</td>
-<td align="right">1928</td>
-<td align="right">2175</td>
+<td align="right">1931</td>
+<td align="right">2155</td>
 <td align="left">Construction</td>
 <td align="right">1980</td>
 <td align="left">23</td>
@@ -1259,8 +1235,8 @@ for Queens, New York.</p>
 <tr class="even">
 <td align="left">36</td>
 <td align="left">081</td>
-<td align="right">1934</td>
-<td align="right">-17</td>
+<td align="right">1935</td>
+<td align="right">-7</td>
 <td align="left">Construction</td>
 <td align="right">1981</td>
 <td align="left">23</td>
@@ -1268,8 +1244,8 @@ for Queens, New York.</p>
 <tr class="odd">
 <td align="left">36</td>
 <td align="left">081</td>
-<td align="right">1960</td>
-<td align="right">1575</td>
+<td align="right">1961</td>
+<td align="right">1536</td>
 <td align="left">Construction</td>
 <td align="right">1982</td>
 <td align="left">23</td>
@@ -1277,81 +1253,10 @@ for Queens, New York.</p>
 <tr class="even">
 <td align="left">36</td>
 <td align="left">081</td>
-<td align="right">2013</td>
-<td align="right">687</td>
+<td align="right">2012</td>
+<td align="right">655</td>
 <td align="left">Construction</td>
 <td align="right">1983</td>
-<td align="left">23</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Get the same informtion for all states in 2021.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">bds_states</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
-<span>    name <span class="op">=</span> <span class="st">"timeseries/bds"</span>,</span>
-<span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FIRM"</span>, <span class="st">"NET_JOB_CREATION"</span>, <span class="st">"NAICS_LABEL"</span><span class="op">)</span>,</span>
-<span>    region <span class="op">=</span> <span class="st">"state:*"</span>,</span>
-<span>    time <span class="op">=</span> <span class="fl">2021</span>,</span>
-<span>    NAICS <span class="op">=</span> <span class="fl">23</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">bds_states</span><span class="op">)</span></span></code></pre></div>
-<div class="kable-table">
-<table class="table">
-<thead><tr class="header">
-<th align="right">time</th>
-<th align="left">state</th>
-<th align="right">FIRM</th>
-<th align="right">NET_JOB_CREATION</th>
-<th align="left">NAICS_LABEL</th>
-<th align="left">NAICS</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">2021</td>
-<td align="left">28</td>
-<td align="right">3526</td>
-<td align="right">-1756</td>
-<td align="left">Construction</td>
-<td align="left">23</td>
-</tr>
-<tr class="even">
-<td align="right">2021</td>
-<td align="left">29</td>
-<td align="right">12237</td>
-<td align="right">-659</td>
-<td align="left">Construction</td>
-<td align="left">23</td>
-</tr>
-<tr class="odd">
-<td align="right">2021</td>
-<td align="left">30</td>
-<td align="right">4958</td>
-<td align="right">650</td>
-<td align="left">Construction</td>
-<td align="left">23</td>
-</tr>
-<tr class="even">
-<td align="right">2021</td>
-<td align="left">27</td>
-<td align="right">13798</td>
-<td align="right">-2298</td>
-<td align="left">Construction</td>
-<td align="left">23</td>
-</tr>
-<tr class="odd">
-<td align="right">2021</td>
-<td align="left">31</td>
-<td align="right">5750</td>
-<td align="right">101</td>
-<td align="left">Construction</td>
-<td align="left">23</td>
-</tr>
-<tr class="even">
-<td align="right">2021</td>
-<td align="left">32</td>
-<td align="right">4872</td>
-<td align="right">1447</td>
-<td align="left">Construction</td>
 <td align="left">23</td>
 </tr>
 </tbody>
@@ -1367,7 +1272,7 @@ Resilience Estimates documentation</a></p>
 with zero components of social vulnerability, one-two components of
 social vulnerability, and three or more components of social
 vulnerability.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cre</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"cre"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2022</span>,</span>
@@ -1449,7 +1354,7 @@ Business Patterns and Nonemployer Statistics documentation</a></p>
 <p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/cbp-api.html" class="external-link">County
 Business Patterns documentation</a></p>
 <p>Get employment data for the construction industry.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cbp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"cbp"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2021</span>,</span>
@@ -1479,6 +1384,18 @@ Business Patterns documentation</a></p>
 <td align="left">23</td>
 </tr>
 <tr class="odd">
+<td align="left">18</td>
+<td align="right">145974</td>
+<td align="right">14358</td>
+<td align="left">23</td>
+</tr>
+<tr class="even">
+<td align="left">78</td>
+<td align="right">2530</td>
+<td align="right">163</td>
+<td align="left">23</td>
+</tr>
+<tr class="odd">
 <td align="left">04</td>
 <td align="right">184434</td>
 <td align="right">14289</td>
@@ -1490,24 +1407,12 @@ Business Patterns documentation</a></p>
 <td align="right">5939</td>
 <td align="left">23</td>
 </tr>
-<tr class="odd">
-<td align="left">06</td>
-<td align="right">844489</td>
-<td align="right">82744</td>
-<td align="left">23</td>
-</tr>
-<tr class="even">
-<td align="left">08</td>
-<td align="right">178752</td>
-<td align="right">20299</td>
-<td align="left">23</td>
-</tr>
 </tbody>
 </table>
 </div>
 <p>Get the number of companies and employees at organizations with more
 than 1,000 employees (<code>EMPSZES = 260</code>).</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cbp_large_companies</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"cbp"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2021</span>,</span>
@@ -1547,24 +1452,24 @@ than 1,000 employees (<code>EMPSZES = 260</code>).</p>
 <td align="left">260</td>
 </tr>
 <tr class="even">
-<td align="left">05</td>
-<td align="left">Arkansas</td>
-<td align="right">114638</td>
-<td align="right">67</td>
-<td align="left">260</td>
-</tr>
-<tr class="odd">
 <td align="left">06</td>
 <td align="left">California</td>
 <td align="right">2816709</td>
 <td align="right">1040</td>
 <td align="left">260</td>
 </tr>
+<tr class="odd">
+<td align="left">18</td>
+<td align="left">Indiana</td>
+<td align="right">409283</td>
+<td align="right">192</td>
+<td align="left">260</td>
+</tr>
 <tr class="even">
-<td align="left">08</td>
-<td align="left">Colorado</td>
-<td align="right">365636</td>
-<td align="right">144</td>
+<td align="left">05</td>
+<td align="left">Arkansas</td>
+<td align="right">114638</td>
+<td align="right">67</td>
 <td align="left">260</td>
 </tr>
 </tbody>
@@ -1576,7 +1481,7 @@ than 1,000 employees (<code>EMPSZES = 260</code>).</p>
 </h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/cbp-nonemp-zbp/zbp-api.html" class="external-link">Zip
 Codes Business Patterns documentation</a></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">zbp_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"zbp"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2018</span>,</span>
@@ -1639,7 +1544,7 @@ Codes Business Patterns documentation</a></p>
 statistics documentation</a></p>
 <p>Get the number of nonemployer establishments by MSA for sector 54,
 Professional, scientific, and technical services.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nonemp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"nonemp"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2021</span>,</span>
@@ -1722,7 +1627,7 @@ Census documentation</a></p>
 <p>Using the 2020 Demographic Profile, get the percent of the population
 that is age 65 or older (<a href="https://api.census.gov/data/2020/dec/dp/variables/DP1_0024P.json" class="external-link">DP1_0024P</a>)
 for metro and micropolitan statistical areas.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dec_elderly</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"dec/dp"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>,</span>
@@ -1779,7 +1684,7 @@ for metro and micropolitan statistical areas.</p>
 total number of households (<a href="https://api.census.gov/data/2020/dec/dhc/variables/H9_001N.json" class="external-link">H9_001N</a>)
 and the number of 1-person households (<a href="https://api.census.gov/data/2020/dec/dhc/variables/H9_002N.json" class="external-link">H9_002N</a>)
 for counties in Maryland.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dec</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"dec/dhc"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>,</span>
@@ -1847,7 +1752,7 @@ A (Detailed DHC-A) to get detailed data for specific race and ethnicity
 groups.</p>
 <p>First, check the value labels for the <code>POPGROUP</code>
 variable.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">popgroup_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"dec/ddhca"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>, </span>
@@ -1898,7 +1803,7 @@ one or more other races</td>
 <p>Get the total population (<a href="https://api.census.gov/data/2020/dec/ddhca/variables/T01001_001N.json" class="external-link">T01001_001N</a>)
 of people who are Japanese alone or in any combination
 (<code>POPGROUP</code> code 3824) by state.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dec_population</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"dec/ddhca"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>,</span>
@@ -1938,30 +1843,30 @@ of people who are Japanese alone or in any combination
 <td align="left">3824</td>
 </tr>
 <tr class="odd">
-<td align="left">06</td>
-<td align="left">California</td>
-<td align="right">469915</td>
-<td align="left">Japanese alone or in any combination</td>
-<td align="left">3824</td>
-</tr>
-<tr class="even">
 <td align="left">04</td>
 <td align="left">Arizona</td>
 <td align="right">29186</td>
 <td align="left">Japanese alone or in any combination</td>
 <td align="left">3824</td>
 </tr>
+<tr class="even">
+<td align="left">12</td>
+<td align="left">Florida</td>
+<td align="right">40216</td>
+<td align="left">Japanese alone or in any combination</td>
+<td align="left">3824</td>
+</tr>
 <tr class="odd">
-<td align="left">13</td>
-<td align="left">Georgia</td>
-<td align="right">22313</td>
+<td align="left">05</td>
+<td align="left">Arkansas</td>
+<td align="right">3825</td>
 <td align="left">Japanese alone or in any combination</td>
 <td align="left">3824</td>
 </tr>
 <tr class="even">
-<td align="left">20</td>
-<td align="left">Kansas</td>
-<td align="right">6009</td>
+<td align="left">06</td>
+<td align="left">California</td>
+<td align="right">469915</td>
 <td align="left">Japanese alone or in any combination</td>
 <td align="left">3824</td>
 </tr>
@@ -1974,7 +1879,7 @@ of people who are Japanese alone or in any combination
 </h3>
 <p>Get total population and the number of housing units for
 metropolitan/micropolitan statistical areas in 2010.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data2010</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"dec/sf1"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2010</span>,</span>
@@ -2037,7 +1942,7 @@ metropolitan/micropolitan statistical areas in 2010.</p>
 </div>
 <p>Get the urban/rural status group of variables (<code>P2</code>) by
 metropolitan/micropolitan statistical areas in 2010.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Show variable metadata for the P2 group</span></span>
 <span><span class="va">group_p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/listCensusMetadata.html">listCensusMetadata</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"dec/sf1"</span>,</span>
@@ -2080,6 +1985,18 @@ metropolitan/micropolitan statistical areas in 2010.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="left">36980</td>
+<td align="left">310M100US36980</td>
+<td align="right">114752</td>
+<td align="right">71459</td>
+<td align="right">70543</td>
+<td align="right">916</td>
+<td align="right">43293</td>
+<td align="right">0</td>
+<td align="left">Owensboro, KY Metro Area</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
 <td align="left">31540</td>
 <td align="left">310M100US31540</td>
 <td align="right">568593</td>
@@ -2091,7 +2008,7 @@ metropolitan/micropolitan statistical areas in 2010.</p>
 <td align="left">Madison, WI Metro Area</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">31580</td>
 <td align="left">310M100US31580</td>
 <td align="right">46920</td>
@@ -2103,7 +2020,7 @@ metropolitan/micropolitan statistical areas in 2010.</p>
 <td align="left">Madisonville, KY Micro Area</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">36820</td>
 <td align="left">310M100US36820</td>
 <td align="right">22381</td>
@@ -2115,7 +2032,7 @@ metropolitan/micropolitan statistical areas in 2010.</p>
 <td align="left">Oskaloosa, IA Micro Area</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">36860</td>
 <td align="left">310M100US36860</td>
 <td align="right">154908</td>
@@ -2127,7 +2044,7 @@ metropolitan/micropolitan statistical areas in 2010.</p>
 <td align="left">Ottawa-Streator, IL Micro Area</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">36900</td>
 <td align="left">310M100US36900</td>
 <td align="right">35625</td>
@@ -2139,23 +2056,11 @@ metropolitan/micropolitan statistical areas in 2010.</p>
 <td align="left">Ottumwa, IA Micro Area</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
-<td align="left">36940</td>
-<td align="left">310M100US36940</td>
-<td align="right">36576</td>
-<td align="right">25394</td>
-<td align="right">0</td>
-<td align="right">25394</td>
-<td align="right">11182</td>
-<td align="right">0</td>
-<td align="left">Owatonna, MN Micro Area</td>
-<td align="left">NA</td>
-</tr>
 </tbody>
 </table>
 </div>
 <p>Get 2010 population by block group within a specific tract.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tract_pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"dec/sf1"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2010</span>,</span>
@@ -2227,7 +2132,7 @@ Census Self-Response Rates documentation</a></p>
 <p>Get self-response rates for the 2020 and 2010 Decennial Census by
 state, county, tract, place and more.</p>
 <p>Get overall and internet repose rates for all counties.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">county_responses</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"dec/responserate"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>,</span>
@@ -2306,7 +2211,7 @@ state, county, tract, place and more.</p>
 </div>
 <p>Get response rates for places (cities, towns, etc) within New York
 state.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ny_place_responses</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"dec/responserate"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2020</span>,</span>
@@ -2385,7 +2290,7 @@ state.</p>
 </table>
 </div>
 <p>Get final 2010 Decennial Census self-response rates.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">county_responses_2010</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"dec/responserate"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2010</span>,</span>
@@ -2448,7 +2353,7 @@ state.</p>
 Census Surname documentation</a></p>
 <p>Get counts of the top 25 most popular surnames and share of each by
 race.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">top_surnames</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"surname"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2010</span>,</span>
@@ -2564,7 +2469,7 @@ race.</p>
 </h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/economic-census.html" class="external-link">Economic
 Census documentation</a></p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ewks_2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"ewks"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2012</span>,</span>
@@ -2627,7 +2532,7 @@ Census documentation</a></p>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ewks_2007</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"ewks"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2007</span>,</span>
@@ -2696,7 +2601,7 @@ Census documentation</a></p>
 </h2>
 <p><a href="https://www.census.gov/data/developers/data-sets/economic-indicators.html" class="external-link">Economic
 Indicators documentation</a></p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">eits</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/eits/resconst"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cell_value"</span>, <span class="st">"data_type_code"</span>, <span class="st">"time_slot_id"</span>, <span class="st">"error_data"</span>, <span class="st">"category_code"</span>, <span class="st">"seasonally_adj"</span><span class="op">)</span>,</span>
@@ -2727,63 +2632,63 @@ Indicators documentation</a></p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">999</td>
-<td align="left">SINGLE</td>
+<td align="right">344</td>
+<td align="left">MULTI</td>
 <td align="right">0</td>
 <td align="left">no</td>
-<td align="left">APERMITS</td>
-<td align="left">yes</td>
-<td align="left">2023-12</td>
-<td align="left">1</td>
-</tr>
-<tr class="even">
-<td align="right">1354</td>
-<td align="left">TOTAL</td>
-<td align="right">0</td>
-<td align="left">no</td>
-<td align="left">APERMITS</td>
+<td align="left">ACOMPLETIONS</td>
 <td align="left">yes</td>
 <td align="left">2023-01</td>
 <td align="left">1</td>
 </tr>
-<tr class="odd">
-<td align="right">1482</td>
-<td align="left">TOTAL</td>
+<tr class="even">
+<td align="right">521</td>
+<td align="left">MULTI</td>
 <td align="right">0</td>
 <td align="left">no</td>
-<td align="left">APERMITS</td>
+<td align="left">ACOMPLETIONS</td>
 <td align="left">yes</td>
 <td align="left">2023-02</td>
 <td align="left">1</td>
 </tr>
-<tr class="even">
-<td align="right">1437</td>
-<td align="left">TOTAL</td>
+<tr class="odd">
+<td align="right">463</td>
+<td align="left">MULTI</td>
 <td align="right">0</td>
 <td align="left">no</td>
-<td align="left">APERMITS</td>
+<td align="left">ACOMPLETIONS</td>
 <td align="left">yes</td>
 <td align="left">2023-03</td>
 <td align="left">1</td>
 </tr>
-<tr class="odd">
-<td align="right">1417</td>
-<td align="left">TOTAL</td>
+<tr class="even">
+<td align="right">437</td>
+<td align="left">MULTI</td>
 <td align="right">0</td>
 <td align="left">no</td>
-<td align="left">APERMITS</td>
+<td align="left">ACOMPLETIONS</td>
 <td align="left">yes</td>
 <td align="left">2023-04</td>
 <td align="left">1</td>
 </tr>
-<tr class="even">
-<td align="right">1496</td>
-<td align="left">TOTAL</td>
+<tr class="odd">
+<td align="right">475</td>
+<td align="left">MULTI</td>
 <td align="right">0</td>
 <td align="left">no</td>
-<td align="left">APERMITS</td>
+<td align="left">ACOMPLETIONS</td>
 <td align="left">yes</td>
 <td align="left">2023-05</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="right">468</td>
+<td align="left">MULTI</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">ACOMPLETIONS</td>
+<td align="left">yes</td>
+<td align="left">2023-06</td>
 <td align="left">1</td>
 </tr>
 </tbody>
@@ -2797,12 +2702,12 @@ Indicators documentation</a></p>
 Insurance Statistics documentation</a></p>
 <p>Get the uninsured rate by income group for each county for a single
 year.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"IPRCAT"</span>, <span class="st">"IPR_DESC"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>,</span>
 <span>    region <span class="op">=</span> <span class="st">"county:*"</span>,</span>
-<span>    time <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></span>
+<span>    time <span class="op">=</span> <span class="fl">2022</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -2826,65 +2731,65 @@ year.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">2021</td>
+<td align="right">2022</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">Autauga County, AL</td>
 <td align="left">0</td>
 <td align="left">All Incomes</td>
-<td align="right">10.0</td>
+<td align="right">8.2</td>
 </tr>
 <tr class="even">
-<td align="right">2021</td>
+<td align="right">2022</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">Autauga County, AL</td>
 <td align="left">1</td>
 <td align="left">&lt;= 200% of Poverty</td>
-<td align="right">18.8</td>
+<td align="right">15.0</td>
 </tr>
 <tr class="odd">
-<td align="right">2021</td>
+<td align="right">2022</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">Autauga County, AL</td>
 <td align="left">2</td>
 <td align="left">&lt;= 250% of Poverty</td>
-<td align="right">17.5</td>
+<td align="right">13.8</td>
 </tr>
 <tr class="even">
-<td align="right">2021</td>
+<td align="right">2022</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">Autauga County, AL</td>
 <td align="left">3</td>
 <td align="left">&lt;= 138% of Poverty</td>
-<td align="right">20.3</td>
+<td align="right">16.1</td>
 </tr>
 <tr class="odd">
-<td align="right">2021</td>
+<td align="right">2022</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">Autauga County, AL</td>
 <td align="left">4</td>
 <td align="left">&lt;= 400% of Poverty</td>
-<td align="right">13.6</td>
+<td align="right">11.0</td>
 </tr>
 <tr class="even">
-<td align="right">2021</td>
+<td align="right">2022</td>
 <td align="left">01</td>
 <td align="left">001</td>
 <td align="left">Autauga County, AL</td>
 <td align="left">5</td>
 <td align="left">138% to 400% of Poverty</td>
-<td align="right">10.5</td>
+<td align="right">8.8</td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>Get the uninsured rate for a county from 2006 to the latest year
 available.</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_annual</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span><span class="op">)</span>,</span>
@@ -3014,32 +2919,39 @@ available.</p>
 <td align="left">Los Angeles County, CA</td>
 <td align="right">10.1</td>
 </tr>
+<tr class="odd">
+<td align="right">2022</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">9.4</td>
+</tr>
 </tbody>
 </table>
 </div>
 <p>Get the uninsured rate for non-elderly adults
 (<code>AGECAT = 1</code>) with incomes of 138 to 400% of the poverty
 line (<code>IPRCAT = 5</code>), by race and state.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sahie_adults</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/healthins/sahie"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"PCTUI_PT"</span>, <span class="st">"RACECAT"</span>, <span class="st">"RACE_DESC"</span><span class="op">)</span>, </span>
 <span>    region <span class="op">=</span> <span class="st">"state:*"</span>, </span>
-<span>    time <span class="op">=</span> <span class="fl">2021</span>,</span>
+<span>    time <span class="op">=</span> <span class="fl">2022</span>,</span>
 <span>    IPRCAT <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>    AGECAT <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_adults</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <colgroup>
-<col width="4%">
-<col width="4%">
-<col width="7%">
-<col width="7%">
+<col width="5%">
 <col width="6%">
-<col width="58%">
-<col width="5%">
-<col width="5%">
+<col width="15%">
+<col width="9%">
+<col width="8%">
+<col width="39%">
+<col width="7%">
+<col width="7%">
 </colgroup>
 <thead><tr class="header">
 <th align="right">time</th>
@@ -3053,65 +2965,62 @@ line (<code>IPRCAT = 5</code>), by race and state.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">2021</td>
+<td align="right">2022</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="right">15.9</td>
+<td align="right">14.7</td>
 <td align="left">0</td>
 <td align="left">All Races</td>
 <td align="left">5</td>
 <td align="left">1</td>
 </tr>
 <tr class="even">
-<td align="right">2021</td>
+<td align="right">2022</td>
+<td align="left">02</td>
+<td align="left">Alaska</td>
+<td align="right">20.5</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2022</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="right">14.1</td>
+<td align="right">12.5</td>
 <td align="left">1</td>
 <td align="left">White alone, not Hispanic or Latino</td>
 <td align="left">5</td>
 <td align="left">1</td>
 </tr>
-<tr class="odd">
-<td align="right">2021</td>
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">15.4</td>
-<td align="left">2</td>
-<td align="left">Black or African American alone, not Hispanic or
-Latino</td>
-<td align="left">5</td>
-<td align="left">1</td>
-</tr>
 <tr class="even">
-<td align="right">2021</td>
-<td align="left">29</td>
-<td align="left">Missouri</td>
-<td align="right">23.1</td>
-<td align="left">6</td>
-<td align="left">Native Hawaiian and Other Pacific Islander alone, not
-Hispanic or Latino</td>
-<td align="left">5</td>
-<td align="left">1</td>
-</tr>
-<tr class="odd">
-<td align="right">2021</td>
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">40.4</td>
+<td align="right">2022</td>
+<td align="left">33</td>
+<td align="left">New Hampshire</td>
+<td align="right">24.0</td>
 <td align="left">3</td>
 <td align="left">Hispanic or Latino (any race)</td>
 <td align="left">5</td>
 <td align="left">1</td>
 </tr>
+<tr class="odd">
+<td align="right">2022</td>
+<td align="left">04</td>
+<td align="left">Arizona</td>
+<td align="right">18.2</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
 <tr class="even">
-<td align="right">2021</td>
-<td align="left">01</td>
-<td align="left">Alabama</td>
-<td align="right">20.8</td>
-<td align="left">4</td>
-<td align="left">American Indian and Alaska Native alone, not Hispanic
-or Latino</td>
+<td align="right">2022</td>
+<td align="left">05</td>
+<td align="left">Arkansas</td>
+<td align="right">13.5</td>
+<td align="left">0</td>
+<td align="left">All Races</td>
 <td align="left">5</td>
 <td align="left">1</td>
 </tr>
@@ -3129,7 +3038,7 @@ there was either sometimes or often not enough to eat in the last 7
 days) and expense difficulty rate (Percentage of adults in households
 where it has been somewhat or very difficult to pay for usual household
 expenses in the last 7 days) for every state for one survey period.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hps_state</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/hps"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"FOODSCARCE_RATE"</span>, <span class="st">"EXPENSE_RATE"</span>,</span>
@@ -3226,7 +3135,7 @@ expenses in the last 7 days) for every state for one survey period.</p>
 </div>
 <p>Get the national food scarcity rate and expense difficulty rate for
 every survey period available since 2022.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hps_us</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/hps"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FOODSCARCE_RATE"</span>, <span class="st">"EXPENSE_RATE"</span>,</span>
@@ -3474,7 +3383,7 @@ every survey period available since 2022.</p>
 Data Base documentation</a></p>
 <p>Get Census Bureau projections of 2024 populations and life expectancy
 at birth by country.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">intl_pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/idb/5year"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"GENC"</span>, <span class="st">"POP"</span>, <span class="st">"E0"</span><span class="op">)</span>,</span>
@@ -3508,8 +3417,8 @@ at birth by country.</p>
 <td align="right">2024</td>
 <td align="left">Afghanistan</td>
 <td align="left">AF</td>
-<td align="right">40121552</td>
-<td align="right">54.44</td>
+<td align="right">48001842</td>
+<td align="right">67.18</td>
 </tr>
 <tr class="even">
 <td align="right">2024</td>
@@ -3529,8 +3438,8 @@ at birth by country.</p>
 <td align="right">2024</td>
 <td align="left">Albania</td>
 <td align="left">AL</td>
-<td align="right">3107100</td>
-<td align="right">79.93</td>
+<td align="right">2579534</td>
+<td align="right">78.28</td>
 </tr>
 </tbody>
 </table>
@@ -3549,7 +3458,7 @@ you run in to repeated issues or inconsistencies, contact the Census
 Bureau for help or consider using a bulk data download instead.</p>
 <p>Get the general imports value and imports for consumption value for
 all countries for a specific month.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">imports</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/intltrade/imports/enduse"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CTY_CODE"</span>, <span class="st">"CTY_NAME"</span>, <span class="st">"GEN_VAL_MO"</span>, <span class="st">"CON_VAL_MO"</span><span class="op">)</span>,</span>
@@ -3633,7 +3542,7 @@ can download the latest data files from the <a href="https://www.census.gov/prog
 webpage</a>.</p>
 <p>Get the 2021 vintage population estimates for states for 2020 and
 2021.</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">popest</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"pep/population"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2021</span>,</span>
@@ -3681,7 +3590,7 @@ webpage</a>.</p>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">popest_housing</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"pep/housing"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2018</span>,</span>
@@ -3750,7 +3659,7 @@ webpage</a>.</p>
 </h3>
 <p><a href="https://www.census.gov/data/developers/data-sets/popest-popproj/popproj.html" class="external-link">Population
 Projections documentation</a></p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">popproj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"pep/projpop"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2014</span>,</span>
@@ -3816,7 +3725,7 @@ Statistics documentation</a></p>
 <h3 id="current-population-survey-poverty-statistics">Current Population Survey Poverty Statistics<a class="anchor" aria-label="anchor" href="#current-population-survey-poverty-statistics"></a>
 </h3>
 <p>Get national poverty rates by race since 1970.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">poverty</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/poverty/histpov2"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RACE"</span>, <span class="st">"RACE_LABEL"</span>, <span class="st">"PCTPOV"</span><span class="op">)</span>,</span>
@@ -3834,46 +3743,46 @@ Statistics documentation</a></p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">1</td>
 <td align="right">1</td>
 <td align="left">All races</td>
-<td align="right">11.5</td>
+<td align="right">11.1</td>
 </tr>
 <tr class="even">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">1</td>
 <td align="right">2</td>
 <td align="left">White alone</td>
-<td align="right">10.5</td>
+<td align="right">9.7</td>
 </tr>
 <tr class="odd">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">1</td>
 <td align="right">4</td>
 <td align="left">White alone, not Hispanic</td>
-<td align="right">8.6</td>
+<td align="right">7.7</td>
 </tr>
 <tr class="even">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">1</td>
 <td align="right">6</td>
 <td align="left">Black alone or in combination</td>
-<td align="right">17.0</td>
+<td align="right">17.8</td>
 </tr>
 <tr class="odd">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">1</td>
 <td align="right">7</td>
 <td align="left">Black alone</td>
-<td align="right">17.1</td>
+<td align="right">17.9</td>
 </tr>
 <tr class="even">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">1</td>
 <td align="right">9</td>
 <td align="left">Asian alone or in combination</td>
-<td align="right">8.2</td>
+<td align="right">8.9</td>
 </tr>
 </tbody>
 </table>
@@ -3883,12 +3792,12 @@ Statistics documentation</a></p>
 <h3 id="small-area-income-and-poverty-estimates-saipe">Small Area Income and Poverty Estimates (SAIPE)<a class="anchor" aria-label="anchor" href="#small-area-income-and-poverty-estimates-saipe"></a>
 </h3>
 <p>Get poverty rate for children and overall for a single year.</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">saipe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/poverty/saipe"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"SAEPOVRT0_17_PT"</span>, <span class="st">"SAEPOVRTALL_PT"</span><span class="op">)</span>,</span>
 <span>    region <span class="op">=</span> <span class="st">"state:*"</span>,</span>
-<span>    time <span class="op">=</span> <span class="fl">2022</span><span class="op">)</span></span>
+<span>    time <span class="op">=</span> <span class="fl">2023</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">saipe</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -3901,53 +3810,53 @@ Statistics documentation</a></p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">01</td>
 <td align="left">Alabama</td>
-<td align="right">21.8</td>
-<td align="right">16.2</td>
+<td align="right">21.3</td>
+<td align="right">15.7</td>
 </tr>
 <tr class="even">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">02</td>
 <td align="left">Alaska</td>
-<td align="right">13.4</td>
-<td align="right">10.8</td>
+<td align="right">12.5</td>
+<td align="right">10.5</td>
 </tr>
 <tr class="odd">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">04</td>
 <td align="left">Arizona</td>
-<td align="right">16.0</td>
-<td align="right">12.5</td>
+<td align="right">15.8</td>
+<td align="right">12.6</td>
 </tr>
 <tr class="even">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">05</td>
 <td align="left">Arkansas</td>
-<td align="right">21.2</td>
-<td align="right">16.3</td>
+<td align="right">20.2</td>
+<td align="right">15.4</td>
 </tr>
 <tr class="odd">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">06</td>
 <td align="left">California</td>
-<td align="right">15.3</td>
-<td align="right">12.2</td>
+<td align="right">15.0</td>
+<td align="right">12.0</td>
 </tr>
 <tr class="even">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">08</td>
 <td align="left">Colorado</td>
-<td align="right">11.1</td>
-<td align="right">9.5</td>
+<td align="right">10.9</td>
+<td align="right">9.4</td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>Get the poverty rate for children and overall in a single county over
 time.</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">saipe_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/poverty/saipe"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"SAEPOVRT0_17_PT"</span>, <span class="st">"SAEPOVRTALL_PT"</span><span class="op">)</span>,</span>
@@ -4024,13 +3933,13 @@ time.</p>
 <p>Get the number (<code>SAEPOV5_17V_PT</code>) and rate
 (<code>SAEPOVRAT5_17RV_PT</code>) of children ages 5-17 living in
 poverty for unified school districts in Massachusetts.</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">saipe_schools</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/poverty/saipe/schdist"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SD_NAME"</span>, <span class="st">"SAEPOV5_17V_PT"</span>, <span class="st">"SAEPOVRAT5_17RV_PT"</span><span class="op">)</span>,</span>
 <span>    region <span class="op">=</span> <span class="st">"school district (unified):*"</span>,</span>
 <span>    regionin <span class="op">=</span> <span class="st">"state:25"</span>,</span>
-<span>    time <span class="op">=</span> <span class="fl">2022</span><span class="op">)</span></span>
+<span>    time <span class="op">=</span> <span class="fl">2023</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">saipe_schools</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
@@ -4052,53 +3961,53 @@ poverty for unified school districts in Massachusetts.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">25</td>
 <td align="left">00001</td>
 <td align="left">Quabbin School District</td>
-<td align="right">2389</td>
-<td align="right">6.9</td>
+<td align="right">2404</td>
+<td align="right">5.5</td>
 </tr>
 <tr class="even">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">25</td>
 <td align="left">00002</td>
 <td align="left">Spencer-East Brookfield School District</td>
-<td align="right">1949</td>
-<td align="right">9.5</td>
+<td align="right">1961</td>
+<td align="right">10.8</td>
 </tr>
 <tr class="odd">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">25</td>
 <td align="left">00013</td>
 <td align="left">Southwick-Tolland-Granville Regional School
 District</td>
-<td align="right">1520</td>
-<td align="right">6.6</td>
+<td align="right">1507</td>
+<td align="right">9.9</td>
 </tr>
 <tr class="even">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">25</td>
 <td align="left">00067</td>
 <td align="left">Manchester Essex Regional School District</td>
-<td align="right">1568</td>
+<td align="right">1580</td>
 <td align="right">4.1</td>
 </tr>
 <tr class="odd">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">25</td>
 <td align="left">00542</td>
 <td align="left">Ayer-Shirley School District</td>
-<td align="right">2005</td>
-<td align="right">6.8</td>
+<td align="right">2025</td>
+<td align="right">6.4</td>
 </tr>
 <tr class="even">
-<td align="right">2022</td>
+<td align="right">2023</td>
 <td align="left">25</td>
 <td align="left">00544</td>
 <td align="left">Monomoy Regional School District</td>
-<td align="right">1853</td>
-<td align="right">6.9</td>
+<td align="right">1832</td>
+<td align="right">9.1</td>
 </tr>
 </tbody>
 </table>
@@ -4115,7 +4024,7 @@ to read the Census Bureau’s documentation for variable definitions and
 labels.</p>
 <p>Get expenditures for Public Elementary-Secondary School System
 Finances for Massachusetts.</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">govs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/govs"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SVY_COMP_LABEL"</span>, <span class="st">"AGG_DESC"</span>, <span class="st">"AGG_DESC_LABEL"</span> ,<span class="st">"AMOUNT"</span><span class="op">)</span>,</span>
@@ -4221,7 +4130,7 @@ Workforce Indicators documentation</a></p>
 <p>The QWI endpoints allow both simple calls and very specific ones.
 Make sure to read the documentation closely. Here’s a simple call that
 gets employment data by county.</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">qwi_counties</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/qwi/sa"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emp"</span>, <span class="st">"EarnBeg"</span><span class="op">)</span>,</span>
@@ -4240,43 +4149,43 @@ gets employment data by county.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">11882</td>
-<td align="right">3936</td>
+<td align="right">12318</td>
+<td align="right">4065</td>
 <td align="left">2023-Q2</td>
 <td align="left">01</td>
 <td align="left">001</td>
 </tr>
 <tr class="even">
-<td align="right">82571</td>
-<td align="right">3798</td>
+<td align="right">82806</td>
+<td align="right">3956</td>
 <td align="left">2023-Q2</td>
 <td align="left">01</td>
 <td align="left">003</td>
 </tr>
 <tr class="odd">
-<td align="right">7157</td>
-<td align="right">3208</td>
+<td align="right">7184</td>
+<td align="right">3265</td>
 <td align="left">2023-Q2</td>
 <td align="left">01</td>
 <td align="left">005</td>
 </tr>
 <tr class="even">
-<td align="right">4735</td>
-<td align="right">3929</td>
+<td align="right">4823</td>
+<td align="right">4096</td>
 <td align="left">2023-Q2</td>
 <td align="left">01</td>
 <td align="left">007</td>
 </tr>
 <tr class="odd">
-<td align="right">9140</td>
-<td align="right">3513</td>
+<td align="right">9338</td>
+<td align="right">3492</td>
 <td align="left">2023-Q2</td>
 <td align="left">01</td>
 <td align="left">009</td>
 </tr>
 <tr class="even">
-<td align="right">2267</td>
-<td align="right">3623</td>
+<td align="right">2404</td>
+<td align="right">3787</td>
 <td align="left">2023-Q2</td>
 <td align="left">01</td>
 <td align="left">011</td>
@@ -4286,7 +4195,7 @@ gets employment data by county.</p>
 </div>
 <p>Got total employment and average earnings by quarter for a single
 state.</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">qwi_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/qwi/sa"</span>,</span>
 <span>    vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emp"</span>, <span class="st">"EarnBeg"</span><span class="op">)</span>,</span>
@@ -4309,31 +4218,31 @@ state.</p>
 <td align="left">01</td>
 </tr>
 <tr class="even">
-<td align="right">1891332</td>
+<td align="right">1891418</td>
 <td align="right">3471</td>
 <td align="left">2018-Q2</td>
 <td align="left">01</td>
 </tr>
 <tr class="odd">
-<td align="right">1911623</td>
+<td align="right">1911776</td>
 <td align="right">3434</td>
 <td align="left">2018-Q3</td>
 <td align="left">01</td>
 </tr>
 <tr class="even">
-<td align="right">1908747</td>
+<td align="right">1908874</td>
 <td align="right">3687</td>
 <td align="left">2018-Q4</td>
 <td align="left">01</td>
 </tr>
 <tr class="odd">
-<td align="right">1913757</td>
+<td align="right">1913821</td>
 <td align="right">3597</td>
 <td align="left">2019-Q1</td>
 <td align="left">01</td>
 </tr>
 <tr class="even">
-<td align="right">1918965</td>
+<td align="right">1919199</td>
 <td align="right">3578</td>
 <td align="left">2019-Q2</td>
 <td align="left">01</td>
@@ -4344,7 +4253,7 @@ state.</p>
 <p>Here’s a much more specific call. Read the Census Bureau’s
 documentation closely to see all of the options allowed by the QWI
 APIs.</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">qwi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"timeseries/qwi/sa"</span>,</span>
 <span>    region <span class="op">=</span> <span class="st">"state:02"</span>,</span>
@@ -4431,7 +4340,7 @@ APIs.</p>
 Planning Database documentation</a></p>
 <p>Get population and 2010 Census mail return rates for block groups in
 Autauga County, AL.</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pdb</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCensus.html">getCensus</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"pdb/blockgroup"</span>,</span>
 <span>    vintage <span class="op">=</span> <span class="fl">2018</span>,</span>
@@ -4534,28 +4443,26 @@ Autauga County, AL.</p>
 </table>
 </div>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Hannah Recht.</p>
+  <p>Developed by Hannah Recht.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>

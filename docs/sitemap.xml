@@ -1,78 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.hrecht.com/censusapi/404.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/articles/accessing-microdata.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/articles/articles/accessing-microdata.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/articles/articles/example-list.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/articles/articles/frequently-asked-questions.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/articles/articles/getting-started.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/articles/censusapi.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/articles/example-list.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/articles/example-masterlist.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/articles/frequently-asked-questions.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/articles/getting-started.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/index.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/reference/fips.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/reference/getCensus.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/reference/getFunction.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/reference/get_api_key.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/reference/has_api_key.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/reference/listCensusApis.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/reference/listCensusMetadata.html</loc>
-  </url>
-  <url>
-    <loc>https://www.hrecht.com/censusapi/reference/makeVarlist.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://www.hrecht.com/censusapi/404.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/articles/accessing-microdata.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/articles/censusapi.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/articles/example-list.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/articles/frequently-asked-questions.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/articles/getting-started.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/articles/index.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/authors.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/index.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/news/index.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/reference/fips.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/reference/getCensus.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/reference/getFunction.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/reference/get_api_key.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/reference/has_api_key.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/reference/index.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/reference/listCensusApis.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/reference/listCensusMetadata.html</loc></url>
+<url><loc>https://www.hrecht.com/censusapi/reference/makeVarlist.html</loc></url>
 </urlset>
+

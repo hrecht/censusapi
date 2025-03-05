@@ -51,6 +51,7 @@ poverty_rate
 #> 11 2020  06    037    Los Angeles County           13.2
 #> 12 2021  06    037    Los Angeles County           14.1
 #> 13 2022  06    037    Los Angeles County           13.9
+#> 14 2023  06    037    Los Angeles County           13.7
 
 ```
 
@@ -63,22 +64,21 @@ Using the 2022 [5-year American Community Survey](https://www.census.gov/data/de
 
 ```R
 no_internet <- getCensus(
-	name = "acs/acs5/subject",
-	vintage = 2022,
-	vars = c("S2801_C01_001E", "S2801_C01_019E", "S2801_C02_019E", "NAME"),
-	region = "tract:*",
-	regionin = "state:04")
-
+    name = "acs/acs5/subject",
+    vintage = 2023,
+    vars = c("S2801_C01_001E", "S2801_C01_019E", "S2801_C02_019E"),
+    region = "tract:*",
+    regionin = "state:04")
+    
 head(no_internet)
 
-#> 	 state county tract   S2801_C01_001E S2801_C01_019E	S2801_C02_019E NAME 										 
-#> 1 04    001 	  942600			 429            412		   	  96.0 Census Tract 9426; Apache County; Arizona    			
-#> 2 04    001 	  942700			1439           1006			  69.9 Census Tract 9427; Apache County; Arizona    		   
-#> 3 04    001 	  944000			1556            903			  58.0 Census Tract 9440; Apache County; Arizona    		   
-#> 4 04    001 	  944100			1446            966			  66.8 Census Tract 9441; Apache County; Arizona    		   
-#> 5 04    001 	  944201 			1154            835			  72.4 Census Tract 9442.01; Apache County; Arizona 		   
-#> 6 04    001 	  944202			1111            874			  78.7 Census Tract 9442.02; Apache County; Arizona 		   
-
+#>  			state county	tract 	S2801_C01_001E S2801_C01_019E S2801_C02_019E
+#>   1    04    001 		942600             441            415           94.1
+#>   2    04    001 		942700            1480            989           66.8
+#>   3    04    001 		944000            1565            822           52.5
+#>   4    04    001 		944100            1488            887           59.6
+#>   5    04    001 		944201            1165            663           56.9
+#>   6    04    001 		944202            1149            746           64.9
 ```
 
 ## Advanced usage
@@ -119,48 +119,49 @@ listCensusMetadata(
 # at 138% to 400% of the federal poverty line (IPRCAT = 5) 
 # in Los Angeles County, California
 sahie_la <- getCensus(
-	name = "timeseries/healthins/sahie",
-	vars = c("NAME", "PCTUI_PT"),
-	region = "county:037",
-	regionin = "state:06",
-	time = "from 2012",
-	IPRCAT = 5,
-	AGECAT = 1)
+    name = "timeseries/healthins/sahie",
+    vars = c("NAME", "PCTUI_PT"),
+    region = "county:037",
+    regionin = "state:06",
+    time = "from 2012",
+    IPRCAT = 5,
+    AGECAT = 1)
 sahie_la
 
-#> 	   time state county                   NAME PCTUI_PT IPRCAT AGECAT
-#> 	1  2012    06    037 Los Angeles County, CA     35.5      5      1
-#> 	2  2013    06    037 Los Angeles County, CA     34.3      5      1
-#> 	3  2014    06    037 Los Angeles County, CA     25.0      5      1
-#> 	4  2015    06    037 Los Angeles County, CA     18.6      5      1
-#> 	5  2016    06    037 Los Angeles County, CA     16.3      5      1
-#> 	6  2017    06    037 Los Angeles County, CA     15.5      5      1
-#> 	7  2018    06    037 Los Angeles County, CA     16.2      5      1
-#> 	8  2019    06    037 Los Angeles County, CA     18.3      5      1
-#> 	9  2020    06    037 Los Angeles County, CA     16.7      5      1
-#> 	10 2021    06    037 Los Angeles County, CA     16.1      5      1
+#>    time state county                   NAME PCTUI_PT IPRCAT AGECAT
+#> 1  2012    06    037 Los Angeles County, CA     35.5      5      1
+#> 2  2013    06    037 Los Angeles County, CA     34.3      5      1
+#> 3  2014    06    037 Los Angeles County, CA     25.0      5      1
+#> 4  2015    06    037 Los Angeles County, CA     18.6      5      1
+#> 5  2016    06    037 Los Angeles County, CA     16.3      5      1
+#> 6  2017    06    037 Los Angeles County, CA     15.5      5      1
+#> 7  2018    06    037 Los Angeles County, CA     16.2      5      1
+#> 8  2019    06    037 Los Angeles County, CA     18.3      5      1
+#> 9  2020    06    037 Los Angeles County, CA     16.7      5      1
+#> 10 2021    06    037 Los Angeles County, CA     16.1      5      1
+#> 11 2022    06    037 Los Angeles County, CA     15.2      5      1
 
-# Get the 2021 uninsured rate for nonelderly adults (AGECAT = 1)
+# Get the uninsured rate for nonelderly adults (AGECAT = 1)
 # at 138% to 400% of the federal poverty line (IPRCAT = 5)
 # by race and ethnicity for Alabama
 sahie_alabama <- getCensus(
     name = "timeseries/healthins/sahie",
     vars = c("NAME", "PCTUI_PT", "RACECAT", "RACE_DESC"), 
-    region = "state:*", 
-    time = 2021,
+    region = "state:01", 
+    time = 2022,
     IPRCAT = 5,
     AGECAT = 1)
 sahie_alabama
 
-#> 	  time state    NAME PCTUI_PT RACECAT                                                                RACE_DESC IPRCAT AGECAT
-#> 	1 2021    01 Alabama     15.9       0                                                                All Races      5      1
-#> 	2 2021    01 Alabama     14.1       1                                      White alone, not Hispanic or Latino      5      1
-#> 	3 2021    01 Alabama     15.4       2                  Black or African American alone, not Hispanic or Latino      5      1
-#> 	4 2021    01 Alabama     40.4       3                                            Hispanic or Latino (any race)      5      1
-#> 	5 2021    01 Alabama     20.8       4          American Indian and Alaska Native alone, not Hispanic or Latino      5      1
-#> 	6 2021    01 Alabama     14.8       5                                      Asian alone, not Hispanic or Latino      5      1
-#> 	7 2021    01 Alabama     20.0       6 Native Hawaiian and Other Pacific Islander alone, not Hispanic or Latino      5      1
-#> 	8 2021    01 Alabama     16.9       7                                Two or More Races, not Hispanic or Latino      5      1
+#>   time  state    NAME PCTUI_PT RACECAT                                                                RACE_DESC IPRCAT AGECAT
+#> 1 2022   	01 Alabama     14.7       0                                                                All Races      5      1
+#> 2 2022   	01 Alabama     12.5       1                                      White alone, not Hispanic or Latino      5      1
+#> 3 2022   	01 Alabama     15.2       2                  Black or African American alone, not Hispanic or Latino      5      1
+#> 4 2022   	01 Alabama     37.7       3                                            Hispanic or Latino (any race)      5      1
+#> 5 2022   	01 Alabama     21.2       4          American Indian and Alaska Native alone, not Hispanic or Latino      5      1
+#> 6 2022   	01 Alabama     14.5       5                                      Asian alone, not Hispanic or Latino      5      1
+#> 7 2022   	01 Alabama     23.8       6 Native Hawaiian and Other Pacific Islander alone, not Hispanic or Latino      5      1
+#> 8 2022   	01 Alabama     16.1       7                                Two or More Races, not Hispanic or Latino      5      1
 
 ```
 

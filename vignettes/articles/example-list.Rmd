@@ -47,7 +47,7 @@ Get total population and median income for places (towns, cities, etc) in Indian
 ```{r}
 acs_income <- getCensus(
 	name = "acs/acs5",
-	vintage = 2022, 
+	vintage = 2023, 
 	vars = c("NAME", "B01001_001E", "B19013_001E"), 
 	region = "place:*",
 	regionin = "state:18")
@@ -65,7 +65,7 @@ Get the percent of people without an internet subscription by income for the fiv
 ```{r}
 acs_subject <- getCensus(
 	name = "acs/acs1/subject",
-	vintage = 2022, 
+	vintage = 2023, 
 	vars = c("NAME", "S2801_C02_019E", "S2801_C02_019M",
 					 "S2801_C02_023E", "S2801_C02_023M", 
 					 "S2801_C02_027E", "S2801_C02_027M",
@@ -78,12 +78,12 @@ head(acs_subject)
 
 ### ACS Comparison Profiles
 
-Get the annual median household income in inflation-adjusted 2019 dollars for Alabama cities since 2018. (2020 1-year data is not available.)
+Get the annual median household income in inflation-adjusted 2023 dollars for Alabama cities since 2021.
 ```{r}
 acs_comparison <- getCensus(
 	name = "acs/acs1/cprofile",
-	vintage = 2022, 
-	vars = c("NAME", "CP03_2018_062E", "CP03_2019_062E", "CP03_2021_062E", "CP03_2022_062E"), 
+	vintage = 2023, 
+	vars = c("NAME", "CP03_2021_062E", "CP03_2022_062E", "CP03_2023_062E"), 
 	region = "place:*",
 	regionin = "state:01")
 head(acs_comparison)
@@ -185,17 +185,6 @@ bds_queens <- getCensus(
 	YEAR = "*",
 	NAICS = 23)
 head(bds_queens)
-```
-
-Get the same informtion for all states in 2021.
-```{r}
-bds_states <- getCensus(
-	name = "timeseries/bds",
-	vars = c("FIRM", "NET_JOB_CREATION", "NAICS_LABEL"),
-	region = "state:*",
-	time = 2021,
-	NAICS = 23)
-head(bds_states)
 ```
 
 ## Community Resiliency Estimates
@@ -457,7 +446,7 @@ sahie <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "IPRCAT", "IPR_DESC", "PCTUI_PT"),
 	region = "county:*",
-	time = 2021)
+	time = 2022)
 head(sahie)
 ```
 
@@ -478,7 +467,7 @@ sahie_adults <- getCensus(
 	name = "timeseries/healthins/sahie",
 	vars = c("NAME", "PCTUI_PT", "RACECAT", "RACE_DESC"), 
 	region = "state:*", 
-	time = 2021,
+	time = 2022,
 	IPRCAT = 5,
 	AGECAT = 1)
 head(sahie_adults)
@@ -608,7 +597,7 @@ saipe <- getCensus(
 	name = "timeseries/poverty/saipe",
 	vars = c("NAME", "SAEPOVRT0_17_PT", "SAEPOVRTALL_PT"),
 	region = "state:*",
-	time = 2022)
+	time = 2023)
 head(saipe)
 ```
 
@@ -631,7 +620,7 @@ saipe_schools <- getCensus(
 	vars = c("SD_NAME", "SAEPOV5_17V_PT", "SAEPOVRAT5_17RV_PT"),
 	region = "school district (unified):*",
 	regionin = "state:25",
-	time = 2022)
+	time = 2023)
 head(saipe_schools)
 ```
 

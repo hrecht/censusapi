@@ -1,4 +1,4 @@
-# censusapi 0.9.0 (development verison)
+# censusapi 0.9.0
 ## Breaking changes
 * Increases required version of R from >=3.0 to >=3.5 (released in 2018) based on httr dependency.
 
