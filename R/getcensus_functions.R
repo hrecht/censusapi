@@ -287,7 +287,7 @@ getFunction <- function(apiurl, name, key, get, region, regionin, time, show_cal
 #' @param key A Census API key, obtained at
 #'   <https://api.census.gov/data/key_signup.html>. If you have a `CENSUS_KEY` or
 #'   `CENSUS_API_KEY` stored in your .Renviron file, getCensus() will
-#'   automatically use that key. Using a key is recommended but not required.
+#'   automatically use that key.
 #' @param time Time period of data to get. Required for most timeseries APIs.
 #' @param show_call Display the underlying API call that was sent to the Census
 #'   Bureau. Default is FALSE.
@@ -391,10 +391,9 @@ getCensus <-
 		apiurl
 	}
 
-	# Check for key in environment, print a message if one is not provided or in environment
-	if (is.null(key)) {
-		key <- get_api_key()
-	}
+	# Check for key in function args and environment, stop if one is not provided
+	key <- enforce_key(key)
+
 	apiurl <- constructURL(name, vintage)
 
 	# Census API max vars per call = 50

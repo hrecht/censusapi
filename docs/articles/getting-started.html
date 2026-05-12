@@ -8,7 +8,7 @@
 <title>Getting started with censusapi • censusapi</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.9/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Getting started with censusapi">
@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">censusapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,14 +88,13 @@ for your dataset and see below for how to <a href="#Other-ways-to-get-help">get 
 <div class="section level2">
 <h2 id="api-key-setup">API key setup<a class="anchor" aria-label="anchor" href="#api-key-setup"></a>
 </h2>
-<p><code>censusapi</code> recommends but does not require using an API
-key from the U.S. Census Bureau. The Census Bureau may limit the number
-of requests made by your IP address if you do not use an API key.</p>
+<p>The U.S. Census Bureau APIs require using an API key as of May 12,
+2026.</p>
 <p>You can <a href="http://api.census.gov/data/key_signup.html" class="external-link">sign up
 online</a> to receive a key, which will be sent to your provided email
 address.</p>
 <p>If you save the key with the name <code>CENSUS_KEY</code> or
-<code>CENSUS_API_KEY</code> in your Renviron file,
+<code>CENSUS_API_KEY</code> in your .Renviron file,
 <code>censusapi</code> will use it by default without any extra work on
 your part.</p>
 <p>To save your API key, within R, run:</p>
@@ -112,10 +111,10 @@ your part.</p>
 <span></span>
 <span><span class="co"># Check to see that the expected key is output in your R console</span></span>
 <span><span class="fu"><a href="../reference/get_api_key.html">get_api_key</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>In some instances you might not want to put your key in your
-.Renviron - for example, if you’re on a shared school computer. You can
-always choose to manually set <code>key = "PASTEYOURKEYHERE"</code> as
-an argument in <code><a href="../reference/getCensus.html">getCensus()</a></code> if you prefer.</p>
+<p>In some instances, like when using a shared computer, you might not
+want to put your key in your .Renviron. You can always choose to
+manually set <code>key = "PASTEYOURKEYHERE"</code> as an argument in
+<code>censusapi</code> functions if you prefer.</p>
 </div>
 <div class="section level2">
 <h2 id="basic-usage">Basic usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
@@ -165,10 +164,10 @@ in the SAHIE API:</p>
 <span><span class="co">#&gt;  [6] "NIPR_PT"    "AGECAT"     "GEOID"      "NIC_PT"     "STATE"     </span></span>
 <span><span class="co">#&gt; [11] "RACE_DESC"  "YEAR"       "IPRCAT"     "PCTIC_UB90" "NIPR_MOE"  </span></span>
 <span><span class="co">#&gt; [16] "PCTUI_LB90" "NIC_MOE"    "US"         "COUNTY"     "PCTUI_MOE" </span></span>
-<span><span class="co">#&gt; [21] "NUI_UB90"   "NIC_UB90"   "NUI_MOE"    "SEXCAT"     "PCTUI_PT"  </span></span>
-<span><span class="co">#&gt; [26] "PCTIC_LB90" "PCTUI_UB90" "NUI_PT"     "STABREV"    "AGE_DESC"  </span></span>
+<span><span class="co">#&gt; [21] "NUI_UB90"   "NIC_UB90"   "NUI_MOE"    "SEXCAT"     "PCTIC_LB90"</span></span>
+<span><span class="co">#&gt; [26] "PCTUI_PT"   "PCTUI_UB90" "NUI_PT"     "STABREV"    "AGE_DESC"  </span></span>
 <span><span class="co">#&gt; [31] "NAME"       "NIC_LB90"   "PCTIC_PT"   "PCTIC_MOE"  "IPR_DESC"  </span></span>
-<span><span class="co">#&gt; [36] "NUI_LB90"   "NIPR_UB90"  "GEOCAT"     "SEX_DESC"   "RACECAT"</span></span></code></pre>
+<span><span class="co">#&gt; [36] "NIPR_UB90"  "NUI_LB90"   "GEOCAT"     "SEX_DESC"   "RACECAT"</span></span></code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Full info on the first several variables</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sahie_vars</span><span class="op">)</span></span></code></pre></div>
@@ -639,6 +638,13 @@ Bureau website</a>.</p>
 <td align="left">DeKalb County, GA</td>
 <td align="right">13.7</td>
 </tr>
+<tr class="even">
+<td align="right">2023</td>
+<td align="left">13</td>
+<td align="left">089</td>
+<td align="left">DeKalb County, GA</td>
+<td align="right">13.4</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -827,6 +833,15 @@ California expanded Medicaid.</p>
 <td align="left">Los Angeles County, CA</td>
 <td align="right">13.5</td>
 <td align="right">217777</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="right">2023</td>
+<td align="left">06</td>
+<td align="left">037</td>
+<td align="left">Los Angeles County, CA</td>
+<td align="right">12.3</td>
+<td align="right">189311</td>
 <td align="left">3</td>
 </tr>
 </tbody>
@@ -1088,7 +1103,7 @@ defined by the Census Bureau and are included as a column in
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">apis</span><span class="op">$</span><span class="va">type</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Aggregate  Microdata Timeseries </span></span>
-<span><span class="co">#&gt;        665        925         81</span></span></code></pre>
+<span><span class="co">#&gt;        735        951         92</span></span></code></pre>
 <p>Most users will work with summary data, either aggregate or
 timeseries. Summary data contains pre-calculated numbers or percentages
 for a given statistic — like the number of children in a state or the
@@ -4360,7 +4375,7 @@ articles</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

@@ -24,6 +24,33 @@ You can also install the latest development version of `censusapi` from Github u
 devtools::install_github("hrecht/censusapi")
 ```
 
+## API key setup
+
+The U.S. Census Bureau APIs require using an API key as of May 12, 2026.
+
+You can [sign up online](http://api.census.gov/data/key_signup.html) to receive a key, which will be sent to your provided email address.
+
+If you save the key with the name `CENSUS_KEY` or `CENSUS_API_KEY` in your .Renviron file, `censusapi` will use it by default without any extra work on your part.
+
+To save your API key, within R, run:
+
+```R
+# Check to see if you already have a CENSUS_KEY or CENSUS_API_KEY saved
+# If so, no further action is needed
+get_api_key()
+
+# If not, add your key to your Renviron file
+Sys.setenv(CENSUS_KEY=PASTEYOURKEYHERE)
+
+# Reload .Renviron
+readRenviron("~/.Renviron")
+
+# Check to see that the expected key is output in your R console
+get_api_key()
+```
+
+In some instances, like when using a shared computer, you might not want to put your key in your .Renviron. You can always choose to manually set `key = "PASTEYOURKEYHERE"` as an argument in `censusapi` functions if you prefer.
+
 ## Basic usage
 Using the [Small Area Income and Poverty Estimates](https://www.census.gov/data/developers/data-sets/Poverty-Statistics.html) dataset, get the poverty rate [(SAEPOVRTALL_PT)](https://api.census.gov/data/timeseries/poverty/saipe/variables/SAEPOVRTALL_PT.html) for every year since 2010 in Los Angeles County, California.
 

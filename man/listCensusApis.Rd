@@ -4,7 +4,7 @@
 \alias{listCensusApis}
 \title{Get general information about available datasets}
 \usage{
-listCensusApis(name = NULL, vintage = NULL)
+listCensusApis(name = NULL, vintage = NULL, key = NULL)
 }
 \arguments{
 \item{name}{Optional complete or partial API dataset programmatic name. For
@@ -13,6 +13,11 @@ this needs to be the left-most part of the dataset name before \code{/}, e.g.
 "timeseries/eits" or "dec" or "acs/acs5".}
 
 \item{vintage}{Optional vintage (year) of dataset.}
+
+\item{key}{A Census API key, obtained at
+\url{https://api.census.gov/data/key_signup.html}. If you have a \code{CENSUS_KEY} or
+\code{CENSUS_API_KEY} stored in your .Renviron file, getCensus() will
+automatically use that key.}
 }
 \value{
 A data frame with the following columns:
@@ -35,7 +40,7 @@ includes columns for dataset title, description, name, vintage, url, dataset
 type, and other useful fields.
 }
 \examples{
-\dontshow{if (has_api_key()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (has_api_key()) withAutoprint(\{ # examplesIf}
 # Get information about every dataset available in the APIs
 apis <- listCensusApis()
 head(apis)
@@ -58,8 +63,8 @@ head(api_sahie)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other metadata: 
-\code{\link{listCensusMetadata}()},
-\code{\link{makeVarlist}()}
+Other metadata:
+\code{\link[=listCensusMetadata]{listCensusMetadata()}},
+\code{\link[=makeVarlist]{makeVarlist()}}
 }
 \concept{metadata}

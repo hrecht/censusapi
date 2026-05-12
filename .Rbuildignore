@@ -11,3 +11,5 @@ pkgdown/
 ^.github$
 ^\.github$
 ^vignettes/articles$
+^\.positai$
+^\.claude$

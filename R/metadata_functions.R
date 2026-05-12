@@ -10,6 +10,10 @@
 #'   this needs to be the left-most part of the dataset name before `/`, e.g.
 #'   "timeseries/eits" or "dec" or "acs/acs5".
 #' @param vintage Optional vintage (year) of dataset.
+#' @param key A Census API key, obtained at
+#'   <https://api.census.gov/data/key_signup.html>. If you have a `CENSUS_KEY` or
+#'   `CENSUS_API_KEY` stored in your .Renviron file, getCensus() will
+#'   automatically use that key.
 #' @returns A data frame with the following columns:
 #' * title: Short written description of the dataset.
 #' * name: Programmatic name of the dataset.
@@ -44,7 +48,8 @@
 #'
 #' @export
 listCensusApis <- function(name = NULL,
-													 vintage = NULL) {
+													 vintage = NULL,
+													 key = NULL) {
 	constructURL <- function(name, vintage) {
 			# Get data.json
 		if (is.null(name) & is.null(vintage)) {
@@ -57,6 +62,9 @@ listCensusApis <- function(name = NULL,
 			u <- paste0("https://api.census.gov/data/", vintage, "/", name, ".json")
 		}
 	}
+
+	# Check for key in function args and environment, stop if one is not provided
+	key <- enforce_key(key)
 
 	# Return API's built in error message if invalid call
 	apiCheck <- function(req) {
@@ -85,7 +93,7 @@ listCensusApis <- function(name = NULL,
 	}
 
 	u <- constructURL(name = name, vintage = vintage)
-	req <- httr::GET(u)
+	req <- httr::GET(u, query = list(key = key))
 	# Check the API call for a valid response
 	apiCheck(req)
 
@@ -143,6 +151,10 @@ listCensusApis <- function(name = NULL,
 #' @param name API programmatic name - e.g. acs/acs5. Use `listCensusApis()` to
 #'   see valid dataset names.
 #' @param vintage Vintage (year) of dataset. Not required for timeseries APIs.
+#' @param key A Census API key, obtained at
+#'   <https://api.census.gov/data/key_signup.html>. If you have a `CENSUS_KEY` or
+#'   `CENSUS_API_KEY` stored in your .Renviron file, getCensus() will
+#'   automatically use that key.
 #' @param type Type of metadata to return. Options are:
 #' * "variables" (default) - list of variable names and descriptions
 #'   for the dataset.
@@ -216,6 +228,7 @@ listCensusApis <- function(name = NULL,
 listCensusMetadata <-
 	function(name,
 					 vintage = NULL,
+					 key = NULL,
 					 type = "variables",
 					 group = NULL,
 					 variable_name = NULL,
@@ -262,6 +275,9 @@ listCensusMetadata <-
 			}
 		}
 
+		# Check for key in function args and environment, stop if one is not provided
+		key <- enforce_key(key)
+
 		apiurl <- constructURL(name, vintage)
 
 		if (type %in% c("variables")) {
@@ -270,7 +286,7 @@ listCensusMetadata <-
 			if (!is.null(group)) {
 				u <- paste(apiurl, "/groups/", group, ".json", sep="")
 
-				req <- httr::GET(u)
+				req <- httr::GET(u, query = list(key = key))
 				# Check the API call for a valid response
 				apiCheck(req)
 
@@ -287,7 +303,7 @@ listCensusMetadata <-
 
 			} else {
 				u <- paste(apiurl, "variables.json", sep="/")
-				req <- httr::GET(u)
+				req <- httr::GET(u, query = list(key = key))
 				# Check the API call for a valid response
 				apiCheck(req)
 
@@ -393,7 +409,7 @@ listCensusMetadata <-
 
 		} else if (type %in% c("geographies", "geography")) {
 			u <- paste(apiurl, "geography.json", sep="/")
-			req <- httr::GET(u)
+			req <- httr::GET(u, query = list(key = key))
 			# Check the API call for a valid response
 			apiCheck(req)
 
@@ -402,7 +418,7 @@ listCensusMetadata <-
 			dt <- raw$fips
 		} else if (type %in% c("groups")) {
 			u <- paste(apiurl, "groups.json", sep="/")
-			req <- httr::GET(u)
+			req <- httr::GET(u, query = list(key = key))
 			# Check the API call for a valid response
 			apiCheck(req)
 
@@ -414,7 +430,7 @@ listCensusMetadata <-
 			}
 		} else if (type == "values") {
 			u <- paste0(apiurl, "/variables/", variable_name, ".json")
-			req <- httr::GET(u)
+			req <- httr::GET(u, query = list(key = key))
 			# Check the API call for a valid response
 			apiCheck(req)
 

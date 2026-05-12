@@ -47,3 +47,5 @@ reference:
 
 redirects:
   - ["articles/example-masterlist.html", "articles/example-list.html"]
+
+llm-docs: false

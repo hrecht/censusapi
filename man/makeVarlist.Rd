@@ -29,7 +29,7 @@ a given string. This can be used create a list of variables to later pass to
 getCensus, or a data frame documenting variables used in a given project.
 }
 \examples{
-\dontshow{if (has_api_key()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (has_api_key()) withAutoprint(\{ # examplesIf}
 # Return a list, and then use getCensus function to retrieve those variables
 myvars <- makeVarlist(name = "timeseries/poverty/saipe",
   find = "Ages 0-4",
@@ -43,8 +43,8 @@ head(saipe_dt)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other metadata: 
-\code{\link{listCensusApis}()},
-\code{\link{listCensusMetadata}()}
+Other metadata:
+\code{\link[=listCensusApis]{listCensusApis()}},
+\code{\link[=listCensusMetadata]{listCensusMetadata()}}
 }
 \concept{metadata}

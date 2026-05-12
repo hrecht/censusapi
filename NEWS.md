@@ -1,3 +1,9 @@
+# censusapi 0.10.0
+As of May 12, 2026, the Census Bureau APIs require the use of an API key for retrieving data and metadata.
+
+* `listCensusApis()` and `listCensusMetadata()` now use the API `key` argument.
+* Documentation and error messages are updated to reflect that using an API key is now required.
+
 # censusapi 0.9.0
 ## Breaking changes
 * Increases required version of R from >=3.0 to >=3.5 (released in 2018) based on httr dependency.

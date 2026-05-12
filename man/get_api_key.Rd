@@ -20,7 +20,7 @@ get_api_key()
 
 }
 \seealso{
-Other helpers: 
-\code{\link{has_api_key}()}
+Other helpers:
+\code{\link[=has_api_key]{has_api_key()}}
 }
 \concept{helpers}

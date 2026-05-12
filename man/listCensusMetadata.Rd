@@ -7,6 +7,7 @@
 listCensusMetadata(
   name,
   vintage = NULL,
+  key = NULL,
   type = "variables",
   group = NULL,
   variable_name = NULL,
@@ -18,6 +19,11 @@ listCensusMetadata(
 see valid dataset names.}
 
 \item{vintage}{Vintage (year) of dataset. Not required for timeseries APIs.}
+
+\item{key}{A Census API key, obtained at
+\url{https://api.census.gov/data/key_signup.html}. If you have a \code{CENSUS_KEY} or
+\code{CENSUS_API_KEY} stored in your .Renviron file, getCensus() will
+automatically use that key.}
 
 \item{type}{Type of metadata to return. Options are:
 \itemize{
@@ -49,7 +55,7 @@ Get information about a Census Bureau API dataset, including its available
 variables, geographies, variable groups, and value labels
 }
 \examples{
-\dontshow{if (has_api_key()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (has_api_key()) withAutoprint(\{ # examplesIf}
 # type: variables # List the variables available in the Small Area
 # Health Insurance Estimates.
 variables <- listCensusMetadata(
@@ -103,8 +109,8 @@ head(naics_values)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other metadata: 
-\code{\link{listCensusApis}()},
-\code{\link{makeVarlist}()}
+Other metadata:
+\code{\link[=listCensusApis]{listCensusApis()}},
+\code{\link[=makeVarlist]{makeVarlist()}}
 }
 \concept{metadata}

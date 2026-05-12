@@ -27,11 +27,11 @@ This package returns the data as-is with the original variable names created by 
 
 ## API key setup
 
-`censusapi` recommends but does not require using an API key from the U.S. Census Bureau. The Census Bureau may limit the number of requests made by your IP address if you do not use an API key.
+The U.S. Census Bureau APIs require using an API key as of May 12, 2026.
 
 You can [sign up online](http://api.census.gov/data/key_signup.html) to receive a key, which will be sent to your provided email address.
 
-If you save the key with the name `CENSUS_KEY` or `CENSUS_API_KEY` in your Renviron file, `censusapi` will use it by default without any extra work on your part.
+If you save the key with the name `CENSUS_KEY` or `CENSUS_API_KEY` in your .Renviron file, `censusapi` will use it by default without any extra work on your part.
 
 To save your API key, within R, run:
 
@@ -50,7 +50,7 @@ readRenviron("~/.Renviron")
 get_api_key()
 ```
 
-In some instances you might not want to put your key in your .Renviron - for example, if you're on a shared school computer. You can always choose to manually set `key = "PASTEYOURKEYHERE"` as an argument in `getCensus()` if you prefer.
+In some instances, like when using a shared computer, you might not want to put your key in your .Renviron. You can always choose to manually set `key = "PASTEYOURKEYHERE"` as an argument in `censusapi` functions if you prefer.
 
 ## Basic usage
 

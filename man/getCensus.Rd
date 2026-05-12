@@ -41,7 +41,7 @@ timeseries APIs.}
 \item{key}{A Census API key, obtained at
 \url{https://api.census.gov/data/key_signup.html}. If you have a \code{CENSUS_KEY} or
 \code{CENSUS_API_KEY} stored in your .Renviron file, getCensus() will
-automatically use that key. Using a key is recommended but not required.}
+automatically use that key.}
 
 \item{vars}{List of variables to get. Required.}
 
@@ -70,7 +70,7 @@ A data frame with results from the specified U.S. Census Bureau dataset.
 Retrieve Census data from a given API
 }
 \examples{
-\dontshow{if (has_api_key()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (has_api_key()) withAutoprint(\{ # examplesIf}
 # Get total population and median household income for Census places
 # (cities, towns, villages) in a single state from the 5-year American Community Survey.
 acs_simple <- getCensus(
