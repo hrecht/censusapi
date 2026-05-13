@@ -4,7 +4,7 @@ template:
   bootstrap: 5
   bootswatch: simplex
   bslib:
-    base_font: {google: "Roboto"}
+    #base_font: {google: "Roboto"}
     primary: "#0d565c"
     headings-line-height: 2.2
     paragraph-margin-bottom: 1.5rem
